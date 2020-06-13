@@ -15,18 +15,29 @@
    along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-using System.IO;
-using System.Text;
+using System.Linq;
+using Newtonsoft.Json.Linq;
 
-namespace BungieSharper.Generator.Generation
+namespace BungieSharper.Generator
 {
-    internal static class FileWriter
+    public static class JsonHelper
     {
-        public static void WriteFileWithContent(string fileFolder, string fileName, string fileContent)
+        public static object Deserialize(string json)
         {
-            Directory.CreateDirectory(fileFolder);
+            return ToObject(JToken.Parse(json));
+        }
 
-            File.WriteAllText(fileFolder + "\\" + fileName, fileContent.Replace("\r\n", "\n").Replace("\n", "\r\n"), Encoding.UTF8);
+        private static object ToObject(JToken jToken)
+        {
+            return jToken.Type switch
+            {
+                JTokenType.Object => jToken.Children<JProperty>()
+                    .ToDictionary(prop => prop.Name, prop => ToObject(prop.Value)),
+
+                JTokenType.Array => jToken.Select(ToObject).ToList(),
+
+                _ => ((JValue) jToken).Value!
+            };
         }
     }
 }

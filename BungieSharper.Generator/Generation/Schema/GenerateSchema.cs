@@ -27,7 +27,7 @@ namespace BungieSharper.Generator.Generation.Schema
             var nameSpace = GenerateNamespace.CreateSchemaNamespace(schemaName);
 
             if (schemaDetails.ContainsKey("enum"))
-                return GenerateEnum.CreateEnum(nameSpace, schemaName.Split('.').Last(), schemaDetails["format"], schemaDetails["x-enum-values"]);
+                return GenerateEnum.CreateEnum(nameSpace, schemaName.Split('.').Last(), schemaDetails["format"], schemaDetails["x-enum-values"], schemaDetails["x-enum-is-bitmask"]);
             else
                 return "";
         }

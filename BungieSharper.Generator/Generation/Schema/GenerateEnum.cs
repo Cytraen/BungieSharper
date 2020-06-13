@@ -15,6 +15,7 @@
    along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
+using System;
 using System.Collections.Generic;
 using BungieSharper.Generator.Parsing;
 
@@ -22,28 +23,31 @@ namespace BungieSharper.Generator.Generation.Schema
 {
     internal static class GenerateEnum
     {
-        public static string CreateEnum(string nameSpace, string enumName, string intType, List<dynamic> xEnumValues)
+        public static string CreateEnum(string nameSpace, string enumName, string intType, List<dynamic> xEnumValues, bool isFlag)
         {
-            var valuesDict = new Dictionary<string, string>();
+            var valuesDict = new Dictionary<string, Tuple<string, string?>>();
 
             foreach (var enumVal in xEnumValues)
             {
-                valuesDict[enumVal["identifier"]] = (string)enumVal["numericValue"];
+                valuesDict[enumVal["identifier"]] = new Tuple<string, string?>((string)enumVal["numericValue"], enumVal.ContainsKey("description") ? enumVal["description"] : null);
             }
 
-            return CreateEnumContent(nameSpace, enumName, intType == "int32" ? "" : $" : {JsonToCsharpMapping.IntegerFormat(intType)}", valuesDict);
+            return CreateEnumContent(nameSpace, enumName, intType == "int32" ? "" : " : " + JsonToCsharpMapping.IntegerFormat(intType), valuesDict, isFlag);
         }
 
-        private static string CreateEnumContent(string nameSpace, string enumName, string intType, Dictionary<string, string> valuesDict)
+        private static string CreateEnumContent(string nameSpace, string enumName, string intType, Dictionary<string, Tuple<string, string?>> valuesDict, bool isFlag)
         {
             var valueStringList = new List<string>();
 
-            foreach (var (key, value) in valuesDict)
+            foreach (var (name, (value, description)) in valuesDict)
             {
-                valueStringList.Add($"        {key} = {value}");
+                valueStringList.Add(description != null
+                    ? $"        /// <summary>{description.Replace("\n", "\n        /// ")}</summary>\n        {name} = {value}"
+                    : $"        {name} = {value}"
+                );
             }
 
-            return $"namespace {nameSpace}\n{{\n    public enum {enumName}{intType}\n    {{\n{string.Join(",\n", valueStringList)}\n    }}\n}}";
+            return $"namespace {nameSpace}\n{{\n    {(isFlag ? "[System.Flags]\n    " : "")}public enum {enumName}{intType}\n    {{\n{string.Join(",\n", valueStringList)}\n    }}\n}}";
         }
     }
 }

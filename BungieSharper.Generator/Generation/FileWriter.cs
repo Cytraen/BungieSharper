@@ -15,25 +15,18 @@
    along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
-using System.Linq;
+using System.IO;
+using System.Text;
 
 namespace BungieSharper.Generator.Generation
 {
-    internal static class GenerateNamespace
+    internal static class FileWriter
     {
-        private const string BaseSchemaNamespace = "BungieSharper.Schema.";
-        private const string BaseEndpointNamespace = "BungieSharper.Endpoint.";
-
-        public static string CreateSchemaNamespace(string pathSummaryOrSchemaKey)
+        public static void WriteFileWithContent(string fileFolder, string fileName, string fileContent)
         {
-            var path = (BaseSchemaNamespace + pathSummaryOrSchemaKey).Split('.').SkipLast(1);
-            return string.Join('.', path);
-        }
+            Directory.CreateDirectory(fileFolder);
 
-        public static string CreateEndpointNamespace(string pathSummaryOrSchemaKey)
-        {
-            var path = (BaseEndpointNamespace + pathSummaryOrSchemaKey).Split('.').SkipLast(1);
-            return string.Join('.', path);
+            File.WriteAllText(fileFolder + "\\" + fileName, fileContent, Encoding.UTF8);
         }
     }
 }

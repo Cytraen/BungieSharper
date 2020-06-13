@@ -16,10 +16,13 @@
 */
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using BungieSharper.Generator.Generation;
+using BungieSharper.Generator.Generation.Schema;
 using Utf8Json;
 
 namespace BungieSharper.Generator
@@ -39,14 +42,25 @@ namespace BungieSharper.Generator
                 Console.WriteLine("Using provided OpenAPI definitions.");
             }
 
-            var BungieSharperPath =
+            var bungieSharperPath =
                 Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\..\BungieSharper\"));
 
             var deserialized = JsonSerializer.Deserialize<dynamic>(await File.ReadAllBytesAsync("./openApi.json"));
 
             // TODO: WORK GOES HERE
 
+            foreach (KeyValuePair<string, dynamic> schema in deserialized["components"]["schemas"])
+            {
+                if (!schema.Value.ContainsKey("enum"))
+                    continue;
 
+                var fileFolder =  bungieSharperPath + "Schema\\" + string.Join('\\', schema.Key.Split('.').SkipLast(1));
+                var fileContent = GenerateSchema.GetFileContent(schema.Key, schema.Value);
+
+                FileWriter.WriteFileWithContent(fileFolder, schema.Key.Split('.').Last() + ".cs", fileContent);
+            }
+
+            // TODO: WORK ENDS HERE
 
             Console.WriteLine("Done with work.");
 

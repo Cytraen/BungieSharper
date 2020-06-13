@@ -15,25 +15,21 @@
    along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
+using System.Collections.Generic;
 using System.Linq;
 
-namespace BungieSharper.Generator.Generation
+namespace BungieSharper.Generator.Generation.Schema
 {
-    internal static class GenerateNamespace
+    internal static class GenerateSchema
     {
-        private const string BaseSchemaNamespace = "BungieSharper.Schema.";
-        private const string BaseEndpointNamespace = "BungieSharper.Endpoint.";
-
-        public static string CreateSchemaNamespace(string pathSummaryOrSchemaKey)
+        public static string GetFileContent(string schemaName, Dictionary<string, dynamic> schemaDetails)
         {
-            var path = (BaseSchemaNamespace + pathSummaryOrSchemaKey).Split('.').SkipLast(1);
-            return string.Join('.', path);
-        }
+            var nameSpace = GenerateNamespace.CreateSchemaNamespace(schemaName);
 
-        public static string CreateEndpointNamespace(string pathSummaryOrSchemaKey)
-        {
-            var path = (BaseEndpointNamespace + pathSummaryOrSchemaKey).Split('.').SkipLast(1);
-            return string.Join('.', path);
+            if (schemaDetails.ContainsKey("enum"))
+                return GenerateEnum.CreateEnum(nameSpace, schemaName.Split('.').Last(), schemaDetails["format"], schemaDetails["x-enum-values"]);
+            else
+                return "";
         }
     }
 }

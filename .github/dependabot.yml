@@ -1,0 +1,10 @@
+version: 2
+updates:
+  - package-ecosystem: "nuget"
+    directory: "/BungieSharp"
+    schedule:
+      interval: "live"
+  - package-ecosystem: "nuget"
+    directory: "/BungieSharp.Generator"
+    schedule:
+      interval: "live"

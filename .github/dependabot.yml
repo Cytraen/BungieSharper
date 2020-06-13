@@ -3,8 +3,8 @@ updates:
   - package-ecosystem: "nuget"
     directory: "/BungieSharp"
     schedule:
-      interval: "live"
+      interval: "daily"
   - package-ecosystem: "nuget"
     directory: "/BungieSharp.Generator"
     schedule:
-      interval: "live"
+      interval: "daily"

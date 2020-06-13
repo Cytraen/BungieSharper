@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<Version>0.1.0.0</Version>
+		<Authors>ashakoor</Authors>
+		<PackageLicenseFile>COPYING.LESSER.md</PackageLicenseFile>
+		<RepositoryUrl>https://github.com/ashakoor/BungieSharp</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\COPYING.md">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
+
+</Project>

@@ -15,10 +15,24 @@
    along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
+using System;
+using System.Collections.Generic;
+using BungieSharper.Generator.Parsing;
+
 namespace BungieSharper.Generator.Generation.Schema
 {
     internal static class GenerateClass
     {
+        public static string CreateClass(Dictionary<string, dynamic> details)
+        {
+            var propertyDetails = new List<Tuple<string, string, string>>();
 
+            foreach (KeyValuePair<string, dynamic> property in details["properties"])
+            {
+                propertyDetails.Add(new Tuple<string, string, string>(property.Key, JsonToCsharpMapping.Type(property.Value), property.Value["description"]));
+            }
+
+            return "";
+        }
     }
 }

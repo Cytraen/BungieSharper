@@ -15,6 +15,7 @@
    along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -26,10 +27,12 @@ namespace BungieSharper.Generator.Generation.Schema
         {
             var nameSpace = GenerateNamespace.CreateSchemaNamespace(schemaName);
 
-            if (schemaDetails.ContainsKey("enum"))
+            if (schemaDetails["type"] == "integer")
                 return GenerateEnum.CreateEnum(nameSpace, schemaName.Split('.').Last(), schemaDetails["format"], schemaDetails["x-enum-values"], schemaDetails["x-enum-is-bitmask"]);
-            else
-                return "";
+            if (schemaDetails["type"] == "object")
+                return GenerateClass.CreateClass(schemaDetails);
+
+            throw new NotSupportedException();
         }
     }
 }

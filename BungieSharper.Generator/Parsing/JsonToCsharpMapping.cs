@@ -16,6 +16,8 @@
 */
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BungieSharper.Generator.Parsing
 {
@@ -30,7 +32,7 @@ namespace BungieSharper.Generator.Parsing
                 "number" => NumberFormat(schema["format"]),
                 "array" => Type(schema["items"]) + "[]",
                 "boolean" => "bool",
-                // "object" => "ulong",
+                "object" => ObjectParser(schema),
                 _ => throw new NotSupportedException($"Type: {schema["type"]}")
             };
         }
@@ -69,6 +71,19 @@ namespace BungieSharper.Generator.Parsing
                 "double" => "double",
                 _ => throw new NotSupportedException($"Format: {bungieFormat}")
             };
+        }
+
+        public static string ObjectParser(dynamic objectDetails)
+        {
+            ushort numOfDetails = 0;
+            if (objectDetails.ContainsKey("allOf"))
+            {
+                numOfDetails += 1;
+                if (objectDetails["allOf"].Count != 1)
+                    throw new NotSupportedException();
+                return ((IEnumerable<string>)objectDetails["allOf"][0]["$ref"].Split('/')).Last();
+            }
+            throw new NotSupportedException();
         }
     }
 }

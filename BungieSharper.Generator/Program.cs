@@ -50,9 +50,6 @@ namespace BungieSharper.Generator
 
             foreach (KeyValuePair<string, dynamic> schema in deserialized["components"]["schemas"])
             {
-                if (!((Dictionary<string, object>)schema.Value).ContainsKey("enum"))
-                    continue;
-
                 var fileFolder = bungieSharperPath + "Schema\\" + string.Join('\\', schema.Key.Split('.').SkipLast(1));
                 var fileContent = GenerateSchema.GetFileContent(schema.Key, schema.Value);
 

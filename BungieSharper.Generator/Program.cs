@@ -115,6 +115,7 @@ namespace BungieSharper.Generator
                     combinedContent = combinedContent.Replace("    }\n    public", "    }\n\n    public");
                     combinedContent = combinedContent.Replace("{\n\n    public", "{\n    public");
                     combinedContent = combinedContent.Replace("    }\n    [System.Flags", "    }\n\n    [System.Flags");
+                    combinedContent = combinedContent.Replace("    }\n    /// <summary>", "    }\n\n    /// <summary>");
 
                     FileWriter.WriteFileWithContent(
                         bungieSharperPath + "Schema\\",

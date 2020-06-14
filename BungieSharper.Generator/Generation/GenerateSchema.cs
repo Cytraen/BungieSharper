@@ -120,6 +120,13 @@ namespace BungieSharper.Generator.Generation
             almostFinalString = almostFinalString.Replace("{name!Space}", GenerateNamespace.CreateSchemaNamespace(schemaName));
             almostFinalString = almostFinalString.Replace("{thingName}", schemaName.Split('.').Last());
 
+            if (schemaDetails.ContainsKey("description"))
+                almostFinalString = almostFinalString.Replace(
+                    "{documentation}",
+                    FormatSummaries.FormatSummary(schemaDetails.ContainsKey("description") ? schemaDetails["description"] : "", 4, true)
+                    );
+            else
+                almostFinalString = almostFinalString.Replace("{documentation}", "");
             return almostFinalString;
         }
 
@@ -129,6 +136,8 @@ namespace BungieSharper.Generator.Generation
 
             content += "namespace {name!Space}\n";
             content += "{\n";
+
+            content += "{documentation}";
 
             if (isEnumFlags)
             {

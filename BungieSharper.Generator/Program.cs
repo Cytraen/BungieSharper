@@ -16,7 +16,6 @@
 */
 
 using BungieSharper.Generator.Generation;
-using BungieSharper.Generator.Generation.Schema;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -50,8 +49,22 @@ namespace BungieSharper.Generator
 
             foreach (KeyValuePair<string, dynamic> schema in deserialized["components"]["schemas"])
             {
+                if (schema.Value["type"] == "array")
+                    continue;
+
+                if (schema.Key == "Content.ContentItemPublicContract")
+                    continue;
+
                 var fileFolder = bungieSharperPath + "Schema\\" + string.Join('\\', schema.Key.Split('.').SkipLast(1));
-                var fileContent = GenerateSchema.GetFileContent(schema.Key, schema.Value);
+                string fileContent = GenerateSchema.GenerateSchemaFileContent(schema.Key, schema.Value);
+                
+                if (fileContent.Contains("Dictionary<") || fileContent.Contains("IEnumerable<"))
+                    fileContent = "using System.Collections.Generic;\n" + fileContent;
+                if (fileContent.Contains("DateTime"))
+                    fileContent = "using System;\n" + fileContent;
+
+                if (fileContent.Contains("\nnamespace"))
+                    fileContent = fileContent.Replace("\nnamespace", "\n\nnamespace");
 
                 FileWriter.WriteFileWithContent(fileFolder, schema.Key.Split('.').Last() + ".cs", fileContent);
             }

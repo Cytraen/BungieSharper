@@ -16,8 +16,6 @@
 */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace BungieSharper.Generator.Parsing
 {
@@ -25,39 +23,16 @@ namespace BungieSharper.Generator.Parsing
     {
         public static string ObjectParser(dynamic objectDetails)
         {
-            ushort numOfDetails = 0;
             if (objectDetails.ContainsKey("allOf"))
             {
-                numOfDetails += 1;
                 if (objectDetails["allOf"].Count != 1)
                     throw new NotSupportedException();
                 return JsonToCsharpMapping.GetReferenceFromRef(objectDetails["allOf"][0]["$ref"]);
-                // return ((IEnumerable<string>)objectDetails["allOf"][0]["$ref"].Split('/')).Last();
             }
 
             if (objectDetails.ContainsKey("x-dictionary-key"))
                 return DictionaryCreator(objectDetails["x-dictionary-key"], objectDetails["additionalProperties"]);
-                // return $"Dictionary<{JsonToCsharpMapping.Type(objectDetails["x-dictionary-key"])}, {JsonToCsharpMapping.GetReferenceFromRef(objectDetails["additionalProperties"]["$ref"])}>";
             throw new NotSupportedException();
-        }
-
-        public static string OldArrayParser(dynamic arrayDetails)
-        {
-            ushort numOfDetails = 0;
-            if (arrayDetails.ContainsKey("items"))
-            {
-                numOfDetails += 1;
-                if (arrayDetails["items"].Count != 1)
-                    if (arrayDetails["items"].ContainsKey("x-enum-reference"))
-                        return JsonToCsharpMapping.GetReferenceFromRef(arrayDetails["items"]["x-enum-reference"]["$ref"]);
-                    else
-                        throw new NotSupportedException();
-                return JsonToCsharpMapping.GetReferenceFromRef(arrayDetails["items"]["$ref"]);
-                // return ((IEnumerable<string>)arrayDetails["items"]["$ref"].Split('/')).Last();
-            }
-            throw new NotSupportedException();
-
-            // JsonToCsharpMapping.Type(schema["items"]) + "[]"
         }
 
         public static string ArrayParser(dynamic arrayDetails)
@@ -65,10 +40,10 @@ namespace BungieSharper.Generator.Parsing
             dynamic items = arrayDetails["items"];
 
             if (items.ContainsKey("$ref"))
-                return JsonToCsharpMapping.GetReferenceFromRef(items["$ref"]) + "[]";
+                return $"IEnumerable<{JsonToCsharpMapping.GetReferenceFromRef(items["$ref"])}>";
 
             if (items.ContainsKey("format") || items.ContainsKey("type"))
-                return JsonToCsharpMapping.Type(items);
+                return $"IEnumerable<{JsonToCsharpMapping.Type(items)}>";
 
             throw new NotSupportedException();
         }
@@ -81,22 +56,16 @@ namespace BungieSharper.Generator.Parsing
         private static string ParseDictionaryItem(dynamic item)
         {
             if (item.ContainsKey("x-enum-reference"))
-            {
                 return JsonToCsharpMapping.GetReferenceFromRef(item["x-enum-reference"]["$ref"]);
-            }
 
             if (item.ContainsKey("format"))
-            {
                 return JsonToCsharpMapping.Type(item);
-            }
 
             if (item.ContainsKey("additionalProperties"))
-            {
                 return DictionaryCreator(item["x-dictionary-key"], item["additionalProperties"]);
-            }
 
             if (item.ContainsKey("type"))
-                return item["type"];
+                return JsonToCsharpMapping.Type(item);
 
             if (item.ContainsKey("$ref"))
                 return JsonToCsharpMapping.GetReferenceFromRef(item["$ref"]);

@@ -1,18 +1,22 @@
 ﻿/*
    Copyright (C) 2020 ashakoor
-   
+
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU Affero General Public License as
    published by the Free Software Foundation, either version 3 of the
    License or any later version.
-   
+
    This program is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
    GNU Affero General Public License for more details.
-   
+
    You should have received a copy of the GNU Affero General Public License
    along with this program. If not, see <https://www.gnu.org/licenses/>.
+
+   BungieSharper accesses an API under the BSD 3-Clause License.
+   See BUNGIE-SDK-LICENSE for more information.
+   The Bungie API/SDK is copyright (c) 2017, Bungie, Inc.
 */
 
 using BungieSharper.Generator.Generation;
@@ -21,6 +25,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace BungieSharper.Generator
@@ -29,7 +34,7 @@ namespace BungieSharper.Generator
     {
         private static async Task Main(string[] args)
         {
-            if (args.Contains("downloadNewDefinitions=true") || !File.Exists("openApi.json"))
+            if (args.Contains("--download-new-definitions") || !File.Exists("openApi.json"))
             {
                 Console.Write("Downloading new OpenAPI definitions from Bungie.net... ");
                 await DownloadNewOpenApiTask();
@@ -47,6 +52,8 @@ namespace BungieSharper.Generator
 
             // TODO: WORK GOES HERE
 
+            var fileDictionary = new Dictionary<string, List<string>>();
+
             foreach (KeyValuePair<string, dynamic> schema in deserialized["components"]["schemas"])
             {
                 if (schema.Value["type"] == "array")
@@ -57,7 +64,7 @@ namespace BungieSharper.Generator
 
                 var fileFolder = bungieSharperPath + "Schema\\" + string.Join('\\', schema.Key.Split('.').SkipLast(1));
                 string fileContent = GenerateSchema.GenerateSchemaFileContent(schema.Key, schema.Value);
-                
+
                 if (fileContent.Contains("Dictionary<") || fileContent.Contains("IEnumerable<"))
                     fileContent = "using System.Collections.Generic;\n" + fileContent;
                 if (fileContent.Contains("DateTime"))
@@ -66,14 +73,59 @@ namespace BungieSharper.Generator
                 if (fileContent.Contains("\nnamespace"))
                     fileContent = fileContent.Replace("\nnamespace", "\n\nnamespace");
 
-                FileWriter.WriteFileWithContent(fileFolder, schema.Key.Split('.').Last() + ".cs", fileContent);
+                if (args.Contains("--verbose"))
+                {
+                    FileWriter.WriteFileWithContent(fileFolder, schema.Key.Split('.').Last() + ".cs", fileContent);
+                }
+                else
+                {
+                    if (!fileDictionary.ContainsKey(fileFolder))
+                    {
+                        fileDictionary[fileFolder] = new List<string>();
+                    }
+                    fileDictionary[fileFolder].Add(fileContent);
+                }
+            }
+
+            if (!args.Contains("--verbose"))
+            {
+                foreach (var (location, classes) in fileDictionary)
+                {
+                    var combinedContent = string.Join("\n\n", classes);
+
+                    var regex = new Regex(@"^namespace (.*)\n[{]", RegexOptions.Multiline);
+                    var matches = regex.Matches(combinedContent);
+                    
+                    combinedContent = combinedContent.Replace("\n{", "");
+                    combinedContent = combinedContent.Replace("\n}", "");
+
+                    combinedContent = combinedContent.Replace($"namespace {matches[0].Groups[1]}", "");
+                    combinedContent = $"namespace {matches[0].Groups[1]}\n{{" + combinedContent + "}";
+
+                    if (combinedContent.Contains("using System.Collections.Generic;"))
+                    {
+                        combinedContent = combinedContent.Replace("using System.Collections.Generic;\n", "");
+                        combinedContent = "using System.Collections.Generic;\n" + combinedContent;
+                    }
+                    if (combinedContent.Contains("using System;"))
+                    {
+                        combinedContent = combinedContent.Replace("using System;\n", "");
+                        combinedContent = "using System;\n" + combinedContent;
+                    }
+
+                    FileWriter.WriteFileWithContent(
+                        string.Join('\\', location.Split('\\').SkipLast(1)), 
+                        location.Split('\\').Last() + ".cs", 
+                        combinedContent
+                        );
+                }
             }
 
             // TODO: WORK ENDS HERE
 
             Console.WriteLine("Done with work.");
 
-            if (args.Contains("deleteDefinitions=true"))
+            if (args.Contains("--delete-definitions"))
             {
                 Console.WriteLine("Deleting OpenAPI definitions.");
                 File.Delete("./openApi.json");

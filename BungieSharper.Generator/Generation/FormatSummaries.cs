@@ -19,29 +19,29 @@
    The Bungie API/SDK is copyright (c) 2017, Bungie, Inc.
 */
 
-using Newtonsoft.Json.Linq;
-using System.Linq;
-
-namespace BungieSharper.Generator
+namespace BungieSharper.Generator.Generation
 {
-    public static class JsonHelper
+    internal static class FormatSummaries
     {
-        public static object Deserialize(string json)
+        public static string FormatSummary(string summary, int spaces)
         {
-            return ToObject(JToken.Parse(json));
-        }
+            var formatted = "";
+            var spacing = "".PadLeft(spaces, ' ');
 
-        private static object ToObject(JToken jToken)
-        {
-            return jToken.Type switch
+            summary = summary.Replace("\r\n", "\n");
+
+            if (summary.Contains('\n'))
             {
-                JTokenType.Object => jToken.Children<JProperty>()
-                    .ToDictionary(prop => prop.Name, prop => ToObject(prop.Value)),
+                formatted += $"{spacing}/// <summary>\n";
+                formatted += spacing + string.Join("", summary.Split($"{spacing}\n"));
+                formatted += $"{spacing}/// </summary>";
+            }
+            else
+            {
+                formatted = "";
+            }
 
-                JTokenType.Array => jToken.Select(ToObject).ToList(),
-
-                _ => ((JValue)jToken).Value!
-            };
+            return formatted;
         }
     }
 }

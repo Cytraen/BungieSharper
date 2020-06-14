@@ -1,24 +1,28 @@
 /*
    Copyright (C) 2020 ashakoor
-   
+
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU Affero General Public License as
    published by the Free Software Foundation, either version 3 of the
    License or any later version.
-   
+
    This program is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
    GNU Affero General Public License for more details.
-   
+
    You should have received a copy of the GNU Affero General Public License
    along with this program. If not, see <https://www.gnu.org/licenses/>.
+
+   BungieSharper accesses an API under the BSD 3-Clause License.
+   See BUNGIE-SDK-LICENSE for more information.
+   The Bungie API/SDK is copyright (c) 2017, Bungie, Inc.
 */
 
+using BungieSharper.Generator.Parsing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using BungieSharper.Generator.Parsing;
 
 namespace BungieSharper.Generator.Generation
 {
@@ -45,7 +49,6 @@ namespace BungieSharper.Generator.Generation
                     valuesList.Add(new Tuple<string, string, string?>(enumVal!["identifier"], enumVal["numericValue"], usableSummary));
                 }
             }
-
             else if (schemaDetails["type"] == "object")
             {
                 if (!schemaDetails.ContainsKey("properties"))
@@ -74,13 +77,11 @@ namespace BungieSharper.Generator.Generation
 
                     if (propertyPair.Key == "failureIndexes")
                     {
-
                     }
 
                     valuesList.Add(new Tuple<string, string, string?>(propertyPair.Key, classType, usableSummary));
                 }
             }
-
             else
             {
                 throw new NotSupportedException();
@@ -99,7 +100,6 @@ namespace BungieSharper.Generator.Generation
                 finalValueList = valuesList.Select(x => $"{x.Item3}        public {x.Item2} {x.Item1} {{ get; set; }}").ToList();
                 finalValueString = string.Join('\n', finalValueList);
             }
-            
 
             var almostFinalString = CreateDataTypeContent(isEnum, finalValueString);
 
@@ -113,8 +113,6 @@ namespace BungieSharper.Generator.Generation
 
             return almostFinalString;
         }
-
-
 
         private static string CreateDataTypeContent(bool isEnum, string propertiesWithSummaries)
         {

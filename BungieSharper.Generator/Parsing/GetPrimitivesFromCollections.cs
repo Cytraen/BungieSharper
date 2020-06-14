@@ -36,6 +36,8 @@ namespace BungieSharper.Generator.Parsing
 
             if (objectDetails.ContainsKey("x-dictionary-key"))
                 return DictionaryCreator(objectDetails["x-dictionary-key"], objectDetails["additionalProperties"]);
+
+            return "dynamic";
             throw new NotSupportedException();
         }
 

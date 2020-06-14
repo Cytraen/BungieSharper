@@ -59,9 +59,6 @@ namespace BungieSharper.Generator
                 if (schema.Value["type"] == "array")
                     continue;
 
-                if (schema.Key == "Content.ContentItemPublicContract")
-                    continue;
-
                 var fileFolder = bungieSharperPath + "Schema\\" + string.Join('\\', schema.Key.Split('.').SkipLast(1));
                 string fileContent = GenerateSchema.GenerateSchemaFileContent(schema.Key, schema.Value);
 
@@ -98,6 +95,7 @@ namespace BungieSharper.Generator
                     
                     combinedContent = combinedContent.Replace("\n{", "");
                     combinedContent = combinedContent.Replace("\n}", "");
+                    combinedContent = combinedContent.Replace("\n\n\n", "");
 
                     combinedContent = combinedContent.Replace($"namespace {matches[0].Groups[1]}", "");
                     combinedContent = $"namespace {matches[0].Groups[1]}\n{{" + combinedContent + "}";
@@ -113,9 +111,14 @@ namespace BungieSharper.Generator
                         combinedContent = "using System;\n" + combinedContent;
                     }
 
+                    combinedContent = combinedContent.Replace(";\nnamespace ", ";\n\nnamespace ");
+                    combinedContent = combinedContent.Replace("    }\n    public", "    }\n\n    public");
+                    combinedContent = combinedContent.Replace("{\n\n    public", "{\n    public");
+                    combinedContent = combinedContent.Replace("    }\n    [System.Flags", "    }\n\n    [System.Flags");
+
                     FileWriter.WriteFileWithContent(
-                        string.Join('\\', location.Split('\\').SkipLast(1)), 
-                        location.Split('\\').Last() + ".cs", 
+                        bungieSharperPath + "Schema\\",
+                        (location.Replace(bungieSharperPath, "").Replace('\\', '.') + ".cs").Replace("..", "."), 
                         combinedContent
                         );
                 }

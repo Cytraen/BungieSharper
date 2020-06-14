@@ -23,6 +23,7 @@ using BungieSharper.Generator.Parsing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace BungieSharper.Generator.Generation
 {
@@ -44,6 +45,8 @@ namespace BungieSharper.Generator.Generation
                     {
                         usableSummary = usableSummary?.Replace("\r\n", "\n").Replace("\n", "\n        ///");
                         usableSummary = $"        /// <summary>{usableSummary}</summary>\n";
+
+                        usableSummary = FormatSummaries.FormatSummary(enumVal["description"], 8);
                     }
 
                     valuesList.Add(new Tuple<string, string, string?>(enumVal!["identifier"], enumVal["numericValue"], usableSummary));
@@ -62,6 +65,8 @@ namespace BungieSharper.Generator.Generation
                     {
                         usableSummary = usableSummary?.Replace("\r\n", "\n").Replace("\n", "\n        ///");
                         usableSummary = $"        /// <summary>{usableSummary}</summary>\n";
+
+                        usableSummary = FormatSummaries.FormatSummary(propertyPair.Value["description"], 8);
                     }
 
                     string classType;
@@ -89,6 +94,10 @@ namespace BungieSharper.Generator.Generation
 
             List<string> finalValueList;
             string finalValueString;
+            var isFlags = false;
+
+            if (schemaDetails.ContainsKey("x-enum-is-bitmask") && schemaDetails["x-enum-is-bitmask"])
+                isFlags = true;
 
             if (isEnum)
             {
@@ -101,7 +110,7 @@ namespace BungieSharper.Generator.Generation
                 finalValueString = string.Join('\n', finalValueList);
             }
 
-            var almostFinalString = CreateDataTypeContent(isEnum, finalValueString);
+            var almostFinalString = CreateDataTypeContent(isEnum, finalValueString, isFlags);
 
             if (isEnum)
             {
@@ -114,12 +123,18 @@ namespace BungieSharper.Generator.Generation
             return almostFinalString;
         }
 
-        private static string CreateDataTypeContent(bool isEnum, string propertiesWithSummaries)
+        private static string CreateDataTypeContent(bool isEnum, string propertiesWithSummaries, bool isEnumFlags = false)
         {
             var content = "";
 
             content += "namespace {name!Space}\n";
             content += "{\n";
+
+            if (isEnumFlags)
+            {
+                content += "    [System.Flags]\n";
+            }
+
             content += "    public " + (isEnum ? "enum {thingName}{int!Type}" : "class {thingName}") + "\n";
             content += "    {\n";
 

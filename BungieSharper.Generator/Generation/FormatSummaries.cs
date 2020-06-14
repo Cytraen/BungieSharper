@@ -19,6 +19,8 @@
    The Bungie API/SDK is copyright (c) 2017, Bungie, Inc.
 */
 
+using System.Linq;
+
 namespace BungieSharper.Generator.Generation
 {
     internal static class FormatSummaries
@@ -33,12 +35,12 @@ namespace BungieSharper.Generator.Generation
             if (summary.Contains('\n'))
             {
                 formatted += $"{spacing}/// <summary>\n";
-                formatted += spacing + string.Join("", summary.Split($"{spacing}\n"));
-                formatted += $"{spacing}/// </summary>";
+                formatted += string.Join("\n", summary.Split('\n').Select(x => spacing + "/// " + x));
+                formatted += $"\n{spacing}/// </summary>\n";
             }
             else
             {
-                formatted = "";
+                formatted = $"{spacing}/// <summary>{summary}</summary>\n";
             }
 
             return formatted;

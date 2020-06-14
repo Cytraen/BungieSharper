@@ -27,6 +27,8 @@ namespace BungieSharper.Generator.Generation.Schema
         {
             var nameSpace = GenerateNamespace.CreateSchemaNamespace(schemaName);
 
+            if (schemaDetails["type"] == "array")
+                return "";
             if (schemaDetails["type"] == "integer")
                 return GenerateEnum.CreateEnum(nameSpace, schemaName.Split('.').Last(), schemaDetails["format"], schemaDetails["x-enum-values"], schemaDetails["x-enum-is-bitmask"]);
             if (schemaDetails["type"] == "object")

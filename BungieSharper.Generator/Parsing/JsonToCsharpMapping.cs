@@ -16,7 +16,6 @@
 */
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace BungieSharper.Generator.Parsing
@@ -25,22 +24,38 @@ namespace BungieSharper.Generator.Parsing
     {
         public static string Type(dynamic schema)
         {
-            return schema["type"] switch
+            if (schema.ContainsKey("$ref") && schema.ContainsKey("type"))
+                throw new NotSupportedException();
+
+            if (schema.ContainsKey("$ref"))
             {
-                "string" => schema.ContainsKey("format") ? StringFormat(schema["format"]) : "string",
-                "integer" => IntegerFormat(schema["format"]),
-                "number" => NumberFormat(schema["format"]),
-                "array" => Type(schema["items"]) + "[]",
-                "boolean" => "bool",
-                "object" => ObjectParser(schema),
-                _ => throw new NotSupportedException($"Type: {schema["type"]}")
-            };
+                return GetReferenceFromRef(schema["$ref"]);
+            }
+
+            switch (schema["type"])
+            {
+                case "string":
+                    return schema.ContainsKey("format") ? StringFormat(schema["format"]) : "string";
+                case "integer":
+                    return IntegerFormat(schema["format"]);
+                case "number":
+                    return NumberFormat(schema["format"]);
+                case "array":
+                    return GetPrimitivesFromCollections.ArrayParser(schema);
+                case "boolean":
+                    return "bool";
+                case "object":
+                    return GetPrimitivesFromCollections.ObjectParser(schema);
+                default:
+                    throw new NotSupportedException($"Type: {schema["type"]}");
+            }
         }
         
         public static string StringFormat(string? bungieFormat)
         {
             return bungieFormat switch
             {
+                "byte" => "byte",
                 "date-time" => "DateTime",
                 null => "string",
                 _ => throw new NotSupportedException($"Format: {bungieFormat}")
@@ -73,17 +88,9 @@ namespace BungieSharper.Generator.Parsing
             };
         }
 
-        public static string ObjectParser(dynamic objectDetails)
+        public static string GetReferenceFromRef(string jsonRef)
         {
-            ushort numOfDetails = 0;
-            if (objectDetails.ContainsKey("allOf"))
-            {
-                numOfDetails += 1;
-                if (objectDetails["allOf"].Count != 1)
-                    throw new NotSupportedException();
-                return ((IEnumerable<string>)objectDetails["allOf"][0]["$ref"].Split('/')).Last();
-            }
-            throw new NotSupportedException();
+            return jsonRef.Split('/').Last();
         }
     }
 }

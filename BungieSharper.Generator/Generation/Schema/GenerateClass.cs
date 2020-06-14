@@ -25,11 +25,14 @@ namespace BungieSharper.Generator.Generation.Schema
     {
         public static string CreateClass(Dictionary<string, dynamic> details)
         {
-            var propertyDetails = new List<Tuple<string, string, string>>();
+            var propertyDetails = new List<Tuple<string, string, string?>>();
+
+            if (!details.ContainsKey("properties") && details.ContainsKey("additionalProperties"))
+                return "this shit is a dictionary. yo";
 
             foreach (KeyValuePair<string, dynamic> property in details["properties"])
             {
-                propertyDetails.Add(new Tuple<string, string, string>(property.Key, JsonToCsharpMapping.Type(property.Value), property.Value["description"]));
+                propertyDetails.Add(new Tuple<string, string, string?>(property.Key, JsonToCsharpMapping.Type(property.Value), property.Value.ContainsKey("description") ? property.Value["description"] : ""));
             }
 
             return "";

@@ -147,9 +147,6 @@ namespace BungieSharper.Generator
                 Console.WriteLine("Deleting OpenAPI definitions.");
                 File.Delete("./openApi.json");
             }
-
-            Console.WriteLine("Press any key to close.");
-            Console.ReadKey();
         }
 
         private static async Task DownloadNewOpenApiTask()

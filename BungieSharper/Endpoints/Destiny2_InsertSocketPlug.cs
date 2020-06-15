@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<Schema.Destiny.Responses.DestinyItemChangeResponse> Destiny2_InsertSocketPlug()
         {
             return await this._apiAccessor.ApiRequestAsync<Schema.Destiny.Responses.DestinyItemChangeResponse>(
-                "Destiny2/Actions/Items/InsertSocketPlug/", null, null, HttpMethod.Post
+                $"Destiny2/Actions/Items/InsertSocketPlug/", null, null, HttpMethod.Post
                 );
         }
     }

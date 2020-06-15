@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<Schema.Content.ContentItemPublicContract> Content_GetContentByTagAndType(bool head, string locale, string tag, string type)
         {
             return await this._apiAccessor.ApiRequestAsync<Schema.Content.ContentItemPublicContract>(
-                "Content/GetContentByTagAndType/{tag}/{type}/{locale}/", null, null, HttpMethod.Get
+                $"Content/GetContentByTagAndType/{tag}/{type}/{locale}/", null, null, HttpMethod.Get
                 );
         }
     }

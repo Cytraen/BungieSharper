@@ -32,7 +32,7 @@ namespace BungieSharper.Generator
 {
     internal static class Program
     {
-        private static dynamic deserialized { get; set; }
+        private static dynamic? deserialized { get; set; }
 
         private static async Task Main(string[] args)
         {

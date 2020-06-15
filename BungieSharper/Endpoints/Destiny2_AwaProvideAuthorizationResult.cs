@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<int> Destiny2_AwaProvideAuthorizationResult()
         {
             return await this._apiAccessor.ApiRequestAsync<int>(
-                "Destiny2/Awa/AwaProvideAuthorizationResult/", null, null, HttpMethod.Post
+                $"Destiny2/Awa/AwaProvideAuthorizationResult/", null, null, HttpMethod.Post
                 );
         }
     }

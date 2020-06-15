@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<Schema.Forum.PostSearchResponse> Forum_GetPostAndParentAwaitingApproval(long childPostId, string showbanned)
         {
             return await this._apiAccessor.ApiRequestAsync<Schema.Forum.PostSearchResponse>(
-                "Forum/GetPostAndParentAwaitingApproval/{childPostId}/", null, null, HttpMethod.Get
+                $"Forum/GetPostAndParentAwaitingApproval/{childPostId}/", null, null, HttpMethod.Get
                 );
         }
     }

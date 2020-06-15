@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<Dictionary<string, Schema.Destiny.HistoricalStats.Definitions.DestinyHistoricalStatsDefinition>> Destiny2_GetHistoricalStatsDefinition()
         {
             return await this._apiAccessor.ApiRequestAsync<Dictionary<string, Schema.Destiny.HistoricalStats.Definitions.DestinyHistoricalStatsDefinition>>(
-                "Destiny2/Stats/Definition/", null, null, HttpMethod.Get
+                $"Destiny2/Stats/Definition/", null, null, HttpMethod.Get
                 );
         }
     }

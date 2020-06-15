@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<int> Fireteam_GetActivePrivateClanFireteamCount(long groupId)
         {
             return await this._apiAccessor.ApiRequestAsync<int>(
-                "Fireteam/Clan/{groupId}/ActiveCount/", null, null, HttpMethod.Get
+                $"Fireteam/Clan/{groupId}/ActiveCount/", null, null, HttpMethod.Get
                 );
         }
     }

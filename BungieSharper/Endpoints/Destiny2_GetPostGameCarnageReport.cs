@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<Schema.Destiny.HistoricalStats.DestinyPostGameCarnageReportData> Destiny2_GetPostGameCarnageReport(long activityId)
         {
             return await this._apiAccessor.ApiRequestAsync<Schema.Destiny.HistoricalStats.DestinyPostGameCarnageReportData>(
-                "Destiny2/Stats/PostGameCarnageReport/{activityId}/", null, null, HttpMethod.Get
+                $"Destiny2/Stats/PostGameCarnageReport/{activityId}/", null, null, HttpMethod.Get
                 );
         }
     }

@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<Schema.Forum.PostSearchResponse> Forum_GetCoreTopicsPaged(Schema.Forum.ForumTopicsCategoryFiltersEnum categoryFilter, string locales, int page, Schema.Forum.ForumTopicsQuickDateEnum quickDate, Schema.Forum.ForumTopicsSortEnum sort)
         {
             return await this._apiAccessor.ApiRequestAsync<Schema.Forum.PostSearchResponse>(
-                "Forum/GetCoreTopicsPaged/{page}/{sort}/{quickDate}/{categoryFilter}/", null, null, HttpMethod.Get
+                $"Forum/GetCoreTopicsPaged/{page}/{sort}/{quickDate}/{categoryFilter}/", null, null, HttpMethod.Get
                 );
         }
     }

@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<IEnumerable<Schema.GlobalAlert>> GetGlobalAlerts(bool includestreaming)
         {
             return await this._apiAccessor.ApiRequestAsync<IEnumerable<Schema.GlobalAlert>>(
-                "GlobalAlerts/", null, null, HttpMethod.Get
+                $"GlobalAlerts/", null, null, HttpMethod.Get
                 );
         }
     }

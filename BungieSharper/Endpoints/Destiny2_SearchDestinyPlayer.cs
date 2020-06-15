@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<IEnumerable<Schema.User.UserInfoCard>> Destiny2_SearchDestinyPlayer(string displayName, Schema.BungieMembershipType membershipType, bool returnOriginalProfile)
         {
             return await this._apiAccessor.ApiRequestAsync<IEnumerable<Schema.User.UserInfoCard>>(
-                "Destiny2/SearchDestinyPlayer/{membershipType}/{displayName}/", null, null, HttpMethod.Get
+                $"Destiny2/SearchDestinyPlayer/{membershipType}/{displayName}/", null, null, HttpMethod.Get
                 );
         }
     }

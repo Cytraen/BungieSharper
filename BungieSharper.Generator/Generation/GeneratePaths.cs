@@ -46,7 +46,7 @@ namespace BungieSharper.Generator.Generation
                 "        public async Task<{returnType}> {pathName}({parameters})\n" +
                 "        {\n" +
                 "            return await this._apiAccessor.ApiRequestAsync<{returnType}>(\n" +
-                "                \"{path without first slash}\", null, null, HttpMethod.{GetOrPost}\n" +
+                "                $\"{path without first slash}\", null, null, HttpMethod.{GetOrPost}\n" +
                 "                );\n" +
                 "        }\n" +
                 "    }\n" +

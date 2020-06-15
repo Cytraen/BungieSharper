@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<Dictionary<uint, Schema.Destiny.Milestones.DestinyPublicMilestone>> Destiny2_GetPublicMilestones()
         {
             return await this._apiAccessor.ApiRequestAsync<Dictionary<uint, Schema.Destiny.Milestones.DestinyPublicMilestone>>(
-                "Destiny2/Milestones/", null, null, HttpMethod.Get
+                $"Destiny2/Milestones/", null, null, HttpMethod.Get
                 );
         }
     }

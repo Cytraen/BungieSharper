@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<IEnumerable<Schema.Entities.EntityActionResult>> GroupV2_ApprovePendingForList(long groupId)
         {
             return await this._apiAccessor.ApiRequestAsync<IEnumerable<Schema.Entities.EntityActionResult>>(
-                "GroupV2/{groupId}/Members/ApproveList/", null, null, HttpMethod.Post
+                $"GroupV2/{groupId}/Members/ApproveList/", null, null, HttpMethod.Post
                 );
         }
     }

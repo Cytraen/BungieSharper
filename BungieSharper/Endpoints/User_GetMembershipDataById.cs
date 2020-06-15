@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<Schema.User.UserMembershipData> User_GetMembershipDataById(long membershipId, Schema.BungieMembershipType membershipType)
         {
             return await this._apiAccessor.ApiRequestAsync<Schema.User.UserMembershipData>(
-                "User/GetMembershipsById/{membershipId}/{membershipType}/", null, null, HttpMethod.Get
+                $"User/GetMembershipsById/{membershipId}/{membershipType}/", null, null, HttpMethod.Get
                 );
         }
     }

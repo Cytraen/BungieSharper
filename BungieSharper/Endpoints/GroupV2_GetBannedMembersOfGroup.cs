@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<Schema.SearchResultOfGroupBan> GroupV2_GetBannedMembersOfGroup(int currentpage, long groupId)
         {
             return await this._apiAccessor.ApiRequestAsync<Schema.SearchResultOfGroupBan>(
-                "GroupV2/{groupId}/Banned/", null, null, HttpMethod.Get
+                $"GroupV2/{groupId}/Banned/", null, null, HttpMethod.Get
                 );
         }
     }

@@ -23,11 +23,12 @@ namespace BungieSharper.Client
     {
         private readonly ApiAccessor _apiAccessor;
         private const ushort MaxRequestsPerSecond = 20;
-        public Endpoints.Endpoints Client { get; internal set; }
+
+        public Endpoints.Endpoints? ClientEndpoints { get; internal set; }
 
         internal void InitializeEndpoints()
         {
-            this.Client = new Endpoints.Endpoints(_apiAccessor);
+            this.ClientEndpoints = new Endpoints.Endpoints(_apiAccessor);
         }
 
 

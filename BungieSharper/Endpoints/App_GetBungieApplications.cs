@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<IEnumerable<Schema.Applications.Application>> App_GetBungieApplications()
         {
             return await this._apiAccessor.ApiRequestAsync<IEnumerable<Schema.Applications.Application>>(
-                "App/FirstParty/", null, null, HttpMethod.Get
+                $"App/FirstParty/", null, null, HttpMethod.Get
                 );
         }
     }

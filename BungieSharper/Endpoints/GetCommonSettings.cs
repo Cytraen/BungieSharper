@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<Schema.Common.Models.CoreSettingsConfiguration> GetCommonSettings()
         {
             return await this._apiAccessor.ApiRequestAsync<Schema.Common.Models.CoreSettingsConfiguration>(
-                "Settings/", null, null, HttpMethod.Get
+                $"Settings/", null, null, HttpMethod.Get
                 );
         }
     }

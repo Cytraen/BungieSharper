@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<Schema.GroupsV2.GroupResponse> GroupV2_GetGroupByName(string groupName, Schema.GroupsV2.GroupType groupType)
         {
             return await this._apiAccessor.ApiRequestAsync<Schema.GroupsV2.GroupResponse>(
-                "GroupV2/Name/{groupName}/{groupType}/", null, null, HttpMethod.Get
+                $"GroupV2/Name/{groupName}/{groupType}/", null, null, HttpMethod.Get
                 );
         }
     }

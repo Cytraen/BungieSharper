@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<Dictionary<string, string>> GetAvailableLocales()
         {
             return await this._apiAccessor.ApiRequestAsync<Dictionary<string, string>>(
-                "GetAvailableLocales/", null, null, HttpMethod.Get
+                $"GetAvailableLocales/", null, null, HttpMethod.Get
                 );
         }
     }

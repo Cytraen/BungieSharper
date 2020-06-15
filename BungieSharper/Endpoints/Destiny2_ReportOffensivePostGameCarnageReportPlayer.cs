@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<int> Destiny2_ReportOffensivePostGameCarnageReportPlayer(long activityId)
         {
             return await this._apiAccessor.ApiRequestAsync<int>(
-                "Destiny2/Stats/PostGameCarnageReport/{activityId}/Report/", null, null, HttpMethod.Post
+                $"Destiny2/Stats/PostGameCarnageReport/{activityId}/Report/", null, null, HttpMethod.Post
                 );
         }
     }

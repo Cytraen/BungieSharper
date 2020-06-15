@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<Schema.Destiny.Config.DestinyManifest> Destiny2_GetDestinyManifest()
         {
             return await this._apiAccessor.ApiRequestAsync<Schema.Destiny.Config.DestinyManifest>(
-                "Destiny2/Manifest/", null, null, HttpMethod.Get
+                $"Destiny2/Manifest/", null, null, HttpMethod.Get
                 );
         }
     }

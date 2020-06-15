@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<IEnumerable<Schema.Forum.ForumRecruitmentDetail>> Forum_GetRecruitmentThreadSummaries()
         {
             return await this._apiAccessor.ApiRequestAsync<IEnumerable<Schema.Forum.ForumRecruitmentDetail>>(
-                "Forum/Recruit/Summaries/", null, null, HttpMethod.Post
+                $"Forum/Recruit/Summaries/", null, null, HttpMethod.Post
                 );
         }
     }

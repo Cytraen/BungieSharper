@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<bool> Tokens_ClaimPartnerOffer()
         {
             return await this._apiAccessor.ApiRequestAsync<bool>(
-                "Tokens/Partner/ClaimOffer/", null, null, HttpMethod.Post
+                $"Tokens/Partner/ClaimOffer/", null, null, HttpMethod.Post
                 );
         }
     }

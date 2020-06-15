@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<Schema.Forum.PostSearchResponse> CommunityContent_GetCommunityContent(Schema.Forum.ForumTopicsCategoryFiltersEnum mediaFilter, int page, Schema.Forum.CommunityContentSortMode sort)
         {
             return await this._apiAccessor.ApiRequestAsync<Schema.Forum.PostSearchResponse>(
-                "CommunityContent/Get/{sort}/{mediaFilter}/{page}/", null, null, HttpMethod.Get
+                $"CommunityContent/Get/{sort}/{mediaFilter}/{page}/", null, null, HttpMethod.Get
                 );
         }
     }

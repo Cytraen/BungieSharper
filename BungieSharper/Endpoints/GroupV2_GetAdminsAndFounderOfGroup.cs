@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<Schema.SearchResultOfGroupMember> GroupV2_GetAdminsAndFounderOfGroup(int currentpage, long groupId)
         {
             return await this._apiAccessor.ApiRequestAsync<Schema.SearchResultOfGroupMember>(
-                "GroupV2/{groupId}/AdminsAndFounder/", null, null, HttpMethod.Get
+                $"GroupV2/{groupId}/AdminsAndFounder/", null, null, HttpMethod.Get
                 );
         }
     }

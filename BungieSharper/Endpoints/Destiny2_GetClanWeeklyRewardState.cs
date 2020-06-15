@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<Schema.Destiny.Milestones.DestinyMilestone> Destiny2_GetClanWeeklyRewardState(long groupId)
         {
             return await this._apiAccessor.ApiRequestAsync<Schema.Destiny.Milestones.DestinyMilestone>(
-                "Destiny2/Clan/{groupId}/WeeklyRewardState/", null, null, HttpMethod.Get
+                $"Destiny2/Clan/{groupId}/WeeklyRewardState/", null, null, HttpMethod.Get
                 );
         }
     }

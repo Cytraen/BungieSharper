@@ -3,9 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30128.36
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BungieSharper", "BungieSharper\BungieSharper.csproj", "{6D376C61-D4DC-4398-9C6E-E523A572FF11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BungieSharper", "BungieSharper\BungieSharper.csproj", "{6D376C61-D4DC-4398-9C6E-E523A572FF11}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A86986CC-E64F-41E5-AF8C-BE501F66E382} = {A86986CC-E64F-41E5-AF8C-BE501F66E382}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BungieSharper.Generator", "BungieSharper.Generator\BungieSharper.Generator.csproj", "{A86986CC-E64F-41E5-AF8C-BE501F66E382}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BungieSharper.Generator", "BungieSharper.Generator\BungieSharper.Generator.csproj", "{A86986CC-E64F-41E5-AF8C-BE501F66E382}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BungieSharper.Tests", "BungieSharper.Tests\BungieSharper.Tests.csproj", "{617D6A39-2449-4426-BBD8-0049329DE571}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6D376C61-D4DC-4398-9C6E-E523A572FF11} = {6D376C61-D4DC-4398-9C6E-E523A572FF11}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +29,10 @@ Global
 		{A86986CC-E64F-41E5-AF8C-BE501F66E382}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A86986CC-E64F-41E5-AF8C-BE501F66E382}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A86986CC-E64F-41E5-AF8C-BE501F66E382}.Release|Any CPU.Build.0 = Release|Any CPU
+		{617D6A39-2449-4426-BBD8-0049329DE571}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{617D6A39-2449-4426-BBD8-0049329DE571}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{617D6A39-2449-4426-BBD8-0049329DE571}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{617D6A39-2449-4426-BBD8-0049329DE571}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<Schema.GroupsV2.GroupSearchResponse> GroupV2_GroupSearch()
         {
             return await this._apiAccessor.ApiRequestAsync<Schema.GroupsV2.GroupSearchResponse>(
-                "GroupV2/Search/", null, null, HttpMethod.Post
+                $"GroupV2/Search/", null, null, HttpMethod.Post
                 );
         }
     }

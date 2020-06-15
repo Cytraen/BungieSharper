@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<Schema.Trending.TrendingDetail> Trending_GetTrendingEntryDetail(string identifier, Schema.Trending.TrendingEntryType trendingEntryType)
         {
             return await this._apiAccessor.ApiRequestAsync<Schema.Trending.TrendingDetail>(
-                "Trending/Details/{trendingEntryType}/{identifier}/", null, null, HttpMethod.Get
+                $"Trending/Details/{trendingEntryType}/{identifier}/", null, null, HttpMethod.Get
                 );
         }
     }

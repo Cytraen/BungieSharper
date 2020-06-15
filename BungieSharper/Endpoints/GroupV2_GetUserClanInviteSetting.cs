@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<bool> GroupV2_GetUserClanInviteSetting(Schema.BungieMembershipType mType)
         {
             return await this._apiAccessor.ApiRequestAsync<bool>(
-                "GroupV2/GetUserClanInviteSetting/{mType}/", null, null, HttpMethod.Get
+                $"GroupV2/GetUserClanInviteSetting/{mType}/", null, null, HttpMethod.Get
                 );
         }
     }

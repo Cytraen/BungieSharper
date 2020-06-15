@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<Schema.Content.Models.ContentTypeDescription> Content_GetContentType(string type)
         {
             return await this._apiAccessor.ApiRequestAsync<Schema.Content.Models.ContentTypeDescription>(
-                "Content/GetContentType/{type}/", null, null, HttpMethod.Get
+                $"Content/GetContentType/{type}/", null, null, HttpMethod.Get
                 );
         }
     }

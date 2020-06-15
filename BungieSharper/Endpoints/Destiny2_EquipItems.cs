@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<Schema.Destiny.DestinyEquipItemResults> Destiny2_EquipItems()
         {
             return await this._apiAccessor.ApiRequestAsync<Schema.Destiny.DestinyEquipItemResults>(
-                "Destiny2/Actions/Items/EquipItems/", null, null, HttpMethod.Post
+                $"Destiny2/Actions/Items/EquipItems/", null, null, HttpMethod.Post
                 );
         }
     }

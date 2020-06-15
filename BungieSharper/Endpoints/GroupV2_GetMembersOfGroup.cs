@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<Schema.SearchResultOfGroupMember> GroupV2_GetMembersOfGroup(int currentpage, long groupId, Schema.GroupsV2.RuntimeGroupMemberType memberType, string nameSearch)
         {
             return await this._apiAccessor.ApiRequestAsync<Schema.SearchResultOfGroupMember>(
-                "GroupV2/{groupId}/Members/", null, null, HttpMethod.Get
+                $"GroupV2/{groupId}/Members/", null, null, HttpMethod.Get
                 );
         }
     }

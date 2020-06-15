@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<Schema.SearchResultOfContentItemPublicContract> Content_SearchContentWithText(string ctype, int currentpage, bool head, string locale, string searchtext, string source, string tag)
         {
             return await this._apiAccessor.ApiRequestAsync<Schema.SearchResultOfContentItemPublicContract>(
-                "Content/Search/{locale}/", null, null, HttpMethod.Get
+                $"Content/Search/{locale}/", null, null, HttpMethod.Get
                 );
         }
     }

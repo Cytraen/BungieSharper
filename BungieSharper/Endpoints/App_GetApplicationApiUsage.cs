@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<Schema.Applications.ApiUsage> App_GetApplicationApiUsage(int applicationId, DateTime end, DateTime start)
         {
             return await this._apiAccessor.ApiRequestAsync<Schema.Applications.ApiUsage>(
-                "App/ApiUsage/{applicationId}/", null, null, HttpMethod.Get
+                $"App/ApiUsage/{applicationId}/", null, null, HttpMethod.Get
                 );
         }
     }

@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<Schema.Destiny.Responses.DestinyLinkedProfilesResponse> Destiny2_GetLinkedProfiles(bool getAllMemberships, long membershipId, Schema.BungieMembershipType membershipType)
         {
             return await this._apiAccessor.ApiRequestAsync<Schema.Destiny.Responses.DestinyLinkedProfilesResponse>(
-                "Destiny2/{membershipType}/Profile/{membershipId}/LinkedProfiles/", null, null, HttpMethod.Get
+                $"Destiny2/{membershipType}/Profile/{membershipId}/LinkedProfiles/", null, null, HttpMethod.Get
                 );
         }
     }

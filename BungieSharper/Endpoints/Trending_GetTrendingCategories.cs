@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<Schema.Trending.TrendingCategories> Trending_GetTrendingCategories()
         {
             return await this._apiAccessor.ApiRequestAsync<Schema.Trending.TrendingCategories>(
-                "Trending/Categories/", null, null, HttpMethod.Get
+                $"Trending/Categories/", null, null, HttpMethod.Get
                 );
         }
     }

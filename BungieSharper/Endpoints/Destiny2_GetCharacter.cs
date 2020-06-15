@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<Schema.Destiny.Responses.DestinyCharacterResponse> Destiny2_GetCharacter(long characterId, IEnumerable<Schema.Destiny.DestinyComponentType> components, long destinyMembershipId, Schema.BungieMembershipType membershipType)
         {
             return await this._apiAccessor.ApiRequestAsync<Schema.Destiny.Responses.DestinyCharacterResponse>(
-                "Destiny2/{membershipType}/Profile/{destinyMembershipId}/Character/{characterId}/", null, null, HttpMethod.Get
+                $"Destiny2/{membershipType}/Profile/{destinyMembershipId}/Character/{characterId}/", null, null, HttpMethod.Get
                 );
         }
     }

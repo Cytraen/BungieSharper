@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<Schema.User.GeneralUser> User_GetBungieNetUserById(long id)
         {
             return await this._apiAccessor.ApiRequestAsync<Schema.User.GeneralUser>(
-                "User/GetBungieNetUserById/{id}/", null, null, HttpMethod.Get
+                $"User/GetBungieNetUserById/{id}/", null, null, HttpMethod.Get
                 );
         }
     }

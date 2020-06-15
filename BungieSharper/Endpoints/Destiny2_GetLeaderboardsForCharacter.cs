@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<Dictionary<string, Dictionary<string, Schema.Destiny.HistoricalStats.DestinyLeaderboard>>> Destiny2_GetLeaderboardsForCharacter(long characterId, long destinyMembershipId, int maxtop, Schema.BungieMembershipType membershipType, string modes, string statid)
         {
             return await this._apiAccessor.ApiRequestAsync<Dictionary<string, Dictionary<string, Schema.Destiny.HistoricalStats.DestinyLeaderboard>>>(
-                "Destiny2/Stats/Leaderboards/{membershipType}/{destinyMembershipId}/{characterId}/", null, null, HttpMethod.Get
+                $"Destiny2/Stats/Leaderboards/{membershipType}/{destinyMembershipId}/{characterId}/", null, null, HttpMethod.Get
                 );
         }
     }

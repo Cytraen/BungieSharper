@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<Schema.Destiny.Definitions.DestinyDefinition> Destiny2_GetDestinyEntityDefinition(string entityType, uint hashIdentifier)
         {
             return await this._apiAccessor.ApiRequestAsync<Schema.Destiny.Definitions.DestinyDefinition>(
-                "Destiny2/Manifest/{entityType}/{hashIdentifier}/", null, null, HttpMethod.Get
+                $"Destiny2/Manifest/{entityType}/{hashIdentifier}/", null, null, HttpMethod.Get
                 );
         }
     }

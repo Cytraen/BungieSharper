@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<int> GroupV2_EditClanBanner(long groupId)
         {
             return await this._apiAccessor.ApiRequestAsync<int>(
-                "GroupV2/{groupId}/EditClanBanner/", null, null, HttpMethod.Post
+                $"GroupV2/{groupId}/EditClanBanner/", null, null, HttpMethod.Post
                 );
         }
     }

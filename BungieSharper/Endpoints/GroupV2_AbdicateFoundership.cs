@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<bool> GroupV2_AbdicateFoundership(long founderIdNew, long groupId, Schema.BungieMembershipType membershipType)
         {
             return await this._apiAccessor.ApiRequestAsync<bool>(
-                "GroupV2/{groupId}/Admin/AbdicateFoundership/{membershipType}/{founderIdNew}/", null, null, HttpMethod.Post
+                $"GroupV2/{groupId}/Admin/AbdicateFoundership/{membershipType}/{founderIdNew}/", null, null, HttpMethod.Post
                 );
         }
     }

@@ -57,11 +57,12 @@ namespace BungieSharper.Client
 
         internal async Task<T> ApiRequestAsync<T>(
           string url,
-          string token,
-          string content,
+          string? token,
+          string? content,
           HttpMethod method,
           params string[] queryParams)
         {
+            if (url == null) throw new ArgumentNullException(nameof(url));
             await _semaphore.WaitAsync();
             ApiResponse<T> apiResponse;
             Task throttleTask;

@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<Schema.Destiny.Responses.DestinyPublicVendorsResponse> Destiny2_GetPublicVendors(IEnumerable<Schema.Destiny.DestinyComponentType> components)
         {
             return await this._apiAccessor.ApiRequestAsync<Schema.Destiny.Responses.DestinyPublicVendorsResponse>(
-                "Destiny2//Vendors/", null, null, HttpMethod.Get
+                $"Destiny2//Vendors/", null, null, HttpMethod.Get
                 );
         }
     }

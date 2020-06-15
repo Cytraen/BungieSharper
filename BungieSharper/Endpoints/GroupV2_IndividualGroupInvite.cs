@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<Schema.GroupsV2.GroupApplicationResponse> GroupV2_IndividualGroupInvite(long groupId, long membershipId, Schema.BungieMembershipType membershipType)
         {
             return await this._apiAccessor.ApiRequestAsync<Schema.GroupsV2.GroupApplicationResponse>(
-                "GroupV2/{groupId}/Members/IndividualInvite/{membershipType}/{membershipId}/", null, null, HttpMethod.Post
+                $"GroupV2/{groupId}/Members/IndividualInvite/{membershipType}/{membershipId}/", null, null, HttpMethod.Post
                 );
         }
     }

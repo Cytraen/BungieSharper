@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<long> GroupV2_AddOptionalConversation(long groupId)
         {
             return await this._apiAccessor.ApiRequestAsync<long>(
-                "GroupV2/{groupId}/OptionalConversations/Add/", null, null, HttpMethod.Post
+                $"GroupV2/{groupId}/OptionalConversations/Add/", null, null, HttpMethod.Post
                 );
         }
     }

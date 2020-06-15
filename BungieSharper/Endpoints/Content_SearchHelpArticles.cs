@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<dynamic> Content_SearchHelpArticles(string searchtext, string size)
         {
             return await this._apiAccessor.ApiRequestAsync<dynamic>(
-                "Content/SearchHelpArticles/{searchtext}/{size}/", null, null, HttpMethod.Get
+                $"Content/SearchHelpArticles/{searchtext}/{size}/", null, null, HttpMethod.Get
                 );
         }
     }

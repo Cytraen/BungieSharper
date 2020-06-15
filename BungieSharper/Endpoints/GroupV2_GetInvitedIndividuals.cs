@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<Schema.SearchResultOfGroupMemberApplication> GroupV2_GetInvitedIndividuals(int currentpage, long groupId)
         {
             return await this._apiAccessor.ApiRequestAsync<Schema.SearchResultOfGroupMemberApplication>(
-                "GroupV2/{groupId}/Members/InvitedIndividuals/", null, null, HttpMethod.Get
+                $"GroupV2/{groupId}/Members/InvitedIndividuals/", null, null, HttpMethod.Get
                 );
         }
     }

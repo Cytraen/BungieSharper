@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<bool> GroupV2_ApprovePending(long groupId, long membershipId, Schema.BungieMembershipType membershipType)
         {
             return await this._apiAccessor.ApiRequestAsync<bool>(
-                "GroupV2/{groupId}/Members/Approve/{membershipType}/{membershipId}/", null, null, HttpMethod.Post
+                $"GroupV2/{groupId}/Members/Approve/{membershipType}/{membershipId}/", null, null, HttpMethod.Post
                 );
         }
     }

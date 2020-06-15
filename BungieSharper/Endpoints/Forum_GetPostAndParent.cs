@@ -10,7 +10,7 @@ namespace BungieSharper.Endpoints
         public async Task<Schema.Forum.PostSearchResponse> Forum_GetPostAndParent(long childPostId, string showbanned)
         {
             return await this._apiAccessor.ApiRequestAsync<Schema.Forum.PostSearchResponse>(
-                "Forum/GetPostAndParent/{childPostId}/", null, null, HttpMethod.Get
+                $"Forum/GetPostAndParent/{childPostId}/", null, null, HttpMethod.Get
                 );
         }
     }

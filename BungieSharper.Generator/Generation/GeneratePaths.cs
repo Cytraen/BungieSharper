@@ -43,6 +43,8 @@ namespace BungieSharper.Generator.Generation
                 "{\n" +
                 "    public partial class Endpoints\n" +
                 "    {\n" +
+                "{isPreview}" +
+                "{isDeprecated}" +
                 "        public async Task<{returnType}> {pathName}({parameters})\n" +
                 "        {\n" +
                 "            return await this._apiAccessor.ApiRequestAsync<{returnType}>(\n" +
@@ -71,6 +73,20 @@ namespace BungieSharper.Generator.Generation
                 parameterList.Add(JsonToCsharpMapping.Type(param["schema"]) + " " + param["name"]);
             }
 
+            if (pathDetails[getOrPost.ToLower()].ContainsKey("x-preview"))
+            {
+                methodBase = methodBase.Replace("{isPreview}", pathDetails[getOrPost.ToLower()]["x-preview"] ? "        /// <summary>This is a preview method.</summary>\n" : "");
+            }
+            else
+                methodBase = methodBase.Replace("{isPreview}", "");
+
+            if (pathDetails[getOrPost.ToLower()].ContainsKey("deprecated"))
+            {
+                methodBase = methodBase.Replace("{isDeprecated}", pathDetails[getOrPost.ToLower()]["deprecated"] ? "        [System.Obsolete(\"Bungie has deprecated this.\")]\n" : "");
+            }
+            else
+                methodBase = methodBase.Replace("{isDeprecated}", "");
+            
             methodBase = methodBase.Replace("{returnType}", returnType).Replace("{path without first slash}", path.Remove(0, 1));
             methodBase = methodBase.Replace("{GetOrPost}", getOrPost);
             methodBase = methodBase.Replace("{parameters}", string.Join(", ", parameterList));

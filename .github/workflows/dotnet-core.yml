@@ -30,4 +30,4 @@ jobs:
     - name: Build test
       run: dotnet build BungieSharper.Tests --configuration Release
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --no-build --verbosity normal  --configuration Release

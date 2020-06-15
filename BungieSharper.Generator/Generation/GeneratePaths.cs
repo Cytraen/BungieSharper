@@ -33,44 +33,78 @@ namespace BungieSharper.Generator.Generation
             if (pathDetails.ContainsKey("get") && pathDetails.ContainsKey("post"))
                 throw new NotSupportedException();
 
-            string returnType;
-            string pathContent;
             string getOrPost;
             List<string> parameterList = new List<string>();
 
-            var methodBase = "        public async Task<{returnType}> {pathName}({parameters}) => await this._apiAccessor.ApiRequestAsync<{returnType}>(\"{path without first slash}\", null, null, HttpMethod.{GetOrPost});\"";
+            var usings = "using System;\nusing System.Collections.Generic;\nusing System.Net.Http;\nusing System.Threading.Tasks;\n\n";
+
+            var methodBase = usings +
+                "namespace BungieSharper.Endpoints\n" +
+                "{\n" +
+                "    public partial class Endpoints\n" +
+                "    {\n" +
+                "        public async Task<{returnType}> {pathName}({parameters})\n" +
+                "        {\n" +
+                "            return await this._apiAccessor.ApiRequestAsync<{returnType}>(\n" +
+                "                \"{path without first slash}\", null, null, HttpMethod.{GetOrPost}\n" +
+                "                );\n" +
+                "        }\n" +
+                "    }\n" +
+                "}";
+
+            var returnType = GeneratePathReturn(pathDetails);
 
             if (pathDetails.ContainsKey("get"))
             {
-                pathContent = GenerateGetPath(pathDetails, out returnType);
                 getOrPost = "Get";
-
-                foreach (var param in pathDetails["get"]["parameters"])
-                {
-                    parameterList.Add(JsonToCsharpMapping.Type(param["schema"]) + " " + param["name"]);
-                }
             }
 
             else if (pathDetails.ContainsKey("post"))
             {
-
-                pathContent = GeneratePostPath(pathDetails, out returnType);
                 getOrPost = "Post";
-
-                foreach (var param in pathDetails["post"]["parameters"])
-                {
-                    parameterList.Add(JsonToCsharpMapping.Type(param["schema"]) + " " + param["name"]);
-                }
             }
 
             else throw new NotSupportedException();
 
+            foreach (var param in pathDetails[getOrPost.ToLower()]["parameters"])
+            {
+                parameterList.Add(JsonToCsharpMapping.Type(param["schema"]) + " " + param["name"]);
+            }
+
             methodBase = methodBase.Replace("{returnType}", returnType).Replace("{path without first slash}", path.Remove(0, 1));
             methodBase = methodBase.Replace("{GetOrPost}", getOrPost);
             methodBase = methodBase.Replace("{parameters}", string.Join(", ", parameterList));
-            methodBase = methodBase.Replace("{pathName}", ((string)pathDetails["summary"]).Split('.').Last());
+            methodBase = methodBase.Replace("{pathName}", ((string)pathDetails["summary"]).Replace('.', '_').TrimStart('_'));
 
             return methodBase;
+        }
+
+        private static string GeneratePathReturn(Dictionary<string, dynamic> pathDetails)
+        {
+            string postOrGet;
+
+            if (pathDetails.ContainsKey("get") && pathDetails.ContainsKey("post"))
+                throw new NotSupportedException();
+
+            if (pathDetails.ContainsKey("get"))
+                postOrGet = "get";
+
+            else if (pathDetails.ContainsKey("post"))
+                postOrGet = "post";
+
+            else throw new NotSupportedException();
+
+            if (!pathDetails[postOrGet].ContainsKey("responses"))
+                throw new NotSupportedException();
+
+            if (!pathDetails[postOrGet]["responses"].ContainsKey("200"))
+                throw new NotSupportedException();
+
+            if (pathDetails[postOrGet]["responses"].Count != 1)
+                throw new NotSupportedException();
+
+            return JsonToCsharpMapping.Type(pathDetails[postOrGet]["responses"]["200"]);
+            
         }
 
         private static string GenerateGetPath(Dictionary<string, dynamic> pathDetails, out string finalReturnType)

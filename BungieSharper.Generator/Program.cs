@@ -134,7 +134,7 @@ namespace BungieSharper.Generator
 
                 FileWriter.WriteFileWithContent(
                     bungieSharperPath + "Endpoints\\",
-                    (path.Value["summary"] + ".cs").Replace("..", "."),
+                    ((string)(path.Value["summary"].Replace('.', '_') + ".cs").Replace("..", ".")).TrimStart('_'),
                     pathContent);
             }
 

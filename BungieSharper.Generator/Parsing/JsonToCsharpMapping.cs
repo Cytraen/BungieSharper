@@ -131,7 +131,7 @@ namespace BungieSharper.Generator.Parsing
             if (jsonRef == "#/components/responses/int64")
                 return "long";
 
-            return jsonRef.Split('/').Last();
+            return "Schema." + jsonRef.Split('/').Last();
         }
     }
 }

@@ -23,53 +23,57 @@ namespace BungieSharper.Client
     {
         private readonly ApiAccessor _apiAccessor;
         private const ushort MaxRequestsPerSecond = 20;
+        public Endpoints.Endpoints Client { get; internal set; }
 
         internal void InitializeEndpoints()
         {
+            this.Client = new Endpoints.Endpoints(_apiAccessor);
         }
 
-        public BungieApiClient(string apiKey)
-        {
-            this._apiAccessor = new ApiAccessor();
-            this._apiAccessor.SetApiKey(apiKey);
-            this._apiAccessor.SetRateLimit(20);
-            this.InitializeEndpoints();
-        }
 
-        public BungieApiClient(string apiKey, string userAgent)
-        {
-            this._apiAccessor = new ApiAccessor();
-            this._apiAccessor.SetApiKey(apiKey);
-            this._apiAccessor.SetUserAgent(userAgent);
-            this._apiAccessor.SetRateLimit(20);
-            this.InitializeEndpoints();
-        }
 
-        public BungieApiClient(string apiKey, ushort requestsPerSecond)
-        {
-            this._apiAccessor = new ApiAccessor();
-            this._apiAccessor.SetApiKey(apiKey);
-            this._apiAccessor.SetRateLimit(requestsPerSecond);
-            this.InitializeEndpoints();
-        }
-
-        public BungieApiClient(string apiKey, string userAgent, ushort requestsPerSecond)
-        {
-            this._apiAccessor = new ApiAccessor();
-            this._apiAccessor.SetApiKey(apiKey);
-            this._apiAccessor.SetUserAgent(userAgent);
-            this._apiAccessor.SetRateLimit(requestsPerSecond);
-            this.InitializeEndpoints();
-        }
-
-        public void SetApiKey(string apiKey) => this._apiAccessor.SetApiKey(apiKey);
-
-        public void SetUserAgent(string userAgent) => this._apiAccessor.SetUserAgent(userAgent);
-
-        public void SetRateLimit() => this._apiAccessor.SetRateLimit(20);
-
-        public void SetRateLimit(ushort requestsPerSecond) => this._apiAccessor.SetRateLimit(requestsPerSecond);
-
-        public void Dispose() => this._apiAccessor.Dispose();
+    public BungieApiClient(string apiKey)
+    {
+        this._apiAccessor = new ApiAccessor();
+        this._apiAccessor.SetApiKey(apiKey);
+        this._apiAccessor.SetRateLimit(20);
+        this.InitializeEndpoints();
     }
+
+    public BungieApiClient(string apiKey, string userAgent)
+    {
+        this._apiAccessor = new ApiAccessor();
+        this._apiAccessor.SetApiKey(apiKey);
+        this._apiAccessor.SetUserAgent(userAgent);
+        this._apiAccessor.SetRateLimit(20);
+        this.InitializeEndpoints();
+    }
+
+    public BungieApiClient(string apiKey, ushort requestsPerSecond)
+    {
+        this._apiAccessor = new ApiAccessor();
+        this._apiAccessor.SetApiKey(apiKey);
+        this._apiAccessor.SetRateLimit(requestsPerSecond);
+        this.InitializeEndpoints();
+    }
+
+    public BungieApiClient(string apiKey, string userAgent, ushort requestsPerSecond)
+    {
+        this._apiAccessor = new ApiAccessor();
+        this._apiAccessor.SetApiKey(apiKey);
+        this._apiAccessor.SetUserAgent(userAgent);
+        this._apiAccessor.SetRateLimit(requestsPerSecond);
+        this.InitializeEndpoints();
+    }
+
+    public void SetApiKey(string apiKey) => this._apiAccessor.SetApiKey(apiKey);
+
+    public void SetUserAgent(string userAgent) => this._apiAccessor.SetUserAgent(userAgent);
+
+    public void SetRateLimit() => this._apiAccessor.SetRateLimit(20);
+
+    public void SetRateLimit(ushort requestsPerSecond) => this._apiAccessor.SetRateLimit(requestsPerSecond);
+
+    public void Dispose() => this._apiAccessor.Dispose();
+}
 }

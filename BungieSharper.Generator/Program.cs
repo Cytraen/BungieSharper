@@ -32,6 +32,8 @@ namespace BungieSharper.Generator
 {
     internal static class Program
     {
+        private static dynamic deserialized { get; set; }
+
         private static async Task Main(string[] args)
         {
             if (args.Contains("--download-new-definitions") || !File.Exists("openApi.json"))
@@ -48,7 +50,7 @@ namespace BungieSharper.Generator
             var bungieSharperPath =
                 Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\..\BungieSharper\"));
 
-            dynamic deserialized = JsonHelper.Deserialize(await File.ReadAllTextAsync("./openApi.json"));
+            deserialized = JsonHelper.Deserialize(await File.ReadAllTextAsync("./openApi.json"));
 
             // TODO: WORK GOES HERE
 
@@ -125,6 +127,17 @@ namespace BungieSharper.Generator
                 }
             }
 
+            foreach (KeyValuePair<string, dynamic> path in deserialized["paths"])
+            {
+                var pathContent = GeneratePaths.GeneratePathContent(path.Key, path.Value);
+                var pathSummary = path.Value["summary"];
+
+                FileWriter.WriteFileWithContent(
+                    bungieSharperPath + "Endpoints\\",
+                    (path.Value["summary"] + ".cs").Replace("..", "."),
+                    pathContent);
+            }
+
             // TODO: WORK ENDS HERE
 
             Console.WriteLine("Done with work.");
@@ -146,6 +159,19 @@ namespace BungieSharper.Generator
             var openApiJson = new Uri("https://raw.githubusercontent.com/Bungie-net/api/master/openapi.json?raw=true");
 
             await downloadJsonClient.DownloadFileTaskAsync(openApiJson, "./openApi.json");
+        }
+
+        public static dynamic ResolveReferences(string reference)
+        {
+            reference = reference.Remove(0, 2);
+            var location = deserialized;
+
+            foreach (string key in reference.Split('/'))
+            {
+                location = location[key];
+            }
+
+            return location;
         }
     }
 }

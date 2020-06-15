@@ -31,9 +31,19 @@ namespace BungieSharper.Generator.Parsing
             if (schema.ContainsKey("$ref") && schema.ContainsKey("type"))
                 throw new NotSupportedException();
 
+            if (schema.ContainsKey("properties") && schema["properties"].ContainsKey("Response"))
+            {
+                return Type(schema["properties"]["Response"]);
+            }
+
             if (schema.ContainsKey("$ref"))
             {
                 return GetReferenceFromRef(schema["$ref"]);
+            }
+
+            if (schema.ContainsKey("x-enum-reference"))
+            {
+                return Type(schema["x-enum-reference"]);
             }
 
             switch (schema["type"])
@@ -100,6 +110,27 @@ namespace BungieSharper.Generator.Parsing
 
         public static string GetReferenceFromRef(string jsonRef)
         {
+            if (jsonRef.StartsWith("#/components/responses/"))
+            {
+                var resolvedRef = Program.ResolveReferences(jsonRef);
+                string secondResolve = Type(resolvedRef["content"]["application/json"]["schema"]);
+                if (secondResolve.StartsWith("SearchResultOf"))
+                {
+                    return "IEnumerable<" + secondResolve.Replace("SearchResultOf", "") + ">";
+                }
+
+                return secondResolve;
+            }
+
+            if (jsonRef == "#/components/responses/boolean")
+                return "bool";
+
+            if (jsonRef == "#/components/responses/int32")
+                return "int";
+
+            if (jsonRef == "#/components/responses/int64")
+                return "long";
+
             return jsonRef.Split('/').Last();
         }
     }

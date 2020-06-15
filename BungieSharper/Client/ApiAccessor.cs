@@ -92,7 +92,7 @@ namespace BungieSharper.Client
             _semaphore.Release();
             throw new ContentNotJsonException();
         label_6:
-            if ((object)apiResponse.Response == null)
+            if (apiResponse.Response == null)
                 throw new NullResponseException("'" + url + "' returned a null 'Response' property.", apiResponse);
             await throttleTask;
             _semaphore.Release();

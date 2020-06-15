@@ -28,10 +28,10 @@ jobs:
     - name: Build client
       run: dotnet build BungieSharper --configuration Release
     - name: Upload build artifact
-      uses: actions/upload-artifact
+      uses: actions/upload-artifact@v2
       with:
         name: ${{ github.ref }} - ${{ github.sha }} 
-        path: ~/
+        path: '~/'
     - name: Build test
       run: dotnet build BungieSharper.Tests --configuration Release
     - name: Test

@@ -27,6 +27,11 @@ jobs:
       run: dotnet run --project BungieSharper.Generator --no-restore --verbosity normal
     - name: Build client
       run: dotnet build BungieSharper --configuration Release
+    - name: Upload build artifact
+      uses: actions/upload-artifact
+      with:
+        name: ${{ github.ref }} - ${{ github.sha }} 
+        path: ~/
     - name: Build test
       run: dotnet build BungieSharper.Tests --configuration Release
     - name: Test

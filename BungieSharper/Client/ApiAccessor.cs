@@ -17,10 +17,13 @@
 
 using BungieSharper.Schema.Exceptions;
 using System;
+using System.Buffers;
+using System.Buffers.Text;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -34,6 +37,7 @@ namespace BungieSharper.Client
         private string _userAgent;
         private TimeSpan _msPerRequest;
         private const string BaseUrl = "https://stats.bungie.net/Platform/";
+        private JsonSerializerOptions _serializerOptions;
 
         private static readonly List<PlatformErrorCodes> RetryErrorCodes = new List<PlatformErrorCodes>
         {
@@ -47,6 +51,8 @@ namespace BungieSharper.Client
         {
             _semaphore = new SemaphoreSlim(1, 1);
             _httpClient = new HttpClient();
+            _serializerOptions = new JsonSerializerOptions();
+            _serializerOptions.Converters.Add(new LongToStringConverter());
         }
 
         internal void SetApiKey(string apiKey) => _apiKey = apiKey;
@@ -72,10 +78,10 @@ namespace BungieSharper.Client
                 HttpResponseMessage httpResponseMessage = await ApiRequest(url, token, content, method, queryParams);
                 if (!(httpResponseMessage.Content.Headers.ContentType.MediaType != "application/json"))
                 {
-                    apiResponse = JsonSerializer.Deserialize<ApiResponse<T>>(await httpResponseMessage.Content.ReadAsStringAsync() ?? throw new ContentNullJsonException());
+                    apiResponse = JsonSerializer.Deserialize<ApiResponse<T>>(await httpResponseMessage.Content.ReadAsStringAsync() ?? throw new ContentNullJsonException(), _serializerOptions);
                     if (apiResponse.ErrorCode != PlatformErrorCodes.Success)
                     {
-                        if (ApiRetry<T>(apiResponse))
+                        if (ApiRetry(apiResponse))
                         {
                             await throttleTask;
                             await Task.Delay((int)apiResponse.ThrottleSeconds);
@@ -102,7 +108,7 @@ namespace BungieSharper.Client
             await throttleTask;
             _semaphore.Release();
             throw new NonRetryErrorCodeException(
-                $"'{url}' returned {(object)apiResponse.ErrorCode}: {apiResponse.Message}", apiResponse
+                $"'{url}' returned {apiResponse.ErrorCode}: {apiResponse.Message}", apiResponse
                 );
         }
 
@@ -134,5 +140,28 @@ namespace BungieSharper.Client
         private static bool ApiRetry<T>(ApiResponse<T> response) => RetryErrorCodes.Contains(response.ErrorCode);
 
         public void Dispose() => _httpClient.Dispose();
+    }
+
+    public class LongToStringConverter : JsonConverter<long>
+    {
+        public override long Read(ref Utf8JsonReader reader, Type type, JsonSerializerOptions options)
+        {
+            if (reader.TokenType == JsonTokenType.String)
+            {
+                ReadOnlySpan<byte> span = reader.HasValueSequence ? reader.ValueSequence.ToArray() : reader.ValueSpan;
+                if (Utf8Parser.TryParse(span, out long number, out var bytesConsumed) && span.Length == bytesConsumed)
+                    return number;
+
+                if (long.TryParse(reader.GetString(), out number))
+                    return number;
+            }
+
+            return reader.GetInt64();
+        }
+
+        public override void Write(Utf8JsonWriter writer, long value, JsonSerializerOptions options)
+        {
+            writer.WriteStringValue(value.ToString());
+        }
     }
 }

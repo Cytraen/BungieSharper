@@ -16,7 +16,14 @@ namespace BungieSharper.Tests
         }
 
         [Fact]
-        public async Task GetManifestTest()
+        public async Task GetManifestTask()
+        {
+            var manifestData = await ClientFixture.TestClient.ClientEndpoints.Destiny2_GetDestinyManifest();
+            Assert.False(string.IsNullOrEmpty(manifestData.version));
+        }
+
+        [Fact]
+        public async Task SearchUserTest()
         {
             const BungieMembershipType expectedMembershipType = BungieMembershipType.TigerSteam;
             const long expectedMembershipId = 4611686018467948914;

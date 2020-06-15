@@ -31,7 +31,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: ${{ github.ref }} - ${{ github.sha }} 
-        path: '~/'
+        path: 'BungieSharper/BungieSharper/bin/Release/netcoreapp3.1/'
     - name: Build test
       run: dotnet build BungieSharper.Tests --configuration Release
     - name: Test

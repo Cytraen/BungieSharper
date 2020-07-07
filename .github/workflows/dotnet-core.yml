@@ -26,6 +26,9 @@ jobs:
       id: short-sha
       with:
         length: 8
+
+    - name: Set short SHA
+      run: echo $short_SHA
       env:
         short_SHA: ${{ steps.short-sha.outputs.sha }}
 

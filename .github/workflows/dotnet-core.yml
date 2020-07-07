@@ -22,6 +22,18 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
+    - name: Get short SHA
+      uses: benjlevesque/short-sha@v1.1
+      id: short-sha
+      with:
+        length: 8
+    - run: echo $SHA
+      env: 
+        SHA: ${{ steps.short-sha.outputs.sha }}
+    - run: echo $SHA
+      env: 
+        SHA: ${{ env.SHA }}
+
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:

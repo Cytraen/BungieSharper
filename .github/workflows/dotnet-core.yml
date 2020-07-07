@@ -12,7 +12,7 @@ jobs:
     runs-on: windows-latest
     
     env:
-      short_sha: $(git rev-parse --short=7 ${{ github.sha }})
+      short_sha: ${GITHUB_SHA::8}
       dotnet_sdk_version: '3.1.301'
       DOTNET_CLI_TELEMETRY_OPTOUT: true
       DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true

@@ -27,11 +27,6 @@ jobs:
       with:
         length: 8
 
-    - name: Set short SHA
-      run: echo $short_SHA
-      env:
-        short_SHA: ${{ steps.short-sha.outputs.sha }}
-
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
@@ -53,7 +48,7 @@ jobs:
     - name: Upload artifacts (nupkg)
       uses: actions/upload-artifact@v1
       with:
-        name: BungieSharper - ${{ env.short_SHA }}.nupkg
+        name: BungieSharper - ${{ steps.short-sha.outputs.sha }}
         path: Packages
 
     - name: Build test

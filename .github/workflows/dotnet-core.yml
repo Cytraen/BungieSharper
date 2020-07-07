@@ -12,6 +12,7 @@ jobs:
     runs-on: windows-latest
     
     env:
+      short_sha: $(git rev-parse --short=7 ${{ github.sha }})
       dotnet_sdk_version: '3.1.301'
       DOTNET_CLI_TELEMETRY_OPTOUT: true
       DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
@@ -42,7 +43,7 @@ jobs:
     - name: Upload artifacts (nupkg)
       uses: actions/upload-artifact@v1
       with:
-        name: BungieSharper - ${{ github.sha::8 }}.nupkg
+        name: BungieSharper - short_sha.nupkg
         path: Packages
 
     - name: Build test

@@ -48,7 +48,7 @@ jobs:
     - name: Upload artifacts (nupkg)
       uses: actions/upload-artifact@v1
       with:
-        name: BungieSharper - ${{ SHA }}
+        name: BungieSharper - ${{ env.SHA }}
         path: Packages
 
     - name: Build test

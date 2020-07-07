@@ -36,7 +36,6 @@ jobs:
       run: dotnet build BungieSharper --configuration Release
 
     - name: Pack client NuGet package
-      uses: actions/upload-artifact@v2
       run: dotnet pack BungieSharper/BungieSharper.csproj --configuration Release --output Packages --version-suffix "ci.$(date -u +%Y%m%dT%H%M%S)+sha.${GITHUB_SHA:0:9}" -p:ContinuousIntegrationBuild=true
       shell: bash
 

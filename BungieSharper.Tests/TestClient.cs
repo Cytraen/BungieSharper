@@ -8,12 +8,16 @@ namespace BungieSharper.Tests
     {
         public BungieApiClient TestClient { get; }
 
+        private readonly string BungieUserAgent =
+            $"BungieSharper.Tests/{typeof(TestClientFixture).Assembly.GetName().Version} (+https://github.com/ashakoor/BungieSharper) " +
+            $"BungieSharper/{typeof(BungieApiClient).Assembly.GetName().Version} (+https://github.com/ashakoor/BungieSharper)";
+
         public TestClientFixture()
         {
             TestClient = new BungieApiClient(
                 Environment.GetEnvironmentVariable("TEST_BUNGIE_API_KEY"),
                 // "YOUR API KEY HERE",
-                $"BungieSharper.Tests/{Assembly.GetExecutingAssembly().GetName().Version} (+https://github/ashakoor/BungieSharper)",
+                BungieUserAgent,
                 10
                 );
         }

@@ -26,15 +26,15 @@ namespace BungieSharper.Client
 
         public long ThrottleSeconds { get; set; }
 
-        public string? ErrorStatus { get; set; }
+        public string ErrorStatus { get; set; }
 
-        public string? Message { get; set; }
+        public string Message { get; set; }
 
-        public Dictionary<string, string>? MessageData { get; set; }
+        public Dictionary<string, string> MessageData { get; set; }
 
-        public string? DetailedErrorTrace { get; set; }
+        public string DetailedErrorTrace { get; set; }
 
-        public T Response { get; set; } = default(T)!;
+        public T Response { get; set; } = default(T);
 
         public static implicit operator ApiResponse(ApiResponse<T> response)
         {
@@ -56,12 +56,12 @@ namespace BungieSharper.Client
 
         public long ThrottleSeconds { get; set; }
 
-        public string? ErrorStatus { get; set; }
+        public string ErrorStatus { get; set; }
 
-        public string? Message { get; set; }
+        public string Message { get; set; }
 
-        public Dictionary<string, string>? MessageData { get; set; }
+        public Dictionary<string, string> MessageData { get; set; }
 
-        public string? DetailedErrorTrace { get; set; }
+        public string DetailedErrorTrace { get; set; }
     }
 }

@@ -2,6 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Version>0.1.0</Version>
+    <Authors>ashakoor</Authors>
+    <PackageLicenseFile>COPYING.md</PackageLicenseFile>
+    <RepositoryUrl>https://github.com/ashakoor/BungieSharper</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Nullable>enable</Nullable>
 
     <IsPackable>false</IsPackable>
   </PropertyGroup>
@@ -16,5 +22,4 @@
   <ItemGroup>
     <ProjectReference Include="..\BungieSharper\BungieSharper.csproj" />
   </ItemGroup>
-
 </Project>

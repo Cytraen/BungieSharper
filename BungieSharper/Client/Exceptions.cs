@@ -21,7 +21,7 @@ namespace BungieSharper.Client
 {
     public class BungieBaseException : Exception
     {
-        public ApiResponse? ApiResponse { get; }
+        public ApiResponse ApiResponse { get; }
 
         internal BungieBaseException()
         {

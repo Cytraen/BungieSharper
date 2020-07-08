@@ -5,7 +5,7 @@
 **BungieSharper.Generator** consumes [Bungie's OpenAPI spec,](https://github.com/Bungie-net/api) and turns it into code usable by BungieSharper.  
 
 ### What currently works?
-To my knowledge, everything not involving API keys, POST requests, or querystring parameters.
+To my knowledge, everything not involving OAuth, POST requests, or querystring parameters.
 
 ## License
 ### BungieSharper

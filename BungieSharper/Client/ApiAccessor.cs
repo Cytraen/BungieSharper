@@ -31,40 +31,51 @@ namespace BungieSharper.Client
 {
     internal class ApiAccessor : IDisposable
     {
+        private const string BaseUrl = "https://stats.bungie.net/Platform/";
+
         private readonly HttpClient _httpClient;
         private readonly SemaphoreSlim _semaphore;
-        private string _apiKey;
-        private string _userAgent;
+        private readonly JsonSerializerOptions _serializerOptions;
+
         private TimeSpan _msPerRequest;
-        private const string BaseUrl = "https://stats.bungie.net/Platform/";
-        private JsonSerializerOptions _serializerOptions;
 
         private static readonly List<PlatformErrorCodes> RetryErrorCodes = new List<PlatformErrorCodes>
         {
-      PlatformErrorCodes.ThrottleLimitExceeded,
-      PlatformErrorCodes.ThrottleLimitExceededMinutes,
-      PlatformErrorCodes.ThrottleLimitExceededMomentarily,
-      PlatformErrorCodes.ThrottleLimitExceededSeconds
-    };
+            PlatformErrorCodes.ThrottleLimitExceeded,
+            PlatformErrorCodes.ThrottleLimitExceededMinutes,
+            PlatformErrorCodes.ThrottleLimitExceededMomentarily,
+            PlatformErrorCodes.ThrottleLimitExceededSeconds
+        };
 
         internal ApiAccessor()
         {
             _semaphore = new SemaphoreSlim(1, 1);
-            _httpClient = new HttpClient();
+            _httpClient = new HttpClient
+            {
+                BaseAddress = new Uri(BaseUrl, UriKind.Absolute)
+            };
             _serializerOptions = new JsonSerializerOptions();
             _serializerOptions.Converters.Add(new LongToStringConverter());
         }
 
-        internal void SetApiKey(string apiKey) => _apiKey = apiKey;
+        internal void SetApiKey(string apiKey)
+        {
+            _httpClient.DefaultRequestHeaders.Remove("X-API-Key");
+            _httpClient.DefaultRequestHeaders.Add("X-API-Key", apiKey);
+        }
 
-        internal void SetUserAgent(string userAgent) => _userAgent = userAgent;
+        internal void SetUserAgent(string userAgent)
+        {
+            _httpClient.DefaultRequestHeaders.Remove("User-Agent");
+            _httpClient.DefaultRequestHeaders.Add("User-Agent", userAgent);
+        }
 
         internal void SetRateLimit(ushort requestsPerSecond) => _msPerRequest = TimeSpan.FromMilliseconds(1000.0 / requestsPerSecond);
 
         internal async Task<T> ApiRequestAsync<T>(
           string url,
-          string? token,
-          string? content,
+          string token,
+          string content,
           HttpMethod method,
           params string[] queryParams)
         {
@@ -122,11 +133,8 @@ namespace BungieSharper.Client
             HttpRequestMessage request = new HttpRequestMessage
             {
                 Method = method,
-                RequestUri = new Uri("https://stats.bungie.net/Platform/" + url + (queryParams.Length != 0 ? "?" : "") + string.Join("&", queryParams.Where(q => q != "")))
+                RequestUri = new Uri(url + (queryParams.Length != 0 ? "?" : "") + string.Join("&", queryParams.Where(q => q != "")), UriKind.Relative)
             };
-            request.Headers.Add("X-API-Key", _apiKey);
-            if (_userAgent != null)
-                request.Headers.Add("User-Agent", _userAgent);
             if (token != null)
                 request.Headers.Add("Authorization", "Bearer " + token);
             if (content != null)

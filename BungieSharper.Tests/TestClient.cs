@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Reflection;
 using BungieSharper.Client;
 
@@ -13,7 +13,7 @@ namespace BungieSharper.Tests
             TestClient = new BungieApiClient(
                 Environment.GetEnvironmentVariable("TEST_BUNGIE_API_KEY"),
                 // "YOUR API KEY HERE",
-                $"BungieSharper/{Assembly.GetExecutingAssembly().GetName().Version}", 
+                $"BungieSharper.Tests/{Assembly.GetExecutingAssembly().GetName().Version} (+https://github/ashakoor/BungieSharper)",
                 10
                 );
         }

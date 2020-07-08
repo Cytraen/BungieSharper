@@ -12,27 +12,47 @@ jobs:
     runs-on: windows-latest
     
     env:
+      dotnet_sdk_version: '3.1.301'
       DOTNET_CLI_TELEMETRY_OPTOUT: true
+      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
       TEST_BUNGIE_API_KEY: ${{ secrets.TEST_BUNGIE_API_KEY }}
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Get short SHA
+      uses: benjlevesque/short-sha@v1.1
+      id: short-sha
+      with:
+        length: 8
+
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.x
+        dotnet-version: ${{ env.dotnet_sdk_version }}
+
     - name: Build generator
       run: dotnet build BungieSharper.Generator --configuration Release
+
     - name: Run generator
       run: dotnet run --project BungieSharper.Generator --no-restore --verbosity normal
+
     - name: Build client
       run: dotnet build BungieSharper --configuration Release
-    - name: Upload build artifact
-      uses: actions/upload-artifact@v2
+
+    - name: Pack client NuGet package
+      run: dotnet pack BungieSharper/BungieSharper.csproj --configuration Release --output Packages --version-suffix "ci.$(date -u +%Y%m%dT%H%M%S)+sha.${GITHUB_SHA:0:9}" -p:ContinuousIntegrationBuild=true
+      shell: bash
+
+    - name: Upload artifacts (nupkg)
+      uses: actions/upload-artifact@v1
       with:
-        name: BungieSharper - ${{ github.sha }}
-        path: 'BungieSharper/bin/Release/netcoreapp3.1/'
+        name: BungieSharper - ${{ env.SHA }}
+        path: Packages
+
     - name: Build test
       run: dotnet build BungieSharper.Tests --configuration Release
-    - name: Test
+
+    - name: Run test
       run: dotnet test --no-build --verbosity normal  --configuration Release

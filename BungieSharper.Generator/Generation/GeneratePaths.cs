@@ -30,7 +30,7 @@ namespace BungieSharper.Generator.Generation
     {
         internal string Name;
         internal string Type;
-        internal string? Description = null;
+        internal string? Description;
         internal ParameterLocation ParamLoc;
         internal bool Required = true;
 
@@ -97,7 +97,9 @@ namespace BungieSharper.Generator.Generation
             string deprecatedEndpointText = "";
 
             if (pathDetails.ContainsKey("get") && pathDetails.ContainsKey("post"))
+            {
                 throw new NotSupportedException();
+            }
 
             var parameterStringList = new List<string>();
             var paramList = new List<PathParameter>();
@@ -144,7 +146,7 @@ namespace BungieSharper.Generator.Generation
 
             var queryStringParams = paramList.Where(x => x.ParamLoc == ParameterLocation.Query).ToList();
 
-            if (pathDetails[httpMethodType.ToLower()].ContainsKey("deprecated"))
+            if (pathDetails[httpMethodType.ToLowerInvariant()].ContainsKey("deprecated"))
             {
                 deprecatedEndpointText = httpMethodDetails["deprecated"] ? "        [System.Obsolete(\"Bungie has deprecated this endpoint.\")]\n" : "";
             }
@@ -173,7 +175,7 @@ namespace BungieSharper.Generator.Generation
                     var pathParamName = pathSection.TrimStart('{').TrimEnd('}');
                     var foundParams = paramList.Where(x => x.Name == pathParamName).ToList();
 
-                    if (foundParams is null || foundParams.Count != 1) throw new NotSupportedException();
+                    if (foundParams is null || foundParams.Count != 1) { throw new NotSupportedException(); }
 
                     if (foundParams[0].Type == "string")
                     {
@@ -198,7 +200,9 @@ namespace BungieSharper.Generator.Generation
                     documentation = documentation.Replace("        /// <summary>", "        /// <summary>\n        /// This is a preview method.");
                 }
                 else
+                {
                     previewEndpointText = pathDetails[httpMethodType.ToLower()]["x-preview"] ? "        /// <summary>This is a preview method.</summary>\n" : "";
+                }
             }
 
             var queryStringParamsNotEmpty = queryStringParams.Count > 0;
@@ -247,23 +251,35 @@ namespace BungieSharper.Generator.Generation
         {
             string postOrGet;
 
-            if (pathDetails.ContainsKey("get") && pathDetails.ContainsKey("post"))
-                throw new NotSupportedException();
+            if (pathDetails.ContainsKey("get") && pathDetails.ContainsKey("post")) { throw new NotSupportedException(); }
 
             if (pathDetails.ContainsKey("get"))
+            {
                 postOrGet = "get";
+            }
             else if (pathDetails.ContainsKey("post"))
+            {
                 postOrGet = "post";
-            else throw new NotSupportedException();
+            }
+            else
+            {
+                throw new NotSupportedException();
+            }
 
             if (!pathDetails[postOrGet].ContainsKey("responses"))
+            {
                 throw new NotSupportedException();
+            }
 
             if (!pathDetails[postOrGet]["responses"].ContainsKey("200"))
+            {
                 throw new NotSupportedException();
+            }
 
             if (pathDetails[postOrGet]["responses"].Count != 1)
+            {
                 throw new NotSupportedException();
+            }
 
             return JsonToCsharpMapping.Type(pathDetails[postOrGet]["responses"]["200"]);
         }

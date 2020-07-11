@@ -59,7 +59,9 @@ namespace BungieSharper.Generator
             foreach (KeyValuePair<string, dynamic> schema in deserialized["components"]["schemas"])
             {
                 if (schema.Value["type"] == "array")
+                {
                     continue;
+                }
 
                 var fileFolder = bungieSharperPath + "Schema\\" + string.Join('\\', schema.Key.Split('.').SkipLast(1));
                 string fileContent = GenerateSchema.GenerateSchemaFileContent(schema.Key, schema.Value);

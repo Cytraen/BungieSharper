@@ -15,7 +15,10 @@
    along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
+using BungieSharper.Schema.Exceptions;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BungieSharper.Client
 {
@@ -73,6 +76,21 @@ namespace BungieSharper.Client
         public void SetRateLimit() => this._apiAccessor.SetRateLimit(DefaultRequestsPerSecond);
 
         public void SetRateLimit(ushort requestsPerSecond) => this._apiAccessor.SetRateLimit(requestsPerSecond < MaxRequestsPerSecond ? requestsPerSecond : MaxRequestsPerSecond);
+
+        public void SetRetryCodes(List<PlatformErrorCodes> errorCodes)
+        {
+            this._apiAccessor.SetRetryCodes(errorCodes);
+        }
+
+        public void SetRetryCodes(IEnumerable<PlatformErrorCodes> errorCodes)
+        {
+            this.SetRetryCodes(errorCodes.ToList());
+        }
+
+        public void SetRetryCodes(params PlatformErrorCodes[] errorCodes)
+        {
+            this.SetRetryCodes(errorCodes.ToList());
+        }
 
         public void Dispose() => this._apiAccessor.Dispose();
     }

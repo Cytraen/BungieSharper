@@ -39,7 +39,7 @@ namespace BungieSharper.Client
 
     public class ContentNotJsonException : BungieBaseException
     {
-        internal ContentNotJsonException() : base()
+        internal ContentNotJsonException()
         {
         }
 
@@ -54,7 +54,7 @@ namespace BungieSharper.Client
 
     public class ContentNullJsonException : BungieBaseException
     {
-        internal ContentNullJsonException() : base()
+        internal ContentNullJsonException()
         {
         }
 
@@ -65,7 +65,7 @@ namespace BungieSharper.Client
 
     public class NonRetryErrorCodeException : BungieBaseException
     {
-        internal NonRetryErrorCodeException() : base()
+        internal NonRetryErrorCodeException()
         {
         }
 
@@ -80,7 +80,7 @@ namespace BungieSharper.Client
 
     public class NullResponseException : BungieBaseException
     {
-        internal NullResponseException() : base()
+        internal NullResponseException()
         {
         }
 

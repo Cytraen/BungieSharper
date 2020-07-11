@@ -39,7 +39,7 @@ namespace BungieSharper.Generator
             if (args.Contains("--download-new-definitions") || !File.Exists("openApi.json"))
             {
                 Console.Write("Downloading new OpenAPI definitions from Bungie.net... ");
-                await DownloadNewOpenApiTask();
+                await DownloadNewOpenApiTask().ConfigureAwait(false);
                 Console.WriteLine("done.");
             }
             else
@@ -65,12 +65,19 @@ namespace BungieSharper.Generator
                 string fileContent = GenerateSchema.GenerateSchemaFileContent(schema.Key, schema.Value);
 
                 if (fileContent.Contains("Dictionary<") || fileContent.Contains("IEnumerable<"))
+                {
                     fileContent = "using System.Collections.Generic;\n" + fileContent;
+                }
+
                 if (fileContent.Contains("DateTime"))
+                {
                     fileContent = "using System;\n" + fileContent;
+                }
 
                 if (fileContent.Contains("\nnamespace"))
+                {
                     fileContent = fileContent.Replace("\nnamespace", "\n\nnamespace");
+                }
 
                 if (args.Contains("--verbose"))
                 {

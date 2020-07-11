@@ -34,7 +34,7 @@ namespace BungieSharper.Client
 
         public string DetailedErrorTrace { get; set; }
 
-        public T Response { get; set; } = default(T);
+        public T Response { get; set; }
 
         public static implicit operator ApiResponse(ApiResponse<T> response)
         {

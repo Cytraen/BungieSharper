@@ -39,7 +39,7 @@ namespace BungieSharper.Client
 
         private TimeSpan _msPerRequest;
 
-        private static readonly List<PlatformErrorCodes> RetryErrorCodes = new List<PlatformErrorCodes>
+        private List<PlatformErrorCodes> _retryErrorCodes = new List<PlatformErrorCodes>
         {
             PlatformErrorCodes.ThrottleLimitExceeded,
             PlatformErrorCodes.ThrottleLimitExceededMinutes,
@@ -49,28 +49,33 @@ namespace BungieSharper.Client
 
         internal ApiAccessor()
         {
-            _semaphore = new SemaphoreSlim(1, 1);
-            _httpClient = new HttpClient
+            this._semaphore = new SemaphoreSlim(1, 1);
+            this._httpClient = new HttpClient
             {
                 BaseAddress = new Uri(BaseUrl, UriKind.Absolute)
             };
-            _serializerOptions = new JsonSerializerOptions();
-            _serializerOptions.Converters.Add(new LongToStringConverter());
+            this._serializerOptions = new JsonSerializerOptions();
+            this._serializerOptions.Converters.Add(new LongToStringConverter());
         }
 
         internal void SetApiKey(string apiKey)
         {
-            _httpClient.DefaultRequestHeaders.Remove("X-API-Key");
-            _httpClient.DefaultRequestHeaders.Add("X-API-Key", apiKey);
+            this._httpClient.DefaultRequestHeaders.Remove("X-API-Key");
+            this._httpClient.DefaultRequestHeaders.Add("X-API-Key", apiKey);
         }
 
         internal void SetUserAgent(string userAgent)
         {
-            _httpClient.DefaultRequestHeaders.Remove("User-Agent");
-            _httpClient.DefaultRequestHeaders.Add("User-Agent", userAgent);
+            this._httpClient.DefaultRequestHeaders.Remove("User-Agent");
+            this._httpClient.DefaultRequestHeaders.Add("User-Agent", userAgent);
         }
 
-        internal void SetRateLimit(ushort requestsPerSecond) => _msPerRequest = TimeSpan.FromMilliseconds(1000.0 / requestsPerSecond);
+        internal void SetRetryCodes(List<PlatformErrorCodes> errorCodes)
+        {
+            this._retryErrorCodes = errorCodes;
+        }
+
+        internal void SetRateLimit(ushort requestsPerSecond) => this._msPerRequest = TimeSpan.FromMilliseconds(1000.0 / requestsPerSecond);
 
         internal async Task<T> ApiRequestAsync<T>(
           string url,
@@ -80,33 +85,30 @@ namespace BungieSharper.Client
           params string[] queryParams)
         {
             if (url == null) throw new ArgumentNullException(nameof(url));
-            await _semaphore.WaitAsync();
-            ApiResponse<T> apiResponse;
-            Task throttleTask;
+            await this._semaphore.WaitAsync().ConfigureAwait(false);
             while (true)
             {
-                throttleTask = Task.Delay(_msPerRequest);
-                var httpResponseMessage = await ApiRequest(url, token, content, method, string.Join("&", queryParams.Where(x => x != null)));
+                var throttleTask = Task.Delay(this._msPerRequest);
+                var httpResponseMessage = await ApiRequest(url, token, content, method, string.Join("&", queryParams.Where(x => x != null))).ConfigureAwait(false);
 
                 if (httpResponseMessage.Content.Headers.ContentType.MediaType != "application/json")
                 {
-                    await throttleTask;
-                    _semaphore.Release();
+                    await AwaitThrottleAndReleaseSemaphore(throttleTask, this._semaphore).ConfigureAwait(false);
                     throw new ContentNotJsonException();
                 }
 
-                apiResponse = JsonSerializer.Deserialize<ApiResponse<T>>(await httpResponseMessage.Content.ReadAsStringAsync() ?? throw new ContentNullJsonException(), _serializerOptions);
+                var apiResponse = JsonSerializer.Deserialize<ApiResponse<T>>(await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false) ?? throw new ContentNullJsonException(), this._serializerOptions);
                 if (apiResponse.ErrorCode != PlatformErrorCodes.Success)
                 {
                     if (ApiRetry(apiResponse))
                     {
-                        await throttleTask;
-                        await Task.Delay((int)apiResponse.ThrottleSeconds);
+                        await throttleTask.ConfigureAwait(false);
+                        await Task.Delay((int)apiResponse.ThrottleSeconds).ConfigureAwait(false);
                     }
                     else
                     {
-                        await throttleTask;
-                        _semaphore.Release();
+                        await AwaitThrottleAndReleaseSemaphore(throttleTask, this._semaphore).ConfigureAwait(false);
+
                         throw new NonRetryErrorCodeException(
                             $"'{url}' returned {apiResponse.ErrorCode}: {apiResponse.Message}", apiResponse
                             );
@@ -115,9 +117,12 @@ namespace BungieSharper.Client
                 else
                 {
                     if (apiResponse.Response == null)
+                    {
+                        await AwaitThrottleAndReleaseSemaphore(throttleTask, this._semaphore).ConfigureAwait(false);
                         throw new NullResponseException("'" + url + "' returned a null 'Response' property.", apiResponse);
-                    await throttleTask;
-                    _semaphore.Release();
+                    }
+
+                    await AwaitThrottleAndReleaseSemaphore(throttleTask, this._semaphore).ConfigureAwait(false);
                     return apiResponse.Response;
                 }
             }
@@ -136,18 +141,26 @@ namespace BungieSharper.Client
                 RequestUri = new Uri(url + (queryParamString.Length != 0 ? "?" : "") + queryParamString, UriKind.Relative)
             };
             if (token != null)
+            {
                 request.Headers.Add("Authorization", "Bearer " + token);
+            }
             if (content != null)
             {
                 request.Content = new StringContent(content);
                 request.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
             }
-            return await _httpClient.SendAsync(request);
+            return await this._httpClient.SendAsync(request).ConfigureAwait(false);
         }
 
-        private static bool ApiRetry<T>(ApiResponse<T> response) => RetryErrorCodes.Contains(response.ErrorCode);
+        private static async Task AwaitThrottleAndReleaseSemaphore(Task throttleTask, SemaphoreSlim semaphore)
+        {
+            await throttleTask.ConfigureAwait(false);
+            semaphore.Release();
+        }
 
-        public void Dispose() => _httpClient.Dispose();
+        private bool ApiRetry<T>(ApiResponse<T> response) => this._retryErrorCodes.Contains(response.ErrorCode);
+
+        public void Dispose() => this._httpClient.Dispose();
     }
 
     public class LongToStringConverter : JsonConverter<long>
@@ -158,10 +171,14 @@ namespace BungieSharper.Client
             {
                 ReadOnlySpan<byte> span = reader.HasValueSequence ? reader.ValueSequence.ToArray() : reader.ValueSpan;
                 if (Utf8Parser.TryParse(span, out long number, out var bytesConsumed) && span.Length == bytesConsumed)
+                {
                     return number;
+                }
 
                 if (long.TryParse(reader.GetString(), out number))
+                {
                     return number;
+                }
             }
 
             return reader.GetInt64();

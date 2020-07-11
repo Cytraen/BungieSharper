@@ -19,12 +19,75 @@
    The Bungie API/SDK is copyright (c) 2017, Bungie, Inc.
 */
 
+using BungieSharper.Generator.Parsing;
 using System;
 using System.Collections.Generic;
-using BungieSharper.Generator.Parsing;
+using System.Linq;
 
 namespace BungieSharper.Generator.Generation
 {
+    internal class PathParameter
+    {
+        internal string Name;
+        internal string Type;
+        internal string? Description = null;
+        internal ParameterLocation ParamLoc;
+        internal bool Required = true;
+
+        internal PathParameter(string name, string type, ParameterLocation parameterLocation)
+        {
+            Name = name;
+            Type = type;
+            ParamLoc = parameterLocation;
+        }
+
+        internal PathParameter(string name, string type, ParameterLocation parameterLocation, bool required)
+        {
+            Name = name;
+            Type = type;
+            ParamLoc = parameterLocation;
+            Required = required;
+        }
+
+        internal PathParameter(string name, string type, string description, ParameterLocation parameterLocation)
+        {
+            Name = name;
+            Type = type;
+            Description = description;
+            ParamLoc = parameterLocation;
+        }
+
+        internal PathParameter(string name, string type, string description, ParameterLocation parameterLocation, bool required)
+        {
+            Name = name;
+            Type = type;
+            Description = description;
+            ParamLoc = parameterLocation;
+            Required = required;
+        }
+
+        internal static ParameterLocation StringToLocation(string location)
+        {
+            switch (location)
+            {
+                case "path":
+                    return ParameterLocation.Path;
+
+                case "query":
+                    return ParameterLocation.Query;
+
+                default:
+                    throw new NotSupportedException();
+            }
+        }
+    }
+
+    internal enum ParameterLocation : byte
+    {
+        Path = 0,
+        Query = 1
+    }
+
     internal static class GeneratePaths
     {
         public static string GeneratePathContent(string path, Dictionary<string, dynamic> pathDetails)
@@ -36,9 +99,10 @@ namespace BungieSharper.Generator.Generation
             if (pathDetails.ContainsKey("get") && pathDetails.ContainsKey("post"))
                 throw new NotSupportedException();
 
-            List<string> parameterList = new List<string>();
+            var parameterStringList = new List<string>();
+            var paramList = new List<PathParameter>();
 
-            var usings = "using System;\nusing System.Collections.Generic;\nusing System.Net.Http;\nusing System.Threading.Tasks;\n\n";
+            var usingStatements = "using System;\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Net.Http;\nusing System.Threading.Tasks;\n\n";
 
             if (pathDetails.ContainsKey("get"))
             {
@@ -52,10 +116,33 @@ namespace BungieSharper.Generator.Generation
 
             var httpMethodDetails = pathDetails[httpMethodType.ToLower()];
 
+            var optionalParameterStringList = new List<string>();
+            var requiredParameterStringList = new List<string>();
+
             foreach (var param in httpMethodDetails["parameters"])
             {
-                parameterList.Add(JsonToCsharpMapping.Type(param?["schema"]) + " " + param?["name"]);
+                if (param is null)
+                    throw new NotSupportedException();
+
+                var paramObject = new PathParameter(
+                    param["name"],
+                    JsonToCsharpMapping.Type(param["schema"]),
+                    param.ContainsKey("description") ? param["description"] : null,
+                    PathParameter.StringToLocation(param["in"]),
+                    param.ContainsKey("required") ? param["required"] : false
+                    );
+
+                paramList.Add(paramObject);
+
+                var shouldMakeNullable = (!paramObject.Required && paramObject.Type != "string" && !paramObject.Type.StartsWith("IEnumerable<"));
+
+                parameterStringList.Add(paramObject.Type + (shouldMakeNullable ? "?" : "") + " " + paramObject.Name + (paramObject.Required ? "" : " = null"));
+
+                optionalParameterStringList = parameterStringList.Where(x => x.Contains(" = null")).ToList();
+                requiredParameterStringList = parameterStringList.Where(x => !x.Contains(" = null")).ToList();
             }
+
+            var queryStringParams = paramList.Where(x => x.ParamLoc == ParameterLocation.Query).ToList();
 
             if (pathDetails[httpMethodType.ToLower()].ContainsKey("deprecated"))
             {
@@ -63,9 +150,42 @@ namespace BungieSharper.Generator.Generation
             }
 
             var returnType = GeneratePathReturn(pathDetails);
-            var pathName = ((string)pathDetails["summary"]).Replace('.', '_').TrimStart('_');
-            var parameterString = string.Join(", ", parameterList);
-            var endpointPath = path.Remove(0, 1);
+            var pathName = ((string)pathDetails["summary"]).TrimStart('.').Replace('.', '_');
+
+            var optionalParameterString = string.Join(", ", optionalParameterStringList);
+            var requiredParameterString = string.Join(", ", requiredParameterStringList);
+
+            var parameterString = string.Join(", ", requiredParameterString, optionalParameterString);
+
+            parameterString = parameterString.TrimEnd(' ', ',').TrimStart(' ', ',');
+
+            var stockEndpointPath = path.Remove(0, 1);
+            var splitStockPath = stockEndpointPath.Split('/');
+
+            var rebuiltPathParts = new List<string>();
+
+            foreach (var pathSection in splitStockPath)
+            {
+                var usableSection = pathSection;
+
+                if (pathSection.StartsWith('{') && pathSection.EndsWith('}'))
+                {
+                    var pathParamName = pathSection.TrimStart('{').TrimEnd('}');
+                    var foundParams = paramList.Where(x => x.Name == pathParamName).ToList();
+
+                    if (foundParams is null || foundParams.Count != 1) throw new NotSupportedException();
+
+                    if (foundParams[0].Type == "string")
+                    {
+                        usableSection = $"{{Uri.EscapeDataString({foundParams[0].Name})}}";
+                    }
+                }
+
+                rebuiltPathParts.Add(usableSection);
+            }
+
+            var rebuiltPath = string.Join('/', rebuiltPathParts);
+            var endpointPath = rebuiltPath;
 
             var documentation =
                 !string.IsNullOrWhiteSpace((string)httpMethodDetails["description"]) ? FormatSummaries.FormatSummary((string)httpMethodDetails["description"], 8, true) :
@@ -81,8 +201,29 @@ namespace BungieSharper.Generator.Generation
                     previewEndpointText = pathDetails[httpMethodType.ToLower()]["x-preview"] ? "        /// <summary>This is a preview method.</summary>\n" : "";
             }
 
+            var queryStringParamsNotEmpty = queryStringParams.Count > 0;
+            var queryParamTextList = new List<string>();
+
+            foreach (var queryParam in queryStringParams)
+            {
+                var escapedParamEntry = queryParam.Name;
+                if (queryParam.Type == "string")
+                {
+                    escapedParamEntry = $"Uri.EscapeDataString({queryParam.Name})";
+                }
+                if (queryParam.Type.StartsWith("IEnumerable<"))
+                {
+                    escapedParamEntry = $"string.Join(\",\", {queryParam.Name}.Select(x => x.ToString()))";
+                }
+
+                var textParam = $"{queryParam.Name} != null ? $\"{queryParam.Name}={{{escapedParamEntry}}}\" : null";
+                queryParamTextList.Add(textParam);
+            }
+
+            var queryStringParamText = queryStringParamsNotEmpty ? string.Join(", ", queryParamTextList) : "";
+
             var methodBase =
-                usings +
+                usingStatements +
                 "namespace BungieSharper.Endpoints\n" +
                 "{\n" +
                 "    public partial class Endpoints\n" +
@@ -93,8 +234,8 @@ namespace BungieSharper.Generator.Generation
                 $"        public async Task<{returnType}> {pathName}({parameterString})\n" +
                 "        {\n" +
                 $"            return await this._apiAccessor.ApiRequestAsync<{returnType}>(\n" +
-                $"                $\"{endpointPath}\", null, null, HttpMethod.{httpMethodType}\n" +
-                "                );\n" +
+                $"                $\"{endpointPath}\", null, null, HttpMethod.{(queryStringParamsNotEmpty ? httpMethodType + ',' : httpMethodType)}\n" +
+                $"                {queryStringParamText});\n" +
                 "        }\n" +
                 "    }\n" +
                 "}";
@@ -125,29 +266,6 @@ namespace BungieSharper.Generator.Generation
                 throw new NotSupportedException();
 
             return JsonToCsharpMapping.Type(pathDetails[postOrGet]["responses"]["200"]);
-        }
-
-        private static string GenerateGetPath(Dictionary<string, dynamic> pathDetails, out string finalReturnType)
-        {
-            if (!pathDetails["get"].ContainsKey("responses"))
-                throw new NotSupportedException();
-
-            if (!pathDetails["get"]["responses"].ContainsKey("200"))
-                throw new NotSupportedException();
-
-            if (pathDetails["get"]["responses"].Count != 1)
-                throw new NotSupportedException();
-
-            var returnType = JsonToCsharpMapping.Type(pathDetails["get"]["responses"]["200"]);
-            finalReturnType = returnType;
-
-            return "";
-        }
-
-        private static string GeneratePostPath(Dictionary<string, dynamic> pathDetails, out string finalReturnType)
-        {
-            finalReturnType = "";
-            return "";
         }
     }
 }

@@ -94,7 +94,7 @@ namespace BungieSharper.Generator
 
                     var regex = new Regex(@"^namespace (.*)\n[{]", RegexOptions.Multiline);
                     var matches = regex.Matches(combinedContent);
-                    
+
                     combinedContent = combinedContent.Replace("\n{", "");
                     combinedContent = combinedContent.Replace("\n}", "");
                     combinedContent = combinedContent.Replace("\n\n\n", "");
@@ -121,7 +121,7 @@ namespace BungieSharper.Generator
 
                     FileWriter.WriteFileWithContent(
                         bungieSharperPath + "Schema\\",
-                        (location.Replace(bungieSharperPath, "").Replace('\\', '.') + ".cs").Replace("..", "."), 
+                        (location.Replace(bungieSharperPath, "").Replace('\\', '.') + ".cs").Replace("..", "."),
                         combinedContent
                         );
                 }
@@ -130,7 +130,6 @@ namespace BungieSharper.Generator
             foreach (KeyValuePair<string, dynamic> path in deserialized["paths"])
             {
                 var pathContent = GeneratePaths.GeneratePathContent(path.Key, path.Value);
-                var pathSummary = path.Value["summary"];
 
                 FileWriter.WriteFileWithContent(
                     bungieSharperPath + "Endpoints\\",
@@ -165,10 +164,10 @@ namespace BungieSharper.Generator
 
             foreach (string key in reference.Split('/'))
             {
-                location = location[key];
+                location = location?[key];
             }
 
-            return location;
+            return location!;
         }
     }
 }

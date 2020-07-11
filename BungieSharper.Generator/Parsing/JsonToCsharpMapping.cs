@@ -46,32 +46,19 @@ namespace BungieSharper.Generator.Parsing
                 return Type(schema["x-enum-reference"]);
             }
 
-            switch (schema["type"])
+            return schema["type"] switch
             {
-                case "string":
-                    return schema.ContainsKey("format") ? StringFormat(schema["format"]) : "string";
-
-                case "integer":
-                    return IntegerFormat(schema["format"]);
-
-                case "number":
-                    return NumberFormat(schema["format"]);
-
-                case "array":
-                    return GetPrimitivesFromCollections.ArrayParser(schema);
-
-                case "boolean":
-                    return "bool";
-
-                case "object":
-                    return GetPrimitivesFromCollections.ObjectParser(schema);
-
-                default:
-                    throw new NotSupportedException($"Type: {schema["type"]}");
-            }
+                "string" => schema.ContainsKey("format") ? StringFormat(schema["format"]) : "string",
+                "integer" => IntegerFormat(schema["format"]),
+                "number" => NumberFormat(schema["format"]),
+                "array" => GetPrimitivesFromCollections.ArrayParser(schema),
+                "boolean" => "bool",
+                "object" => GetPrimitivesFromCollections.ObjectParser(schema),
+                _ => throw new NotSupportedException($"Type: {schema["type"]}")
+            };
         }
 
-        public static string StringFormat(string? bungieFormat)
+        private static string StringFormat(string? bungieFormat)
         {
             return bungieFormat switch
             {
@@ -82,7 +69,7 @@ namespace BungieSharper.Generator.Parsing
             };
         }
 
-        public static string IntegerFormat(string? bungieFormat)
+        private static string IntegerFormat(string? bungieFormat)
         {
             return bungieFormat switch
             {
@@ -98,7 +85,7 @@ namespace BungieSharper.Generator.Parsing
             };
         }
 
-        public static string NumberFormat(string? bungieFormat)
+        private static string NumberFormat(string? bungieFormat)
         {
             return bungieFormat switch
             {

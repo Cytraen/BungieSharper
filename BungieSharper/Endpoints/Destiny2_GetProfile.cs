@@ -7,6 +7,9 @@ namespace BungieSharper.Endpoints
 {
     public partial class Endpoints
     {
+        /// <summary>
+        /// Returns Destiny Profile information for the supplied membership.
+        /// </summary>
         public async Task<Schema.Destiny.Responses.DestinyProfileResponse> Destiny2_GetProfile(IEnumerable<Schema.Destiny.DestinyComponentType> components, long destinyMembershipId, Schema.BungieMembershipType membershipType)
         {
             return await this._apiAccessor.ApiRequestAsync<Schema.Destiny.Responses.DestinyProfileResponse>(

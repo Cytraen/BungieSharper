@@ -7,6 +7,9 @@ namespace BungieSharper.Endpoints
 {
     public partial class Endpoints
     {
+        /// <summary>
+        /// Add a new optional conversation/chat channel. Requires admin permissions to the group.
+        /// </summary>
         public async Task<long> GroupV2_AddOptionalConversation(long groupId)
         {
             return await this._apiAccessor.ApiRequestAsync<long>(

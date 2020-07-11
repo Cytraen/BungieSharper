@@ -7,6 +7,9 @@ namespace BungieSharper.Endpoints
 {
     public partial class Endpoints
     {
+        /// <summary>
+        /// Get list of applications created by Bungie.
+        /// </summary>
         public async Task<IEnumerable<Schema.Applications.Application>> App_GetBungieApplications()
         {
             return await this._apiAccessor.ApiRequestAsync<IEnumerable<Schema.Applications.Application>>(

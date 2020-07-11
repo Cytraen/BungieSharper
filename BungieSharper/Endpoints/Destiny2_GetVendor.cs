@@ -7,6 +7,9 @@ namespace BungieSharper.Endpoints
 {
     public partial class Endpoints
     {
+        /// <summary>
+        /// Get the details of a specific Vendor.
+        /// </summary>
         public async Task<Schema.Destiny.Responses.DestinyVendorResponse> Destiny2_GetVendor(long characterId, IEnumerable<Schema.Destiny.DestinyComponentType> components, long destinyMembershipId, Schema.BungieMembershipType membershipType, uint vendorHash)
         {
             return await this._apiAccessor.ApiRequestAsync<Schema.Destiny.Responses.DestinyVendorResponse>(

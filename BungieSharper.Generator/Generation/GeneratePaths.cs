@@ -21,7 +21,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using BungieSharper.Generator.Parsing;
 
 namespace BungieSharper.Generator.Generation
@@ -30,67 +29,75 @@ namespace BungieSharper.Generator.Generation
     {
         public static string GeneratePathContent(string path, Dictionary<string, dynamic> pathDetails)
         {
+            string httpMethodType;
+            string previewEndpointText = "";
+            string deprecatedEndpointText = "";
+
             if (pathDetails.ContainsKey("get") && pathDetails.ContainsKey("post"))
                 throw new NotSupportedException();
 
-            string getOrPost;
             List<string> parameterList = new List<string>();
 
             var usings = "using System;\nusing System.Collections.Generic;\nusing System.Net.Http;\nusing System.Threading.Tasks;\n\n";
 
-            var methodBase = usings +
+            if (pathDetails.ContainsKey("get"))
+            {
+                httpMethodType = "Get";
+            }
+            else if (pathDetails.ContainsKey("post"))
+            {
+                httpMethodType = "Post";
+            }
+            else throw new NotSupportedException();
+
+            var httpMethodDetails = pathDetails[httpMethodType.ToLower()];
+
+            foreach (var param in httpMethodDetails["parameters"])
+            {
+                parameterList.Add(JsonToCsharpMapping.Type(param?["schema"]) + " " + param?["name"]);
+            }
+
+            if (pathDetails[httpMethodType.ToLower()].ContainsKey("deprecated"))
+            {
+                deprecatedEndpointText = httpMethodDetails["deprecated"] ? "        [System.Obsolete(\"Bungie has deprecated this endpoint.\")]\n" : "";
+            }
+
+            var returnType = GeneratePathReturn(pathDetails);
+            var pathName = ((string)pathDetails["summary"]).Replace('.', '_').TrimStart('_');
+            var parameterString = string.Join(", ", parameterList);
+            var endpointPath = path.Remove(0, 1);
+
+            var documentation =
+                !string.IsNullOrWhiteSpace((string)httpMethodDetails["description"]) ? FormatSummaries.FormatSummary((string)httpMethodDetails["description"], 8, true) :
+                !string.IsNullOrWhiteSpace((string)pathDetails["description"]) ? FormatSummaries.FormatSummary((string)pathDetails["description"], 8, true) : "";
+
+            if (httpMethodDetails.ContainsKey("x-preview"))
+            {
+                if (!string.IsNullOrWhiteSpace(documentation))
+                {
+                    documentation = documentation.Replace("        /// <summary>", "        /// <summary>\n        /// This is a preview method.");
+                }
+                else
+                    previewEndpointText = pathDetails[httpMethodType.ToLower()]["x-preview"] ? "        /// <summary>This is a preview method.</summary>\n" : "";
+            }
+
+            var methodBase =
+                usings +
                 "namespace BungieSharper.Endpoints\n" +
                 "{\n" +
                 "    public partial class Endpoints\n" +
                 "    {\n" +
-                "{isPreview}" +
-                "{isDeprecated}" +
-                "        public async Task<{returnType}> {pathName}({parameters})\n" +
+                $"{documentation}" +
+                $"{previewEndpointText}" +
+                $"{deprecatedEndpointText}" +
+                $"        public async Task<{returnType}> {pathName}({parameterString})\n" +
                 "        {\n" +
-                "            return await this._apiAccessor.ApiRequestAsync<{returnType}>(\n" +
-                "                $\"{path without first slash}\", null, null, HttpMethod.{GetOrPost}\n" +
+                $"            return await this._apiAccessor.ApiRequestAsync<{returnType}>(\n" +
+                $"                $\"{endpointPath}\", null, null, HttpMethod.{httpMethodType}\n" +
                 "                );\n" +
                 "        }\n" +
                 "    }\n" +
                 "}";
-
-            var returnType = GeneratePathReturn(pathDetails);
-
-            if (pathDetails.ContainsKey("get"))
-            {
-                getOrPost = "Get";
-            }
-
-            else if (pathDetails.ContainsKey("post"))
-            {
-                getOrPost = "Post";
-            }
-
-            else throw new NotSupportedException();
-
-            foreach (var param in pathDetails[getOrPost.ToLower()]["parameters"])
-            {
-                parameterList.Add(JsonToCsharpMapping.Type(param["schema"]) + " " + param["name"]);
-            }
-
-            if (pathDetails[getOrPost.ToLower()].ContainsKey("x-preview"))
-            {
-                methodBase = methodBase.Replace("{isPreview}", pathDetails[getOrPost.ToLower()]["x-preview"] ? "        /// <summary>This is a preview method.</summary>\n" : "");
-            }
-            else
-                methodBase = methodBase.Replace("{isPreview}", "");
-
-            if (pathDetails[getOrPost.ToLower()].ContainsKey("deprecated"))
-            {
-                methodBase = methodBase.Replace("{isDeprecated}", pathDetails[getOrPost.ToLower()]["deprecated"] ? "        [System.Obsolete(\"Bungie has deprecated this.\")]\n" : "");
-            }
-            else
-                methodBase = methodBase.Replace("{isDeprecated}", "");
-            
-            methodBase = methodBase.Replace("{returnType}", returnType).Replace("{path without first slash}", path.Remove(0, 1));
-            methodBase = methodBase.Replace("{GetOrPost}", getOrPost);
-            methodBase = methodBase.Replace("{parameters}", string.Join(", ", parameterList));
-            methodBase = methodBase.Replace("{pathName}", ((string)pathDetails["summary"]).Replace('.', '_').TrimStart('_'));
 
             return methodBase;
         }
@@ -104,10 +111,8 @@ namespace BungieSharper.Generator.Generation
 
             if (pathDetails.ContainsKey("get"))
                 postOrGet = "get";
-
             else if (pathDetails.ContainsKey("post"))
                 postOrGet = "post";
-
             else throw new NotSupportedException();
 
             if (!pathDetails[postOrGet].ContainsKey("responses"))
@@ -120,7 +125,6 @@ namespace BungieSharper.Generator.Generation
                 throw new NotSupportedException();
 
             return JsonToCsharpMapping.Type(pathDetails[postOrGet]["responses"]["200"]);
-            
         }
 
         private static string GenerateGetPath(Dictionary<string, dynamic> pathDetails, out string finalReturnType)

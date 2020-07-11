@@ -7,6 +7,9 @@ namespace BungieSharper.Endpoints
 {
     public partial class Endpoints
     {
+        /// <summary>
+        /// Returns a thread of posts at the given parent, optionally returning replies to those posts as well as the original parent.
+        /// </summary>
         public async Task<Schema.Forum.PostSearchResponse> Forum_GetPostsThreadedPaged(bool getParentPost, int page, int pageSize, long parentPostId, int replySize, bool rootThreadMode, string showbanned, Schema.Forum.ForumPostSortEnum sortMode)
         {
             return await this._apiAccessor.ApiRequestAsync<Schema.Forum.PostSearchResponse>(

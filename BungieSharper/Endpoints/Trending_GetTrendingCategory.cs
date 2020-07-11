@@ -7,6 +7,9 @@ namespace BungieSharper.Endpoints
 {
     public partial class Endpoints
     {
+        /// <summary>
+        /// Returns paginated lists of trending items for a category.
+        /// </summary>
         public async Task<Schema.SearchResultOfTrendingEntry> Trending_GetTrendingCategory(string categoryId, int pageNumber)
         {
             return await this._apiAccessor.ApiRequestAsync<Schema.SearchResultOfTrendingEntry>(

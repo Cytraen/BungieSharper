@@ -66,6 +66,8 @@ namespace BungieSharper.Client
 
         internal void SetUserAgent(string userAgent)
         {
+            // _httpClient.DefaultRequestHeaders.UserAgent.Clear();
+            // _httpClient.DefaultRequestHeaders.UserAgent.TryParseAdd(userAgent);
             _httpClient.DefaultRequestHeaders.Remove("User-Agent");
             _httpClient.DefaultRequestHeaders.Add("User-Agent", userAgent);
         }

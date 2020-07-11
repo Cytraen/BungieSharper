@@ -7,6 +7,9 @@ namespace BungieSharper.Endpoints
 {
     public partial class Endpoints
     {
+        /// <summary>
+        /// Bans the requested member from the requested group for the specified period of time.
+        /// </summary>
         public async Task<int> GroupV2_BanMember(long groupId, long membershipId, Schema.BungieMembershipType membershipType)
         {
             return await this._apiAccessor.ApiRequestAsync<int>(

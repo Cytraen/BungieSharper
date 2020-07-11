@@ -7,6 +7,9 @@ namespace BungieSharper.Endpoints
 {
     public partial class Endpoints
     {
+        /// <summary>
+        /// Transfer an item to/from your vault. You must have a valid Destiny account. You must also pass BOTH a reference AND an instance ID if it's an instanced item. itshappening.gif
+        /// </summary>
         public async Task<int> Destiny2_TransferItem()
         {
             return await this._apiAccessor.ApiRequestAsync<int>(

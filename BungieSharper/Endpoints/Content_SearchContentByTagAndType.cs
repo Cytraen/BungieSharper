@@ -7,6 +7,9 @@ namespace BungieSharper.Endpoints
 {
     public partial class Endpoints
     {
+        /// <summary>
+        /// Searches for Content Items that match the given Tag and Content Type.
+        /// </summary>
         public async Task<Schema.SearchResultOfContentItemPublicContract> Content_SearchContentByTagAndType(int currentpage, bool head, int itemsperpage, string locale, string tag, string type)
         {
             return await this._apiAccessor.ApiRequestAsync<Schema.SearchResultOfContentItemPublicContract>(

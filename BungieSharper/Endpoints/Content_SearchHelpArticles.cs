@@ -7,6 +7,9 @@ namespace BungieSharper.Endpoints
 {
     public partial class Endpoints
     {
+        /// <summary>
+        /// Search for Help Articles.
+        /// </summary>
         public async Task<dynamic> Content_SearchHelpArticles(string searchtext, string size)
         {
             return await this._apiAccessor.ApiRequestAsync<dynamic>(

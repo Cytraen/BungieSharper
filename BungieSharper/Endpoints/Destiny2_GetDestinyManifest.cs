@@ -7,6 +7,9 @@ namespace BungieSharper.Endpoints
 {
     public partial class Endpoints
     {
+        /// <summary>
+        /// Returns the current version of the manifest as a json object.
+        /// </summary>
         public async Task<Schema.Destiny.Config.DestinyManifest> Destiny2_GetDestinyManifest()
         {
             return await this._apiAccessor.ApiRequestAsync<Schema.Destiny.Config.DestinyManifest>(

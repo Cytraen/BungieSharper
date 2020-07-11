@@ -7,6 +7,9 @@ namespace BungieSharper.Endpoints
 {
     public partial class Endpoints
     {
+        /// <summary>
+        /// Retrieve the details of an instanced Destiny Item. An instanced Destiny item is one with an ItemInstanceId. Non-instanced items, such as materials, have no useful instance-specific details and thus are not queryable here.
+        /// </summary>
         public async Task<Schema.Destiny.Responses.DestinyItemResponse> Destiny2_GetItem(IEnumerable<Schema.Destiny.DestinyComponentType> components, long destinyMembershipId, long itemInstanceId, Schema.BungieMembershipType membershipType)
         {
             return await this._apiAccessor.ApiRequestAsync<Schema.Destiny.Responses.DestinyItemResponse>(

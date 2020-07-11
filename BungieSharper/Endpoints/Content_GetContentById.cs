@@ -7,6 +7,9 @@ namespace BungieSharper.Endpoints
 {
     public partial class Endpoints
     {
+        /// <summary>
+        /// Returns a content item referenced by id
+        /// </summary>
         public async Task<Schema.Content.ContentItemPublicContract> Content_GetContentById(bool head, long id, string locale)
         {
             return await this._apiAccessor.ApiRequestAsync<Schema.Content.ContentItemPublicContract>(

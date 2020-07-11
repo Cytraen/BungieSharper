@@ -7,6 +7,9 @@ namespace BungieSharper.Endpoints
 {
     public partial class Endpoints
     {
+        /// <summary>
+        /// List of available localization cultures
+        /// </summary>
         public async Task<Dictionary<string, string>> GetAvailableLocales()
         {
             return await this._apiAccessor.ApiRequestAsync<Dictionary<string, string>>(

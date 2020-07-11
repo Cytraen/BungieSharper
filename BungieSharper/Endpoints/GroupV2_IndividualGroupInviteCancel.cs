@@ -7,6 +7,9 @@ namespace BungieSharper.Endpoints
 {
     public partial class Endpoints
     {
+        /// <summary>
+        /// Cancels a pending invitation to join a group.
+        /// </summary>
         public async Task<Schema.GroupsV2.GroupApplicationResponse> GroupV2_IndividualGroupInviteCancel(long groupId, long membershipId, Schema.BungieMembershipType membershipType)
         {
             return await this._apiAccessor.ApiRequestAsync<Schema.GroupsV2.GroupApplicationResponse>(

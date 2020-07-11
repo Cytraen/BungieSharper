@@ -7,6 +7,9 @@ namespace BungieSharper.Endpoints
 {
     public partial class Endpoints
     {
+        /// <summary>
+        /// Loads a bungienet user by membership id.
+        /// </summary>
         public async Task<Schema.User.GeneralUser> User_GetBungieNetUserById(long id)
         {
             return await this._apiAccessor.ApiRequestAsync<Schema.User.GeneralUser>(

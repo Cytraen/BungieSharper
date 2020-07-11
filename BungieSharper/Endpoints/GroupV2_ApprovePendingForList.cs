@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace BungieSharper.Endpoints
@@ -11,10 +12,10 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Approve all of the pending users for the given group.
         /// </summary>
-        public async Task<IEnumerable<Schema.Entities.EntityActionResult>> GroupV2_ApprovePendingForList(long groupId)
+        public async Task<IEnumerable<Schema.Entities.EntityActionResult>> GroupV2_ApprovePendingForList(long groupId, Schema.GroupsV2.GroupApplicationListRequest requestBody)
         {
             return await this._apiAccessor.ApiRequestAsync<IEnumerable<Schema.Entities.EntityActionResult>>(
-                $"GroupV2/{groupId}/Members/ApproveList/", null, null, HttpMethod.Post
+                $"GroupV2/{groupId}/Members/ApproveList/", null, JsonSerializer.Serialize(requestBody), HttpMethod.Post
                 );
         }
     }

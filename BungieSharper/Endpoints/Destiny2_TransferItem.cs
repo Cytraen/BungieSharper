@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace BungieSharper.Endpoints
@@ -11,10 +12,10 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Transfer an item to/from your vault. You must have a valid Destiny account. You must also pass BOTH a reference AND an instance ID if it's an instanced item. itshappening.gif
         /// </summary>
-        public async Task<int> Destiny2_TransferItem()
+        public async Task<int> Destiny2_TransferItem(Schema.Destiny.Requests.DestinyItemTransferRequest requestBody)
         {
             return await this._apiAccessor.ApiRequestAsync<int>(
-                $"Destiny2/Actions/Items/TransferItem/", null, null, HttpMethod.Post
+                $"Destiny2/Actions/Items/TransferItem/", null, JsonSerializer.Serialize(requestBody), HttpMethod.Post
                 );
         }
     }

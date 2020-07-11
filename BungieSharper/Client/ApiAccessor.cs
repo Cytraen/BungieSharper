@@ -21,6 +21,7 @@ using System.Buffers;
 using System.Buffers.Text;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -33,6 +34,8 @@ namespace BungieSharper.Client
     {
         private const string BaseUrl = "https://stats.bungie.net/Platform/";
 
+        private readonly CookieContainer _cookieContainer;
+        private readonly HttpClientHandler _httpClientHandler;
         private readonly HttpClient _httpClient;
         private readonly SemaphoreSlim _semaphore;
         private readonly JsonSerializerOptions _serializerOptions;
@@ -50,7 +53,13 @@ namespace BungieSharper.Client
         internal ApiAccessor()
         {
             this._semaphore = new SemaphoreSlim(1, 1);
-            this._httpClient = new HttpClient
+            this._cookieContainer = new CookieContainer();
+            this._httpClientHandler = new HttpClientHandler()
+            {
+                CookieContainer = this._cookieContainer,
+                UseCookies = true
+            };
+            this._httpClient = new HttpClient(_httpClientHandler)
             {
                 BaseAddress = new Uri(BaseUrl, UriKind.Absolute)
             };

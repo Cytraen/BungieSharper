@@ -27,7 +27,7 @@ namespace BungieSharper.Client
 
         public Endpoints.Endpoints ClientEndpoints { get; internal set; }
 
-        internal void InitializeEndpoints()
+        private void InitializeEndpoints()
         {
             this.ClientEndpoints = new Endpoints.Endpoints(_apiAccessor);
         }

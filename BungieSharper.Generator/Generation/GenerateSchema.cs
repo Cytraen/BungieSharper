@@ -23,7 +23,6 @@ using BungieSharper.Generator.Parsing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace BungieSharper.Generator.Generation
 {
@@ -43,9 +42,6 @@ namespace BungieSharper.Generator.Generation
 
                     if (usableSummary != null)
                     {
-                        usableSummary = usableSummary?.Replace("\r\n", "\n").Replace("\n", "\n        ///");
-                        usableSummary = $"        /// <summary>{usableSummary}</summary>\n";
-
                         usableSummary = FormatSummaries.FormatSummary(enumVal["description"], 8);
                     }
 
@@ -63,26 +59,12 @@ namespace BungieSharper.Generator.Generation
 
                     if (usableSummary != null)
                     {
-                        usableSummary = usableSummary?.Replace("\r\n", "\n").Replace("\n", "\n        ///");
-                        usableSummary = $"        /// <summary>{usableSummary}</summary>\n";
-
                         usableSummary = FormatSummaries.FormatSummary(propertyPair.Value["description"], 8);
                     }
 
-                    string classType;
-
-                    if (propertyPair.Value.ContainsKey("x-enum-reference"))
-                    {
-                        classType = JsonToCsharpMapping.GetReferenceFromRef(propertyPair.Value["x-enum-reference"]["$ref"]);
-                    }
-                    else
-                    {
-                        classType = JsonToCsharpMapping.Type(propertyPair.Value);
-                    }
-
-                    if (propertyPair.Key == "failureIndexes")
-                    {
-                    }
+                    string classType = propertyPair.Value.ContainsKey("x-enum-reference")
+                        ? (string)JsonToCsharpMapping.GetReferenceFromRef(propertyPair.Value["x-enum-reference"]["$ref"])
+                        : (string)JsonToCsharpMapping.Type(propertyPair.Value);
 
                     valuesList.Add(new Tuple<string, string, string?>(propertyPair.Key, classType, usableSummary));
                 }
@@ -94,10 +76,7 @@ namespace BungieSharper.Generator.Generation
 
             List<string> finalValueList;
             string finalValueString;
-            var isFlags = false;
-
-            if (schemaDetails.ContainsKey("x-enum-is-bitmask") && schemaDetails["x-enum-is-bitmask"])
-                isFlags = true;
+            var isFlags = schemaDetails.ContainsKey("x-enum-is-bitmask") && schemaDetails["x-enum-is-bitmask"];
 
             if (isEnum)
             {
@@ -120,13 +99,13 @@ namespace BungieSharper.Generator.Generation
             almostFinalString = almostFinalString.Replace("{name!Space}", GenerateNamespace.CreateSchemaNamespace(schemaName));
             almostFinalString = almostFinalString.Replace("{thingName}", schemaName.Split('.').Last());
 
-            if (schemaDetails.ContainsKey("description"))
-                almostFinalString = almostFinalString.Replace(
-                    "{documentation}",
-                    FormatSummaries.FormatSummary(schemaDetails.ContainsKey("description") ? schemaDetails["description"] : "", 4, true)
-                    );
-            else
-                almostFinalString = almostFinalString.Replace("{documentation}", "");
+            almostFinalString = almostFinalString.Replace("{documentation}",
+                schemaDetails.ContainsKey("description")
+                    ? FormatSummaries.FormatSummary(schemaDetails.ContainsKey("description")
+                        ? schemaDetails["description"]
+                        : "", 4, true)
+                    : ""
+                );
             return almostFinalString;
         }
 

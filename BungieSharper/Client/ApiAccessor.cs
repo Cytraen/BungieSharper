@@ -1,4 +1,4 @@
-﻿/*
+/*
    Copyright (C) 2020 ashakoor
 
    This program is free software: you can redistribute it and/or modify
@@ -86,41 +86,41 @@ namespace BungieSharper.Client
             while (true)
             {
                 throttleTask = Task.Delay(_msPerRequest);
-                HttpResponseMessage httpResponseMessage = await ApiRequest(url, token, content, method, queryParams);
-                if (!(httpResponseMessage.Content.Headers.ContentType.MediaType != "application/json"))
+                var httpResponseMessage = await ApiRequest(url, token, content, method, string.Join("&", queryParams.Where(x => x != null)));
+
+                if (httpResponseMessage.Content.Headers.ContentType.MediaType != "application/json")
                 {
-                    apiResponse = JsonSerializer.Deserialize<ApiResponse<T>>(await httpResponseMessage.Content.ReadAsStringAsync() ?? throw new ContentNullJsonException(), _serializerOptions);
-                    if (apiResponse.ErrorCode != PlatformErrorCodes.Success)
+                    await throttleTask;
+                    _semaphore.Release();
+                    throw new ContentNotJsonException();
+                }
+
+                apiResponse = JsonSerializer.Deserialize<ApiResponse<T>>(await httpResponseMessage.Content.ReadAsStringAsync() ?? throw new ContentNullJsonException(), _serializerOptions);
+                if (apiResponse.ErrorCode != PlatformErrorCodes.Success)
+                {
+                    if (ApiRetry(apiResponse))
                     {
-                        if (ApiRetry(apiResponse))
-                        {
-                            await throttleTask;
-                            await Task.Delay((int)apiResponse.ThrottleSeconds);
-                        }
-                        else
-                            goto label_12;
+                        await throttleTask;
+                        await Task.Delay((int)apiResponse.ThrottleSeconds);
                     }
                     else
-                        goto label_6;
+                    {
+                        await throttleTask;
+                        _semaphore.Release();
+                        throw new NonRetryErrorCodeException(
+                            $"'{url}' returned {apiResponse.ErrorCode}: {apiResponse.Message}", apiResponse
+                            );
+                    }
                 }
                 else
-                    break;
+                {
+                    if (apiResponse.Response == null)
+                        throw new NullResponseException("'" + url + "' returned a null 'Response' property.", apiResponse);
+                    await throttleTask;
+                    _semaphore.Release();
+                    return apiResponse.Response;
+                }
             }
-            await throttleTask;
-            _semaphore.Release();
-            throw new ContentNotJsonException();
-        label_6:
-            if (apiResponse.Response == null)
-                throw new NullResponseException("'" + url + "' returned a null 'Response' property.", apiResponse);
-            await throttleTask;
-            _semaphore.Release();
-            return apiResponse.Response;
-        label_12:
-            await throttleTask;
-            _semaphore.Release();
-            throw new NonRetryErrorCodeException(
-                $"'{url}' returned {apiResponse.ErrorCode}: {apiResponse.Message}", apiResponse
-                );
         }
 
         private async Task<HttpResponseMessage> ApiRequest(
@@ -128,12 +128,12 @@ namespace BungieSharper.Client
           string token,
           string content,
           HttpMethod method,
-          params string[] queryParams)
+          string queryParamString)
         {
             HttpRequestMessage request = new HttpRequestMessage
             {
                 Method = method,
-                RequestUri = new Uri(url + (queryParams.Length != 0 ? "?" : "") + string.Join("&", queryParams.Where(q => q != "")), UriKind.Relative)
+                RequestUri = new Uri(url + (queryParamString.Length != 0 ? "?" : "") + queryParamString, UriKind.Relative)
             };
             if (token != null)
                 request.Headers.Add("Authorization", "Bearer " + token);

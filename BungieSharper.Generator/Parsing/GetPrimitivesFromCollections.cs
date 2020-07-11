@@ -38,7 +38,6 @@ namespace BungieSharper.Generator.Parsing
                 return DictionaryCreator(objectDetails["x-dictionary-key"], objectDetails["additionalProperties"]);
 
             return "dynamic";
-            throw new NotSupportedException();
         }
 
         public static string ArrayParser(dynamic arrayDetails)
@@ -54,7 +53,7 @@ namespace BungieSharper.Generator.Parsing
             throw new NotSupportedException();
         }
 
-        public static string DictionaryCreator(dynamic key, dynamic additionalProperties)
+        private static string DictionaryCreator(dynamic key, dynamic additionalProperties)
         {
             return $"Dictionary<{ParseDictionaryItem(key)}, {ParseDictionaryItem(additionalProperties)}>";
         }

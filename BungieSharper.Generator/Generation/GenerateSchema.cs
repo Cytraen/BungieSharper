@@ -51,7 +51,9 @@ namespace BungieSharper.Generator.Generation
             else if (schemaDetails["type"] == "object")
             {
                 if (!schemaDetails.ContainsKey("properties"))
+                {
                     return "";
+                }
 
                 foreach (KeyValuePair<string, dynamic> propertyPair in schemaDetails["properties"])
                 {

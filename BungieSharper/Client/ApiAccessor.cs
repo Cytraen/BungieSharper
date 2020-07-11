@@ -84,8 +84,13 @@ namespace BungieSharper.Client
           HttpMethod method,
           params string[] queryParams)
         {
-            if (url == null) throw new ArgumentNullException(nameof(url));
+            if (url == null)
+            {
+                throw new ArgumentNullException(nameof(url));
+            }
+
             await this._semaphore.WaitAsync().ConfigureAwait(false);
+
             while (true)
             {
                 var throttleTask = Task.Delay(this._msPerRequest);

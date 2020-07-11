@@ -114,9 +114,14 @@ namespace BungieSharper.Generator.Generation
             {
                 httpMethodType = "Post";
             }
-            else throw new NotSupportedException();
+            else
+            {
+                throw new NotSupportedException();
+            }
 
-            var httpMethodDetails = pathDetails[httpMethodType.ToLower()];
+            var lowMethodType = httpMethodType.ToLowerInvariant();
+
+            var httpMethodDetails = pathDetails[lowMethodType];
 
             var optionalParameterStringList = new List<string>();
             var requiredParameterStringList = new List<string>();
@@ -124,7 +129,9 @@ namespace BungieSharper.Generator.Generation
             foreach (var param in httpMethodDetails["parameters"])
             {
                 if (param is null)
+                {
                     throw new NotSupportedException();
+                }
 
                 var paramObject = new PathParameter(
                     param["name"],
@@ -146,7 +153,7 @@ namespace BungieSharper.Generator.Generation
 
             var queryStringParams = paramList.Where(x => x.ParamLoc == ParameterLocation.Query).ToList();
 
-            if (pathDetails[httpMethodType.ToLowerInvariant()].ContainsKey("deprecated"))
+            if (pathDetails[lowMethodType].ContainsKey("deprecated"))
             {
                 deprecatedEndpointText = httpMethodDetails["deprecated"] ? "        [System.Obsolete(\"Bungie has deprecated this endpoint.\")]\n" : "";
             }
@@ -201,7 +208,7 @@ namespace BungieSharper.Generator.Generation
                 }
                 else
                 {
-                    previewEndpointText = pathDetails[httpMethodType.ToLower()]["x-preview"] ? "        /// <summary>This is a preview method.</summary>\n" : "";
+                    previewEndpointText = pathDetails[lowMethodType]["x-preview"] ? "        /// <summary>This is a preview method.</summary>\n" : "";
                 }
             }
 

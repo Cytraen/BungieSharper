@@ -1,7 +1,9 @@
-﻿using System;
+﻿using BungieSharper.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace BungieSharper.Endpoints
@@ -13,9 +15,10 @@ namespace BungieSharper.Endpoints
         /// </summary>
         public async Task<Schema.Destiny.Config.DestinyManifest> Destiny2_GetDestinyManifest()
         {
-            return await this._apiAccessor.ApiRequestAsync<Schema.Destiny.Config.DestinyManifest>(
-                $"Destiny2/Manifest/", null, null, HttpMethod.Get
-                );
+            return await _apiAccessor.ApiRequestAsync<Schema.Destiny.Config.DestinyManifest>(
+                new Uri($"Destiny2/Manifest/", UriKind.Relative),
+                null, null, HttpMethod.Get
+                ).ConfigureAwait(false);
         }
     }
 }

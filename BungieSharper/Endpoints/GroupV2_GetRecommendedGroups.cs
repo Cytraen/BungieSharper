@@ -1,7 +1,9 @@
-﻿using System;
+﻿using BungieSharper.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace BungieSharper.Endpoints
@@ -13,9 +15,10 @@ namespace BungieSharper.Endpoints
         /// </summary>
         public async Task<IEnumerable<Schema.GroupsV2.GroupV2Card>> GroupV2_GetRecommendedGroups(Schema.GroupsV2.GroupDateRange createDateRange, Schema.GroupsV2.GroupType groupType)
         {
-            return await this._apiAccessor.ApiRequestAsync<IEnumerable<Schema.GroupsV2.GroupV2Card>>(
-                $"GroupV2/Recommended/{groupType}/{createDateRange}/", null, null, HttpMethod.Post
-                );
+            return await _apiAccessor.ApiRequestAsync<IEnumerable<Schema.GroupsV2.GroupV2Card>>(
+                new Uri($"GroupV2/Recommended/{groupType}/{createDateRange}/", UriKind.Relative),
+                null, null, HttpMethod.Post
+                ).ConfigureAwait(false);
         }
     }
 }

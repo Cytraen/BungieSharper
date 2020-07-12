@@ -1,7 +1,9 @@
-﻿using System;
+﻿using BungieSharper.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace BungieSharper.Endpoints
@@ -13,9 +15,10 @@ namespace BungieSharper.Endpoints
         /// </summary>
         public async Task<Schema.Destiny.Responses.DestinyVendorsResponse> Destiny2_GetVendors(long characterId, long destinyMembershipId, Schema.BungieMembershipType membershipType, IEnumerable<Schema.Destiny.DestinyComponentType> components = null, Schema.Destiny.DestinyVendorFilter? filter = null)
         {
-            return await this._apiAccessor.ApiRequestAsync<Schema.Destiny.Responses.DestinyVendorsResponse>(
-                $"Destiny2/{membershipType}/Profile/{destinyMembershipId}/Character/{characterId}/Vendors/", null, null, HttpMethod.Get,
-                components != null ? $"components={string.Join(",", components.Select(x => x.ToString()))}" : null, filter != null ? $"filter={filter}" : null);
+            return await _apiAccessor.ApiRequestAsync<Schema.Destiny.Responses.DestinyVendorsResponse>(
+                new Uri($"Destiny2/{membershipType}/Profile/{destinyMembershipId}/Character/{characterId}/Vendors/" + HttpRequestGenerator.MakeQuerystring(components != null ? $"components={string.Join(",", components.Select(x => x.ToString()))}" : null, filter != null ? $"filter={filter}" : null), UriKind.Relative),
+                null, null, HttpMethod.Get
+                ).ConfigureAwait(false);
         }
     }
 }

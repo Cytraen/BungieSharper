@@ -15,6 +15,7 @@
    along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
+using BungieSharper.Schema;
 using BungieSharper.Schema.Exceptions;
 using System.Collections.Generic;
 
@@ -34,7 +35,7 @@ namespace BungieSharper.Client
 
         public string DetailedErrorTrace { get; set; }
 
-        public T Response { get; set; } = default(T);
+        public T Response { get; set; }
 
         public static implicit operator ApiResponse(ApiResponse<T> response)
         {

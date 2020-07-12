@@ -15,65 +15,79 @@
    along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
+using BungieSharper.Schema.Exceptions;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BungieSharper.Client
 {
     public class BungieApiClient : IDisposable
     {
-        private readonly ApiAccessor _apiAccessor;
         private const ushort DefaultRequestsPerSecond = 15;
         private const ushort MaxRequestsPerSecond = 25;
+
+        private readonly ApiAccessor _apiAccessor;
 
         public Endpoints.Endpoints ClientEndpoints { get; internal set; }
 
         private void InitializeEndpoints()
         {
-            this.ClientEndpoints = new Endpoints.Endpoints(_apiAccessor);
+            ClientEndpoints = new Endpoints.Endpoints(_apiAccessor);
         }
 
         public BungieApiClient(string apiKey)
         {
-            this._apiAccessor = new ApiAccessor();
-            this._apiAccessor.SetApiKey(apiKey);
-            this._apiAccessor.SetRateLimit(DefaultRequestsPerSecond);
-            this.InitializeEndpoints();
+            _apiAccessor = new ApiAccessor();
+            _apiAccessor.SetApiKey(apiKey);
+            _apiAccessor.SetRateLimit(DefaultRequestsPerSecond);
+            InitializeEndpoints();
         }
 
         public BungieApiClient(string apiKey, string userAgent)
         {
-            this._apiAccessor = new ApiAccessor();
-            this._apiAccessor.SetApiKey(apiKey);
-            this._apiAccessor.SetUserAgent(userAgent);
-            this._apiAccessor.SetRateLimit(DefaultRequestsPerSecond);
-            this.InitializeEndpoints();
+            _apiAccessor = new ApiAccessor();
+            _apiAccessor.SetApiKey(apiKey);
+            _apiAccessor.SetUserAgent(userAgent);
+            _apiAccessor.SetRateLimit(DefaultRequestsPerSecond);
+            InitializeEndpoints();
         }
 
-        public BungieApiClient(string apiKey, ushort requestsPerSecond)
+        public void SetApiKey(string apiKey)
         {
-            this._apiAccessor = new ApiAccessor();
-            this._apiAccessor.SetApiKey(apiKey);
-            this._apiAccessor.SetRateLimit(requestsPerSecond);
-            this.InitializeEndpoints();
+            _apiAccessor.SetApiKey(apiKey);
         }
 
-        public BungieApiClient(string apiKey, string userAgent, ushort requestsPerSecond)
+        public void SetUserAgent(string userAgent)
         {
-            this._apiAccessor = new ApiAccessor();
-            this._apiAccessor.SetApiKey(apiKey);
-            this._apiAccessor.SetUserAgent(userAgent);
-            this._apiAccessor.SetRateLimit(requestsPerSecond);
-            this.InitializeEndpoints();
+            _apiAccessor.SetUserAgent(userAgent);
         }
 
-        public void SetApiKey(string apiKey) => this._apiAccessor.SetApiKey(apiKey);
+        public void SetRateLimit()
+        {
+            _apiAccessor.SetRateLimit(DefaultRequestsPerSecond);
+        }
 
-        public void SetUserAgent(string userAgent) => this._apiAccessor.SetUserAgent(userAgent);
+        public void SetRateLimit(ushort requestsPerSecond)
+        {
+            _apiAccessor.SetRateLimit(requestsPerSecond < MaxRequestsPerSecond ? requestsPerSecond : MaxRequestsPerSecond);
+        }
 
-        public void SetRateLimit() => this._apiAccessor.SetRateLimit(DefaultRequestsPerSecond);
+        public void SetRetryCodes(List<PlatformErrorCodes> errorCodes)
+        {
+            _apiAccessor.SetRetryCodes(errorCodes);
+        }
 
-        public void SetRateLimit(ushort requestsPerSecond) => this._apiAccessor.SetRateLimit(requestsPerSecond < MaxRequestsPerSecond ? requestsPerSecond : MaxRequestsPerSecond);
+        public static void SetRetryCodes(IEnumerable<PlatformErrorCodes> errorCodes)
+        {
+            SetRetryCodes(errorCodes.ToList());
+        }
 
-        public void Dispose() => this._apiAccessor.Dispose();
+        public static void SetRetryCodes(params PlatformErrorCodes[] errorCodes)
+        {
+            SetRetryCodes(errorCodes.ToList());
+        }
+
+        public void Dispose() => _apiAccessor.Dispose();
     }
 }

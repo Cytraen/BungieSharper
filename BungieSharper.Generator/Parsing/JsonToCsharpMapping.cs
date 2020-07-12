@@ -29,7 +29,9 @@ namespace BungieSharper.Generator.Parsing
         public static string Type(dynamic schema)
         {
             if (schema.ContainsKey("$ref") && schema.ContainsKey("type"))
+            {
                 throw new NotSupportedException();
+            }
 
             if (schema.ContainsKey("properties") && schema["properties"].ContainsKey("Response"))
             {
@@ -110,13 +112,19 @@ namespace BungieSharper.Generator.Parsing
             }
 
             if (jsonRef == "#/components/responses/boolean")
+            {
                 return "bool";
+            }
 
             if (jsonRef == "#/components/responses/int32")
+            {
                 return "int";
+            }
 
             if (jsonRef == "#/components/responses/int64")
+            {
                 return "long";
+            }
 
             return "Schema." + jsonRef.Split('/').Last();
         }

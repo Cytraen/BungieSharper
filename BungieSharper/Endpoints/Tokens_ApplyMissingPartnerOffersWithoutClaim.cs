@@ -1,7 +1,9 @@
-﻿using System;
+﻿using BungieSharper.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace BungieSharper.Endpoints
@@ -13,9 +15,10 @@ namespace BungieSharper.Endpoints
         /// </summary>
         public async Task<bool> Tokens_ApplyMissingPartnerOffersWithoutClaim(int partnerApplicationId, long targetBnetMembershipId)
         {
-            return await this._apiAccessor.ApiRequestAsync<bool>(
-                $"Tokens/Partner/ApplyMissingOffers/{partnerApplicationId}/{targetBnetMembershipId}/", null, null, HttpMethod.Post
-                );
+            return await _apiAccessor.ApiRequestAsync<bool>(
+                new Uri($"Tokens/Partner/ApplyMissingOffers/{partnerApplicationId}/{targetBnetMembershipId}/", UriKind.Relative),
+                null, null, HttpMethod.Post
+                ).ConfigureAwait(false);
         }
     }
 }

@@ -32,14 +32,16 @@ namespace BungieSharper.Generator
 {
     internal static class Program
     {
-        private static dynamic? deserialized { get; set; }
+        internal const string OpenApiDefinitionUrl = "https://raw.githubusercontent.com/Bungie-net/api/master/openapi.json?raw=true";
+
+        private static dynamic? Deserialized { get; set; }
 
         private static async Task Main(string[] args)
         {
             if (args.Contains("--download-new-definitions") || !File.Exists("openApi.json"))
             {
-                Console.Write("Downloading new OpenAPI definitions from Bungie.net... ");
-                await DownloadNewOpenApiTask();
+                Console.Write($"Downloading new OpenAPI definitions from {OpenApiDefinitionUrl}... ");
+                await DownloadNewOpenApiTask().ConfigureAwait(false);
                 Console.WriteLine("done.");
             }
             else
@@ -50,27 +52,36 @@ namespace BungieSharper.Generator
             var bungieSharperPath =
                 Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\..\BungieSharper\"));
 
-            deserialized = JsonHelper.Deserialize(await File.ReadAllTextAsync("./openApi.json"));
+            Deserialized = JsonHelper.Deserialize(await File.ReadAllTextAsync("./openApi.json"));
 
-            // TODO: WORK GOES HERE
+            // WORK STARTS HERE
 
             var fileDictionary = new Dictionary<string, List<string>>();
 
-            foreach (KeyValuePair<string, dynamic> schema in deserialized["components"]["schemas"])
+            foreach (KeyValuePair<string, dynamic> schema in Deserialized["components"]["schemas"])
             {
                 if (schema.Value["type"] == "array")
+                {
                     continue;
+                }
 
                 var fileFolder = bungieSharperPath + "Schema\\" + string.Join('\\', schema.Key.Split('.').SkipLast(1));
                 string fileContent = GenerateSchema.GenerateSchemaFileContent(schema.Key, schema.Value);
 
                 if (fileContent.Contains("Dictionary<") || fileContent.Contains("IEnumerable<"))
+                {
                     fileContent = "using System.Collections.Generic;\n" + fileContent;
+                }
+
                 if (fileContent.Contains("DateTime"))
+                {
                     fileContent = "using System;\n" + fileContent;
+                }
 
                 if (fileContent.Contains("\nnamespace"))
+                {
                     fileContent = fileContent.Replace("\nnamespace", "\n\nnamespace");
+                }
 
                 if (args.Contains("--verbose"))
                 {
@@ -127,7 +138,7 @@ namespace BungieSharper.Generator
                 }
             }
 
-            foreach (KeyValuePair<string, dynamic> path in deserialized["paths"])
+            foreach (KeyValuePair<string, dynamic> path in Deserialized["paths"])
             {
                 var pathContent = GeneratePaths.GeneratePathContent(path.Key, path.Value);
 
@@ -137,7 +148,7 @@ namespace BungieSharper.Generator
                     pathContent);
             }
 
-            // TODO: WORK ENDS HERE
+            // WORK ENDS HERE
 
             Console.WriteLine("Done with work.");
 
@@ -152,7 +163,7 @@ namespace BungieSharper.Generator
         {
             using var downloadJsonClient = new WebClient();
 
-            var openApiJson = new Uri("https://raw.githubusercontent.com/Bungie-net/api/master/openapi.json?raw=true");
+            var openApiJson = new Uri(OpenApiDefinitionUrl);
 
             await downloadJsonClient.DownloadFileTaskAsync(openApiJson, "./openApi.json");
         }
@@ -160,7 +171,7 @@ namespace BungieSharper.Generator
         public static dynamic ResolveReferences(string reference)
         {
             reference = reference.Remove(0, 2);
-            var location = deserialized;
+            var location = Deserialized;
 
             foreach (string key in reference.Split('/'))
             {

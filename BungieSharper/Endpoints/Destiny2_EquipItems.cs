@@ -1,7 +1,9 @@
-﻿using System;
+﻿using BungieSharper.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace BungieSharper.Endpoints
@@ -11,11 +13,12 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Equip a list of items by itemInstanceIds. You must have a valid Destiny Account, and either be in a social space, in orbit, or offline. Any items not found on your character will be ignored.
         /// </summary>
-        public async Task<Schema.Destiny.DestinyEquipItemResults> Destiny2_EquipItems()
+        public async Task<Schema.Destiny.DestinyEquipItemResults> Destiny2_EquipItems(Schema.Destiny.Requests.Actions.DestinyItemSetActionRequest requestBody)
         {
-            return await this._apiAccessor.ApiRequestAsync<Schema.Destiny.DestinyEquipItemResults>(
-                $"Destiny2/Actions/Items/EquipItems/", null, null, HttpMethod.Post
-                );
+            return await _apiAccessor.ApiRequestAsync<Schema.Destiny.DestinyEquipItemResults>(
+                new Uri($"Destiny2/Actions/Items/EquipItems/", UriKind.Relative),
+                null, new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post
+                ).ConfigureAwait(false);
         }
     }
 }

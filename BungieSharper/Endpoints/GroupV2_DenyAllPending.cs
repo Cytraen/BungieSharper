@@ -1,7 +1,9 @@
-﻿using System;
+﻿using BungieSharper.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace BungieSharper.Endpoints
@@ -11,11 +13,12 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Deny all of the pending users for the given group.
         /// </summary>
-        public async Task<IEnumerable<Schema.Entities.EntityActionResult>> GroupV2_DenyAllPending(long groupId)
+        public async Task<IEnumerable<Schema.Entities.EntityActionResult>> GroupV2_DenyAllPending(long groupId, Schema.GroupsV2.GroupApplicationRequest requestBody)
         {
-            return await this._apiAccessor.ApiRequestAsync<IEnumerable<Schema.Entities.EntityActionResult>>(
-                $"GroupV2/{groupId}/Members/DenyAll/", null, null, HttpMethod.Post
-                );
+            return await _apiAccessor.ApiRequestAsync<IEnumerable<Schema.Entities.EntityActionResult>>(
+                new Uri($"GroupV2/{groupId}/Members/DenyAll/", UriKind.Relative),
+                null, new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post
+                ).ConfigureAwait(false);
         }
     }
 }

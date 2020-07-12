@@ -7,7 +7,7 @@ namespace BungieSharper.Tests
 {
     public class BaseTests : IClassFixture<TestClientFixture>
     {
-        public TestClientFixture ClientFixture;
+        private readonly TestClientFixture ClientFixture;
 
         public BaseTests(TestClientFixture clientFixture)
         {

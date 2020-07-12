@@ -1,7 +1,9 @@
-﻿using System;
+﻿using BungieSharper.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace BungieSharper.Endpoints
@@ -11,11 +13,12 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Report a player that you met in an activity that was engaging in ToS-violating activities. Both you and the offending player must have played in the activityId passed in. Please use this judiciously and only when you have strong suspicions of violation, pretty please.
         /// </summary>
-        public async Task<int> Destiny2_ReportOffensivePostGameCarnageReportPlayer(long activityId)
+        public async Task<int> Destiny2_ReportOffensivePostGameCarnageReportPlayer(long activityId, Schema.Destiny.Reporting.Requests.DestinyReportOffensePgcrRequest requestBody)
         {
-            return await this._apiAccessor.ApiRequestAsync<int>(
-                $"Destiny2/Stats/PostGameCarnageReport/{activityId}/Report/", null, null, HttpMethod.Post
-                );
+            return await _apiAccessor.ApiRequestAsync<int>(
+                new Uri($"Destiny2/Stats/PostGameCarnageReport/{activityId}/Report/", UriKind.Relative),
+                null, new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post
+                ).ConfigureAwait(false);
         }
     }
 }

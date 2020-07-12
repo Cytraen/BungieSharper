@@ -17,13 +17,10 @@
 
 using BungieSharper.Schema.Exceptions;
 using System;
-using System.Buffers;
-using System.Buffers.Text;
 using System.Collections.Generic;
-using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -39,23 +36,33 @@ namespace BungieSharper.Client
 
         private TimeSpan _msPerRequest;
 
-        private static readonly List<PlatformErrorCodes> RetryErrorCodes = new List<PlatformErrorCodes>
+        private List<PlatformErrorCodes> _retryErrorCodes = new List<PlatformErrorCodes>
         {
             PlatformErrorCodes.ThrottleLimitExceeded,
             PlatformErrorCodes.ThrottleLimitExceededMinutes,
             PlatformErrorCodes.ThrottleLimitExceededMomentarily,
-            PlatformErrorCodes.ThrottleLimitExceededSeconds
+            PlatformErrorCodes.ThrottleLimitExceededSeconds,
+            PlatformErrorCodes.DestinyThrottledByGameServer
         };
+
+        public void Dispose() => _httpClient.Dispose();
 
         internal ApiAccessor()
         {
             _semaphore = new SemaphoreSlim(1, 1);
-            _httpClient = new HttpClient
+            _serializerOptions = new JsonSerializerOptions();
+            _serializerOptions.Converters.Add(new JsonLongConverter());
+
+            var cookieContainer = new CookieContainer();
+            var httpClientHandler = new HttpClientHandler
+            {
+                CookieContainer = cookieContainer,
+                UseCookies = true
+            };
+            _httpClient = new HttpClient(httpClientHandler)
             {
                 BaseAddress = new Uri(BaseUrl, UriKind.Absolute)
             };
-            _serializerOptions = new JsonSerializerOptions();
-            _serializerOptions.Converters.Add(new LongToStringConverter());
         }
 
         internal void SetApiKey(string apiKey)
@@ -70,106 +77,110 @@ namespace BungieSharper.Client
             _httpClient.DefaultRequestHeaders.Add("User-Agent", userAgent);
         }
 
-        internal void SetRateLimit(ushort requestsPerSecond) => _msPerRequest = TimeSpan.FromMilliseconds(1000.0 / requestsPerSecond);
-
-        internal async Task<T> ApiRequestAsync<T>(
-          string url,
-          string token,
-          string content,
-          HttpMethod method,
-          params string[] queryParams)
+        internal void SetRetryCodes(List<PlatformErrorCodes> errorCodes)
         {
-            if (url == null) throw new ArgumentNullException(nameof(url));
-            await _semaphore.WaitAsync();
-            ApiResponse<T> apiResponse;
-            Task throttleTask;
+            _retryErrorCodes = errorCodes;
+        }
+
+        internal void SetRateLimit(ushort requestsPerSecond)
+        {
+            _msPerRequest = TimeSpan.FromMilliseconds(1000.0 / requestsPerSecond);
+        }
+
+        internal async Task<T> ApiRequestAsync<T>(Uri uri, string bearerToken, HttpContent httpContent, HttpMethod httpMethod)
+        {
+            var semaphoreTask = _semaphore.WaitAsync().ConfigureAwait(false);
+
+            var httpRequestMessage = HttpRequestGenerator.MakeApiRequestMessage(uri, bearerToken, httpContent, httpMethod);
+
+            await semaphoreTask;
+
             while (true)
             {
-                throttleTask = Task.Delay(_msPerRequest);
-                var httpResponseMessage = await ApiRequest(url, token, content, method, string.Join("&", queryParams.Where(x => x != null)));
+                var throttleTask = Task.Delay(_msPerRequest);
+                var httpResponseMessage = await GetApiResponseAsync(httpRequestMessage).ConfigureAwait(false);
 
                 if (httpResponseMessage.Content.Headers.ContentType.MediaType != "application/json")
                 {
-                    await throttleTask;
-                    _semaphore.Release();
+                    await AwaitThrottleAndReleaseSemaphore(throttleTask, _semaphore).ConfigureAwait(false);
                     throw new ContentNotJsonException();
                 }
 
-                apiResponse = JsonSerializer.Deserialize<ApiResponse<T>>(await httpResponseMessage.Content.ReadAsStringAsync() ?? throw new ContentNullJsonException(), _serializerOptions);
+                var apiResponse = JsonSerializer.Deserialize<ApiResponse<T>>(
+                    await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false) ?? throw new ContentNullJsonException(),
+                    _serializerOptions);
+
                 if (apiResponse.ErrorCode != PlatformErrorCodes.Success)
                 {
-                    if (ApiRetry(apiResponse))
+                    if (ApiRetry(apiResponse.ErrorCode))
                     {
-                        await throttleTask;
-                        await Task.Delay((int)apiResponse.ThrottleSeconds);
+                        await throttleTask.ConfigureAwait(false);
+                        await Task.Delay((int)apiResponse.ThrottleSeconds).ConfigureAwait(false);
                     }
                     else
                     {
-                        await throttleTask;
-                        _semaphore.Release();
+                        await AwaitThrottleAndReleaseSemaphore(throttleTask, _semaphore).ConfigureAwait(false);
+
                         throw new NonRetryErrorCodeException(
-                            $"'{url}' returned {apiResponse.ErrorCode}: {apiResponse.Message}", apiResponse
-                            );
+                            $"'{uri.OriginalString}' returned {apiResponse.ErrorCode}: {apiResponse.Message}", apiResponse
+                        );
                     }
                 }
                 else
                 {
                     if (apiResponse.Response == null)
-                        throw new NullResponseException("'" + url + "' returned a null 'Response' property.", apiResponse);
-                    await throttleTask;
-                    _semaphore.Release();
+                    {
+                        await AwaitThrottleAndReleaseSemaphore(throttleTask, _semaphore).ConfigureAwait(false);
+                        throw new NullResponseException($"'{uri.OriginalString}' returned a null 'Response' property.", apiResponse);
+                    }
+
+                    await AwaitThrottleAndReleaseSemaphore(throttleTask, _semaphore).ConfigureAwait(false);
                     return apiResponse.Response;
                 }
             }
         }
 
-        private async Task<HttpResponseMessage> ApiRequest(
-          string url,
-          string token,
-          string content,
-          HttpMethod method,
-          string queryParamString)
+        internal async Task<TokenRequestResponse> ApiTokenRequestResponseAsync(Uri uri, string bearerToken, HttpContent httpContent, HttpMethod httpMethod)
         {
-            HttpRequestMessage request = new HttpRequestMessage
+            var semaphoreTask = _semaphore.WaitAsync().ConfigureAwait(false);
+
+            var httpRequestMessage = HttpRequestGenerator.MakeApiRequestMessage(uri, bearerToken, httpContent, httpMethod);
+
+            await semaphoreTask;
+
+            while (true)
             {
-                Method = method,
-                RequestUri = new Uri(url + (queryParamString.Length != 0 ? "?" : "") + queryParamString, UriKind.Relative)
-            };
-            if (token != null)
-                request.Headers.Add("Authorization", "Bearer " + token);
-            if (content != null)
-            {
-                request.Content = new StringContent(content);
-                request.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
+                var throttleTask = Task.Delay(_msPerRequest);
+                var httpResponseMessage = await GetApiResponseAsync(httpRequestMessage).ConfigureAwait(false);
+
+                if (httpResponseMessage.Content.Headers.ContentType.MediaType != "application/json")
+                {
+                    await AwaitThrottleAndReleaseSemaphore(throttleTask, _semaphore).ConfigureAwait(false);
+                    throw new ContentNotJsonException();
+                }
+
+                var apiResponse = JsonSerializer.Deserialize<TokenRequestResponse>(
+                    await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false) ?? throw new ContentNullJsonException(),
+                    _serializerOptions);
+
+                return apiResponse;
             }
-            return await _httpClient.SendAsync(request);
         }
 
-        private static bool ApiRetry<T>(ApiResponse<T> response) => RetryErrorCodes.Contains(response.ErrorCode);
-
-        public void Dispose() => _httpClient.Dispose();
-    }
-
-    public class LongToStringConverter : JsonConverter<long>
-    {
-        public override long Read(ref Utf8JsonReader reader, Type type, JsonSerializerOptions options)
+        private async Task<HttpResponseMessage> GetApiResponseAsync(HttpRequestMessage request)
         {
-            if (reader.TokenType == JsonTokenType.String)
-            {
-                ReadOnlySpan<byte> span = reader.HasValueSequence ? reader.ValueSequence.ToArray() : reader.ValueSpan;
-                if (Utf8Parser.TryParse(span, out long number, out var bytesConsumed) && span.Length == bytesConsumed)
-                    return number;
-
-                if (long.TryParse(reader.GetString(), out number))
-                    return number;
-            }
-
-            return reader.GetInt64();
+            return await _httpClient.SendAsync(request).ConfigureAwait(false);
         }
 
-        public override void Write(Utf8JsonWriter writer, long value, JsonSerializerOptions options)
+        private static async Task AwaitThrottleAndReleaseSemaphore(Task throttleTask, SemaphoreSlim semaphore)
         {
-            writer.WriteStringValue(value.ToString());
+            await throttleTask.ConfigureAwait(false);
+            semaphore.Release();
+        }
+
+        private bool ApiRetry(PlatformErrorCodes errorCode)
+        {
+            return _retryErrorCodes.Contains(errorCode);
         }
     }
 }

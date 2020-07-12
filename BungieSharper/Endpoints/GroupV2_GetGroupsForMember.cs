@@ -1,7 +1,9 @@
-﻿using System;
+﻿using BungieSharper.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace BungieSharper.Endpoints
@@ -13,9 +15,10 @@ namespace BungieSharper.Endpoints
         /// </summary>
         public async Task<Schema.GroupsV2.GetGroupsForMemberResponse> GroupV2_GetGroupsForMember(Schema.GroupsV2.GroupsForMemberFilter filter, Schema.GroupsV2.GroupType groupType, long membershipId, Schema.BungieMembershipType membershipType)
         {
-            return await this._apiAccessor.ApiRequestAsync<Schema.GroupsV2.GetGroupsForMemberResponse>(
-                $"GroupV2/User/{membershipType}/{membershipId}/{filter}/{groupType}/", null, null, HttpMethod.Get
-                );
+            return await _apiAccessor.ApiRequestAsync<Schema.GroupsV2.GetGroupsForMemberResponse>(
+                new Uri($"GroupV2/User/{membershipType}/{membershipId}/{filter}/{groupType}/", UriKind.Relative),
+                null, null, HttpMethod.Get
+                ).ConfigureAwait(false);
         }
     }
 }

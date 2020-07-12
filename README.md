@@ -4,11 +4,11 @@
 **BungieSharper** is a .NET client library for the Bungie.net API.  
 **BungieSharper.Generator** consumes [Bungie's OpenAPI spec,](https://github.com/Bungie-net/api) and turns it into code usable by BungieSharper.  
 
-### What currently works?
-To my knowledge, everything not involving OAuth, POST requests, or querystring parameters.
+### What currently works
+To my knowledge, everything not involving OAuth or POST requests.
 
 ## License
-### BungieSharper
+### BungieSharper License
 **BungieSharper** as a whole is licensed under the GNU AGPL, version 3.0 or later.  
 The terms of the AGPL v3.0 can be found in `COPYING.md`, or [here in HTML form,](https://www.gnu.org/licenses/agpl-3.0.en.html) or [here in plaintext form.](https://www.gnu.org/licenses/agpl-3.0.txt)
 

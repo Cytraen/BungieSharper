@@ -4,12 +4,14 @@
 		<OutputType>Exe</OutputType>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>0.1.1</Version>
 		<Authors>ashakoor</Authors>
+		<Copyright>Copyright © 2020 ashakoor</Copyright>
 		<PackageLicenseFile>COPYING.md</PackageLicenseFile>
 		<RepositoryUrl>https://github.com/ashakoor/BungieSharper</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<Nullable>enable</Nullable>
+		
+		<Version>0.2.0-alpha1</Version>
 	</PropertyGroup>
 
 	<ItemGroup>

@@ -1,7 +1,9 @@
-﻿using System;
+﻿using BungieSharper.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace BungieSharper.Endpoints
@@ -13,9 +15,10 @@ namespace BungieSharper.Endpoints
         /// </summary>
         public async Task<IEnumerable<Schema.Config.GroupTheme>> GroupV2_GetAvailableThemes()
         {
-            return await this._apiAccessor.ApiRequestAsync<IEnumerable<Schema.Config.GroupTheme>>(
-                $"GroupV2/GetAvailableThemes/", null, null, HttpMethod.Get
-                );
+            return await _apiAccessor.ApiRequestAsync<IEnumerable<Schema.Config.GroupTheme>>(
+                new Uri($"GroupV2/GetAvailableThemes/", UriKind.Relative),
+                null, null, HttpMethod.Get
+                ).ConfigureAwait(false);
         }
     }
 }

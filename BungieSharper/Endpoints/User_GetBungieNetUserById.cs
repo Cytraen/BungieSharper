@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BungieSharper.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -14,9 +15,10 @@ namespace BungieSharper.Endpoints
         /// </summary>
         public async Task<Schema.User.GeneralUser> User_GetBungieNetUserById(long id)
         {
-            return await this._apiAccessor.ApiRequestAsync<Schema.User.GeneralUser>(
-                $"User/GetBungieNetUserById/{id}/", null, null, HttpMethod.Get
-                );
+            return await _apiAccessor.ApiRequestAsync<Schema.User.GeneralUser>(
+                new Uri($"User/GetBungieNetUserById/{id}/", UriKind.Relative),
+                null, null, HttpMethod.Get
+                ).ConfigureAwait(false);
         }
     }
 }

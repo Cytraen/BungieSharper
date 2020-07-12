@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BungieSharper.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -14,9 +15,10 @@ namespace BungieSharper.Endpoints
         /// </summary>
         public async Task<Schema.Destiny.Advanced.AwaInitializeResponse> Destiny2_AwaInitializeRequest(Schema.Destiny.Advanced.AwaPermissionRequested requestBody)
         {
-            return await this._apiAccessor.ApiRequestAsync<Schema.Destiny.Advanced.AwaInitializeResponse>(
-                $"Destiny2/Awa/Initialize/", null, JsonSerializer.Serialize(requestBody), HttpMethod.Post
-                );
+            return await _apiAccessor.ApiRequestAsync<Schema.Destiny.Advanced.AwaInitializeResponse>(
+                new Uri($"Destiny2/Awa/Initialize/", UriKind.Relative),
+                null, new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post
+                ).ConfigureAwait(false);
         }
     }
 }

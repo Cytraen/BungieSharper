@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BungieSharper.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -14,9 +15,10 @@ namespace BungieSharper.Endpoints
         /// </summary>
         public async Task<int> Destiny2_SetQuestTrackedState(Schema.Destiny.Requests.Actions.DestinyItemStateRequest requestBody)
         {
-            return await this._apiAccessor.ApiRequestAsync<int>(
-                $"Destiny2/Actions/Items/SetTrackedState/", null, JsonSerializer.Serialize(requestBody), HttpMethod.Post
-                );
+            return await _apiAccessor.ApiRequestAsync<int>(
+                new Uri($"Destiny2/Actions/Items/SetTrackedState/", UriKind.Relative),
+                null, new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post
+                ).ConfigureAwait(false);
         }
     }
 }

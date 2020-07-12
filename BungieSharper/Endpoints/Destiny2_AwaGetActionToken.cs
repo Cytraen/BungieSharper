@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BungieSharper.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -14,9 +15,10 @@ namespace BungieSharper.Endpoints
         /// </summary>
         public async Task<Schema.Destiny.Advanced.AwaAuthorizationResult> Destiny2_AwaGetActionToken(string correlationId)
         {
-            return await this._apiAccessor.ApiRequestAsync<Schema.Destiny.Advanced.AwaAuthorizationResult>(
-                $"Destiny2/Awa/GetActionToken/{Uri.EscapeDataString(correlationId)}/", null, null, HttpMethod.Get
-                );
+            return await _apiAccessor.ApiRequestAsync<Schema.Destiny.Advanced.AwaAuthorizationResult>(
+                new Uri($"Destiny2/Awa/GetActionToken/{Uri.EscapeDataString(correlationId)}/", UriKind.Relative),
+                null, null, HttpMethod.Get
+                ).ConfigureAwait(false);
         }
     }
 }

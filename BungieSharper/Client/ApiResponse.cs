@@ -15,6 +15,7 @@
    along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
+using BungieSharper.Schema;
 using BungieSharper.Schema.Exceptions;
 using System.Collections.Generic;
 

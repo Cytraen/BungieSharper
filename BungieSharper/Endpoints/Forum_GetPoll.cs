@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BungieSharper.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -14,9 +15,10 @@ namespace BungieSharper.Endpoints
         /// </summary>
         public async Task<Schema.Forum.PostSearchResponse> Forum_GetPoll(long topicId)
         {
-            return await this._apiAccessor.ApiRequestAsync<Schema.Forum.PostSearchResponse>(
-                $"Forum/Poll/{topicId}/", null, null, HttpMethod.Get
-                );
+            return await _apiAccessor.ApiRequestAsync<Schema.Forum.PostSearchResponse>(
+                new Uri($"Forum/Poll/{topicId}/", UriKind.Relative),
+                null, null, HttpMethod.Get
+                ).ConfigureAwait(false);
         }
     }
 }

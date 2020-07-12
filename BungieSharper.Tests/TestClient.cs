@@ -16,9 +16,9 @@ namespace BungieSharper.Tests
             TestClient = new BungieApiClient(
                 Environment.GetEnvironmentVariable("TEST_BUNGIE_API_KEY"),
                 // "YOUR API KEY HERE",
-                BungieUserAgent,
-                10
+                BungieUserAgent
                 );
+            TestClient.SetRateLimit(10);
         }
 
         public void Dispose()

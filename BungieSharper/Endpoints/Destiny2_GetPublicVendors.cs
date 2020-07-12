@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BungieSharper.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -15,9 +16,10 @@ namespace BungieSharper.Endpoints
         /// </summary>
         public async Task<Schema.Destiny.Responses.DestinyPublicVendorsResponse> Destiny2_GetPublicVendors(IEnumerable<Schema.Destiny.DestinyComponentType> components = null)
         {
-            return await this._apiAccessor.ApiRequestAsync<Schema.Destiny.Responses.DestinyPublicVendorsResponse>(
-                $"Destiny2//Vendors/", null, null, HttpMethod.Get,
-                components != null ? $"components={string.Join(",", components.Select(x => x.ToString()))}" : null);
+            return await _apiAccessor.ApiRequestAsync<Schema.Destiny.Responses.DestinyPublicVendorsResponse>(
+                new Uri($"Destiny2//Vendors/" + HttpRequestGenerator.MakeQuerystring(components != null ? $"components={string.Join(",", components.Select(x => x.ToString()))}" : null), UriKind.Relative),
+                null, null, HttpMethod.Get
+                ).ConfigureAwait(false);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BungieSharper.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -14,9 +15,10 @@ namespace BungieSharper.Endpoints
         /// </summary>
         public async Task<int> GroupV2_EditGroup(long groupId, Schema.GroupsV2.GroupEditAction requestBody)
         {
-            return await this._apiAccessor.ApiRequestAsync<int>(
-                $"GroupV2/{groupId}/Edit/", null, JsonSerializer.Serialize(requestBody), HttpMethod.Post
-                );
+            return await _apiAccessor.ApiRequestAsync<int>(
+                new Uri($"GroupV2/{groupId}/Edit/", UriKind.Relative),
+                null, new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post
+                ).ConfigureAwait(false);
         }
     }
 }

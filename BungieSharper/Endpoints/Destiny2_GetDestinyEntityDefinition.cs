@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BungieSharper.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -14,9 +15,10 @@ namespace BungieSharper.Endpoints
         /// </summary>
         public async Task<Schema.Destiny.Definitions.DestinyDefinition> Destiny2_GetDestinyEntityDefinition(string entityType, uint hashIdentifier)
         {
-            return await this._apiAccessor.ApiRequestAsync<Schema.Destiny.Definitions.DestinyDefinition>(
-                $"Destiny2/Manifest/{Uri.EscapeDataString(entityType)}/{hashIdentifier}/", null, null, HttpMethod.Get
-                );
+            return await _apiAccessor.ApiRequestAsync<Schema.Destiny.Definitions.DestinyDefinition>(
+                new Uri($"Destiny2/Manifest/{Uri.EscapeDataString(entityType)}/{hashIdentifier}/", UriKind.Relative),
+                null, null, HttpMethod.Get
+                ).ConfigureAwait(false);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BungieSharper.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -14,9 +15,10 @@ namespace BungieSharper.Endpoints
         /// </summary>
         public async Task<Schema.GroupsV2.GroupMemberLeaveResult> GroupV2_KickMember(long groupId, long membershipId, Schema.BungieMembershipType membershipType)
         {
-            return await this._apiAccessor.ApiRequestAsync<Schema.GroupsV2.GroupMemberLeaveResult>(
-                $"GroupV2/{groupId}/Members/{membershipType}/{membershipId}/Kick/", null, null, HttpMethod.Post
-                );
+            return await _apiAccessor.ApiRequestAsync<Schema.GroupsV2.GroupMemberLeaveResult>(
+                new Uri($"GroupV2/{groupId}/Members/{membershipType}/{membershipId}/Kick/", UriKind.Relative),
+                null, null, HttpMethod.Post
+                ).ConfigureAwait(false);
         }
     }
 }

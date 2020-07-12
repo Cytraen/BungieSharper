@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BungieSharper.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -14,9 +15,10 @@ namespace BungieSharper.Endpoints
         /// </summary>
         public async Task<Schema.Trending.TrendingCategories> Trending_GetTrendingCategories()
         {
-            return await this._apiAccessor.ApiRequestAsync<Schema.Trending.TrendingCategories>(
-                $"Trending/Categories/", null, null, HttpMethod.Get
-                );
+            return await _apiAccessor.ApiRequestAsync<Schema.Trending.TrendingCategories>(
+                new Uri($"Trending/Categories/", UriKind.Relative),
+                null, null, HttpMethod.Get
+                ).ConfigureAwait(false);
         }
     }
 }

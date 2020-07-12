@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BungieSharper.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -14,9 +15,10 @@ namespace BungieSharper.Endpoints
         /// </summary>
         public async Task<long> Forum_GetTopicForContent(long contentId)
         {
-            return await this._apiAccessor.ApiRequestAsync<long>(
-                $"Forum/GetTopicForContent/{contentId}/", null, null, HttpMethod.Get
-                );
+            return await _apiAccessor.ApiRequestAsync<long>(
+                new Uri($"Forum/GetTopicForContent/{contentId}/", UriKind.Relative),
+                null, null, HttpMethod.Get
+                ).ConfigureAwait(false);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BungieSharper.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -14,9 +15,10 @@ namespace BungieSharper.Endpoints
         /// </summary>
         public async Task<IEnumerable<Schema.Applications.Application>> App_GetBungieApplications()
         {
-            return await this._apiAccessor.ApiRequestAsync<IEnumerable<Schema.Applications.Application>>(
-                $"App/FirstParty/", null, null, HttpMethod.Get
-                );
+            return await _apiAccessor.ApiRequestAsync<IEnumerable<Schema.Applications.Application>>(
+                new Uri($"App/FirstParty/", UriKind.Relative),
+                null, null, HttpMethod.Get
+                ).ConfigureAwait(false);
         }
     }
 }

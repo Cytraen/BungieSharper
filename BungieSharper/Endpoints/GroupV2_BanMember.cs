@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BungieSharper.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -14,9 +15,10 @@ namespace BungieSharper.Endpoints
         /// </summary>
         public async Task<int> GroupV2_BanMember(long groupId, long membershipId, Schema.BungieMembershipType membershipType, Schema.GroupsV2.GroupBanRequest requestBody)
         {
-            return await this._apiAccessor.ApiRequestAsync<int>(
-                $"GroupV2/{groupId}/Members/{membershipType}/{membershipId}/Ban/", null, JsonSerializer.Serialize(requestBody), HttpMethod.Post
-                );
+            return await _apiAccessor.ApiRequestAsync<int>(
+                new Uri($"GroupV2/{groupId}/Members/{membershipType}/{membershipId}/Ban/", UriKind.Relative),
+                null, new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post
+                ).ConfigureAwait(false);
         }
     }
 }

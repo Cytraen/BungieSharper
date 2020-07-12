@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BungieSharper.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -14,9 +15,10 @@ namespace BungieSharper.Endpoints
         /// </summary>
         public async Task<Schema.Forum.PostSearchResponse> CommunityContent_GetCommunityContent(Schema.Forum.ForumTopicsCategoryFiltersEnum mediaFilter, int page, Schema.Forum.CommunityContentSortMode sort)
         {
-            return await this._apiAccessor.ApiRequestAsync<Schema.Forum.PostSearchResponse>(
-                $"CommunityContent/Get/{sort}/{mediaFilter}/{page}/", null, null, HttpMethod.Get
-                );
+            return await _apiAccessor.ApiRequestAsync<Schema.Forum.PostSearchResponse>(
+                new Uri($"CommunityContent/Get/{sort}/{mediaFilter}/{page}/", UriKind.Relative),
+                null, null, HttpMethod.Get
+                ).ConfigureAwait(false);
         }
     }
 }

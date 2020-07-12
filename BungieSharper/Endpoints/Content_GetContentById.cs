@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BungieSharper.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -14,9 +15,10 @@ namespace BungieSharper.Endpoints
         /// </summary>
         public async Task<Schema.Content.ContentItemPublicContract> Content_GetContentById(long id, string locale, bool? head = null)
         {
-            return await this._apiAccessor.ApiRequestAsync<Schema.Content.ContentItemPublicContract>(
-                $"Content/GetContentById/{id}/{Uri.EscapeDataString(locale)}/", null, null, HttpMethod.Get,
-                head != null ? $"head={head}" : null);
+            return await _apiAccessor.ApiRequestAsync<Schema.Content.ContentItemPublicContract>(
+                new Uri($"Content/GetContentById/{id}/{Uri.EscapeDataString(locale)}/" + HttpRequestGenerator.MakeQuerystring(head != null ? $"head={head}" : null), UriKind.Relative),
+                null, null, HttpMethod.Get
+                ).ConfigureAwait(false);
         }
     }
 }

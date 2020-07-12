@@ -42,7 +42,7 @@ namespace BungieSharper.Generator.Generation
             var parameterStringList = new List<string>();
             var paramList = new List<EndpointParameter>();
 
-            var usingStatements = "using System;\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Net.Http;\nusing System.Text.Json;\nusing System.Threading.Tasks;\n\n";
+            var usingStatements = "using BungieSharper.Client;\nusing System;\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Net.Http;\nusing System.Text.Json;\nusing System.Threading.Tasks;\n\n";
 
             if (pathDetails.ContainsKey("get"))
             {
@@ -197,6 +197,8 @@ namespace BungieSharper.Generator.Generation
 
             var queryStringParamText = queryStringParamsNotEmpty ? string.Join(", ", queryParamTextList) : "";
 
+            var queryStringParamFinal = queryStringParamsNotEmpty ? $" + HttpRequestGenerator.MakeQuerystring({queryStringParamText})" : "";
+
             var methodBase =
                 usingStatements +
                 "namespace BungieSharper.Endpoints\n" +
@@ -208,9 +210,10 @@ namespace BungieSharper.Generator.Generation
                 $"{deprecatedEndpointText}" +
                 $"        public async Task<{returnType}> {pathName}({parameterString})\n" +
                 "        {\n" +
-                $"            return await this._apiAccessor.ApiRequestAsync<{returnType}>(\n" +
-                $"                $\"{endpointPath}\", null, {(requestBodyParam != null ? "JsonSerializer.Serialize(requestBody)" : "null")}, HttpMethod.{(queryStringParamsNotEmpty ? httpMethodType + ',' : httpMethodType)}\n" +
-                $"                {queryStringParamText});\n" +
+                $"            return await _apiAccessor.ApiRequestAsync<{returnType}>(\n" +
+                $"                new Uri($\"{endpointPath}\"{queryStringParamFinal}, UriKind.Relative),\n" +
+                $"                null, {(requestBodyParam != null ? "new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, \"application/json\")" : "null")}, HttpMethod.{httpMethodType}\n" +
+                "                ).ConfigureAwait(false);\n" +
                 "        }\n" +
                 "    }\n" +
                 "}";

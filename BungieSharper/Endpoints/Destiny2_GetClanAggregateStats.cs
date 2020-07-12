@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BungieSharper.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -15,9 +16,10 @@ namespace BungieSharper.Endpoints
         /// </summary>
         public async Task<IEnumerable<Schema.Destiny.HistoricalStats.DestinyClanAggregateStat>> Destiny2_GetClanAggregateStats(long groupId, string modes = null)
         {
-            return await this._apiAccessor.ApiRequestAsync<IEnumerable<Schema.Destiny.HistoricalStats.DestinyClanAggregateStat>>(
-                $"Destiny2/Stats/AggregateClanStats/{groupId}/", null, null, HttpMethod.Get,
-                modes != null ? $"modes={Uri.EscapeDataString(modes)}" : null);
+            return await _apiAccessor.ApiRequestAsync<IEnumerable<Schema.Destiny.HistoricalStats.DestinyClanAggregateStat>>(
+                new Uri($"Destiny2/Stats/AggregateClanStats/{groupId}/" + HttpRequestGenerator.MakeQuerystring(modes != null ? $"modes={Uri.EscapeDataString(modes)}" : null), UriKind.Relative),
+                null, null, HttpMethod.Get
+                ).ConfigureAwait(false);
         }
     }
 }

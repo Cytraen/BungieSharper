@@ -17,7 +17,7 @@ namespace BungieSharper.Tests
         [Fact]
         public async Task GetManifestTask()
         {
-            var manifestData = await ClientFixture.TestClient.ClientEndpoints.Destiny2_GetDestinyManifest();
+            var manifestData = await ClientFixture.TestClient.ApiEndpoints.Destiny2_GetDestinyManifest();
             Assert.False(string.IsNullOrEmpty(manifestData.version));
         }
 
@@ -29,7 +29,7 @@ namespace BungieSharper.Tests
             const string expectedDisplayName = "Cytraen";
             const int expectedNumOfCards = 3;
 
-            var actualCards = (await ClientFixture.TestClient.ClientEndpoints.Destiny2_SearchDestinyPlayer(
+            var actualCards = (await ClientFixture.TestClient.ApiEndpoints.Destiny2_SearchDestinyPlayer(
                 "Cytraen", BungieMembershipType.All
                 )).ToList();
 
@@ -49,7 +49,7 @@ namespace BungieSharper.Tests
             const long expectedMembershipId = 4611686018472399666;
             const string expectedDisplayName = "prism#11555";
 
-            var actualCards = (await ClientFixture.TestClient.ClientEndpoints.Destiny2_SearchDestinyPlayer(
+            var actualCards = (await ClientFixture.TestClient.ApiEndpoints.Destiny2_SearchDestinyPlayer(
                 "prism#11555", BungieMembershipType.All, false
                 )).ToList();
 

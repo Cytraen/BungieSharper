@@ -1,0 +1,76 @@
+name: Create release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: windows-latest
+    env:
+      dotnet_sdk_version: '3.1.301'
+      DOTNET_CLI_TELEMETRY_OPTOUT: true
+      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+      TEST_BUNGIE_API_KEY: ${{ secrets.TEST_BUNGIE_API_KEY }}
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ env.dotnet_sdk_version }}
+
+    - name: Build generator
+      run: dotnet build BungieSharper.Generator --configuration Release
+
+    - name: Run generator
+      run: dotnet run --project BungieSharper.Generator --no-restore --verbosity normal
+
+    - name: Build client
+      run: dotnet build BungieSharper --configuration Release
+
+    - name: Pack client NuGet package
+      run: dotnet pack BungieSharper/BungieSharper.csproj --configuration Release --output Packages -p:ContinuousIntegrationBuild=true -p:Version=${{ github.ref }}
+      shell: bash
+
+    - name: Build test
+      run: dotnet build BungieSharper.Tests --configuration Release
+
+    - name: Run test
+      run: dotnet test --no-build --verbosity normal  --configuration Release
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: true
+        prerelease: false
+
+    - name: Upload .nupkg
+      id: upload-release-asset 
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: BungieSharper/BungieSharper/Packages/BungieSharper.${{ github.ref }}.nupkg
+        asset_name: BungieSharper.${{ github.ref }}.nupkg
+        asset_content_type: application/zip
+
+    - name: Upload .snupkg
+      id: upload-release-asset 
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: BungieSharper/BungieSharper/Packages/BungieSharper.${{ github.ref }}.snupkg
+        asset_name: BungieSharper.${{ github.ref }}.snupkg
+        asset_content_type: application/zip

@@ -29,11 +29,13 @@ namespace BungieSharper.Client
 
         private readonly ApiAccessor _apiAccessor;
 
-        public Endpoints.Endpoints ClientEndpoints { get; internal set; }
+        public Endpoints.Endpoints ApiEndpoints { get; internal set; }
+        public Endpoints.OAuthRequests OAuthEndpoints { get; internal set; }
 
         private void InitializeEndpoints()
         {
-            ClientEndpoints = new Endpoints.Endpoints(_apiAccessor);
+            ApiEndpoints = new Endpoints.Endpoints(_apiAccessor);
+            OAuthEndpoints = new Endpoints.OAuthRequests(_apiAccessor);
         }
 
         public BungieApiClient(string apiKey)

@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     env:
       dotnet_sdk_version: '3.1.301'
       DOTNET_CLI_TELEMETRY_OPTOUT: true
@@ -47,8 +47,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ steps.get_version.outputs.VERSION }}
-        release_name: ${{ steps.get_version.outputs.VERSION }}
+        tag_name: v${{ steps.get_version.outputs.VERSION }}
+        release_name: v${{ steps.get_version.outputs.VERSION }}
         draft: true
         prerelease: false
 

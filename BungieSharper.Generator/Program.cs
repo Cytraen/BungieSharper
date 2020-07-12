@@ -54,7 +54,7 @@ namespace BungieSharper.Generator
 
             Deserialized = JsonHelper.Deserialize(await File.ReadAllTextAsync("./openApi.json"));
 
-            // TODO: WORK GOES HERE
+            // WORK STARTS HERE
 
             var fileDictionary = new Dictionary<string, List<string>>();
 
@@ -148,7 +148,7 @@ namespace BungieSharper.Generator
                     pathContent);
             }
 
-            // TODO: WORK ENDS HERE
+            // WORK ENDS HERE
 
             Console.WriteLine("Done with work.");
 

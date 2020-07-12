@@ -72,7 +72,7 @@ namespace BungieSharper.Generator.Generation
 
             if (httpMethodDetails.ContainsKey("requestBody"))
             {
-                requestBodyParam = new EndpointParameter()
+                requestBodyParam = new EndpointParameter
                 {
                     Name = "requestBody",
                     Type = JsonToCsharpMapping.Type(httpMethodDetails["requestBody"]["content"]["application/json"]["schema"]),

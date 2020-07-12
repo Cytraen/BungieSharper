@@ -78,12 +78,12 @@ namespace BungieSharper.Client
             _apiAccessor.SetRetryCodes(errorCodes);
         }
 
-        public void SetRetryCodes(IEnumerable<PlatformErrorCodes> errorCodes)
+        public static void SetRetryCodes(IEnumerable<PlatformErrorCodes> errorCodes)
         {
             SetRetryCodes(errorCodes.ToList());
         }
 
-        public void SetRetryCodes(params PlatformErrorCodes[] errorCodes)
+        public static void SetRetryCodes(params PlatformErrorCodes[] errorCodes)
         {
             SetRetryCodes(errorCodes.ToList());
         }

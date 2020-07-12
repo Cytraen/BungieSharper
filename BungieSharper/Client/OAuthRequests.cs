@@ -23,7 +23,7 @@ using System.Threading.Tasks;
 
 namespace BungieSharper.Endpoints
 {
-    public partial class OAuthRequests
+    public class OAuthRequests
     {
         private const string OAuthAuthorizationUrl = "https://www.bungie.net/en/OAuth/Authorize?response_type=code&client_id=";
         private const string OAuthTokenUrl = "https://www.bungie.net/Platform/App/OAuth/Token/";

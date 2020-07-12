@@ -9,7 +9,7 @@
     <RepositoryType>git</RepositoryType>
 
     <TargetFrameworks>netstandard2.0;netstandard2.1;netcoreapp2.1;netcoreapp3.1</TargetFrameworks>
-    <Version>0.2.0-alpha1</Version>
+    <Version>0.2.0-alpha2</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -30,6 +30,11 @@
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <Company>ashakoor</Company>
+    <Product>BungieSharper</Product>
+    <Description>An HttpClient-based client for the Bungie.net API which uses System.Text.Json.</Description>
+    <PackageProjectUrl>https://github.com/ashakoor/BungieSharper</PackageProjectUrl>
+    <PackageIcon>BungieSharper.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -41,6 +46,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="..\BungieSharper.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
     <None Include="..\COPYING.md">
       <Pack>True</Pack>
       <PackagePath></PackagePath>

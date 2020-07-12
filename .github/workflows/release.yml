@@ -52,6 +52,11 @@ jobs:
         draft: true
         prerelease: false
 
+    - name: get base directory
+      run: |
+        echo ls
+      shell: bash
+
     - name: Upload .nupkg
       id: upload-nupkg-release-asset
       uses: actions/upload-release-asset@v1
@@ -59,7 +64,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: BungieSharper/Packages/BungieSharper.${{ steps.get_version.outputs.VERSION }}.nupkg
+        asset_path: BungieSharper/BungieSharper/Packages/BungieSharper.${{ steps.get_version.outputs.VERSION }}.nupkg
         asset_name: BungieSharper.${{ steps.get_version.outputs.VERSION }}.nupkg
         asset_content_type: application/zip
 
@@ -70,6 +75,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: BungieSharper/Packages/BungieSharper.${{ steps.get_version.outputs.VERSION }}.snupkg
+        asset_path: BungieSharper/BungieSharper/Packages/BungieSharper.${{ steps.get_version.outputs.VERSION }}.snupkg
         asset_name: BungieSharper.${{ steps.get_version.outputs.VERSION }}.snupkg
         asset_content_type: application/zip

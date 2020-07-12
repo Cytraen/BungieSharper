@@ -64,7 +64,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: BungieSharper/BungieSharper/Packages/BungieSharper.${{ steps.get_version.outputs.VERSION }}.nupkg
+        asset_path: /home/runner/work/BungieSharper/BungieSharper/Packages/BungieSharper.${{ steps.get_version.outputs.VERSION }}.nupkg
         asset_name: BungieSharper.${{ steps.get_version.outputs.VERSION }}.nupkg
         asset_content_type: application/zip
 
@@ -75,6 +75,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: BungieSharper/BungieSharper/Packages/BungieSharper.${{ steps.get_version.outputs.VERSION }}.snupkg
+        asset_path: /home/runner/work/BungieSharper/BungieSharper/Packages/BungieSharper.${{ steps.get_version.outputs.VERSION }}.snupkg
         asset_name: BungieSharper.${{ steps.get_version.outputs.VERSION }}.snupkg
         asset_content_type: application/zip

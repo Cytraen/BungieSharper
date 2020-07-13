@@ -31,7 +31,7 @@ jobs:
       run: dotnet build BungieSharper.Generator/BungieSharper.Generator.csproj -c Release
 
     - name: Run generator
-      run: dotnet run --project BungieSharper.Generator/BungieSharper.Generator.csproj --no-build --verbosity normal
+      run: dotnet run --project BungieSharper.Generator --no-build --verbosity normal
 
     - name: Build client
       run: dotnet build BungieSharper/BungieSharper.csproj -c Release -p:Version=${{ steps.get_version.outputs.VERSION }}

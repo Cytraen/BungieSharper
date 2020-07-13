@@ -33,17 +33,8 @@ namespace BungieSharper.Client
         private readonly HttpClient _httpClient;
         private readonly SemaphoreSlim _semaphore;
         private readonly JsonSerializerOptions _serializerOptions;
-
         private TimeSpan _msPerRequest;
-
-        private List<PlatformErrorCodes> _retryErrorCodes = new List<PlatformErrorCodes>
-        {
-            PlatformErrorCodes.ThrottleLimitExceeded,
-            PlatformErrorCodes.ThrottleLimitExceededMinutes,
-            PlatformErrorCodes.ThrottleLimitExceededMomentarily,
-            PlatformErrorCodes.ThrottleLimitExceededSeconds,
-            PlatformErrorCodes.DestinyThrottledByGameServer
-        };
+        private List<PlatformErrorCodes> _retryErrorCodes;
 
         public void Dispose() => _httpClient.Dispose();
 
@@ -63,6 +54,15 @@ namespace BungieSharper.Client
             {
                 BaseAddress = new Uri(BaseUrl, UriKind.Absolute)
             };
+
+            _retryErrorCodes = new List<PlatformErrorCodes>
+            {
+                PlatformErrorCodes.ThrottleLimitExceeded,
+                PlatformErrorCodes.ThrottleLimitExceededMinutes,
+                PlatformErrorCodes.ThrottleLimitExceededMomentarily,
+                PlatformErrorCodes.ThrottleLimitExceededSeconds,
+                PlatformErrorCodes.DestinyThrottledByGameServer
+            };
         }
 
         internal void SetApiKey(string apiKey)
@@ -77,7 +77,7 @@ namespace BungieSharper.Client
             _httpClient.DefaultRequestHeaders.Add("User-Agent", userAgent);
         }
 
-        internal void SetRetryCodes(List<PlatformErrorCodes> errorCodes)
+        internal void SetRetryErrorCodes(List<PlatformErrorCodes> errorCodes)
         {
             _retryErrorCodes = errorCodes;
         }

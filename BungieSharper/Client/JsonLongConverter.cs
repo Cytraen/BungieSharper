@@ -23,7 +23,7 @@ using System.Text.Json.Serialization;
 
 namespace BungieSharper.Client
 {
-    public class JsonLongConverter : JsonConverter<long>
+    internal class JsonLongConverter : JsonConverter<long>
     {
         public override long Read(ref Utf8JsonReader reader, Type type, JsonSerializerOptions options)
         {

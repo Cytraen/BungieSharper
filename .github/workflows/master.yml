@@ -33,26 +33,25 @@ jobs:
         dotnet-version: ${{ env.dotnet_sdk_version }}
 
     - name: Build generator
-      run: dotnet build BungieSharper.Generator --configuration Release
+      run: dotnet build ./BungieSharper.Generator -c Release
 
     - name: Run generator
-      run: dotnet run --project BungieSharper.Generator --no-restore --verbosity normal
+      run: dotnet run --project ./BungieSharper.Generator -c Release --no-build --verbosity normal
 
     - name: Build client
-      run: dotnet build BungieSharper --configuration Release
+      run: dotnet build ./BungieSharper -c Release
 
     - name: Pack client NuGet package
-      run: dotnet pack BungieSharper/BungieSharper.csproj --configuration Release --output Packages --version-suffix "ci.$(date -u +%Y%m%dT%H%M%S)+sha.${GITHUB_SHA:0:9}" -p:ContinuousIntegrationBuild=true
-      shell: bash
+      run: dotnet pack ./BungieSharper -c Release --no-build --output Packages --version-suffix "ci.$(date -u +%Y%m%dT%H%M%S)+sha.${GITHUB_SHA:0:9}" -p:ContinuousIntegrationBuild=true
 
-    - name: Upload artifacts (nupkg)
+    - name: Upload artifacts (nupkg/snupkg)
       uses: actions/upload-artifact@v1
       with:
         name: BungieSharper - ${{ env.SHA }}
         path: Packages
 
     - name: Build test
-      run: dotnet build BungieSharper.Tests --configuration Release
+      run: dotnet build ./BungieSharper.Tests -c Release
 
     - name: Run test
-      run: dotnet test --no-build --verbosity normal  --configuration Release
+      run: dotnet test ./BungieSharper.Tests -c Release --no-build --verbosity normal

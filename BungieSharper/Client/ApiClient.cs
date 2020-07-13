@@ -29,8 +29,20 @@ namespace BungieSharper.Client
 
         private readonly ApiAccessor _apiAccessor;
 
-        public Endpoints.Endpoints ApiEndpoints { get; internal set; }
-        public Endpoints.OAuthRequests OAuthEndpoints { get; internal set; }
+        private Endpoints.Endpoints _apiEndpointModule;
+        private Endpoints.OAuthRequests _oAuthModule;
+
+        public Endpoints.Endpoints ApiEndpoints
+        {
+            get => _apiEndpointModule;
+            private set => _apiEndpointModule = value;
+        }
+
+        public Endpoints.OAuthRequests OAuthEndpoints
+        {
+            get => _oAuthModule;
+            private set => _oAuthModule = value;
+        }
 
         private void InitializeEndpoints()
         {
@@ -75,19 +87,29 @@ namespace BungieSharper.Client
             _apiAccessor.SetRateLimit(requestsPerSecond < MaxRequestsPerSecond ? requestsPerSecond : MaxRequestsPerSecond);
         }
 
-        public void SetRetryCodes(List<PlatformErrorCodes> errorCodes)
+        public void SetRetryErrorCodes(List<PlatformErrorCodes> errorCodes)
         {
-            _apiAccessor.SetRetryCodes(errorCodes);
+            _apiAccessor.SetRetryErrorCodes(errorCodes);
         }
 
-        public static void SetRetryCodes(IEnumerable<PlatformErrorCodes> errorCodes)
+        public void SetRetryCodes(IEnumerable<PlatformErrorCodes> errorCodes)
         {
-            SetRetryCodes(errorCodes.ToList());
+            SetRetryErrorCodes(errorCodes.ToList());
         }
 
-        public static void SetRetryCodes(params PlatformErrorCodes[] errorCodes)
+        public void SetRetryCodes(params PlatformErrorCodes[] errorCodes)
         {
-            SetRetryCodes(errorCodes.ToList());
+            SetRetryErrorCodes(errorCodes.ToList());
+        }
+
+        public void SetOAuthClientId(ushort clientId)
+        {
+            OAuthEndpoints.SetOAuthClientId(clientId);
+        }
+
+        public void SetOAuthClientSecret(string clientSecret)
+        {
+            OAuthEndpoints.SetOAuthClientSecret(clientSecret);
         }
 
         public void Dispose() => _apiAccessor.Dispose();

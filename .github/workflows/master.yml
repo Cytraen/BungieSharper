@@ -44,7 +44,7 @@ jobs:
     - name: Pack client NuGet package
       run: dotnet pack ./BungieSharper -c Release --no-build --output Packages --version-suffix "ci.$(date -u +%Y%m%dT%H%M%S)+sha.${GITHUB_SHA:0:9}" -p:ContinuousIntegrationBuild=true
 
-    - name: Upload artifacts (nupkg)
+    - name: Upload artifacts (nupkg/snupkg)
       uses: actions/upload-artifact@v1
       with:
         name: BungieSharper - ${{ env.SHA }}
@@ -54,4 +54,4 @@ jobs:
       run: dotnet build ./BungieSharper.Tests -c Release
 
     - name: Run test
-      run: dotnet test --project ./BungieSharper.Tests -c Release --no-build --verbosity normal
+      run: dotnet test ./BungieSharper.Tests -c Release --no-build --verbosity normal

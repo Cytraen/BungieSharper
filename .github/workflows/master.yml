@@ -33,16 +33,16 @@ jobs:
         dotnet-version: ${{ env.dotnet_sdk_version }}
 
     - name: Build generator
-      run: dotnet build BungieSharper.Generator/BungieSharper.Generator.csproj -c Release
+      run: dotnet build ./BungieSharper.Generator/BungieSharper.Generator.csproj -c Release
 
     - name: Run generator
-      run: dotnet run --project BungieSharper.Generator --no-build --verbosity normal
+      run: dotnet run --project ./BungieSharper.Generator/BungieSharper.Generator.csproj --no-build --verbosity normal
 
     - name: Build client
-      run: dotnet build BungieSharper/BungieSharper.csproj -c Release
+      run: dotnet build ./BungieSharper/BungieSharper.csproj -c Release
 
     - name: Pack client NuGet package
-      run: dotnet pack BungieSharper/BungieSharper.csproj --no-build --output Packages --version-suffix "ci.$(date -u +%Y%m%dT%H%M%S)+sha.${GITHUB_SHA:0:9}" -p:ContinuousIntegrationBuild=true
+      run: dotnet pack ./BungieSharper/BungieSharper.csproj --no-build --output Packages --version-suffix "ci.$(date -u +%Y%m%dT%H%M%S)+sha.${GITHUB_SHA:0:9}" -p:ContinuousIntegrationBuild=true
 
     - name: Upload artifacts (nupkg)
       uses: actions/upload-artifact@v1

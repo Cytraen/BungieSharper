@@ -28,16 +28,16 @@ jobs:
         dotnet-version: ${{ env.dotnet_sdk_version }}
 
     - name: Build generator
-      run: dotnet build BungieSharper.Generator/BungieSharper.Generator.csproj -c Release
+      run: dotnet build ./BungieSharper.Generator/BungieSharper.Generator.csproj -c Release
 
     - name: Run generator
-      run: dotnet run --project BungieSharper.Generator --no-build --verbosity normal
+      run: dotnet run --project ./BungieSharper.Generator/BungieSharper.Generator.csproj --no-build --verbosity normal
 
     - name: Build client
-      run: dotnet build BungieSharper/BungieSharper.csproj -c Release -p:Version=${{ steps.get_version.outputs.VERSION }}
+      run: dotnet build ./BungieSharper/BungieSharper.csproj -c Release -p:Version=${{ steps.get_version.outputs.VERSION }}
 
     - name: Pack client NuGet package
-      run: dotnet pack BungieSharper/BungieSharper.csproj --no-build --output Packages -p:ContinuousIntegrationBuild=true -p:Version=${{ steps.get_version.outputs.VERSION }}
+      run: dotnet pack ./BungieSharper/BungieSharper.csproj --no-build --output Packages -p:ContinuousIntegrationBuild=true -p:Version=${{ steps.get_version.outputs.VERSION }}
 
     - name: Create Release
       id: create_release
@@ -57,7 +57,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: BungieSharper/Packages/BungieSharper.${{ steps.get_version.outputs.VERSION }}.nupkg
+        asset_path: ./BungieSharper/Packages/BungieSharper.${{ steps.get_version.outputs.VERSION }}.nupkg
         asset_name: BungieSharper.${{ steps.get_version.outputs.VERSION }}.nupkg
         asset_content_type: application/zip
 
@@ -68,18 +68,16 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: BungieSharper/Packages/BungieSharper.${{ steps.get_version.outputs.VERSION }}.snupkg
+        asset_path: ./BungieSharper/Packages/BungieSharper.${{ steps.get_version.outputs.VERSION }}.snupkg
         asset_name: BungieSharper.${{ steps.get_version.outputs.VERSION }}.snupkg
         asset_content_type: application/zip
     
     - name: Upload to NuGet
       run: |
-        dotnet nuget push BungieSharper/Packages/BungieSharper.${{ steps.get_version.outputs.VERSION }}.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
-        dotnet nuget push BungieSharper/Packages/BungieSharper.${{ steps.get_version.outputs.VERSION }}.snupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
+        dotnet nuget push ./BungieSharper/Packages/BungieSharper.${{ steps.get_version.outputs.VERSION }}.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
+        dotnet nuget push ./BungieSharper/Packages/BungieSharper.${{ steps.get_version.outputs.VERSION }}.snupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
     
     - name: Upload to GitHub Packages
       run: |
-        dotnet nuget push BungieSharper/Packages/BungieSharper.${{ steps.get_version.outputs.VERSION }}.nupkg -u ashakoor -p ${{ secrets.GITHUB_TOKEN }} -s https://nuget.pkg.github.com/ashakoor/index.json
-        dotnet nuget push BungieSharper/Packages/BungieSharper.${{ steps.get_version.outputs.VERSION }}.snupkg -u ashakoor -p ${{ secrets.GITHUB_TOKEN }} -s https://nuget.pkg.github.com/ashakoor/index.json
-    
-    
+        dotnet nuget push ./BungieSharper/Packages/BungieSharper.${{ steps.get_version.outputs.VERSION }}.nupkg -u ashakoor -p ${{ secrets.GITHUB_TOKEN }} -s https://nuget.pkg.github.com/ashakoor/index.json
+        dotnet nuget push ./BungieSharper/Packages/BungieSharper.${{ steps.get_version.outputs.VERSION }}.snupkg -u ashakoor -p ${{ secrets.GITHUB_TOKEN }} -s https://nuget.pkg.github.com/ashakoor/index.json

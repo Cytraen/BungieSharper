@@ -33,16 +33,16 @@ jobs:
         dotnet-version: ${{ env.dotnet_sdk_version }}
 
     - name: Build generator
-      run: dotnet build ./BungieSharper.Generator/BungieSharper.Generator.csproj -c Release
+      run: dotnet build ./BungieSharper.Generator -c Release
 
     - name: Run generator
-      run: dotnet run --project ./BungieSharper.Generator/BungieSharper.Generator.csproj --no-build --verbosity normal
+      run: dotnet run --project ./BungieSharper.Generator -c Release --no-build --verbosity normal
 
     - name: Build client
-      run: dotnet build ./BungieSharper/BungieSharper.csproj -c Release
+      run: dotnet build ./BungieSharper -c Release
 
     - name: Pack client NuGet package
-      run: dotnet pack ./BungieSharper/BungieSharper.csproj --no-build --output Packages --version-suffix "ci.$(date -u +%Y%m%dT%H%M%S)+sha.${GITHUB_SHA:0:9}" -p:ContinuousIntegrationBuild=true
+      run: dotnet pack ./BungieSharper -c Release --no-build --output Packages --version-suffix "ci.$(date -u +%Y%m%dT%H%M%S)+sha.${GITHUB_SHA:0:9}" -p:ContinuousIntegrationBuild=true
 
     - name: Upload artifacts (nupkg)
       uses: actions/upload-artifact@v1
@@ -51,7 +51,7 @@ jobs:
         path: Packages
 
     - name: Build test
-      run: dotnet build BungieSharper.Tests --configuration Release
+      run: dotnet build ./BungieSharper.Tests -c Release
 
     - name: Run test
-      run: dotnet test --no-build --verbosity normal  --configuration Release
+      run: dotnet test --project ./BungieSharper.Tests -c Release --no-build --verbosity normal

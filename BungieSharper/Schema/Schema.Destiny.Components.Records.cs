@@ -21,8 +21,14 @@ namespace BungieSharper.Schema.Destiny.Components.Records
 
     public class DestinyProfileRecordsComponent
     {
-        /// <summary>Your "Triumphs" score.</summary>
+        /// <summary>Your 'active' Triumphs score, maintained for backwards compatibility.</summary>
         public int score { get; set; }
+        /// <summary>Your 'active' Triumphs score.</summary>
+        public int activeScore { get; set; }
+        /// <summary>Your 'legacy' Triumphs score.</summary>
+        public int legacyScore { get; set; }
+        /// <summary>Your 'lifetime' Triumphs score.</summary>
+        public int lifetimeScore { get; set; }
         /// <summary>If this profile is tracking a record, this is the hash identifier of the record it is tracking.</summary>
         public uint trackedRecordHash { get; set; }
         public Dictionary<uint, Schema.Destiny.Components.Records.DestinyRecordComponent> records { get; set; }

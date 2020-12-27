@@ -50,6 +50,13 @@ namespace BungieSharper.Schema.Common.Models
         public uint recordsRootNode { get; set; }
         public uint medalsRootNode { get; set; }
         public uint metricsRootNode { get; set; }
+        public uint activeTriumphsRootNodeHash { get; set; }
+        public uint activeSealsRootNodeHash { get; set; }
+        public uint legacyTriumphsRootNodeHash { get; set; }
+        public uint legacySealsRootNodeHash { get; set; }
+        public uint medalsRootNodeHash { get; set; }
+        public uint exoticCatalystsRootNodeHash { get; set; }
+        public uint loreRootNodeHash { get; set; }
         public IEnumerable<uint> currentRankProgressionHashes { get; set; }
         public string undiscoveredCollectibleImage { get; set; }
         public string ammoTypeHeavyIcon { get; set; }

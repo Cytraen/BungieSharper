@@ -114,6 +114,10 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public IEnumerable<Schema.Destiny.Definitions.DestinyItemTooltipNotification> tooltipNotifications { get; set; }
         /// <summary>If this item has a collectible related to it, this is the hash identifier of that collectible entry.</summary>
         public uint collectibleHash { get; set; }
+        /// <summary>If available, this is the original 'active' release watermark overlay for the icon. If the item has different versions, this can be overridden by the 'display version watermark icon' from the 'quality' block. Alternatively, if there is no watermark for the version, and the item version has a power cap below the current season power cap, this can be overridden by the iconWatermarkShelved property.</summary>
+        public string iconWatermark { get; set; }
+        /// <summary>If available, this is the 'shelved' release watermark overlay for the icon. If the item version has a power cap below the current season power cap, it can be treated as 'shelved', and should be shown with this 'shelved' watermark overlay.</summary>
+        public string iconWatermarkShelved { get; set; }
         /// <summary>A secondary icon associated with the item. Currently this is used in very context specific applications, such as Emblem Nameplates.</summary>
         public string secondaryIcon { get; set; }
         /// <summary>Pulled from the secondary icon, this is the "secondary background" of the secondary icon. Confusing? Sure, that's why I call it "overlay" here: because as far as it's been used thus far, it has been for an optional overlay image. We'll see if that holds up, but at least for now it explains what this image is a bit better.</summary>
@@ -444,6 +448,10 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public string setType { get; set; }
         /// <summary>The name of the quest line that this quest step is a part of.</summary>
         public string questLineName { get; set; }
+        /// <summary>The description of the quest line that this quest step is a part of.</summary>
+        public string questLineDescription { get; set; }
+        /// <summary>An additional summary of this step in the quest line.</summary>
+        public string questStepSummary { get; set; }
     }
 
     /// <summary>
@@ -2209,6 +2217,8 @@ namespace BungieSharper.Schema.Destiny.Definitions
 
     public class DestinyItemSocketEntryPlugItemRandomizedDefinition
     {
+        /// <summary>Indicates if the plug can be rolled on the current version of the item. For example, older versions of weapons may have plug rolls that are no longer possible on the current versions.</summary>
+        public bool currentlyCanRoll { get; set; }
         /// <summary>The hash identifier of a DestinyInventoryItemDefinition representing the plug that can be inserted.</summary>
         public uint plugItemHash { get; set; }
     }

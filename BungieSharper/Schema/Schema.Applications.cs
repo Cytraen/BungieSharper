@@ -36,8 +36,6 @@ namespace BungieSharper.Schema.Applications
 
     public class ApiUsage
     {
-        /// <summary>The date range for the data being reported.</summary>
-        public Schema.Dates.DateRange range { get; set; }
         /// <summary>Counts for on API calls made for the time range.</summary>
         public IEnumerable<Schema.Applications.Series> apiCalls { get; set; }
         /// <summary>Instances of blocked requests or requests that crossed the warn threshold during the time range.</summary>
@@ -62,7 +60,6 @@ namespace BungieSharper.Schema.Applications
 
     public class Application
     {
-        public Schema.Applications.OAuthApplicationType applicationType { get; set; }
         /// <summary>Unique ID assigned to the application</summary>
         public int applicationId { get; set; }
         /// <summary>Name of the application</summary>
@@ -85,15 +82,6 @@ namespace BungieSharper.Schema.Applications
         public DateTime firstPublished { get; set; }
         /// <summary>List of team members who manage this application on Bungie.net. Will always consist of at least the application owner.</summary>
         public IEnumerable<Schema.Applications.ApplicationDeveloper> team { get; set; }
-    }
-
-    public enum OAuthApplicationType
-    {
-        None = 0,
-        /// <summary>Indicates the application is server based and can keep its secrets from end users and other potential snoops.</summary>
-        Confidential = 1,
-        /// <summary>Indicates the application runs in a public place, and it can't be trusted to keep a secret.</summary>
-        Public = 2
     }
 
     public enum ApplicationStatus

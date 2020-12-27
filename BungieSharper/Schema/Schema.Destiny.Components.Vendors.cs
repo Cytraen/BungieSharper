@@ -71,6 +71,8 @@ namespace BungieSharper.Schema.Destiny.Components.Vendors
         /// Note that there's not actually any guarantee that it will go away: it could be chosen again and end up still being in the Vendor's sale items! But this is the next date where that test will occur, and is also the date that the game shows for availability on things like Bounties being sold. So it's the best we can give.
         /// </summary>
         public DateTime overrideNextRefreshDate { get; set; }
+        /// <summary>If true, this item can be purchased through the Bungie.net API.</summary>
+        public bool apiPurchasable { get; set; }
     }
 
     /// <summary>
@@ -120,5 +122,7 @@ namespace BungieSharper.Schema.Destiny.Components.Vendors
         /// Note that there's not actually any guarantee that it will go away: it could be chosen again and end up still being in the Vendor's sale items! But this is the next date where that test will occur, and is also the date that the game shows for availability on things like Bounties being sold. So it's the best we can give.
         /// </summary>
         public DateTime overrideNextRefreshDate { get; set; }
+        /// <summary>If true, this item can be purchased through the Bungie.net API.</summary>
+        public bool apiPurchasable { get; set; }
     }
 }

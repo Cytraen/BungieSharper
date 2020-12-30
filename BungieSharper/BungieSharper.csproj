@@ -1,58 +1,54 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Authors>ashakoor</Authors>
-    <Copyright>Copyright © 2020 ashakoor</Copyright>
-    <PackageLicenseFile>COPYING.md</PackageLicenseFile>
-    <RepositoryUrl>https://github.com/ashakoor/BungieSharper</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
+	<PropertyGroup>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<Authors>ashakoor</Authors>
+		<Copyright>Copyright © 2020 ashakoor</Copyright>
+		<PackageLicenseExpression>AGPL-3.0-only</PackageLicenseExpression>
+		<RepositoryUrl>https://github.com/ashakoor/BungieSharper</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
 
-    <TargetFrameworks>netstandard2.0;netstandard2.1;netcoreapp2.1;netcoreapp3.1;net5.0</TargetFrameworks>
-    <Version>0.2.0-beta1</Version>
-  </PropertyGroup>
+		<TargetFrameworks>netstandard2.0;netstandard2.1;netcoreapp2.1;netcoreapp3.1;net5.0</TargetFrameworks>
+		<Version>0.3.0.1</Version>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DebugType>portable</DebugType>
-    <DebugSymbols>true</DebugSymbols>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<DebugType>portable</DebugType>
+		<DebugSymbols>true</DebugSymbols>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DebugType>full</DebugType>
-    <DebugSymbols>true</DebugSymbols>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DebugType>full</DebugType>
+		<DebugSymbols>true</DebugSymbols>
+	</PropertyGroup>
 
-  <PropertyGroup>
-    <Deterministic>true</Deterministic>
-    <ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">True</ContinuousIntegrationBuild>
+	<PropertyGroup>
+		<Deterministic>true</Deterministic>
+		<ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">True</ContinuousIntegrationBuild>
 
-    <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <IncludeSymbols>true</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <Company>ashakoor</Company>
-    <Product>BungieSharper</Product>
-    <Description>An HttpClient-based client for the Bungie.net API which uses System.Text.Json.</Description>
-    <PackageProjectUrl>https://github.com/ashakoor/BungieSharper</PackageProjectUrl>
-    <PackageIcon>BungieSharper.png</PackageIcon>
-  </PropertyGroup>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<Company>ashakoor</Company>
+		<Product>BungieSharper</Product>
+		<Description>An HttpClient-based client for the Bungie.net API which uses System.Text.Json.</Description>
+		<PackageProjectUrl>https://github.com/ashakoor/BungieSharper</PackageProjectUrl>
+		<PackageIcon>BungieSharper.png</PackageIcon>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+	<ItemGroup>
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
 
-    <PackageReference Include="System.Text.Json" Version="5.0.0" Condition="'$(TargetFramework)' == 'netstandard2.0'" />
-    <PackageReference Include="System.Text.Json" Version="5.0.0" Condition="'$(TargetFramework)' == 'netstandard2.1'" />
-    <PackageReference Include="System.Text.Json" Version="5.0.0" Condition="'$(TargetFramework)' == 'netcoreapp2.1'" />
-  </ItemGroup>
+		<PackageReference Include="System.Text.Json" Version="5.0.0" Condition="'$(TargetFramework)' == 'netstandard2.0'" />
+		<PackageReference Include="System.Text.Json" Version="5.0.0" Condition="'$(TargetFramework)' == 'netstandard2.1'" />
+		<PackageReference Include="System.Text.Json" Version="5.0.0" Condition="'$(TargetFramework)' == 'netcoreapp2.1'" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <None Include="..\BungieSharper.png">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-    <None Include="..\COPYING.md">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="..\BungieSharper.png">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
 </Project>

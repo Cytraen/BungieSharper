@@ -1,25 +1,26 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-    <Authors>ashakoor</Authors>
-    <PackageLicenseFile>COPYING.md</PackageLicenseFile>
-    <RepositoryUrl>https://github.com/ashakoor/BungieSharper</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-    <Nullable>enable</Nullable>
-    <IsPackable>false</IsPackable>
-    
-    <Version>0.2.0-beta1</Version>
-  </PropertyGroup>
+	<PropertyGroup>
+		<Authors>ashakoor</Authors>
+		<Copyright>Copyright © 2020 ashakoor</Copyright>
+		<PackageLicenseExpression>AGPL-3.0-only</PackageLicenseExpression>
+		<RepositoryUrl>https://github.com/ashakoor/BungieSharper</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<Nullable>enable</Nullable>
+		<IsPackable>false</IsPackable>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.0" />
-    <PackageReference Include="xunit" Version="2.4.0" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
-    <PackageReference Include="coverlet.collector" Version="1.2.0" />
-  </ItemGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<Version>0.3.0.1</Version>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\BungieSharper\BungieSharper.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.0" />
+		<PackageReference Include="xunit" Version="2.4.0" />
+		<PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
+		<PackageReference Include="coverlet.collector" Version="1.2.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\BungieSharper\BungieSharper.csproj" />
+	</ItemGroup>
 </Project>

@@ -311,7 +311,9 @@ namespace BungieSharper.Schema.Destiny
         Unlockable = 3,
         Intrinsic = 4,
         EnergyMeter = 5,
-        LargePerk = 6
+        LargePerk = 6,
+        Abilities = 7,
+        Supers = 8
     }
 
     /// <summary>
@@ -378,7 +380,8 @@ namespace BungieSharper.Schema.Destiny
         Arc = 2,
         Thermal = 3,
         Void = 4,
-        Raid = 5
+        Raid = 5,
+        Stasis = 6
     }
 
     public enum DestinyActivityNavPointType
@@ -456,7 +459,8 @@ namespace BungieSharper.Schema.Destiny
         ChestArmor = 28,
         LegArmor = 29,
         ClassArmor = 30,
-        Bow = 31
+        Bow = 31,
+        DummyRepeatableBounty = 32
     }
 
     /// <summary>
@@ -566,14 +570,16 @@ namespace BungieSharper.Schema.Destiny
     }
 
     /// <summary>
-    /// Represents an Energy Type for systems that require payment of energy of certain types, such as with Armor 2.0.
+    /// Represents the socket energy types for Armor 2.0, Ghosts 2.0, and Stasis subclasses.
     /// </summary>
     public enum DestinyEnergyType
     {
         Any = 0,
         Arc = 1,
         Thermal = 2,
-        Void = 3
+        Void = 3,
+        Ghost = 4,
+        Subclass = 5
     }
 
     /// <summary>
@@ -1104,7 +1110,8 @@ namespace BungieSharper.Schema.Destiny
     /// </summary>
     public enum DestinyVendorFilter
     {
-        None = 0
+        None = 0,
+        ApiPurchasable = 1
     }
 
     [System.Flags]

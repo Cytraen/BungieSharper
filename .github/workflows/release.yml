@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      dotnet_sdk_version: '3.1.301'
+      dotnet_sdk_version: '5.0.101'
       DOTNET_CLI_TELEMETRY_OPTOUT: true
       DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
       TEST_BUNGIE_API_KEY: ${{ secrets.TEST_BUNGIE_API_KEY }}

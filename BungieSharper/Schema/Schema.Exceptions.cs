@@ -556,6 +556,7 @@
         DestinyClaimsRequiredLevelNotMet = 1685,
         DestinyClaimsInvalidState = 1686,
         DestinyNotEnoughRoomForMultipleRewards = 1687,
+        DestinyDirectBabelClientTimeout = 1688,
         FbInvalidRequest = 1800,
         FbRedirectMismatch = 1801,
         FbAccessDenied = 1802,
@@ -769,6 +770,10 @@
         PCMigrationEntitlementTransferFailed = 3413,
         PCMigrationCannotStompClanFounder = 3414,
         UnsupportedBrowser = 3500,
-        StadiaAccountRequired = 3600
+        StadiaAccountRequired = 3600,
+        ErrorPhoneValidationTooManyUses = 3702,
+        ErrorPhoneValidationNoAssociatedPhone = 3703,
+        ErrorPhoneValidationCodeInvalid = 3705,
+        ErrorPhoneValidationBanned = 3706
     }
 }

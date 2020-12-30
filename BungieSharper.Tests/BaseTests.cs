@@ -41,25 +41,5 @@ namespace BungieSharper.Tests
                 card => Assert.Equal(expectedDisplayName, card.displayName)
                 );
         }
-
-        [Fact]
-        public async Task SearchUserTest_Blizzard()
-        {
-            const BungieMembershipType expectedMembershipType = BungieMembershipType.TigerBlizzard;
-            const long expectedMembershipId = 4611686018472399666;
-            const string expectedDisplayName = "prism#11555";
-
-            var actualCards = (await ClientFixture.TestClient.ApiEndpoints.Destiny2_SearchDestinyPlayer(
-                "prism#11555", BungieMembershipType.All, false
-                )).ToList();
-
-            Assert.Single(actualCards);
-
-            var card = actualCards[0];
-
-            Assert.Equal(expectedMembershipType, card.membershipType);
-            Assert.Equal(expectedMembershipId, card.membershipId);
-            Assert.Equal(expectedDisplayName, card.displayName);
-        }
     }
 }

@@ -163,6 +163,7 @@ namespace BungieSharper.Client
                     await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false) ?? throw new ContentNullJsonException(),
                     _serializerOptions);
 
+                await AwaitThrottleAndReleaseSemaphore(throttleTask, _semaphore).ConfigureAwait(false);
                 return apiResponse;
             }
         }

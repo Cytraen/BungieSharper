@@ -74,8 +74,8 @@ jobs:
     
     - name: Upload to NuGet
       run: |
-        dotnet nuget push ./Packages/BungieSharper.${{ steps.get_version.outputs.VERSION }}.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
+        dotnet nuget push ./Packages/BungieSharper.${{ steps.get_version.outputs.VERSION }}.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicate
     
     - name: Upload to GitHub Packages
       run: |
-        dotnet nuget push ./Packages/BungieSharper.${{ steps.get_version.outputs.VERSION }}.nupkg -u ashakoor -p ${{ secrets.GITHUB_TOKEN }} -s https://nuget.pkg.github.com/ashakoor/index.json
+        dotnet nuget push ./Packages/BungieSharper.${{ steps.get_version.outputs.VERSION }}.nupkg -k ${{ secrets.GITHUB_TOKEN }} -s https://nuget.pkg.github.com/ashakoor/index.json --skip-duplicate

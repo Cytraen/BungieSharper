@@ -13,11 +13,11 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Edit the settings of an optional conversation/chat channel. Requires admin permissions to the group.
         /// </summary>
-        public async Task<long> GroupV2_EditOptionalConversation(long conversationId, long groupId, Schema.GroupsV2.GroupOptionalConversationEditRequest requestBody)
+        public async Task<long> GroupV2_EditOptionalConversation(long conversationId, long groupId, Schema.GroupsV2.GroupOptionalConversationEditRequest requestBody, string authToken = null)
         {
             return await _apiAccessor.ApiRequestAsync<long>(
                 new Uri($"GroupV2/{groupId}/OptionalConversations/Edit/{conversationId}/", UriKind.Relative),
-                null, new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post
+                new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, AuthHeaderType.Bearer
                 ).ConfigureAwait(false);
         }
     }

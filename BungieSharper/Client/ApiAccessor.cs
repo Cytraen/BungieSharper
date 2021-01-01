@@ -87,11 +87,11 @@ namespace BungieSharper.Client
             _msPerRequest = TimeSpan.FromMilliseconds(1000.0 / requestsPerSecond);
         }
 
-        internal async Task<T> ApiRequestAsync<T>(Uri uri, string bearerToken, HttpContent httpContent, HttpMethod httpMethod)
+        internal async Task<T> ApiRequestAsync<T>(Uri uri, HttpContent httpContent, HttpMethod httpMethod, string authToken, AuthHeaderType authType)
         {
             var semaphoreTask = _semaphore.WaitAsync().ConfigureAwait(false);
 
-            var httpRequestMessage = HttpRequestGenerator.MakeApiRequestMessage(uri, bearerToken, httpContent, httpMethod);
+            var httpRequestMessage = HttpRequestGenerator.MakeApiRequestMessage(uri, httpContent, httpMethod, authToken, authType);
 
             await semaphoreTask;
 
@@ -140,11 +140,11 @@ namespace BungieSharper.Client
             }
         }
 
-        internal async Task<TokenRequestResponse> ApiTokenRequestResponseAsync(Uri uri, string bearerToken, HttpContent httpContent, HttpMethod httpMethod)
+        internal async Task<TokenRequestResponse> ApiTokenRequestResponseAsync(Uri uri, HttpContent httpContent, HttpMethod httpMethod, string authToken, AuthHeaderType authType)
         {
             var semaphoreTask = _semaphore.WaitAsync().ConfigureAwait(false);
 
-            var httpRequestMessage = HttpRequestGenerator.MakeApiRequestMessage(uri, bearerToken, httpContent, httpMethod);
+            var httpRequestMessage = HttpRequestGenerator.MakeApiRequestMessage(uri, httpContent, httpMethod, authToken, authType);
 
             await semaphoreTask;
 

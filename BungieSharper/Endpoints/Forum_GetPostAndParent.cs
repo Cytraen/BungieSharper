@@ -13,11 +13,11 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Returns the post specified and its immediate parent.
         /// </summary>
-        public async Task<Schema.Forum.PostSearchResponse> Forum_GetPostAndParent(long childPostId, string showbanned = null)
+        public async Task<Schema.Forum.PostSearchResponse> Forum_GetPostAndParent(long childPostId, string showbanned = null, string authToken = null)
         {
             return await _apiAccessor.ApiRequestAsync<Schema.Forum.PostSearchResponse>(
                 new Uri($"Forum/GetPostAndParent/{childPostId}/" + HttpRequestGenerator.MakeQuerystring(showbanned != null ? $"showbanned={Uri.EscapeDataString(showbanned)}" : null), UriKind.Relative),
-                null, null, HttpMethod.Get
+                null, HttpMethod.Get, authToken, AuthHeaderType.Bearer
                 ).ConfigureAwait(false);
         }
     }

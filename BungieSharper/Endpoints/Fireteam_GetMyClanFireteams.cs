@@ -13,11 +13,11 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Gets a listing of all clan fireteams that caller is an applicant, a member, or an alternate of.
         /// </summary>
-        public async Task<Schema.SearchResultOfFireteamResponse> Fireteam_GetMyClanFireteams(long groupId, bool includeClosed, int page, Schema.Fireteam.FireteamPlatform platform, bool? groupFilter = null, string langFilter = null)
+        public async Task<Schema.SearchResultOfFireteamResponse> Fireteam_GetMyClanFireteams(long groupId, bool includeClosed, int page, Schema.Fireteam.FireteamPlatform platform, bool? groupFilter = null, string langFilter = null, string authToken = null)
         {
             return await _apiAccessor.ApiRequestAsync<Schema.SearchResultOfFireteamResponse>(
                 new Uri($"Fireteam/Clan/{groupId}/My/{platform}/{includeClosed}/{page}/" + HttpRequestGenerator.MakeQuerystring(groupFilter != null ? $"groupFilter={groupFilter}" : null, langFilter != null ? $"langFilter={Uri.EscapeDataString(langFilter)}" : null), UriKind.Relative),
-                null, null, HttpMethod.Get
+                null, HttpMethod.Get, authToken, AuthHeaderType.Bearer
                 ).ConfigureAwait(false);
         }
     }

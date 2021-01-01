@@ -13,11 +13,11 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Claim a partner offer as the authenticated user.
         /// </summary>
-        public async Task<bool> Tokens_ClaimPartnerOffer(Schema.Tokens.PartnerOfferClaimRequest requestBody)
+        public async Task<bool> Tokens_ClaimPartnerOffer(Schema.Tokens.PartnerOfferClaimRequest requestBody, string authToken = null)
         {
             return await _apiAccessor.ApiRequestAsync<bool>(
                 new Uri($"Tokens/Partner/ClaimOffer/", UriKind.Relative),
-                null, new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post
+                new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, AuthHeaderType.Bearer
                 ).ConfigureAwait(false);
         }
     }

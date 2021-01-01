@@ -13,11 +13,11 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Returns a list of possible users based on the search string
         /// </summary>
-        public async Task<IEnumerable<Schema.User.GeneralUser>> User_SearchUsers(string q = null)
+        public async Task<IEnumerable<Schema.User.GeneralUser>> User_SearchUsers(string q = null, string authToken = null)
         {
             return await _apiAccessor.ApiRequestAsync<IEnumerable<Schema.User.GeneralUser>>(
                 new Uri($"User/SearchUsers/" + HttpRequestGenerator.MakeQuerystring(q != null ? $"q={Uri.EscapeDataString(q)}" : null), UriKind.Relative),
-                null, null, HttpMethod.Get
+                null, HttpMethod.Get, authToken, AuthHeaderType.Bearer
                 ).ConfigureAwait(false);
         }
     }

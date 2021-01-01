@@ -37,7 +37,7 @@ namespace BungieSharper.Endpoints
             _apiAccessor = apiAccessor;
         }
 
-        public async Task<TokenRequestResponse> GetOAuthToken(string authorizationCode)
+        public async Task<TokenRequestResponse> GetOAuthToken(string authorizationCode, string authToken = null, AuthHeaderType tokenType = AuthHeaderType.None)
         {
             var encodedContentPairs = new List<KeyValuePair<string, string>>
             {
@@ -46,14 +46,14 @@ namespace BungieSharper.Endpoints
                 new KeyValuePair<string, string>("client_id", _oAuthClientId.ToString())
             };
 
-            if (_oAuthClientSecret != string.Empty)
+            if (string.IsNullOrWhiteSpace(_oAuthClientSecret))
             {
                 encodedContentPairs.Add(new KeyValuePair<string, string>("client_secret", _oAuthClientSecret));
             }
 
             var encodedContent = new FormUrlEncodedContent(encodedContentPairs);
 
-            return await _apiAccessor.ApiTokenRequestResponseAsync(new Uri(OAuthTokenUrl, UriKind.Absolute), null, encodedContent, HttpMethod.Post).ConfigureAwait(false);
+            return await _apiAccessor.ApiTokenRequestResponseAsync(new Uri(OAuthTokenUrl, UriKind.Absolute), encodedContent, HttpMethod.Post, null, AuthHeaderType.None).ConfigureAwait(false);
         }
 
         public string GetOAuthAuthorizationUrl()

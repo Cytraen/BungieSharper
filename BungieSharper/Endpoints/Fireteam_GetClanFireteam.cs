@@ -13,11 +13,11 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Gets a specific clan fireteam.
         /// </summary>
-        public async Task<Schema.Fireteam.FireteamResponse> Fireteam_GetClanFireteam(long fireteamId, long groupId)
+        public async Task<Schema.Fireteam.FireteamResponse> Fireteam_GetClanFireteam(long fireteamId, long groupId, string authToken = null)
         {
             return await _apiAccessor.ApiRequestAsync<Schema.Fireteam.FireteamResponse>(
                 new Uri($"Fireteam/Clan/{groupId}/Summary/{fireteamId}/", UriKind.Relative),
-                null, null, HttpMethod.Get
+                null, HttpMethod.Get, authToken, AuthHeaderType.Bearer
                 ).ConfigureAwait(false);
         }
     }

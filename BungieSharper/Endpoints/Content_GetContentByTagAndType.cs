@@ -13,11 +13,11 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Returns the newest item that matches a given tag and Content Type.
         /// </summary>
-        public async Task<Schema.Content.ContentItemPublicContract> Content_GetContentByTagAndType(string locale, string tag, string type, bool? head = null)
+        public async Task<Schema.Content.ContentItemPublicContract> Content_GetContentByTagAndType(string locale, string tag, string type, bool? head = null, string authToken = null)
         {
             return await _apiAccessor.ApiRequestAsync<Schema.Content.ContentItemPublicContract>(
                 new Uri($"Content/GetContentByTagAndType/{Uri.EscapeDataString(tag)}/{Uri.EscapeDataString(type)}/{Uri.EscapeDataString(locale)}/" + HttpRequestGenerator.MakeQuerystring(head != null ? $"head={head}" : null), UriKind.Relative),
-                null, null, HttpMethod.Get
+                null, HttpMethod.Get, authToken, AuthHeaderType.Bearer
                 ).ConfigureAwait(false);
         }
     }

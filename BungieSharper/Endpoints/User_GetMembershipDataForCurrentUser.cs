@@ -13,11 +13,11 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Returns a list of accounts associated with signed in user. This is useful for OAuth implementations that do not give you access to the token response.
         /// </summary>
-        public async Task<Schema.User.UserMembershipData> User_GetMembershipDataForCurrentUser()
+        public async Task<Schema.User.UserMembershipData> User_GetMembershipDataForCurrentUser(string authToken = null)
         {
             return await _apiAccessor.ApiRequestAsync<Schema.User.UserMembershipData>(
                 new Uri($"User/GetMembershipsForCurrentUser/", UriKind.Relative),
-                null, null, HttpMethod.Get
+                null, HttpMethod.Get, authToken, AuthHeaderType.Bearer
                 ).ConfigureAwait(false);
         }
     }

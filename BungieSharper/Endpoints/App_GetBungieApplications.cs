@@ -13,11 +13,11 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Get list of applications created by Bungie.
         /// </summary>
-        public async Task<IEnumerable<Schema.Applications.Application>> App_GetBungieApplications()
+        public async Task<IEnumerable<Schema.Applications.Application>> App_GetBungieApplications(string authToken = null)
         {
             return await _apiAccessor.ApiRequestAsync<IEnumerable<Schema.Applications.Application>>(
                 new Uri($"App/FirstParty/", UriKind.Relative),
-                null, null, HttpMethod.Get
+                null, HttpMethod.Get, authToken, AuthHeaderType.Bearer
                 ).ConfigureAwait(false);
         }
     }

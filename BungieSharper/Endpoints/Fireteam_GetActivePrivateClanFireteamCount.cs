@@ -13,11 +13,11 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Gets a count of all active non-public fireteams for the specified clan. Maximum value returned is 25.
         /// </summary>
-        public async Task<int> Fireteam_GetActivePrivateClanFireteamCount(long groupId)
+        public async Task<int> Fireteam_GetActivePrivateClanFireteamCount(long groupId, string authToken = null)
         {
             return await _apiAccessor.ApiRequestAsync<int>(
                 new Uri($"Fireteam/Clan/{groupId}/ActiveCount/", UriKind.Relative),
-                null, null, HttpMethod.Get
+                null, HttpMethod.Get, authToken, AuthHeaderType.Bearer
                 ).ConfigureAwait(false);
         }
     }

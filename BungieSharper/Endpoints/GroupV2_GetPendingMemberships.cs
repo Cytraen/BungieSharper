@@ -13,11 +13,11 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Get the list of users who are awaiting a decision on their application to join a given group. Modified to include application info.
         /// </summary>
-        public async Task<Schema.SearchResultOfGroupMemberApplication> GroupV2_GetPendingMemberships(int currentpage, long groupId)
+        public async Task<Schema.SearchResultOfGroupMemberApplication> GroupV2_GetPendingMemberships(int currentpage, long groupId, string authToken = null)
         {
             return await _apiAccessor.ApiRequestAsync<Schema.SearchResultOfGroupMemberApplication>(
                 new Uri($"GroupV2/{groupId}/Members/Pending/", UriKind.Relative),
-                null, null, HttpMethod.Get
+                null, HttpMethod.Get, authToken, AuthHeaderType.Bearer
                 ).ConfigureAwait(false);
         }
     }

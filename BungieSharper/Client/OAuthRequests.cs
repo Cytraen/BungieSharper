@@ -46,7 +46,26 @@ namespace BungieSharper.Endpoints
                 new KeyValuePair<string, string>("client_id", _oAuthClientId.ToString())
             };
 
-            if (string.IsNullOrWhiteSpace(_oAuthClientSecret))
+            if (!string.IsNullOrWhiteSpace(_oAuthClientSecret))
+            {
+                encodedContentPairs.Add(new KeyValuePair<string, string>("client_secret", _oAuthClientSecret));
+            }
+
+            var encodedContent = new FormUrlEncodedContent(encodedContentPairs);
+
+            return await _apiAccessor.ApiTokenRequestResponseAsync(new Uri(OAuthTokenUrl, UriKind.Absolute), encodedContent, HttpMethod.Post, null, AuthHeaderType.None).ConfigureAwait(false);
+        }
+
+        public async Task<TokenRequestResponse> RefreshOAuthToken(string refreshToken, string authToken = null, AuthHeaderType tokenType = AuthHeaderType.None)
+        {
+            var encodedContentPairs = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("grant_type", "refresh_token"),
+                new KeyValuePair<string, string>("refresh_token", refreshToken),
+                new KeyValuePair<string, string>("client_id", _oAuthClientId.ToString())
+            };
+
+            if (!string.IsNullOrWhiteSpace(_oAuthClientSecret))
             {
                 encodedContentPairs.Add(new KeyValuePair<string, string>("client_secret", _oAuthClientSecret));
             }

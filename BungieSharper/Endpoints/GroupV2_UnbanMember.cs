@@ -13,11 +13,11 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Unbans the requested member, allowing them to re-apply for membership.
         /// </summary>
-        public async Task<int> GroupV2_UnbanMember(long groupId, long membershipId, Schema.BungieMembershipType membershipType)
+        public async Task<int> GroupV2_UnbanMember(long groupId, long membershipId, Schema.BungieMembershipType membershipType, string authToken = null)
         {
             return await _apiAccessor.ApiRequestAsync<int>(
                 new Uri($"GroupV2/{groupId}/Members/{membershipType}/{membershipId}/Unban/", UriKind.Relative),
-                null, null, HttpMethod.Post
+                null, HttpMethod.Post, authToken, AuthHeaderType.Bearer
                 ).ConfigureAwait(false);
         }
     }

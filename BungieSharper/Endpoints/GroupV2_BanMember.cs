@@ -13,11 +13,11 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Bans the requested member from the requested group for the specified period of time.
         /// </summary>
-        public async Task<int> GroupV2_BanMember(long groupId, long membershipId, Schema.BungieMembershipType membershipType, Schema.GroupsV2.GroupBanRequest requestBody)
+        public async Task<int> GroupV2_BanMember(long groupId, long membershipId, Schema.BungieMembershipType membershipType, Schema.GroupsV2.GroupBanRequest requestBody, string authToken = null)
         {
             return await _apiAccessor.ApiRequestAsync<int>(
                 new Uri($"GroupV2/{groupId}/Members/{membershipType}/{membershipId}/Ban/", UriKind.Relative),
-                null, new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post
+                new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, AuthHeaderType.Bearer
                 ).ConfigureAwait(false);
         }
     }

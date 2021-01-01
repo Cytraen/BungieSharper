@@ -13,11 +13,11 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Gets the post Id for the given content item's comments, if it exists.
         /// </summary>
-        public async Task<long> Forum_GetTopicForContent(long contentId)
+        public async Task<long> Forum_GetTopicForContent(long contentId, string authToken = null)
         {
             return await _apiAccessor.ApiRequestAsync<long>(
                 new Uri($"Forum/GetTopicForContent/{contentId}/", UriKind.Relative),
-                null, null, HttpMethod.Get
+                null, HttpMethod.Get, authToken, AuthHeaderType.Bearer
                 ).ConfigureAwait(false);
         }
     }

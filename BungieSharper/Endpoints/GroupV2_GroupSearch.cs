@@ -13,11 +13,11 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Search for Groups.
         /// </summary>
-        public async Task<Schema.GroupsV2.GroupSearchResponse> GroupV2_GroupSearch(Schema.GroupsV2.GroupQuery requestBody)
+        public async Task<Schema.GroupsV2.GroupSearchResponse> GroupV2_GroupSearch(Schema.GroupsV2.GroupQuery requestBody, string authToken = null)
         {
             return await _apiAccessor.ApiRequestAsync<Schema.GroupsV2.GroupSearchResponse>(
                 new Uri($"GroupV2/Search/", UriKind.Relative),
-                null, new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post
+                new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, AuthHeaderType.Bearer
                 ).ConfigureAwait(false);
         }
     }

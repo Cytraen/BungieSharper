@@ -13,11 +13,11 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Get the list of banned members in a given group. Only accessible to group Admins and above. Not applicable to all groups. Check group features.
         /// </summary>
-        public async Task<Schema.SearchResultOfGroupBan> GroupV2_GetBannedMembersOfGroup(int currentpage, long groupId)
+        public async Task<Schema.SearchResultOfGroupBan> GroupV2_GetBannedMembersOfGroup(int currentpage, long groupId, string authToken = null)
         {
             return await _apiAccessor.ApiRequestAsync<Schema.SearchResultOfGroupBan>(
                 new Uri($"GroupV2/{groupId}/Banned/", UriKind.Relative),
-                null, null, HttpMethod.Get
+                null, HttpMethod.Get, authToken, AuthHeaderType.Bearer
                 ).ConfigureAwait(false);
         }
     }

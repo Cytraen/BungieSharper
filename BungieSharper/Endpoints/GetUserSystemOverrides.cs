@@ -13,11 +13,11 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Get the user-specific system overrides that should be respected alongside common systems.
         /// </summary>
-        public async Task<Dictionary<string, Schema.Common.Models.CoreSystem>> GetUserSystemOverrides()
+        public async Task<Dictionary<string, Schema.Common.Models.CoreSystem>> GetUserSystemOverrides(string authToken = null)
         {
             return await _apiAccessor.ApiRequestAsync<Dictionary<string, Schema.Common.Models.CoreSystem>>(
                 new Uri($"UserSystemOverrides/", UriKind.Relative),
-                null, null, HttpMethod.Get
+                null, HttpMethod.Get, authToken, AuthHeaderType.Bearer
                 ).ConfigureAwait(false);
         }
     }

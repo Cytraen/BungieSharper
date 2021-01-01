@@ -13,11 +13,11 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Gets any active global alert for display in the forum banners, help pages, etc. Usually used for DOC alerts.
         /// </summary>
-        public async Task<IEnumerable<Schema.GlobalAlert>> GetGlobalAlerts(bool? includestreaming = null)
+        public async Task<IEnumerable<Schema.GlobalAlert>> GetGlobalAlerts(bool? includestreaming = null, string authToken = null)
         {
             return await _apiAccessor.ApiRequestAsync<IEnumerable<Schema.GlobalAlert>>(
                 new Uri($"GlobalAlerts/" + HttpRequestGenerator.MakeQuerystring(includestreaming != null ? $"includestreaming={includestreaming}" : null), UriKind.Relative),
-                null, null, HttpMethod.Get
+                null, HttpMethod.Get, authToken, AuthHeaderType.Bearer
                 ).ConfigureAwait(false);
         }
     }

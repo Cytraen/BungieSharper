@@ -13,11 +13,11 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Returns the current version of the manifest as a json object.
         /// </summary>
-        public async Task<Schema.Destiny.Config.DestinyManifest> Destiny2_GetDestinyManifest()
+        public async Task<Schema.Destiny.Config.DestinyManifest> Destiny2_GetDestinyManifest(string authToken = null)
         {
             return await _apiAccessor.ApiRequestAsync<Schema.Destiny.Config.DestinyManifest>(
                 new Uri($"Destiny2/Manifest/", UriKind.Relative),
-                null, null, HttpMethod.Get
+                null, HttpMethod.Get, authToken, AuthHeaderType.Bearer
                 ).ConfigureAwait(false);
         }
     }

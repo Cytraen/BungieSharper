@@ -13,11 +13,11 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Get the list of users who have been invited into the group.
         /// </summary>
-        public async Task<Schema.SearchResultOfGroupMemberApplication> GroupV2_GetInvitedIndividuals(int currentpage, long groupId)
+        public async Task<Schema.SearchResultOfGroupMemberApplication> GroupV2_GetInvitedIndividuals(int currentpage, long groupId, string authToken = null)
         {
             return await _apiAccessor.ApiRequestAsync<Schema.SearchResultOfGroupMemberApplication>(
                 new Uri($"GroupV2/{groupId}/Members/InvitedIndividuals/", UriKind.Relative),
-                null, null, HttpMethod.Get
+                null, HttpMethod.Get, authToken, AuthHeaderType.Bearer
                 ).ConfigureAwait(false);
         }
     }

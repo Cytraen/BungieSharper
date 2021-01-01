@@ -13,11 +13,11 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Returns a list of credential types attached to the requested account
         /// </summary>
-        public async Task<IEnumerable<Schema.User.Models.GetCredentialTypesForAccountResponse>> User_GetCredentialTypesForTargetAccount(long membershipId)
+        public async Task<IEnumerable<Schema.User.Models.GetCredentialTypesForAccountResponse>> User_GetCredentialTypesForTargetAccount(long membershipId, string authToken = null)
         {
             return await _apiAccessor.ApiRequestAsync<IEnumerable<Schema.User.Models.GetCredentialTypesForAccountResponse>>(
                 new Uri($"User/GetCredentialTypesForTargetAccount/{membershipId}/", UriKind.Relative),
-                null, null, HttpMethod.Get
+                null, HttpMethod.Get, authToken, AuthHeaderType.Bearer
                 ).ConfigureAwait(false);
         }
     }

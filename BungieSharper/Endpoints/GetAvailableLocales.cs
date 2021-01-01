@@ -13,11 +13,11 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// List of available localization cultures
         /// </summary>
-        public async Task<Dictionary<string, string>> GetAvailableLocales()
+        public async Task<Dictionary<string, string>> GetAvailableLocales(string authToken = null)
         {
             return await _apiAccessor.ApiRequestAsync<Dictionary<string, string>>(
                 new Uri($"GetAvailableLocales/", UriKind.Relative),
-                null, null, HttpMethod.Get
+                null, HttpMethod.Get, authToken, AuthHeaderType.Bearer
                 ).ConfigureAwait(false);
         }
     }

@@ -13,11 +13,11 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Gets custom localized content for the milestone of the given hash, if it exists.
         /// </summary>
-        public async Task<Schema.Destiny.Milestones.DestinyMilestoneContent> Destiny2_GetPublicMilestoneContent(uint milestoneHash)
+        public async Task<Schema.Destiny.Milestones.DestinyMilestoneContent> Destiny2_GetPublicMilestoneContent(uint milestoneHash, string authToken = null)
         {
             return await _apiAccessor.ApiRequestAsync<Schema.Destiny.Milestones.DestinyMilestoneContent>(
                 new Uri($"Destiny2/Milestones/{milestoneHash}/Content/", UriKind.Relative),
-                null, null, HttpMethod.Get
+                null, HttpMethod.Get, authToken, AuthHeaderType.Bearer
                 ).ConfigureAwait(false);
         }
     }

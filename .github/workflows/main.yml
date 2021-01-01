@@ -1,4 +1,4 @@
-name: Master pull request/push
+name: Main pull request/push
 
 on:
   push:

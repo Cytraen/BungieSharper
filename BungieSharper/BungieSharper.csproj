@@ -3,13 +3,13 @@
 	<PropertyGroup>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<Authors>ashakoor</Authors>
-		<Copyright>Copyright © 2020 ashakoor</Copyright>
-		<PackageLicenseExpression>AGPL-3.0-only</PackageLicenseExpression>
+		<Copyright>Copyright © 2020-2021 ashakoor</Copyright>
+		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
 		<RepositoryUrl>https://github.com/ashakoor/BungieSharper</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 
 		<TargetFrameworks>netstandard2.0;netstandard2.1;netcoreapp2.1;netcoreapp3.1;net5.0</TargetFrameworks>
-		<Version>0.3.0.1</Version>
+		<Version>0.3.1</Version>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

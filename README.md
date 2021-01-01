@@ -5,12 +5,15 @@
 **BungieSharper.Generator** consumes [Bungie's OpenAPI spec,](https://github.com/Bungie-net/api) and turns it into code usable by BungieSharper.  
 
 ### What currently works
-To my knowledge, everything not involving OAuth or POST requests.
+To my knowledge, everything **should.** Will it? Probably not.
 
 ## License
 ### BungieSharper License
-**BungieSharper** as a whole is licensed under the GNU AGPL, version 3.0 or later.  
-The terms of the AGPL v3.0 can be found in `COPYING.md`, or [here in HTML form,](https://www.gnu.org/licenses/agpl-3.0.en.html) or [here in plaintext form.](https://www.gnu.org/licenses/agpl-3.0.txt)
+**BungieSharper** (the actual library) is licensed under the GNU LGPL, version 3.0 or later.
+ - The terms of the LGPL v3.0 can be found in `COPYING.LESSER.md` or [here.](https://www.gnu.org/licenses/lgpl-3.0.en.html)
+
+**The rest** of BungieSharper (the generator, and the tests I guess) is licensed under the GNU AGPL, version 3.0 or later.
+ - The terms of the AGPL v3.0 can be found in `COPYING.md` or [here.](https://www.gnu.org/licenses/agpl-3.0.en.html)
 
 ### Bungie SDK License Agreement (BSD 3-Clause)
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"

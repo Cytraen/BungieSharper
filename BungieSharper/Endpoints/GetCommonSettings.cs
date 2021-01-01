@@ -13,11 +13,11 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Get the common settings used by the Bungie.Net environment.
         /// </summary>
-        public async Task<Schema.Common.Models.CoreSettingsConfiguration> GetCommonSettings()
+        public async Task<Schema.Common.Models.CoreSettingsConfiguration> GetCommonSettings(string authToken = null)
         {
             return await _apiAccessor.ApiRequestAsync<Schema.Common.Models.CoreSettingsConfiguration>(
                 new Uri($"Settings/", UriKind.Relative),
-                null, null, HttpMethod.Get
+                null, HttpMethod.Get, authToken, AuthHeaderType.Bearer
                 ).ConfigureAwait(false);
         }
     }

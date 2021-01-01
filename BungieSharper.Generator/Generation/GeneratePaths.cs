@@ -114,12 +114,13 @@ namespace BungieSharper.Generator.Generation
                 optionalParameterStringList = parameterStringList.Where(x => x.Contains(" = null")).ToList();
                 requiredParameterStringList = parameterStringList.Where(x => !x.Contains(" = null")).ToList();
             }
+            optionalParameterStringList.Add("string authToken = null");
 
             var queryStringParams = paramList.Where(x => x.ParamLoc == ParameterLocation.Query).ToList();
 
             if (httpMethodDetails.ContainsKey("deprecated"))
             {
-                deprecatedEndpointText = httpMethodDetails["deprecated"] ? "        [System.Obsolete(\"Bungie has deprecated this endpoint.\")]\n" : "";
+                deprecatedEndpointText = httpMethodDetails["deprecated"] ? "        [System.Obsolete(\"Bungie have deprecated this endpoint.\")]\n" : "";
             }
 
             var returnType = GeneratePathReturn(pathDetails);
@@ -212,7 +213,7 @@ namespace BungieSharper.Generator.Generation
                 "        {\n" +
                 $"            return await _apiAccessor.ApiRequestAsync<{returnType}>(\n" +
                 $"                new Uri($\"{endpointPath}\"{queryStringParamFinal}, UriKind.Relative),\n" +
-                $"                null, {(requestBodyParam != null ? "new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, \"application/json\")" : "null")}, HttpMethod.{httpMethodType}\n" +
+                $"                {(requestBodyParam != null ? "new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, \"application/json\")" : "null")}, HttpMethod.{httpMethodType}, authToken, AuthHeaderType.Bearer\n" +
                 "                ).ConfigureAwait(false);\n" +
                 "        }\n" +
                 "    }\n" +

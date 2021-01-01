@@ -13,11 +13,11 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Returns trending items for Bungie.net, collapsed into the first page of items per category. For pagination within a category, call GetTrendingCategory.
         /// </summary>
-        public async Task<Schema.Trending.TrendingCategories> Trending_GetTrendingCategories()
+        public async Task<Schema.Trending.TrendingCategories> Trending_GetTrendingCategories(string authToken = null)
         {
             return await _apiAccessor.ApiRequestAsync<Schema.Trending.TrendingCategories>(
                 new Uri($"Trending/Categories/", UriKind.Relative),
-                null, null, HttpMethod.Get
+                null, HttpMethod.Get, authToken, AuthHeaderType.Bearer
                 ).ConfigureAwait(false);
         }
     }

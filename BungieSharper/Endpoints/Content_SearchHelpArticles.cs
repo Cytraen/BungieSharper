@@ -13,11 +13,11 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Search for Help Articles.
         /// </summary>
-        public async Task<dynamic> Content_SearchHelpArticles(string searchtext, string size)
+        public async Task<dynamic> Content_SearchHelpArticles(string searchtext, string size, string authToken = null)
         {
             return await _apiAccessor.ApiRequestAsync<dynamic>(
                 new Uri($"Content/SearchHelpArticles/{Uri.EscapeDataString(searchtext)}/{Uri.EscapeDataString(size)}/", UriKind.Relative),
-                null, null, HttpMethod.Get
+                null, HttpMethod.Get, authToken, AuthHeaderType.Bearer
                 ).ConfigureAwait(false);
         }
     }

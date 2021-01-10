@@ -103,7 +103,7 @@ namespace BungieSharper.Client
                 if (httpResponseMessage.Content.Headers.ContentType.MediaType != "application/json")
                 {
                     await AwaitThrottleAndReleaseSemaphore(throttleTask, _semaphore).ConfigureAwait(false);
-                    throw new ContentNotJsonException();
+                    throw new ContentNotJsonException(httpResponseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult());
                 }
 
                 var apiResponse = JsonSerializer.Deserialize<ApiResponse<T>>(
@@ -156,7 +156,7 @@ namespace BungieSharper.Client
                 if (httpResponseMessage.Content.Headers.ContentType.MediaType != "application/json")
                 {
                     await AwaitThrottleAndReleaseSemaphore(throttleTask, _semaphore).ConfigureAwait(false);
-                    throw new ContentNotJsonException();
+                    throw new ContentNotJsonException(httpResponseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult());
                 }
 
                 var apiResponse = JsonSerializer.Deserialize<TokenRequestResponse>(

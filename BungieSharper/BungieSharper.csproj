@@ -9,7 +9,7 @@
 		<RepositoryType>git</RepositoryType>
 
 		<TargetFrameworks>netstandard2.0;netstandard2.1;netcoreapp2.1;netcoreapp3.1;net5.0</TargetFrameworks>
-		<Version>0.3.3</Version>
+		<Version>0.4.0</Version>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

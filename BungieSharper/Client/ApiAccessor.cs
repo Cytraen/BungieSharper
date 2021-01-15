@@ -29,6 +29,7 @@ namespace BungieSharper.Client
     internal class ApiAccessor : IDisposable
     {
         private const string BaseUrl = "https://stats.bungie.net/Platform/";
+        private const byte SimultaneousRequests = 2;
 
         private readonly HttpClient _httpClient;
         private readonly SemaphoreSlim _semaphore;
@@ -40,7 +41,7 @@ namespace BungieSharper.Client
 
         internal ApiAccessor()
         {
-            _semaphore = new SemaphoreSlim(1, 1);
+            _semaphore = new SemaphoreSlim(SimultaneousRequests, SimultaneousRequests);
             _serializerOptions = new JsonSerializerOptions();
             _serializerOptions.Converters.Add(new JsonLongConverter());
 
@@ -84,7 +85,7 @@ namespace BungieSharper.Client
 
         internal void SetRateLimit(ushort requestsPerSecond)
         {
-            _msPerRequest = TimeSpan.FromMilliseconds(1000.0 / requestsPerSecond);
+            _msPerRequest = TimeSpan.FromMilliseconds(1000.0 / requestsPerSecond * SimultaneousRequests);
         }
 
         internal async Task<T> ApiRequestAsync<T>(Uri uri, HttpContent httpContent, HttpMethod httpMethod, string authToken, AuthHeaderType authType)
@@ -103,12 +104,17 @@ namespace BungieSharper.Client
                 if (httpResponseMessage.Content.Headers.ContentType.MediaType != "application/json")
                 {
                     await AwaitThrottleAndReleaseSemaphore(throttleTask, _semaphore).ConfigureAwait(false);
-                    throw new ContentNotJsonException(httpResponseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult());
+                    throw new ContentNotJsonException(httpResponseMessage);
                 }
 
                 var apiResponse = JsonSerializer.Deserialize<ApiResponse<T>>(
-                    await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false) ?? throw new ContentNullJsonException(),
-                    _serializerOptions);
+                    await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false), _serializerOptions
+                    );
+
+                if (apiResponse is null)
+                {
+                    throw new ContentNullJsonException(httpResponseMessage);
+                }
 
                 if (apiResponse.ErrorCode != PlatformErrorCodes.Success)
                 {
@@ -121,9 +127,7 @@ namespace BungieSharper.Client
                     {
                         await AwaitThrottleAndReleaseSemaphore(throttleTask, _semaphore).ConfigureAwait(false);
 
-                        throw new NonRetryErrorCodeException(
-                            $"'{uri.OriginalString}' returned {apiResponse.ErrorCode}: {apiResponse.Message}", apiResponse
-                        );
+                        throw new NonRetryErrorCodeException(apiResponse);
                     }
                 }
                 else
@@ -131,7 +135,7 @@ namespace BungieSharper.Client
                     if (apiResponse.Response == null)
                     {
                         await AwaitThrottleAndReleaseSemaphore(throttleTask, _semaphore).ConfigureAwait(false);
-                        throw new NullResponseException($"'{uri.OriginalString}' returned a null 'Response' property.", apiResponse);
+                        throw new NullResponseException(apiResponse);
                     }
 
                     await AwaitThrottleAndReleaseSemaphore(throttleTask, _semaphore).ConfigureAwait(false);
@@ -156,13 +160,18 @@ namespace BungieSharper.Client
                 if (httpResponseMessage.Content.Headers.ContentType.MediaType != "application/json")
                 {
                     await AwaitThrottleAndReleaseSemaphore(throttleTask, _semaphore).ConfigureAwait(false);
-                    throw new ContentNotJsonException(httpResponseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult());
+                    throw new ContentNotJsonException(httpResponseMessage);
                 }
 
                 var apiResponse = JsonSerializer.Deserialize<TokenRequestResponse>(
-                    await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false) ?? throw new ContentNullJsonException(),
-                    _serializerOptions);
+                    await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false), _serializerOptions
+                    );
 
+                if (apiResponse is null)
+                {
+                    throw new ContentNullJsonException(httpResponseMessage);
+                }
+                
                 await AwaitThrottleAndReleaseSemaphore(throttleTask, _semaphore).ConfigureAwait(false);
                 return apiResponse;
             }

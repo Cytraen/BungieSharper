@@ -16,79 +16,69 @@
 */
 
 using System;
+using System.Net.Http;
 
 namespace BungieSharper.Client
 {
     public class BungieBaseException : Exception
     {
-        public ApiResponse ApiResponse { get; }
-
-        internal BungieBaseException()
-        {
-        }
-
         internal BungieBaseException(string message) : base(message)
         {
         }
+    }
 
-        internal BungieBaseException(string message, ApiResponse apiResponse) : base(message)
+    public class BungieBaseHttpResponseException : BungieBaseException
+    {
+        public HttpResponseMessage HttpResponseMsg { get; }
+        
+        internal BungieBaseHttpResponseException(HttpResponseMessage httpResponseMsg, string message) : base(message)
         {
-            ApiResponse = apiResponse;
+            HttpResponseMsg = httpResponseMsg;
         }
     }
 
-    public class ContentNotJsonException : BungieBaseException
+    public class BungieBaseApiResponseException : BungieBaseException
     {
-        internal ContentNotJsonException()
-        {
-        }
+        public ApiResponse ApiResponseMsg { get; }
 
-        internal ContentNotJsonException(string message) : base(message)
+        internal BungieBaseApiResponseException(ApiResponse apiResponseMsg, string message) : base(message)
         {
-        }
-
-        internal ContentNotJsonException(string message, ApiResponse apiResponse) : base(message, apiResponse)
-        {
+            ApiResponseMsg = apiResponseMsg;
         }
     }
 
-    public class ContentNullJsonException : BungieBaseException
+    public class ContentNotJsonException : BungieBaseHttpResponseException
     {
-        internal ContentNullJsonException()
-        {
-        }
+        private const string DefaultErrorMessage = "The Bungie API returned content that was not of type 'application/json'.";
 
-        internal ContentNullJsonException(string message) : base(message)
-        {
-        }
-    }
-
-    public class NonRetryErrorCodeException : BungieBaseException
-    {
-        internal NonRetryErrorCodeException()
-        {
-        }
-
-        internal NonRetryErrorCodeException(string message) : base(message)
-        {
-        }
-
-        internal NonRetryErrorCodeException(string message, ApiResponse apiResponse) : base(message, apiResponse)
+        internal ContentNotJsonException(HttpResponseMessage httpResponse, string message = DefaultErrorMessage) : base(httpResponse, message)
         {
         }
     }
 
-    public class NullResponseException : BungieBaseException
+    public class ContentNullJsonException : BungieBaseHttpResponseException
     {
-        internal NullResponseException()
+        private const string DefaultErrorMessage = "The Bungie API returned json content that was null or empty.";
+
+        internal ContentNullJsonException(HttpResponseMessage httpResponse, string message = DefaultErrorMessage) : base(httpResponse, message)
         {
         }
+    }
 
-        internal NullResponseException(string message) : base(message)
+    public class NonRetryErrorCodeException : BungieBaseApiResponseException
+    {
+        private const string DefaultErrorMessage = "The Bungie API returned an error code that should not be retried on.";
+
+        internal NonRetryErrorCodeException(ApiResponse apiResponse, string message = DefaultErrorMessage) : base(apiResponse, message)
         {
         }
+    }
 
-        internal NullResponseException(string message, ApiResponse apiResponse) : base(message, apiResponse)
+    public class NullResponseException : BungieBaseApiResponseException
+    {
+        private const string DefaultErrorMessage = "The response provided by the Bungie API was null or empty.";
+
+        internal NullResponseException(ApiResponse apiResponse, string message = DefaultErrorMessage) : base(apiResponse, message)
         {
         }
     }

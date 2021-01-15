@@ -24,47 +24,32 @@ namespace BungieSharper.Client
 {
     public class BungieApiClient : IDisposable
     {
-        private const ushort DefaultRequestsPerSecond = 15;
         private const ushort MaxRequestsPerSecond = 25;
+        private const ushort DefaultRequestsPerSecond = 15;
 
         private readonly ApiAccessor _apiAccessor;
 
-        private Endpoints.Endpoints _apiEndpointModule;
-        private Endpoints.OAuthRequests _oAuthModule;
+        public Endpoints.Endpoints ApiEndpoints { get; }
 
-        public Endpoints.Endpoints ApiEndpoints
+        public Endpoints.OAuthRequests OAuthEndpoints { get; }
+        
+        public BungieApiClient()
         {
-            get => _apiEndpointModule;
-            private set => _apiEndpointModule = value;
-        }
-
-        public Endpoints.OAuthRequests OAuthEndpoints
-        {
-            get => _oAuthModule;
-            private set => _oAuthModule = value;
-        }
-
-        private void InitializeEndpoints()
-        {
+            _apiAccessor = new ApiAccessor();
+            _apiAccessor.SetRateLimit(DefaultRequestsPerSecond);
+            
             ApiEndpoints = new Endpoints.Endpoints(_apiAccessor);
             OAuthEndpoints = new Endpoints.OAuthRequests(_apiAccessor);
         }
-
-        public BungieApiClient(string apiKey)
+        
+        public BungieApiClient(string apiKey) : this()
         {
-            _apiAccessor = new ApiAccessor();
             _apiAccessor.SetApiKey(apiKey);
-            _apiAccessor.SetRateLimit(DefaultRequestsPerSecond);
-            InitializeEndpoints();
         }
 
-        public BungieApiClient(string apiKey, string userAgent)
+        public BungieApiClient(string apiKey, string userAgent) : this(apiKey)
         {
-            _apiAccessor = new ApiAccessor();
-            _apiAccessor.SetApiKey(apiKey);
             _apiAccessor.SetUserAgent(userAgent);
-            _apiAccessor.SetRateLimit(DefaultRequestsPerSecond);
-            InitializeEndpoints();
         }
 
         public void SetApiKey(string apiKey)

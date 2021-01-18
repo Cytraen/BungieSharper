@@ -1,6 +1,6 @@
+using BungieSharper.Schema;
 using System.Linq;
 using System.Threading.Tasks;
-using BungieSharper.Schema;
 using Xunit;
 
 namespace BungieSharper.Tests
@@ -35,7 +35,7 @@ namespace BungieSharper.Tests
             Assert.Single(actualCards);
 
             var userCard = actualCards[0];
-            
+
             Assert.Equal(expectedMembershipType, userCard.membershipType);
             Assert.Equal(expectedMembershipId, userCard.membershipId);
             Assert.Equal(expectedDisplayName, userCard.displayName);

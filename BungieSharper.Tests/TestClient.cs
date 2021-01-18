@@ -8,8 +8,7 @@ namespace BungieSharper.Tests
         public BungieApiClient TestClient { get; }
 
         private readonly string BungieUserAgent =
-            $"BungieSharper.Tests/{typeof(TestClientFixture).Assembly.GetName().Version} (+https://github.com/ashakoor/BungieSharper) " +
-            $"BungieSharper/{typeof(BungieApiClient).Assembly.GetName().Version} (+https://github.com/ashakoor/BungieSharper)";
+            $"BungieSharper.Tests/{typeof(TestClientFixture).Assembly.GetName().Version.ToString(3)} (+github.com/ashakoor/BungieSharper)";
 
         public TestClientFixture()
         {

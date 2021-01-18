@@ -1,21 +1,4 @@
-﻿/*
-   Copyright (C) 2020 ashakoor
-
-   This program is free software: you can redistribute it and/or modify
-   it under the terms of the GNU Affero General Public License as
-   published by the Free Software Foundation, either version 3 of the
-   License or any later version.
-
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU Affero General Public License for more details.
-
-   You should have received a copy of the GNU Affero General Public License
-   along with this program. If not, see <https://www.gnu.org/licenses/>.
-*/
-
-using BungieSharper.Schema.Exceptions;
+﻿using BungieSharper.Schema.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,24 +15,24 @@ namespace BungieSharper.Client
         public Endpoints.Endpoints ApiEndpoints { get; }
 
         public Endpoints.OAuthRequests OAuthEndpoints { get; }
-        
+
         public BungieApiClient()
         {
             _apiAccessor = new ApiAccessor();
-            _apiAccessor.SetRateLimit(DefaultRequestsPerSecond);
-            
+            SetRateLimit(DefaultRequestsPerSecond);
+
             ApiEndpoints = new Endpoints.Endpoints(_apiAccessor);
             OAuthEndpoints = new Endpoints.OAuthRequests(_apiAccessor);
         }
-        
+
         public BungieApiClient(string apiKey) : this()
         {
-            _apiAccessor.SetApiKey(apiKey);
+            SetApiKey(apiKey);
         }
 
         public BungieApiClient(string apiKey, string userAgent) : this(apiKey)
         {
-            _apiAccessor.SetUserAgent(userAgent);
+            SetUserAgent(userAgent);
         }
 
         public void SetApiKey(string apiKey)
@@ -59,7 +42,7 @@ namespace BungieSharper.Client
 
         public void SetUserAgent(string userAgent)
         {
-            _apiAccessor.SetUserAgent(userAgent);
+            _apiAccessor.SetUserAgent(userAgent + " BungieSharper/" + typeof(BungieApiClient).Assembly.GetName().Version.ToString(3) + " (+github.com/ashakoor/BungieSharper)");
         }
 
         public void SetRateLimit()

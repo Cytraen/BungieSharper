@@ -202,8 +202,7 @@ namespace BungieSharper.Generator.Generation
                 "        {\n" +
                 $"            return await _apiAccessor.ApiRequestAsync<{returnType}>(\n" +
                 $"                new Uri($\"{endpointPath}\"{queryStringParamFinal}, UriKind.Relative),\n" +
-                $"                {(requestBodyParam != null ? "new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, \"application/json\")" : "null")}," +
-                $"                HttpMethod.{httpMethodType}, authToken, AuthHeaderType.Bearer, cancelToken\n" +
+                $"                {(requestBodyParam != null ? "new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, \"application/json\")" : "null")}, HttpMethod.{httpMethodType}, authToken, AuthHeaderType.Bearer, cancelToken\n" +
                 "                ).ConfigureAwait(false);\n" +
                 "        }\n" +
                 "    }\n" +

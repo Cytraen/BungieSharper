@@ -32,12 +32,6 @@ jobs:
       with:
         dotnet-version: ${{ env.dotnet_sdk_version }}
 
-    - name: Build generator
-      run: dotnet build ./BungieSharper.Generator -c Release
-
-    - name: Run generator
-      run: dotnet run --project ./BungieSharper.Generator -c Release --no-build --verbosity normal
-
     - name: Build client
       run: dotnet build ./BungieSharper -c Release
 

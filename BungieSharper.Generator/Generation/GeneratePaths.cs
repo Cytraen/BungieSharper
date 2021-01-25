@@ -21,7 +21,16 @@ namespace BungieSharper.Generator.Generation
             var parameterStringList = new List<string>();
             var paramList = new List<EndpointParameter>();
 
-            var usingStatements = "using BungieSharper.Client;\nusing System;\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Net.Http;\nusing System.Text.Json;\nusing System.Threading.Tasks;\n\n";
+            var usingStatements =
+                "using BungieSharper.Client;" +
+                "\nusing System;" +
+                "\nusing System.Collections.Generic;" +
+                "\nusing System.Linq;" +
+                "\nusing System.Net.Http;" +
+                "\nusing System.Text.Json;" +
+                "\nusing System.Threading;" +
+                "\nusing System.Threading.Tasks;" +
+                "\n\n";
 
             if (pathDetails.ContainsKey("get"))
             {
@@ -94,6 +103,7 @@ namespace BungieSharper.Generator.Generation
                 requiredParameterStringList = parameterStringList.Where(x => !x.Contains(" = null")).ToList();
             }
             optionalParameterStringList.Add("string authToken = null");
+            optionalParameterStringList.Add("CancellationToken cancelToken = default");
 
             var queryStringParams = paramList.Where(x => x.ParamLoc == ParameterLocation.Query).ToList();
 
@@ -192,7 +202,8 @@ namespace BungieSharper.Generator.Generation
                 "        {\n" +
                 $"            return await _apiAccessor.ApiRequestAsync<{returnType}>(\n" +
                 $"                new Uri($\"{endpointPath}\"{queryStringParamFinal}, UriKind.Relative),\n" +
-                $"                {(requestBodyParam != null ? "new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, \"application/json\")" : "null")}, HttpMethod.{httpMethodType}, authToken, AuthHeaderType.Bearer\n" +
+                $"                {(requestBodyParam != null ? "new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, \"application/json\")" : "null")}," +
+                $"                HttpMethod.{httpMethodType}, authToken, AuthHeaderType.Bearer, cancelToken\n" +
                 "                ).ConfigureAwait(false);\n" +
                 "        }\n" +
                 "    }\n" +

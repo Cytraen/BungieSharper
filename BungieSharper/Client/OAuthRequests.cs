@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BungieSharper.Endpoints
@@ -20,7 +21,7 @@ namespace BungieSharper.Endpoints
             _apiAccessor = apiAccessor;
         }
 
-        public async Task<TokenRequestResponse> GetOAuthToken(string authorizationCode, string authToken = null, AuthHeaderType tokenType = AuthHeaderType.None)
+        public async Task<TokenRequestResponse> GetOAuthToken(string authorizationCode, string authToken = null, AuthHeaderType tokenType = AuthHeaderType.None, CancellationToken cancelToken = default)
         {
             var encodedContentPairs = new List<KeyValuePair<string, string>>
             {
@@ -36,10 +37,10 @@ namespace BungieSharper.Endpoints
 
             var encodedContent = new FormUrlEncodedContent(encodedContentPairs);
 
-            return await _apiAccessor.ApiTokenRequestResponseAsync(new Uri(OAuthTokenUrl, UriKind.Absolute), encodedContent, HttpMethod.Post, null, AuthHeaderType.None).ConfigureAwait(false);
+            return await _apiAccessor.ApiTokenRequestResponseAsync(new Uri(OAuthTokenUrl, UriKind.Absolute), encodedContent, HttpMethod.Post, authToken, tokenType, cancelToken).ConfigureAwait(false);
         }
 
-        public async Task<TokenRequestResponse> RefreshOAuthToken(string refreshToken, string authToken = null, AuthHeaderType tokenType = AuthHeaderType.None)
+        public async Task<TokenRequestResponse> RefreshOAuthToken(string refreshToken, string authToken = null, AuthHeaderType tokenType = AuthHeaderType.None, CancellationToken cancelToken = default)
         {
             var encodedContentPairs = new List<KeyValuePair<string, string>>
             {
@@ -55,7 +56,7 @@ namespace BungieSharper.Endpoints
 
             var encodedContent = new FormUrlEncodedContent(encodedContentPairs);
 
-            return await _apiAccessor.ApiTokenRequestResponseAsync(new Uri(OAuthTokenUrl, UriKind.Absolute), encodedContent, HttpMethod.Post, null, AuthHeaderType.None).ConfigureAwait(false);
+            return await _apiAccessor.ApiTokenRequestResponseAsync(new Uri(OAuthTokenUrl, UriKind.Absolute), encodedContent, HttpMethod.Post, authToken, tokenType, cancelToken).ConfigureAwait(false);
         }
 
         public string GetOAuthAuthorizationUrl()

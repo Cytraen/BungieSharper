@@ -71,18 +71,22 @@ namespace BungieSharper.Client
             _msPerRequest = TimeSpan.FromMilliseconds(1000.0 / requestsPerSecond * SimultaneousRequests);
         }
 
-        internal async Task<T> ApiRequestAsync<T>(Uri uri, HttpContent httpContent, HttpMethod httpMethod, string authToken, AuthHeaderType authType)
+        internal async Task<T> ApiRequestAsync<T>(Uri uri, HttpContent httpContent, HttpMethod httpMethod, string authToken, AuthHeaderType authType, CancellationToken cancelToken)
         {
-            var semaphoreTask = _semaphore.WaitAsync().ConfigureAwait(false);
-
+            var semaphoreTask = _semaphore.WaitAsync(cancelToken).ConfigureAwait(false);
             var httpRequestMessage = HttpRequestGenerator.MakeApiRequestMessage(uri, httpContent, httpMethod, authToken, authType);
-
             await semaphoreTask;
 
             while (true)
             {
-                var throttleTask = Task.Delay(_msPerRequest);
-                var httpResponseMessage = await GetApiResponseAsync(httpRequestMessage).ConfigureAwait(false);
+                var throttleTask = Task.Delay(_msPerRequest, cancelToken);
+                var httpResponseMessage = await GetApiResponseAsync(httpRequestMessage, cancelToken).ConfigureAwait(false);
+                
+                if (cancelToken.IsCancellationRequested)
+                {
+                    await AwaitThrottleAndReleaseSemaphore(throttleTask, _semaphore).ConfigureAwait(false);
+                    throw new OperationCanceledException();
+                }
 
                 if (httpResponseMessage.Content.Headers.ContentType.MediaType != "application/json")
                 {
@@ -104,7 +108,7 @@ namespace BungieSharper.Client
                     if (ApiRetry(apiResponse.ErrorCode))
                     {
                         await throttleTask.ConfigureAwait(false);
-                        await Task.Delay((int)apiResponse.ThrottleSeconds).ConfigureAwait(false);
+                        await Task.Delay((int)apiResponse.ThrottleSeconds, cancelToken).ConfigureAwait(false);
                     }
                     else
                     {
@@ -127,18 +131,22 @@ namespace BungieSharper.Client
             }
         }
 
-        internal async Task<TokenRequestResponse> ApiTokenRequestResponseAsync(Uri uri, HttpContent httpContent, HttpMethod httpMethod, string authToken, AuthHeaderType authType)
+        internal async Task<TokenRequestResponse> ApiTokenRequestResponseAsync(Uri uri, HttpContent httpContent, HttpMethod httpMethod, string authToken, AuthHeaderType authType,  CancellationToken cancelToken)
         {
-            var semaphoreTask = _semaphore.WaitAsync().ConfigureAwait(false);
-
+            var semaphoreTask = _semaphore.WaitAsync(cancelToken).ConfigureAwait(false);
             var httpRequestMessage = HttpRequestGenerator.MakeApiRequestMessage(uri, httpContent, httpMethod, authToken, authType);
-
             await semaphoreTask;
 
             while (true)
             {
-                var throttleTask = Task.Delay(_msPerRequest);
-                var httpResponseMessage = await GetApiResponseAsync(httpRequestMessage).ConfigureAwait(false);
+                var throttleTask = Task.Delay(_msPerRequest, cancelToken);
+                var httpResponseMessage = await GetApiResponseAsync(httpRequestMessage, cancelToken).ConfigureAwait(false);
+                
+                if (cancelToken.IsCancellationRequested)
+                {
+                    await AwaitThrottleAndReleaseSemaphore(throttleTask, _semaphore).ConfigureAwait(false);
+                    throw new OperationCanceledException();
+                }
 
                 if (httpResponseMessage.Content.Headers.ContentType.MediaType != "application/json")
                 {
@@ -160,9 +168,9 @@ namespace BungieSharper.Client
             }
         }
 
-        private async Task<HttpResponseMessage> GetApiResponseAsync(HttpRequestMessage request)
+        private async Task<HttpResponseMessage> GetApiResponseAsync(HttpRequestMessage request, CancellationToken cancelToken)
         {
-            return await _httpClient.SendAsync(request).ConfigureAwait(false);
+            return await _httpClient.SendAsync(request, cancelToken).ConfigureAwait(false);
         }
 
         private static async Task AwaitThrottleAndReleaseSemaphore(Task throttleTask, SemaphoreSlim semaphore)

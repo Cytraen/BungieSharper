@@ -18,7 +18,7 @@ namespace BungieSharper.Schema.Destiny.Definitions.Collectibles
         /// I can't promise that it's going to be 100% accurate, but if the designers were consistent in assigning the same source strings to items with the same sources, it *ought to* be. No promises though.
         /// This hash also doesn't relate to an actual definition, just to note: we've got nothing useful other than the source string for this data.
         /// </summary>
-        public uint sourceHash { get; set; }
+        public uint? sourceHash { get; set; }
         public uint itemHash { get; set; }
         public Schema.Destiny.Definitions.Collectibles.DestinyCollectibleAcquisitionBlock acquisitionInfo { get; set; }
         public Schema.Destiny.Definitions.Collectibles.DestinyCollectibleStateBlock stateInfo { get; set; }
@@ -41,13 +41,13 @@ namespace BungieSharper.Schema.Destiny.Definitions.Collectibles
 
     public class DestinyCollectibleAcquisitionBlock
     {
-        public uint acquireMaterialRequirementHash { get; set; }
-        public uint acquireTimestampUnlockValueHash { get; set; }
+        public uint? acquireMaterialRequirementHash { get; set; }
+        public uint? acquireTimestampUnlockValueHash { get; set; }
     }
 
     public class DestinyCollectibleStateBlock
     {
-        public uint obscuredOverrideItemHash { get; set; }
+        public uint? obscuredOverrideItemHash { get; set; }
         public Schema.Destiny.Definitions.Presentation.DestinyPresentationNodeRequirementsBlock requirements { get; set; }
     }
 }

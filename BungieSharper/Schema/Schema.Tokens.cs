@@ -24,12 +24,12 @@ namespace BungieSharper.Schema.Tokens
     public class PartnerOfferHistoryResponse
     {
         public string PartnerOfferKey { get; set; }
-        public long MembershipId { get; set; }
-        public int MembershipType { get; set; }
+        public long? MembershipId { get; set; }
+        public int? MembershipType { get; set; }
         public string LocalizedName { get; set; }
         public string LocalizedDescription { get; set; }
         public bool IsConsumable { get; set; }
         public int QuantityApplied { get; set; }
-        public DateTime ApplyDate { get; set; }
+        public DateTime? ApplyDate { get; set; }
     }
 }

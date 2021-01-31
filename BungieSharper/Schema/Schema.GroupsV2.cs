@@ -73,7 +73,7 @@ namespace BungieSharper.Schema.GroupsV2
         public string avatarPath { get; set; }
         public long conversationId { get; set; }
         public bool enableInvitationMessagingForAdmins { get; set; }
-        public DateTime banExpireDate { get; set; }
+        public DateTime? banExpireDate { get; set; }
         public Schema.GroupsV2.GroupFeatures features { get; set; }
         public Schema.GroupsV2.GroupV2ClanInfoAndInvestment clanInfo { get; set; }
     }
@@ -319,7 +319,7 @@ namespace BungieSharper.Schema.GroupsV2
         public Schema.GroupsV2.GroupType groupType { get; set; }
         public Schema.GroupsV2.GroupDateRange creationDate { get; set; }
         public Schema.GroupsV2.GroupSortBy sortBy { get; set; }
-        public int groupMemberCountFilter { get; set; }
+        public int? groupMemberCountFilter { get; set; }
         public string localeFilter { get; set; }
         public string tagText { get; set; }
         public int itemsPerPage { get; set; }
@@ -364,18 +364,18 @@ namespace BungieSharper.Schema.GroupsV2
         public string about { get; set; }
         public string motto { get; set; }
         public string theme { get; set; }
-        public int avatarImageIndex { get; set; }
+        public int? avatarImageIndex { get; set; }
         public string tags { get; set; }
-        public bool isPublic { get; set; }
-        public int membershipOption { get; set; }
-        public bool isPublicTopicAdminOnly { get; set; }
-        public bool allowChat { get; set; }
-        public int chatSecurity { get; set; }
+        public bool? isPublic { get; set; }
+        public int? membershipOption { get; set; }
+        public bool? isPublicTopicAdminOnly { get; set; }
+        public bool? allowChat { get; set; }
+        public int? chatSecurity { get; set; }
         public string callsign { get; set; }
         public string locale { get; set; }
-        public int homepage { get; set; }
-        public bool enableInvitationMessagingForAdmins { get; set; }
-        public int defaultPublicity { get; set; }
+        public int? homepage { get; set; }
+        public bool? enableInvitationMessagingForAdmins { get; set; }
+        public int? defaultPublicity { get; set; }
     }
 
     public class GroupOptionsEditAction
@@ -386,33 +386,33 @@ namespace BungieSharper.Schema.GroupsV2
         /// True means admins have this power, false means they don't
         /// Default is false for clans, true for groups.
         /// </summary>
-        public bool InvitePermissionOverride { get; set; }
+        public bool? InvitePermissionOverride { get; set; }
         /// <summary>
         /// Minimum Member Level allowed to update group culture
         /// Always Allowed: Founder, Acting Founder
         /// True means admins have this power, false means they don't
         /// Default is false for clans, true for groups.
         /// </summary>
-        public bool UpdateCulturePermissionOverride { get; set; }
+        public bool? UpdateCulturePermissionOverride { get; set; }
         /// <summary>
         /// Minimum Member Level allowed to host guided games
         /// Always Allowed: Founder, Acting Founder, Admin
         /// Allowed Overrides: None, Member, Beginner
         /// Default is Member for clans, None for groups, although this means nothing for groups.
         /// </summary>
-        public int HostGuidedGamePermissionOverride { get; set; }
+        public int? HostGuidedGamePermissionOverride { get; set; }
         /// <summary>
         /// Minimum Member Level allowed to update banner
         /// Always Allowed: Founder, Acting Founder
         /// True means admins have this power, false means they don't
         /// Default is false for clans, true for groups.
         /// </summary>
-        public bool UpdateBannerPermissionOverride { get; set; }
+        public bool? UpdateBannerPermissionOverride { get; set; }
         /// <summary>
         /// Level to join a member at when accepting an invite, application, or joining an open clan
         /// Default is Beginner.
         /// </summary>
-        public int JoinLevel { get; set; }
+        public int? JoinLevel { get; set; }
     }
 
     public class GroupOptionalConversationAddRequest
@@ -423,9 +423,9 @@ namespace BungieSharper.Schema.GroupsV2
 
     public class GroupOptionalConversationEditRequest
     {
-        public bool chatEnabled { get; set; }
+        public bool? chatEnabled { get; set; }
         public string chatName { get; set; }
-        public int chatSecurity { get; set; }
+        public int? chatSecurity { get; set; }
     }
 
     public class GroupMemberLeaveResult
@@ -457,8 +457,8 @@ namespace BungieSharper.Schema.GroupsV2
         public long groupId { get; set; }
         public DateTime creationDate { get; set; }
         public Schema.GroupsV2.GroupApplicationResolveState resolveState { get; set; }
-        public DateTime resolveDate { get; set; }
-        public long resolvedByMembershipId { get; set; }
+        public DateTime? resolveDate { get; set; }
+        public long? resolvedByMembershipId { get; set; }
         public string requestMessage { get; set; }
         public string resolveMessage { get; set; }
         public Schema.GroupsV2.GroupUserInfoCard destinyUserInfo { get; set; }

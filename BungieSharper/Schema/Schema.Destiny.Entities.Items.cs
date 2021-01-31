@@ -12,7 +12,7 @@ namespace BungieSharper.Schema.Destiny.Entities.Items
         /// <summary>The identifier for the item's definition, which is where most of the useful static information for the item can be found.</summary>
         public uint itemHash { get; set; }
         /// <summary>If the item is instanced, it will have an instance ID. Lack of an instance ID implies that the item has no distinct local qualities aside from stack size.</summary>
-        public long itemInstanceId { get; set; }
+        public long? itemInstanceId { get; set; }
         /// <summary>The quantity of the item in this stack. Note that Instanced items cannot stack. If an instanced item, this value will always be 1 (as the stack has exactly one item in it)</summary>
         public int quantity { get; set; }
         /// <summary>If the item is bound to a location, it will be specified in this enum.</summary>
@@ -31,9 +31,9 @@ namespace BungieSharper.Schema.Destiny.Entities.Items
         /// If populated, this is the hash of the item whose icon (and other secondary styles, but *not* the human readable strings) should override whatever icons/styles are on the item being sold.
         /// If you don't do this, certain items whose styles are being overridden by socketed items - such as the "Recycle Shader" item - would show whatever their default icon/style is, and it wouldn't be pretty or look accurate.
         /// </summary>
-        public uint overrideStyleItemHash { get; set; }
+        public uint? overrideStyleItemHash { get; set; }
         /// <summary>If the item can expire, this is the date at which it will/did expire.</summary>
-        public DateTime expirationDate { get; set; }
+        public DateTime? expirationDate { get; set; }
         /// <summary>
         /// If this is true, the object is actually a "wrapper" of the object it's representing. This means that it's not the actual item itself, but rather an item that must be "opened" in game before you have and can use the item.
         ///  Wrappers are an evolution of "bundles", which give an easy way to let you preview the contents of what you purchased while still letting you get a refund before you "open" it.
@@ -42,11 +42,11 @@ namespace BungieSharper.Schema.Destiny.Entities.Items
         /// <summary>If this is populated, it is a list of indexes into DestinyInventoryItemDefinition.tooltipNotifications for any special tooltip messages that need to be shown for this item.</summary>
         public IEnumerable<int> tooltipNotificationIndexes { get; set; }
         /// <summary>The identifier for the currently-selected metric definition, to be displayed on the emblem nameplate.</summary>
-        public uint metricHash { get; set; }
+        public uint? metricHash { get; set; }
         /// <summary>The objective progress for the currently-selected metric definition, to be displayed on the emblem nameplate.</summary>
         public Schema.Destiny.Quests.DestinyObjectiveProgress metricObjective { get; set; }
         /// <summary>The version of this item, used to index into the versions list in the item definition quality block.</summary>
-        public int versionNumber { get; set; }
+        public int? versionNumber { get; set; }
     }
 
     /// <summary>
@@ -62,7 +62,7 @@ namespace BungieSharper.Schema.Destiny.Entities.Items
         /// <summary>I may regret naming it this way - but this represents when an item has an objective that doesn't serve a beneficial purpose, but rather is used for "flavor" or additional information. For instance, when Emblems track specific stats, those stats are represented as Objectives on the item.</summary>
         public Schema.Destiny.Quests.DestinyObjectiveProgress flavorObjective { get; set; }
         /// <summary>If we have any information on when these objectives were completed, this will be the date of that completion. This won't be on many items, but could be interesting for some items that do store this information.</summary>
-        public DateTime dateCompleted { get; set; }
+        public DateTime? dateCompleted { get; set; }
     }
 
     /// <summary>
@@ -75,7 +75,7 @@ namespace BungieSharper.Schema.Destiny.Entities.Items
         /// <summary>If the item has a damage type, this is the item's current damage type.</summary>
         public Schema.Destiny.DamageType damageType { get; set; }
         /// <summary>The current damage type's hash, so you can look up localized info and icons for it.</summary>
-        public uint damageTypeHash { get; set; }
+        public uint? damageTypeHash { get; set; }
         /// <summary>The item stat that we consider to be "primary" for the item. For instance, this would be "Attack" for Weapons or "Defense" for armor.</summary>
         public Schema.Destiny.DestinyStat primaryStat { get; set; }
         /// <summary>The Item's "Level" has the most significant bearing on its stats, such as Light and Power.</summary>
@@ -96,9 +96,9 @@ namespace BungieSharper.Schema.Destiny.Entities.Items
         /// <summary>If you cannot equip the item, this is a flags enum that enumerates all of the reasons why you couldn't equip the item. You may need to refine your UI further by using unlockHashesRequiredToEquip and equipRequiredLevel.</summary>
         public Schema.Destiny.EquipFailureReason cannotEquipReason { get; set; }
         /// <summary>If populated, this item has a breaker type corresponding to the given value. See DestinyBreakerTypeDefinition for more details.</summary>
-        public int breakerType { get; set; }
+        public int? breakerType { get; set; }
         /// <summary>If populated, this is the hash identifier for the item's breaker type. See DestinyBreakerTypeDefinition for more details.</summary>
-        public uint breakerTypeHash { get; set; }
+        public uint? breakerTypeHash { get; set; }
         /// <summary>IF populated, this item supports Energy mechanics (i.e. Armor 2.0), and these are the current details of its energy type and available capacity to spend energy points.</summary>
         public Schema.Destiny.Entities.Items.DestinyItemInstanceEnergy energy { get; set; }
     }
@@ -174,7 +174,7 @@ namespace BungieSharper.Schema.Destiny.Entities.Items
         /// The currently active plug, if any.
         /// Note that, because all plugs are statically defined, its effect on stats and perks can be statically determined using the plug item's definition. The stats and perks can be taken at face value on the plug item as the stats and perks it will provide to the user/item.
         /// </summary>
-        public uint plugHash { get; set; }
+        public uint? plugHash { get; set; }
         /// <summary>
         /// Even if a plug is inserted, it doesn't mean it's enabled.
         /// This flag indicates whether the plug is active and providing its benefits.

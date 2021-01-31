@@ -43,15 +43,15 @@ namespace BungieSharper.Schema.Fireteam
         public Schema.Fireteam.FireteamPlatform platform { get; set; }
         public int activityType { get; set; }
         public bool isImmediate { get; set; }
-        public DateTime scheduledTime { get; set; }
+        public DateTime? scheduledTime { get; set; }
         public long ownerMembershipId { get; set; }
         public int playerSlotCount { get; set; }
-        public int alternateSlotCount { get; set; }
+        public int? alternateSlotCount { get; set; }
         public int availablePlayerSlotCount { get; set; }
         public int availableAlternateSlotCount { get; set; }
         public string title { get; set; }
         public DateTime dateCreated { get; set; }
-        public DateTime dateModified { get; set; }
+        public DateTime? dateModified { get; set; }
         public bool isPublic { get; set; }
         public string locale { get; set; }
         public bool isValid { get; set; }

@@ -82,7 +82,7 @@ namespace BungieSharper.Schema.Forum
         public IEnumerable<Schema.Tags.Models.Contracts.TagResponse> searchedTags { get; set; }
         public IEnumerable<Schema.Forum.PollResponse> polls { get; set; }
         public IEnumerable<Schema.Forum.ForumRecruitmentDetail> recruitmentDetails { get; set; }
-        public int availablePages { get; set; }
+        public int? availablePages { get; set; }
         public IEnumerable<Schema.Forum.PostResponse> results { get; set; }
         public int totalResults { get; set; }
         public bool hasMore { get; set; }
@@ -120,7 +120,7 @@ namespace BungieSharper.Schema.Forum
         public Schema.Forum.ForumRecruitmentIntensityLabel intensity { get; set; }
         public Schema.Forum.ForumRecruitmentToneLabel tone { get; set; }
         public bool approved { get; set; }
-        public long conversationId { get; set; }
+        public long? conversationId { get; set; }
         public int playerSlotsTotal { get; set; }
         public int playerSlotsRemaining { get; set; }
         public IEnumerable<Schema.User.GeneralUser> Fireteam { get; set; }

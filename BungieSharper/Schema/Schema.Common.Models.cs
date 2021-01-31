@@ -63,7 +63,7 @@ namespace BungieSharper.Schema.Common.Models
         public string ammoTypeSpecialIcon { get; set; }
         public string ammoTypePrimaryIcon { get; set; }
         public uint currentSeasonalArtifactHash { get; set; }
-        public uint currentSeasonHash { get; set; }
+        public uint? currentSeasonHash { get; set; }
         public IEnumerable<uint> futureSeasonHashes { get; set; }
         public IEnumerable<uint> pastSeasonHashes { get; set; }
     }

@@ -7,7 +7,7 @@
     {
         public Schema.Components.ComponentPrivacySetting privacy { get; set; }
         /// <summary>If true, this component is disabled.</summary>
-        public bool disabled { get; set; }
+        public bool? disabled { get; set; }
     }
 
     /// <summary>

@@ -118,7 +118,7 @@ namespace BungieSharper.Schema.Destiny.Definitions.Milestones
         /// <summary>The full set of all possible "conceptual activities" that are related to this Milestone. Tiers or alternative modes of play within these conceptual activities will be defined as sub-entities. Keyed by the Conceptual Activity Hash. Use the key to look up DestinyActivityDefinition.</summary>
         public Dictionary<uint, Schema.Destiny.Definitions.Milestones.DestinyMilestoneActivityDefinition> activities { get; set; }
         /// <summary>Sometimes, a Milestone's quest is related to an entire Destination rather than a specific activity. In that situation, this will be the hash of that Destination. Hotspots are currently the only Milestones that expose this data, but that does not preclude this data from being returned for other Milestones in the future.</summary>
-        public uint destinationHash { get; set; }
+        public uint? destinationHash { get; set; }
     }
 
     /// <summary>
@@ -141,13 +141,13 @@ namespace BungieSharper.Schema.Destiny.Definitions.Milestones
     public class DestinyMilestoneQuestRewardItem
     {
         /// <summary>The quest reward item *may* be associated with a vendor. If so, this is that vendor. Use this hash to look up the DestinyVendorDefinition.</summary>
-        public uint vendorHash { get; set; }
+        public uint? vendorHash { get; set; }
         /// <summary>The quest reward item *may* be associated with a vendor. If so, this is the index of the item being sold, which we can use at runtime to find instanced item information for the reward item.</summary>
-        public int vendorItemIndex { get; set; }
+        public int? vendorItemIndex { get; set; }
         /// <summary>The hash identifier for the item in question. Use it to look up the item's DestinyInventoryItemDefinition.</summary>
         public uint itemHash { get; set; }
         /// <summary>If this quantity is referring to a specific instance of an item, this will have the item's instance ID. Normally, this will be null.</summary>
-        public long itemInstanceId { get; set; }
+        public long? itemInstanceId { get; set; }
         /// <summary>The amount of the item needed/available depending on the context of where DestinyItemQuantity is being used.</summary>
         public int quantity { get; set; }
     }
@@ -219,7 +219,7 @@ namespace BungieSharper.Schema.Destiny.Definitions.Milestones
         /// <summary>The items you will get as rewards, and how much of it you'll get.</summary>
         public IEnumerable<Schema.Destiny.DestinyItemQuantity> items { get; set; }
         /// <summary>If this reward is redeemed at a Vendor, this is the hash of the Vendor to go to in order to redeem the reward. Use this hash to look up the DestinyVendorDefinition.</summary>
-        public uint vendorHash { get; set; }
+        public uint? vendorHash { get; set; }
         /// <summary>For us to bother returning this info, we should be able to return some kind of information about why these rewards are grouped together. This is ideally that information. Look at how confident I am that this will always remain true.</summary>
         public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
         /// <summary>If you want to follow BNet's ordering of these rewards, use this number within a given category to order the rewards. Yeah, I know. I feel dirty too.</summary>

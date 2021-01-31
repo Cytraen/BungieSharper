@@ -51,7 +51,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// If the value exists, this is the hash identifier for the Faction that owns this Progression.
         /// This is purely for convenience, if you're looking at a progression and want to know if and who it's related to in terms of Faction Reputation.
         /// </summary>
-        public uint factionHash { get; set; }
+        public uint? factionHash { get; set; }
         /// <summary>The #RGB string value for the color related to this progression, if there is one.</summary>
         public Schema.Destiny.Misc.DestinyColor color { get; set; }
         /// <summary>For progressions that have it, this is the rank icon we use in the Companion, displayed above the progressions' rank value.</summary>
@@ -113,7 +113,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// <summary>Tooltips that only come up conditionally for the item. Check the live data DestinyItemComponent.tooltipNotificationIndexes property for which of these should be shown at runtime.</summary>
         public IEnumerable<Schema.Destiny.Definitions.DestinyItemTooltipNotification> tooltipNotifications { get; set; }
         /// <summary>If this item has a collectible related to it, this is the hash identifier of that collectible entry.</summary>
-        public uint collectibleHash { get; set; }
+        public uint? collectibleHash { get; set; }
         /// <summary>If available, this is the original 'active' release watermark overlay for the icon. If the item has different versions, this can be overridden by the 'display version watermark icon' from the 'quality' block. Alternatively, if there is no watermark for the version, and the item version has a power cap below the current season power cap, this can be overridden by the iconWatermarkShelved property.</summary>
         public string iconWatermark { get; set; }
         /// <summary>If available, this is the 'shelved' release watermark overlay for the icon. If the item version has a power cap below the current season power cap, it can be treated as 'shelved', and should be shown with this 'shelved' watermark overlay.</summary>
@@ -147,7 +147,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// <summary>If this item can have stats (such as a weapon, armor, or vehicle), this block will be non-null and populated with the stats found on the item.</summary>
         public Schema.Destiny.Definitions.DestinyItemStatBlockDefinition stats { get; set; }
         /// <summary>If the item is an emblem that has a special Objective attached to it - for instance, if the emblem tracks PVP Kills, or what-have-you. This is a bit different from, for example, the Vanguard Kill Tracker mod, which pipes data into the "art channel". When I get some time, I would like to standardize these so you can get at the values they expose without having to care about what they're being used for and how they are wired up, but for now here's the raw data.</summary>
-        public uint emblemObjectiveHash { get; set; }
+        public uint? emblemObjectiveHash { get; set; }
         /// <summary>If this item can be equipped, this block will be non-null and will be populated with the conditions under which it can be equipped.</summary>
         public Schema.Destiny.Definitions.DestinyEquippingBlockDefinition equippingBlock { get; set; }
         /// <summary>If this item can be rendered, this block will be non-null and will be populated with rendering information.</summary>
@@ -181,12 +181,12 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// <summary>If the item has any *intrinsic* Perks (Perks that it will provide regardless of Sockets, Talent Grid, and other transitory state), they will be defined here.</summary>
         public IEnumerable<Schema.Destiny.Definitions.DestinyItemPerkEntryDefinition> perks { get; set; }
         /// <summary>If the item has any related Lore (DestinyLoreDefinition), this will be the hash identifier you can use to look up the lore definition.</summary>
-        public uint loreHash { get; set; }
+        public uint? loreHash { get; set; }
         /// <summary>
         /// There are times when the game will show you a "summary/vague" version of an item - such as a description of its type represented as a DestinyInventoryItemDefinition - rather than display the item itself.
         /// This happens sometimes when summarizing possible rewards in a tooltip. This is the item displayed instead, if it exists.
         /// </summary>
-        public uint summaryItemHash { get; set; }
+        public uint? summaryItemHash { get; set; }
         /// <summary>If any animations were extracted from game content for this item, these will be the definitions of those animations.</summary>
         public IEnumerable<Schema.Destiny.Definitions.Animations.DestinyAnimationReference> animations { get; set; }
         /// <summary>BNet may forbid the execution of actions on this item via the API. If that is occurring, allowActions will be set to false.</summary>
@@ -229,7 +229,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// <summary>Some weapons and plugs can have a "Breaker Type": a special ability that works sort of like damage type vulnerabilities. This is (almost?) always set on items by plugs.</summary>
         public Schema.Destiny.DestinyBreakerType breakerType { get; set; }
         /// <summary>Since we also have a breaker type definition, this is the hash for that breaker type for your convenience. Whether you use the enum or hash and look up the definition depends on what's cleanest for your code.</summary>
-        public uint breakerTypeHash { get; set; }
+        public uint? breakerTypeHash { get; set; }
         /// <summary>
         /// If true, then you will be allowed to equip the item if you pass its other requirements.
         /// This being false means that you cannot equip the item under any circumstances.
@@ -254,9 +254,9 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// Similar to defaultDamageType, but represented as the hash identifier for a DestinyDamageTypeDefinition.
         /// I will likely regret leaving in the enumeration versions of these properties, but for now they're very convenient.
         /// </summary>
-        public uint defaultDamageTypeHash { get; set; }
+        public uint? defaultDamageTypeHash { get; set; }
         /// <summary>If this item is related directly to a Season of Destiny, this is the hash identifier for that season.</summary>
-        public uint seasonHash { get; set; }
+        public uint? seasonHash { get; set; }
         /// <summary>If true, this is a dummy vendor-wrapped item template. Items purchased from Eververse will be "wrapped" by one of these items so that we can safely provide refund capabilities before the item is "unwrapped".</summary>
         public bool isWrapper { get; set; }
         /// <summary>Traits are metadata tags applied to this item. For example: armor slot, weapon type, foundry, faction, etc. These IDs come from the game and don't map to any content, but should still be useful.</summary>
@@ -481,7 +481,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// If the item's stats are meant to be modified by a DestinyStatGroupDefinition, this will be the identifier for that definition.
         /// If you are using live data or precomputed stats data on the DestinyInventoryItemDefinition.stats.stats property, you don't have to worry about statGroupHash and how it alters stats: the already altered stats are provided to you. But if you want to see how the sausage gets made, or perform computations yourself, this is valuable information.
         /// </summary>
-        public uint statGroupHash { get; set; }
+        public uint? statGroupHash { get; set; }
         /// <summary>
         /// If you are looking for precomputed values for the stats on a weapon, this is where they are stored. Technically these are the "Display" stat values. Please see DestinyStatsDefinition for what Display Stat Values means, it's a very long story... but essentially these are the closest values BNet can get to the item stats that you see in-game.
         /// These stats are keyed by the DestinyStatDefinition's hash identifier for the stat that's found on the item.
@@ -522,7 +522,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// This is pulled directly from the item's DestinyStatGroupDefinition, and placed here for convenience.
         /// If not returned, there is no maximum to use (and thus the stat should not be shown in a way that assumes there is a limit to the stat)
         /// </summary>
-        public int displayMaximum { get; set; }
+        public int? displayMaximum { get; set; }
     }
 
     /// <summary>
@@ -637,7 +637,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
     public class DestinyEquippingBlockDefinition
     {
         /// <summary>If the item is part of a gearset, this is a reference to that gearset item.</summary>
-        public uint gearsetItemHash { get; set; }
+        public uint? gearsetItemHash { get; set; }
         /// <summary>
         /// If defined, this is the label used to check if the item has other items of matching types already equipped. 
         /// For instance, when you aren't allowed to equip more than one Exotic Weapon, that's because all exotic weapons have identical uniqueLabels and the game checks the to-be-equipped item's uniqueLabel vs. all other already equipped items (other than the item in the slot that's about to be occupied).
@@ -721,7 +721,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// <summary>If the preview data is derived from a fake "Preview" Vendor, this will be the hash identifier for the DestinyVendorDefinition of that fake vendor.</summary>
         public uint previewVendorHash { get; set; }
         /// <summary>If this item should show you Artifact information when you preview it, this is the hash identifier of the DestinyArtifactDefinition for the artifact whose data should be shown.</summary>
-        public uint artifactHash { get; set; }
+        public uint? artifactHash { get; set; }
         /// <summary>If the preview has an associated action (like "Open"), this will be the localized string for that action.</summary>
         public string previewActionString { get; set; }
         /// <summary>This is a list of the items being previewed, categorized in the same way as they are in the preview UI.</summary>
@@ -938,7 +938,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public string icon { get; set; }
         public string title { get; set; }
         /// <summary>If this overlay has a currency item that it features, this is said featured item.</summary>
-        public uint currencyItemHash { get; set; }
+        public uint? currencyItemHash { get; set; }
     }
 
     /// <summary>
@@ -957,11 +957,11 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// If it exists, this is the hash identifier of a DestinyProgressionDefinition that represents the progression to show on this display category.
         /// Specific categories can now have thier own distinct progression, apparently. So that's cool.
         /// </summary>
-        public uint progressionHash { get; set; }
+        public uint? progressionHash { get; set; }
         /// <summary>If this category sorts items in a nonstandard way, this will be the way we sort.</summary>
         public Schema.Destiny.VendorDisplayCategorySortOrder sortOrder { get; set; }
         /// <summary>An indicator of how the category will be displayed in the UI. It's up to you to do something cool or interesting in response to this, or just to treat it as a normal category.</summary>
-        public uint displayStyleHash { get; set; }
+        public uint? displayStyleHash { get; set; }
         /// <summary>An indicator of how the category will be displayed in the UI. It's up to you to do something cool or interesting in response to this, or just to treat it as a normal category.</summary>
         public string displayStyleIdentifier { get; set; }
     }
@@ -1037,7 +1037,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// <summary>If this is true, don't show any of the glistening "this is a new item" UI elements, like we show on the inventory items themselves in in-game UI.</summary>
         public bool suppressNewness { get; set; }
         /// <summary>If this flyout is meant to show you the contents of the player's equipment slot, this is the slot to show.</summary>
-        public uint equipmentSlotHash { get; set; }
+        public uint? equipmentSlotHash { get; set; }
     }
 
     /// <summary>
@@ -1109,9 +1109,9 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// <summary>If this item can only be purchased by a given platform, this indicates the platform to which it is restricted.</summary>
         public Schema.BungieMembershipType exclusivity { get; set; }
         /// <summary>If this sale can only be performed as the result of an offer check, this is true.</summary>
-        public bool isOffer { get; set; }
+        public bool? isOffer { get; set; }
         /// <summary>If this sale can only be performed as the result of receiving a CRM offer, this is true.</summary>
-        public bool isCrm { get; set; }
+        public bool? isCrm { get; set; }
         /// <summary>*if* the category this item is in supports non-default sorting, this value should represent the sorting value to use, pre-processed and ready to go.</summary>
         public int sortValue { get; set; }
         /// <summary>If this item can expire, this is the tooltip message to show with its expiration info.</summary>
@@ -1123,7 +1123,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// If true, this item is some sort of dummy sale item that cannot actually be purchased. It may be a display only item, or some fluff left by a content designer for testing purposes, or something that got disabled because it was a terrible idea. You get the picture. We won't know *why* it can't be purchased, only that it can't be. Sorry.
         /// This is also only whether it's unpurchasable as a static property according to game content. There are other reasons why an item may or may not be purchasable at runtime, so even if this isn't set to True you should trust the runtime value for this sale item over the static definition if this is unset.
         /// </summary>
-        public bool unpurchasable { get; set; }
+        public bool? unpurchasable { get; set; }
     }
 
     /// <summary>
@@ -1134,7 +1134,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// <summary>The hash identifier for the item in question. Use it to look up the item's DestinyInventoryItemDefinition.</summary>
         public uint itemHash { get; set; }
         /// <summary>If this quantity is referring to a specific instance of an item, this will have the item's instance ID. Normally, this will be null.</summary>
-        public long itemInstanceId { get; set; }
+        public long? itemInstanceId { get; set; }
         /// <summary>The amount of the item needed/available depending on the context of where DestinyItemQuantity is being used.</summary>
         public int quantity { get; set; }
     }
@@ -1165,7 +1165,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// If this is populated, the socket will be overridden with a specific plug.
         /// If this isn't populated, it's being overridden by something more complicated that is only known by the Game Server and God, which means we can't tell you in advance what it'll be.
         /// </summary>
-        public uint singleItemHash { get; set; }
+        public uint? singleItemHash { get; set; }
         /// <summary>If this is greater than -1, the number of randomized plugs on this socket will be set to this quantity instead of whatever it's set to by default.</summary>
         public int randomizedOptionsCount { get; set; }
         /// <summary>This appears to be used to select which socket ultimately gets the override defined here.</summary>
@@ -1292,9 +1292,9 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// <summary>This block of data, if it exists, provides information about the guided game experience and restrictions for this activity. If it doesn't exist, the game is not able to be played as a guided game.</summary>
         public Schema.Destiny.Definitions.DestinyActivityGuidedBlockDefinition guidedGame { get; set; }
         /// <summary>If this activity had an activity mode directly defined on it, this will be the hash of that mode.</summary>
-        public uint directActivityModeHash { get; set; }
+        public uint? directActivityModeHash { get; set; }
         /// <summary>If the activity had an activity mode directly defined on it, this will be the enum value of that mode.</summary>
-        public int directActivityModeType { get; set; }
+        public int? directActivityModeType { get; set; }
         /// <summary>The set of all possible loadout requirements that could be active for this activity. Only one will be active at any given time, and you can discover which one through activity-associated data such as Milestones that have activity info on them.</summary>
         public IEnumerable<Schema.Destiny.Definitions.DestinyActivityLoadoutRequirementSet> loadouts { get; set; }
         /// <summary>The hash identifiers for Activity Modes relevant to this activity.  Note that if this is a playlist, the specific playlist entry chosen will determine the actual activity modes that end up being relevant.</summary>
@@ -1453,7 +1453,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// The hash identifier for looking up the DestinyDamageTypeDefinition, if this perk has a damage type.
         /// This is preferred over using the damageType enumeration value, which has been left purely because it is occasionally convenient.
         /// </summary>
-        public uint damageTypeHash { get; set; }
+        public uint? damageTypeHash { get; set; }
         /// <summary>
         /// An old holdover from the original Armory, this was an attempt to group perks by functionality.
         /// It is as yet unpopulated, and there will be quite a bit of work needed to restore it to its former working order.
@@ -1649,9 +1649,9 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// <summary>The hash identifier of the Activity that can be played. Use it to look up the DestinyActivityDefinition.</summary>
         public uint activityHash { get; set; }
         /// <summary>If this playlist entry had an activity mode directly defined on it, this will be the hash of that mode.</summary>
-        public uint directActivityModeHash { get; set; }
+        public uint? directActivityModeHash { get; set; }
         /// <summary>If the playlist entry had an activity mode directly defined on it, this will be the enum value of that mode.</summary>
-        public int directActivityModeType { get; set; }
+        public int? directActivityModeType { get; set; }
         /// <summary>The hash identifiers for Activity Modes relevant to this entry.</summary>
         public IEnumerable<uint> activityModeHashes { get; set; }
         /// <summary>The activity modes - if any - in enum form. Because we can't seem to escape the enums.</summary>
@@ -2046,7 +2046,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
     public class DestinyObjectiveDisplayProperties
     {
         /// <summary>The activity associated with this objective in the context of this item, if any.</summary>
-        public uint activityHash { get; set; }
+        public uint? activityHash { get; set; }
         /// <summary>If true, the game shows this objective on item preview screens.</summary>
         public bool displayOnItemPreviewScreen { get; set; }
     }
@@ -2196,12 +2196,12 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// If this socket's plugs come from a reusable DestinyPlugSetDefinition, this is the identifier for that set. We added this concept to reduce some major duplication that's going to come from sockets as replacements for what was once implemented as large sets of items and kiosks (like Emotes).
         ///  As of Shadowkeep, these will come up much more frequently and be driven by game content rather than custom curation.
         /// </summary>
-        public uint reusablePlugSetHash { get; set; }
+        public uint? reusablePlugSetHash { get; set; }
         /// <summary>
         /// This field replaces "randomizedPlugItems" as of Shadowkeep launch. If a socket has randomized plugs, this is a pointer to the set of plugs that could be used, as defined in DestinyPlugSetDefinition.
         ///  If null, the item has no randomized plugs.
         /// </summary>
-        public uint randomizedPlugSetHash { get; set; }
+        public uint? randomizedPlugSetHash { get; set; }
         /// <summary>If true, then this socket is visible in the item's "default" state. If you have an instance, you should always check the runtime state, as that can override this visibility setting: but if you're looking at the item on a conceptual level, this property can be useful for hiding data such as legacy sockets - which remain defined on items for infrastructure purposes, but can be confusing for users to see.</summary>
         public bool defaultVisible { get; set; }
     }
@@ -2384,9 +2384,9 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// As of Destiny 2, nodes can exist as part of "Exclusive Groups". These differ from exclusive sets in that, within the group, many nodes can be activated. But the act of activating any node in the group will cause "opposing" nodes (nodes in groups that are not allowed to be activated at the same time as this group) to deactivate.
         /// See DestinyTalentExclusiveGroup for more information on the details. This is an identifier for this node's group, if it is part of one.
         /// </summary>
-        public uint groupHash { get; set; }
+        public uint? groupHash { get; set; }
         /// <summary>Talent nodes can be associated with a piece of Lore, generally rendered in a tooltip. This is the hash identifier of the lore element to show, if there is one to be show.</summary>
-        public uint loreHash { get; set; }
+        public uint? loreHash { get; set; }
         /// <summary>Comes from the talent grid node style: this identifier should be used to determine how to render the node in the UI.</summary>
         public string nodeStyleIdentifier { get; set; }
         /// <summary>Comes from the talent grid node style: if true, then this node should be ignored for determining whether the grid is complete.</summary>
@@ -2433,7 +2433,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// <summary>An enum representing a damage type granted by activating this step, if any.</summary>
         public Schema.Destiny.DamageType damageType { get; set; }
         /// <summary>If the step provides a damage type, this will be the hash identifier used to look up the damage type's DestinyDamageTypeDefinition.</summary>
-        public uint damageTypeHash { get; set; }
+        public uint? damageTypeHash { get; set; }
         /// <summary>If the step has requirements for activation (they almost always do, if nothing else than for the Talent Grid's Progression to have reached a certain level), they will be defined here.</summary>
         public Schema.Destiny.Definitions.DestinyNodeActivationRequirement activationRequirement { get; set; }
         /// <summary>
@@ -2519,7 +2519,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// <summary>The identifier for this exclusive group. Only guaranteed unique within the talent grid, not globally.</summary>
         public uint groupHash { get; set; }
         /// <summary>If this group has an associated piece of lore to show next to it, this will be the identifier for that DestinyLoreDefinition.</summary>
-        public uint loreHash { get; set; }
+        public uint? loreHash { get; set; }
         /// <summary>A quick reference of the talent nodes that are part of this group, by their Talent Node hashes. (See DestinyTalentNodeDefinition.nodeHash)</summary>
         public IEnumerable<uint> nodeHashes { get; set; }
         /// <summary>A quick reference of Groups whose nodes will be deactivated if any node in this group is activated.</summary>
@@ -2626,7 +2626,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// <summary>The hash identifier for the item in question. Use it to look up the item's DestinyInventoryItemDefinition.</summary>
         public uint itemHash { get; set; }
         /// <summary>If this quantity is referring to a specific instance of an item, this will have the item's instance ID. Normally, this will be null.</summary>
-        public long itemInstanceId { get; set; }
+        public long? itemInstanceId { get; set; }
         /// <summary>The amount of the item needed/available depending on the context of where DestinyItemQuantity is being used.</summary>
         public int quantity { get; set; }
     }
@@ -2665,7 +2665,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public Dictionary<Schema.Destiny.DestinyGender, string> genderedClassNames { get; set; }
         public Dictionary<uint, string> genderedClassNamesByGenderHash { get; set; }
         /// <summary>Mentors don't really mean anything anymore. Don't expect this to be populated.</summary>
-        public uint mentorVendorHash { get; set; }
+        public uint? mentorVendorHash { get; set; }
         /// <summary>
         /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
         /// When entities refer to each other in Destiny content, it is this hash that they are referring to.

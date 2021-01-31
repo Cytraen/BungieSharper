@@ -48,7 +48,7 @@ namespace BungieSharper.Schema.Destiny.Definitions.Items
     public class DestinyDerivedItemDefinition
     {
         /// <summary>The hash for the DestinyInventoryItemDefinition of this derived item, if there is one. Sometimes we are given this information as a manual override, in which case there won't be an actual DestinyInventoryItemDefinition for what we display, but you can still show the strings from this object itself.</summary>
-        public uint itemHash { get; set; }
+        public uint? itemHash { get; set; }
         /// <summary>The name of the derived item.</summary>
         public string itemName { get; set; }
         /// <summary>Additional details about the derived item, in addition to the description.</summary>

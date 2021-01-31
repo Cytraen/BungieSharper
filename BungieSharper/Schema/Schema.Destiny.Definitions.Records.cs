@@ -8,7 +8,7 @@ namespace BungieSharper.Schema.Destiny.Definitions.Records
         /// <summary>Indicates whether this Record's state is determined on a per-character or on an account-wide basis.</summary>
         public Schema.Destiny.DestinyScope scope { get; set; }
         public Schema.Destiny.Definitions.Presentation.DestinyPresentationChildBlock presentationInfo { get; set; }
-        public uint loreHash { get; set; }
+        public uint? loreHash { get; set; }
         public IEnumerable<uint> objectiveHashes { get; set; }
         public Schema.Destiny.DestinyRecordValueStyle recordValueStyle { get; set; }
         public Schema.Destiny.Definitions.Records.DestinyRecordTitleBlock titleInfo { get; set; }

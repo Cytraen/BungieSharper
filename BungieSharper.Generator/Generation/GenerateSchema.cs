@@ -37,15 +37,17 @@ namespace BungieSharper.Generator.Generation
                 foreach (KeyValuePair<string, dynamic> propertyPair in schemaDetails["properties"])
                 {
                     string? usableSummary = propertyPair.Value.ContainsKey("description") ? propertyPair.Value["description"] : null;
+                    bool isNullable = propertyPair.Value.ContainsKey("nullable") ? propertyPair.Value["nullable"] : false;
 
                     if (usableSummary != null)
                     {
                         usableSummary = FormatSummaries.FormatSummary(propertyPair.Value["description"], 8);
                     }
 
-                    string classType = propertyPair.Value.ContainsKey("x-enum-reference")
+                    string classType = (propertyPair.Value.ContainsKey("x-enum-reference")
                         ? (string)JsonToCsharpMapping.GetReferenceFromRef(propertyPair.Value["x-enum-reference"]["$ref"])
-                        : (string)JsonToCsharpMapping.Type(propertyPair.Value);
+                        : (string)JsonToCsharpMapping.Type(propertyPair.Value))
+                        + (isNullable ? "?" : "");
 
                     valuesList.Add(new Tuple<string, string, string?>(propertyPair.Key, classType, usableSummary));
                 }

@@ -8,7 +8,7 @@ namespace BungieSharper.Schema.Destiny.HistoricalStats
         /// <summary>Date and time for the activity.</summary>
         public DateTime period { get; set; }
         /// <summary>If this activity has "phases", this is the phase at which the activity was started.</summary>
-        public int startingPhaseIndex { get; set; }
+        public int? startingPhaseIndex { get; set; }
         /// <summary>Details about the activity.</summary>
         public Schema.Destiny.HistoricalStats.DestinyHistoricalStatsActivity activityDetails { get; set; }
         /// <summary>Collection of players and their data for this activity.</summary>
@@ -68,7 +68,7 @@ namespace BungieSharper.Schema.Destiny.HistoricalStats
         /// <summary>Weighted value of the stat if a weight greater than 1 has been assigned.</summary>
         public Schema.Destiny.HistoricalStats.DestinyHistoricalStatsValuePair weighted { get; set; }
         /// <summary>When a stat represents the best, most, longest, fastest or some other personal best, the actual activity ID where that personal best was established is available on this property.</summary>
-        public long activityId { get; set; }
+        public long? activityId { get; set; }
     }
 
     public class DestinyHistoricalStatsValuePair
@@ -151,9 +151,9 @@ namespace BungieSharper.Schema.Destiny.HistoricalStats
     public class DestinyLeaderboardResults
     {
         /// <summary>Indicate the membership ID of the account that is the focal point of the provided leaderboards.</summary>
-        public long focusMembershipId { get; set; }
+        public long? focusMembershipId { get; set; }
         /// <summary>Indicate the character ID of the character that is the focal point of the provided leaderboards. May be null, in which case any character from the focus membership can appear in the provided leaderboards.</summary>
-        public long focusCharacterId { get; set; }
+        public long? focusCharacterId { get; set; }
     }
 
     public class DestinyClanAggregateStat

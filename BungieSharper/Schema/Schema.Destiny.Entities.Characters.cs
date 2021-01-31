@@ -64,7 +64,7 @@ namespace BungieSharper.Schema.Destiny.Entities.Characters
         /// <summary>A number between 0 and 100, indicating the whole and fractional % remaining to get to the next character level.</summary>
         public float percentToNextLevel { get; set; }
         /// <summary>If this Character has a title assigned to it, this is the identifier of the DestinyRecordDefinition that has that title information.</summary>
-        public uint titleRecordHash { get; set; }
+        public uint? titleRecordHash { get; set; }
     }
 
     /// <summary>
@@ -134,13 +134,13 @@ namespace BungieSharper.Schema.Destiny.Entities.Characters
         /// <summary>If the user is in an activity, this will be the hash of the activity mode being played. Combine with currentActivityHash to give a person a full picture of what they're doing right now.</summary>
         public uint currentActivityModeHash { get; set; }
         /// <summary>And the current activity's most specific mode type, if it can be found.</summary>
-        public int currentActivityModeType { get; set; }
+        public int? currentActivityModeType { get; set; }
         /// <summary>If the user is in an activity, this will be the hashes of the DestinyActivityModeDefinition being played. Combine with currentActivityHash to give a person a full picture of what they're doing right now.</summary>
         public IEnumerable<uint> currentActivityModeHashes { get; set; }
         /// <summary>All Activity Modes that apply to the current activity being played, in enum form.</summary>
         public IEnumerable<Schema.Destiny.HistoricalStats.Definitions.DestinyActivityModeType> currentActivityModeTypes { get; set; }
         /// <summary>If the user is in a playlist, this is the hash identifier for the playlist that they chose.</summary>
-        public uint currentPlaylistActivityHash { get; set; }
+        public uint? currentPlaylistActivityHash { get; set; }
         /// <summary>This will have the activity hash of the last completed story/campaign mission, in case you care about that.</summary>
         public uint lastCompletedStoryHash { get; set; }
     }

@@ -76,17 +76,17 @@ namespace BungieSharper.Schema.User
         public long successMessageFlags { get; set; }
         public bool isDeleted { get; set; }
         public string about { get; set; }
-        public DateTime firstAccess { get; set; }
-        public DateTime lastUpdate { get; set; }
-        public long legacyPortalUID { get; set; }
+        public DateTime? firstAccess { get; set; }
+        public DateTime? lastUpdate { get; set; }
+        public long? legacyPortalUID { get; set; }
         public Schema.User.UserToUserContext context { get; set; }
         public string psnDisplayName { get; set; }
         public string xboxDisplayName { get; set; }
         public string fbDisplayName { get; set; }
-        public bool showActivity { get; set; }
+        public bool? showActivity { get; set; }
         public string locale { get; set; }
         public bool localeInheritDefault { get; set; }
-        public long lastBanReportId { get; set; }
+        public long? lastBanReportId { get; set; }
         public bool showGroupMessaging { get; set; }
         public string profilePicturePath { get; set; }
         public string profilePictureWidePath { get; set; }
@@ -94,7 +94,7 @@ namespace BungieSharper.Schema.User
         public string userTitleDisplay { get; set; }
         public string statusText { get; set; }
         public DateTime statusDate { get; set; }
-        public DateTime profileBanExpire { get; set; }
+        public DateTime? profileBanExpire { get; set; }
         public string blizzardDisplayName { get; set; }
         public string steamDisplayName { get; set; }
         public string stadiaDisplayName { get; set; }
@@ -105,7 +105,7 @@ namespace BungieSharper.Schema.User
     {
         public bool isFollowing { get; set; }
         public Schema.Ignores.IgnoreResponse ignoreStatus { get; set; }
-        public DateTime globalIgnoreEndDate { get; set; }
+        public DateTime? globalIgnoreEndDate { get; set; }
     }
 
     public class UserMembershipData
@@ -116,7 +116,7 @@ namespace BungieSharper.Schema.User
         /// If this property is populated, it will have the membership ID of the account considered to be "primary" in this user's cross save relationship.
         ///  If null, this user has no cross save relationship, nor primary account.
         /// </summary>
-        public long primaryMembershipId { get; set; }
+        public long? primaryMembershipId { get; set; }
         public Schema.User.GeneralUser bungieNetUser { get; set; }
     }
 
@@ -125,7 +125,7 @@ namespace BungieSharper.Schema.User
         public Schema.BungieMembershipType membershipType { get; set; }
         public long membershipId { get; set; }
         public Schema.BungieMembershipType CrossSaveOverriddenType { get; set; }
-        public long CrossSaveOverriddenMembershipId { get; set; }
+        public long? CrossSaveOverriddenMembershipId { get; set; }
     }
 
     /// <summary>

@@ -110,13 +110,13 @@ namespace BungieSharper.Schema.Destiny.HistoricalStats.Definitions
         /// <summary>Optional URI to an icon for the statistic</summary>
         public string iconImage { get; set; }
         /// <summary>Optional icon for the statistic</summary>
-        public int mergeMethod { get; set; }
+        public int? mergeMethod { get; set; }
         /// <summary>Localized Unit Name for the stat.</summary>
         public string unitLabel { get; set; }
         /// <summary>Weight assigned to this stat indicating its relative impressiveness.</summary>
         public int weight { get; set; }
         /// <summary>The tier associated with this medal - be it implicitly or explicitly.</summary>
-        public uint medalTierHash { get; set; }
+        public uint? medalTierHash { get; set; }
     }
 
     /// <summary>

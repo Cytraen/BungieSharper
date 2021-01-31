@@ -11,12 +11,12 @@ namespace BungieSharper.Schema.Destiny.Definitions.Seasons
         public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
         public string backgroundImagePath { get; set; }
         public int seasonNumber { get; set; }
-        public DateTime startDate { get; set; }
-        public DateTime endDate { get; set; }
-        public uint seasonPassHash { get; set; }
-        public uint seasonPassProgressionHash { get; set; }
-        public uint artifactItemHash { get; set; }
-        public uint sealPresentationNodeHash { get; set; }
+        public DateTime? startDate { get; set; }
+        public DateTime? endDate { get; set; }
+        public uint? seasonPassHash { get; set; }
+        public uint? seasonPassProgressionHash { get; set; }
+        public uint? artifactItemHash { get; set; }
+        public uint? sealPresentationNodeHash { get; set; }
         /// <summary>
         /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
         /// When entities refer to each other in Destiny content, it is this hash that they are referring to.

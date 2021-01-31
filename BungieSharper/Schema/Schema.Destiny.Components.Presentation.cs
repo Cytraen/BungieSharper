@@ -17,6 +17,6 @@ namespace BungieSharper.Schema.Destiny.Components.Presentation
         /// <summary>The value at which the presentation node is considered to be completed.</summary>
         public int completionValue { get; set; }
         /// <summary>If available, this is the current score for the record category that this node represents.</summary>
-        public int recordCategoryScore { get; set; }
+        public int? recordCategoryScore { get; set; }
     }
 }

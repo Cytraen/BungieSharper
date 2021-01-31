@@ -55,7 +55,7 @@ namespace BungieSharper.Schema.Applications
         /// <summary>Timestamp for the related count.</summary>
         public DateTime time { get; set; }
         /// <summary>Count associated with timestamp</summary>
-        public double count { get; set; }
+        public double? count { get; set; }
     }
 
     public class Application

@@ -32,8 +32,8 @@ namespace BungieSharper.Schema.Trending
         /// <summary>If the entity has a localized tagline/subtitle/motto/whatever, that is found here.</summary>
         public string tagline { get; set; }
         public string image { get; set; }
-        public DateTime startDate { get; set; }
-        public DateTime endDate { get; set; }
+        public DateTime? startDate { get; set; }
+        public DateTime? endDate { get; set; }
         public string link { get; set; }
         /// <summary>If this is populated, the entry has a related WebM video to show. I am 100% certain I am going to regret putting this directly on TrendingEntry, but it will work so yolo</summary>
         public string webmVideo { get; set; }
@@ -44,7 +44,7 @@ namespace BungieSharper.Schema.Trending
         /// <summary>If the item is of entityType TrendingEntryType.Container, it may have items - also Trending Entries - contained within it. This is the ordered list of those to display under the Container's header.</summary>
         public IEnumerable<Schema.Trending.TrendingEntry> items { get; set; }
         /// <summary>If the entry has a date at which it was created, this is that date.</summary>
-        public DateTime creationDate { get; set; }
+        public DateTime? creationDate { get; set; }
     }
 
     /// <summary>
@@ -105,8 +105,8 @@ namespace BungieSharper.Schema.Trending
         public string icon { get; set; }
         public string title { get; set; }
         public string subtitle { get; set; }
-        public DateTime dateStart { get; set; }
-        public DateTime dateEnd { get; set; }
+        public DateTime? dateStart { get; set; }
+        public DateTime? dateEnd { get; set; }
         /// <summary>A destiny event does not necessarily have a related Milestone, but if it does the details will be returned here.</summary>
         public Schema.Destiny.Milestones.DestinyPublicMilestone milestoneDetails { get; set; }
         /// <summary>A destiny event will not necessarily have milestone "custom content", but if it does the details will be here.</summary>

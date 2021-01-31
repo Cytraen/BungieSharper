@@ -36,8 +36,8 @@ namespace BungieSharper.Schema.Destiny.Entities.Profiles
         /// </summary>
         public IEnumerable<uint> seasonHashes { get; set; }
         /// <summary>If populated, this is a reference to the season that is currently active.</summary>
-        public uint currentSeasonHash { get; set; }
+        public uint? currentSeasonHash { get; set; }
         /// <summary>If populated, this is the reward power cap for the current season.</summary>
-        public int currentSeasonRewardPowerCap { get; set; }
+        public int? currentSeasonRewardPowerCap { get; set; }
     }
 }

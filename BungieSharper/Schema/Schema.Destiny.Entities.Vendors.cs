@@ -16,7 +16,7 @@ namespace BungieSharper.Schema.Destiny.Entities.Vendors
         /// <summary>An index into the vendor definition's "locations" property array, indicating which location they are at currently. If -1, then the vendor has no known location (and you may choose not to show them in your UI as a result. I mean, it's your bag honey)</summary>
         public int vendorLocationIndex { get; set; }
         /// <summary>If this vendor has a seasonal rank, this will be the calculated value of that rank. How nice is that? I mean, that's pretty sweeet. It's a whole 32 bit integer.</summary>
-        public int seasonalRank { get; set; }
+        public int? seasonalRank { get; set; }
         /// <summary>The unique identifier for the vendor. Use it to look up their DestinyVendorDefinition.</summary>
         public uint vendorHash { get; set; }
         /// <summary>
@@ -95,7 +95,7 @@ namespace BungieSharper.Schema.Destiny.Entities.Vendors
         /// If populated, this is the hash of the item whose icon (and other secondary styles, but *not* the human readable strings) should override whatever icons/styles are on the item being sold.
         /// If you don't do this, certain items whose styles are being overridden by socketed items - such as the "Recycle Shader" item - would show whatever their default icon/style is, and it wouldn't be pretty or look accurate.
         /// </summary>
-        public uint overrideStyleItemHash { get; set; }
+        public uint? overrideStyleItemHash { get; set; }
         /// <summary>How much of the item you'll be getting.</summary>
         public int quantity { get; set; }
         /// <summary>A summary of the current costs of the item.</summary>
@@ -104,8 +104,8 @@ namespace BungieSharper.Schema.Destiny.Entities.Vendors
         /// If this item has its own custom date where it may be removed from the Vendor's rotation, this is that date.
         /// Note that there's not actually any guarantee that it will go away: it could be chosen again and end up still being in the Vendor's sale items! But this is the next date where that test will occur, and is also the date that the game shows for availability on things like Bounties being sold. So it's the best we can give.
         /// </summary>
-        public DateTime overrideNextRefreshDate { get; set; }
+        public DateTime? overrideNextRefreshDate { get; set; }
         /// <summary>If true, this item can be purchased through the Bungie.net API.</summary>
-        public bool apiPurchasable { get; set; }
+        public bool? apiPurchasable { get; set; }
     }
 }

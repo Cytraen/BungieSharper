@@ -30,9 +30,9 @@ namespace BungieSharper.Schema.Destiny.Milestones
         /// <summary>If the entity to which this component is attached has known active Rewards for the player, this will detail information about those rewards, keyed by the RewardEntry Hash. (See DestinyMilestoneDefinition for more information about Reward Entries) Note that these rewards are not for the Quests related to the Milestone. Think of these as "overview/checklist" rewards that may be provided for Milestones that may provide rewards for performing a variety of tasks that aren't under a specific Quest.</summary>
         public IEnumerable<Schema.Destiny.Milestones.DestinyMilestoneRewardCategory> rewards { get; set; }
         /// <summary>If known, this is the date when the event last began or refreshed. It will only be populated for events with fixed and repeating start and end dates.</summary>
-        public DateTime startDate { get; set; }
+        public DateTime? startDate { get; set; }
         /// <summary>If known, this is the date when the event will next end or repeat. It will only be populated for events with fixed and repeating start and end dates.</summary>
-        public DateTime endDate { get; set; }
+        public DateTime? endDate { get; set; }
         /// <summary>Used for ordering milestones in a display to match how we order them in BNet. May pull from static data, or possibly in the future from dynamic information.</summary>
         public int order { get; set; }
     }
@@ -60,9 +60,9 @@ namespace BungieSharper.Schema.Destiny.Milestones
         /// <summary>The hash of an arbitrarily chosen variant of this activity. We'll go ahead and call that the "canonical" activity, because if you're using this value you should only use it for properties that are common across the variants: things like the name of the activity, it's location, etc... Use this hash to look up the DestinyActivityDefinition of this activity for rendering data.</summary>
         public uint activityHash { get; set; }
         /// <summary>The hash identifier of the most specific Activity Mode under which this activity is played. This is useful for situations where the activity in question is - for instance - a PVP map, but it's not clear what mode the PVP map is being played under. If it's a playlist, this will be less specific: but hopefully useful in some way.</summary>
-        public uint activityModeHash { get; set; }
+        public uint? activityModeHash { get; set; }
         /// <summary>The enumeration equivalent of the most specific Activity Mode under which this activity is played.</summary>
-        public int activityModeType { get; set; }
+        public int? activityModeType { get; set; }
         /// <summary>If the activity has modifiers, this will be the list of modifiers that all variants have in common. Perform lookups against DestinyActivityModifierDefinition which defines the modifier being applied to get at the modifier data. Note that, in the DestiyActivityDefinition, you will see many more modifiers than this being referred to: those are all *possible* modifiers for the activity, not the active ones. Use only the active ones to match what's really live.</summary>
         public IEnumerable<uint> modifierHashes { get; set; }
         /// <summary>If you want more than just name/location/etc... you're going to have to dig into and show the variants of the conceptual activity. These will differ in seemingly arbitrary ways, like difficulty level and modifiers applied. Show it in whatever way tickles your fancy.</summary>
@@ -79,9 +79,9 @@ namespace BungieSharper.Schema.Destiny.Milestones
         /// <summary>An OPTIONAL component: if it makes sense to talk about this activity variant in terms of whether or not it has been completed or what progress you have made in it, this will be returned. Otherwise, this will be NULL.</summary>
         public Schema.Destiny.Milestones.DestinyMilestoneActivityCompletionStatus completionStatus { get; set; }
         /// <summary>The hash identifier of the most specific Activity Mode under which this activity is played. This is useful for situations where the activity in question is - for instance - a PVP map, but it's not clear what mode the PVP map is being played under. If it's a playlist, this will be less specific: but hopefully useful in some way.</summary>
-        public uint activityModeHash { get; set; }
+        public uint? activityModeHash { get; set; }
         /// <summary>The enumeration equivalent of the most specific Activity Mode under which this activity is played.</summary>
-        public int activityModeType { get; set; }
+        public int? activityModeType { get; set; }
     }
 
     /// <summary>
@@ -123,7 +123,7 @@ namespace BungieSharper.Schema.Destiny.Milestones
         /// </summary>
         public Dictionary<uint, bool> booleanActivityOptions { get; set; }
         /// <summary>If returned, this is the index into the DestinyActivityDefinition's "loadouts" property, indicating the currently active loadout requirements.</summary>
-        public int loadoutRequirementIndex { get; set; }
+        public int? loadoutRequirementIndex { get; set; }
         /// <summary>If the Activity has discrete "phases" that we can track, that info will be here. Otherwise, this value will be NULL. Note that this is a list and not a dictionary: the order implies the ascending order of phases or progression in this activity.</summary>
         public IEnumerable<Schema.Destiny.Milestones.DestinyMilestoneActivityPhase> phases { get; set; }
     }
@@ -136,7 +136,7 @@ namespace BungieSharper.Schema.Destiny.Milestones
         /// <summary>The hash identifier of the Vendor related to this Milestone. You can show useful things from this, such as thier Faction icon or whatever you might care about.</summary>
         public uint vendorHash { get; set; }
         /// <summary>If this vendor is featuring a specific item for this event, this will be the hash identifier of that item. I'm taking bets now on how long we go before this needs to be a list or some other, more complex representation instead and I deprecate this too. I'm going to go with 5 months. Calling it now, 2017-09-14 at 9:46pm PST.</summary>
-        public uint previewItemHash { get; set; }
+        public uint? previewItemHash { get; set; }
     }
 
     /// <summary>
@@ -205,9 +205,9 @@ namespace BungieSharper.Schema.Destiny.Milestones
         /// <summary>This is why we can't have nice things. This is the ordered list of vendors to be shown that relate to this milestone, potentially along with other interesting data.</summary>
         public IEnumerable<Schema.Destiny.Milestones.DestinyPublicMilestoneVendor> vendors { get; set; }
         /// <summary>If known, this is the date when the Milestone started/became active.</summary>
-        public DateTime startDate { get; set; }
+        public DateTime? startDate { get; set; }
         /// <summary>If known, this is the date when the Milestone will expire/recycle/end.</summary>
-        public DateTime endDate { get; set; }
+        public DateTime? endDate { get; set; }
         /// <summary>Used for ordering milestones in a display to match how we order them in BNet. May pull from static data, or possibly in the future from dynamic information.</summary>
         public int order { get; set; }
     }
@@ -234,9 +234,9 @@ namespace BungieSharper.Schema.Destiny.Milestones
         /// <summary>Every relevant variation of this conceptual activity, including the conceptual activity itself, have variants defined here.</summary>
         public IEnumerable<Schema.Destiny.Milestones.DestinyPublicMilestoneActivityVariant> variants { get; set; }
         /// <summary>The hash identifier of the most specific Activity Mode under which this activity is played. This is useful for situations where the activity in question is - for instance - a PVP map, but it's not clear what mode the PVP map is being played under. If it's a playlist, this will be less specific: but hopefully useful in some way.</summary>
-        public uint activityModeHash { get; set; }
+        public uint? activityModeHash { get; set; }
         /// <summary>The enumeration equivalent of the most specific Activity Mode under which this activity is played.</summary>
-        public int activityModeType { get; set; }
+        public int? activityModeType { get; set; }
     }
 
     /// <summary>
@@ -247,9 +247,9 @@ namespace BungieSharper.Schema.Destiny.Milestones
         /// <summary>The hash identifier of this activity variant. Examine the activity's definition in the Manifest database to determine what makes it a distinct variant. Usually it will be difficulty level or whether or not it is a guided game variant of the activity, but theoretically it could be distinguished in any arbitrary way.</summary>
         public uint activityHash { get; set; }
         /// <summary>The hash identifier of the most specific Activity Mode under which this activity is played. This is useful for situations where the activity in question is - for instance - a PVP map, but it's not clear what mode the PVP map is being played under. If it's a playlist, this will be less specific: but hopefully useful in some way.</summary>
-        public uint activityModeHash { get; set; }
+        public uint? activityModeHash { get; set; }
         /// <summary>The enumeration equivalent of the most specific Activity Mode under which this activity is played.</summary>
-        public int activityModeType { get; set; }
+        public int? activityModeType { get; set; }
     }
 
     /// <summary>
@@ -260,7 +260,7 @@ namespace BungieSharper.Schema.Destiny.Milestones
         /// <summary>The objective for the Challenge, which should have human-readable data about what needs to be done to accomplish the objective. Use this hash to look up the DestinyObjectiveDefinition.</summary>
         public uint objectiveHash { get; set; }
         /// <summary>IF the Objective is related to a specific Activity, this will be that activity's hash. Use it to look up the DestinyActivityDefinition for additional data to show.</summary>
-        public uint activityHash { get; set; }
+        public uint? activityHash { get; set; }
     }
 
     public class DestinyPublicMilestoneChallengeActivity
@@ -273,7 +273,7 @@ namespace BungieSharper.Schema.Destiny.Milestones
         /// </summary>
         public IEnumerable<uint> modifierHashes { get; set; }
         /// <summary>If returned, this is the index into the DestinyActivityDefinition's "loadouts" property, indicating the currently active loadout requirements.</summary>
-        public int loadoutRequirementIndex { get; set; }
+        public int? loadoutRequirementIndex { get; set; }
         /// <summary>The ordered list of phases for this activity, if any. Note that we have no human readable info for phases, nor any entities to relate them to: relating these hashes to something human readable is up to you unfortunately.</summary>
         public IEnumerable<uint> phaseHashes { get; set; }
         /// <summary>
@@ -289,6 +289,6 @@ namespace BungieSharper.Schema.Destiny.Milestones
         /// <summary>The hash identifier of the Vendor related to this Milestone. You can show useful things from this, such as thier Faction icon or whatever you might care about.</summary>
         public uint vendorHash { get; set; }
         /// <summary>If this vendor is featuring a specific item for this event, this will be the hash identifier of that item. I'm taking bets now on how long we go before this needs to be a list or some other, more complex representation instead and I deprecate this too. I'm going to go with 5 months. Calling it now, 2017-09-14 at 9:46pm PST.</summary>
-        public uint previewItemHash { get; set; }
+        public uint? previewItemHash { get; set; }
     }
 }

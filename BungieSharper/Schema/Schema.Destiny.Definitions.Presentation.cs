@@ -61,9 +61,9 @@ namespace BungieSharper.Schema.Destiny.Definitions.Presentation
         /// <summary>Indicates whether this presentation node's state is determined on a per-character or on an account-wide basis.</summary>
         public Schema.Destiny.DestinyScope scope { get; set; }
         /// <summary>If this presentation node shows a related objective (for instance, if it tracks the progress of its children), the objective being tracked is indicated here.</summary>
-        public uint objectiveHash { get; set; }
+        public uint? objectiveHash { get; set; }
         /// <summary>If this presentation node has an associated "Record" that you can accomplish for completing its children, this is the identifier of that Record.</summary>
-        public uint completionRecordHash { get; set; }
+        public uint? completionRecordHash { get; set; }
         /// <summary>The child entities contained by this presentation node.</summary>
         public Schema.Destiny.Definitions.Presentation.DestinyPresentationNodeChildrenBlock children { get; set; }
         /// <summary>A hint for how to display this presentation node when it's shown in a list.</summary>

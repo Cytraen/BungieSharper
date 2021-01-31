@@ -38,7 +38,7 @@ namespace BungieSharper.Schema.Destiny.Responses
         ///  For the time being, we will not return this information for any membership that is in a cross save pairing. The gist is that, once the pairing occurs, we do not currently have a consistent way to get that information for the profile's original Platform, and thus gameVersions would be too inconsistent (based on the last platform they happened to play on) for the info to be useful.
         ///  If we ever can get this data, this field will be deprecated and replaced with data on the DestinyLinkedProfileResponse itself, with game versions per linked Platform. But since we can't get that, we have this as a stop-gap measure for getting the data in the only situation that we currently need it.
         /// </summary>
-        public int unpairedGameVersions { get; set; }
+        public int? unpairedGameVersions { get; set; }
         /// <summary>A platform specific additional display name - ex: psn Real Name, bnet Unique Name, etc.</summary>
         public string supplementalDisplayName { get; set; }
         /// <summary>URL the Icon if available.</summary>
@@ -274,7 +274,7 @@ namespace BungieSharper.Schema.Destiny.Responses
     public class DestinyItemResponse
     {
         /// <summary>If the item is on a character, this will return the ID of the character that is holding the item.</summary>
-        public long characterId { get; set; }
+        public long? characterId { get; set; }
         /// <summary>
         /// Common data for the item relevant to its non-instanced properties.
         /// COMPONENT TYPE: ItemCommonData

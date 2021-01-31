@@ -32,7 +32,7 @@ namespace BungieSharper.Schema.Destiny
         /// <summary>The total amount of progression (i.e. "Experience") needed in order to reach the next level.</summary>
         public int nextLevelAt { get; set; }
         /// <summary>The number of resets of this progression you've executed this season, if applicable to this progression.</summary>
-        public int currentResetCount { get; set; }
+        public int? currentResetCount { get; set; }
         /// <summary>Information about historical resets of this progression, if there is any data for it.</summary>
         public IEnumerable<Schema.Destiny.DestinyProgressionResetEntry> seasonResets { get; set; }
         /// <summary>Information about historical rewards for this progression, if there is any data for it.</summary>
@@ -100,7 +100,7 @@ namespace BungieSharper.Schema.Destiny
         /// <summary>The hash identifier for the item in question. Use it to look up the item's DestinyInventoryItemDefinition.</summary>
         public uint itemHash { get; set; }
         /// <summary>If this quantity is referring to a specific instance of an item, this will have the item's instance ID. Normally, this will be null.</summary>
-        public long itemInstanceId { get; set; }
+        public long? itemInstanceId { get; set; }
         /// <summary>The amount of the item needed/available depending on the context of where DestinyItemQuantity is being used.</summary>
         public int quantity { get; set; }
     }
@@ -981,9 +981,9 @@ namespace BungieSharper.Schema.Destiny
         /// <summary>If true, the user should be able to see this activity.</summary>
         public bool isVisible { get; set; }
         /// <summary>The difficulty level of the activity, if applicable.</summary>
-        public int displayLevel { get; set; }
+        public int? displayLevel { get; set; }
         /// <summary>The recommended light level for the activity, if applicable.</summary>
-        public int recommendedLight { get; set; }
+        public int? recommendedLight { get; set; }
         /// <summary>A DestinyActivityDifficultyTier enum value indicating the difficulty of the activity.</summary>
         public Schema.Destiny.DestinyActivityDifficultyTier difficultyTier { get; set; }
         public IEnumerable<Schema.Destiny.Challenges.DestinyChallengeStatus> challenges { get; set; }
@@ -1000,7 +1000,7 @@ namespace BungieSharper.Schema.Destiny
         /// </summary>
         public Dictionary<uint, bool> booleanActivityOptions { get; set; }
         /// <summary>If returned, this is the index into the DestinyActivityDefinition's "loadouts" property, indicating the currently active loadout requirements.</summary>
-        public int loadoutRequirementIndex { get; set; }
+        public int? loadoutRequirementIndex { get; set; }
     }
 
     /// <summary>

@@ -35,7 +35,7 @@ namespace BungieSharper.Schema.Destiny.Progression
         /// <summary>The total amount of progression (i.e. "Experience") needed in order to reach the next level.</summary>
         public int nextLevelAt { get; set; }
         /// <summary>The number of resets of this progression you've executed this season, if applicable to this progression.</summary>
-        public int currentResetCount { get; set; }
+        public int? currentResetCount { get; set; }
         /// <summary>Information about historical resets of this progression, if there is any data for it.</summary>
         public IEnumerable<Schema.Destiny.DestinyProgressionResetEntry> seasonResets { get; set; }
         /// <summary>Information about historical rewards for this progression, if there is any data for it.</summary>

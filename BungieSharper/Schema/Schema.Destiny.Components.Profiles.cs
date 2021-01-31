@@ -34,7 +34,7 @@ namespace BungieSharper.Schema.Destiny.Components.Profiles
         /// <summary>Information about tracked entities.</summary>
         public IEnumerable<Schema.Destiny.Components.Profiles.DestinyProfileTransitoryTrackingEntry> tracking { get; set; }
         /// <summary>The hash identifier for the DestinyDestinationDefinition of the last location you were orbiting when in orbit.</summary>
-        public uint lastOrbitedDestinationHash { get; set; }
+        public uint? lastOrbitedDestinationHash { get; set; }
     }
 
     /// <summary>
@@ -60,9 +60,9 @@ namespace BungieSharper.Schema.Destiny.Components.Profiles
     public class DestinyProfileTransitoryCurrentActivity
     {
         /// <summary>When the activity started.</summary>
-        public DateTime startTime { get; set; }
+        public DateTime? startTime { get; set; }
         /// <summary>If you're still in it but it "ended" (like when folks are dancing around the loot after they beat a boss), this is when the activity ended.</summary>
-        public DateTime endTime { get; set; }
+        public DateTime? endTime { get; set; }
         /// <summary>This is what our non-authoritative source thought the score was.</summary>
         public float score { get; set; }
         /// <summary>If you have human opponents, this is the highest opposing team's score.</summary>
@@ -94,19 +94,19 @@ namespace BungieSharper.Schema.Destiny.Components.Profiles
     public class DestinyProfileTransitoryTrackingEntry
     {
         /// <summary>OPTIONAL - If this is tracking a DestinyLocationDefinition, this is the identifier for that location.</summary>
-        public uint locationHash { get; set; }
+        public uint? locationHash { get; set; }
         /// <summary>OPTIONAL - If this is tracking the status of a DestinyInventoryItemDefinition, this is the identifier for that item.</summary>
-        public uint itemHash { get; set; }
+        public uint? itemHash { get; set; }
         /// <summary>OPTIONAL - If this is tracking the status of a DestinyObjectiveDefinition, this is the identifier for that objective.</summary>
-        public uint objectiveHash { get; set; }
+        public uint? objectiveHash { get; set; }
         /// <summary>OPTIONAL - If this is tracking the status of a DestinyActivityDefinition, this is the identifier for that activity.</summary>
-        public uint activityHash { get; set; }
+        public uint? activityHash { get; set; }
         /// <summary>OPTIONAL - If this is tracking the status of a quest, this is the identifier for the DestinyInventoryItemDefinition that containst that questline data.</summary>
-        public uint questlineItemHash { get; set; }
+        public uint? questlineItemHash { get; set; }
         /// <summary>
         /// OPTIONAL - I've got to level with you, I don't really know what this is. Is it when you started tracking it? Is it only populated for tracked items that have time limits?
         /// I don't know, but we can get at it - when I get time to actually test what it is, I'll update this. In the meantime, bask in the mysterious data.
         /// </summary>
-        public DateTime trackedDate { get; set; }
+        public DateTime? trackedDate { get; set; }
     }
 }

@@ -16,11 +16,11 @@ namespace BungieSharper.Schema.Destiny.Advanced
         /// <summary>Type of advanced write action.</summary>
         public Schema.Destiny.Advanced.AwaType type { get; set; }
         /// <summary>Item instance ID the action shall be applied to. This is optional for all but a new AwaType values. Rule of thumb is to provide the item instance ID if one is available.</summary>
-        public long affectedItemId { get; set; }
+        public long? affectedItemId { get; set; }
         /// <summary>Destiny membership type of the account to modify.</summary>
         public Schema.BungieMembershipType membershipType { get; set; }
         /// <summary>Destiny character ID, if applicable, that will be affected by the action.</summary>
-        public long characterId { get; set; }
+        public long? characterId { get; set; }
     }
 
     public enum AwaType
@@ -59,7 +59,7 @@ namespace BungieSharper.Schema.Destiny.Advanced
         /// <summary>This token may be used to perform the requested action this number of times, at a maximum. If this value is 0, then there is no limit.</summary>
         public int maximumNumberOfUses { get; set; }
         /// <summary>Time, UTC, when token expires.</summary>
-        public DateTime validUntil { get; set; }
+        public DateTime? validUntil { get; set; }
         /// <summary>Advanced Write Action Type from the permission request.</summary>
         public Schema.Destiny.Advanced.AwaType type { get; set; }
         /// <summary>MembershipType from the permission request.</summary>

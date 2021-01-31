@@ -7,6 +7,8 @@ namespace BungieSharper.Generator.Generation
 {
     internal static class GenerateSchema
     {
+        public static Dictionary<string, List<Tuple<string, string, string?>>> PropertyDictionary = new();
+
         public static string GenerateSchemaFileContent(string schemaName, Dictionary<string, dynamic> schemaDetails)
         {
             var valuesList = new List<Tuple<string, string, string?>>();
@@ -59,6 +61,8 @@ namespace BungieSharper.Generator.Generation
 
             var className = schemaName.Split('.').Last();
 
+            PropertyDictionary.Add(schemaName, valuesList);
+
             List<string> finalValueList;
             string finalValueString;
             var isFlags = schemaDetails.ContainsKey("x-enum-is-bitmask") && schemaDetails["x-enum-is-bitmask"];
@@ -96,6 +100,20 @@ namespace BungieSharper.Generator.Generation
                 { "parentNodeHashes", "IEnumerable<uint>" }
             });
 
+            baseClassDictionary.Add("Schema.Queries.SearchResult", new()
+            {
+                { "totalResults", "int" },
+                { "hasMore", "bool" },
+                { "query", "Schema.Queries.PagedQuery" },
+                { "replacementContinuationToken", "string" },
+                { "useTotalResults", "bool" }
+            });
+
+            baseClassDictionary.Add("Schema.Destiny.Requests.Actions.DestinyActionRequest", new()
+            {
+                { "membershipType", "Schema.BungieMembershipType" }
+            });
+
             var inheritList = new List<string>();
             var valuesListRemove = new List<Tuple<string, string, string?>>();
 
@@ -119,11 +137,6 @@ namespace BungieSharper.Generator.Generation
                 }
             }
 
-            foreach (var item in valuesListRemove)
-            {
-                valuesList.Remove(item!);
-            }
-
             if (inheritList.Contains("Schema.Destiny.Definitions.Presentation.DestinyPresentationNodeBaseDefinition") && inheritList.Contains("Schema.Destiny.Definitions.DestinyDefinition"))
             {
                 inheritList.Remove("Schema.Destiny.Definitions.DestinyDefinition");
@@ -134,9 +147,31 @@ namespace BungieSharper.Generator.Generation
                 inheritList.Remove("Schema.Destiny.Definitions.Presentation.DestinyPresentationNodeBaseDefinition");
             }
 
-            if (inheritList.Count > 0)
+            if (inheritList.Count > 1)
             {
-                className += " : " + string.Join(", ", inheritList).Replace("Schema.", "");
+                throw new NotImplementedException();
+            }
+            else if (inheritList.Count == 1)
+            {
+                if (inheritList[0] == "Schema.Destiny.Requests.Actions.DestinyActionRequest")
+                {
+                    if (className.Contains("ActionRequest") || className.Contains("TransferRequest"))
+                    {
+                        className += " : " + string.Join(", ", inheritList).Replace("Schema.", "");
+                        foreach (var item in valuesListRemove)
+                        {
+                            valuesList.Remove(item!);
+                        }
+                    }
+                }
+                else
+                {
+                    className += " : " + string.Join(", ", inheritList).Replace("Schema.", "");
+                    foreach (var item in valuesListRemove)
+                    {
+                        valuesList.Remove(item!);
+                    }
+                }
             }
 
             if (isEnum)

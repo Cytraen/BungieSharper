@@ -60,172 +60,44 @@ namespace BungieSharper.Schema
         TwitchId = 18
     }
 
-    public class SearchResultOfContentItemPublicContract
+    public class SearchResultOfContentItemPublicContract : Queries.SearchResult
     {
         public IEnumerable<Content.ContentItemPublicContract> results { get; set; }
-
-        public int totalResults { get; set; }
-
-        public bool hasMore { get; set; }
-
-        public Queries.PagedQuery query { get; set; }
-
-        public string replacementContinuationToken { get; set; }
-
-        /// <summary>
-        /// If useTotalResults is true, then totalResults represents an accurate count.
-        /// If False, it does not, and may be estimated/only the size of the current page.
-        /// Either way, you should probably always only trust hasMore.
-        /// This is a long-held historical throwback to when we used to do paging with known total results. Those queries toasted our database, and we were left to hastily alter our endpoints and create backward- compatible shims, of which useTotalResults is one.
-        /// </summary>
-        public bool useTotalResults { get; set; }
     }
 
-    public class SearchResultOfPostResponse
+    public class SearchResultOfPostResponse : Queries.SearchResult
     {
         public IEnumerable<Forum.PostResponse> results { get; set; }
-
-        public int totalResults { get; set; }
-
-        public bool hasMore { get; set; }
-
-        public Queries.PagedQuery query { get; set; }
-
-        public string replacementContinuationToken { get; set; }
-
-        /// <summary>
-        /// If useTotalResults is true, then totalResults represents an accurate count.
-        /// If False, it does not, and may be estimated/only the size of the current page.
-        /// Either way, you should probably always only trust hasMore.
-        /// This is a long-held historical throwback to when we used to do paging with known total results. Those queries toasted our database, and we were left to hastily alter our endpoints and create backward- compatible shims, of which useTotalResults is one.
-        /// </summary>
-        public bool useTotalResults { get; set; }
     }
 
-    public class SearchResultOfGroupV2Card
+    public class SearchResultOfGroupV2Card : Queries.SearchResult
     {
         public IEnumerable<GroupsV2.GroupV2Card> results { get; set; }
-
-        public int totalResults { get; set; }
-
-        public bool hasMore { get; set; }
-
-        public Queries.PagedQuery query { get; set; }
-
-        public string replacementContinuationToken { get; set; }
-
-        /// <summary>
-        /// If useTotalResults is true, then totalResults represents an accurate count.
-        /// If False, it does not, and may be estimated/only the size of the current page.
-        /// Either way, you should probably always only trust hasMore.
-        /// This is a long-held historical throwback to when we used to do paging with known total results. Those queries toasted our database, and we were left to hastily alter our endpoints and create backward- compatible shims, of which useTotalResults is one.
-        /// </summary>
-        public bool useTotalResults { get; set; }
     }
 
-    public class SearchResultOfGroupMember
+    public class SearchResultOfGroupMember : Queries.SearchResult
     {
         public IEnumerable<GroupsV2.GroupMember> results { get; set; }
-
-        public int totalResults { get; set; }
-
-        public bool hasMore { get; set; }
-
-        public Queries.PagedQuery query { get; set; }
-
-        public string replacementContinuationToken { get; set; }
-
-        /// <summary>
-        /// If useTotalResults is true, then totalResults represents an accurate count.
-        /// If False, it does not, and may be estimated/only the size of the current page.
-        /// Either way, you should probably always only trust hasMore.
-        /// This is a long-held historical throwback to when we used to do paging with known total results. Those queries toasted our database, and we were left to hastily alter our endpoints and create backward- compatible shims, of which useTotalResults is one.
-        /// </summary>
-        public bool useTotalResults { get; set; }
     }
 
-    public class SearchResultOfGroupBan
+    public class SearchResultOfGroupBan : Queries.SearchResult
     {
         public IEnumerable<GroupsV2.GroupBan> results { get; set; }
-
-        public int totalResults { get; set; }
-
-        public bool hasMore { get; set; }
-
-        public Queries.PagedQuery query { get; set; }
-
-        public string replacementContinuationToken { get; set; }
-
-        /// <summary>
-        /// If useTotalResults is true, then totalResults represents an accurate count.
-        /// If False, it does not, and may be estimated/only the size of the current page.
-        /// Either way, you should probably always only trust hasMore.
-        /// This is a long-held historical throwback to when we used to do paging with known total results. Those queries toasted our database, and we were left to hastily alter our endpoints and create backward- compatible shims, of which useTotalResults is one.
-        /// </summary>
-        public bool useTotalResults { get; set; }
     }
 
-    public class SearchResultOfGroupMemberApplication
+    public class SearchResultOfGroupMemberApplication : Queries.SearchResult
     {
         public IEnumerable<GroupsV2.GroupMemberApplication> results { get; set; }
-
-        public int totalResults { get; set; }
-
-        public bool hasMore { get; set; }
-
-        public Queries.PagedQuery query { get; set; }
-
-        public string replacementContinuationToken { get; set; }
-
-        /// <summary>
-        /// If useTotalResults is true, then totalResults represents an accurate count.
-        /// If False, it does not, and may be estimated/only the size of the current page.
-        /// Either way, you should probably always only trust hasMore.
-        /// This is a long-held historical throwback to when we used to do paging with known total results. Those queries toasted our database, and we were left to hastily alter our endpoints and create backward- compatible shims, of which useTotalResults is one.
-        /// </summary>
-        public bool useTotalResults { get; set; }
     }
 
-    public class SearchResultOfGroupMembership
+    public class SearchResultOfGroupMembership : Queries.SearchResult
     {
         public IEnumerable<GroupsV2.GroupMembership> results { get; set; }
-
-        public int totalResults { get; set; }
-
-        public bool hasMore { get; set; }
-
-        public Queries.PagedQuery query { get; set; }
-
-        public string replacementContinuationToken { get; set; }
-
-        /// <summary>
-        /// If useTotalResults is true, then totalResults represents an accurate count.
-        /// If False, it does not, and may be estimated/only the size of the current page.
-        /// Either way, you should probably always only trust hasMore.
-        /// This is a long-held historical throwback to when we used to do paging with known total results. Those queries toasted our database, and we were left to hastily alter our endpoints and create backward- compatible shims, of which useTotalResults is one.
-        /// </summary>
-        public bool useTotalResults { get; set; }
     }
 
-    public class SearchResultOfGroupPotentialMembership
+    public class SearchResultOfGroupPotentialMembership : Queries.SearchResult
     {
         public IEnumerable<GroupsV2.GroupPotentialMembership> results { get; set; }
-
-        public int totalResults { get; set; }
-
-        public bool hasMore { get; set; }
-
-        public Queries.PagedQuery query { get; set; }
-
-        public string replacementContinuationToken { get; set; }
-
-        /// <summary>
-        /// If useTotalResults is true, then totalResults represents an accurate count.
-        /// If False, it does not, and may be estimated/only the size of the current page.
-        /// Either way, you should probably always only trust hasMore.
-        /// This is a long-held historical throwback to when we used to do paging with known total results. Those queries toasted our database, and we were left to hastily alter our endpoints and create backward- compatible shims, of which useTotalResults is one.
-        /// </summary>
-        public bool useTotalResults { get; set; }
     }
 
     public class SingleComponentResponseOfDestinyVendorReceiptsComponent : Components.ComponentResponse
@@ -707,88 +579,24 @@ namespace BungieSharper.Schema
         public Dictionary<uint, Destiny.Entities.Items.DestinyItemTalentGridComponent> data { get; set; }
     }
 
-    public class SearchResultOfDestinyEntitySearchResultItem
+    public class SearchResultOfDestinyEntitySearchResultItem : Queries.SearchResult
     {
         public IEnumerable<Destiny.Definitions.DestinyEntitySearchResultItem> results { get; set; }
-
-        public int totalResults { get; set; }
-
-        public bool hasMore { get; set; }
-
-        public Queries.PagedQuery query { get; set; }
-
-        public string replacementContinuationToken { get; set; }
-
-        /// <summary>
-        /// If useTotalResults is true, then totalResults represents an accurate count.
-        /// If False, it does not, and may be estimated/only the size of the current page.
-        /// Either way, you should probably always only trust hasMore.
-        /// This is a long-held historical throwback to when we used to do paging with known total results. Those queries toasted our database, and we were left to hastily alter our endpoints and create backward- compatible shims, of which useTotalResults is one.
-        /// </summary>
-        public bool useTotalResults { get; set; }
     }
 
-    public class SearchResultOfTrendingEntry
+    public class SearchResultOfTrendingEntry : Queries.SearchResult
     {
         public IEnumerable<Trending.TrendingEntry> results { get; set; }
-
-        public int totalResults { get; set; }
-
-        public bool hasMore { get; set; }
-
-        public Queries.PagedQuery query { get; set; }
-
-        public string replacementContinuationToken { get; set; }
-
-        /// <summary>
-        /// If useTotalResults is true, then totalResults represents an accurate count.
-        /// If False, it does not, and may be estimated/only the size of the current page.
-        /// Either way, you should probably always only trust hasMore.
-        /// This is a long-held historical throwback to when we used to do paging with known total results. Those queries toasted our database, and we were left to hastily alter our endpoints and create backward- compatible shims, of which useTotalResults is one.
-        /// </summary>
-        public bool useTotalResults { get; set; }
     }
 
-    public class SearchResultOfFireteamSummary
+    public class SearchResultOfFireteamSummary : Queries.SearchResult
     {
         public IEnumerable<Fireteam.FireteamSummary> results { get; set; }
-
-        public int totalResults { get; set; }
-
-        public bool hasMore { get; set; }
-
-        public Queries.PagedQuery query { get; set; }
-
-        public string replacementContinuationToken { get; set; }
-
-        /// <summary>
-        /// If useTotalResults is true, then totalResults represents an accurate count.
-        /// If False, it does not, and may be estimated/only the size of the current page.
-        /// Either way, you should probably always only trust hasMore.
-        /// This is a long-held historical throwback to when we used to do paging with known total results. Those queries toasted our database, and we were left to hastily alter our endpoints and create backward- compatible shims, of which useTotalResults is one.
-        /// </summary>
-        public bool useTotalResults { get; set; }
     }
 
-    public class SearchResultOfFireteamResponse
+    public class SearchResultOfFireteamResponse : Queries.SearchResult
     {
         public IEnumerable<Fireteam.FireteamResponse> results { get; set; }
-
-        public int totalResults { get; set; }
-
-        public bool hasMore { get; set; }
-
-        public Queries.PagedQuery query { get; set; }
-
-        public string replacementContinuationToken { get; set; }
-
-        /// <summary>
-        /// If useTotalResults is true, then totalResults represents an accurate count.
-        /// If False, it does not, and may be estimated/only the size of the current page.
-        /// Either way, you should probably always only trust hasMore.
-        /// This is a long-held historical throwback to when we used to do paging with known total results. Those queries toasted our database, and we were left to hastily alter our endpoints and create backward- compatible shims, of which useTotalResults is one.
-        /// </summary>
-        public bool useTotalResults { get; set; }
     }
 
     public class GlobalAlert

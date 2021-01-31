@@ -150,6 +150,42 @@ namespace BungieSharper.Generator
                     pathContent);
             }
 
+            foreach (var (topSchemaName, topSchemaProperties) in GenerateSchema.PropertyDictionary)
+            {
+                if (topSchemaProperties.Count == 0)
+                {
+                    continue;
+                }
+
+                foreach (var (bottomSchemaName, bottomSchemaProperties) in GenerateSchema.PropertyDictionary)
+                {
+                    var match = true;
+
+                    if (bottomSchemaProperties.Count == 0)
+                    {
+                        continue;
+                    }
+
+                    if (topSchemaName == bottomSchemaName)
+                    {
+                        continue;
+                    }
+
+                    foreach (var property in topSchemaProperties)
+                    {
+                        if (!bottomSchemaProperties.Contains(property))
+                        {
+                            match = false;
+                        }
+                    }
+
+                    if (match)
+                    {
+                        Console.WriteLine(topSchemaName + " may be the base of " + bottomSchemaName);
+                    }
+                }
+            }
+
             // WORK ENDS HERE
 
             Console.WriteLine("Done with work.");

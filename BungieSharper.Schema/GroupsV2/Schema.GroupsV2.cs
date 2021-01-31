@@ -406,25 +406,9 @@ namespace BungieSharper.Schema.GroupsV2
         public string theme { get; set; }
     }
 
-    public class GroupSearchResponse
+    public class GroupSearchResponse : Queries.SearchResult
     {
         public IEnumerable<GroupsV2.GroupV2Card> results { get; set; }
-
-        public int totalResults { get; set; }
-
-        public bool hasMore { get; set; }
-
-        public Queries.PagedQuery query { get; set; }
-
-        public string replacementContinuationToken { get; set; }
-
-        /// <summary>
-        /// If useTotalResults is true, then totalResults represents an accurate count.
-        /// If False, it does not, and may be estimated/only the size of the current page.
-        /// Either way, you should probably always only trust hasMore.
-        /// This is a long-held historical throwback to when we used to do paging with known total results. Those queries toasted our database, and we were left to hastily alter our endpoints and create backward- compatible shims, of which useTotalResults is one.
-        /// </summary>
-        public bool useTotalResults { get; set; }
     }
 
     /// <summary>
@@ -689,28 +673,12 @@ namespace BungieSharper.Schema.GroupsV2
         public GroupsV2.GroupV2 group { get; set; }
     }
 
-    public class GroupMembershipSearchResponse
+    public class GroupMembershipSearchResponse : Queries.SearchResult
     {
         public IEnumerable<GroupsV2.GroupMembership> results { get; set; }
-
-        public int totalResults { get; set; }
-
-        public bool hasMore { get; set; }
-
-        public Queries.PagedQuery query { get; set; }
-
-        public string replacementContinuationToken { get; set; }
-
-        /// <summary>
-        /// If useTotalResults is true, then totalResults represents an accurate count.
-        /// If False, it does not, and may be estimated/only the size of the current page.
-        /// Either way, you should probably always only trust hasMore.
-        /// This is a long-held historical throwback to when we used to do paging with known total results. Those queries toasted our database, and we were left to hastily alter our endpoints and create backward- compatible shims, of which useTotalResults is one.
-        /// </summary>
-        public bool useTotalResults { get; set; }
     }
 
-    public class GetGroupsForMemberResponse
+    public class GetGroupsForMemberResponse : Queries.SearchResult
     {
         /// <summary>
         /// A convenience property that indicates if every membership this user has that is a part of this group are part of an account that is considered inactive - for example, overridden accounts in Cross Save.
@@ -719,22 +687,6 @@ namespace BungieSharper.Schema.GroupsV2
         public Dictionary<long, bool> areAllMembershipsInactive { get; set; }
 
         public IEnumerable<GroupsV2.GroupMembership> results { get; set; }
-
-        public int totalResults { get; set; }
-
-        public bool hasMore { get; set; }
-
-        public Queries.PagedQuery query { get; set; }
-
-        public string replacementContinuationToken { get; set; }
-
-        /// <summary>
-        /// If useTotalResults is true, then totalResults represents an accurate count.
-        /// If False, it does not, and may be estimated/only the size of the current page.
-        /// Either way, you should probably always only trust hasMore.
-        /// This is a long-held historical throwback to when we used to do paging with known total results. Those queries toasted our database, and we were left to hastily alter our endpoints and create backward- compatible shims, of which useTotalResults is one.
-        /// </summary>
-        public bool useTotalResults { get; set; }
     }
 
     public class GroupPotentialMembership
@@ -744,25 +696,9 @@ namespace BungieSharper.Schema.GroupsV2
         public GroupsV2.GroupV2 group { get; set; }
     }
 
-    public class GroupPotentialMembershipSearchResponse
+    public class GroupPotentialMembershipSearchResponse : Queries.SearchResult
     {
         public IEnumerable<GroupsV2.GroupPotentialMembership> results { get; set; }
-
-        public int totalResults { get; set; }
-
-        public bool hasMore { get; set; }
-
-        public Queries.PagedQuery query { get; set; }
-
-        public string replacementContinuationToken { get; set; }
-
-        /// <summary>
-        /// If useTotalResults is true, then totalResults represents an accurate count.
-        /// If False, it does not, and may be estimated/only the size of the current page.
-        /// Either way, you should probably always only trust hasMore.
-        /// This is a long-held historical throwback to when we used to do paging with known total results. Those queries toasted our database, and we were left to hastily alter our endpoints and create backward- compatible shims, of which useTotalResults is one.
-        /// </summary>
-        public bool useTotalResults { get; set; }
     }
 
     public class GroupApplicationResponse

@@ -72,6 +72,12 @@ namespace BungieSharper.Generator.Generation
             var hasRedacted = false;
             Tuple<string, string, string?>? redactedItem = null;
 
+            var hasPrivacy = false;
+            Tuple<string, string, string?>? privacyItem = null;
+
+            var hasDisabled = false;
+            Tuple<string, string, string?>? disabledItem = null;
+
             foreach (var value in valuesList)
             {
                 if (value.Item1 == "hash" && value.Item2 == "uint")
@@ -89,6 +95,17 @@ namespace BungieSharper.Generator.Generation
                     hasRedacted = true;
                     redactedItem = value;
                 }
+
+                if (value.Item1 == "privacy" && value.Item2 == "Schema.Components.ComponentPrivacySetting")
+                {
+                    hasPrivacy = true;
+                    privacyItem = value;
+                }
+                if (value.Item1 == "disabled" && value.Item2 == "bool?")
+                {
+                    hasDisabled = true;
+                    disabledItem = value;
+                }
             }
 
             if (hasHash && hasIndex && hasRedacted && className != "DestinyDefinition")
@@ -97,6 +114,13 @@ namespace BungieSharper.Generator.Generation
                 valuesList.Remove(hashItem!);
                 valuesList.Remove(indexItem!);
                 valuesList.Remove(redactedItem!);
+            }
+
+            if (hasPrivacy && hasDisabled && className != "ComponentResponse")
+            {
+                className += " : BungieSharper.Schema.Components.ComponentResponse";
+                valuesList.Remove(privacyItem!);
+                valuesList.Remove(disabledItem!);
             }
 
             if (isEnum)

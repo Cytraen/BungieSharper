@@ -82,7 +82,6 @@ namespace BungieSharper.Generator
                 {
                     var combinedContent = string.Join("\n\n", classes);
                     var topFolder = location.Replace(bungieSharperPath, "").Replace("Schema\\", "").Split('\\').First();
-                    Console.WriteLine(topFolder);
 
                     var regex = new Regex(@"^namespace (.*)\n[{]", RegexOptions.Multiline);
                     var matches = regex.Matches(combinedContent);

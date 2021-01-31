@@ -228,194 +228,99 @@ namespace BungieSharper.Schema
         public bool useTotalResults { get; set; }
     }
 
-    public class SingleComponentResponseOfDestinyVendorReceiptsComponent
+    public class SingleComponentResponseOfDestinyVendorReceiptsComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Schema.Destiny.Entities.Profiles.DestinyVendorReceiptsComponent data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class SingleComponentResponseOfDestinyInventoryComponent
+    public class SingleComponentResponseOfDestinyInventoryComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Schema.Destiny.Entities.Inventory.DestinyInventoryComponent data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class SingleComponentResponseOfDestinyProfileComponent
+    public class SingleComponentResponseOfDestinyProfileComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Schema.Destiny.Entities.Profiles.DestinyProfileComponent data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class SingleComponentResponseOfDestinyPlatformSilverComponent
+    public class SingleComponentResponseOfDestinyPlatformSilverComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Schema.Destiny.Components.Inventory.DestinyPlatformSilverComponent data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class SingleComponentResponseOfDestinyKiosksComponent
+    public class SingleComponentResponseOfDestinyKiosksComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Schema.Destiny.Components.Kiosks.DestinyKiosksComponent data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class SingleComponentResponseOfDestinyPlugSetsComponent
+    public class SingleComponentResponseOfDestinyPlugSetsComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Schema.Destiny.Components.PlugSets.DestinyPlugSetsComponent data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class SingleComponentResponseOfDestinyProfileProgressionComponent
+    public class SingleComponentResponseOfDestinyProfileProgressionComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Schema.Destiny.Components.Profiles.DestinyProfileProgressionComponent data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class SingleComponentResponseOfDestinyPresentationNodesComponent
+    public class SingleComponentResponseOfDestinyPresentationNodesComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Schema.Destiny.Components.Presentation.DestinyPresentationNodesComponent data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class SingleComponentResponseOfDestinyProfileRecordsComponent
+    public class SingleComponentResponseOfDestinyProfileRecordsComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Schema.Destiny.Components.Records.DestinyProfileRecordsComponent data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class SingleComponentResponseOfDestinyProfileCollectiblesComponent
+    public class SingleComponentResponseOfDestinyProfileCollectiblesComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Schema.Destiny.Components.Collectibles.DestinyProfileCollectiblesComponent data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class SingleComponentResponseOfDestinyProfileTransitoryComponent
+    public class SingleComponentResponseOfDestinyProfileTransitoryComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Schema.Destiny.Components.Profiles.DestinyProfileTransitoryComponent data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class SingleComponentResponseOfDestinyMetricsComponent
+    public class SingleComponentResponseOfDestinyMetricsComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Schema.Destiny.Components.Metrics.DestinyMetricsComponent data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class DictionaryComponentResponseOfint64AndDestinyCharacterComponent
+    public class DictionaryComponentResponseOfint64AndDestinyCharacterComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<long, Schema.Destiny.Entities.Characters.DestinyCharacterComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class DictionaryComponentResponseOfint64AndDestinyInventoryComponent
+    public class DictionaryComponentResponseOfint64AndDestinyInventoryComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<long, Schema.Destiny.Entities.Inventory.DestinyInventoryComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class DictionaryComponentResponseOfint64AndDestinyCharacterProgressionComponent
+    public class DictionaryComponentResponseOfint64AndDestinyCharacterProgressionComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<long, Schema.Destiny.Entities.Characters.DestinyCharacterProgressionComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class DictionaryComponentResponseOfint64AndDestinyCharacterRenderComponent
+    public class DictionaryComponentResponseOfint64AndDestinyCharacterRenderComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<long, Schema.Destiny.Entities.Characters.DestinyCharacterRenderComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class DictionaryComponentResponseOfint64AndDestinyCharacterActivitiesComponent
+    public class DictionaryComponentResponseOfint64AndDestinyCharacterActivitiesComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<long, Schema.Destiny.Entities.Characters.DestinyCharacterActivitiesComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class DictionaryComponentResponseOfint64AndDestinyKiosksComponent
+    public class DictionaryComponentResponseOfint64AndDestinyKiosksComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<long, Schema.Destiny.Components.Kiosks.DestinyKiosksComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class DictionaryComponentResponseOfint64AndDestinyPlugSetsComponent
+    public class DictionaryComponentResponseOfint64AndDestinyPlugSetsComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<long, Schema.Destiny.Components.PlugSets.DestinyPlugSetsComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
     public class DestinyBaseItemComponentSetOfuint32
@@ -423,44 +328,24 @@ namespace BungieSharper.Schema
         public Schema.DictionaryComponentResponseOfuint32AndDestinyItemObjectivesComponent objectives { get; set; }
     }
 
-    public class DictionaryComponentResponseOfuint32AndDestinyItemObjectivesComponent
+    public class DictionaryComponentResponseOfuint32AndDestinyItemObjectivesComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<uint, Schema.Destiny.Entities.Items.DestinyItemObjectivesComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class DictionaryComponentResponseOfint64AndDestinyPresentationNodesComponent
+    public class DictionaryComponentResponseOfint64AndDestinyPresentationNodesComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<long, Schema.Destiny.Components.Presentation.DestinyPresentationNodesComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class DictionaryComponentResponseOfint64AndDestinyCharacterRecordsComponent
+    public class DictionaryComponentResponseOfint64AndDestinyCharacterRecordsComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<long, Schema.Destiny.Components.Records.DestinyCharacterRecordsComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class DictionaryComponentResponseOfint64AndDestinyCollectiblesComponent
+    public class DictionaryComponentResponseOfint64AndDestinyCollectiblesComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<long, Schema.Destiny.Components.Collectibles.DestinyCollectiblesComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
     public class DestinyBaseItemComponentSetOfint64
@@ -468,14 +353,9 @@ namespace BungieSharper.Schema
         public Schema.DictionaryComponentResponseOfint64AndDestinyItemObjectivesComponent objectives { get; set; }
     }
 
-    public class DictionaryComponentResponseOfint64AndDestinyItemObjectivesComponent
+    public class DictionaryComponentResponseOfint64AndDestinyItemObjectivesComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<long, Schema.Destiny.Entities.Items.DestinyItemObjectivesComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
     public class DestinyItemComponentSetOfint64
@@ -501,304 +381,154 @@ namespace BungieSharper.Schema
         public Schema.DictionaryComponentResponseOfint64AndDestinyItemObjectivesComponent objectives { get; set; }
     }
 
-    public class DictionaryComponentResponseOfint64AndDestinyItemInstanceComponent
+    public class DictionaryComponentResponseOfint64AndDestinyItemInstanceComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<long, Schema.Destiny.Entities.Items.DestinyItemInstanceComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class DictionaryComponentResponseOfint64AndDestinyItemPerksComponent
+    public class DictionaryComponentResponseOfint64AndDestinyItemPerksComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<long, Schema.Destiny.Entities.Items.DestinyItemPerksComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class DictionaryComponentResponseOfint64AndDestinyItemRenderComponent
+    public class DictionaryComponentResponseOfint64AndDestinyItemRenderComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<long, Schema.Destiny.Entities.Items.DestinyItemRenderComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class DictionaryComponentResponseOfint64AndDestinyItemStatsComponent
+    public class DictionaryComponentResponseOfint64AndDestinyItemStatsComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<long, Schema.Destiny.Entities.Items.DestinyItemStatsComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class DictionaryComponentResponseOfint64AndDestinyItemSocketsComponent
+    public class DictionaryComponentResponseOfint64AndDestinyItemSocketsComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<long, Schema.Destiny.Entities.Items.DestinyItemSocketsComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class DictionaryComponentResponseOfint64AndDestinyItemReusablePlugsComponent
+    public class DictionaryComponentResponseOfint64AndDestinyItemReusablePlugsComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<long, Schema.Destiny.Components.Items.DestinyItemReusablePlugsComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class DictionaryComponentResponseOfint64AndDestinyItemPlugObjectivesComponent
+    public class DictionaryComponentResponseOfint64AndDestinyItemPlugObjectivesComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<long, Schema.Destiny.Components.Items.DestinyItemPlugObjectivesComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class DictionaryComponentResponseOfint64AndDestinyItemTalentGridComponent
+    public class DictionaryComponentResponseOfint64AndDestinyItemTalentGridComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<long, Schema.Destiny.Entities.Items.DestinyItemTalentGridComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class DictionaryComponentResponseOfuint32AndDestinyItemPlugComponent
+    public class DictionaryComponentResponseOfuint32AndDestinyItemPlugComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<uint, Schema.Destiny.Components.Items.DestinyItemPlugComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class DictionaryComponentResponseOfint64AndDestinyCurrenciesComponent
+    public class DictionaryComponentResponseOfint64AndDestinyCurrenciesComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<long, Schema.Destiny.Components.Inventory.DestinyCurrenciesComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class SingleComponentResponseOfDestinyCharacterComponent
+    public class SingleComponentResponseOfDestinyCharacterComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Schema.Destiny.Entities.Characters.DestinyCharacterComponent data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class SingleComponentResponseOfDestinyCharacterProgressionComponent
+    public class SingleComponentResponseOfDestinyCharacterProgressionComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Schema.Destiny.Entities.Characters.DestinyCharacterProgressionComponent data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class SingleComponentResponseOfDestinyCharacterRenderComponent
+    public class SingleComponentResponseOfDestinyCharacterRenderComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Schema.Destiny.Entities.Characters.DestinyCharacterRenderComponent data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class SingleComponentResponseOfDestinyCharacterActivitiesComponent
+    public class SingleComponentResponseOfDestinyCharacterActivitiesComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Schema.Destiny.Entities.Characters.DestinyCharacterActivitiesComponent data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class SingleComponentResponseOfDestinyCharacterRecordsComponent
+    public class SingleComponentResponseOfDestinyCharacterRecordsComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Schema.Destiny.Components.Records.DestinyCharacterRecordsComponent data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class SingleComponentResponseOfDestinyCollectiblesComponent
+    public class SingleComponentResponseOfDestinyCollectiblesComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Schema.Destiny.Components.Collectibles.DestinyCollectiblesComponent data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class SingleComponentResponseOfDestinyCurrenciesComponent
+    public class SingleComponentResponseOfDestinyCurrenciesComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Schema.Destiny.Components.Inventory.DestinyCurrenciesComponent data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class SingleComponentResponseOfDestinyItemComponent
+    public class SingleComponentResponseOfDestinyItemComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Schema.Destiny.Entities.Items.DestinyItemComponent data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class SingleComponentResponseOfDestinyItemInstanceComponent
+    public class SingleComponentResponseOfDestinyItemInstanceComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Schema.Destiny.Entities.Items.DestinyItemInstanceComponent data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class SingleComponentResponseOfDestinyItemObjectivesComponent
+    public class SingleComponentResponseOfDestinyItemObjectivesComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Schema.Destiny.Entities.Items.DestinyItemObjectivesComponent data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class SingleComponentResponseOfDestinyItemPerksComponent
+    public class SingleComponentResponseOfDestinyItemPerksComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Schema.Destiny.Entities.Items.DestinyItemPerksComponent data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class SingleComponentResponseOfDestinyItemRenderComponent
+    public class SingleComponentResponseOfDestinyItemRenderComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Schema.Destiny.Entities.Items.DestinyItemRenderComponent data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class SingleComponentResponseOfDestinyItemStatsComponent
+    public class SingleComponentResponseOfDestinyItemStatsComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Schema.Destiny.Entities.Items.DestinyItemStatsComponent data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class SingleComponentResponseOfDestinyItemTalentGridComponent
+    public class SingleComponentResponseOfDestinyItemTalentGridComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Schema.Destiny.Entities.Items.DestinyItemTalentGridComponent data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class SingleComponentResponseOfDestinyItemSocketsComponent
+    public class SingleComponentResponseOfDestinyItemSocketsComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Schema.Destiny.Entities.Items.DestinyItemSocketsComponent data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class SingleComponentResponseOfDestinyItemReusablePlugsComponent
+    public class SingleComponentResponseOfDestinyItemReusablePlugsComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Schema.Destiny.Components.Items.DestinyItemReusablePlugsComponent data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class SingleComponentResponseOfDestinyItemPlugObjectivesComponent
+    public class SingleComponentResponseOfDestinyItemPlugObjectivesComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Schema.Destiny.Components.Items.DestinyItemPlugObjectivesComponent data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class SingleComponentResponseOfDestinyVendorGroupComponent
+    public class SingleComponentResponseOfDestinyVendorGroupComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Schema.Destiny.Components.Vendors.DestinyVendorGroupComponent data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class DictionaryComponentResponseOfuint32AndDestinyVendorComponent
+    public class DictionaryComponentResponseOfuint32AndDestinyVendorComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<uint, Schema.Destiny.Entities.Vendors.DestinyVendorComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class DictionaryComponentResponseOfuint32AndDestinyVendorCategoriesComponent
+    public class DictionaryComponentResponseOfuint32AndDestinyVendorCategoriesComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<uint, Schema.Destiny.Entities.Vendors.DestinyVendorCategoriesComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
     public class DestinyVendorSaleItemSetComponentOfDestinyVendorSaleItemComponent
@@ -806,14 +536,9 @@ namespace BungieSharper.Schema
         public Dictionary<int, Schema.Destiny.Entities.Vendors.DestinyVendorSaleItemComponent> saleItems { get; set; }
     }
 
-    public class DictionaryComponentResponseOfuint32AndPersonalDestinyVendorSaleItemSetComponent
+    public class DictionaryComponentResponseOfuint32AndPersonalDestinyVendorSaleItemSetComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<uint, Schema.Destiny.Responses.PersonalDestinyVendorSaleItemSetComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
     public class DestinyBaseItemComponentSetOfint32
@@ -821,14 +546,9 @@ namespace BungieSharper.Schema
         public Schema.DictionaryComponentResponseOfint32AndDestinyItemObjectivesComponent objectives { get; set; }
     }
 
-    public class DictionaryComponentResponseOfint32AndDestinyItemObjectivesComponent
+    public class DictionaryComponentResponseOfint32AndDestinyItemObjectivesComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<int, Schema.Destiny.Entities.Items.DestinyItemObjectivesComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
     public class DestinyItemComponentSetOfint32
@@ -854,124 +574,64 @@ namespace BungieSharper.Schema
         public Schema.DictionaryComponentResponseOfint32AndDestinyItemObjectivesComponent objectives { get; set; }
     }
 
-    public class DictionaryComponentResponseOfint32AndDestinyItemInstanceComponent
+    public class DictionaryComponentResponseOfint32AndDestinyItemInstanceComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<int, Schema.Destiny.Entities.Items.DestinyItemInstanceComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class DictionaryComponentResponseOfint32AndDestinyItemPerksComponent
+    public class DictionaryComponentResponseOfint32AndDestinyItemPerksComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<int, Schema.Destiny.Entities.Items.DestinyItemPerksComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class DictionaryComponentResponseOfint32AndDestinyItemRenderComponent
+    public class DictionaryComponentResponseOfint32AndDestinyItemRenderComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<int, Schema.Destiny.Entities.Items.DestinyItemRenderComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class DictionaryComponentResponseOfint32AndDestinyItemStatsComponent
+    public class DictionaryComponentResponseOfint32AndDestinyItemStatsComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<int, Schema.Destiny.Entities.Items.DestinyItemStatsComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class DictionaryComponentResponseOfint32AndDestinyItemSocketsComponent
+    public class DictionaryComponentResponseOfint32AndDestinyItemSocketsComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<int, Schema.Destiny.Entities.Items.DestinyItemSocketsComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class DictionaryComponentResponseOfint32AndDestinyItemReusablePlugsComponent
+    public class DictionaryComponentResponseOfint32AndDestinyItemReusablePlugsComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<int, Schema.Destiny.Components.Items.DestinyItemReusablePlugsComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class DictionaryComponentResponseOfint32AndDestinyItemPlugObjectivesComponent
+    public class DictionaryComponentResponseOfint32AndDestinyItemPlugObjectivesComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<int, Schema.Destiny.Components.Items.DestinyItemPlugObjectivesComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class DictionaryComponentResponseOfint32AndDestinyItemTalentGridComponent
+    public class DictionaryComponentResponseOfint32AndDestinyItemTalentGridComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<int, Schema.Destiny.Entities.Items.DestinyItemTalentGridComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class SingleComponentResponseOfDestinyVendorComponent
+    public class SingleComponentResponseOfDestinyVendorComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Schema.Destiny.Entities.Vendors.DestinyVendorComponent data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class SingleComponentResponseOfDestinyVendorCategoriesComponent
+    public class SingleComponentResponseOfDestinyVendorCategoriesComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Schema.Destiny.Entities.Vendors.DestinyVendorCategoriesComponent data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class DictionaryComponentResponseOfint32AndDestinyVendorSaleItemComponent
+    public class DictionaryComponentResponseOfint32AndDestinyVendorSaleItemComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<int, Schema.Destiny.Entities.Vendors.DestinyVendorSaleItemComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class DictionaryComponentResponseOfuint32AndDestinyPublicVendorComponent
+    public class DictionaryComponentResponseOfuint32AndDestinyPublicVendorComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<uint, Schema.Destiny.Components.Vendors.DestinyPublicVendorComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
     public class DestinyVendorSaleItemSetComponentOfDestinyPublicVendorSaleItemComponent
@@ -979,14 +639,9 @@ namespace BungieSharper.Schema
         public Dictionary<int, Schema.Destiny.Components.Vendors.DestinyPublicVendorSaleItemComponent> saleItems { get; set; }
     }
 
-    public class DictionaryComponentResponseOfuint32AndPublicDestinyVendorSaleItemSetComponent
+    public class DictionaryComponentResponseOfuint32AndPublicDestinyVendorSaleItemSetComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<uint, Schema.Destiny.Responses.PublicDestinyVendorSaleItemSetComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
     public class DestinyItemComponentSetOfuint32
@@ -1012,84 +667,44 @@ namespace BungieSharper.Schema
         public Schema.DictionaryComponentResponseOfuint32AndDestinyItemObjectivesComponent objectives { get; set; }
     }
 
-    public class DictionaryComponentResponseOfuint32AndDestinyItemInstanceComponent
+    public class DictionaryComponentResponseOfuint32AndDestinyItemInstanceComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<uint, Schema.Destiny.Entities.Items.DestinyItemInstanceComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class DictionaryComponentResponseOfuint32AndDestinyItemPerksComponent
+    public class DictionaryComponentResponseOfuint32AndDestinyItemPerksComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<uint, Schema.Destiny.Entities.Items.DestinyItemPerksComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class DictionaryComponentResponseOfuint32AndDestinyItemRenderComponent
+    public class DictionaryComponentResponseOfuint32AndDestinyItemRenderComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<uint, Schema.Destiny.Entities.Items.DestinyItemRenderComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class DictionaryComponentResponseOfuint32AndDestinyItemStatsComponent
+    public class DictionaryComponentResponseOfuint32AndDestinyItemStatsComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<uint, Schema.Destiny.Entities.Items.DestinyItemStatsComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class DictionaryComponentResponseOfuint32AndDestinyItemSocketsComponent
+    public class DictionaryComponentResponseOfuint32AndDestinyItemSocketsComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<uint, Schema.Destiny.Entities.Items.DestinyItemSocketsComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class DictionaryComponentResponseOfuint32AndDestinyItemReusablePlugsComponent
+    public class DictionaryComponentResponseOfuint32AndDestinyItemReusablePlugsComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<uint, Schema.Destiny.Components.Items.DestinyItemReusablePlugsComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class DictionaryComponentResponseOfuint32AndDestinyItemPlugObjectivesComponent
+    public class DictionaryComponentResponseOfuint32AndDestinyItemPlugObjectivesComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<uint, Schema.Destiny.Components.Items.DestinyItemPlugObjectivesComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
-    public class DictionaryComponentResponseOfuint32AndDestinyItemTalentGridComponent
+    public class DictionaryComponentResponseOfuint32AndDestinyItemTalentGridComponent : BungieSharper.Schema.Components.ComponentResponse
     {
         public Dictionary<uint, Schema.Destiny.Entities.Items.DestinyItemTalentGridComponent> data { get; set; }
-
-        public Schema.Components.ComponentPrivacySetting privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        public bool? disabled { get; set; }
     }
 
     public class SearchResultOfDestinyEntitySearchResultItem

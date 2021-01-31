@@ -45,6 +45,11 @@ namespace BungieSharper.Client
                 PlatformErrorCodes.ThrottleLimitExceededMinutes,
                 PlatformErrorCodes.ThrottleLimitExceededMomentarily,
                 PlatformErrorCodes.ThrottleLimitExceededSeconds,
+                PlatformErrorCodes.PerEndpointRequestThrottleExceeded,
+                PlatformErrorCodes.PerApplicationThrottleExceeded,
+                PlatformErrorCodes.PerApplicationAnonymousThrottleExceeded,
+                PlatformErrorCodes.PerApplicationAuthenticatedThrottleExceeded,
+                PlatformErrorCodes.PerUserThrottleExceeded,
                 PlatformErrorCodes.DestinyThrottledByGameServer
             };
         }

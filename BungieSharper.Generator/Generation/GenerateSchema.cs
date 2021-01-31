@@ -57,9 +57,47 @@ namespace BungieSharper.Generator.Generation
                 throw new NotSupportedException();
             }
 
+            var className = schemaName.Split('.').Last();
+
             List<string> finalValueList;
             string finalValueString;
             var isFlags = schemaDetails.ContainsKey("x-enum-is-bitmask") && schemaDetails["x-enum-is-bitmask"];
+
+            var hasHash = false;
+            Tuple<string, string, string?>? hashItem = null;
+
+            var hasIndex = false;
+            Tuple<string, string, string?>? indexItem = null;
+
+            var hasRedacted = false;
+            Tuple<string, string, string?>? redactedItem = null;
+
+            foreach (var value in valuesList)
+            {
+                if (value.Item1 == "hash" && value.Item2 == "uint")
+                {
+                    hasHash = true;
+                    hashItem = value;
+                }
+                if (value.Item1 == "index" && value.Item2 == "int")
+                {
+                    hasIndex = true;
+                    indexItem = value;
+                }
+                if (value.Item1 == "redacted" && value.Item2 == "bool")
+                {
+                    hasRedacted = true;
+                    redactedItem = value;
+                }
+            }
+
+            if (hasHash && hasIndex && hasRedacted && className != "DestinyDefinition")
+            {
+                className += " : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition";
+                valuesList.Remove(hashItem!);
+                valuesList.Remove(indexItem!);
+                valuesList.Remove(redactedItem!);
+            }
 
             if (isEnum)
             {
@@ -80,7 +118,7 @@ namespace BungieSharper.Generator.Generation
             }
 
             almostFinalString = almostFinalString.Replace("{name!Space}", GenerateNamespace.CreateSchemaNamespace(schemaName));
-            almostFinalString = almostFinalString.Replace("{thingName}", schemaName.Split('.').Last());
+            almostFinalString = almostFinalString.Replace("{thingName}", className);
 
             almostFinalString = almostFinalString.Replace("{documentation}",
                 schemaDetails.ContainsKey("description")

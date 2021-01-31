@@ -25,7 +25,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// Fundamentally, a Progression measures your "Level" by evaluating the thresholds in its Steps (one step per level, except for the last step which can be repeated indefinitely for "Levels" that have no ceiling) against the total earned "progression points"/experience. (for simplicity purposes, we will henceforth refer to earned progression points as experience, though it need not be a mechanic that in any way resembles Experience in a traditional sense).
     /// Earned experience is calculated in a variety of ways, determined by the Progression's scope. These go from looking up a stored value to performing exceedingly obtuse calculations. This is why we provide live data in DestinyCharacterProgressionComponent.progressions, so you don't have to worry about those.
     /// </summary>
-    public class DestinyProgressionDefinition
+    public class DestinyProgressionDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
     {
         public Schema.Destiny.Definitions.DestinyProgressionDisplayPropertiesDefinition displayProperties { get; set; }
         /// <summary>
@@ -57,15 +57,6 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// <summary>For progressions that have it, this is the rank icon we use in the Companion, displayed above the progressions' rank value.</summary>
         public string rankIcon { get; set; }
         public IEnumerable<Schema.Destiny.Definitions.DestinyProgressionRewardItemQuantity> rewardItems { get; set; }
-        /// <summary>
-        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
-        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
-        /// </summary>
-        public uint hash { get; set; }
-        /// <summary>The index of the entity as it was found in the investment tables.</summary>
-        public int index { get; set; }
-        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
-        public bool redacted { get; set; }
     }
 
     public class DestinyProgressionDisplayPropertiesDefinition
@@ -107,7 +98,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// So much of what you see in Destiny is actually an Item used in a new and creative way. This is the definition for Items in Destiny, which started off as just entities that could exist in your Inventory but ended up being the backing data for so much more: quests, reward previews, slots, and subclasses.
     /// In practice, you will want to associate this data with "live" item data from a Bungie.Net Platform call: these definitions describe the item in generic, non-instanced terms: but an actual instance of an item can vary widely from these generic definitions.
     /// </summary>
-    public class DestinyInventoryItemDefinition
+    public class DestinyInventoryItemDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
     {
         public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
         /// <summary>Tooltips that only come up conditionally for the item. Check the live data DestinyItemComponent.tooltipNotificationIndexes property for which of these should be shown at runtime.</summary>
@@ -261,15 +252,6 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public bool isWrapper { get; set; }
         /// <summary>Traits are metadata tags applied to this item. For example: armor slot, weapon type, foundry, faction, etc. These IDs come from the game and don't map to any content, but should still be useful.</summary>
         public IEnumerable<string> traitIds { get; set; }
-        /// <summary>
-        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
-        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
-        /// </summary>
-        public uint hash { get; set; }
-        /// <summary>The index of the entity as it was found in the investment tables.</summary>
-        public int index { get; set; }
-        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
-        public bool redacted { get; set; }
     }
 
     public class DestinyItemTooltipNotification
@@ -344,21 +326,12 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// Aggregations of multiple progressions.
     /// These are used to apply rewards to multiple progressions at once. They can sometimes have human readable data as well, but only extremely sporadically.
     /// </summary>
-    public class DestinyProgressionMappingDefinition
+    public class DestinyProgressionMappingDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
     {
         /// <summary>Infrequently defined in practice. Defer to the individual progressions' display properties.</summary>
         public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
         /// <summary>The localized unit of measurement for progression across the progressions defined in this mapping. Unfortunately, this is very infrequently defined. Defer to the individual progressions' display units.</summary>
         public string displayUnits { get; set; }
-        /// <summary>
-        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
-        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
-        /// </summary>
-        public uint hash { get; set; }
-        /// <summary>The index of the entity as it was found in the investment tables.</summary>
-        public int index { get; set; }
-        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
-        public bool redacted { get; set; }
     }
 
     /// <summary>
@@ -396,7 +369,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// Item definitions declare what their "default" bucket is (DestinyInventoryItemDefinition.inventory.bucketTypeHash), and Item instances will tell you which bucket they are currently residing in (DestinyItemComponent.bucketHash). You can use this information along with the DestinyInventoryBucketDefinition to show these items grouped by bucket.
     /// You cannot transfer an item to a bucket that is not its Default without going through a Vendor's "accepted items" (DestinyVendorDefinition.acceptedItems). This is how transfer functionality like the Vault is implemented, as a feature of a Vendor. See the vendor's acceptedItems property for more details.
     /// </summary>
-    public class DestinyInventoryBucketDefinition
+    public class DestinyInventoryBucketDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
     {
         public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
         /// <summary>Where the bucket is found. 0 = Character, 1 = Account</summary>
@@ -422,15 +395,6 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public bool enabled { get; set; }
         /// <summary>if a FIFO bucket fills up, it will delete the oldest item from said bucket when a new item tries to be added to it. If this is FALSE, the bucket will not allow new items to be placed in it until room is made by the user manually deleting items from it. You can see an example of this with the Postmaster's bucket.</summary>
         public bool fifo { get; set; }
-        /// <summary>
-        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
-        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
-        /// </summary>
-        public uint hash { get; set; }
-        /// <summary>The index of the entity as it was found in the investment tables.</summary>
-        public int index { get; set; }
-        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
-        public bool redacted { get; set; }
     }
 
     /// <summary>
@@ -537,7 +501,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// 3) "Display" stat (the stat's base UI-visible value after DestinyStatGroupDefinition's interpolation tables are applied to the Investment Stat value. For most stats, this is what is displayed.)
     /// 4) Underlying in-game stat (the stat's actual value according to the game, after the game runs dynamic scripts based on the game and character's state. This is the final transformation that BNet does not have access to. For most stats, this is not actually displayed to the user, with the exception of Magazine Size which is then piped back to the UI for display in-game, but not to BNet.)
     /// </summary>
-    public class DestinyStatDefinition
+    public class DestinyStatDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
     {
         public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
         /// <summary>Stats can exist on a character or an item, and they may potentially be aggregated in different ways. The DestinyStatAggregationType enum value indicates the way that this stat is being aggregated.</summary>
@@ -549,15 +513,6 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public bool hasComputedBlock { get; set; }
         /// <summary>The category of the stat, according to the game.</summary>
         public Schema.Destiny.DestinyStatCategory statCategory { get; set; }
-        /// <summary>
-        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
-        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
-        /// </summary>
-        public uint hash { get; set; }
-        /// <summary>The index of the entity as it was found in the investment tables.</summary>
-        public int index { get; set; }
-        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
-        public bool redacted { get; set; }
     }
 
     /// <summary>
@@ -565,7 +520,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// See DestinyStatDefinition's documentation for information about the transformation of Stats, and the meaning of an Investment vs. a Display stat.
     /// If you don't want to do these calculations on your own, fear not: pulling live data from the BNet endpoints will return display stat values pre-computed and ready for you to use. I highly recommend this approach, saves a lot of time and also accounts for certain stat modifiers that can't easily be accounted for without live data (such as stat modifiers on Talent Grids and Socket Plugs)
     /// </summary>
-    public class DestinyStatGroupDefinition
+    public class DestinyStatGroupDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
     {
         /// <summary>
         /// The maximum possible value that any stat in this group can be transformed into.
@@ -584,15 +539,6 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// Mercifully, no Stat Groups use this feature currently. If they start using them, we'll all need to start using them (and those of you who are more prudent than I am can go ahead and start pre-checking for this.)
         /// </summary>
         public Dictionary<uint, Schema.Destiny.Definitions.DestinyStatOverrideDefinition> overrides { get; set; }
-        /// <summary>
-        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
-        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
-        /// </summary>
-        public uint hash { get; set; }
-        /// <summary>The index of the entity as it was found in the investment tables.</summary>
-        public int index { get; set; }
-        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
-        public bool redacted { get; set; }
     }
 
     /// <summary>
@@ -663,7 +609,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// The Equipment Slot is an indicator that the related bucket can have instanced items equipped on the character. For instance, the Primary Weapon bucket has an Equipment Slot that determines whether you can equip primary weapons, and holds the association between its slot and the inventory bucket from which it can have items equipped.
     /// An Equipment Slot must have a related Inventory Bucket, but not all inventory buckets must have Equipment Slots.
     /// </summary>
-    public class DestinyEquipmentSlotDefinition
+    public class DestinyEquipmentSlotDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
     {
         public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
         /// <summary>These technically point to "Equipment Category Definitions". But don't get excited. There's nothing of significant value in those definitions, so I didn't bother to expose them. You can use the hash here to group equipment slots by common functionality, which serves the same purpose as if we had the Equipment Category definitions exposed.</summary>
@@ -674,15 +620,6 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public bool applyCustomArtDyes { get; set; }
         /// <summary>The Art Dye Channels that apply to this equipment slot.</summary>
         public IEnumerable<Schema.Destiny.Definitions.DestinyArtDyeReference> artDyeChannels { get; set; }
-        /// <summary>
-        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
-        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
-        /// </summary>
-        public uint hash { get; set; }
-        /// <summary>The index of the entity as it was found in the investment tables.</summary>
-        public int index { get; set; }
-        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
-        public bool redacted { get; set; }
     }
 
     public class DestinyArtDyeReference
@@ -739,7 +676,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// Where possible and time allows, we'll attempt to split those out into their own more digestible derived "Definitions": but often time does not allow that, as you can see from the above ways that vendors are used which we never split off from Vendor Definitions externally.
     /// Since Vendors are so many things to so many parts of the game, the definition is understandably complex. You will want to combine this data with live Vendor information from the API when it is available.
     /// </summary>
-    public class DestinyVendorDefinition
+    public class DestinyVendorDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
     {
         public Schema.Destiny.Definitions.DestinyVendorDisplayPropertiesDefinition displayProperties { get; set; }
         /// <summary>If the vendor has a custom localized string describing the "buy" action, that is returned here.</summary>
@@ -824,15 +761,6 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public IEnumerable<Schema.Destiny.Definitions.DestinyVendorGroupReference> groups { get; set; }
         /// <summary>Some items don't make sense to return in the API, for example because they represent an action to be performed rather than an item being sold. I'd rather we not do this, but at least in the short term this is a workable workaround.</summary>
         public IEnumerable<uint> ignoreSaleItemHashes { get; set; }
-        /// <summary>
-        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
-        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
-        /// </summary>
-        public uint hash { get; set; }
-        /// <summary>The index of the entity as it was found in the investment tables.</summary>
-        public int index { get; set; }
-        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
-        public bool redacted { get; set; }
     }
 
     public class DestinyVendorDisplayPropertiesDefinition
@@ -1198,7 +1126,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// On to one of the more confusing subjects of the API. What is a Destination, and what is the relationship between it, Activities, Locations, and Places?
     /// A "Destination" is a specific region/city/area of a larger "Place". For instance, a Place might be Earth where a Destination might be Bellevue, Washington. (Please, pick a more interesting destination if you come to visit Earth).
     /// </summary>
-    public class DestinyDestinationDefinition
+    public class DestinyDestinationDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
     {
         public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
         /// <summary>The place that "owns" this Destination. Use this hash to look up the DestinyPlaceDefinition.</summary>
@@ -1218,15 +1146,6 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// bubbleSettings and bubbles both have the identical number of entries, and you should match up their indexes to provide matching bubble and bubbleSettings data.
         /// </summary>
         public IEnumerable<Schema.Destiny.Definitions.DestinyBubbleDefinition> bubbles { get; set; }
-        /// <summary>
-        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
-        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
-        /// </summary>
-        public uint hash { get; set; }
-        /// <summary>The index of the entity as it was found in the investment tables.</summary>
-        public int index { get; set; }
-        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
-        public bool redacted { get; set; }
     }
 
     /// <summary>
@@ -1247,7 +1166,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// Activity Definitions tell a great deal of information about what *could* be relevant to a user: what rewards they can earn, what challenges could be performed, what modifiers could be applied. To figure out which of these properties is actually live, you'll need to combine the definition with "Live" data from one of the Destiny endpoints.
     /// Activities also have Activity Types, but unfortunately in Destiny 2 these are even less reliable of a source of information than they were in Destiny 1. I will be looking into ways to provide more reliable sources for type information as time goes on, but for now we're going to have to deal with the limitations. See DestinyActivityTypeDefinition for more information.
     /// </summary>
-    public class DestinyActivityDefinition
+    public class DestinyActivityDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
     {
         /// <summary>The title, subtitle, and icon for the activity. We do a little post-processing on this to try and account for Activities where the designers have left this data too minimal to determine what activity is actually being played.</summary>
         public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
@@ -1307,15 +1226,6 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public IEnumerable<Schema.Destiny.Definitions.DestinyActivityInsertionPointDefinition> insertionPoints { get; set; }
         /// <summary>A list of location mappings that are affected by this activity. Pulled out of DestinyLocationDefinitions for our/your lookup convenience.</summary>
         public IEnumerable<Schema.Destiny.Constants.DestinyEnvironmentLocationMapping> activityLocationMappings { get; set; }
-        /// <summary>
-        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
-        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
-        /// </summary>
-        public uint hash { get; set; }
-        /// <summary>The index of the entity as it was found in the investment tables.</summary>
-        public int index { get; set; }
-        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
-        public bool redacted { get; set; }
     }
 
     /// <summary>
@@ -1365,7 +1275,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// - Anything else that the designers decide to do later.
     /// Objectives have progress, a notion of having been Completed, human readable data describing the task to be accomplished, and a lot of optional tack-on data that can enhance the information provided about the task.
     /// </summary>
-    public class DestinyObjectiveDefinition
+    public class DestinyObjectiveDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
     {
         /// <summary>Ideally, this should tell you what your task is. I'm not going to lie to you though. Sometimes this doesn't have useful information at all. Which sucks, but there's nothing either of us can do about it.</summary>
         public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
@@ -1405,15 +1315,6 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public Schema.Destiny.DestinyUnlockValueUIStyle completedValueStyle { get; set; }
         /// <summary>The style to use when the objective is still in progress.</summary>
         public Schema.Destiny.DestinyUnlockValueUIStyle inProgressValueStyle { get; set; }
-        /// <summary>
-        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
-        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
-        /// </summary>
-        public uint hash { get; set; }
-        /// <summary>The index of the entity as it was found in the investment tables.</summary>
-        public int index { get; set; }
-        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
-        public bool redacted { get; set; }
     }
 
     /// <summary>
@@ -1436,7 +1337,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// Anyways, I'm sure you can see why perks are so interesting.
     /// What Perks often don't have is human readable information, so we attempt to reverse engineer that by pulling that data from places that uniquely refer to these perks: namely, Talent Nodes and Plugs. That only gives us a subset of perks that are human readable, but those perks are the ones people generally care about anyways. The others are left as a mystery, their true purpose mostly unknown and undocumented.
     /// </summary>
-    public class DestinySandboxPerkDefinition
+    public class DestinySandboxPerkDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
     {
         /// <summary>These display properties are by no means guaranteed to be populated. Usually when it is, it's only because we back-filled them with the displayProperties of some Talent Node or Plug item that happened to be uniquely providing that perk.</summary>
         public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
@@ -1459,15 +1360,6 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// It is as yet unpopulated, and there will be quite a bit of work needed to restore it to its former working order.
         /// </summary>
         public Schema.Destiny.Definitions.DestinyTalentNodeStepGroups perkGroups { get; set; }
-        /// <summary>
-        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
-        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
-        /// </summary>
-        public uint hash { get; set; }
-        /// <summary>The index of the entity as it was found in the investment tables.</summary>
-        public int index { get; set; }
-        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
-        public bool redacted { get; set; }
     }
 
     /// <summary>
@@ -1583,21 +1475,12 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// A "Location" is a sort of shortcut for referring to a specific combination of Activity, Destination, Place, and even Bubble or NavPoint within a space.
     /// Most of this data isn't intrinsically useful to us, but Objectives refer to locations, and through that we can at least infer the Activity, Destination, and Place being referred to by the Objective.
     /// </summary>
-    public class DestinyLocationDefinition
+    public class DestinyLocationDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
     {
         /// <summary>If the location has a Vendor on it, this is the hash identifier for that Vendor. Look them up with DestinyVendorDefinition.</summary>
         public uint vendorHash { get; set; }
         /// <summary>A Location may refer to different specific spots in the world based on the world's current state. This is a list of those potential spots, and the data we can use at runtime to determine which one of the spots is the currently valid one.</summary>
         public IEnumerable<Schema.Destiny.Definitions.DestinyLocationReleaseDefinition> locationReleases { get; set; }
-        /// <summary>
-        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
-        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
-        /// </summary>
-        public uint hash { get; set; }
-        /// <summary>The index of the entity as it was found in the investment tables.</summary>
-        public int index { get; set; }
-        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
-        public bool redacted { get; set; }
     }
 
     /// <summary>
@@ -1662,7 +1545,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// This definition represents an "Activity Mode" as it exists in the Historical Stats endpoints. An individual Activity Mode represents a collection of activities that are played in a certain way. For example, Nightfall Strikes are part of a "Nightfall" activity mode, and any activities played as the PVP mode "Clash" are part of the "Clash activity mode.
     /// Activity modes are nested under each other in a hierarchy, so that if you ask for - for example - "AllPvP", you will get any PVP activities that the user has played, regardless of what specific PVP mode was being played.
     /// </summary>
-    public class DestinyActivityModeDefinition
+    public class DestinyActivityModeDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
     {
         public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
         /// <summary>If this activity mode has a related PGCR image, this will be the path to said image.</summary>
@@ -1688,15 +1571,6 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public bool display { get; set; }
         /// <summary>The relative ordering of activity modes.</summary>
         public int order { get; set; }
-        /// <summary>
-        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
-        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
-        /// </summary>
-        public uint hash { get; set; }
-        /// <summary>The index of the entity as it was found in the investment tables.</summary>
-        public int index { get; set; }
-        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
-        public bool redacted { get; set; }
     }
 
     /// <summary>
@@ -1756,18 +1630,9 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// Okay, so Activities (DestinyActivityDefinition) take place in Destinations (DestinyDestinationDefinition). Destinations are part of larger locations known as Places (you're reading its documentation right now).
     /// Places are more on the planetary scale, like "Earth" and "Your Mom."
     /// </summary>
-    public class DestinyPlaceDefinition
+    public class DestinyPlaceDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
     {
         public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
-        /// <summary>
-        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
-        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
-        /// </summary>
-        public uint hash { get; set; }
-        /// <summary>The index of the entity as it was found in the investment tables.</summary>
-        public int index { get; set; }
-        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
-        public bool redacted { get; set; }
     }
 
     /// <summary>
@@ -1777,18 +1642,9 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// Unfortunately, there has been a movement away from providing the richer data in Destiny 2 that we used to get in Destiny 1 for Activity Types. For instance, Nightfalls are grouped under the same Activity Type as regular Strikes. 
     /// For this reason, BNet will eventually migrate toward Activity Modes as a better indicator of activity category. But for the time being, it is still referred to in many places across our codebase.
     /// </summary>
-    public class DestinyActivityTypeDefinition
+    public class DestinyActivityTypeDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
     {
         public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
-        /// <summary>
-        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
-        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
-        /// </summary>
-        public uint hash { get; set; }
-        /// <summary>The index of the entity as it was found in the investment tables.</summary>
-        public int index { get; set; }
-        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
-        public bool redacted { get; set; }
     }
 
     /// <summary>
@@ -1832,28 +1688,19 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// These definitions represent the groups we've built. Unlike in Destiny 1, a Vendors' group may change dynamically as the game state changes: thus, you will want to check DestinyVendorComponent responses to find a vendor's currently active Group (if you care).
     /// Using this will let you group your vendors in your UI in a similar manner to how we will do grouping in the Companion.
     /// </summary>
-    public class DestinyVendorGroupDefinition
+    public class DestinyVendorGroupDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
     {
         /// <summary>The recommended order in which to render the groups, Ascending order.</summary>
         public int order { get; set; }
         /// <summary>For now, a group just has a name.</summary>
         public string categoryName { get; set; }
-        /// <summary>
-        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
-        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
-        /// </summary>
-        public uint hash { get; set; }
-        /// <summary>The index of the entity as it was found in the investment tables.</summary>
-        public int index { get; set; }
-        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
-        public bool redacted { get; set; }
     }
 
     /// <summary>
     /// These definitions represent Factions in the game. Factions have ended up unilaterally being related to Vendors that represent them, but that need not necessarily be the case.
     /// A Faction is really just an entity that has a related progression for which a character can gain experience. In Destiny 1, Dead Orbit was an example of a Faction: there happens to be a Vendor that represents Dead Orbit (and indeed, DestinyVendorDefinition.factionHash defines to this relationship), but Dead Orbit could theoretically exist without the Vendor that provides rewards.
     /// </summary>
-    public class DestinyFactionDefinition
+    public class DestinyFactionDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
     {
         public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
         /// <summary>The hash identifier for the DestinyProgressionDefinition that indicates the character's relationship with this faction in terms of experience and levels.</summary>
@@ -1866,15 +1713,6 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public uint rewardVendorHash { get; set; }
         /// <summary>List of vendors that are associated with this faction. The last vendor that passes the unlock flag checks is the one that should be shown.</summary>
         public IEnumerable<Schema.Destiny.Definitions.DestinyFactionVendorDefinition> vendors { get; set; }
-        /// <summary>
-        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
-        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
-        /// </summary>
-        public uint hash { get; set; }
-        /// <summary>The index of the entity as it was found in the investment tables.</summary>
-        public int index { get; set; }
-        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
-        public bool redacted { get; set; }
     }
 
     /// <summary>
@@ -1969,20 +1807,11 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// Still, they provide a decent approximation for people trying to figure out how an item can be obtained. DestinyInventoryItemDefinition refers to sources in the sourceDatas.sourceHashes property for all sources we determined the item could spawn from.
     /// An example in Destiny 1 of a Source would be "Nightfall". If an item has the "Nightfall" source associated with it, it's extremely likely that you can earn that item while playing Nightfall, either during play or as an after-completion reward.
     /// </summary>
-    public class DestinyRewardSourceDefinition
+    public class DestinyRewardSourceDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
     {
         public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
         /// <summary>Sources are grouped into categories: common ways that items are provided. I hope to see this expand in Destiny 2 once we have time to generate accurate reward source data.</summary>
         public Schema.Destiny.Definitions.DestinyRewardSourceCategory category { get; set; }
-        /// <summary>
-        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
-        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
-        /// </summary>
-        public uint hash { get; set; }
-        /// <summary>The index of the entity as it was found in the investment tables.</summary>
-        public int index { get; set; }
-        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
-        public bool redacted { get; set; }
     }
 
     /// <summary>
@@ -2064,19 +1893,10 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// Represent a set of material requirements: Items that either need to be owned or need to be consumed in order to perform an action.
     /// A variety of other entities refer to these as gatekeepers and payments for actions that can be performed in game.
     /// </summary>
-    public class DestinyMaterialRequirementSetDefinition
+    public class DestinyMaterialRequirementSetDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
     {
         /// <summary>The list of all materials that are required.</summary>
         public IEnumerable<Schema.Destiny.Definitions.DestinyMaterialRequirement> materials { get; set; }
-        /// <summary>
-        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
-        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
-        /// </summary>
-        public uint hash { get; set; }
-        /// <summary>The index of the entity as it was found in the investment tables.</summary>
-        public int index { get; set; }
-        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
-        public bool redacted { get; set; }
     }
 
     /// <summary>
@@ -2097,36 +1917,19 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// <summary>
     /// An Unlock Value is an internal integer value, stored on the server and used in a variety of ways, most frequently for the gating/requirement checks that the game performs across all of its main features. They can also be used as the storage data for mapped Progressions, Objectives, and other features that require storage of variable numeric values.
     /// </summary>
-    public class DestinyUnlockValueDefinition
+    public class DestinyUnlockValueDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
     {
-        /// <summary>
-        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
-        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
-        /// </summary>
-        public uint hash { get; set; }
-        /// <summary>The index of the entity as it was found in the investment tables.</summary>
-        public int index { get; set; }
-        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
-        public bool redacted { get; set; }
+
     }
 
     /// <summary>
     /// Gender is a social construct, and as such we have definitions for Genders. Right now there happens to only be two, but we'll see what the future holds.
     /// </summary>
-    public class DestinyGenderDefinition
+    public class DestinyGenderDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
     {
         /// <summary>This is a quick reference enumeration for all of the currently defined Genders. We use the enumeration for quicker lookups in related data, like DestinyClassDefinition.genderedClassNames.</summary>
         public Schema.Destiny.DestinyGender genderType { get; set; }
         public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
-        /// <summary>
-        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
-        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
-        /// </summary>
-        public uint hash { get; set; }
-        /// <summary>The index of the entity as it was found in the investment tables.</summary>
-        public int index { get; set; }
-        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
-        public bool redacted { get; set; }
     }
 
     /// <summary>
@@ -2282,7 +2085,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// Now that Talent Grids are used exclusively by subclasses and builds, all of the properties within still apply: but there are additional visual elements on the Subclass/Build screens that are superimposed on top of the talent nodes. Unfortunately, BNet doesn't have this data: if you want to build a subclass screen, you will have to provide your own "decorative" assets, such as the visual connectors between nodes and the fancy colored-fire-bathed character standing behind the nodes.
     /// DestinyInventoryItem.talentGrid.talentGridHash defines an item's linked Talent Grid, which brings you to this definition that contains enough satic data about talent grids to make your head spin. These *must* be combined with instanced data - found when live data returns DestinyItemTalentGridComponent - in order to derive meaning. The instanced data will reference nodes and steps within these definitions, which you will then have to look up in the definition and combine with the instanced data to give the user the visual representation of their item's talent grid.
     /// </summary>
-    public class DestinyTalentGridDefinition
+    public class DestinyTalentGridDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
     {
         /// <summary>The maximum possible level of the Talent Grid: at this level, any nodes are allowed to be activated.</summary>
         public int maxGridLevel { get; set; }
@@ -2310,15 +2113,6 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// Note that this is different from Exclusive Groups or Sets, because these categories also incorporate "Independent" nodes that belong to neither sets nor groups. These are purely for visual grouping of nodes rather than functional grouping.
         /// </summary>
         public IEnumerable<Schema.Destiny.Definitions.DestinyTalentNodeCategory> nodeCategories { get; set; }
-        /// <summary>
-        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
-        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
-        /// </summary>
-        public uint hash { get; set; }
-        /// <summary>The index of the entity as it was found in the investment tables.</summary>
-        public int index { get; set; }
-        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
-        public bool redacted { get; set; }
     }
 
     /// <summary>
@@ -2481,7 +2275,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// <summary>
     /// All damage types that are possible in the game are defined here, along with localized info and icons as needed.
     /// </summary>
-    public class DestinyDamageTypeDefinition
+    public class DestinyDamageTypeDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
     {
         /// <summary>The description of the damage type, icon etc...</summary>
         public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
@@ -2491,15 +2285,6 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public bool showIcon { get; set; }
         /// <summary>We have an enumeration for damage types for quick reference. This is the current definition's damage type enum value.</summary>
         public Schema.Destiny.DamageType enumValue { get; set; }
-        /// <summary>
-        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
-        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
-        /// </summary>
-        public uint hash { get; set; }
-        /// <summary>The index of the entity as it was found in the investment tables.</summary>
-        public int index { get; set; }
-        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
-        public bool redacted { get; set; }
     }
 
     /// <summary>
@@ -2562,7 +2347,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// This heuristic is imperfect, however. If you find an item miscategorized, let us know on the Bungie API forums!
     /// We then populate all of the categories that we think an item belongs to in its DestinyInventoryItemDefinition.itemCategoryHashes property. You can use that to provide your own custom item filtering, sorting, aggregating... go nuts on it! And let us know if you see more categories that you wish would be added!
     /// </summary>
-    public class DestinyItemCategoryDefinition
+    public class DestinyItemCategoryDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
     {
         public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
         /// <summary>If True, this category should be visible in UI. Sometimes we make categories that we don't think are interesting externally. It's up to you if you want to skip on showing them.</summary>
@@ -2606,15 +2391,6 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public IEnumerable<uint> parentCategoryHashes { get; set; }
         /// <summary>If true, this category is only used for grouping, and should not be evaluated with its own checks. Rather, the item only has this category if it has one of its child categories.</summary>
         public bool groupCategoryOnly { get; set; }
-        /// <summary>
-        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
-        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
-        /// </summary>
-        public uint hash { get; set; }
-        /// <summary>The index of the entity as it was found in the investment tables.</summary>
-        public int index { get; set; }
-        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
-        public bool redacted { get; set; }
     }
 
     public class DestinyProgressionRewardItemQuantity
@@ -2634,7 +2410,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// <summary>
     /// In Destiny, "Races" are really more like "Species". Sort of. I mean, are the Awoken a separate species from humans? I'm not sure. But either way, they're defined here. You'll see Exo, Awoken, and Human as examples of these Species. Players will choose one for their character.
     /// </summary>
-    public class DestinyRaceDefinition
+    public class DestinyRaceDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
     {
         public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
         /// <summary>An enumeration defining the existing, known Races/Species for player characters. This value will be the enum value matching this definition.</summary>
@@ -2642,21 +2418,12 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// <summary>A localized string referring to the singular form of the Race's name when referred to in gendered form. Keyed by the DestinyGender.</summary>
         public Dictionary<Schema.Destiny.DestinyGender, string> genderedRaceNames { get; set; }
         public Dictionary<uint, string> genderedRaceNamesByGenderHash { get; set; }
-        /// <summary>
-        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
-        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
-        /// </summary>
-        public uint hash { get; set; }
-        /// <summary>The index of the entity as it was found in the investment tables.</summary>
-        public int index { get; set; }
-        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
-        public bool redacted { get; set; }
     }
 
     /// <summary>
     /// Defines a Character Class in Destiny 2. These are types of characters you can play, like Titan, Warlock, and Hunter.
     /// </summary>
-    public class DestinyClassDefinition
+    public class DestinyClassDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
     {
         /// <summary>In Destiny 1, we added a convenience Enumeration for referring to classes. We've kept it, though mostly for posterity. This is the enum value for this definition's class.</summary>
         public Schema.Destiny.DestinyClass classType { get; set; }
@@ -2666,33 +2433,15 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public Dictionary<uint, string> genderedClassNamesByGenderHash { get; set; }
         /// <summary>Mentors don't really mean anything anymore. Don't expect this to be populated.</summary>
         public uint? mentorVendorHash { get; set; }
-        /// <summary>
-        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
-        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
-        /// </summary>
-        public uint hash { get; set; }
-        /// <summary>The index of the entity as it was found in the investment tables.</summary>
-        public int index { get; set; }
-        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
-        public bool redacted { get; set; }
     }
 
     /// <summary>
     /// Unlock Flags are small bits (literally, a bit, as in a boolean value) that the game server uses for an extremely wide range of state checks, progress storage, and other interesting tidbits of information.
     /// </summary>
-    public class DestinyUnlockDefinition
+    public class DestinyUnlockDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
     {
         /// <summary>Sometimes, but not frequently, these unlock flags also have human readable information: usually when they are being directly tested for some requirement, in which case the string is a localized description of why the requirement check failed.</summary>
         public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
-        /// <summary>
-        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
-        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
-        /// </summary>
-        public uint hash { get; set; }
-        /// <summary>The index of the entity as it was found in the investment tables.</summary>
-        public int index { get; set; }
-        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
-        public bool redacted { get; set; }
     }
 
     /// <summary>

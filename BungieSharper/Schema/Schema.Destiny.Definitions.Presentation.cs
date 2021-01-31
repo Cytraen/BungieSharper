@@ -6,25 +6,16 @@ namespace BungieSharper.Schema.Destiny.Definitions.Presentation
     /// <summary>
     /// This is the base class for all presentation system children. Presentation Nodes, Records, Collectibles, and Metrics.
     /// </summary>
-    public class DestinyPresentationNodeBaseDefinition
+    public class DestinyPresentationNodeBaseDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
     {
         public Schema.Destiny.DestinyPresentationNodeType presentationNodeType { get; set; }
         public IEnumerable<string> traitIds { get; set; }
         public IEnumerable<uint> traitHashes { get; set; }
         /// <summary>A quick reference to presentation nodes that have this node as a child. Presentation nodes can be parented under multiple parents.</summary>
         public IEnumerable<uint> parentNodeHashes { get; set; }
-        /// <summary>
-        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
-        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
-        /// </summary>
-        public uint hash { get; set; }
-        /// <summary>The index of the entity as it was found in the investment tables.</summary>
-        public int index { get; set; }
-        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
-        public bool redacted { get; set; }
     }
 
-    public class DestinyScoredPresentationNodeBaseDefinition
+    public class DestinyScoredPresentationNodeBaseDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
     {
         public int maxCategoryRecordScore { get; set; }
         public Schema.Destiny.DestinyPresentationNodeType presentationNodeType { get; set; }
@@ -32,15 +23,6 @@ namespace BungieSharper.Schema.Destiny.Definitions.Presentation
         public IEnumerable<uint> traitHashes { get; set; }
         /// <summary>A quick reference to presentation nodes that have this node as a child. Presentation nodes can be parented under multiple parents.</summary>
         public IEnumerable<uint> parentNodeHashes { get; set; }
-        /// <summary>
-        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
-        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
-        /// </summary>
-        public uint hash { get; set; }
-        /// <summary>The index of the entity as it was found in the investment tables.</summary>
-        public int index { get; set; }
-        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
-        public bool redacted { get; set; }
     }
 
     /// <summary>
@@ -50,7 +32,7 @@ namespace BungieSharper.Schema.Destiny.Definitions.Presentation
     /// Part of me wants to break these into conceptual definitions per entity being collected, but the possibility of these different types being mixed in the same UI and the possibility that it could actually be more useful to return the "bare metal" presentation node concept has resulted in me deciding against that for the time being.
     /// We'll see if I come to regret this as well.
     /// </summary>
-    public class DestinyPresentationNodeDefinition
+    public class DestinyPresentationNodeDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
     {
         public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
         /// <summary>The original icon for this presentation node, before we futzed with it.</summary>
@@ -80,15 +62,6 @@ namespace BungieSharper.Schema.Destiny.Definitions.Presentation
         public IEnumerable<uint> traitHashes { get; set; }
         /// <summary>A quick reference to presentation nodes that have this node as a child. Presentation nodes can be parented under multiple parents.</summary>
         public IEnumerable<uint> parentNodeHashes { get; set; }
-        /// <summary>
-        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
-        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
-        /// </summary>
-        public uint hash { get; set; }
-        /// <summary>The index of the entity as it was found in the investment tables.</summary>
-        public int index { get; set; }
-        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
-        public bool redacted { get; set; }
     }
 
     /// <summary>

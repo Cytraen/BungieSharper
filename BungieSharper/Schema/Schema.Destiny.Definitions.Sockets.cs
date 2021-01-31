@@ -7,7 +7,7 @@ namespace BungieSharper.Schema.Destiny.Definitions.Sockets
     /// All Sockets have a "Type": a set of common properties that determine when the socket allows Plugs to be inserted, what Categories of Plugs can be inserted, and whether the socket is even visible at all given the current game/character/account state.
     /// See DestinyInventoryItemDefinition for more information about Socketed items and Plugs.
     /// </summary>
-    public class DestinySocketTypeDefinition
+    public class DestinySocketTypeDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
     {
         /// <summary>There are fields for this display data, but they appear to be unpopulated as of now. I am not sure where in the UI these would show if they even were populated, but I will continue to return this data in case it becomes useful.</summary>
         public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
@@ -29,15 +29,6 @@ namespace BungieSharper.Schema.Destiny.Definitions.Sockets
         public bool overridesUiAppearance { get; set; }
         public bool avoidDuplicatesOnInitialization { get; set; }
         public IEnumerable<Schema.Destiny.Definitions.Sockets.DestinySocketTypeScalarMaterialRequirementEntry> currencyScalars { get; set; }
-        /// <summary>
-        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
-        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
-        /// </summary>
-        public uint hash { get; set; }
-        /// <summary>The index of the entity as it was found in the investment tables.</summary>
-        public int index { get; set; }
-        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
-        public bool redacted { get; set; }
     }
 
     /// <summary>
@@ -87,7 +78,7 @@ namespace BungieSharper.Schema.Destiny.Definitions.Sockets
     /// The shitty thing about this, however, is that the socket categories' UI style can be overridden by the item's UI style. For instance, the Socket Category used by Emote Sockets says it's "consumable," but that's a lie: they're all reusable, and overridden by the detail UI pages in ways that we can't easily account for in the API.
     /// As a result, I will try to compile these rules into the individual sockets on items, and provide the best hint possible there through the plugSources property. In the future, I may attempt to use this information in conjunction with the item to provide a more usable UI hint on the socket layer, but for now improving the consistency of plugSources is the best I have time to provide. (See https://github.com/Bungie-net/api/issues/522 for more info)
     /// </summary>
-    public class DestinySocketCategoryDefinition
+    public class DestinySocketCategoryDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
     {
         public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
         /// <summary>
@@ -97,15 +88,6 @@ namespace BungieSharper.Schema.Destiny.Definitions.Sockets
         public uint uiCategoryStyle { get; set; }
         /// <summary>Same as uiCategoryStyle, but in a more usable enumeration form.</summary>
         public Schema.Destiny.DestinySocketCategoryStyle categoryStyle { get; set; }
-        /// <summary>
-        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
-        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
-        /// </summary>
-        public uint hash { get; set; }
-        /// <summary>The index of the entity as it was found in the investment tables.</summary>
-        public int index { get; set; }
-        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
-        public bool redacted { get; set; }
     }
 
     /// <summary>
@@ -114,7 +96,7 @@ namespace BungieSharper.Schema.Destiny.Definitions.Sockets
     ///  As of the release of Shadowkeep (Late 2019), these will begin to be sourced from game content directly - which means there will be many more of them, but it also means we may not get all data that we used to get for them.
     ///  DisplayProperties, in particular, will no longer be guaranteed to contain valid information. We will make a best effort to guess what ought to be populated there where possible, but it will be invalid for many/most plug sets.
     /// </summary>
-    public class DestinyPlugSetDefinition
+    public class DestinyPlugSetDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
     {
         /// <summary>If you want to show these plugs in isolation, these are the display properties for them.</summary>
         public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
@@ -128,14 +110,5 @@ namespace BungieSharper.Schema.Destiny.Definitions.Sockets
         ///  If this is true, the plug set was generated by BNet: if it looks wrong, that's a good indicator that it's bungie.net that fucked this up.
         /// </summary>
         public bool isFakePlugSet { get; set; }
-        /// <summary>
-        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
-        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
-        /// </summary>
-        public uint hash { get; set; }
-        /// <summary>The index of the entity as it was found in the investment tables.</summary>
-        public int index { get; set; }
-        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
-        public bool redacted { get; set; }
     }
 }

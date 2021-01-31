@@ -17,7 +17,7 @@ namespace BungieSharper.Schema.Destiny.Definitions.Milestones
     /// Start by looking at the currently active quest (ideally, you've fetched DestinyMilestone or DestinyPublicMilestone data from the API, so you know the currently active quest for the Milestone in question). Look up the Quests property in the Milestone Definition, and check if it has display properties. If it does, show that as the description of the Milestone. If it doesn't, fall back on the Milestone's description.
     /// This approach will let you avoid, whenever possible, the even less useful (and sometimes nonexistant) milestone-level names and descriptions.
     /// </summary>
-    public class DestinyMilestoneDefinition
+    public class DestinyMilestoneDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
     {
         public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
         /// <summary>A hint to the UI to indicate what to show as the display properties for this Milestone when showing "Live" milestone data. Feel free to show more than this if desired: this hint is meant to simplify our own UI, but it may prove useful to you as well.</summary>
@@ -59,15 +59,6 @@ namespace BungieSharper.Schema.Destiny.Definitions.Milestones
         /// <summary>A Milestone can now be represented by one or more activities directly (without a backing Quest), and that activity can have many challenges, modifiers, and related to it.</summary>
         public IEnumerable<Schema.Destiny.Definitions.Milestones.DestinyMilestoneChallengeActivityDefinition> activities { get; set; }
         public int defaultOrder { get; set; }
-        /// <summary>
-        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
-        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
-        /// </summary>
-        public uint hash { get; set; }
-        /// <summary>The index of the entity as it was found in the investment tables.</summary>
-        public int index { get; set; }
-        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
-        public bool redacted { get; set; }
     }
 
     /// <summary>

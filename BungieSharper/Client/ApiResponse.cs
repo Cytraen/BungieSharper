@@ -17,7 +17,7 @@ namespace BungieSharper.Client
 
         public string DetailedErrorTrace { get; set; }
     }
-    
+
     public class ApiResponse<T> : ApiResponse
     {
         public T Response { get; set; }

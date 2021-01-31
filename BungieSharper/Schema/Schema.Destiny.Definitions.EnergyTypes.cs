@@ -3,7 +3,7 @@
     /// <summary>
     /// Represents types of Energy that can be used for costs and payments related to Armor 2.0 mods.
     /// </summary>
-    public class DestinyEnergyTypeDefinition
+    public class DestinyEnergyTypeDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
     {
         /// <summary>The description of the energy type, icon etc...</summary>
         public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
@@ -17,14 +17,5 @@
         public uint? capacityStatHash { get; set; }
         /// <summary>If this Energy Type can be used as a cost to pay for socketing Armor 2.0 items, this is the hash for the DestinyInvestmentStatDefinition that stores the plug's raw cost.</summary>
         public uint costStatHash { get; set; }
-        /// <summary>
-        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
-        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
-        /// </summary>
-        public uint hash { get; set; }
-        /// <summary>The index of the entity as it was found in the investment tables.</summary>
-        public int index { get; set; }
-        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
-        public bool redacted { get; set; }
     }
 }

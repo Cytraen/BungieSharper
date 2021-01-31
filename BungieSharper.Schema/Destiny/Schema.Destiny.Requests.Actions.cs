@@ -7,19 +7,23 @@ namespace BungieSharper.Schema.Destiny.Requests.Actions
         public BungieMembershipType membershipType { get; set; }
     }
 
-    public class DestinyCharacterActionRequest : Destiny.Requests.Actions.DestinyActionRequest
+    public class DestinyCharacterActionRequest
     {
         public long characterId { get; set; }
+
+        public BungieMembershipType membershipType { get; set; }
     }
 
-    public class DestinyItemActionRequest : Destiny.Requests.Actions.DestinyActionRequest
+    public class DestinyItemActionRequest
     {
         public long itemId { get; set; }
 
         public long characterId { get; set; }
+
+        public BungieMembershipType membershipType { get; set; }
     }
 
-    public class DestinyPostmasterTransferRequest : Destiny.Requests.Actions.DestinyActionRequest
+    public class DestinyPostmasterTransferRequest
     {
         public uint itemReferenceHash { get; set; }
 
@@ -28,13 +32,17 @@ namespace BungieSharper.Schema.Destiny.Requests.Actions
         public long itemId { get; set; }
 
         public long characterId { get; set; }
+
+        public BungieMembershipType membershipType { get; set; }
     }
 
-    public class DestinyItemSetActionRequest : Destiny.Requests.Actions.DestinyActionRequest
+    public class DestinyItemSetActionRequest
     {
         public IEnumerable<long> itemIds { get; set; }
 
         public long characterId { get; set; }
+
+        public BungieMembershipType membershipType { get; set; }
     }
 
     public class DestinyItemStateRequest
@@ -48,7 +56,7 @@ namespace BungieSharper.Schema.Destiny.Requests.Actions
         public BungieMembershipType membershipType { get; set; }
     }
 
-    public class DestinyInsertPlugsActionRequest : Destiny.Requests.Actions.DestinyActionRequest
+    public class DestinyInsertPlugsActionRequest
     {
         /// <summary>Action token provided by the AwaGetActionToken API call.</summary>
         public string actionToken { get; set; }
@@ -60,6 +68,8 @@ namespace BungieSharper.Schema.Destiny.Requests.Actions
         public Destiny.Requests.Actions.DestinyInsertPlugsRequestEntry plug { get; set; }
 
         public long characterId { get; set; }
+
+        public BungieMembershipType membershipType { get; set; }
     }
 
     /// <summary>

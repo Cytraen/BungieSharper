@@ -44,6 +44,16 @@ namespace BungieSharper.Generator
                     continue;
                 }
 
+                GenerateSchema.GetProperties(schema.Key, schema.Value);
+            }
+
+            foreach (KeyValuePair<string, dynamic> schema in Deserialized["components"]["schemas"])
+            {
+                if (schema.Value["type"] == "array")
+                {
+                    continue;
+                }
+
                 var fileFolder = bungieSharperPath + "Schema\\" + string.Join('\\', schema.Key.Split('.').SkipLast(1));
                 string fileContent = GenerateSchema.GenerateSchemaFileContent(schema.Key, schema.Value);
 
@@ -159,6 +169,7 @@ namespace BungieSharper.Generator
 
                 foreach (var (bottomSchemaName, bottomSchemaProperties) in GenerateSchema.PropertyDictionary)
                 {
+                    var hasDocumentation = false;
                     var match = true;
 
                     if (bottomSchemaProperties.Count == 0)
@@ -171,6 +182,11 @@ namespace BungieSharper.Generator
                         continue;
                     }
 
+                    if (topSchemaProperties.Where(x => x.Item3 != null).Count() > 0)
+                    {
+                        hasDocumentation = true;
+                    }
+
                     foreach (var property in topSchemaProperties)
                     {
                         if (!bottomSchemaProperties.Contains(property))
@@ -179,9 +195,9 @@ namespace BungieSharper.Generator
                         }
                     }
 
-                    if (match)
+                    if (match & hasDocumentation)
                     {
-                        Console.WriteLine(topSchemaName + " may be the base of " + bottomSchemaName);
+                        Console.WriteLine(topSchemaName.Trim() + " may be the base of " + bottomSchemaName.Trim());
                     }
                 }
             }

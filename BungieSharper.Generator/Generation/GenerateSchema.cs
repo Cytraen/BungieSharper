@@ -8,6 +8,65 @@ namespace BungieSharper.Generator.Generation
     internal static class GenerateSchema
     {
         public static Dictionary<string, List<Tuple<string, string, string?>>> PropertyDictionary = new();
+        public static Dictionary<string, List<Tuple<string, string, string?>>> BasePropertyDictionary = new();
+
+        public static readonly List<string> BaseTypeList = new()
+        {
+            "Components.ComponentResponse",
+            "Destiny.Definitions.DestinyDefinition",
+            "User.UserMembership",
+            "User.CrossSaveUserMembership",
+            "User.UserInfoCard",
+            "Queries.SearchResult",
+            "Destiny.DestinyItemQuantity",
+            "Destiny.Definitions.Presentation.DestinyPresentationNodeBaseDefinition",
+            "Destiny.Definitions.Presentation.DestinyScoredPresentationNodeBaseDefinition"
+        };
+
+        public static void GetProperties(string schemaName, Dictionary<string, dynamic> schemaDetails)
+        {
+            var valuesList = new List<Tuple<string, string, string?>>();
+
+            if (schemaDetails["type"] == "integer")
+            {
+                return;
+            }
+            else if (schemaDetails["type"] == "object")
+            {
+                if (!schemaDetails.ContainsKey("properties"))
+                {
+                    return;
+                }
+
+                foreach (KeyValuePair<string, dynamic> propertyPair in schemaDetails["properties"])
+                {
+                    string? usableSummary = propertyPair.Value.ContainsKey("description") ? propertyPair.Value["description"] : null;
+                    bool isNullable = propertyPair.Value.ContainsKey("nullable") ? propertyPair.Value["nullable"] : false;
+
+                    if (usableSummary != null)
+                    {
+                        usableSummary = FormatSummaries.FormatSummary(propertyPair.Value["description"], 8);
+                    }
+
+                    string classType = (propertyPair.Value.ContainsKey("x-enum-reference")
+                        ? (string)JsonToCsharpMapping.GetReferenceFromRef(propertyPair.Value["x-enum-reference"]["$ref"])
+                        : (string)JsonToCsharpMapping.Type(propertyPair.Value))
+                        + (isNullable ? "?" : "");
+
+                    valuesList.Add(new Tuple<string, string, string?>(propertyPair.Key, classType, usableSummary));
+                }
+            }
+            else
+            {
+                throw new NotSupportedException();
+            }
+
+            if (BaseTypeList.Contains(schemaName))
+            {
+                BasePropertyDictionary.Add(schemaName, valuesList);
+            }
+            // PropertyDictionary.Add(schemaName, valuesList);
+        }
 
         public static string GenerateSchemaFileContent(string schemaName, Dictionary<string, dynamic> schemaDetails)
         {
@@ -61,70 +120,26 @@ namespace BungieSharper.Generator.Generation
 
             var className = schemaName.Split('.').Last();
 
-            PropertyDictionary.Add(schemaName, valuesList);
+            if (!isEnum)
+            {
+                // PropertyDictionary.Add(schemaName, valuesList);
+            }
 
             List<string> finalValueList;
             string finalValueString;
             var isFlags = schemaDetails.ContainsKey("x-enum-is-bitmask") && schemaDetails["x-enum-is-bitmask"];
 
-            // Key: base class, inner key: property name, inner value: type of property
-            var baseClassDictionary = new Dictionary<string, Dictionary<string, string>>();
-
-            baseClassDictionary.Add("Schema.Destiny.Definitions.DestinyDefinition", new()
-            {
-                { "hash", "uint" },
-                { "index", "int" },
-                { "redacted", "bool" }
-            });
-
-            baseClassDictionary.Add("Schema.Components.ComponentResponse", new()
-            {
-                { "privacy", "Schema.Components.ComponentPrivacySetting" },
-                { "disabled", "bool?" }
-            });
-
-            baseClassDictionary.Add("Schema.Destiny.Definitions.Presentation.DestinyPresentationNodeBaseDefinition", new()
-            {
-                { "presentationNodeType", "Schema.Destiny.DestinyPresentationNodeType" },
-                { "traitIds", "IEnumerable<string>" },
-                { "traitHashes", "IEnumerable<uint>" },
-                { "parentNodeHashes", "IEnumerable<uint>" }
-            });
-
-            baseClassDictionary.Add("Schema.Destiny.Definitions.Presentation.DestinyScoredPresentationNodeBaseDefinition", new()
-            {
-                { "maxCategoryRecordScore", "int" },
-                { "presentationNodeType", "Schema.Destiny.DestinyPresentationNodeType" },
-                { "traitIds", "IEnumerable<string>" },
-                { "traitHashes", "IEnumerable<uint>" },
-                { "parentNodeHashes", "IEnumerable<uint>" }
-            });
-
-            baseClassDictionary.Add("Schema.Queries.SearchResult", new()
-            {
-                { "totalResults", "int" },
-                { "hasMore", "bool" },
-                { "query", "Schema.Queries.PagedQuery" },
-                { "replacementContinuationToken", "string" },
-                { "useTotalResults", "bool" }
-            });
-
-            baseClassDictionary.Add("Schema.Destiny.Requests.Actions.DestinyActionRequest", new()
-            {
-                { "membershipType", "Schema.BungieMembershipType" }
-            });
-
             var inheritList = new List<string>();
             var valuesListRemove = new List<Tuple<string, string, string?>>();
 
-            foreach (var (baseClass, classProperties) in baseClassDictionary)
+            foreach (var (baseClass, classProperties) in BasePropertyDictionary)
             {
                 if (baseClass.Split('.').Last() == className)
                 {
                     break;
                 }
 
-                var filtered = valuesList.Where(x => classProperties.ContainsKey(x.Item1) && classProperties[x.Item1] == x.Item2).ToList();
+                var filtered = valuesList.Where(x => classProperties.Contains(x)).ToList();
 
                 if (filtered.Count == classProperties.Count)
                 {
@@ -137,14 +152,29 @@ namespace BungieSharper.Generator.Generation
                 }
             }
 
-            if (inheritList.Contains("Schema.Destiny.Definitions.Presentation.DestinyPresentationNodeBaseDefinition") && inheritList.Contains("Schema.Destiny.Definitions.DestinyDefinition"))
+            if (inheritList.Contains("Destiny.Definitions.Presentation.DestinyPresentationNodeBaseDefinition") && inheritList.Contains("Destiny.Definitions.DestinyDefinition"))
             {
-                inheritList.Remove("Schema.Destiny.Definitions.DestinyDefinition");
+                inheritList.Remove("Destiny.Definitions.DestinyDefinition");
             }
 
-            if (inheritList.Contains("Schema.Destiny.Definitions.Presentation.DestinyPresentationNodeBaseDefinition") && inheritList.Contains("Schema.Destiny.Definitions.Presentation.DestinyScoredPresentationNodeBaseDefinition"))
+            if (inheritList.Contains("Destiny.Definitions.Presentation.DestinyPresentationNodeBaseDefinition") && inheritList.Contains("Destiny.Definitions.Presentation.DestinyScoredPresentationNodeBaseDefinition"))
             {
-                inheritList.Remove("Schema.Destiny.Definitions.Presentation.DestinyPresentationNodeBaseDefinition");
+                inheritList.Remove("Destiny.Definitions.Presentation.DestinyPresentationNodeBaseDefinition");
+            }
+
+            if (inheritList.Contains("Queries.SearchResult") && inheritList.Contains("SearchResultOfGroupMembership"))
+            {
+                inheritList.Remove("Queries.SearchResult");
+            }
+
+            if (inheritList.Contains("User.UserMembership") && inheritList.Contains("User.CrossSaveUserMembership"))
+            {
+                inheritList.Remove("User.UserMembership");
+            }
+
+            if (inheritList.Contains("User.CrossSaveUserMembership") && inheritList.Contains("User.UserInfoCard"))
+            {
+                inheritList.Remove("User.CrossSaveUserMembership");
             }
 
             if (inheritList.Count > 1)
@@ -153,7 +183,7 @@ namespace BungieSharper.Generator.Generation
             }
             else if (inheritList.Count == 1)
             {
-                if (inheritList[0] == "Schema.Destiny.Requests.Actions.DestinyActionRequest")
+                if (inheritList[0] == "Destiny.Requests.Actions.DestinyActionRequest")
                 {
                     if (className.Contains("ActionRequest") || className.Contains("TransferRequest"))
                     {
@@ -173,6 +203,8 @@ namespace BungieSharper.Generator.Generation
                     }
                 }
             }
+
+            PropertyDictionary.Add(schemaName, valuesList);
 
             if (isEnum)
             {

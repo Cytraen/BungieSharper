@@ -1346,17 +1346,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// <summary>
     /// In addition to item quantity information for vendor prices, this also has any optional information that may exist about how the item's quantity can be modified. (unfortunately not information that is able to be read outside of the BNet servers, but it's there)
     /// </summary>
-    public class DestinyVendorItemQuantity
-    {
-        /// <summary>The hash identifier for the item in question. Use it to look up the item's DestinyInventoryItemDefinition.</summary>
-        public uint itemHash { get; set; }
-
-        /// <summary>If this quantity is referring to a specific instance of an item, this will have the item's instance ID. Normally, this will be null.</summary>
-        public long? itemInstanceId { get; set; }
-
-        /// <summary>The amount of the item needed/available depending on the context of where DestinyItemQuantity is being used.</summary>
-        public int quantity { get; set; }
-    }
+    public class DestinyVendorItemQuantity : Destiny.DestinyItemQuantity { }
 
     /// <summary>
     /// An overly complicated wrapper for the item level at which the item should spawn.
@@ -2960,7 +2950,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public bool groupCategoryOnly { get; set; }
     }
 
-    public class DestinyProgressionRewardItemQuantity
+    public class DestinyProgressionRewardItemQuantity : Destiny.DestinyItemQuantity
     {
         public int rewardedAtProgressionLevel { get; set; }
 
@@ -2969,15 +2959,6 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public string uiDisplayStyle { get; set; }
 
         public IEnumerable<string> claimUnlockDisplayStrings { get; set; }
-
-        /// <summary>The hash identifier for the item in question. Use it to look up the item's DestinyInventoryItemDefinition.</summary>
-        public uint itemHash { get; set; }
-
-        /// <summary>If this quantity is referring to a specific instance of an item, this will have the item's instance ID. Normally, this will be null.</summary>
-        public long? itemInstanceId { get; set; }
-
-        /// <summary>The amount of the item needed/available depending on the context of where DestinyItemQuantity is being used.</summary>
-        public int quantity { get; set; }
     }
 
     /// <summary>

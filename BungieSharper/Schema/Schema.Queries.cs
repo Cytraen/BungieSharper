@@ -3,9 +3,13 @@
     public class SearchResult
     {
         public int totalResults { get; set; }
+
         public bool hasMore { get; set; }
+
         public Schema.Queries.PagedQuery query { get; set; }
+
         public string replacementContinuationToken { get; set; }
+
         /// <summary>
         /// If useTotalResults is true, then totalResults represents an accurate count.
         /// If False, it does not, and may be estimated/only the size of the current page.
@@ -18,7 +22,9 @@
     public class PagedQuery
     {
         public int itemsPerPage { get; set; }
+
         public int currentPage { get; set; }
+
         public string requestContinuationToken { get; set; }
     }
 }

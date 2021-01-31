@@ -2,7 +2,6 @@
 
 namespace BungieSharper.Schema.Destiny.Definitions.Director
 {
-
     /// <summary>
     /// Represents a Map View in the director: be them overview views, destination views, or other.
     /// They have nodes which map to activities, and other various visual elements that we (or others) may or may not be able to use.
@@ -14,14 +13,19 @@ namespace BungieSharper.Schema.Destiny.Definitions.Director
     {
         /// <summary>These represent the visual "nodes" on the map's view. These are the activities you can click on in the map.</summary>
         public IEnumerable<Schema.Destiny.Definitions.Director.DestinyActivityGraphNodeDefinition> nodes { get; set; }
+
         /// <summary>Represents one-off/special UI elements that appear on the map.</summary>
         public IEnumerable<Schema.Destiny.Definitions.Director.DestinyActivityGraphArtElementDefinition> artElements { get; set; }
+
         /// <summary>Represents connections between graph nodes. However, it lacks context that we'd need to make good use of it.</summary>
         public IEnumerable<Schema.Destiny.Definitions.Director.DestinyActivityGraphConnectionDefinition> connections { get; set; }
+
         /// <summary>Objectives can display on maps, and this is supposedly metadata for that. I have not had the time to analyze the details of what is useful within however: we could be missing important data to make this work. Expect this property to be expanded on later if possible.</summary>
         public IEnumerable<Schema.Destiny.Definitions.Director.DestinyActivityGraphDisplayObjectiveDefinition> displayObjectives { get; set; }
+
         /// <summary>Progressions can also display on maps, but similarly to displayObjectives we appear to lack some required information and context right now. We will have to look into it later and add more data if possible.</summary>
         public IEnumerable<Schema.Destiny.Definitions.Director.DestinyActivityGraphDisplayProgressionDefinition> displayProgressions { get; set; }
+
         /// <summary>Represents links between this Activity Graph and other ones.</summary>
         public IEnumerable<Schema.Destiny.Definitions.Director.DestinyLinkedGraphDefinition> linkedGraphs { get; set; }
     }
@@ -33,14 +37,19 @@ namespace BungieSharper.Schema.Destiny.Definitions.Director
     {
         /// <summary>An identifier for the Activity Graph Node, only guaranteed to be unique within its parent Activity Graph.</summary>
         public uint nodeId { get; set; }
+
         /// <summary>The node *may* have display properties that override the active Activity's display properties.</summary>
         public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition overrideDisplay { get; set; }
+
         /// <summary>The position on the map for this node.</summary>
         public Schema.Destiny.Definitions.Common.DestinyPositionDefinition position { get; set; }
+
         /// <summary>The node may have various visual accents placed on it, or styles applied. These are the list of possible styles that the Node can have. The game iterates through each, looking for the first one that passes a check of the required game/character/account state in order to show that style, and then renders the node in that style.</summary>
         public IEnumerable<Schema.Destiny.Definitions.Director.DestinyActivityGraphNodeFeaturingStateDefinition> featuringStates { get; set; }
+
         /// <summary>The node may have various possible activities that could be active for it, however only one may be active at a time. See the DestinyActivityGraphNodeActivityDefinition for details.</summary>
         public IEnumerable<Schema.Destiny.Definitions.Director.DestinyActivityGraphNodeActivityDefinition> activities { get; set; }
+
         /// <summary>Represents possible states that the graph node can be in. These are combined with some checking that happens in the game client and server to determine which state is actually active at any given time.</summary>
         public IEnumerable<Schema.Destiny.Definitions.Director.DestinyActivityGraphNodeStateEntry> states { get; set; }
     }
@@ -61,6 +70,7 @@ namespace BungieSharper.Schema.Destiny.Definitions.Director
     {
         /// <summary>An identifier for this node activity. It is only guaranteed to be unique within the Activity Graph.</summary>
         public uint nodeActivityId { get; set; }
+
         /// <summary>The activity that will be activated if the user clicks on this node. Controls all activity-related information displayed on the node if it is active (the text shown in the tooltip etc)</summary>
         public uint activityHash { get; set; }
     }
@@ -88,6 +98,7 @@ namespace BungieSharper.Schema.Destiny.Definitions.Director
     public class DestinyActivityGraphConnectionDefinition
     {
         public uint sourceNodeHash { get; set; }
+
         public uint destNodeHash { get; set; }
     }
 
@@ -98,6 +109,7 @@ namespace BungieSharper.Schema.Destiny.Definitions.Director
     {
         /// <summary>$NOTE $amola 2017-01-19 This field is apparently something that CUI uses to manually wire up objectives to display info. I am unsure how it works.</summary>
         public uint id { get; set; }
+
         /// <summary>The objective being shown on the map.</summary>
         public uint objectiveHash { get; set; }
     }
@@ -108,6 +120,7 @@ namespace BungieSharper.Schema.Destiny.Definitions.Director
     public class DestinyActivityGraphDisplayProgressionDefinition
     {
         public uint id { get; set; }
+
         public uint progressionHash { get; set; }
     }
 
@@ -117,10 +130,15 @@ namespace BungieSharper.Schema.Destiny.Definitions.Director
     public class DestinyLinkedGraphDefinition
     {
         public string description { get; set; }
+
         public string name { get; set; }
+
         public Schema.Destiny.Definitions.DestinyUnlockExpressionDefinition unlockExpression { get; set; }
+
         public uint linkedGraphId { get; set; }
+
         public IEnumerable<Schema.Destiny.Definitions.Director.DestinyLinkedGraphEntryDefinition> linkedGraphs { get; set; }
+
         public string overview { get; set; }
     }
 

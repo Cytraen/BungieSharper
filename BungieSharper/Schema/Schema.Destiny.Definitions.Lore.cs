@@ -7,6 +7,7 @@
     public class DestinyLoreDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
     {
         public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
+
         public string subtitle { get; set; }
     }
 }

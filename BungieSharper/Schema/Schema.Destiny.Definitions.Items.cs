@@ -9,6 +9,7 @@ namespace BungieSharper.Schema.Destiny.Definitions.Items
     public class DestinyItemTierTypeDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
     {
         public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
+
         /// <summary>If this tier defines infusion properties, they will be contained here.</summary>
         public Schema.Destiny.Definitions.Items.DestinyItemTierTypeInfusionBlock infusionProcess { get; set; }
     }
@@ -17,6 +18,7 @@ namespace BungieSharper.Schema.Destiny.Definitions.Items
     {
         /// <summary>The default portion of quality that will transfer from the infuser to the infusee item. (InfuserQuality - InfuseeQuality) * baseQualityTransferRatio = base quality transferred.</summary>
         public float baseQualityTransferRatio { get; set; }
+
         /// <summary>As long as InfuserQuality > InfuseeQuality, the amount of quality bestowed is guaranteed to be at least this value, even if the transferRatio would dictate that it should be less. The total amount of quality that ends up in the Infusee cannot exceed the Infuser's quality however (for instance, if you infuse a 300 item with a 301 item and the minimum quality increment is 10, the infused item will not end up with 310 quality)</summary>
         public int minimumQualityIncrement { get; set; }
     }
@@ -29,6 +31,7 @@ namespace BungieSharper.Schema.Destiny.Definitions.Items
     {
         /// <summary>The localized string for the category title. This will be something describing the items you can get as a group, or your likelihood/the quantity you'll get.</summary>
         public string categoryDescription { get; set; }
+
         /// <summary>This is the list of all of the items for this category and the basic properties we'll know about them.</summary>
         public IEnumerable<Schema.Destiny.Definitions.Items.DestinyDerivedItemDefinition> items { get; set; }
     }
@@ -40,14 +43,19 @@ namespace BungieSharper.Schema.Destiny.Definitions.Items
     {
         /// <summary>The hash for the DestinyInventoryItemDefinition of this derived item, if there is one. Sometimes we are given this information as a manual override, in which case there won't be an actual DestinyInventoryItemDefinition for what we display, but you can still show the strings from this object itself.</summary>
         public uint? itemHash { get; set; }
+
         /// <summary>The name of the derived item.</summary>
         public string itemName { get; set; }
+
         /// <summary>Additional details about the derived item, in addition to the description.</summary>
         public string itemDetail { get; set; }
+
         /// <summary>A brief description of the item.</summary>
         public string itemDescription { get; set; }
+
         /// <summary>An icon for the item.</summary>
         public string iconPath { get; set; }
+
         /// <summary>If the item was derived from a "Preview Vendor", this will be an index into the DestinyVendorDefinition's itemList property. Otherwise, -1.</summary>
         public int vendorItemIndex { get; set; }
     }
@@ -63,42 +71,58 @@ namespace BungieSharper.Schema.Destiny.Definitions.Items
         /// The live data DestinyItemPlugComponent.insertFailIndexes will be an index into this array, so you can pull out the failure strings appropriate for the user.
         /// </summary>
         public IEnumerable<Schema.Destiny.Definitions.Items.DestinyPlugRuleDefinition> insertionRules { get; set; }
+
         /// <summary>The string identifier for the plug's category. Use the socket's DestinySocketTypeDefinition.plugWhitelist to determine whether this plug can be inserted into the socket.</summary>
         public string plugCategoryIdentifier { get; set; }
+
         /// <summary>The hash for the plugCategoryIdentifier. You can use this instead if you wish: I put both in the definition for debugging purposes.</summary>
         public uint plugCategoryHash { get; set; }
+
         /// <summary>If you successfully socket the item, this will determine whether or not you get "refunded" on the plug.</summary>
         public bool onActionRecreateSelf { get; set; }
+
         /// <summary>If inserting this plug requires materials, this is the hash identifier for looking up the DestinyMaterialRequirementSetDefinition for those requirements.</summary>
         public uint insertionMaterialRequirementHash { get; set; }
+
         /// <summary>In the game, if you're inspecting a plug item directly, this will be the item shown with the plug attached. Look up the DestinyInventoryItemDefinition for this hash for the item.</summary>
         public uint previewItemOverrideHash { get; set; }
+
         /// <summary>It's not enough for the plug to be inserted. It has to be enabled as well. For it to be enabled, it may require materials. This is the hash identifier for the DestinyMaterialRequirementSetDefinition for those requirements, if there is one.</summary>
         public uint enabledMaterialRequirementHash { get; set; }
+
         /// <summary>
         /// The rules around whether the plug, once inserted, is enabled and providing its benefits.
         /// The live data DestinyItemPlugComponent.enableFailIndexes will be an index into this array, so you can pull out the failure strings appropriate for the user.
         /// </summary>
         public IEnumerable<Schema.Destiny.Definitions.Items.DestinyPlugRuleDefinition> enabledRules { get; set; }
+
         /// <summary>Plugs can have arbitrary, UI-defined identifiers that the UI designers use to determine the style applied to plugs. Unfortunately, we have neither a definitive list of these labels nor advance warning of when new labels might be applied or how that relates to how they get rendered. If you want to, you can refer to known labels to change your own styles: but know that new ones can be created arbitrarily, and we have no way of associating the labels with any specific UI style guidance... you'll have to piece that together on your end. Or do what we do, and just show plugs more generically, without specialized styles.</summary>
         public string uiPlugLabel { get; set; }
+
         public Schema.Destiny.PlugUiStyles plugStyle { get; set; }
+
         /// <summary>Indicates the rules about when this plug can be used. See the PlugAvailabilityMode enumeration for more information!</summary>
         public Schema.Destiny.PlugAvailabilityMode plugAvailability { get; set; }
+
         /// <summary>If the plug meets certain state requirements, it may have an alternative label applied to it. This is the alternative label that will be applied in such a situation.</summary>
         public string alternateUiPlugLabel { get; set; }
+
         /// <summary>The alternate plug of the plug: only applies when the item is in states that only the server can know about and control, unfortunately. See AlternateUiPlugLabel for the related label info.</summary>
         public Schema.Destiny.PlugUiStyles alternatePlugStyle { get; set; }
+
         /// <summary>If TRUE, this plug is used for UI display purposes only, and doesn't have any interesting effects of its own.</summary>
         public bool isDummyPlug { get; set; }
+
         /// <summary>
         /// Do you ever get the feeling that a system has become so overburdened by edge cases that it probably should have become some other system entirely? So do I!
         /// In totally unrelated news, Plugs can now override properties of their parent items. This is some of the relevant definition data for those overrides.
         /// If this is populated, it will have the override data to be applied when this plug is applied to an item.
         /// </summary>
         public Schema.Destiny.Definitions.Items.DestinyParentItemOverride parentItemOverride { get; set; }
+
         /// <summary>IF not null, this plug provides Energy capacity to the item in which it is socketed. In Armor 2.0 for example, is implemented in a similar way to Masterworks, where visually it's a single area of the UI being clicked on to "Upgrade" to higher energy levels, but it's actually socketing new plugs.</summary>
         public Schema.Destiny.Definitions.Items.DestinyEnergyCapacityEntry energyCapacity { get; set; }
+
         /// <summary>IF not null, this plug has an energy cost. This contains the details of that cost.</summary>
         public Schema.Destiny.Definitions.Items.DestinyEnergyCostEntry energyCost { get; set; }
     }
@@ -116,6 +140,7 @@ namespace BungieSharper.Schema.Destiny.Definitions.Items
     public class DestinyParentItemOverride
     {
         public IEnumerable<string> additionalEquipRequirementsDisplayStrings { get; set; }
+
         public string pipIcon { get; set; }
     }
 
@@ -126,8 +151,10 @@ namespace BungieSharper.Schema.Destiny.Definitions.Items
     {
         /// <summary>How much energy capacity this plug provides.</summary>
         public int capacityValue { get; set; }
+
         /// <summary>Energy provided by a plug is always of a specific type - this is the hash identifier for the energy type for which it provides Capacity.</summary>
         public uint energyTypeHash { get; set; }
+
         /// <summary>The Energy Type for this energy capacity, in enum form for easy use.</summary>
         public Schema.Destiny.DestinyEnergyType energyType { get; set; }
     }
@@ -139,8 +166,10 @@ namespace BungieSharper.Schema.Destiny.Definitions.Items
     {
         /// <summary>The Energy cost for inserting this plug.</summary>
         public int energyCost { get; set; }
+
         /// <summary>The type of energy that this plug costs, as a reference to the DestinyEnergyTypeDefinition of the energy type.</summary>
         public uint energyTypeHash { get; set; }
+
         /// <summary>The type of energy that this plug costs, in enum form.</summary>
         public Schema.Destiny.DestinyEnergyType energyType { get; set; }
     }

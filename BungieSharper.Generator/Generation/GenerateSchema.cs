@@ -101,13 +101,13 @@ namespace BungieSharper.Generator.Generation
 
             if (isEnum)
             {
-                finalValueList = valuesList.Select(x => $"{x.Item3}        {x.Item1} = {x.Item2},").ToList();
-                finalValueString = string.Join('\n', finalValueList).TrimEnd(',');
+                finalValueList = valuesList.Select(x => $"{x.Item3}        {x.Item1} = {x.Item2}").ToList();
+                finalValueString = string.Join(",\n\n", finalValueList);
             }
             else
             {
                 finalValueList = valuesList.Select(x => $"{x.Item3}        public {x.Item2} {x.Item1} {{ get; set; }}").ToList();
-                finalValueString = string.Join('\n', finalValueList);
+                finalValueString = string.Join("\n\n", finalValueList);
             }
 
             var almostFinalString = CreateDataTypeContent(isEnum, finalValueString, isFlags);
@@ -120,13 +120,15 @@ namespace BungieSharper.Generator.Generation
             almostFinalString = almostFinalString.Replace("{name!Space}", GenerateNamespace.CreateSchemaNamespace(schemaName));
             almostFinalString = almostFinalString.Replace("{thingName}", className);
 
-            almostFinalString = almostFinalString.Replace("{documentation}",
-                schemaDetails.ContainsKey("description")
-                    ? FormatSummaries.FormatSummary(schemaDetails.ContainsKey("description")
-                        ? schemaDetails["description"]
-                        : "", 4, true)
-                    : ""
-                );
+            if (schemaDetails.ContainsKey("description"))
+            {
+                almostFinalString = almostFinalString.Replace("{documentation}", FormatSummaries.FormatSummary(schemaDetails["description"], 4, true));
+            }
+            else
+            {
+                almostFinalString = almostFinalString.Replace("{documentation}", "");
+            }
+
             return almostFinalString;
         }
 

@@ -2,7 +2,6 @@
 
 namespace BungieSharper.Schema.Destiny.Definitions.Milestones
 {
-
     /// <summary>
     /// Milestones are an in-game concept where they're attempting to tell you what you can do next in-game.
     /// If that sounds a lot like Advisors in Destiny 1, it is! So we threw out Advisors in the Destiny 2 API and tacked all of the data we would have put on Advisors onto Milestones instead.
@@ -20,44 +19,61 @@ namespace BungieSharper.Schema.Destiny.Definitions.Milestones
     public class DestinyMilestoneDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
     {
         public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
+
         /// <summary>A hint to the UI to indicate what to show as the display properties for this Milestone when showing "Live" milestone data. Feel free to show more than this if desired: this hint is meant to simplify our own UI, but it may prove useful to you as well.</summary>
         public Schema.Destiny.Definitions.Milestones.DestinyMilestoneDisplayPreference displayPreference { get; set; }
+
         /// <summary>A custom image someone made just for the milestone. Isn't that special?</summary>
         public string image { get; set; }
+
         /// <summary>An enumeration listing one of the possible types of milestones. Check out the DestinyMilestoneType enum for more info!</summary>
         public Schema.Destiny.Definitions.Milestones.DestinyMilestoneType milestoneType { get; set; }
+
         /// <summary>If True, then the Milestone has been integrated with BNet's recruiting feature.</summary>
         public bool recruitable { get; set; }
+
         /// <summary>If the milestone has a friendly identifier for association with other features - such as Recruiting - that identifier can be found here. This is "friendly" in that it looks better in a URL than whatever the identifier for the Milestone actually is.</summary>
         public string friendlyName { get; set; }
+
         /// <summary>If TRUE, this entry should be returned in the list of milestones for the "Explore Destiny" (i.e. new BNet homepage) features of Bungie.net (as long as the underlying event is active) Note that this is a property specifically used by BNet and the companion app for the "Live Events" feature of the front page/welcome view: it's not a reflection of what you see in-game.</summary>
         public bool showInExplorer { get; set; }
+
         /// <summary>Determines whether we'll show this Milestone in the user's personal Milestones list.</summary>
         public bool showInMilestones { get; set; }
+
         /// <summary>If TRUE, "Explore Destiny" (the front page of BNet and the companion app) prioritize using the activity image over any overriding Quest or Milestone image provided. This unfortunate hack is brought to you by Trials of The Nine.</summary>
         public bool explorePrioritizesActivityImage { get; set; }
+
         /// <summary>A shortcut for clients - and the server - to understand whether we can predict the start and end dates for this event. In practice, there are multiple ways that an event could have predictable date ranges, but not all events will be able to be predicted via any mechanism (for instance, events that are manually triggered on and off)</summary>
         public bool hasPredictableDates { get; set; }
+
         /// <summary>
         /// The full set of possible Quests that give the overview of the Milestone event/activity in question. Only one of these can be active at a time for a given Conceptual Milestone, but many of them may be "available" for the user to choose from. (for instance, with Milestones you can choose from the three available Quests, but only one can be active at a time) Keyed by the quest item.
         /// As of Forsaken (~September 2018), Quest-style Milestones are being removed for many types of activities. There will likely be further revisions to the Milestone concept in the future.
         /// </summary>
         public Dictionary<uint, Schema.Destiny.Definitions.Milestones.DestinyMilestoneQuestDefinition> quests { get; set; }
+
         /// <summary>
         /// If this milestone can provide rewards, this will define the categories into which the individual reward entries are placed.
         /// This is keyed by the Category's hash, which is only guaranteed to be unique within a given Milestone.
         /// </summary>
         public Dictionary<uint, Schema.Destiny.Definitions.Milestones.DestinyMilestoneRewardCategoryDefinition> rewards { get; set; }
+
         /// <summary>If you're going to show Vendors for the Milestone, you can use this as a localized "header" for the section where you show that vendor data. It'll provide a more context-relevant clue about what the vendor's role is in the Milestone.</summary>
         public string vendorsDisplayTitle { get; set; }
+
         /// <summary>Sometimes, milestones will have rewards provided by Vendors. This definition gives the information needed to understand which vendors are relevant, the order in which they should be returned if order matters, and the conditions under which the Vendor is relevant to the user.</summary>
         public IEnumerable<Schema.Destiny.Definitions.Milestones.DestinyMilestoneVendorDefinition> vendors { get; set; }
+
         /// <summary>Sometimes, milestones will have arbitrary values associated with them that are of interest to us or to third party developers. This is the collection of those values' definitions, keyed by the identifier of the value and providing useful definition information such as localizable names and descriptions for the value.</summary>
         public Dictionary<string, Schema.Destiny.Definitions.Milestones.DestinyMilestoneValueDefinition> values { get; set; }
+
         /// <summary>Some milestones are explicit objectives that you can see and interact with in the game. Some milestones are more conceptual, built by BNet to help advise you on activities and events that happen in-game but that aren't explicitly shown in game as Milestones. If this is TRUE, you can see this as a milestone in the game. If this is FALSE, it's an event or activity you can participate in, but you won't see it as a Milestone in the game's UI.</summary>
         public bool isInGameMilestone { get; set; }
+
         /// <summary>A Milestone can now be represented by one or more activities directly (without a backing Quest), and that activity can have many challenges, modifiers, and related to it.</summary>
         public IEnumerable<Schema.Destiny.Definitions.Milestones.DestinyMilestoneChallengeActivityDefinition> activities { get; set; }
+
         public int defaultOrder { get; set; }
     }
 
@@ -69,8 +85,10 @@ namespace BungieSharper.Schema.Destiny.Definitions.Milestones
     {
         /// <summary>Indicates you should show DestinyMilestoneDefinition.displayProperties for this Milestone.</summary>
         MilestoneDefinition = 0,
+
         /// <summary>Indicates you should show the displayProperties for any currently active Quest Steps in DestinyMilestone.availableQuests.</summary>
         CurrentQuestSteps = 1,
+
         /// <summary>Indicates you should show the displayProperties for any currently active Activities and their Challenges in DestinyMilestone.activities.</summary>
         CurrentActivityChallenges = 2
     }
@@ -81,14 +99,19 @@ namespace BungieSharper.Schema.Destiny.Definitions.Milestones
     public enum DestinyMilestoneType
     {
         Unknown = 0,
+
         /// <summary>One-time milestones that are specifically oriented toward teaching players about new mechanics and gameplay modes.</summary>
         Tutorial = 1,
+
         /// <summary>Milestones that, once completed a single time, can never be repeated.</summary>
         OneTime = 2,
+
         /// <summary>Milestones that repeat/reset on a weekly basis. They need not all reset on the same day or time, but do need to reset weekly to qualify for this type.</summary>
         Weekly = 3,
+
         /// <summary>Milestones that repeat or reset on a daily basis.</summary>
         Daily = 4,
+
         /// <summary>Special indicates that the event is not on a daily/weekly cadence, but does occur more than once. For instance, Iron Banner in Destiny 1 or the Dawning were examples of what could be termed "Special" events.</summary>
         Special = 5
     }
@@ -100,14 +123,19 @@ namespace BungieSharper.Schema.Destiny.Definitions.Milestones
     {
         /// <summary>The item representing this Milestone quest. Use this hash to look up the DestinyInventoryItemDefinition for the quest to find its steps and human readable data.</summary>
         public uint questItemHash { get; set; }
+
         /// <summary>The individual quests may have different definitions from the overall milestone: if there's a specific active quest, use these displayProperties instead of that of the overall DestinyMilestoneDefinition.</summary>
         public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
+
         /// <summary>If populated, this image can be shown instead of the generic milestone's image when this quest is live, or it can be used to show a background image for the quest itself that differs from that of the Activity or the Milestone.</summary>
         public string overrideImage { get; set; }
+
         /// <summary>The rewards you will get for completing this quest, as best as we could extract them from our data. Sometimes, it'll be a decent amount of data. Sometimes, it's going to be sucky. Sorry.</summary>
         public Schema.Destiny.Definitions.Milestones.DestinyMilestoneQuestRewardsDefinition questRewards { get; set; }
+
         /// <summary>The full set of all possible "conceptual activities" that are related to this Milestone. Tiers or alternative modes of play within these conceptual activities will be defined as sub-entities. Keyed by the Conceptual Activity Hash. Use the key to look up DestinyActivityDefinition.</summary>
         public Dictionary<uint, Schema.Destiny.Definitions.Milestones.DestinyMilestoneActivityDefinition> activities { get; set; }
+
         /// <summary>Sometimes, a Milestone's quest is related to an entire Destination rather than a specific activity. In that situation, this will be the hash of that Destination. Hotspots are currently the only Milestones that expose this data, but that does not preclude this data from being returned for other Milestones in the future.</summary>
         public uint? destinationHash { get; set; }
     }
@@ -133,18 +161,22 @@ namespace BungieSharper.Schema.Destiny.Definitions.Milestones
     {
         /// <summary>The quest reward item *may* be associated with a vendor. If so, this is that vendor. Use this hash to look up the DestinyVendorDefinition.</summary>
         public uint? vendorHash { get; set; }
+
         /// <summary>The quest reward item *may* be associated with a vendor. If so, this is the index of the item being sold, which we can use at runtime to find instanced item information for the reward item.</summary>
         public int? vendorItemIndex { get; set; }
+
         /// <summary>The hash identifier for the item in question. Use it to look up the item's DestinyInventoryItemDefinition.</summary>
         public uint itemHash { get; set; }
+
         /// <summary>If this quantity is referring to a specific instance of an item, this will have the item's instance ID. Normally, this will be null.</summary>
         public long? itemInstanceId { get; set; }
+
         /// <summary>The amount of the item needed/available depending on the context of where DestinyItemQuantity is being used.</summary>
         public int quantity { get; set; }
     }
 
     /// <summary>
-    /// Milestones can have associated activities which provide additional information about the context, challenges, modifiers, state etc... related to this Milestone. 
+    /// Milestones can have associated activities which provide additional information about the context, challenges, modifiers, state etc... related to this Milestone.
     /// Information we need to be able to return that data is defined here, along with Tier data to establish a relationship between a conceptual Activity and its difficulty levels and variants.
     /// </summary>
     public class DestinyMilestoneActivityDefinition
@@ -154,6 +186,7 @@ namespace BungieSharper.Schema.Destiny.Definitions.Milestones
         /// If you care about the specific difficulty modes and variations, use the activities under "Variants".
         /// </summary>
         public uint conceptualActivityHash { get; set; }
+
         /// <summary>
         /// A milestone-referenced activity can have many variants, such as Tiers or alternative modes of play.
         /// Even if there is only a single variant, the details for these are represented within as a variant definition.
@@ -170,10 +203,11 @@ namespace BungieSharper.Schema.Destiny.Definitions.Milestones
     public class DestinyMilestoneActivityVariantDefinition
     {
         /// <summary>
-        /// The hash to use for looking up the variant Activity's definition (DestinyActivityDefinition), where you can find its distinguishing characteristics such as difficulty level and recommended light level. 
+        /// The hash to use for looking up the variant Activity's definition (DestinyActivityDefinition), where you can find its distinguishing characteristics such as difficulty level and recommended light level.
         /// Frequently, that will be the only distinguishing characteristics in practice, which is somewhat of a bummer.
         /// </summary>
         public uint activityHash { get; set; }
+
         /// <summary>
         /// If you care to do so, render the variants in the order prescribed by this value.
         /// When you combine live Milestone data with the definition, the order becomes more useful because you'll be cross-referencing between the definition and live data.
@@ -188,12 +222,16 @@ namespace BungieSharper.Schema.Destiny.Definitions.Milestones
     {
         /// <summary>Identifies the reward category. Only guaranteed unique within this specific component!</summary>
         public uint categoryHash { get; set; }
+
         /// <summary>The string identifier for the category, if you want to use it for some end. Guaranteed unique within the specific component.</summary>
         public string categoryIdentifier { get; set; }
+
         /// <summary>Hopefully this is obvious by now.</summary>
         public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
+
         /// <summary>If this milestone can provide rewards, this will define the sets of rewards that can be earned, the conditions under which they can be acquired, internal data that we'll use at runtime to determine whether you've already earned or redeemed this set of rewards, and the category that this reward should be placed under.</summary>
         public Dictionary<uint, Schema.Destiny.Definitions.Milestones.DestinyMilestoneRewardEntryDefinition> rewardEntries { get; set; }
+
         /// <summary>If you want to use BNet's recommended order for rendering categories programmatically, use this value and compare it to other categories to determine the order in which they should be rendered. I don't feel great about putting this here, I won't lie.</summary>
         public int order { get; set; }
     }
@@ -205,20 +243,25 @@ namespace BungieSharper.Schema.Destiny.Definitions.Milestones
     {
         /// <summary>The identifier for this reward entry. Runtime data will refer to reward entries by this hash. Only guaranteed unique within the specific Milestone.</summary>
         public uint rewardEntryHash { get; set; }
+
         /// <summary>The string identifier, if you care about it. Only guaranteed unique within the specific Milestone.</summary>
         public string rewardEntryIdentifier { get; set; }
+
         /// <summary>The items you will get as rewards, and how much of it you'll get.</summary>
         public IEnumerable<Schema.Destiny.DestinyItemQuantity> items { get; set; }
+
         /// <summary>If this reward is redeemed at a Vendor, this is the hash of the Vendor to go to in order to redeem the reward. Use this hash to look up the DestinyVendorDefinition.</summary>
         public uint? vendorHash { get; set; }
+
         /// <summary>For us to bother returning this info, we should be able to return some kind of information about why these rewards are grouped together. This is ideally that information. Look at how confident I am that this will always remain true.</summary>
         public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
+
         /// <summary>If you want to follow BNet's ordering of these rewards, use this number within a given category to order the rewards. Yeah, I know. I feel dirty too.</summary>
         public int order { get; set; }
     }
 
     /// <summary>
-    /// If the Milestone or a component has vendors whose inventories could/should be displayed that are relevant to it, this will return the vendor in question. 
+    /// If the Milestone or a component has vendors whose inventories could/should be displayed that are relevant to it, this will return the vendor in question.
     /// It also contains information we need to determine whether that vendor is actually relevant at the moment, given the user's current state.
     /// </summary>
     public class DestinyMilestoneVendorDefinition
@@ -228,12 +271,13 @@ namespace BungieSharper.Schema.Destiny.Definitions.Milestones
     }
 
     /// <summary>
-    /// The definition for information related to a key/value pair that is relevant for a particular Milestone or component within the Milestone. 
+    /// The definition for information related to a key/value pair that is relevant for a particular Milestone or component within the Milestone.
     /// This lets us more flexibly pass up information that's useful to someone, even if it's not necessarily us.
     /// </summary>
     public class DestinyMilestoneValueDefinition
     {
         public string key { get; set; }
+
         public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
     }
 
@@ -241,9 +285,12 @@ namespace BungieSharper.Schema.Destiny.Definitions.Milestones
     {
         /// <summary>The activity for which this challenge is active.</summary>
         public uint activityHash { get; set; }
+
         public IEnumerable<Schema.Destiny.Definitions.Milestones.DestinyMilestoneChallengeDefinition> challenges { get; set; }
+
         /// <summary>If the activity and its challenge is visible on any of these nodes, it will be returned.</summary>
         public IEnumerable<Schema.Destiny.Definitions.Milestones.DestinyMilestoneChallengeActivityGraphNodeEntry> activityGraphNodes { get; set; }
+
         /// <summary>
         /// Phases related to this activity, if there are any.
         /// These will be listed in the order in which they will appear in the actual activity.
@@ -260,6 +307,7 @@ namespace BungieSharper.Schema.Destiny.Definitions.Milestones
     public class DestinyMilestoneChallengeActivityGraphNodeEntry
     {
         public uint activityGraphHash { get; set; }
+
         public uint activityGraphNodeHash { get; set; }
     }
 

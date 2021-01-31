@@ -6,6 +6,7 @@
     public class ComponentResponse
     {
         public Schema.Components.ComponentPrivacySetting privacy { get; set; }
+
         /// <summary>If true, this component is disabled.</summary>
         public bool? disabled { get; set; }
     }
@@ -16,7 +17,9 @@
     public enum ComponentPrivacySetting
     {
         None = 0,
+
         Public = 1,
+
         Private = 2
     }
 }

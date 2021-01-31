@@ -1,4 +1,4 @@
-﻿using BungieSharper.Generator.Generation;
+using BungieSharper.Generator.Generation;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -107,7 +107,18 @@ namespace BungieSharper.Generator
                     combinedContent = combinedContent.Replace("    }\n    public", "    }\n\n    public");
                     combinedContent = combinedContent.Replace("{\n\n    public", "{\n    public");
                     combinedContent = combinedContent.Replace("    }\n    [System.Flags", "    }\n\n    [System.Flags");
+                    combinedContent = combinedContent.Replace("    }\n    [Flags", "    }\n\n    [Flags");
                     combinedContent = combinedContent.Replace("    }\n    /// <summary>", "    }\n\n    /// <summary>");
+                    combinedContent = combinedContent.Replace("\n{\n\n    /// <summary>", "\n{\n    /// <summary>");
+                    combinedContent = combinedContent.Replace("\n\n\n\n", "\n\n");
+                    combinedContent = combinedContent.Replace("\n\n\n", "\n\n");
+
+                    combinedContent = combinedContent.Replace("\n    {\n\n    }\n", " { }\n");
+
+                    if (combinedContent.Contains("using System;"))
+                    {
+                        combinedContent = combinedContent.Replace("[System.Flags", "[Flags");
+                    }
 
                     FileWriter.WriteFileWithContent(
                         bungieSharperPath + "Schema\\",

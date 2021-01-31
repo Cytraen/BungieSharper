@@ -9,17 +9,17 @@ namespace BungieSharper.Generator.Generation
             var formatted = "";
             var spacing = "".PadLeft(spaces, ' ');
 
-            summary = summary.Replace("\r\n", "\n");
+            summary = summary.Replace("\r\n", "\n").Replace("\n\r", "\n");
 
             if (summary.Contains('\n') || forceMultiline)
             {
                 formatted += $"{spacing}/// <summary>\n";
-                formatted += string.Join("\n", summary.Split('\n').Select(x => spacing + "/// " + x));
+                formatted += string.Join("\n", summary.Split('\n').Select(x => spacing + "/// " + x.TrimEnd()));
                 formatted += $"\n{spacing}/// </summary>\n";
             }
             else
             {
-                formatted = $"{spacing}/// <summary>{summary}</summary>\n";
+                formatted = $"{spacing}/// <summary>{summary.TrimEnd()}</summary>\n";
             }
 
             return formatted;

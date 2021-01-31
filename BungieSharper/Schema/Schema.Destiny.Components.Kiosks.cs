@@ -2,7 +2,6 @@
 
 namespace BungieSharper.Schema.Destiny.Components.Kiosks
 {
-
     /// <summary>
     /// A Kiosk is a Vendor (DestinyVendorDefinition) that sells items based on whether you have already acquired that item before.
     /// This component returns information about what Kiosk items are available to you on a *Profile* level. It is theoretically possible for Kiosks to have items gated by specific Character as well. If you ever have those, you will find them on the individual character's DestinyCharacterKiosksComponent.
@@ -18,10 +17,13 @@ namespace BungieSharper.Schema.Destiny.Components.Kiosks
     {
         /// <summary>The index of the item in the related DestinyVendorDefintion's itemList property, representing the sale.</summary>
         public int index { get; set; }
+
         /// <summary>If true, the user can not only see the item, but they can acquire it. It is possible that a user can see a kiosk item and not be able to acquire it.</summary>
         public bool canAcquire { get; set; }
+
         /// <summary>Indexes into failureStrings for the Vendor, indicating the reasons why it failed if any.</summary>
         public IEnumerable<int> failureIndexes { get; set; }
+
         /// <summary>I may regret naming it this way - but this represents when an item has an objective that doesn't serve a beneficial purpose, but rather is used for "flavor" or additional information. For instance, when Emblems track specific stats, those stats are represented as Objectives on the item.</summary>
         public Schema.Destiny.Quests.DestinyObjectiveProgress flavorObjective { get; set; }
     }

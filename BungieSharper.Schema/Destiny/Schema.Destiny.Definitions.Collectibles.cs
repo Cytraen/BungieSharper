@@ -1,16 +1,14 @@
-﻿using System.Collections.Generic;
-
-namespace BungieSharper.Schema.Destiny.Definitions.Collectibles
+﻿namespace BungieSharper.Schema.Destiny.Definitions.Collectibles
 {
     /// <summary>
     /// Defines a
     /// </summary>
-    public class DestinyCollectibleDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
+    public class DestinyCollectibleDefinition : Destiny.Definitions.Presentation.DestinyPresentationNodeBaseDefinition
     {
-        public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
 
         /// <summary>Indicates whether the state of this Collectible is determined on a per-character or on an account-wide basis.</summary>
-        public Schema.Destiny.DestinyScope scope { get; set; }
+        public Destiny.DestinyScope scope { get; set; }
 
         /// <summary>A human readable string for a hint about how to acquire the item.</summary>
         public string sourceString { get; set; }
@@ -24,20 +22,11 @@ namespace BungieSharper.Schema.Destiny.Definitions.Collectibles
 
         public uint itemHash { get; set; }
 
-        public Schema.Destiny.Definitions.Collectibles.DestinyCollectibleAcquisitionBlock acquisitionInfo { get; set; }
+        public Destiny.Definitions.Collectibles.DestinyCollectibleAcquisitionBlock acquisitionInfo { get; set; }
 
-        public Schema.Destiny.Definitions.Collectibles.DestinyCollectibleStateBlock stateInfo { get; set; }
+        public Destiny.Definitions.Collectibles.DestinyCollectibleStateBlock stateInfo { get; set; }
 
-        public Schema.Destiny.Definitions.Presentation.DestinyPresentationChildBlock presentationInfo { get; set; }
-
-        public Schema.Destiny.DestinyPresentationNodeType presentationNodeType { get; set; }
-
-        public IEnumerable<string> traitIds { get; set; }
-
-        public IEnumerable<uint> traitHashes { get; set; }
-
-        /// <summary>A quick reference to presentation nodes that have this node as a child. Presentation nodes can be parented under multiple parents.</summary>
-        public IEnumerable<uint> parentNodeHashes { get; set; }
+        public Destiny.Definitions.Presentation.DestinyPresentationChildBlock presentationInfo { get; set; }
     }
 
     public class DestinyCollectibleAcquisitionBlock
@@ -51,6 +40,6 @@ namespace BungieSharper.Schema.Destiny.Definitions.Collectibles
     {
         public uint? obscuredOverrideItemHash { get; set; }
 
-        public Schema.Destiny.Definitions.Presentation.DestinyPresentationNodeRequirementsBlock requirements { get; set; }
+        public Destiny.Definitions.Presentation.DestinyPresentationNodeRequirementsBlock requirements { get; set; }
     }
 }

@@ -6,45 +6,45 @@ namespace BungieSharper.Schema.Common.Models
     {
         public string environment { get; set; }
 
-        public Dictionary<string, Schema.Common.Models.CoreSystem> systems { get; set; }
+        public Dictionary<string, Common.Models.CoreSystem> systems { get; set; }
 
-        public IEnumerable<Schema.Common.Models.CoreSetting> ignoreReasons { get; set; }
+        public IEnumerable<Common.Models.CoreSetting> ignoreReasons { get; set; }
 
-        public IEnumerable<Schema.Common.Models.CoreSetting> forumCategories { get; set; }
+        public IEnumerable<Common.Models.CoreSetting> forumCategories { get; set; }
 
-        public IEnumerable<Schema.Common.Models.CoreSetting> groupAvatars { get; set; }
+        public IEnumerable<Common.Models.CoreSetting> groupAvatars { get; set; }
 
-        public IEnumerable<Schema.Common.Models.CoreSetting> destinyMembershipTypes { get; set; }
+        public IEnumerable<Common.Models.CoreSetting> destinyMembershipTypes { get; set; }
 
-        public IEnumerable<Schema.Common.Models.CoreSetting> recruitmentPlatformTags { get; set; }
+        public IEnumerable<Common.Models.CoreSetting> recruitmentPlatformTags { get; set; }
 
-        public IEnumerable<Schema.Common.Models.CoreSetting> recruitmentMiscTags { get; set; }
+        public IEnumerable<Common.Models.CoreSetting> recruitmentMiscTags { get; set; }
 
-        public IEnumerable<Schema.Common.Models.CoreSetting> recruitmentActivities { get; set; }
+        public IEnumerable<Common.Models.CoreSetting> recruitmentActivities { get; set; }
 
-        public IEnumerable<Schema.Common.Models.CoreSetting> userContentLocales { get; set; }
+        public IEnumerable<Common.Models.CoreSetting> userContentLocales { get; set; }
 
-        public IEnumerable<Schema.Common.Models.CoreSetting> systemContentLocales { get; set; }
+        public IEnumerable<Common.Models.CoreSetting> systemContentLocales { get; set; }
 
-        public IEnumerable<Schema.Common.Models.CoreSetting> clanBannerDecals { get; set; }
+        public IEnumerable<Common.Models.CoreSetting> clanBannerDecals { get; set; }
 
-        public IEnumerable<Schema.Common.Models.CoreSetting> clanBannerDecalColors { get; set; }
+        public IEnumerable<Common.Models.CoreSetting> clanBannerDecalColors { get; set; }
 
-        public IEnumerable<Schema.Common.Models.CoreSetting> clanBannerGonfalons { get; set; }
+        public IEnumerable<Common.Models.CoreSetting> clanBannerGonfalons { get; set; }
 
-        public IEnumerable<Schema.Common.Models.CoreSetting> clanBannerGonfalonColors { get; set; }
+        public IEnumerable<Common.Models.CoreSetting> clanBannerGonfalonColors { get; set; }
 
-        public IEnumerable<Schema.Common.Models.CoreSetting> clanBannerGonfalonDetails { get; set; }
+        public IEnumerable<Common.Models.CoreSetting> clanBannerGonfalonDetails { get; set; }
 
-        public IEnumerable<Schema.Common.Models.CoreSetting> clanBannerGonfalonDetailColors { get; set; }
+        public IEnumerable<Common.Models.CoreSetting> clanBannerGonfalonDetailColors { get; set; }
 
-        public IEnumerable<Schema.Common.Models.CoreSetting> clanBannerStandards { get; set; }
+        public IEnumerable<Common.Models.CoreSetting> clanBannerStandards { get; set; }
 
-        public Schema.Common.Models.Destiny2CoreSettings destiny2CoreSettings { get; set; }
+        public Common.Models.Destiny2CoreSettings destiny2CoreSettings { get; set; }
 
-        public Schema.User.EmailSettings emailSettings { get; set; }
+        public User.EmailSettings emailSettings { get; set; }
 
-        public IEnumerable<Schema.Common.Models.CoreSetting> fireteamActivities { get; set; }
+        public IEnumerable<Common.Models.CoreSetting> fireteamActivities { get; set; }
     }
 
     public class CoreSystem
@@ -66,7 +66,7 @@ namespace BungieSharper.Schema.Common.Models
 
         public string imagePath { get; set; }
 
-        public IEnumerable<Schema.Common.Models.CoreSetting> childSettings { get; set; }
+        public IEnumerable<Common.Models.CoreSetting> childSettings { get; set; }
     }
 
     public class Destiny2CoreSettings

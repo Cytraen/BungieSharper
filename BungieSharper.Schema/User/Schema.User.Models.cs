@@ -2,7 +2,7 @@
 {
     public class GetCredentialTypesForAccountResponse
     {
-        public Schema.BungieCredentialType credentialType { get; set; }
+        public BungieCredentialType credentialType { get; set; }
 
         public string credentialDisplayName { get; set; }
 

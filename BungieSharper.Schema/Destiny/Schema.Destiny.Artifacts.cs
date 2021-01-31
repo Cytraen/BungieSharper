@@ -10,11 +10,11 @@ namespace BungieSharper.Schema.Destiny.Artifacts
     {
         public uint artifactHash { get; set; }
 
-        public Schema.Destiny.DestinyProgression pointProgression { get; set; }
+        public Destiny.DestinyProgression pointProgression { get; set; }
 
         public int pointsAcquired { get; set; }
 
-        public Schema.Destiny.DestinyProgression powerBonusProgression { get; set; }
+        public Destiny.DestinyProgression powerBonusProgression { get; set; }
 
         public int powerBonus { get; set; }
     }
@@ -27,7 +27,7 @@ namespace BungieSharper.Schema.Destiny.Artifacts
 
         public int resetCount { get; set; }
 
-        public IEnumerable<Schema.Destiny.Artifacts.DestinyArtifactTier> tiers { get; set; }
+        public IEnumerable<Destiny.Artifacts.DestinyArtifactTier> tiers { get; set; }
     }
 
     public class DestinyArtifactTier
@@ -38,7 +38,7 @@ namespace BungieSharper.Schema.Destiny.Artifacts
 
         public int pointsToUnlock { get; set; }
 
-        public IEnumerable<Schema.Destiny.Artifacts.DestinyArtifactTierItem> items { get; set; }
+        public IEnumerable<Destiny.Artifacts.DestinyArtifactTierItem> items { get; set; }
     }
 
     public class DestinyArtifactTierItem

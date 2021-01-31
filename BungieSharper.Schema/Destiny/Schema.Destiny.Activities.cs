@@ -18,6 +18,6 @@ namespace BungieSharper.Schema.Destiny.Activities
         /// Why "mock", you ask? Because these are the rewards as they are represented in the tooltip of the Activity.
         /// These are often pointers to fake items that look good in a tooltip, but represent an abstract concept of what you will get for a reward rather than the specific items you may obtain.
         /// </summary>
-        public IEnumerable<Schema.Destiny.DestinyItemQuantity> rewardTooltipItems { get; set; }
+        public IEnumerable<Destiny.DestinyItemQuantity> rewardTooltipItems { get; set; }
     }
 }

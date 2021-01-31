@@ -63,11 +63,11 @@ namespace BungieSharper.Schema.Forum
 
         public bool IsPinned { get; set; }
 
-        public Schema.Forum.ForumMediaType urlMediaType { get; set; }
+        public Forum.ForumMediaType urlMediaType { get; set; }
 
         public string thumbnail { get; set; }
 
-        public Schema.Forum.ForumPostPopularity popularity { get; set; }
+        public Forum.ForumPostPopularity popularity { get; set; }
 
         public bool isActive { get; set; }
 
@@ -83,7 +83,7 @@ namespace BungieSharper.Schema.Forum
 
         public long latestReplyAuthorId { get; set; }
 
-        public Schema.Ignores.IgnoreResponse ignoreStatus { get; set; }
+        public Ignores.IgnoreResponse ignoreStatus { get; set; }
 
         public string locale { get; set; }
     }
@@ -116,27 +116,27 @@ namespace BungieSharper.Schema.Forum
 
     public class PostSearchResponse
     {
-        public IEnumerable<Schema.Forum.PostResponse> relatedPosts { get; set; }
+        public IEnumerable<Forum.PostResponse> relatedPosts { get; set; }
 
-        public IEnumerable<Schema.User.GeneralUser> authors { get; set; }
+        public IEnumerable<User.GeneralUser> authors { get; set; }
 
-        public IEnumerable<Schema.GroupsV2.GroupResponse> groups { get; set; }
+        public IEnumerable<GroupsV2.GroupResponse> groups { get; set; }
 
-        public IEnumerable<Schema.Tags.Models.Contracts.TagResponse> searchedTags { get; set; }
+        public IEnumerable<Tags.Models.Contracts.TagResponse> searchedTags { get; set; }
 
-        public IEnumerable<Schema.Forum.PollResponse> polls { get; set; }
+        public IEnumerable<Forum.PollResponse> polls { get; set; }
 
-        public IEnumerable<Schema.Forum.ForumRecruitmentDetail> recruitmentDetails { get; set; }
+        public IEnumerable<Forum.ForumRecruitmentDetail> recruitmentDetails { get; set; }
 
         public int? availablePages { get; set; }
 
-        public IEnumerable<Schema.Forum.PostResponse> results { get; set; }
+        public IEnumerable<Forum.PostResponse> results { get; set; }
 
         public int totalResults { get; set; }
 
         public bool hasMore { get; set; }
 
-        public Schema.Queries.PagedQuery query { get; set; }
+        public Queries.PagedQuery query { get; set; }
 
         public string replacementContinuationToken { get; set; }
 
@@ -153,7 +153,7 @@ namespace BungieSharper.Schema.Forum
     {
         public long topicId { get; set; }
 
-        public IEnumerable<Schema.Forum.PollResult> results { get; set; }
+        public IEnumerable<Forum.PollResult> results { get; set; }
 
         public int totalVotes { get; set; }
     }
@@ -177,9 +177,9 @@ namespace BungieSharper.Schema.Forum
 
         public bool microphoneRequired { get; set; }
 
-        public Schema.Forum.ForumRecruitmentIntensityLabel intensity { get; set; }
+        public Forum.ForumRecruitmentIntensityLabel intensity { get; set; }
 
-        public Schema.Forum.ForumRecruitmentToneLabel tone { get; set; }
+        public Forum.ForumRecruitmentToneLabel tone { get; set; }
 
         public bool approved { get; set; }
 
@@ -189,7 +189,7 @@ namespace BungieSharper.Schema.Forum
 
         public int playerSlotsRemaining { get; set; }
 
-        public IEnumerable<Schema.User.GeneralUser> Fireteam { get; set; }
+        public IEnumerable<User.GeneralUser> Fireteam { get; set; }
 
         public IEnumerable<long> kickedPlayerIds { get; set; }
     }

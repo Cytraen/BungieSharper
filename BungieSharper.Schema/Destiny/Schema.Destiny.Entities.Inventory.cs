@@ -9,6 +9,6 @@ namespace BungieSharper.Schema.Destiny.Entities.Inventory
     public class DestinyInventoryComponent
     {
         /// <summary>The items in this inventory. If you care to bucket them, use the item's bucketHash property to group them.</summary>
-        public IEnumerable<Schema.Destiny.Entities.Items.DestinyItemComponent> items { get; set; }
+        public IEnumerable<Destiny.Entities.Items.DestinyItemComponent> items { get; set; }
     }
 }

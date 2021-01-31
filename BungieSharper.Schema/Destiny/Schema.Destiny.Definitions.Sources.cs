@@ -24,7 +24,7 @@ namespace BungieSharper.Schema.Destiny.Definitions.Sources
         public int maxLevelRequired { get; set; }
 
         /// <summary>The stats computed for this level/quality range.</summary>
-        public Dictionary<uint, Schema.Destiny.Definitions.DestinyInventoryItemStatDefinition> computedStats { get; set; }
+        public Dictionary<uint, Destiny.Definitions.DestinyInventoryItemStatDefinition> computedStats { get; set; }
 
         /// <summary>The DestinyRewardSourceDefinitions found that can spawn the item at this level.</summary>
         public IEnumerable<uint> sourceHashes { get; set; }

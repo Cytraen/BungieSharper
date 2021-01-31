@@ -50,9 +50,9 @@ namespace BungieSharper.Schema.Destiny.Progression
         public int? currentResetCount { get; set; }
 
         /// <summary>Information about historical resets of this progression, if there is any data for it.</summary>
-        public IEnumerable<Schema.Destiny.DestinyProgressionResetEntry> seasonResets { get; set; }
+        public IEnumerable<Destiny.DestinyProgressionResetEntry> seasonResets { get; set; }
 
         /// <summary>Information about historical rewards for this progression, if there is any data for it.</summary>
-        public IEnumerable<Schema.Destiny.DestinyProgressionRewardItemState> rewardItemStates { get; set; }
+        public IEnumerable<Destiny.DestinyProgressionRewardItemState> rewardItemStates { get; set; }
     }
 }

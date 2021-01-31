@@ -9,25 +9,25 @@ namespace BungieSharper.Schema.Destiny.Definitions.Director
     /// Unfortunately, activity graphs are combined at runtime with Game UI-only assets such as fragments of map images, various in-game special effects, decals etc... that we don't get in these definitions.
     /// If we end up having time, we may end up trying to manually populate those here: but the last time we tried that, before the lead-up to D1, it proved to be unmaintainable as the game's content changed. So don't bet the farm on us providing that content in this definition.
     /// </summary>
-    public class DestinyActivityGraphDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
+    public class DestinyActivityGraphDefinition : Destiny.Definitions.DestinyDefinition
     {
         /// <summary>These represent the visual "nodes" on the map's view. These are the activities you can click on in the map.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.Director.DestinyActivityGraphNodeDefinition> nodes { get; set; }
+        public IEnumerable<Destiny.Definitions.Director.DestinyActivityGraphNodeDefinition> nodes { get; set; }
 
         /// <summary>Represents one-off/special UI elements that appear on the map.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.Director.DestinyActivityGraphArtElementDefinition> artElements { get; set; }
+        public IEnumerable<Destiny.Definitions.Director.DestinyActivityGraphArtElementDefinition> artElements { get; set; }
 
         /// <summary>Represents connections between graph nodes. However, it lacks context that we'd need to make good use of it.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.Director.DestinyActivityGraphConnectionDefinition> connections { get; set; }
+        public IEnumerable<Destiny.Definitions.Director.DestinyActivityGraphConnectionDefinition> connections { get; set; }
 
         /// <summary>Objectives can display on maps, and this is supposedly metadata for that. I have not had the time to analyze the details of what is useful within however: we could be missing important data to make this work. Expect this property to be expanded on later if possible.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.Director.DestinyActivityGraphDisplayObjectiveDefinition> displayObjectives { get; set; }
+        public IEnumerable<Destiny.Definitions.Director.DestinyActivityGraphDisplayObjectiveDefinition> displayObjectives { get; set; }
 
         /// <summary>Progressions can also display on maps, but similarly to displayObjectives we appear to lack some required information and context right now. We will have to look into it later and add more data if possible.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.Director.DestinyActivityGraphDisplayProgressionDefinition> displayProgressions { get; set; }
+        public IEnumerable<Destiny.Definitions.Director.DestinyActivityGraphDisplayProgressionDefinition> displayProgressions { get; set; }
 
         /// <summary>Represents links between this Activity Graph and other ones.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.Director.DestinyLinkedGraphDefinition> linkedGraphs { get; set; }
+        public IEnumerable<Destiny.Definitions.Director.DestinyLinkedGraphDefinition> linkedGraphs { get; set; }
     }
 
     /// <summary>
@@ -39,19 +39,19 @@ namespace BungieSharper.Schema.Destiny.Definitions.Director
         public uint nodeId { get; set; }
 
         /// <summary>The node *may* have display properties that override the active Activity's display properties.</summary>
-        public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition overrideDisplay { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition overrideDisplay { get; set; }
 
         /// <summary>The position on the map for this node.</summary>
-        public Schema.Destiny.Definitions.Common.DestinyPositionDefinition position { get; set; }
+        public Destiny.Definitions.Common.DestinyPositionDefinition position { get; set; }
 
         /// <summary>The node may have various visual accents placed on it, or styles applied. These are the list of possible styles that the Node can have. The game iterates through each, looking for the first one that passes a check of the required game/character/account state in order to show that style, and then renders the node in that style.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.Director.DestinyActivityGraphNodeFeaturingStateDefinition> featuringStates { get; set; }
+        public IEnumerable<Destiny.Definitions.Director.DestinyActivityGraphNodeFeaturingStateDefinition> featuringStates { get; set; }
 
         /// <summary>The node may have various possible activities that could be active for it, however only one may be active at a time. See the DestinyActivityGraphNodeActivityDefinition for details.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.Director.DestinyActivityGraphNodeActivityDefinition> activities { get; set; }
+        public IEnumerable<Destiny.Definitions.Director.DestinyActivityGraphNodeActivityDefinition> activities { get; set; }
 
         /// <summary>Represents possible states that the graph node can be in. These are combined with some checking that happens in the game client and server to determine which state is actually active at any given time.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.Director.DestinyActivityGraphNodeStateEntry> states { get; set; }
+        public IEnumerable<Destiny.Definitions.Director.DestinyActivityGraphNodeStateEntry> states { get; set; }
     }
 
     /// <summary>
@@ -60,7 +60,7 @@ namespace BungieSharper.Schema.Destiny.Definitions.Director
     public class DestinyActivityGraphNodeFeaturingStateDefinition
     {
         /// <summary>The node can be highlighted in a variety of ways - the game iterates through these and finds the first FeaturingState that is valid at the present moment given the Game, Account, and Character state, and renders the node in that state. See the ActivityGraphNodeHighlightType enum for possible values.</summary>
-        public Schema.Destiny.ActivityGraphNodeHighlightType highlightType { get; set; }
+        public Destiny.ActivityGraphNodeHighlightType highlightType { get; set; }
     }
 
     /// <summary>
@@ -80,7 +80,7 @@ namespace BungieSharper.Schema.Destiny.Definitions.Director
     /// </summary>
     public class DestinyActivityGraphNodeStateEntry
     {
-        public Schema.Destiny.DestinyGraphNodeState state { get; set; }
+        public Destiny.DestinyGraphNodeState state { get; set; }
     }
 
     /// <summary>
@@ -89,7 +89,7 @@ namespace BungieSharper.Schema.Destiny.Definitions.Director
     public class DestinyActivityGraphArtElementDefinition
     {
         /// <summary>The position on the map of the art element.</summary>
-        public Schema.Destiny.Definitions.Common.DestinyPositionDefinition position { get; set; }
+        public Destiny.Definitions.Common.DestinyPositionDefinition position { get; set; }
     }
 
     /// <summary>
@@ -133,11 +133,11 @@ namespace BungieSharper.Schema.Destiny.Definitions.Director
 
         public string name { get; set; }
 
-        public Schema.Destiny.Definitions.DestinyUnlockExpressionDefinition unlockExpression { get; set; }
+        public Destiny.Definitions.DestinyUnlockExpressionDefinition unlockExpression { get; set; }
 
         public uint linkedGraphId { get; set; }
 
-        public IEnumerable<Schema.Destiny.Definitions.Director.DestinyLinkedGraphEntryDefinition> linkedGraphs { get; set; }
+        public IEnumerable<Destiny.Definitions.Director.DestinyLinkedGraphEntryDefinition> linkedGraphs { get; set; }
 
         public string overview { get; set; }
     }

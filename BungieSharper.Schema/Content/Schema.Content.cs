@@ -23,7 +23,7 @@ namespace BungieSharper.Schema.Content
 
         public string ratingImagePath { get; set; }
 
-        public Schema.User.GeneralUser author { get; set; }
+        public User.GeneralUser author { get; set; }
 
         public bool autoEnglishPropertyFallback { get; set; }
 
@@ -33,12 +33,12 @@ namespace BungieSharper.Schema.Content
         /// </summary>
         public Dictionary<string, dynamic> properties { get; set; }
 
-        public IEnumerable<Schema.Content.ContentRepresentation> representations { get; set; }
+        public IEnumerable<Content.ContentRepresentation> representations { get; set; }
 
         /// <summary>NOTE: Tags will always be lower case.</summary>
         public IEnumerable<string> tags { get; set; }
 
-        public Schema.Content.CommentSummary commentSummary { get; set; }
+        public Content.CommentSummary commentSummary { get; set; }
     }
 
     public class ContentRepresentation

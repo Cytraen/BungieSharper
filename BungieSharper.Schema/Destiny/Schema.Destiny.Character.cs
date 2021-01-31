@@ -38,7 +38,7 @@ namespace BungieSharper.Schema.Destiny.Character
     /// </summary>
     public class DestinyCharacterPeerView
     {
-        public IEnumerable<Schema.Destiny.Character.DestinyItemPeerView> equipment { get; set; }
+        public IEnumerable<Destiny.Character.DestinyItemPeerView> equipment { get; set; }
     }
 
     /// <summary>
@@ -50,6 +50,6 @@ namespace BungieSharper.Schema.Destiny.Character
         public uint itemHash { get; set; }
 
         /// <summary>The list of dyes that have been applied to this item.</summary>
-        public IEnumerable<Schema.Destiny.DyeReference> dyes { get; set; }
+        public IEnumerable<Destiny.DyeReference> dyes { get; set; }
     }
 }

@@ -15,13 +15,13 @@ namespace BungieSharper.Schema.Destiny.Advanced
     public class AwaPermissionRequested
     {
         /// <summary>Type of advanced write action.</summary>
-        public Schema.Destiny.Advanced.AwaType type { get; set; }
+        public Destiny.Advanced.AwaType type { get; set; }
 
         /// <summary>Item instance ID the action shall be applied to. This is optional for all but a new AwaType values. Rule of thumb is to provide the item instance ID if one is available.</summary>
         public long? affectedItemId { get; set; }
 
         /// <summary>Destiny membership type of the account to modify.</summary>
-        public Schema.BungieMembershipType membershipType { get; set; }
+        public BungieMembershipType membershipType { get; set; }
 
         /// <summary>Destiny character ID, if applicable, that will be affected by the action.</summary>
         public long? characterId { get; set; }
@@ -38,7 +38,7 @@ namespace BungieSharper.Schema.Destiny.Advanced
     public class AwaUserResponse
     {
         /// <summary>Indication of the selection the user has made (Approving or rejecting the action)</summary>
-        public Schema.Destiny.Advanced.AwaUserSelection selection { get; set; }
+        public Destiny.Advanced.AwaUserSelection selection { get; set; }
 
         /// <summary>Correlation ID of the request</summary>
         public string correlationId { get; set; }
@@ -59,9 +59,9 @@ namespace BungieSharper.Schema.Destiny.Advanced
     public class AwaAuthorizationResult
     {
         /// <summary>Indication of how the user responded to the request. If the value is "Approved" the actionToken will contain the token that can be presented when performing the advanced write action.</summary>
-        public Schema.Destiny.Advanced.AwaUserSelection userSelection { get; set; }
+        public Destiny.Advanced.AwaUserSelection userSelection { get; set; }
 
-        public Schema.Destiny.Advanced.AwaResponseReason responseReason { get; set; }
+        public Destiny.Advanced.AwaResponseReason responseReason { get; set; }
 
         /// <summary>Message to the app developer to help understand the response.</summary>
         public string developerNote { get; set; }
@@ -76,10 +76,10 @@ namespace BungieSharper.Schema.Destiny.Advanced
         public DateTime? validUntil { get; set; }
 
         /// <summary>Advanced Write Action Type from the permission request.</summary>
-        public Schema.Destiny.Advanced.AwaType type { get; set; }
+        public Destiny.Advanced.AwaType type { get; set; }
 
         /// <summary>MembershipType from the permission request.</summary>
-        public Schema.BungieMembershipType membershipType { get; set; }
+        public BungieMembershipType membershipType { get; set; }
     }
 
     public enum AwaResponseReason

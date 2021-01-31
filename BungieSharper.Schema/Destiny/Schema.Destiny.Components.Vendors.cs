@@ -9,7 +9,7 @@ namespace BungieSharper.Schema.Destiny.Components.Vendors
     public class DestinyVendorGroupComponent
     {
         /// <summary>The ordered list of groups being returned.</summary>
-        public IEnumerable<Schema.Destiny.Components.Vendors.DestinyVendorGroup> groups { get; set; }
+        public IEnumerable<Destiny.Components.Vendors.DestinyVendorGroup> groups { get; set; }
     }
 
     /// <summary>
@@ -71,7 +71,7 @@ namespace BungieSharper.Schema.Destiny.Components.Vendors
         public int quantity { get; set; }
 
         /// <summary>A summary of the current costs of the item.</summary>
-        public IEnumerable<Schema.Destiny.DestinyItemQuantity> costs { get; set; }
+        public IEnumerable<Destiny.DestinyItemQuantity> costs { get; set; }
 
         /// <summary>
         /// If this item has its own custom date where it may be removed from the Vendor's rotation, this is that date.
@@ -130,7 +130,7 @@ namespace BungieSharper.Schema.Destiny.Components.Vendors
         public int quantity { get; set; }
 
         /// <summary>A summary of the current costs of the item.</summary>
-        public IEnumerable<Schema.Destiny.DestinyItemQuantity> costs { get; set; }
+        public IEnumerable<Destiny.DestinyItemQuantity> costs { get; set; }
 
         /// <summary>
         /// If this item has its own custom date where it may be removed from the Vendor's rotation, this is that date.

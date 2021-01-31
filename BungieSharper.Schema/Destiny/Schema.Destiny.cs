@@ -45,10 +45,10 @@ namespace BungieSharper.Schema.Destiny
         public int? currentResetCount { get; set; }
 
         /// <summary>Information about historical resets of this progression, if there is any data for it.</summary>
-        public IEnumerable<Schema.Destiny.DestinyProgressionResetEntry> seasonResets { get; set; }
+        public IEnumerable<Destiny.DestinyProgressionResetEntry> seasonResets { get; set; }
 
         /// <summary>Information about historical rewards for this progression, if there is any data for it.</summary>
-        public IEnumerable<Schema.Destiny.DestinyProgressionRewardItemState> rewardItemStates { get; set; }
+        public IEnumerable<Destiny.DestinyProgressionRewardItemState> rewardItemStates { get; set; }
     }
 
     /// <summary>
@@ -1321,9 +1321,9 @@ namespace BungieSharper.Schema.Destiny
         public int? recommendedLight { get; set; }
 
         /// <summary>A DestinyActivityDifficultyTier enum value indicating the difficulty of the activity.</summary>
-        public Schema.Destiny.DestinyActivityDifficultyTier difficultyTier { get; set; }
+        public Destiny.DestinyActivityDifficultyTier difficultyTier { get; set; }
 
-        public IEnumerable<Schema.Destiny.Challenges.DestinyChallengeStatus> challenges { get; set; }
+        public IEnumerable<Destiny.Challenges.DestinyChallengeStatus> challenges { get; set; }
 
         /// <summary>
         /// If the activity has modifiers, this will be the list of modifiers that all variants have in common. Perform lookups against DestinyActivityModifierDefinition which defines the modifier being applied to get at the modifier data.
@@ -1414,7 +1414,7 @@ namespace BungieSharper.Schema.Destiny
         public uint nodeHash { get; set; }
 
         /// <summary>An DestinyTalentNodeState enum value indicating the node's state: whether it can be activated or swapped, and why not if neither can be performed.</summary>
-        public Schema.Destiny.DestinyTalentNodeState state { get; set; }
+        public Destiny.DestinyTalentNodeState state { get; set; }
 
         /// <summary>If true, the node is activated: it's current step then provides its benefits.</summary>
         public bool isActivated { get; set; }
@@ -1423,7 +1423,7 @@ namespace BungieSharper.Schema.Destiny
         public int stepIndex { get; set; }
 
         /// <summary>If the node has material requirements to be activated, this is the list of those requirements.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyMaterialRequirement> materialsToUpgrade { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyMaterialRequirement> materialsToUpgrade { get; set; }
 
         /// <summary>The progression level required on the Talent Grid in order to be able to activate this talent node. Talent Grids have their own Progression - similar to Character Level, but in this case it is experience related to the item itself.</summary>
         public int activationGridLevel { get; set; }
@@ -1435,7 +1435,7 @@ namespace BungieSharper.Schema.Destiny
         public bool hidden { get; set; }
 
         /// <summary>This property has some history. A talent grid can provide stats on both the item it's related to and the character equipping the item. This returns data about those stat bonuses.</summary>
-        public Schema.Destiny.DestinyTalentNodeStatBlock nodeStatsBlock { get; set; }
+        public Destiny.DestinyTalentNodeStatBlock nodeStatsBlock { get; set; }
     }
 
     public enum DestinyTalentNodeState
@@ -1475,10 +1475,10 @@ namespace BungieSharper.Schema.Destiny
     public class DestinyTalentNodeStatBlock
     {
         /// <summary>The stat benefits conferred when this talent node is activated for the current Step that is active on the node.</summary>
-        public IEnumerable<Schema.Destiny.DestinyStat> currentStepStats { get; set; }
+        public IEnumerable<Destiny.DestinyStat> currentStepStats { get; set; }
 
         /// <summary>This is a holdover from the old days of Destiny 1, when a node could be activated multiple times, conferring multiple steps worth of benefits: you would use this property to show what activating the "next" step on the node would provide vs. what the current step is providing. While Nodes are currently not being used this way, the underlying system for this functionality still exists. I hesitate to remove this property while the ability for designers to make such a talent grid still exists. Whether you want to show it is up to you.</summary>
-        public IEnumerable<Schema.Destiny.DestinyStat> nextStepStats { get; set; }
+        public IEnumerable<Destiny.DestinyStat> nextStepStats { get; set; }
     }
 
     /// <summary>
@@ -1595,7 +1595,7 @@ namespace BungieSharper.Schema.Destiny
     /// </summary>
     public class DestinyEquipItemResults
     {
-        public IEnumerable<Schema.Destiny.DestinyEquipItemResult> equipResults { get; set; }
+        public IEnumerable<Destiny.DestinyEquipItemResult> equipResults { get; set; }
     }
 
     /// <summary>
@@ -1607,6 +1607,6 @@ namespace BungieSharper.Schema.Destiny
         public long itemInstanceId { get; set; }
 
         /// <summary>A PlatformErrorCodes enum indicating whether it succeeded, and if it failed why.</summary>
-        public Schema.Exceptions.PlatformErrorCodes equipStatus { get; set; }
+        public Exceptions.PlatformErrorCodes equipStatus { get; set; }
     }
 }

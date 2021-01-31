@@ -12,6 +12,6 @@
 
         public long characterId { get; set; }
 
-        public Schema.BungieMembershipType membershipType { get; set; }
+        public BungieMembershipType membershipType { get; set; }
     }
 }

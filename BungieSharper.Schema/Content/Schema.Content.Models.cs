@@ -16,11 +16,11 @@ namespace BungieSharper.Schema.Content.Models
 
         public string reminder { get; set; }
 
-        public IEnumerable<Schema.Content.Models.ContentTypeProperty> properties { get; set; }
+        public IEnumerable<Content.Models.ContentTypeProperty> properties { get; set; }
 
-        public IEnumerable<Schema.Content.Models.TagMetadataDefinition> tagMetadata { get; set; }
+        public IEnumerable<Content.Models.TagMetadataDefinition> tagMetadata { get; set; }
 
-        public Dictionary<string, Schema.Content.Models.TagMetadataItem> tagMetadataItems { get; set; }
+        public Dictionary<string, Content.Models.TagMetadataItem> tagMetadataItems { get; set; }
 
         public IEnumerable<string> usageExamples { get; set; }
 
@@ -40,11 +40,11 @@ namespace BungieSharper.Schema.Content.Models
 
         public bool bulkUploadable { get; set; }
 
-        public IEnumerable<Schema.Content.Models.ContentPreview> previews { get; set; }
+        public IEnumerable<Content.Models.ContentPreview> previews { get; set; }
 
         public bool suppressCmsPath { get; set; }
 
-        public IEnumerable<Schema.Content.Models.ContentTypePropertySection> propertySections { get; set; }
+        public IEnumerable<Content.Models.ContentTypePropertySection> propertySections { get; set; }
     }
 
     public class ContentTypeProperty
@@ -89,11 +89,11 @@ namespace BungieSharper.Schema.Content.Models
 
         public string visibleOn { get; set; }
 
-        public Schema.Content.Models.ContentPropertyDataTypeEnum datatype { get; set; }
+        public Content.Models.ContentPropertyDataTypeEnum datatype { get; set; }
 
         public Dictionary<string, string> attributes { get; set; }
 
-        public IEnumerable<Schema.Content.Models.ContentTypeProperty> childProperties { get; set; }
+        public IEnumerable<Content.Models.ContentTypeProperty> childProperties { get; set; }
 
         public string contentTypeAllowed { get; set; }
 
@@ -103,7 +103,7 @@ namespace BungieSharper.Schema.Content.Models
 
         public Dictionary<string, string> representationSelection { get; set; }
 
-        public IEnumerable<Schema.Content.Models.ContentTypeDefaultValue> defaultValues { get; set; }
+        public IEnumerable<Content.Models.ContentTypeDefaultValue> defaultValues { get; set; }
 
         public bool isExternalAllowed { get; set; }
 
@@ -182,7 +182,7 @@ namespace BungieSharper.Schema.Content.Models
 
         public int order { get; set; }
 
-        public IEnumerable<Schema.Content.Models.TagMetadataItem> items { get; set; }
+        public IEnumerable<Content.Models.TagMetadataItem> items { get; set; }
 
         public string datatype { get; set; }
 

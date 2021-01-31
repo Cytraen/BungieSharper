@@ -12,7 +12,7 @@ namespace BungieSharper.Schema.Destiny.Entities.Characters
         public long membershipId { get; set; }
 
         /// <summary>membershipType tells you the platform on which the character plays. Examine the BungieMembershipType enumeration for possible values.</summary>
-        public Schema.BungieMembershipType membershipType { get; set; }
+        public BungieMembershipType membershipType { get; set; }
 
         /// <summary>The unique identifier for the character.</summary>
         public long characterId { get; set; }
@@ -48,19 +48,19 @@ namespace BungieSharper.Schema.Destiny.Entities.Characters
         /// Mostly for historical purposes at this point, this is an enumeration for the character's race.
         /// It'll be preferable in the general case to look up the related definition: but for some people this was too convenient to remove.
         /// </summary>
-        public Schema.Destiny.DestinyRace raceType { get; set; }
+        public Destiny.DestinyRace raceType { get; set; }
 
         /// <summary>
         /// Mostly for historical purposes at this point, this is an enumeration for the character's class.
         /// It'll be preferable in the general case to look up the related definition: but for some people this was too convenient to remove.
         /// </summary>
-        public Schema.Destiny.DestinyClass classType { get; set; }
+        public Destiny.DestinyClass classType { get; set; }
 
         /// <summary>
         /// Mostly for historical purposes at this point, this is an enumeration for the character's Gender.
         /// It'll be preferable in the general case to look up the related definition: but for some people this was too convenient to remove. And yeah, it's an enumeration and not a boolean. Fight me.
         /// </summary>
-        public Schema.Destiny.DestinyGender genderType { get; set; }
+        public Destiny.DestinyGender genderType { get; set; }
 
         /// <summary>A shortcut path to the user's currently equipped emblem image. If you're just showing summary info for a user, this is more convenient than examining their equipped emblem and looking up the definition.</summary>
         public string emblemPath { get; set; }
@@ -72,10 +72,10 @@ namespace BungieSharper.Schema.Destiny.Entities.Characters
         public uint emblemHash { get; set; }
 
         /// <summary>A shortcut for getting the background color of the user's currently equipped emblem without having to do a DestinyInventoryItemDefinition lookup.</summary>
-        public Schema.Destiny.Misc.DestinyColor emblemColor { get; set; }
+        public Destiny.Misc.DestinyColor emblemColor { get; set; }
 
         /// <summary>The progression that indicates your character's level. Not their light level, but their character level: you know, the thing you max out a couple hours in and then ignore for the sake of light level.</summary>
-        public Schema.Destiny.DestinyProgression levelProgression { get; set; }
+        public Destiny.DestinyProgression levelProgression { get; set; }
 
         /// <summary>The "base" level of your character, not accounting for any light level.</summary>
         public int baseCharacterLevel { get; set; }
@@ -96,26 +96,26 @@ namespace BungieSharper.Schema.Destiny.Entities.Characters
         /// A Dictionary of all known progressions for the Character, keyed by the Progression's hash.
         /// Not all progressions have user-facing data, but those who do will have that data contained in the DestinyProgressionDefinition.
         /// </summary>
-        public Dictionary<uint, Schema.Destiny.DestinyProgression> progressions { get; set; }
+        public Dictionary<uint, Destiny.DestinyProgression> progressions { get; set; }
 
         /// <summary>A dictionary of all known Factions, keyed by the Faction's hash. It contains data about this character's status with the faction.</summary>
-        public Dictionary<uint, Schema.Destiny.Progression.DestinyFactionProgression> factions { get; set; }
+        public Dictionary<uint, Destiny.Progression.DestinyFactionProgression> factions { get; set; }
 
         /// <summary>Milestones are related to the simple progressions shown in the game, but return additional and hopefully helpful information for users about the specifics of the Milestone's status.</summary>
-        public Dictionary<uint, Schema.Destiny.Milestones.DestinyMilestone> milestones { get; set; }
+        public Dictionary<uint, Destiny.Milestones.DestinyMilestone> milestones { get; set; }
 
         /// <summary>
         /// If the user has any active quests, the quests' statuses will be returned here.
         ///  Note that quests have been largely supplanted by Milestones, but that doesn't mean that they won't make a comeback independent of milestones at some point.
         ///  (Fun fact: quests came back as I feared they would, but we never looped back to populate this... I'm going to put that in the backlog.)
         /// </summary>
-        public IEnumerable<Schema.Destiny.Quests.DestinyQuestStatus> quests { get; set; }
+        public IEnumerable<Destiny.Quests.DestinyQuestStatus> quests { get; set; }
 
         /// <summary>
         /// Sometimes, you have items in your inventory that don't have instances, but still have Objective information. This provides you that objective information for uninstanced items.
         /// This dictionary is keyed by the item's hash: which you can use to look up the name and description for the overall task(s) implied by the objective. The value is the list of objectives for this item, and their statuses.
         /// </summary>
-        public Dictionary<uint, IEnumerable<Schema.Destiny.Quests.DestinyObjectiveProgress>> uninstancedItemObjectives { get; set; }
+        public Dictionary<uint, IEnumerable<Destiny.Quests.DestinyObjectiveProgress>> uninstancedItemObjectives { get; set; }
 
         /// <summary>
         /// The set of checklists that can be examined for this specific character, keyed by the hash identifier of the Checklist (DestinyChecklistDefinition)
@@ -124,7 +124,7 @@ namespace BungieSharper.Schema.Destiny.Entities.Characters
         public Dictionary<uint, Dictionary<uint, bool>> checklists { get; set; }
 
         /// <summary>Data related to your progress on the current season's artifact that can vary per character.</summary>
-        public Schema.Destiny.Artifacts.DestinyArtifactCharacterScoped seasonalArtifact { get; set; }
+        public Destiny.Artifacts.DestinyArtifactCharacterScoped seasonalArtifact { get; set; }
     }
 
     /// <summary>
@@ -134,10 +134,10 @@ namespace BungieSharper.Schema.Destiny.Entities.Characters
     public class DestinyCharacterRenderComponent
     {
         /// <summary>Custom dyes, calculated by iterating over the character's equipped items. Useful for pre-fetching all of the dye data needed from our server.</summary>
-        public IEnumerable<Schema.Destiny.DyeReference> customDyes { get; set; }
+        public IEnumerable<Destiny.DyeReference> customDyes { get; set; }
 
         /// <summary>This is actually something that Spasm.js *doesn't* do right now, and that we don't return assets for yet. This is the data about what character customization options you picked. You can combine this with DestinyCharacterCustomizationOptionDefinition to show some cool info, and hopefully someday to actually render a user's face in 3D. We'll see if we ever end up with time for that.</summary>
-        public Schema.Destiny.Character.DestinyCharacterCustomization customization { get; set; }
+        public Destiny.Character.DestinyCharacterCustomization customization { get; set; }
 
         /// <summary>
         /// A minimal view of:
@@ -145,7 +145,7 @@ namespace BungieSharper.Schema.Destiny.Entities.Characters
         /// - The rendering-related custom options on those equipped items
         /// Combined, that should be enough to render all of the items on the equipped character.
         /// </summary>
-        public Schema.Destiny.Character.DestinyCharacterPeerView peerView { get; set; }
+        public Destiny.Character.DestinyCharacterPeerView peerView { get; set; }
     }
 
     /// <summary>
@@ -157,7 +157,7 @@ namespace BungieSharper.Schema.Destiny.Entities.Characters
         public DateTime dateActivityStarted { get; set; }
 
         /// <summary>The list of activities that the user can play.</summary>
-        public IEnumerable<Schema.Destiny.DestinyActivity> availableActivities { get; set; }
+        public IEnumerable<Destiny.DestinyActivity> availableActivities { get; set; }
 
         /// <summary>If the user is in an activity, this will be the hash of the Activity being played. Note that you must combine this info with currentActivityModeHash to get a real picture of what the user is doing right now. For instance, PVP "Activities" are just maps: it's the ActivityMode that determines what type of PVP game they're playing.</summary>
         public uint currentActivityHash { get; set; }
@@ -172,7 +172,7 @@ namespace BungieSharper.Schema.Destiny.Entities.Characters
         public IEnumerable<uint> currentActivityModeHashes { get; set; }
 
         /// <summary>All Activity Modes that apply to the current activity being played, in enum form.</summary>
-        public IEnumerable<Schema.Destiny.HistoricalStats.Definitions.DestinyActivityModeType> currentActivityModeTypes { get; set; }
+        public IEnumerable<Destiny.HistoricalStats.Definitions.DestinyActivityModeType> currentActivityModeTypes { get; set; }
 
         /// <summary>If the user is in a playlist, this is the hash identifier for the playlist that they chose.</summary>
         public uint? currentPlaylistActivityHash { get; set; }

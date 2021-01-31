@@ -6,7 +6,7 @@
 
         public bool hasMore { get; set; }
 
-        public Schema.Queries.PagedQuery query { get; set; }
+        public Queries.PagedQuery query { get; set; }
 
         public string replacementContinuationToken { get; set; }
 

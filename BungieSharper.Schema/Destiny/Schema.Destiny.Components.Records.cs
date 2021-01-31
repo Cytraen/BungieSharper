@@ -4,7 +4,7 @@ namespace BungieSharper.Schema.Destiny.Components.Records
 {
     public class DestinyRecordsComponent
     {
-        public Dictionary<uint, Schema.Destiny.Components.Records.DestinyRecordComponent> records { get; set; }
+        public Dictionary<uint, Destiny.Components.Records.DestinyRecordComponent> records { get; set; }
 
         /// <summary>The hash for the root presentation node definition of Triumph categories.</summary>
         public uint recordCategoriesRootNodeHash { get; set; }
@@ -15,11 +15,11 @@ namespace BungieSharper.Schema.Destiny.Components.Records
 
     public class DestinyRecordComponent
     {
-        public Schema.Destiny.DestinyRecordState state { get; set; }
+        public Destiny.DestinyRecordState state { get; set; }
 
-        public IEnumerable<Schema.Destiny.Quests.DestinyObjectiveProgress> objectives { get; set; }
+        public IEnumerable<Destiny.Quests.DestinyObjectiveProgress> objectives { get; set; }
 
-        public IEnumerable<Schema.Destiny.Quests.DestinyObjectiveProgress> intervalObjectives { get; set; }
+        public IEnumerable<Destiny.Quests.DestinyObjectiveProgress> intervalObjectives { get; set; }
 
         public int intervalsRedeemedCount { get; set; }
     }
@@ -41,7 +41,7 @@ namespace BungieSharper.Schema.Destiny.Components.Records
         /// <summary>If this profile is tracking a record, this is the hash identifier of the record it is tracking.</summary>
         public uint? trackedRecordHash { get; set; }
 
-        public Dictionary<uint, Schema.Destiny.Components.Records.DestinyRecordComponent> records { get; set; }
+        public Dictionary<uint, Destiny.Components.Records.DestinyRecordComponent> records { get; set; }
 
         /// <summary>The hash for the root presentation node definition of Triumph categories.</summary>
         public uint recordCategoriesRootNodeHash { get; set; }
@@ -54,7 +54,7 @@ namespace BungieSharper.Schema.Destiny.Components.Records
     {
         public IEnumerable<uint> featuredRecordHashes { get; set; }
 
-        public Dictionary<uint, Schema.Destiny.Components.Records.DestinyRecordComponent> records { get; set; }
+        public Dictionary<uint, Destiny.Components.Records.DestinyRecordComponent> records { get; set; }
 
         /// <summary>The hash for the root presentation node definition of Triumph categories.</summary>
         public uint recordCategoriesRootNodeHash { get; set; }

@@ -8,18 +8,18 @@ namespace BungieSharper.Schema.Destiny.Definitions.Checklists
     /// Generally speaking, the items in a checklist can be completed in any order: we return an ordered list which only implies the way we are showing them in our own UI, and you can feel free to alter it as you wish.
     /// Note that, in the future, there will be something resembling the old D1 Record Books in at least some vague form. When that is created, it may be that it will supercede much or all of this Checklist data. It remains to be seen if that will be the case, so for now assume that the Checklists will still exist even after the release of D2: Forsaken.
     /// </summary>
-    public class DestinyChecklistDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
+    public class DestinyChecklistDefinition : Destiny.Definitions.DestinyDefinition
     {
-        public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
 
         /// <summary>A localized string prompting you to view the checklist.</summary>
         public string viewActionString { get; set; }
 
         /// <summary>Indicates whether you will find this checklist on the Profile or Character components.</summary>
-        public Schema.Destiny.DestinyScope scope { get; set; }
+        public Destiny.DestinyScope scope { get; set; }
 
         /// <summary>The individual checklist items. Gotta catch 'em all.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.Checklists.DestinyChecklistEntryDefinition> entries { get; set; }
+        public IEnumerable<Destiny.Definitions.Checklists.DestinyChecklistEntryDefinition> entries { get; set; }
     }
 
     /// <summary>
@@ -32,7 +32,7 @@ namespace BungieSharper.Schema.Destiny.Definitions.Checklists
         public uint hash { get; set; }
 
         /// <summary>Even if no other associations exist, we will give you *something* for display properties. In cases where we have no associated entities, it may be as simple as a numerical identifier.</summary>
-        public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
 
         public uint? destinationHash { get; set; }
 
@@ -53,6 +53,6 @@ namespace BungieSharper.Schema.Destiny.Definitions.Checklists
         public int? vendorInteractionIndex { get; set; }
 
         /// <summary>The scope at which this specific entry can be computed.</summary>
-        public Schema.Destiny.DestinyScope scope { get; set; }
+        public Destiny.DestinyScope scope { get; set; }
     }
 }

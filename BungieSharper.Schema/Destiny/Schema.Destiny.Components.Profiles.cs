@@ -16,7 +16,7 @@ namespace BungieSharper.Schema.Destiny.Components.Profiles
         public Dictionary<uint, Dictionary<uint, bool>> checklists { get; set; }
 
         /// <summary>Data related to your progress on the current season's artifact that is the same across characters.</summary>
-        public Schema.Destiny.Artifacts.DestinyArtifactProfileScoped seasonalArtifact { get; set; }
+        public Destiny.Artifacts.DestinyArtifactProfileScoped seasonalArtifact { get; set; }
     }
 
     /// <summary>
@@ -26,16 +26,16 @@ namespace BungieSharper.Schema.Destiny.Components.Profiles
     public class DestinyProfileTransitoryComponent
     {
         /// <summary>If you have any members currently in your party, this is some (very) bare-bones information about those members.</summary>
-        public IEnumerable<Schema.Destiny.Components.Profiles.DestinyProfileTransitoryPartyMember> partyMembers { get; set; }
+        public IEnumerable<Destiny.Components.Profiles.DestinyProfileTransitoryPartyMember> partyMembers { get; set; }
 
         /// <summary>If you are in an activity, this is some transitory info about the activity currently being played.</summary>
-        public Schema.Destiny.Components.Profiles.DestinyProfileTransitoryCurrentActivity currentActivity { get; set; }
+        public Destiny.Components.Profiles.DestinyProfileTransitoryCurrentActivity currentActivity { get; set; }
 
         /// <summary>Information about whether and what might prevent you from joining this person on a fireteam.</summary>
-        public Schema.Destiny.Components.Profiles.DestinyProfileTransitoryJoinability joinability { get; set; }
+        public Destiny.Components.Profiles.DestinyProfileTransitoryJoinability joinability { get; set; }
 
         /// <summary>Information about tracked entities.</summary>
-        public IEnumerable<Schema.Destiny.Components.Profiles.DestinyProfileTransitoryTrackingEntry> tracking { get; set; }
+        public IEnumerable<Destiny.Components.Profiles.DestinyProfileTransitoryTrackingEntry> tracking { get; set; }
 
         /// <summary>The hash identifier for the DestinyDestinationDefinition of the last location you were orbiting when in orbit.</summary>
         public uint? lastOrbitedDestinationHash { get; set; }
@@ -57,7 +57,7 @@ namespace BungieSharper.Schema.Destiny.Components.Profiles
         public string displayName { get; set; }
 
         /// <summary>A Flags Enumeration value indicating the states that the player is in relevant to being on a fireteam.</summary>
-        public Schema.Destiny.DestinyPartyMemberStates status { get; set; }
+        public Destiny.DestinyPartyMemberStates status { get; set; }
     }
 
     /// <summary>
@@ -94,10 +94,10 @@ namespace BungieSharper.Schema.Destiny.Components.Profiles
         public int openSlots { get; set; }
 
         /// <summary>Who the person is currently allowing invites from.</summary>
-        public Schema.Destiny.DestinyGamePrivacySetting privacySetting { get; set; }
+        public Destiny.DestinyGamePrivacySetting privacySetting { get; set; }
 
         /// <summary>Reasons why a person can't join this person's fireteam.</summary>
-        public Schema.Destiny.DestinyJoinClosedReasons closedReasons { get; set; }
+        public Destiny.DestinyJoinClosedReasons closedReasons { get; set; }
     }
 
     /// <summary>

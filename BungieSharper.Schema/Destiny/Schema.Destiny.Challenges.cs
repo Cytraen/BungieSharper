@@ -7,6 +7,6 @@
     public class DestinyChallengeStatus
     {
         /// <summary>The progress - including completion status - of the active challenge.</summary>
-        public Schema.Destiny.Quests.DestinyObjectiveProgress objective { get; set; }
+        public Destiny.Quests.DestinyObjectiveProgress objective { get; set; }
     }
 }

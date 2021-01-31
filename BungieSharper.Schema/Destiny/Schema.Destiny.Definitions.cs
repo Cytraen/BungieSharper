@@ -28,15 +28,15 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// Fundamentally, a Progression measures your "Level" by evaluating the thresholds in its Steps (one step per level, except for the last step which can be repeated indefinitely for "Levels" that have no ceiling) against the total earned "progression points"/experience. (for simplicity purposes, we will henceforth refer to earned progression points as experience, though it need not be a mechanic that in any way resembles Experience in a traditional sense).
     /// Earned experience is calculated in a variety of ways, determined by the Progression's scope. These go from looking up a stored value to performing exceedingly obtuse calculations. This is why we provide live data in DestinyCharacterProgressionComponent.progressions, so you don't have to worry about those.
     /// </summary>
-    public class DestinyProgressionDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
+    public class DestinyProgressionDefinition : Destiny.Definitions.DestinyDefinition
     {
-        public Schema.Destiny.Definitions.DestinyProgressionDisplayPropertiesDefinition displayProperties { get; set; }
+        public Destiny.Definitions.DestinyProgressionDisplayPropertiesDefinition displayProperties { get; set; }
 
         /// <summary>
         /// The "Scope" of the progression indicates the source of the progression's live data.
         /// See the DestinyProgressionScope enum for more info: but essentially, a Progression can either be backed by a stored value, or it can be a calculated derivative of other values.
         /// </summary>
-        public Schema.Destiny.DestinyProgressionScope scope { get; set; }
+        public Destiny.DestinyProgressionScope scope { get; set; }
 
         /// <summary>If this is True, then the progression doesn't have a maximum level.</summary>
         public bool repeatLastStep { get; set; }
@@ -48,7 +48,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// Progressions are divided into Steps, which roughly equate to "Levels" in the traditional sense of a Progression. Notably, the last step can be repeated indefinitely if repeatLastStep is true, meaning that the calculation for your level is not as simple as comparing your current progress to the max progress of the steps.
         /// These and more calculations are done for you if you grab live character progression data, such as in the DestinyCharacterProgressionComponent.
         /// </summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyProgressionStepDefinition> steps { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyProgressionStepDefinition> steps { get; set; }
 
         /// <summary>
         /// If true, the Progression is something worth showing to users.
@@ -63,12 +63,12 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public uint? factionHash { get; set; }
 
         /// <summary>The #RGB string value for the color related to this progression, if there is one.</summary>
-        public Schema.Destiny.Misc.DestinyColor color { get; set; }
+        public Destiny.Misc.DestinyColor color { get; set; }
 
         /// <summary>For progressions that have it, this is the rank icon we use in the Companion, displayed above the progressions' rank value.</summary>
         public string rankIcon { get; set; }
 
-        public IEnumerable<Schema.Destiny.Definitions.DestinyProgressionRewardItemQuantity> rewardItems { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyProgressionRewardItemQuantity> rewardItems { get; set; }
     }
 
     public class DestinyProgressionDisplayPropertiesDefinition
@@ -87,7 +87,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// </summary>
         public string icon { get; set; }
 
-        public IEnumerable<Schema.Destiny.Definitions.Common.DestinyIconSequenceDefinition> iconSequences { get; set; }
+        public IEnumerable<Destiny.Definitions.Common.DestinyIconSequenceDefinition> iconSequences { get; set; }
 
         /// <summary>If this item has a high-res icon (at least for now, many things won't), then the path to that icon will be here.</summary>
         public string highResIcon { get; set; }
@@ -104,13 +104,13 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public string stepName { get; set; }
 
         /// <summary>This appears to be, when you "level up", whether a visual effect will display and on what entity. See DestinyProgressionStepDisplayEffect for slightly more info.</summary>
-        public Schema.Destiny.DestinyProgressionStepDisplayEffect displayEffectType { get; set; }
+        public Destiny.DestinyProgressionStepDisplayEffect displayEffectType { get; set; }
 
         /// <summary>The total amount of progression points/"experience" you will need to initially reach this step. If this is the last step and the progression is repeating indefinitely (DestinyProgressionDefinition.repeatLastStep), this will also be the progress needed to level it up further by repeating this step again.</summary>
         public int progressTotal { get; set; }
 
         /// <summary>A listing of items rewarded as a result of reaching this level.</summary>
-        public IEnumerable<Schema.Destiny.DestinyItemQuantity> rewardItems { get; set; }
+        public IEnumerable<Destiny.DestinyItemQuantity> rewardItems { get; set; }
 
         /// <summary>If this progression step has a specific icon related to it, this is the icon to show.</summary>
         public string icon { get; set; }
@@ -120,12 +120,12 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// So much of what you see in Destiny is actually an Item used in a new and creative way. This is the definition for Items in Destiny, which started off as just entities that could exist in your Inventory but ended up being the backing data for so much more: quests, reward previews, slots, and subclasses.
     /// In practice, you will want to associate this data with "live" item data from a Bungie.Net Platform call: these definitions describe the item in generic, non-instanced terms: but an actual instance of an item can vary widely from these generic definitions.
     /// </summary>
-    public class DestinyInventoryItemDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
+    public class DestinyInventoryItemDefinition : Destiny.Definitions.DestinyDefinition
     {
-        public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
 
         /// <summary>Tooltips that only come up conditionally for the item. Check the live data DestinyItemComponent.tooltipNotificationIndexes property for which of these should be shown at runtime.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyItemTooltipNotification> tooltipNotifications { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyItemTooltipNotification> tooltipNotifications { get; set; }
 
         /// <summary>If this item has a collectible related to it, this is the hash identifier of that collectible entry.</summary>
         public uint? collectibleHash { get; set; }
@@ -146,7 +146,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public string secondarySpecial { get; set; }
 
         /// <summary>Sometimes, an item will have a background color. Most notably this occurs with Emblems, who use the Background Color for small character nameplates such as the "friends" view you see in-game. There are almost certainly other items that have background color as well, though I have not bothered to investigate what items have it nor what purposes they serve: use it as you will.</summary>
-        public Schema.Destiny.Misc.DestinyColor backgroundColor { get; set; }
+        public Destiny.Misc.DestinyColor backgroundColor { get; set; }
 
         /// <summary>If we were able to acquire an in-game screenshot for the item, the path to that screenshot will be returned here. Note that not all items have screenshots: particularly not any non-equippable items.</summary>
         public string screenshot { get; set; }
@@ -167,67 +167,67 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public string tooltipStyle { get; set; }
 
         /// <summary>If the item can be "used", this block will be non-null, and will have data related to the action performed when using the item. (Guess what? 99% of the time, this action is "dismantle". Shocker)</summary>
-        public Schema.Destiny.Definitions.DestinyItemActionBlockDefinition action { get; set; }
+        public Destiny.Definitions.DestinyItemActionBlockDefinition action { get; set; }
 
         /// <summary>If this item can exist in an inventory, this block will be non-null. In practice, every item that currently exists has one of these blocks. But note that it is not necessarily guaranteed.</summary>
-        public Schema.Destiny.Definitions.DestinyItemInventoryBlockDefinition inventory { get; set; }
+        public Destiny.Definitions.DestinyItemInventoryBlockDefinition inventory { get; set; }
 
         /// <summary>If this item is a quest, this block will be non-null. In practice, I wish I had called this the Quest block, but at the time it wasn't clear to me whether it would end up being used for purposes other than quests. It will contain data about the steps in the quest, and mechanics we can use for displaying and tracking the quest.</summary>
-        public Schema.Destiny.Definitions.DestinyItemSetBlockDefinition setData { get; set; }
+        public Destiny.Definitions.DestinyItemSetBlockDefinition setData { get; set; }
 
         /// <summary>If this item can have stats (such as a weapon, armor, or vehicle), this block will be non-null and populated with the stats found on the item.</summary>
-        public Schema.Destiny.Definitions.DestinyItemStatBlockDefinition stats { get; set; }
+        public Destiny.Definitions.DestinyItemStatBlockDefinition stats { get; set; }
 
         /// <summary>If the item is an emblem that has a special Objective attached to it - for instance, if the emblem tracks PVP Kills, or what-have-you. This is a bit different from, for example, the Vanguard Kill Tracker mod, which pipes data into the "art channel". When I get some time, I would like to standardize these so you can get at the values they expose without having to care about what they're being used for and how they are wired up, but for now here's the raw data.</summary>
         public uint? emblemObjectiveHash { get; set; }
 
         /// <summary>If this item can be equipped, this block will be non-null and will be populated with the conditions under which it can be equipped.</summary>
-        public Schema.Destiny.Definitions.DestinyEquippingBlockDefinition equippingBlock { get; set; }
+        public Destiny.Definitions.DestinyEquippingBlockDefinition equippingBlock { get; set; }
 
         /// <summary>If this item can be rendered, this block will be non-null and will be populated with rendering information.</summary>
-        public Schema.Destiny.Definitions.DestinyItemTranslationBlockDefinition translationBlock { get; set; }
+        public Destiny.Definitions.DestinyItemTranslationBlockDefinition translationBlock { get; set; }
 
         /// <summary>If this item can be Used or Acquired to gain other items (for instance, how Eververse Boxes can be consumed to get items from the box), this block will be non-null and will give summary information for the items that can be acquired.</summary>
-        public Schema.Destiny.Definitions.DestinyItemPreviewBlockDefinition preview { get; set; }
+        public Destiny.Definitions.DestinyItemPreviewBlockDefinition preview { get; set; }
 
         /// <summary>If this item can have a level or stats, this block will be non-null and will be populated with default quality (item level, "quality", and infusion) data. See the block for more details, there's often less upfront information in D2 so you'll want to be aware of how you use quality and item level on the definition level now.</summary>
-        public Schema.Destiny.Definitions.DestinyItemQualityBlockDefinition quality { get; set; }
+        public Destiny.Definitions.DestinyItemQualityBlockDefinition quality { get; set; }
 
         /// <summary>The conceptual "Value" of an item, if any was defined. See the DestinyItemValueBlockDefinition for more details.</summary>
-        public Schema.Destiny.Definitions.DestinyItemValueBlockDefinition value { get; set; }
+        public Destiny.Definitions.DestinyItemValueBlockDefinition value { get; set; }
 
         /// <summary>If this item has a known source, this block will be non-null and populated with source information. Unfortunately, at this time we are not generating sources: that is some aggressively manual work which we didn't have time for, and I'm hoping to get back to at some point in the future.</summary>
-        public Schema.Destiny.Definitions.DestinyItemSourceBlockDefinition sourceData { get; set; }
+        public Destiny.Definitions.DestinyItemSourceBlockDefinition sourceData { get; set; }
 
         /// <summary>If this item has Objectives (extra tasks that can be accomplished related to the item... most frequently when the item is a Quest Step and the Objectives need to be completed to move on to the next Quest Step), this block will be non-null and the objectives defined herein.</summary>
-        public Schema.Destiny.Definitions.DestinyItemObjectiveBlockDefinition objectives { get; set; }
+        public Destiny.Definitions.DestinyItemObjectiveBlockDefinition objectives { get; set; }
 
         /// <summary>If this item has available metrics to be shown, this block will be non-null have the appropriate hashes defined.</summary>
-        public Schema.Destiny.Definitions.DestinyItemMetricBlockDefinition metrics { get; set; }
+        public Destiny.Definitions.DestinyItemMetricBlockDefinition metrics { get; set; }
 
         /// <summary>If this item *is* a Plug, this will be non-null and the info defined herein. See DestinyItemPlugDefinition for more information.</summary>
-        public Schema.Destiny.Definitions.Items.DestinyItemPlugDefinition plug { get; set; }
+        public Destiny.Definitions.Items.DestinyItemPlugDefinition plug { get; set; }
 
         /// <summary>If this item has related items in a "Gear Set", this will be non-null and the relationships defined herein.</summary>
-        public Schema.Destiny.Definitions.DestinyItemGearsetBlockDefinition gearset { get; set; }
+        public Destiny.Definitions.DestinyItemGearsetBlockDefinition gearset { get; set; }
 
         /// <summary>If this item is a "reward sack" that can be opened to provide other items, this will be non-null and the properties of the sack contained herein.</summary>
-        public Schema.Destiny.Definitions.DestinyItemSackBlockDefinition sack { get; set; }
+        public Destiny.Definitions.DestinyItemSackBlockDefinition sack { get; set; }
 
         /// <summary>If this item has any Sockets, this will be non-null and the individual sockets on the item will be defined herein.</summary>
-        public Schema.Destiny.Definitions.DestinyItemSocketBlockDefinition sockets { get; set; }
+        public Destiny.Definitions.DestinyItemSocketBlockDefinition sockets { get; set; }
 
         /// <summary>Summary data about the item.</summary>
-        public Schema.Destiny.Definitions.DestinyItemSummaryBlockDefinition summary { get; set; }
+        public Destiny.Definitions.DestinyItemSummaryBlockDefinition summary { get; set; }
 
         /// <summary>If the item has a Talent Grid, this will be non-null and the properties of the grid defined herein. Note that, while many items still have talent grids, the only ones with meaningful Nodes still on them will be Subclass/"Build" items.</summary>
-        public Schema.Destiny.Definitions.DestinyItemTalentGridBlockDefinition talentGrid { get; set; }
+        public Destiny.Definitions.DestinyItemTalentGridBlockDefinition talentGrid { get; set; }
 
         /// <summary>If the item has stats, this block will be defined. It has the "raw" investment stats for the item. These investment stats don't take into account the ways that the items can spawn, nor do they take into account any Stat Group transformations. I have retained them for debugging purposes, but I do not know how useful people will find them.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyItemInvestmentStatDefinition> investmentStats { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyItemInvestmentStatDefinition> investmentStats { get; set; }
 
         /// <summary>If the item has any *intrinsic* Perks (Perks that it will provide regardless of Sockets, Talent Grid, and other transitory state), they will be defined here.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyItemPerkEntryDefinition> perks { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyItemPerkEntryDefinition> perks { get; set; }
 
         /// <summary>If the item has any related Lore (DestinyLoreDefinition), this will be the hash identifier you can use to look up the lore definition.</summary>
         public uint? loreHash { get; set; }
@@ -239,13 +239,13 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public uint? summaryItemHash { get; set; }
 
         /// <summary>If any animations were extracted from game content for this item, these will be the definitions of those animations.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.Animations.DestinyAnimationReference> animations { get; set; }
+        public IEnumerable<Destiny.Definitions.Animations.DestinyAnimationReference> animations { get; set; }
 
         /// <summary>BNet may forbid the execution of actions on this item via the API. If that is occurring, allowActions will be set to false.</summary>
         public bool allowActions { get; set; }
 
         /// <summary>If we added any help or informational URLs about this item, these will be those links.</summary>
-        public IEnumerable<Schema.Links.HyperlinkReference> links { get; set; }
+        public IEnumerable<Links.HyperlinkReference> links { get; set; }
 
         /// <summary>
         /// The boolean will indicate to us (and you!) whether something *could* happen when you transfer this item from the Postmaster that might be considered a "destructive" action.
@@ -267,28 +267,28 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public IEnumerable<uint> itemCategoryHashes { get; set; }
 
         /// <summary>In Destiny 1, we identified some items as having particular categories that we'd like to know about for various internal logic purposes. These are defined in SpecialItemType, and while these days the itemCategoryHashes are the preferred way of identifying types, we have retained this enum for its convenience.</summary>
-        public Schema.Destiny.SpecialItemType specialItemType { get; set; }
+        public Destiny.SpecialItemType specialItemType { get; set; }
 
         /// <summary>
         /// A value indicating the "base" the of the item. This enum is a useful but dramatic oversimplification of what it means for an item to have a "Type". Still, it's handy in many situations.
         /// itemCategoryHashes are the preferred way of identifying types, we have retained this enum for its convenience.
         /// </summary>
-        public Schema.Destiny.DestinyItemType itemType { get; set; }
+        public Destiny.DestinyItemType itemType { get; set; }
 
         /// <summary>
         /// A value indicating the "sub-type" of the item. For instance, where an item might have an itemType value "Weapon", this will be something more specific like "Auto Rifle".
         /// itemCategoryHashes are the preferred way of identifying types, we have retained this enum for its convenience.
         /// </summary>
-        public Schema.Destiny.DestinyItemSubType itemSubType { get; set; }
+        public Destiny.DestinyItemSubType itemSubType { get; set; }
 
         /// <summary>
         /// We run a similarly weak-sauce algorithm to try and determine whether an item is restricted to a specific class. If we find it to be restricted in such a way, we set this classType property to match the class' enumeration value so that users can easily identify class restricted items.
         /// If you see a mis-classed item, please inform the developers in the Bungie API forum.
         /// </summary>
-        public Schema.Destiny.DestinyClass classType { get; set; }
+        public Destiny.DestinyClass classType { get; set; }
 
         /// <summary>Some weapons and plugs can have a "Breaker Type": a special ability that works sort of like damage type vulnerabilities. This is (almost?) always set on items by plugs.</summary>
-        public Schema.Destiny.DestinyBreakerType breakerType { get; set; }
+        public Destiny.DestinyBreakerType breakerType { get; set; }
 
         /// <summary>Since we also have a breaker type definition, this is the hash for that breaker type for your convenience. Whether you use the enum or hash and look up the definition depends on what's cleanest for your code.</summary>
         public uint? breakerTypeHash { get; set; }
@@ -309,13 +309,13 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// - Talent Node perks
         /// - Known, reusable plugs for sockets
         /// </summary>
-        public IEnumerable<Schema.Destiny.DamageType> damageTypes { get; set; }
+        public IEnumerable<Destiny.DamageType> damageTypes { get; set; }
 
         /// <summary>
         /// If the item has a damage type that could be considered to be default, it will be populated here.
         /// For various upsetting reasons, it's surprisingly cumbersome to figure this out. I hope you're happy.
         /// </summary>
-        public Schema.Destiny.DamageType defaultDamageType { get; set; }
+        public Destiny.DamageType defaultDamageType { get; set; }
 
         /// <summary>
         /// Similar to defaultDamageType, but represented as the hash identifier for a DestinyDamageTypeDefinition.
@@ -364,10 +364,10 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public int requiredCooldownSeconds { get; set; }
 
         /// <summary>If the action requires other items to exist or be destroyed, this is the list of those items and requirements.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyItemActionRequiredItemDefinition> requiredItems { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyItemActionRequiredItemDefinition> requiredItems { get; set; }
 
         /// <summary>If performing this action earns you Progression, this is the list of progressions and values granted for those progressions by performing this action.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyProgressionRewardDefinition> progressionRewards { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyProgressionRewardDefinition> progressionRewards { get; set; }
 
         /// <summary>The internal identifier for the action.</summary>
         public string actionTypeLabel { get; set; }
@@ -423,10 +423,10 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// Aggregations of multiple progressions.
     /// These are used to apply rewards to multiple progressions at once. They can sometimes have human readable data as well, but only extremely sporadically.
     /// </summary>
-    public class DestinyProgressionMappingDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
+    public class DestinyProgressionMappingDefinition : Destiny.Definitions.DestinyDefinition
     {
         /// <summary>Infrequently defined in practice. Defer to the individual progressions' display properties.</summary>
-        public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
 
         /// <summary>The localized unit of measurement for progression across the progressions defined in this mapping. Unfortunately, this is very infrequently defined. Defer to the individual progressions' display units.</summary>
         public string displayUnits { get; set; }
@@ -459,7 +459,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public string tierTypeName { get; set; }
 
         /// <summary>The enumeration matching the tier type of the item to known values, again for convenience sake.</summary>
-        public Schema.Destiny.TierType tierType { get; set; }
+        public Destiny.TierType tierType { get; set; }
 
         /// <summary>The tooltip message to show, if any, when the item expires.</summary>
         public string expirationTooltip { get; set; }
@@ -478,15 +478,15 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// Item definitions declare what their "default" bucket is (DestinyInventoryItemDefinition.inventory.bucketTypeHash), and Item instances will tell you which bucket they are currently residing in (DestinyItemComponent.bucketHash). You can use this information along with the DestinyInventoryBucketDefinition to show these items grouped by bucket.
     /// You cannot transfer an item to a bucket that is not its Default without going through a Vendor's "accepted items" (DestinyVendorDefinition.acceptedItems). This is how transfer functionality like the Vault is implemented, as a feature of a Vendor. See the vendor's acceptedItems property for more details.
     /// </summary>
-    public class DestinyInventoryBucketDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
+    public class DestinyInventoryBucketDefinition : Destiny.Definitions.DestinyDefinition
     {
-        public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
 
         /// <summary>Where the bucket is found. 0 = Character, 1 = Account</summary>
-        public Schema.Destiny.BucketScope scope { get; set; }
+        public Destiny.BucketScope scope { get; set; }
 
         /// <summary>An enum value for what items can be found in the bucket. See the BucketCategory enum for more details.</summary>
-        public Schema.Destiny.BucketCategory category { get; set; }
+        public Destiny.BucketCategory category { get; set; }
 
         /// <summary>Use this property to provide a quick-and-dirty recommended ordering for buckets in the UI. Most UIs will likely want to forsake this for something more custom and manual.</summary>
         public int bucketOrder { get; set; }
@@ -502,7 +502,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// See ItemLocation for details.
         /// Note that location includes the Vault and the Postmaster (both of whom being just inventory buckets with additional actions that can be performed on them through a Vendor)
         /// </summary>
-        public Schema.Destiny.ItemLocation location { get; set; }
+        public Destiny.ItemLocation location { get; set; }
 
         /// <summary>If TRUE, there is at least one Vendor that can transfer items to/from this bucket. See the DestinyVendorDefinition's acceptedItems property for more information on how transferring works.</summary>
         public bool hasTransferDestination { get; set; }
@@ -520,7 +520,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
     public class DestinyItemSetBlockDefinition
     {
         /// <summary>A collection of hashes of set items, for items such as Quest Metadata items that possess this data.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyItemSetBlockEntryDefinition> itemList { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyItemSetBlockEntryDefinition> itemList { get; set; }
 
         /// <summary>If true, items in the set can only be added in increasing order, and adding an item will remove any previous item. For Quests, this is by necessity true. Only one quest step is present at a time, and previous steps are removed as you advance in the quest.</summary>
         public bool requireOrderedSetItemAdd { get; set; }
@@ -576,7 +576,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// If you are looking for precomputed values for the stats on a weapon, this is where they are stored. Technically these are the "Display" stat values. Please see DestinyStatsDefinition for what Display Stat Values means, it's a very long story... but essentially these are the closest values BNet can get to the item stats that you see in-game.
         /// These stats are keyed by the DestinyStatDefinition's hash identifier for the stat that's found on the item.
         /// </summary>
-        public Dictionary<uint, Schema.Destiny.Definitions.DestinyInventoryItemStatDefinition> stats { get; set; }
+        public Dictionary<uint, Destiny.Definitions.DestinyInventoryItemStatDefinition> stats { get; set; }
 
         /// <summary>A quick and lazy way to determine whether any stat other than the "primary" stat is actually visible on the item. Items often have stats that we return in case people find them useful, but they're not part of the "Stat Group" and thus we wouldn't display them in our UI. If this is False, then we're not going to display any of these stats other than the primary one.</summary>
         public bool hasDisplayableStats { get; set; }
@@ -633,12 +633,12 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// 3) "Display" stat (the stat's base UI-visible value after DestinyStatGroupDefinition's interpolation tables are applied to the Investment Stat value. For most stats, this is what is displayed.)
     /// 4) Underlying in-game stat (the stat's actual value according to the game, after the game runs dynamic scripts based on the game and character's state. This is the final transformation that BNet does not have access to. For most stats, this is not actually displayed to the user, with the exception of Magazine Size which is then piped back to the UI for display in-game, but not to BNet.)
     /// </summary>
-    public class DestinyStatDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
+    public class DestinyStatDefinition : Destiny.Definitions.DestinyDefinition
     {
-        public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
 
         /// <summary>Stats can exist on a character or an item, and they may potentially be aggregated in different ways. The DestinyStatAggregationType enum value indicates the way that this stat is being aggregated.</summary>
-        public Schema.Destiny.DestinyStatAggregationType aggregationType { get; set; }
+        public Destiny.DestinyStatAggregationType aggregationType { get; set; }
 
         /// <summary>
         /// True if the stat is computed rather than being delivered as a raw value on items.
@@ -647,7 +647,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public bool hasComputedBlock { get; set; }
 
         /// <summary>The category of the stat, according to the game.</summary>
-        public Schema.Destiny.DestinyStatCategory statCategory { get; set; }
+        public Destiny.DestinyStatCategory statCategory { get; set; }
     }
 
     /// <summary>
@@ -655,7 +655,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// See DestinyStatDefinition's documentation for information about the transformation of Stats, and the meaning of an Investment vs. a Display stat.
     /// If you don't want to do these calculations on your own, fear not: pulling live data from the BNet endpoints will return display stat values pre-computed and ready for you to use. I highly recommend this approach, saves a lot of time and also accounts for certain stat modifiers that can't easily be accounted for without live data (such as stat modifiers on Talent Grids and Socket Plugs)
     /// </summary>
-    public class DestinyStatGroupDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
+    public class DestinyStatGroupDefinition : Destiny.Definitions.DestinyDefinition
     {
         /// <summary>
         /// The maximum possible value that any stat in this group can be transformed into.
@@ -670,13 +670,13 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// Any stat that requires scaling to be transformed from an "Investment" stat to a "Display" stat will have an entry in this list. For more information on what those types of stats mean and the transformation process, see DestinyStatDefinition.
         /// In retrospect, I wouldn't mind if this was a dictionary keyed by the stat hash instead. But I'm going to leave it be because [[After Apple Picking]].
         /// </summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyStatDisplayDefinition> scaledStats { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyStatDisplayDefinition> scaledStats { get; set; }
 
         /// <summary>
         /// The game has the ability to override, based on the stat group, what the localized text is that is displayed for Stats being shown on the item.
         /// Mercifully, no Stat Groups use this feature currently. If they start using them, we'll all need to start using them (and those of you who are more prudent than I am can go ahead and start pre-checking for this.)
         /// </summary>
-        public Dictionary<uint, Schema.Destiny.Definitions.DestinyStatOverrideDefinition> overrides { get; set; }
+        public Dictionary<uint, Destiny.Definitions.DestinyStatOverrideDefinition> overrides { get; set; }
     }
 
     /// <summary>
@@ -701,7 +701,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// The interpolation table representing how the Investment Stat is transformed into a Display Stat.
         /// See DestinyStatDefinition for a description of the stages of stat transformation.
         /// </summary>
-        public IEnumerable<Schema.Interpolation.InterpolationPoint> displayInterpolation { get; set; }
+        public IEnumerable<Interpolation.InterpolationPoint> displayInterpolation { get; set; }
     }
 
     /// <summary>
@@ -716,7 +716,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public uint statHash { get; set; }
 
         /// <summary>The display properties to show instead of the base DestinyStatDefinition display properties.</summary>
-        public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
     }
 
     /// <summary>
@@ -743,10 +743,10 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// These are custom attributes on the equippability of the item.
         /// For now, this can only be "equip on acquire", which would mean that the item will be automatically equipped as soon as you pick it up.
         /// </summary>
-        public Schema.Destiny.EquippingItemBlockAttributes attributes { get; set; }
+        public Destiny.EquippingItemBlockAttributes attributes { get; set; }
 
         /// <summary>Ammo type used by a weapon is no longer determined by the bucket in which it is contained. If the item has an ammo type - i.e. if it is a weapon - this will be the type of ammunition expected.</summary>
-        public Schema.Destiny.DestinyAmmunitionType ammoType { get; set; }
+        public Destiny.DestinyAmmunitionType ammoType { get; set; }
 
         /// <summary>These are strings that represent the possible Game/Account/Character state failure conditions that can occur when trying to equip the item. They match up one-to-one with requiredUnlockExpressions.</summary>
         public IEnumerable<string> displayStrings { get; set; }
@@ -757,9 +757,9 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// The Equipment Slot is an indicator that the related bucket can have instanced items equipped on the character. For instance, the Primary Weapon bucket has an Equipment Slot that determines whether you can equip primary weapons, and holds the association between its slot and the inventory bucket from which it can have items equipped.
     /// An Equipment Slot must have a related Inventory Bucket, but not all inventory buckets must have Equipment Slots.
     /// </summary>
-    public class DestinyEquipmentSlotDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
+    public class DestinyEquipmentSlotDefinition : Destiny.Definitions.DestinyDefinition
     {
-        public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
 
         /// <summary>These technically point to "Equipment Category Definitions". But don't get excited. There's nothing of significant value in those definitions, so I didn't bother to expose them. You can use the hash here to group equipment slots by common functionality, which serves the same purpose as if we had the Equipment Category definitions exposed.</summary>
         public uint equipmentCategoryHash { get; set; }
@@ -771,7 +771,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public bool applyCustomArtDyes { get; set; }
 
         /// <summary>The Art Dye Channels that apply to this equipment slot.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyArtDyeReference> artDyeChannels { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyArtDyeReference> artDyeChannels { get; set; }
     }
 
     public class DestinyArtDyeReference
@@ -788,13 +788,13 @@ namespace BungieSharper.Schema.Destiny.Definitions
 
         public uint weaponPatternHash { get; set; }
 
-        public IEnumerable<Schema.Destiny.DyeReference> defaultDyes { get; set; }
+        public IEnumerable<Destiny.DyeReference> defaultDyes { get; set; }
 
-        public IEnumerable<Schema.Destiny.DyeReference> lockedDyes { get; set; }
+        public IEnumerable<Destiny.DyeReference> lockedDyes { get; set; }
 
-        public IEnumerable<Schema.Destiny.DyeReference> customDyes { get; set; }
+        public IEnumerable<Destiny.DyeReference> customDyes { get; set; }
 
-        public IEnumerable<Schema.Destiny.Definitions.DestinyGearArtArrangementReference> arrangements { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyGearArtArrangementReference> arrangements { get; set; }
 
         public bool hasGeometry { get; set; }
     }
@@ -825,7 +825,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public string previewActionString { get; set; }
 
         /// <summary>This is a list of the items being previewed, categorized in the same way as they are in the preview UI.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.Items.DestinyDerivedItemCategoryDefinition> derivedItemCategories { get; set; }
+        public IEnumerable<Destiny.Definitions.Items.DestinyDerivedItemCategoryDefinition> derivedItemCategories { get; set; }
     }
 
     /// <summary>
@@ -839,9 +839,9 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// Where possible and time allows, we'll attempt to split those out into their own more digestible derived "Definitions": but often time does not allow that, as you can see from the above ways that vendors are used which we never split off from Vendor Definitions externally.
     /// Since Vendors are so many things to so many parts of the game, the definition is understandably complex. You will want to combine this data with live Vendor information from the API when it is available.
     /// </summary>
-    public class DestinyVendorDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
+    public class DestinyVendorDefinition : Destiny.Definitions.DestinyDefinition
     {
-        public Schema.Destiny.Definitions.DestinyVendorDisplayPropertiesDefinition displayProperties { get; set; }
+        public Destiny.Definitions.DestinyVendorDisplayPropertiesDefinition displayProperties { get; set; }
 
         /// <summary>If the vendor has a custom localized string describing the "buy" action, that is returned here.</summary>
         public string buyString { get; set; }
@@ -883,7 +883,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public IEnumerable<string> failureStrings { get; set; }
 
         /// <summary>If we were able to predict the dates when this Vendor will be visible/available, this will be the list of those date ranges. Sadly, we're not able to predict this very frequently, so this will often be useless data.</summary>
-        public IEnumerable<Schema.Dates.DateRange> unlockRanges { get; set; }
+        public IEnumerable<Dates.DateRange> unlockRanges { get; set; }
 
         /// <summary>The internal identifier for the Vendor. A holdover from the old days of Vendors, but we don't have time to refactor it away.</summary>
         public string vendorIdentifier { get; set; }
@@ -907,50 +907,50 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public bool consolidateCategories { get; set; }
 
         /// <summary>Describes "actions" that can be performed on a vendor. Currently, none of these exist. But theoretically a Vendor could let you interact with it by performing actions. We'll see what these end up looking like if they ever get used.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyVendorActionDefinition> actions { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyVendorActionDefinition> actions { get; set; }
 
         /// <summary>
         /// These are the headers for sections of items that the vendor is selling. When you see items organized by category in the header, it is these categories that it is showing.
         /// Well, technically not *exactly* these. On BNet, it doesn't make sense to have categories be "paged" as we do in Destiny, so we run some heuristics to attempt to aggregate pages of categories together.
         /// These are the categories post-concatenation, if the vendor had concatenation applied. If you want the pre-aggregated category data, use originalCategories.
         /// </summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyVendorCategoryEntryDefinition> categories { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyVendorCategoryEntryDefinition> categories { get; set; }
 
         /// <summary>See the categories property for a description of categories and why originalCategories exists.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyVendorCategoryEntryDefinition> originalCategories { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyVendorCategoryEntryDefinition> originalCategories { get; set; }
 
         /// <summary>
         /// Display Categories are different from "categories" in that these are specifically for visual grouping and display of categories in Vendor UI.
         /// The "categories" structure is for validation of the contained items, and can be categorized entirely separately from "Display Categories", there need be and often will be no meaningful relationship between the two.
         /// </summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyDisplayCategoryDefinition> displayCategories { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyDisplayCategoryDefinition> displayCategories { get; set; }
 
         /// <summary>In addition to selling items, vendors can have "interactions": UI where you "talk" with the vendor and they offer you a reward, some item, or merely acknowledge via dialog that you did something cool.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyVendorInteractionDefinition> interactions { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyVendorInteractionDefinition> interactions { get; set; }
 
         /// <summary>If the vendor shows you items from your own inventory - such as the Vault vendor does - this data describes the UI around showing those inventory buckets and which ones get shown.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyVendorInventoryFlyoutDefinition> inventoryFlyouts { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyVendorInventoryFlyoutDefinition> inventoryFlyouts { get; set; }
 
         /// <summary>
         /// If the vendor sells items (or merely has a list of items to show like the "Sack" vendors do), this is the list of those items that the vendor can sell. From this list, only a subset will be available from the vendor at any given time, selected randomly and reset on the vendor's refresh interval.
         /// Note that a vendor can sell the same item multiple ways: for instance, nothing stops a vendor from selling you some specific weapon but using two different currencies, or the same weapon at multiple "item levels".
         /// </summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyVendorItemDefinition> itemList { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyVendorItemDefinition> itemList { get; set; }
 
         /// <summary>BNet doesn't use this data yet, but it appears to be an optional list of flavor text about services that the Vendor can provide.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyVendorServiceDefinition> services { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyVendorServiceDefinition> services { get; set; }
 
         /// <summary>If the Vendor is actually a vehicle for the transferring of items (like the Vault and Postmaster vendors), this defines the list of source->destination buckets for transferring.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyVendorAcceptedItemDefinition> acceptedItems { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyVendorAcceptedItemDefinition> acceptedItems { get; set; }
 
         /// <summary>As many of you know, Vendor data has historically been pretty brutal on the BNet servers. In an effort to reduce this workload, only Vendors with this flag set will be returned on Vendor requests. This allows us to filter out Vendors that don't dynamic data that's particularly useful: things like "Preview/Sack" vendors, for example, that you can usually suss out the details for using just the definitions themselves.</summary>
         public bool returnWithVendorRequest { get; set; }
 
         /// <summary>A vendor can be at different places in the world depending on the game/character/account state. This is the list of possible locations for the vendor, along with conditions we use to determine which one is currently active.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.Vendors.DestinyVendorLocationDefinition> locations { get; set; }
+        public IEnumerable<Destiny.Definitions.Vendors.DestinyVendorLocationDefinition> locations { get; set; }
 
         /// <summary>A vendor can be a part of 0 or 1 "groups" at a time: a group being a collection of Vendors related by either location or function/purpose. It's used for our our Companion Vendor UI. Only one of these can be active for a Vendor at a time.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyVendorGroupReference> groups { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyVendorGroupReference> groups { get; set; }
 
         /// <summary>Some items don't make sense to return in the API, for example because they represent an action to be performed rather than an item being sold. I'd rather we not do this, but at least in the short term this is a workable workaround.</summary>
         public IEnumerable<uint> ignoreSaleItemHashes { get; set; }
@@ -967,7 +967,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public string originalIcon { get; set; }
 
         /// <summary>Vendors, in addition to expected display property data, may also show some "common requirements" as statically defined definition data. This might be when a vendor accepts a single type of currency, or when the currency is unique to the vendor and the designers wanted to show that currency when you interact with the vendor.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyVendorRequirementDisplayEntryDefinition> requirementsDisplay { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyVendorRequirementDisplayEntryDefinition> requirementsDisplay { get; set; }
 
         /// <summary>This is the icon used in parts of the game UI such as the vendor's waypoint.</summary>
         public string smallTransparentIcon { get; set; }
@@ -989,7 +989,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// </summary>
         public string icon { get; set; }
 
-        public IEnumerable<Schema.Destiny.Definitions.Common.DestinyIconSequenceDefinition> iconSequences { get; set; }
+        public IEnumerable<Destiny.Definitions.Common.DestinyIconSequenceDefinition> iconSequences { get; set; }
 
         /// <summary>If this item has a high-res icon (at least for now, many things won't), then the path to that icon will be here.</summary>
         public string highResIcon { get; set; }
@@ -1071,7 +1071,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public string displayTitle { get; set; }
 
         /// <summary>If this category has an overlay prompt that should appear, this contains the details of that prompt.</summary>
-        public Schema.Destiny.Definitions.DestinyVendorCategoryOverlayDefinition overlay { get; set; }
+        public Destiny.Definitions.DestinyVendorCategoryOverlayDefinition overlay { get; set; }
 
         /// <summary>A shortcut for the vendor item indexes sold under this category. Saves us from some expensive reorganization at runtime.</summary>
         public IEnumerable<int> vendorItemIndexes { get; set; }
@@ -1116,7 +1116,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
 
         public uint displayCategoryHash { get; set; }
 
-        public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
 
         /// <summary>If true, this category should be displayed in the "Banner" section of the vendor's UI.</summary>
         public bool displayInBanner { get; set; }
@@ -1128,7 +1128,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public uint? progressionHash { get; set; }
 
         /// <summary>If this category sorts items in a nonstandard way, this will be the way we sort.</summary>
-        public Schema.Destiny.VendorDisplayCategorySortOrder sortOrder { get; set; }
+        public Destiny.VendorDisplayCategorySortOrder sortOrder { get; set; }
 
         /// <summary>An indicator of how the category will be displayed in the UI. It's up to you to do something cool or interesting in response to this, or just to treat it as a normal category.</summary>
         public uint? displayStyleHash { get; set; }
@@ -1146,7 +1146,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public int interactionIndex { get; set; }
 
         /// <summary>The potential replies that the user can make to the interaction.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyVendorInteractionReplyDefinition> replies { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyVendorInteractionReplyDefinition> replies { get; set; }
 
         /// <summary>If >= 0, this is the category of sale items to show along with this interaction dialog.</summary>
         public int vendorCategoryIndex { get; set; }
@@ -1155,13 +1155,13 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public uint questlineItemHash { get; set; }
 
         /// <summary>If this interaction is meant to show you sacks, this is the list of types of sacks to be shown. If empty, the interaction is not meant to show sacks.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyVendorInteractionSackEntryDefinition> sackInteractionList { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyVendorInteractionSackEntryDefinition> sackInteractionList { get; set; }
 
         /// <summary>A UI hint for the behavior of the interaction screen. This is useful to determine what type of interaction is occurring, such as a prompt to receive a rank up reward or a prompt to choose a reward for completing a quest. The hash isn't as useful as the Enum in retrospect, well what can you do. Try using interactionType instead.</summary>
         public uint uiInteractionType { get; set; }
 
         /// <summary>The enumerated version of the possible UI hints for vendor interactions, which is a little easier to grok than the hash found in uiInteractionType.</summary>
-        public Schema.Destiny.VendorInteractionType interactionType { get; set; }
+        public Destiny.VendorInteractionType interactionType { get; set; }
 
         /// <summary>If this interaction is displaying rewards, this is the text to use for the header of the reward-displaying section of the interaction.</summary>
         public string rewardBlockLabel { get; set; }
@@ -1176,7 +1176,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public string flavorLineTwo { get; set; }
 
         /// <summary>The header for the interaction dialog.</summary>
-        public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition headerDisplayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition headerDisplayProperties { get; set; }
 
         /// <summary>The localized text telling the player what to do when they see this dialog.</summary>
         public string instructions { get; set; }
@@ -1189,13 +1189,13 @@ namespace BungieSharper.Schema.Destiny.Definitions
     public class DestinyVendorInteractionReplyDefinition
     {
         /// <summary>The rewards granted upon responding to the vendor.</summary>
-        public Schema.Destiny.DestinyVendorInteractionRewardSelection itemRewardsSelection { get; set; }
+        public Destiny.DestinyVendorInteractionRewardSelection itemRewardsSelection { get; set; }
 
         /// <summary>The localized text for the reply.</summary>
         public string reply { get; set; }
 
         /// <summary>An enum indicating the type of reply being made.</summary>
-        public Schema.Destiny.DestinyVendorReplyType replyType { get; set; }
+        public Destiny.DestinyVendorReplyType replyType { get; set; }
     }
 
     /// <summary>
@@ -1215,10 +1215,10 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public string lockedDescription { get; set; }
 
         /// <summary>The title and other common properties of the flyout.</summary>
-        public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
 
         /// <summary>A list of inventory buckets and other metadata to show on the screen.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyVendorInventoryFlyoutBucketDefinition> buckets { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyVendorInventoryFlyoutBucketDefinition> buckets { get; set; }
 
         /// <summary>An identifier for the flyout, in case anything else needs to refer to them.</summary>
         public uint flyoutId { get; set; }
@@ -1242,7 +1242,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public uint inventoryBucketHash { get; set; }
 
         /// <summary>The methodology to use for sorting items from the flyout.</summary>
-        public Schema.Destiny.DestinyItemSortType sortItemsBy { get; set; }
+        public Destiny.DestinyItemSortType sortItemsBy { get; set; }
     }
 
     /// <summary>
@@ -1269,16 +1269,16 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// This is a pre-compiled aggregation of item value and priceOverrideList, so that we have one place to check for what the purchaser must pay for the item. Use this instead of trying to piece together the price separately.
         /// The somewhat crappy part about this is that, now that item quantity overrides have dynamic modifiers, this will not necessarily be statically true. If you were using this instead of live data, switch to using live data.
         /// </summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyVendorItemQuantity> currencies { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyVendorItemQuantity> currencies { get; set; }
 
         /// <summary>If this item can be refunded, this is the policy for what will be refundd, how, and in what time period.</summary>
-        public Schema.Destiny.DestinyVendorItemRefundPolicy refundPolicy { get; set; }
+        public Destiny.DestinyVendorItemRefundPolicy refundPolicy { get; set; }
 
         /// <summary>The amount of time before refundability of the newly purchased item will expire.</summary>
         public int refundTimeLimit { get; set; }
 
         /// <summary>The Default level at which the item will spawn. Almost always driven by an adjusto these days. Ideally should be singular. It's a long story how this ended up as a list, but there is always either going to be 0:1 of these entities.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyItemCreationEntryLevelDefinition> creationLevels { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyItemCreationEntryLevelDefinition> creationLevels { get; set; }
 
         /// <summary>This is an index specifically into the display category, as opposed to the server-side Categories (which do not need to match or pair with each other in any way: server side categories are really just structures for common validation. Display Category will let us more easily categorize items visually)</summary>
         public int displayCategoryIndex { get; set; }
@@ -1296,7 +1296,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public int maximumLevel { get; set; }
 
         /// <summary>The action to be performed when purchasing the item, if it's not just "buy".</summary>
-        public Schema.Destiny.Definitions.DestinyVendorSaleItemActionBlockDefinition action { get; set; }
+        public Destiny.Definitions.DestinyVendorSaleItemActionBlockDefinition action { get; set; }
 
         /// <summary>The string identifier for the category selling this item.</summary>
         public string displayCategory { get; set; }
@@ -1308,16 +1308,16 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// The most restrictive scope that determines whether the item is available in the Vendor's inventory. See DestinyGatingScope's documentation for more information.
         /// This can be determined by Unlock gating, or by whether or not the item has purchase level requirements (minimumLevel and maximumLevel properties).
         /// </summary>
-        public Schema.Destiny.DestinyGatingScope visibilityScope { get; set; }
+        public Destiny.DestinyGatingScope visibilityScope { get; set; }
 
         /// <summary>
         /// Similar to visibilityScope, it represents the most restrictive scope that determines whether the item can be purchased. It will at least be as restrictive as visibilityScope, but could be more restrictive if the item has additional purchase requirements beyond whether it is merely visible or not.
         /// See DestinyGatingScope's documentation for more information.
         /// </summary>
-        public Schema.Destiny.DestinyGatingScope purchasableScope { get; set; }
+        public Destiny.DestinyGatingScope purchasableScope { get; set; }
 
         /// <summary>If this item can only be purchased by a given platform, this indicates the platform to which it is restricted.</summary>
-        public Schema.BungieMembershipType exclusivity { get; set; }
+        public BungieMembershipType exclusivity { get; set; }
 
         /// <summary>If this sale can only be performed as the result of an offer check, this is true.</summary>
         public bool? isOffer { get; set; }
@@ -1334,7 +1334,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// <summary>If this is populated, the purchase of this item should redirect to purchasing these other items instead.</summary>
         public IEnumerable<int> redirectToSaleIndexes { get; set; }
 
-        public IEnumerable<Schema.Destiny.Definitions.DestinyVendorItemSocketOverride> socketOverrides { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyVendorItemSocketOverride> socketOverrides { get; set; }
 
         /// <summary>
         /// If true, this item is some sort of dummy sale item that cannot actually be purchased. It may be a display only item, or some fluff left by a content designer for testing purposes, or something that got disabled because it was a terrible idea. You get the picture. We won't know *why* it can't be purchased, only that it can't be. Sorry.
@@ -1421,9 +1421,9 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// On to one of the more confusing subjects of the API. What is a Destination, and what is the relationship between it, Activities, Locations, and Places?
     /// A "Destination" is a specific region/city/area of a larger "Place". For instance, a Place might be Earth where a Destination might be Bellevue, Washington. (Please, pick a more interesting destination if you come to visit Earth).
     /// </summary>
-    public class DestinyDestinationDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
+    public class DestinyDestinationDefinition : Destiny.Definitions.DestinyDefinition
     {
-        public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
 
         /// <summary>The place that "owns" this Destination. Use this hash to look up the DestinyPlaceDefinition.</summary>
         public uint placeHash { get; set; }
@@ -1432,20 +1432,20 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public uint defaultFreeroamActivityHash { get; set; }
 
         /// <summary>If the Destination has default Activity Graphs (i.e. "Map") that should be shown in the director, this is the list of those Graphs. At most, only one should be active at any given time for a Destination: these would represent, for example, different variants on a Map if the Destination is changing on a macro level based on game state.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyActivityGraphListEntryDefinition> activityGraphEntries { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyActivityGraphListEntryDefinition> activityGraphEntries { get; set; }
 
         /// <summary>
         /// A Destination may have many "Bubbles" zones with human readable properties.
         /// We don't get as much info as I'd like about them - I'd love to return info like where on the map they are located - but at least this gives you the name of those bubbles. bubbleSettings and bubbles both have the identical number of entries, and you should match up their indexes to provide matching bubble and bubbleSettings data.
         /// DEPRECATED - Just use bubbles, it now has this data.
         /// </summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyDestinationBubbleSettingDefinition> bubbleSettings { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyDestinationBubbleSettingDefinition> bubbleSettings { get; set; }
 
         /// <summary>
         /// This provides the unique identifiers for every bubble in the destination (only guaranteed unique within the destination), and any intrinsic properties of the bubble.
         /// bubbleSettings and bubbles both have the identical number of entries, and you should match up their indexes to provide matching bubble and bubbleSettings data.
         /// </summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyBubbleDefinition> bubbles { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyBubbleDefinition> bubbles { get; set; }
     }
 
     /// <summary>
@@ -1466,16 +1466,16 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// Activity Definitions tell a great deal of information about what *could* be relevant to a user: what rewards they can earn, what challenges could be performed, what modifiers could be applied. To figure out which of these properties is actually live, you'll need to combine the definition with "Live" data from one of the Destiny endpoints.
     /// Activities also have Activity Types, but unfortunately in Destiny 2 these are even less reliable of a source of information than they were in Destiny 1. I will be looking into ways to provide more reliable sources for type information as time goes on, but for now we're going to have to deal with the limitations. See DestinyActivityTypeDefinition for more information.
     /// </summary>
-    public class DestinyActivityDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
+    public class DestinyActivityDefinition : Destiny.Definitions.DestinyDefinition
     {
         /// <summary>The title, subtitle, and icon for the activity. We do a little post-processing on this to try and account for Activities where the designers have left this data too minimal to determine what activity is actually being played.</summary>
-        public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
 
         /// <summary>The unadulterated form of the display properties, as they ought to be shown in the Director (if the activity appears in the director).</summary>
-        public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition originalDisplayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition originalDisplayProperties { get; set; }
 
         /// <summary>The title, subtitle, and icon for the activity as determined by Selection Screen data, if there is any for this activity. There won't be data in this field if the activity is never shown in a selection/options screen.</summary>
-        public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition selectionScreenDisplayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition selectionScreenDisplayProperties { get; set; }
 
         /// <summary>If the activity has an icon associated with a specific release (such as a DLC), this is the path to that release's icon.</summary>
         public string releaseIcon { get; set; }
@@ -1505,31 +1505,31 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public string pgcrImage { get; set; }
 
         /// <summary>The expected possible rewards for the activity. These rewards may or may not be accessible for an individual player based on their character state, the account state, and even the game's state overall. But it is a useful reference for possible rewards you can earn in the activity. These match up to rewards displayed when you hover over the Activity in the in-game Director, and often refer to Placeholder or "Dummy" items: items that tell you what you can earn in vague terms rather than what you'll specifically be earning (partly because the game doesn't even know what you'll earn specifically until you roll for it at the end)</summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyActivityRewardDefinition> rewards { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyActivityRewardDefinition> rewards { get; set; }
 
         /// <summary>Activities can have Modifiers, as defined in DestinyActivityModifierDefinition. These are references to the modifiers that *can* be applied to that activity, along with data that we use to determine if that modifier is actually active at any given point in time.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyActivityModifierReferenceDefinition> modifiers { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyActivityModifierReferenceDefinition> modifiers { get; set; }
 
         /// <summary>If True, this Activity is actually a Playlist that refers to multiple possible specific Activities and Activity Modes. For instance, a Crucible Playlist may have references to multiple Activities (Maps) with multiple Activity Modes (specific PvP gameplay modes). If this is true, refer to the playlistItems property for the specific entries in the playlist.</summary>
         public bool isPlaylist { get; set; }
 
         /// <summary>An activity can have many Challenges, of which any subset of them may be active for play at any given period of time. This gives the information about the challenges and data that we use to understand when they're active and what rewards they provide. Sadly, at the moment there's no central definition for challenges: much like "Skulls" were in Destiny 1, these are defined on individual activities and there can be many duplicates/near duplicates across the Destiny 2 ecosystem. I have it in mind to centralize these in a future revision of the API, but we are out of time.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyActivityChallengeDefinition> challenges { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyActivityChallengeDefinition> challenges { get; set; }
 
         /// <summary>If there are status strings related to the activity and based on internal state of the game, account, or character, then this will be the definition of those strings and the states needed in order for the strings to be shown.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyActivityUnlockStringDefinition> optionalUnlockStrings { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyActivityUnlockStringDefinition> optionalUnlockStrings { get; set; }
 
         /// <summary>Represents all of the possible activities that could be played in the Playlist, along with information that we can use to determine if they are active at the present time.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyActivityPlaylistItemDefinition> playlistItems { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyActivityPlaylistItemDefinition> playlistItems { get; set; }
 
         /// <summary>Unfortunately, in practice this is almost never populated. In theory, this is supposed to tell which Activity Graph to show if you bring up the director while in this activity.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyActivityGraphListEntryDefinition> activityGraphList { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyActivityGraphListEntryDefinition> activityGraphList { get; set; }
 
         /// <summary>This block of data provides information about the Activity's matchmaking attributes: how many people can join and such.</summary>
-        public Schema.Destiny.Definitions.DestinyActivityMatchmakingBlockDefinition matchmaking { get; set; }
+        public Destiny.Definitions.DestinyActivityMatchmakingBlockDefinition matchmaking { get; set; }
 
         /// <summary>This block of data, if it exists, provides information about the guided game experience and restrictions for this activity. If it doesn't exist, the game is not able to be played as a guided game.</summary>
-        public Schema.Destiny.Definitions.DestinyActivityGuidedBlockDefinition guidedGame { get; set; }
+        public Destiny.Definitions.DestinyActivityGuidedBlockDefinition guidedGame { get; set; }
 
         /// <summary>If this activity had an activity mode directly defined on it, this will be the hash of that mode.</summary>
         public uint? directActivityModeHash { get; set; }
@@ -1538,22 +1538,22 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public int? directActivityModeType { get; set; }
 
         /// <summary>The set of all possible loadout requirements that could be active for this activity. Only one will be active at any given time, and you can discover which one through activity-associated data such as Milestones that have activity info on them.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyActivityLoadoutRequirementSet> loadouts { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyActivityLoadoutRequirementSet> loadouts { get; set; }
 
         /// <summary>The hash identifiers for Activity Modes relevant to this activity.  Note that if this is a playlist, the specific playlist entry chosen will determine the actual activity modes that end up being relevant.</summary>
         public IEnumerable<uint> activityModeHashes { get; set; }
 
         /// <summary>The activity modes - if any - in enum form. Because we can't seem to escape the enums.</summary>
-        public IEnumerable<Schema.Destiny.HistoricalStats.Definitions.DestinyActivityModeType> activityModeTypes { get; set; }
+        public IEnumerable<Destiny.HistoricalStats.Definitions.DestinyActivityModeType> activityModeTypes { get; set; }
 
         /// <summary>If true, this activity is a PVP activity or playlist.</summary>
         public bool isPvP { get; set; }
 
         /// <summary>The list of phases or points of entry into an activity, along with information we can use to determine their gating and availability.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyActivityInsertionPointDefinition> insertionPoints { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyActivityInsertionPointDefinition> insertionPoints { get; set; }
 
         /// <summary>A list of location mappings that are affected by this activity. Pulled out of DestinyLocationDefinitions for our/your lookup convenience.</summary>
-        public IEnumerable<Schema.Destiny.Constants.DestinyEnvironmentLocationMapping> activityLocationMappings { get; set; }
+        public IEnumerable<Destiny.Constants.DestinyEnvironmentLocationMapping> activityLocationMappings { get; set; }
     }
 
     /// <summary>
@@ -1568,7 +1568,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// The "Items provided" in the reward. This is almost always a pointer to a DestinyInventoryItemDefintion for an item that you can't actually earn in-game, but that has name/description/icon information for the vague concept of the rewards you will receive. This is because the actual reward generation is non-deterministic and extremely complicated, so the best the game can do is tell you what you'll get in vague terms. And so too shall we.
         /// Interesting trivia: you actually *do* earn these items when you complete the activity. They go into a single-slot bucket on your profile, which is how you see the pop-ups of these rewards when you complete an activity that match these "dummy" items. You can even see them if you look at the last one you earned in your profile-level inventory through the BNet API! Who said reading documentation is a waste of time?
         /// </summary>
-        public IEnumerable<Schema.Destiny.DestinyItemQuantity> rewardItems { get; set; }
+        public IEnumerable<Destiny.DestinyItemQuantity> rewardItems { get; set; }
     }
 
     /// <summary>
@@ -1593,7 +1593,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// The rewards as they're represented in the UI. Note that they generally link to "dummy" items that give a summary of rewards rather than direct, real items themselves.
         /// If the quantity is 0, don't show the quantity.
         /// </summary>
-        public IEnumerable<Schema.Destiny.DestinyItemQuantity> dummyRewards { get; set; }
+        public IEnumerable<Destiny.DestinyItemQuantity> dummyRewards { get; set; }
     }
 
     /// <summary>
@@ -1605,16 +1605,16 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// - Anything else that the designers decide to do later.
     /// Objectives have progress, a notion of having been Completed, human readable data describing the task to be accomplished, and a lot of optional tack-on data that can enhance the information provided about the task.
     /// </summary>
-    public class DestinyObjectiveDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
+    public class DestinyObjectiveDefinition : Destiny.Definitions.DestinyDefinition
     {
         /// <summary>Ideally, this should tell you what your task is. I'm not going to lie to you though. Sometimes this doesn't have useful information at all. Which sucks, but there's nothing either of us can do about it.</summary>
-        public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
 
         /// <summary>The value that the unlock value defined in unlockValueHash must reach in order for the objective to be considered Completed. Used in calculating progress and completion status.</summary>
         public int completionValue { get; set; }
 
         /// <summary>A shortcut for determining the most restrictive gating that this Objective is set to use. This includes both the dynamic determination of progress and of completion values. See the DestinyGatingScope enum's documentation for more details.</summary>
-        public Schema.Destiny.DestinyGatingScope scope { get; set; }
+        public Destiny.DestinyGatingScope scope { get; set; }
 
         /// <summary>OPTIONAL: a hash identifier for the location at which this objective must be accomplished, if there is a location defined. Look up the DestinyLocationDefinition for this hash for that additional location info.</summary>
         public uint locationHash { get; set; }
@@ -1635,16 +1635,16 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public bool isCountingDownward { get; set; }
 
         /// <summary>The UI style applied to the objective. It's an enum, take a look at DestinyUnlockValueUIStyle for details of the possible styles. Use this info as you wish to customize your UI.</summary>
-        public Schema.Destiny.DestinyUnlockValueUIStyle valueStyle { get; set; }
+        public Destiny.DestinyUnlockValueUIStyle valueStyle { get; set; }
 
         /// <summary>Text to describe the progress bar.</summary>
         public string progressDescription { get; set; }
 
         /// <summary>If this objective enables Perks intrinsically, the conditions for that enabling are defined here.</summary>
-        public Schema.Destiny.Definitions.DestinyObjectivePerkEntryDefinition perks { get; set; }
+        public Destiny.Definitions.DestinyObjectivePerkEntryDefinition perks { get; set; }
 
         /// <summary>If this objective enables modifications on a player's stats intrinsically, the conditions are defined here.</summary>
-        public Schema.Destiny.Definitions.DestinyObjectiveStatEntryDefinition stats { get; set; }
+        public Destiny.Definitions.DestinyObjectiveStatEntryDefinition stats { get; set; }
 
         /// <summary>If nonzero, this is the minimum value at which the objective's progression should be shown. Otherwise, don't show it yet.</summary>
         public int minimumVisibilityThreshold { get; set; }
@@ -1656,10 +1656,10 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public bool showValueOnComplete { get; set; }
 
         /// <summary>The style to use when the objective is completed.</summary>
-        public Schema.Destiny.DestinyUnlockValueUIStyle completedValueStyle { get; set; }
+        public Destiny.DestinyUnlockValueUIStyle completedValueStyle { get; set; }
 
         /// <summary>The style to use when the objective is still in progress.</summary>
-        public Schema.Destiny.DestinyUnlockValueUIStyle inProgressValueStyle { get; set; }
+        public Destiny.DestinyUnlockValueUIStyle inProgressValueStyle { get; set; }
     }
 
     /// <summary>
@@ -1672,7 +1672,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public uint perkHash { get; set; }
 
         /// <summary>An enumeration indicating whether it will be applied as long as the Objective is active, when it's completed, or until it's completed.</summary>
-        public Schema.Destiny.DestinyObjectiveGrantStyle style { get; set; }
+        public Destiny.DestinyObjectiveGrantStyle style { get; set; }
     }
 
     /// <summary>
@@ -1683,10 +1683,10 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// Anyways, I'm sure you can see why perks are so interesting.
     /// What Perks often don't have is human readable information, so we attempt to reverse engineer that by pulling that data from places that uniquely refer to these perks: namely, Talent Nodes and Plugs. That only gives us a subset of perks that are human readable, but those perks are the ones people generally care about anyways. The others are left as a mystery, their true purpose mostly unknown and undocumented.
     /// </summary>
-    public class DestinySandboxPerkDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
+    public class DestinySandboxPerkDefinition : Destiny.Definitions.DestinyDefinition
     {
         /// <summary>These display properties are by no means guaranteed to be populated. Usually when it is, it's only because we back-filled them with the displayProperties of some Talent Node or Plug item that happened to be uniquely providing that perk.</summary>
-        public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
 
         /// <summary>The string identifier for the perk.</summary>
         public string perkIdentifier { get; set; }
@@ -1698,7 +1698,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// If this perk grants a damage type to a weapon, the damage type will be defined here.
         /// Unless you have a compelling reason to use this enum value, use the damageTypeHash instead to look up the actual DestinyDamageTypeDefinition.
         /// </summary>
-        public Schema.Destiny.DamageType damageType { get; set; }
+        public Destiny.DamageType damageType { get; set; }
 
         /// <summary>
         /// The hash identifier for looking up the DestinyDamageTypeDefinition, if this perk has a damage type.
@@ -1710,7 +1710,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// An old holdover from the original Armory, this was an attempt to group perks by functionality.
         /// It is as yet unpopulated, and there will be quite a bit of work needed to restore it to its former working order.
         /// </summary>
-        public Schema.Destiny.Definitions.DestinyTalentNodeStepGroups perkGroups { get; set; }
+        public Destiny.Definitions.DestinyTalentNodeStepGroups perkGroups { get; set; }
     }
 
     /// <summary>
@@ -1718,15 +1718,15 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// </summary>
     public class DestinyTalentNodeStepGroups
     {
-        public Schema.Destiny.Definitions.DestinyTalentNodeStepWeaponPerformances weaponPerformance { get; set; }
+        public Destiny.Definitions.DestinyTalentNodeStepWeaponPerformances weaponPerformance { get; set; }
 
-        public Schema.Destiny.Definitions.DestinyTalentNodeStepImpactEffects impactEffects { get; set; }
+        public Destiny.Definitions.DestinyTalentNodeStepImpactEffects impactEffects { get; set; }
 
-        public Schema.Destiny.Definitions.DestinyTalentNodeStepGuardianAttributes guardianAttributes { get; set; }
+        public Destiny.Definitions.DestinyTalentNodeStepGuardianAttributes guardianAttributes { get; set; }
 
-        public Schema.Destiny.Definitions.DestinyTalentNodeStepLightAbilities lightAbilities { get; set; }
+        public Destiny.Definitions.DestinyTalentNodeStepLightAbilities lightAbilities { get; set; }
 
-        public Schema.Destiny.Definitions.DestinyTalentNodeStepDamageTypes damageTypes { get; set; }
+        public Destiny.Definitions.DestinyTalentNodeStepDamageTypes damageTypes { get; set; }
     }
 
     [Flags]
@@ -1849,10 +1849,10 @@ namespace BungieSharper.Schema.Destiny.Definitions
     public class DestinyObjectiveStatEntryDefinition
     {
         /// <summary>The stat being modified, and the value used.</summary>
-        public Schema.Destiny.Definitions.DestinyItemInvestmentStatDefinition stat { get; set; }
+        public Destiny.Definitions.DestinyItemInvestmentStatDefinition stat { get; set; }
 
         /// <summary>Whether it will be applied as long as the objective is active, when it's completed, or until it's completed.</summary>
-        public Schema.Destiny.DestinyObjectiveGrantStyle style { get; set; }
+        public Destiny.DestinyObjectiveGrantStyle style { get; set; }
     }
 
     /// <summary>
@@ -1875,13 +1875,13 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// A "Location" is a sort of shortcut for referring to a specific combination of Activity, Destination, Place, and even Bubble or NavPoint within a space.
     /// Most of this data isn't intrinsically useful to us, but Objectives refer to locations, and through that we can at least infer the Activity, Destination, and Place being referred to by the Objective.
     /// </summary>
-    public class DestinyLocationDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
+    public class DestinyLocationDefinition : Destiny.Definitions.DestinyDefinition
     {
         /// <summary>If the location has a Vendor on it, this is the hash identifier for that Vendor. Look them up with DestinyVendorDefinition.</summary>
         public uint vendorHash { get; set; }
 
         /// <summary>A Location may refer to different specific spots in the world based on the world's current state. This is a list of those potential spots, and the data we can use at runtime to determine which one of the spots is the currently valid one.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyLocationReleaseDefinition> locationReleases { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyLocationReleaseDefinition> locationReleases { get; set; }
     }
 
     /// <summary>
@@ -1890,7 +1890,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
     public class DestinyLocationReleaseDefinition
     {
         /// <summary>Sadly, these don't appear to be populated anymore (ever?)</summary>
-        public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
 
         public string smallTransparentIcon { get; set; }
 
@@ -1923,7 +1923,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public uint activityPathDestination { get; set; }
 
         /// <summary>The type of Nav Point that this represents. See the enumeration for more info.</summary>
-        public Schema.Destiny.DestinyActivityNavPointType navPointType { get; set; }
+        public Destiny.DestinyActivityNavPointType navPointType { get; set; }
 
         /// <summary>Looks like it should be the position on the map, but sadly it does not look populated... yet?</summary>
         public IEnumerable<int> worldPosition { get; set; }
@@ -1956,25 +1956,25 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public IEnumerable<uint> activityModeHashes { get; set; }
 
         /// <summary>The activity modes - if any - in enum form. Because we can't seem to escape the enums.</summary>
-        public IEnumerable<Schema.Destiny.HistoricalStats.Definitions.DestinyActivityModeType> activityModeTypes { get; set; }
+        public IEnumerable<Destiny.HistoricalStats.Definitions.DestinyActivityModeType> activityModeTypes { get; set; }
     }
 
     /// <summary>
     /// This definition represents an "Activity Mode" as it exists in the Historical Stats endpoints. An individual Activity Mode represents a collection of activities that are played in a certain way. For example, Nightfall Strikes are part of a "Nightfall" activity mode, and any activities played as the PVP mode "Clash" are part of the "Clash activity mode.
     /// Activity modes are nested under each other in a hierarchy, so that if you ask for - for example - "AllPvP", you will get any PVP activities that the user has played, regardless of what specific PVP mode was being played.
     /// </summary>
-    public class DestinyActivityModeDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
+    public class DestinyActivityModeDefinition : Destiny.Definitions.DestinyDefinition
     {
-        public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
 
         /// <summary>If this activity mode has a related PGCR image, this will be the path to said image.</summary>
         public string pgcrImage { get; set; }
 
         /// <summary>The Enumeration value for this Activity Mode. Pass this identifier into Stats endpoints to get aggregate stats for this mode.</summary>
-        public Schema.Destiny.HistoricalStats.Definitions.DestinyActivityModeType modeType { get; set; }
+        public Destiny.HistoricalStats.Definitions.DestinyActivityModeType modeType { get; set; }
 
         /// <summary>The type of play being performed in broad terms (PVP, PVE)</summary>
-        public Schema.Destiny.DestinyActivityModeCategory activityModeCategory { get; set; }
+        public Destiny.DestinyActivityModeCategory activityModeCategory { get; set; }
 
         /// <summary>
         /// If True, this mode has oppositional teams fighting against each other rather than "Free-For-All" or Co-operative modes of play.
@@ -1992,7 +1992,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public string friendlyName { get; set; }
 
         /// <summary>If this exists, the mode has specific Activities (referred to by the Key) that should instead map to other Activity Modes when they are played. This was useful in D1 for Private Matches, where we wanted to have Private Matches as an activity mode while still referring to the specific mode being played.</summary>
-        public Dictionary<uint, Schema.Destiny.HistoricalStats.Definitions.DestinyActivityModeType> activityModeMappings { get; set; }
+        public Dictionary<uint, Destiny.HistoricalStats.Definitions.DestinyActivityModeType> activityModeMappings { get; set; }
 
         /// <summary>If FALSE, we want to ignore this type when we're showing activity modes in BNet UI. It will still be returned in case 3rd parties want to use it for any purpose.</summary>
         public bool display { get; set; }
@@ -2040,7 +2040,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
     public class DestinyActivityLoadoutRequirementSet
     {
         /// <summary>The set of requirements that will be applied on the activity if this requirement set is active.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyActivityLoadoutRequirement> requirements { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyActivityLoadoutRequirement> requirements { get; set; }
     }
 
     public class DestinyActivityLoadoutRequirement
@@ -2049,7 +2049,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
 
         public IEnumerable<uint> allowedEquippedItemHashes { get; set; }
 
-        public IEnumerable<Schema.Destiny.DestinyItemSubType> allowedWeaponSubTypes { get; set; }
+        public IEnumerable<Destiny.DestinyItemSubType> allowedWeaponSubTypes { get; set; }
     }
 
     /// <summary>
@@ -2066,9 +2066,9 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// Okay, so Activities (DestinyActivityDefinition) take place in Destinations (DestinyDestinationDefinition). Destinations are part of larger locations known as Places (you're reading its documentation right now).
     /// Places are more on the planetary scale, like "Earth" and "Your Mom."
     /// </summary>
-    public class DestinyPlaceDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
+    public class DestinyPlaceDefinition : Destiny.Definitions.DestinyDefinition
     {
-        public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
     }
 
     /// <summary>
@@ -2078,9 +2078,9 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// Unfortunately, there has been a movement away from providing the richer data in Destiny 2 that we used to get in Destiny 1 for Activity Types. For instance, Nightfalls are grouped under the same Activity Type as regular Strikes.
     /// For this reason, BNet will eventually migrate toward Activity Modes as a better indicator of activity category. But for the time being, it is still referred to in many places across our codebase.
     /// </summary>
-    public class DestinyActivityTypeDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
+    public class DestinyActivityTypeDefinition : Destiny.Definitions.DestinyDefinition
     {
-        public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
     }
 
     /// <summary>
@@ -2090,7 +2090,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
     public class DestinyUnlockExpressionDefinition
     {
         /// <summary>A shortcut for determining the most restrictive gating that this expression performs. See the DestinyGatingScope enum's documentation for more details.</summary>
-        public Schema.Destiny.DestinyGatingScope scope { get; set; }
+        public Destiny.DestinyGatingScope scope { get; set; }
     }
 
     /// <summary>
@@ -2099,7 +2099,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// </summary>
     public class DestinyDestinationBubbleSettingDefinition
     {
-        public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
     }
 
     /// <summary>
@@ -2111,7 +2111,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public uint hash { get; set; }
 
         /// <summary>The display properties of this bubble, so you don't have to look them up in a separate list anymore.</summary>
-        public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
     }
 
     public class DestinyVendorGroupReference
@@ -2125,7 +2125,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// These definitions represent the groups we've built. Unlike in Destiny 1, a Vendors' group may change dynamically as the game state changes: thus, you will want to check DestinyVendorComponent responses to find a vendor's currently active Group (if you care).
     /// Using this will let you group your vendors in your UI in a similar manner to how we will do grouping in the Companion.
     /// </summary>
-    public class DestinyVendorGroupDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
+    public class DestinyVendorGroupDefinition : Destiny.Definitions.DestinyDefinition
     {
         /// <summary>The recommended order in which to render the groups, Ascending order.</summary>
         public int order { get; set; }
@@ -2138,9 +2138,9 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// These definitions represent Factions in the game. Factions have ended up unilaterally being related to Vendors that represent them, but that need not necessarily be the case.
     /// A Faction is really just an entity that has a related progression for which a character can gain experience. In Destiny 1, Dead Orbit was an example of a Faction: there happens to be a Vendor that represents Dead Orbit (and indeed, DestinyVendorDefinition.factionHash defines to this relationship), but Dead Orbit could theoretically exist without the Vendor that provides rewards.
     /// </summary>
-    public class DestinyFactionDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
+    public class DestinyFactionDefinition : Destiny.Definitions.DestinyDefinition
     {
-        public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
 
         /// <summary>The hash identifier for the DestinyProgressionDefinition that indicates the character's relationship with this faction in terms of experience and levels.</summary>
         public uint progressionHash { get; set; }
@@ -2155,7 +2155,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public uint rewardVendorHash { get; set; }
 
         /// <summary>List of vendors that are associated with this faction. The last vendor that passes the unlock flag checks is the one that should be shown.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyFactionVendorDefinition> vendors { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyFactionVendorDefinition> vendors { get; set; }
     }
 
     /// <summary>
@@ -2212,7 +2212,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public uint currentVersion { get; set; }
 
         /// <summary>The list of versions available for this item.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyItemVersionDefinition> versions { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyItemVersionDefinition> versions { get; set; }
 
         /// <summary>Icon overlays to denote the item version and power cap status.</summary>
         public IEnumerable<string> displayVersionWatermarkIcons { get; set; }
@@ -2235,7 +2235,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
     public class DestinyItemValueBlockDefinition
     {
         /// <summary>References to the items that make up this item's "value", and the quantity.</summary>
-        public IEnumerable<Schema.Destiny.DestinyItemQuantity> itemValue { get; set; }
+        public IEnumerable<Destiny.DestinyItemQuantity> itemValue { get; set; }
 
         /// <summary>If there's a localized text description of the value provided, this will be said description.</summary>
         public string valueDescription { get; set; }
@@ -2250,13 +2250,13 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public IEnumerable<uint> sourceHashes { get; set; }
 
         /// <summary>A collection of details about the stats that were computed for the ways we found that the item could be spawned.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.Sources.DestinyItemSourceDefinition> sources { get; set; }
+        public IEnumerable<Destiny.Definitions.Sources.DestinyItemSourceDefinition> sources { get; set; }
 
         /// <summary>If we found that this item is exclusive to a specific platform, this will be set to the BungieMembershipType enumeration that matches that platform.</summary>
-        public Schema.BungieMembershipType exclusive { get; set; }
+        public BungieMembershipType exclusive { get; set; }
 
         /// <summary>A denormalized reference back to vendors that potentially sell this item.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyItemVendorSourceReference> vendorSources { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyItemVendorSourceReference> vendorSources { get; set; }
     }
 
     /// <summary>
@@ -2264,12 +2264,12 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// Still, they provide a decent approximation for people trying to figure out how an item can be obtained. DestinyInventoryItemDefinition refers to sources in the sourceDatas.sourceHashes property for all sources we determined the item could spawn from.
     /// An example in Destiny 1 of a Source would be "Nightfall". If an item has the "Nightfall" source associated with it, it's extremely likely that you can earn that item while playing Nightfall, either during play or as an after-completion reward.
     /// </summary>
-    public class DestinyRewardSourceDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
+    public class DestinyRewardSourceDefinition : Destiny.Definitions.DestinyDefinition
     {
-        public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
 
         /// <summary>Sources are grouped into categories: common ways that items are provided. I hope to see this expand in Destiny 2 once we have time to generate accurate reward source data.</summary>
-        public Schema.Destiny.Definitions.DestinyRewardSourceCategory category { get; set; }
+        public Destiny.Definitions.DestinyRewardSourceCategory category { get; set; }
     }
 
     /// <summary>
@@ -2338,7 +2338,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public uint questTypeHash { get; set; }
 
         /// <summary>One entry per Objective on the item, it will have related display information.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyObjectiveDisplayProperties> perObjectiveDisplayProperties { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyObjectiveDisplayProperties> perObjectiveDisplayProperties { get; set; }
 
         public bool displayAsStatTracker { get; set; }
     }
@@ -2365,10 +2365,10 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// Represent a set of material requirements: Items that either need to be owned or need to be consumed in order to perform an action.
     /// A variety of other entities refer to these as gatekeepers and payments for actions that can be performed in game.
     /// </summary>
-    public class DestinyMaterialRequirementSetDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
+    public class DestinyMaterialRequirementSetDefinition : Destiny.Definitions.DestinyDefinition
     {
         /// <summary>The list of all materials that are required.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyMaterialRequirement> materials { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyMaterialRequirement> materials { get; set; }
     }
 
     /// <summary>
@@ -2392,17 +2392,17 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// <summary>
     /// An Unlock Value is an internal integer value, stored on the server and used in a variety of ways, most frequently for the gating/requirement checks that the game performs across all of its main features. They can also be used as the storage data for mapped Progressions, Objectives, and other features that require storage of variable numeric values.
     /// </summary>
-    public class DestinyUnlockValueDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition { }
+    public class DestinyUnlockValueDefinition : Destiny.Definitions.DestinyDefinition { }
 
     /// <summary>
     /// Gender is a social construct, and as such we have definitions for Genders. Right now there happens to only be two, but we'll see what the future holds.
     /// </summary>
-    public class DestinyGenderDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
+    public class DestinyGenderDefinition : Destiny.Definitions.DestinyDefinition
     {
         /// <summary>This is a quick reference enumeration for all of the currently defined Genders. We use the enumeration for quicker lookups in related data, like DestinyClassDefinition.genderedClassNames.</summary>
-        public Schema.Destiny.DestinyGender genderType { get; set; }
+        public Destiny.DestinyGender genderType { get; set; }
 
-        public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
     }
 
     /// <summary>
@@ -2444,13 +2444,13 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public string detail { get; set; }
 
         /// <summary>Each non-intrinsic (or mutable) socket on an item is defined here. Check inside for more info.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyItemSocketEntryDefinition> socketEntries { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyItemSocketEntryDefinition> socketEntries { get; set; }
 
         /// <summary>Each intrinsic (or immutable/permanent) socket on an item is defined here, along with the plug that is permanently affixed to the socket.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyItemIntrinsicSocketEntryDefinition> intrinsicSockets { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyItemIntrinsicSocketEntryDefinition> intrinsicSockets { get; set; }
 
         /// <summary>A convenience property, that refers to the sockets in the "sockets" property, pre-grouped by category and ordered in the manner that they should be grouped in the UI. You could form this yourself with the existing data, but why would you want to? Enjoy life man.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyItemSocketCategoryDefinition> socketCategories { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyItemSocketCategoryDefinition> socketCategories { get; set; }
     }
 
     /// <summary>
@@ -2468,7 +2468,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// This is a list of pre-determined plugs that can *always* be plugged into this socket, without the character having the plug in their inventory.
         /// If this list is populated, you will not be allowed to plug an arbitrary item in the socket: you will only be able to choose from one of these reusable plugs.
         /// </summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyItemSocketEntryPlugItemDefinition> reusablePlugItems { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyItemSocketEntryPlugItemDefinition> reusablePlugItems { get; set; }
 
         /// <summary>
         /// If this is true, then the socket will not be initialized with a plug if the item is purchased from a Vendor.
@@ -2480,7 +2480,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public bool hidePerksInItemTooltip { get; set; }
 
         /// <summary>Indicates where you should go to get plugs for this socket. This will affect how you populate your UI, as well as what plugs are valid for this socket. It's an alternative to having to check for the existence of certain properties (reusablePlugItems for example) to infer where plugs should come from.</summary>
-        public Schema.Destiny.SocketPlugSources plugSources { get; set; }
+        public Destiny.SocketPlugSources plugSources { get; set; }
 
         /// <summary>
         /// If this socket's plugs come from a reusable DestinyPlugSetDefinition, this is the identifier for that set. We added this concept to reduce some major duplication that's going to come from sockets as replacements for what was once implemented as large sets of items and kiosks (like Emotes).
@@ -2568,7 +2568,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public string buildName { get; set; }
 
         /// <summary>If the talent grid implies a damage type, this is the enum value for that damage type.</summary>
-        public Schema.Destiny.DamageType hudDamageType { get; set; }
+        public Destiny.DamageType hudDamageType { get; set; }
 
         /// <summary>If the talent grid has a special icon that's shown in the game UI (like builds, funny that), this is the identifier for that icon. Sadly, we don't actually get that icon right now. I'll be looking to replace this with a path to the actual icon itself.</summary>
         public string hudIcon { get; set; }
@@ -2582,7 +2582,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// Now that Talent Grids are used exclusively by subclasses and builds, all of the properties within still apply: but there are additional visual elements on the Subclass/Build screens that are superimposed on top of the talent nodes. Unfortunately, BNet doesn't have this data: if you want to build a subclass screen, you will have to provide your own "decorative" assets, such as the visual connectors between nodes and the fancy colored-fire-bathed character standing behind the nodes.
     /// DestinyInventoryItem.talentGrid.talentGridHash defines an item's linked Talent Grid, which brings you to this definition that contains enough satic data about talent grids to make your head spin. These *must* be combined with instanced data - found when live data returns DestinyItemTalentGridComponent - in order to derive meaning. The instanced data will reference nodes and steps within these definitions, which you will then have to look up in the definition and combine with the instanced data to give the user the visual representation of their item's talent grid.
     /// </summary>
-    public class DestinyTalentGridDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
+    public class DestinyTalentGridDefinition : Destiny.Definitions.DestinyDefinition
     {
         /// <summary>The maximum possible level of the Talent Grid: at this level, any nodes are allowed to be activated.</summary>
         public int maxGridLevel { get; set; }
@@ -2594,14 +2594,14 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public uint progressionHash { get; set; }
 
         /// <summary>The list of Talent Nodes on the Grid (recall that Nodes themselves are really just locations in the UI to show whatever their current Step is. You will only know the current step for a node by retrieving instanced data through platform calls to the API that return DestinyItemTalentGridComponent).</summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyTalentNodeDefinition> nodes { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyTalentNodeDefinition> nodes { get; set; }
 
         /// <summary>
         /// Talent Nodes can exist in "exclusive sets": these are sets of nodes in which only a single node in the set can be activated at any given time. Activating a node in this set will automatically deactivate the other nodes in the set (referred to as a "Swap").
         /// If a node in the exclusive set has already been activated, the game will not charge you materials to activate another node in the set, even if you have never activated it before, because you already paid the cost to activate one node in the set.
         /// Not to be confused with Exclusive Groups. (how the heck do we NOT get confused by that? Jeez) See the groups property for information about that only-tangentially-related concept.
         /// </summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyTalentNodeExclusiveSetDefinition> exclusiveSets { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyTalentNodeExclusiveSetDefinition> exclusiveSets { get; set; }
 
         /// <summary>This is a quick reference to the indexes of nodes that are not part of exclusive sets. Handy for knowing which talent nodes can only be activated directly, rather than via swapping.</summary>
         public IEnumerable<int> independentNodeIndexes { get; set; }
@@ -2610,13 +2610,13 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// Talent Nodes can have "Exclusive Groups". These are not to be confused with Exclusive Sets (see exclusiveSets property).
         /// Look at the definition of DestinyTalentExclusiveGroup for more information and how they work. These groups are keyed by the "groupHash" from DestinyTalentExclusiveGroup.
         /// </summary>
-        public Dictionary<uint, Schema.Destiny.Definitions.DestinyTalentExclusiveGroup> groups { get; set; }
+        public Dictionary<uint, Destiny.Definitions.DestinyTalentExclusiveGroup> groups { get; set; }
 
         /// <summary>
         /// BNet wants to show talent nodes grouped by similar purpose with localized titles. This is the ordered list of those categories: if you want to show nodes by category, you can iterate over this list, render the displayProperties for the category as the title, and then iterate over the talent nodes referenced by the category to show the related nodes.
         /// Note that this is different from Exclusive Groups or Sets, because these categories also incorporate "Independent" nodes that belong to neither sets nor groups. These are purely for visual grouping of nodes rather than functional grouping.
         /// </summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyTalentNodeCategory> nodeCategories { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyTalentNodeCategory> nodeCategories { get; set; }
     }
 
     /// <summary>
@@ -2669,7 +2669,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// At one point, you were going to be able to repurchase talent nodes that had random steps, to "re-roll" the current step of the node (and thus change the properties of your item). This was to be the activation requirement for performing that re-roll.
         /// The system still exists to do this, as far as I know, so it may yet come back around!
         /// </summary>
-        public Schema.Destiny.Definitions.DestinyNodeActivationRequirement randomActivationRequirement { get; set; }
+        public Destiny.Definitions.DestinyNodeActivationRequirement randomActivationRequirement { get; set; }
 
         /// <summary>If this is true, the node can be "re-rolled" to acquire a different random current step. This is not used, but still exists for a theoretical future of talent grids.</summary>
         public bool isRandomRepurchasable { get; set; }
@@ -2678,7 +2678,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         /// At this point, "steps" have been obfuscated into conceptual entities, aggregating the underlying notions of "properties" and "true steps".
         /// If you need to know a step as it truly exists - such as when recreating Node logic when processing Vendor data - you'll have to use the "realSteps" property below.
         /// </summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyNodeStepDefinition> steps { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyNodeStepDefinition> steps { get; set; }
 
         /// <summary>
         /// The nodeHash values for nodes that are in an Exclusive Set with this node.
@@ -2737,7 +2737,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
     public class DestinyNodeStepDefinition
     {
         /// <summary>These are the display properties actually used to render the Talent Node. The currently active step's displayProperties are shown.</summary>
-        public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
 
         /// <summary>
         /// The index of this step in the list of Steps on the Talent Node.
@@ -2752,13 +2752,13 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public string interactionDescription { get; set; }
 
         /// <summary>An enum representing a damage type granted by activating this step, if any.</summary>
-        public Schema.Destiny.DamageType damageType { get; set; }
+        public Destiny.DamageType damageType { get; set; }
 
         /// <summary>If the step provides a damage type, this will be the hash identifier used to look up the damage type's DestinyDamageTypeDefinition.</summary>
         public uint? damageTypeHash { get; set; }
 
         /// <summary>If the step has requirements for activation (they almost always do, if nothing else than for the Talent Grid's Progression to have reached a certain level), they will be defined here.</summary>
-        public Schema.Destiny.Definitions.DestinyNodeActivationRequirement activationRequirement { get; set; }
+        public Destiny.Definitions.DestinyNodeActivationRequirement activationRequirement { get; set; }
 
         /// <summary>
         /// There was a time when talent nodes could be activated multiple times, and the effects of subsequent Steps would be compounded on each other, essentially "upgrading" the node. We have moved away from this, but theoretically the capability still exists.
@@ -2791,13 +2791,13 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public bool affectsQuality { get; set; }
 
         /// <summary>In Destiny 1, the Armory's Perk Filtering was driven by a concept of TalentNodeStepGroups: categorizations of talent nodes based on their functionality. While the Armory isn't a BNet-facing thing for now, and the new Armory will need to account for Sockets rather than Talent Nodes, this categorization capability feels useful enough to still keep around.</summary>
-        public Schema.Destiny.Definitions.DestinyTalentNodeStepGroups stepGroups { get; set; }
+        public Destiny.Definitions.DestinyTalentNodeStepGroups stepGroups { get; set; }
 
         /// <summary>If true, this step can affect the level of the item. See DestinyInventoryItemDefintion for more information about item levels and their effect on stats.</summary>
         public bool affectsLevel { get; set; }
 
         /// <summary>If this step is activated, this will be a list of information used to replace socket items with new Plugs. See DestinyInventoryItemDefinition for more information about sockets and plugs.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.DestinyNodeSocketReplaceResponse> socketReplacements { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyNodeSocketReplaceResponse> socketReplacements { get; set; }
     }
 
     /// <summary>
@@ -2815,10 +2815,10 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// <summary>
     /// All damage types that are possible in the game are defined here, along with localized info and icons as needed.
     /// </summary>
-    public class DestinyDamageTypeDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
+    public class DestinyDamageTypeDefinition : Destiny.Definitions.DestinyDefinition
     {
         /// <summary>The description of the damage type, icon etc...</summary>
-        public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
 
         /// <summary>A variant of the icon that is transparent and colorless.</summary>
         public string transparentIconPath { get; set; }
@@ -2827,7 +2827,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public bool showIcon { get; set; }
 
         /// <summary>We have an enumeration for damage types for quick reference. This is the current definition's damage type enum value.</summary>
-        public Schema.Destiny.DamageType enumValue { get; set; }
+        public Destiny.DamageType enumValue { get; set; }
     }
 
     /// <summary>
@@ -2873,7 +2873,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public bool isLoreDriven { get; set; }
 
         /// <summary>Will contain at least the "name", which will be the title of the category. We will likely not have description and an icon yet, but I'm going to keep my options open.</summary>
-        public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
 
         /// <summary>The set of all hash identifiers for Talent Nodes (DestinyTalentNodeDefinition) in this Talent Grid that are part of this Category.</summary>
         public IEnumerable<uint> nodeHashes { get; set; }
@@ -2891,7 +2891,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public uint perkHash { get; set; }
 
         /// <summary>Indicates whether this perk should be shown, or if it should be shown disabled.</summary>
-        public Schema.Destiny.ItemPerkVisibility perkVisibility { get; set; }
+        public Destiny.ItemPerkVisibility perkVisibility { get; set; }
     }
 
     /// <summary>
@@ -2899,9 +2899,9 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// This heuristic is imperfect, however. If you find an item miscategorized, let us know on the Bungie API forums!
     /// We then populate all of the categories that we think an item belongs to in its DestinyInventoryItemDefinition.itemCategoryHashes property. You can use that to provide your own custom item filtering, sorting, aggregating... go nuts on it! And let us know if you see more categories that you wish would be added!
     /// </summary>
-    public class DestinyItemCategoryDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
+    public class DestinyItemCategoryDefinition : Destiny.Definitions.DestinyDefinition
     {
-        public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
 
         /// <summary>If True, this category should be visible in UI. Sometimes we make categories that we don't think are interesting externally. It's up to you if you want to skip on showing them.</summary>
         public bool visible { get; set; }
@@ -2916,7 +2916,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public string itemTypeRegex { get; set; }
 
         /// <summary>If the item in question has this category, it also should have this breaker type.</summary>
-        public Schema.Destiny.DestinyBreakerType grantDestinyBreakerType { get; set; }
+        public Destiny.DestinyBreakerType grantDestinyBreakerType { get; set; }
 
         /// <summary>If the item is a plug, this is the identifier we expect to find associated with it if it is in this category.</summary>
         public string plugCategoryIdentifier { get; set; }
@@ -2928,20 +2928,20 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public string originBucketIdentifier { get; set; }
 
         /// <summary>If an item belongs to this category, it will also receive this item type. This is now how DestinyItemType is populated for items: it used to be an even jankier process, but that's a story that requires more alcohol.</summary>
-        public Schema.Destiny.DestinyItemType grantDestinyItemType { get; set; }
+        public Destiny.DestinyItemType grantDestinyItemType { get; set; }
 
         /// <summary>
         /// If an item belongs to this category, it will also receive this subtype enum value.
         /// I know what you're thinking - what if it belongs to multiple categories that provide sub-types?
         /// The last one processed wins, as is the case with all of these "grant" enums. Now you can see one reason why we moved away from these enums... but they're so convenient when they work, aren't they?
         /// </summary>
-        public Schema.Destiny.DestinyItemSubType grantDestinySubType { get; set; }
+        public Destiny.DestinyItemSubType grantDestinySubType { get; set; }
 
         /// <summary>
         /// If an item belongs to this category, it will also get this class restriction enum value.
         /// See the other "grant"-prefixed properties on this definition for my color commentary.
         /// </summary>
-        public Schema.Destiny.DestinyClass grantDestinyClass { get; set; }
+        public Destiny.DestinyClass grantDestinyClass { get; set; }
 
         /// <summary>The traitId that can be found on items that belong to this category.</summary>
         public string traitId { get; set; }
@@ -2964,7 +2964,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
     {
         public int rewardedAtProgressionLevel { get; set; }
 
-        public Schema.Destiny.DestinyProgressionRewardItemAcquisitionBehavior acquisitionBehavior { get; set; }
+        public Destiny.DestinyProgressionRewardItemAcquisitionBehavior acquisitionBehavior { get; set; }
 
         public string uiDisplayStyle { get; set; }
 
@@ -2983,15 +2983,15 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// <summary>
     /// In Destiny, "Races" are really more like "Species". Sort of. I mean, are the Awoken a separate species from humans? I'm not sure. But either way, they're defined here. You'll see Exo, Awoken, and Human as examples of these Species. Players will choose one for their character.
     /// </summary>
-    public class DestinyRaceDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
+    public class DestinyRaceDefinition : Destiny.Definitions.DestinyDefinition
     {
-        public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
 
         /// <summary>An enumeration defining the existing, known Races/Species for player characters. This value will be the enum value matching this definition.</summary>
-        public Schema.Destiny.DestinyRace raceType { get; set; }
+        public Destiny.DestinyRace raceType { get; set; }
 
         /// <summary>A localized string referring to the singular form of the Race's name when referred to in gendered form. Keyed by the DestinyGender.</summary>
-        public Dictionary<Schema.Destiny.DestinyGender, string> genderedRaceNames { get; set; }
+        public Dictionary<Destiny.DestinyGender, string> genderedRaceNames { get; set; }
 
         public Dictionary<uint, string> genderedRaceNamesByGenderHash { get; set; }
     }
@@ -2999,15 +2999,15 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// <summary>
     /// Defines a Character Class in Destiny 2. These are types of characters you can play, like Titan, Warlock, and Hunter.
     /// </summary>
-    public class DestinyClassDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
+    public class DestinyClassDefinition : Destiny.Definitions.DestinyDefinition
     {
         /// <summary>In Destiny 1, we added a convenience Enumeration for referring to classes. We've kept it, though mostly for posterity. This is the enum value for this definition's class.</summary>
-        public Schema.Destiny.DestinyClass classType { get; set; }
+        public Destiny.DestinyClass classType { get; set; }
 
-        public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
 
         /// <summary>A localized string referring to the singular form of the Class's name when referred to in gendered form. Keyed by the DestinyGender.</summary>
-        public Dictionary<Schema.Destiny.DestinyGender, string> genderedClassNames { get; set; }
+        public Dictionary<Destiny.DestinyGender, string> genderedClassNames { get; set; }
 
         public Dictionary<uint, string> genderedClassNamesByGenderHash { get; set; }
 
@@ -3018,10 +3018,10 @@ namespace BungieSharper.Schema.Destiny.Definitions
     /// <summary>
     /// Unlock Flags are small bits (literally, a bit, as in a boolean value) that the game server uses for an extremely wide range of state checks, progress storage, and other interesting tidbits of information.
     /// </summary>
-    public class DestinyUnlockDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
+    public class DestinyUnlockDefinition : Destiny.Definitions.DestinyDefinition
     {
         /// <summary>Sometimes, but not frequently, these unlock flags also have human readable information: usually when they are being directly tested for some requirement, in which case the string is a localized description of why the requirement check failed.</summary>
-        public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
     }
 
     /// <summary>
@@ -3033,7 +3033,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public IEnumerable<string> suggestedWords { get; set; }
 
         /// <summary>The items found that are matches/near matches for the searched-for term, sorted by something vaguely resembling "relevance". Hopefully this will get better in the future.</summary>
-        public Schema.SearchResultOfDestinyEntitySearchResultItem results { get; set; }
+        public SearchResultOfDestinyEntitySearchResultItem results { get; set; }
     }
 
     /// <summary>
@@ -3048,7 +3048,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public string entityType { get; set; }
 
         /// <summary>Basic display properties on the entity, so you don't have to look up the definition to show basic results for the item.</summary>
-        public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
 
         /// <summary>The ranking value for sorting that we calculated using our relevance formula. This will hopefully get better with time and iteration.</summary>
         public double weight { get; set; }

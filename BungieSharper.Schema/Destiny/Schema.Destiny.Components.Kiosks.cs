@@ -10,7 +10,7 @@ namespace BungieSharper.Schema.Destiny.Components.Kiosks
     public class DestinyKiosksComponent
     {
         /// <summary>A dictionary keyed by the Kiosk Vendor's hash identifier (use it to look up the DestinyVendorDefinition for the relevant kiosk vendor), and whose value is a list of all the items that the user can "see" in the Kiosk, and any other interesting metadata.</summary>
-        public Dictionary<uint, IEnumerable<Schema.Destiny.Components.Kiosks.DestinyKioskItem>> kioskItems { get; set; }
+        public Dictionary<uint, IEnumerable<Destiny.Components.Kiosks.DestinyKioskItem>> kioskItems { get; set; }
     }
 
     public class DestinyKioskItem
@@ -25,6 +25,6 @@ namespace BungieSharper.Schema.Destiny.Components.Kiosks
         public IEnumerable<int> failureIndexes { get; set; }
 
         /// <summary>I may regret naming it this way - but this represents when an item has an objective that doesn't serve a beneficial purpose, but rather is used for "flavor" or additional information. For instance, when Emblems track specific stats, those stats are represented as Objectives on the item.</summary>
-        public Schema.Destiny.Quests.DestinyObjectiveProgress flavorObjective { get; set; }
+        public Destiny.Quests.DestinyObjectiveProgress flavorObjective { get; set; }
     }
 }

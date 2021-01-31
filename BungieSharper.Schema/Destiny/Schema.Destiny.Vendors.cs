@@ -9,10 +9,10 @@ namespace BungieSharper.Schema.Destiny.Vendors
     public class DestinyVendorReceipt
     {
         /// <summary>The amount paid for the item, in terms of items that were consumed in the purchase and their quantity.</summary>
-        public IEnumerable<Schema.Destiny.DestinyItemQuantity> currencyPaid { get; set; }
+        public IEnumerable<Destiny.DestinyItemQuantity> currencyPaid { get; set; }
 
         /// <summary>The item that was received, and its quantity.</summary>
-        public Schema.Destiny.DestinyItemQuantity itemReceived { get; set; }
+        public Destiny.DestinyItemQuantity itemReceived { get; set; }
 
         /// <summary>The unlock flag used to determine whether you still have the purchased item.</summary>
         public uint licenseUnlockHash { get; set; }
@@ -21,7 +21,7 @@ namespace BungieSharper.Schema.Destiny.Vendors
         public long purchasedByCharacterId { get; set; }
 
         /// <summary>Whether you can get a refund, and what happens in order for the refund to be received. See the DestinyVendorItemRefundPolicy enum for details.</summary>
-        public Schema.Destiny.DestinyVendorItemRefundPolicy refundPolicy { get; set; }
+        public Destiny.DestinyVendorItemRefundPolicy refundPolicy { get; set; }
 
         /// <summary>The identifier of this receipt.</summary>
         public int sequenceNumber { get; set; }

@@ -3,10 +3,10 @@
     /// <summary>
     /// Represents types of Energy that can be used for costs and payments related to Armor 2.0 mods.
     /// </summary>
-    public class DestinyEnergyTypeDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
+    public class DestinyEnergyTypeDefinition : Destiny.Definitions.DestinyDefinition
     {
         /// <summary>The description of the energy type, icon etc...</summary>
-        public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
 
         /// <summary>A variant of the icon that is transparent and colorless.</summary>
         public string transparentIconPath { get; set; }
@@ -15,7 +15,7 @@
         public bool showIcon { get; set; }
 
         /// <summary>We have an enumeration for Energy types for quick reference. This is the current definition's Energy type enum value.</summary>
-        public Schema.Destiny.DestinyEnergyType enumValue { get; set; }
+        public Destiny.DestinyEnergyType enumValue { get; set; }
 
         /// <summary>If this Energy Type can be used for determining the Type of Energy that an item can consume, this is the hash for the DestinyInvestmentStatDefinition that represents the stat which holds the Capacity for that energy type. (Note that this is optional because "Any" is a valid cost, but not valid for Capacity - an Armor must have a specific Energy Type for determining the energy type that the Armor is restricted to use)</summary>
         public uint? capacityStatHash { get; set; }

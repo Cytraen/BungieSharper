@@ -12,7 +12,7 @@ namespace BungieSharper.Schema.Destiny.Entities.Vendors
         public bool canPurchase { get; set; }
 
         /// <summary>If the Vendor has a related Reputation, this is the Progression data that represents the character's Reputation level with this Vendor.</summary>
-        public Schema.Destiny.DestinyProgression progression { get; set; }
+        public Destiny.DestinyProgression progression { get; set; }
 
         /// <summary>An index into the vendor definition's "locations" property array, indicating which location they are at currently. If -1, then the vendor has no known location (and you may choose not to show them in your UI as a result. I mean, it's your bag honey)</summary>
         public int vendorLocationIndex { get; set; }
@@ -47,7 +47,7 @@ namespace BungieSharper.Schema.Destiny.Entities.Vendors
         /// The list of categories for items that the vendor sells, in rendering order.
         /// These categories each point to a "display category" in the displayCategories property of the DestinyVendorDefinition, as opposed to the other categories.
         /// </summary>
-        public IEnumerable<Schema.Destiny.Entities.Vendors.DestinyVendorCategory> categories { get; set; }
+        public IEnumerable<Destiny.Entities.Vendors.DestinyVendorCategory> categories { get; set; }
     }
 
     /// <summary>
@@ -69,7 +69,7 @@ namespace BungieSharper.Schema.Destiny.Entities.Vendors
     public class DestinyVendorSaleItemComponent
     {
         /// <summary>A flag indicating whether the requesting character can buy the item, and if not the reasons why the character can't buy it.</summary>
-        public Schema.Destiny.VendorItemStatus saleStatus { get; set; }
+        public Destiny.VendorItemStatus saleStatus { get; set; }
 
         /// <summary>
         /// If you can't buy the item due to a complex character state, these will be hashes for DestinyUnlockDefinitions that you can check to see messages regarding the failure (if the unlocks have human readable information: it is not guaranteed that Unlocks will have human readable strings, and your application will have to handle that)
@@ -81,7 +81,7 @@ namespace BungieSharper.Schema.Destiny.Entities.Vendors
         /// If any complex unlock states are checked in determining purchasability, these will be returned here along with the status of the unlock check.
         /// Prefer using failureIndexes instead. These are provided for informational purposes, but have largely been supplanted by failureIndexes.
         /// </summary>
-        public IEnumerable<Schema.Destiny.DestinyUnlockStatus> unlockStatuses { get; set; }
+        public IEnumerable<Destiny.DestinyUnlockStatus> unlockStatuses { get; set; }
 
         /// <summary>
         /// Indexes in to the "failureStrings" lookup table in DestinyVendorDefinition for the given Vendor. Gives some more reliable failure information for why you can't purchase an item.
@@ -93,7 +93,7 @@ namespace BungieSharper.Schema.Destiny.Entities.Vendors
         /// A flags enumeration value representing the current state of any "state modifiers" on the item being sold. These are meant to correspond with some sort of visual indicator as to the augmentation: for instance, if an item is on sale or if you already own the item in question.
         /// Determining how you want to represent these in your own app (or if you even want to) is an exercise left for the reader.
         /// </summary>
-        public Schema.Destiny.DestinyVendorItemState augments { get; set; }
+        public Destiny.DestinyVendorItemState augments { get; set; }
 
         /// <summary>
         /// The index into the DestinyVendorDefinition.itemList property. Note that this means Vendor data *is* Content Version dependent: make sure you have the latest content before you use Vendor data, or these indexes may mismatch.
@@ -114,7 +114,7 @@ namespace BungieSharper.Schema.Destiny.Entities.Vendors
         public int quantity { get; set; }
 
         /// <summary>A summary of the current costs of the item.</summary>
-        public IEnumerable<Schema.Destiny.DestinyItemQuantity> costs { get; set; }
+        public IEnumerable<Destiny.DestinyItemQuantity> costs { get; set; }
 
         /// <summary>
         /// If this item has its own custom date where it may be removed from the Vendor's rotation, this is that date.

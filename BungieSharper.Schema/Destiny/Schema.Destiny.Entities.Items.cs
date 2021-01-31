@@ -18,22 +18,22 @@ namespace BungieSharper.Schema.Destiny.Entities.Items
         public int quantity { get; set; }
 
         /// <summary>If the item is bound to a location, it will be specified in this enum.</summary>
-        public Schema.Destiny.ItemBindStatus bindStatus { get; set; }
+        public Destiny.ItemBindStatus bindStatus { get; set; }
 
         /// <summary>An easy reference for where the item is located. Redundant if you got the item from an Inventory, but useful when making detail calls on specific items.</summary>
-        public Schema.Destiny.ItemLocation location { get; set; }
+        public Destiny.ItemLocation location { get; set; }
 
         /// <summary>The hash identifier for the specific inventory bucket in which the item is located.</summary>
         public uint bucketHash { get; set; }
 
         /// <summary>If there is a known error state that would cause this item to not be transferable, this Flags enum will indicate all of those error states. Otherwise, it will be 0 (CanTransfer).</summary>
-        public Schema.Destiny.TransferStatuses transferStatus { get; set; }
+        public Destiny.TransferStatuses transferStatus { get; set; }
 
         /// <summary>If the item can be locked, this will indicate that state.</summary>
         public bool lockable { get; set; }
 
         /// <summary>A flags enumeration indicating the transient/custom states of the item that affect how it is rendered: whether it's tracked or locked for example, or whether it has a masterwork plug inserted.</summary>
-        public Schema.Destiny.ItemState state { get; set; }
+        public Destiny.ItemState state { get; set; }
 
         /// <summary>
         /// If populated, this is the hash of the item whose icon (and other secondary styles, but *not* the human readable strings) should override whatever icons/styles are on the item being sold.
@@ -57,7 +57,7 @@ namespace BungieSharper.Schema.Destiny.Entities.Items
         public uint? metricHash { get; set; }
 
         /// <summary>The objective progress for the currently-selected metric definition, to be displayed on the emblem nameplate.</summary>
-        public Schema.Destiny.Quests.DestinyObjectiveProgress metricObjective { get; set; }
+        public Destiny.Quests.DestinyObjectiveProgress metricObjective { get; set; }
 
         /// <summary>The version of this item, used to index into the versions list in the item definition quality block.</summary>
         public int? versionNumber { get; set; }
@@ -72,10 +72,10 @@ namespace BungieSharper.Schema.Destiny.Entities.Items
         /// If the item has a hard association with objectives, your progress on them will be defined here.
         /// Objectives are our standard way to describe a series of tasks that have to be completed for a reward.
         /// </summary>
-        public IEnumerable<Schema.Destiny.Quests.DestinyObjectiveProgress> objectives { get; set; }
+        public IEnumerable<Destiny.Quests.DestinyObjectiveProgress> objectives { get; set; }
 
         /// <summary>I may regret naming it this way - but this represents when an item has an objective that doesn't serve a beneficial purpose, but rather is used for "flavor" or additional information. For instance, when Emblems track specific stats, those stats are represented as Objectives on the item.</summary>
-        public Schema.Destiny.Quests.DestinyObjectiveProgress flavorObjective { get; set; }
+        public Destiny.Quests.DestinyObjectiveProgress flavorObjective { get; set; }
 
         /// <summary>If we have any information on when these objectives were completed, this will be the date of that completion. This won't be on many items, but could be interesting for some items that do store this information.</summary>
         public DateTime? dateCompleted { get; set; }
@@ -89,13 +89,13 @@ namespace BungieSharper.Schema.Destiny.Entities.Items
     public class DestinyItemInstanceComponent
     {
         /// <summary>If the item has a damage type, this is the item's current damage type.</summary>
-        public Schema.Destiny.DamageType damageType { get; set; }
+        public Destiny.DamageType damageType { get; set; }
 
         /// <summary>The current damage type's hash, so you can look up localized info and icons for it.</summary>
         public uint? damageTypeHash { get; set; }
 
         /// <summary>The item stat that we consider to be "primary" for the item. For instance, this would be "Attack" for Weapons or "Defense" for armor.</summary>
-        public Schema.Destiny.DestinyStat primaryStat { get; set; }
+        public Destiny.DestinyStat primaryStat { get; set; }
 
         /// <summary>The Item's "Level" has the most significant bearing on its stats, such as Light and Power.</summary>
         public int itemLevel { get; set; }
@@ -119,7 +119,7 @@ namespace BungieSharper.Schema.Destiny.Entities.Items
         public IEnumerable<uint> unlockHashesRequiredToEquip { get; set; }
 
         /// <summary>If you cannot equip the item, this is a flags enum that enumerates all of the reasons why you couldn't equip the item. You may need to refine your UI further by using unlockHashesRequiredToEquip and equipRequiredLevel.</summary>
-        public Schema.Destiny.EquipFailureReason cannotEquipReason { get; set; }
+        public Destiny.EquipFailureReason cannotEquipReason { get; set; }
 
         /// <summary>If populated, this item has a breaker type corresponding to the given value. See DestinyBreakerTypeDefinition for more details.</summary>
         public int? breakerType { get; set; }
@@ -128,7 +128,7 @@ namespace BungieSharper.Schema.Destiny.Entities.Items
         public uint? breakerTypeHash { get; set; }
 
         /// <summary>IF populated, this item supports Energy mechanics (i.e. Armor 2.0), and these are the current details of its energy type and available capacity to spend energy points.</summary>
-        public Schema.Destiny.Entities.Items.DestinyItemInstanceEnergy energy { get; set; }
+        public Destiny.Entities.Items.DestinyItemInstanceEnergy energy { get; set; }
     }
 
     public class DestinyItemInstanceEnergy
@@ -137,7 +137,7 @@ namespace BungieSharper.Schema.Destiny.Entities.Items
         public uint energyTypeHash { get; set; }
 
         /// <summary>This is the enum version of the Energy Type value, for convenience.</summary>
-        public Schema.Destiny.DestinyEnergyType energyType { get; set; }
+        public Destiny.DestinyEnergyType energyType { get; set; }
 
         /// <summary>The total capacity of Energy that the item currently has, regardless of if it is currently being used.</summary>
         public int energyCapacity { get; set; }
@@ -157,7 +157,7 @@ namespace BungieSharper.Schema.Destiny.Entities.Items
     public class DestinyItemPerksComponent
     {
         /// <summary>The list of perks to display in an item tooltip - and whether or not they have been activated.</summary>
-        public IEnumerable<Schema.Destiny.Perks.DestinyPerkReference> perks { get; set; }
+        public IEnumerable<Destiny.Perks.DestinyPerkReference> perks { get; set; }
     }
 
     /// <summary>
@@ -184,7 +184,7 @@ namespace BungieSharper.Schema.Destiny.Entities.Items
     public class DestinyItemStatsComponent
     {
         /// <summary>If the item has stats that it provides (damage, defense, etc...), it will be given here.</summary>
-        public Dictionary<uint, Schema.Destiny.DestinyStat> stats { get; set; }
+        public Dictionary<uint, Destiny.DestinyStat> stats { get; set; }
     }
 
     /// <summary>
@@ -194,7 +194,7 @@ namespace BungieSharper.Schema.Destiny.Entities.Items
     public class DestinyItemSocketsComponent
     {
         /// <summary>The list of all sockets on the item, and their status information.</summary>
-        public IEnumerable<Schema.Destiny.Entities.Items.DestinyItemSocketState> sockets { get; set; }
+        public IEnumerable<Destiny.Entities.Items.DestinyItemSocketState> sockets { get; set; }
     }
 
     /// <summary>
@@ -246,7 +246,7 @@ namespace BungieSharper.Schema.Destiny.Entities.Items
         /// Detailed information about the individual nodes in the talent grid.
         /// A node represents a single visual "pip" in the talent grid or Build detail view, though each node may have multiple "steps" which indicate the actual bonuses and visual representation of that node.
         /// </summary>
-        public IEnumerable<Schema.Destiny.DestinyTalentNode> nodes { get; set; }
+        public IEnumerable<Destiny.DestinyTalentNode> nodes { get; set; }
 
         /// <summary>
         /// Indicates whether the talent grid on this item is completed, and thus whether it should have a gold border around it.
@@ -255,6 +255,6 @@ namespace BungieSharper.Schema.Destiny.Entities.Items
         public bool isGridComplete { get; set; }
 
         /// <summary>If the item has a progression, it will be detailed here. A progression means that the item can gain experience. Thresholds of experience are what determines whether and when a talent node can be activated.</summary>
-        public Schema.Destiny.DestinyProgression gridProgression { get; set; }
+        public Destiny.DestinyProgression gridProgression { get; set; }
     }
 }

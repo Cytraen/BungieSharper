@@ -49,16 +49,16 @@ namespace BungieSharper.Schema.Applications
     public class ApiUsage
     {
         /// <summary>Counts for on API calls made for the time range.</summary>
-        public IEnumerable<Schema.Applications.Series> apiCalls { get; set; }
+        public IEnumerable<Applications.Series> apiCalls { get; set; }
 
         /// <summary>Instances of blocked requests or requests that crossed the warn threshold during the time range.</summary>
-        public IEnumerable<Schema.Applications.Series> throttledRequests { get; set; }
+        public IEnumerable<Applications.Series> throttledRequests { get; set; }
     }
 
     public class Series
     {
         /// <summary>Collection of samples with time and value.</summary>
-        public IEnumerable<Schema.Applications.Datapoint> datapoints { get; set; }
+        public IEnumerable<Applications.Datapoint> datapoints { get; set; }
 
         /// <summary>Target to which to datapoints apply.</summary>
         public string target { get; set; }
@@ -94,7 +94,7 @@ namespace BungieSharper.Schema.Applications
         public string origin { get; set; }
 
         /// <summary>Current status of the application.</summary>
-        public Schema.Applications.ApplicationStatus status { get; set; }
+        public Applications.ApplicationStatus status { get; set; }
 
         /// <summary>Date the application was first added to our database.</summary>
         public DateTime creationDate { get; set; }
@@ -106,7 +106,7 @@ namespace BungieSharper.Schema.Applications
         public DateTime firstPublished { get; set; }
 
         /// <summary>List of team members who manage this application on Bungie.net. Will always consist of at least the application owner.</summary>
-        public IEnumerable<Schema.Applications.ApplicationDeveloper> team { get; set; }
+        public IEnumerable<Applications.ApplicationDeveloper> team { get; set; }
     }
 
     public enum ApplicationStatus
@@ -129,11 +129,11 @@ namespace BungieSharper.Schema.Applications
 
     public class ApplicationDeveloper
     {
-        public Schema.Applications.DeveloperRole role { get; set; }
+        public Applications.DeveloperRole role { get; set; }
 
         public int apiEulaVersion { get; set; }
 
-        public Schema.User.UserInfoCard user { get; set; }
+        public User.UserInfoCard user { get; set; }
     }
 
     public enum DeveloperRole

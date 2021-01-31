@@ -4,6 +4,6 @@
     {
         public string tagText { get; set; }
 
-        public Schema.Ignores.IgnoreResponse ignoreStatus { get; set; }
+        public Ignores.IgnoreResponse ignoreStatus { get; set; }
     }
 }

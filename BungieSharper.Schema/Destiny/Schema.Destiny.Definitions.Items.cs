@@ -6,12 +6,12 @@ namespace BungieSharper.Schema.Destiny.Definitions.Items
     /// Defines the tier type of an item. Mostly this provides human readable properties for types like Common, Rare, etc...
     /// It also provides some base data for infusion that could be useful.
     /// </summary>
-    public class DestinyItemTierTypeDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
+    public class DestinyItemTierTypeDefinition : Destiny.Definitions.DestinyDefinition
     {
-        public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
 
         /// <summary>If this tier defines infusion properties, they will be contained here.</summary>
-        public Schema.Destiny.Definitions.Items.DestinyItemTierTypeInfusionBlock infusionProcess { get; set; }
+        public Destiny.Definitions.Items.DestinyItemTierTypeInfusionBlock infusionProcess { get; set; }
     }
 
     public class DestinyItemTierTypeInfusionBlock
@@ -33,7 +33,7 @@ namespace BungieSharper.Schema.Destiny.Definitions.Items
         public string categoryDescription { get; set; }
 
         /// <summary>This is the list of all of the items for this category and the basic properties we'll know about them.</summary>
-        public IEnumerable<Schema.Destiny.Definitions.Items.DestinyDerivedItemDefinition> items { get; set; }
+        public IEnumerable<Destiny.Definitions.Items.DestinyDerivedItemDefinition> items { get; set; }
     }
 
     /// <summary>
@@ -70,7 +70,7 @@ namespace BungieSharper.Schema.Destiny.Definitions.Items
         /// The rules around when this plug can be inserted into a socket, aside from the socket's individual restrictions.
         /// The live data DestinyItemPlugComponent.insertFailIndexes will be an index into this array, so you can pull out the failure strings appropriate for the user.
         /// </summary>
-        public IEnumerable<Schema.Destiny.Definitions.Items.DestinyPlugRuleDefinition> insertionRules { get; set; }
+        public IEnumerable<Destiny.Definitions.Items.DestinyPlugRuleDefinition> insertionRules { get; set; }
 
         /// <summary>The string identifier for the plug's category. Use the socket's DestinySocketTypeDefinition.plugWhitelist to determine whether this plug can be inserted into the socket.</summary>
         public string plugCategoryIdentifier { get; set; }
@@ -94,21 +94,21 @@ namespace BungieSharper.Schema.Destiny.Definitions.Items
         /// The rules around whether the plug, once inserted, is enabled and providing its benefits.
         /// The live data DestinyItemPlugComponent.enableFailIndexes will be an index into this array, so you can pull out the failure strings appropriate for the user.
         /// </summary>
-        public IEnumerable<Schema.Destiny.Definitions.Items.DestinyPlugRuleDefinition> enabledRules { get; set; }
+        public IEnumerable<Destiny.Definitions.Items.DestinyPlugRuleDefinition> enabledRules { get; set; }
 
         /// <summary>Plugs can have arbitrary, UI-defined identifiers that the UI designers use to determine the style applied to plugs. Unfortunately, we have neither a definitive list of these labels nor advance warning of when new labels might be applied or how that relates to how they get rendered. If you want to, you can refer to known labels to change your own styles: but know that new ones can be created arbitrarily, and we have no way of associating the labels with any specific UI style guidance... you'll have to piece that together on your end. Or do what we do, and just show plugs more generically, without specialized styles.</summary>
         public string uiPlugLabel { get; set; }
 
-        public Schema.Destiny.PlugUiStyles plugStyle { get; set; }
+        public Destiny.PlugUiStyles plugStyle { get; set; }
 
         /// <summary>Indicates the rules about when this plug can be used. See the PlugAvailabilityMode enumeration for more information!</summary>
-        public Schema.Destiny.PlugAvailabilityMode plugAvailability { get; set; }
+        public Destiny.PlugAvailabilityMode plugAvailability { get; set; }
 
         /// <summary>If the plug meets certain state requirements, it may have an alternative label applied to it. This is the alternative label that will be applied in such a situation.</summary>
         public string alternateUiPlugLabel { get; set; }
 
         /// <summary>The alternate plug of the plug: only applies when the item is in states that only the server can know about and control, unfortunately. See AlternateUiPlugLabel for the related label info.</summary>
-        public Schema.Destiny.PlugUiStyles alternatePlugStyle { get; set; }
+        public Destiny.PlugUiStyles alternatePlugStyle { get; set; }
 
         /// <summary>If TRUE, this plug is used for UI display purposes only, and doesn't have any interesting effects of its own.</summary>
         public bool isDummyPlug { get; set; }
@@ -118,13 +118,13 @@ namespace BungieSharper.Schema.Destiny.Definitions.Items
         /// In totally unrelated news, Plugs can now override properties of their parent items. This is some of the relevant definition data for those overrides.
         /// If this is populated, it will have the override data to be applied when this plug is applied to an item.
         /// </summary>
-        public Schema.Destiny.Definitions.Items.DestinyParentItemOverride parentItemOverride { get; set; }
+        public Destiny.Definitions.Items.DestinyParentItemOverride parentItemOverride { get; set; }
 
         /// <summary>IF not null, this plug provides Energy capacity to the item in which it is socketed. In Armor 2.0 for example, is implemented in a similar way to Masterworks, where visually it's a single area of the UI being clicked on to "Upgrade" to higher energy levels, but it's actually socketing new plugs.</summary>
-        public Schema.Destiny.Definitions.Items.DestinyEnergyCapacityEntry energyCapacity { get; set; }
+        public Destiny.Definitions.Items.DestinyEnergyCapacityEntry energyCapacity { get; set; }
 
         /// <summary>IF not null, this plug has an energy cost. This contains the details of that cost.</summary>
-        public Schema.Destiny.Definitions.Items.DestinyEnergyCostEntry energyCost { get; set; }
+        public Destiny.Definitions.Items.DestinyEnergyCostEntry energyCost { get; set; }
     }
 
     /// <summary>
@@ -156,7 +156,7 @@ namespace BungieSharper.Schema.Destiny.Definitions.Items
         public uint energyTypeHash { get; set; }
 
         /// <summary>The Energy Type for this energy capacity, in enum form for easy use.</summary>
-        public Schema.Destiny.DestinyEnergyType energyType { get; set; }
+        public Destiny.DestinyEnergyType energyType { get; set; }
     }
 
     /// <summary>
@@ -171,6 +171,6 @@ namespace BungieSharper.Schema.Destiny.Definitions.Items
         public uint energyTypeHash { get; set; }
 
         /// <summary>The type of energy that this plug costs, in enum form.</summary>
-        public Schema.Destiny.DestinyEnergyType energyType { get; set; }
+        public Destiny.DestinyEnergyType energyType { get; set; }
     }
 }

@@ -5,7 +5,7 @@ namespace BungieSharper.Schema.Destiny.Components.Inventory
     public class DestinyPlatformSilverComponent
     {
         /// <summary>If a Profile is played on multiple platforms, this is the silver they have for each platform, keyed by Membership Type.</summary>
-        public Dictionary<Schema.BungieMembershipType, Schema.Destiny.Entities.Items.DestinyItemComponent> platformSilver { get; set; }
+        public Dictionary<BungieMembershipType, Destiny.Entities.Items.DestinyItemComponent> platformSilver { get; set; }
     }
 
     /// <summary>

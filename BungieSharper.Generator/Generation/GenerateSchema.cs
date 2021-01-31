@@ -63,64 +63,80 @@ namespace BungieSharper.Generator.Generation
             string finalValueString;
             var isFlags = schemaDetails.ContainsKey("x-enum-is-bitmask") && schemaDetails["x-enum-is-bitmask"];
 
-            var hasHash = false;
-            Tuple<string, string, string?>? hashItem = null;
+            // Key: base class, inner key: property name, inner value: type of property
+            var baseClassDictionary = new Dictionary<string, Dictionary<string, string>>();
 
-            var hasIndex = false;
-            Tuple<string, string, string?>? indexItem = null;
-
-            var hasRedacted = false;
-            Tuple<string, string, string?>? redactedItem = null;
-
-            var hasPrivacy = false;
-            Tuple<string, string, string?>? privacyItem = null;
-
-            var hasDisabled = false;
-            Tuple<string, string, string?>? disabledItem = null;
-
-            foreach (var value in valuesList)
+            baseClassDictionary.Add("Schema.Destiny.Definitions.DestinyDefinition", new()
             {
-                if (value.Item1 == "hash" && value.Item2 == "uint")
+                { "hash", "uint" },
+                { "index", "int" },
+                { "redacted", "bool" }
+            });
+
+            baseClassDictionary.Add("Schema.Components.ComponentResponse", new()
+            {
+                { "privacy", "Schema.Components.ComponentPrivacySetting" },
+                { "disabled", "bool?" }
+            });
+
+            baseClassDictionary.Add("Schema.Destiny.Definitions.Presentation.DestinyPresentationNodeBaseDefinition", new()
+            {
+                { "presentationNodeType", "Schema.Destiny.DestinyPresentationNodeType" },
+                { "traitIds", "IEnumerable<string>" },
+                { "traitHashes", "IEnumerable<uint>" },
+                { "parentNodeHashes", "IEnumerable<uint>" }
+            });
+
+            baseClassDictionary.Add("Schema.Destiny.Definitions.Presentation.DestinyScoredPresentationNodeBaseDefinition", new()
+            {
+                { "maxCategoryRecordScore", "int" },
+                { "presentationNodeType", "Schema.Destiny.DestinyPresentationNodeType" },
+                { "traitIds", "IEnumerable<string>" },
+                { "traitHashes", "IEnumerable<uint>" },
+                { "parentNodeHashes", "IEnumerable<uint>" }
+            });
+
+            var inheritList = new List<string>();
+            var valuesListRemove = new List<Tuple<string, string, string?>>();
+
+            foreach (var (baseClass, classProperties) in baseClassDictionary)
+            {
+                if (baseClass.Split('.').Last() == className)
                 {
-                    hasHash = true;
-                    hashItem = value;
-                }
-                if (value.Item1 == "index" && value.Item2 == "int")
-                {
-                    hasIndex = true;
-                    indexItem = value;
-                }
-                if (value.Item1 == "redacted" && value.Item2 == "bool")
-                {
-                    hasRedacted = true;
-                    redactedItem = value;
+                    break;
                 }
 
-                if (value.Item1 == "privacy" && value.Item2 == "Schema.Components.ComponentPrivacySetting")
+                var filtered = valuesList.Where(x => classProperties.ContainsKey(x.Item1) && classProperties[x.Item1] == x.Item2).ToList();
+
+                if (filtered.Count == classProperties.Count)
                 {
-                    hasPrivacy = true;
-                    privacyItem = value;
-                }
-                if (value.Item1 == "disabled" && value.Item2 == "bool?")
-                {
-                    hasDisabled = true;
-                    disabledItem = value;
+                    foreach (var item in filtered)
+                    {
+                        valuesListRemove.Add(item!);
+                    }
+
+                    inheritList.Add(baseClass);
                 }
             }
 
-            if (hasHash && hasIndex && hasRedacted && className != "DestinyDefinition")
+            foreach (var item in valuesListRemove)
             {
-                className += " : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition";
-                valuesList.Remove(hashItem!);
-                valuesList.Remove(indexItem!);
-                valuesList.Remove(redactedItem!);
+                valuesList.Remove(item!);
             }
 
-            if (hasPrivacy && hasDisabled && className != "ComponentResponse")
+            if (inheritList.Contains("Schema.Destiny.Definitions.Presentation.DestinyPresentationNodeBaseDefinition") && inheritList.Contains("Schema.Destiny.Definitions.DestinyDefinition"))
             {
-                className += " : BungieSharper.Schema.Components.ComponentResponse";
-                valuesList.Remove(privacyItem!);
-                valuesList.Remove(disabledItem!);
+                inheritList.Remove("Schema.Destiny.Definitions.DestinyDefinition");
+            }
+
+            if (inheritList.Contains("Schema.Destiny.Definitions.Presentation.DestinyPresentationNodeBaseDefinition") && inheritList.Contains("Schema.Destiny.Definitions.Presentation.DestinyScoredPresentationNodeBaseDefinition"))
+            {
+                inheritList.Remove("Schema.Destiny.Definitions.Presentation.DestinyPresentationNodeBaseDefinition");
+            }
+
+            if (inheritList.Count > 0)
+            {
+                className += " : " + string.Join(", ", inheritList).Replace("Schema.", "");
             }
 
             if (isEnum)
@@ -130,7 +146,7 @@ namespace BungieSharper.Generator.Generation
             }
             else
             {
-                finalValueList = valuesList.Select(x => $"{x.Item3}        public {x.Item2} {x.Item1} {{ get; set; }}").ToList();
+                finalValueList = valuesList.Select(x => $"{x.Item3}        public {x.Item2.Replace("Schema.", "")} {x.Item1} {{ get; set; }}").ToList();
                 finalValueString = string.Join("\n\n", finalValueList);
             }
 

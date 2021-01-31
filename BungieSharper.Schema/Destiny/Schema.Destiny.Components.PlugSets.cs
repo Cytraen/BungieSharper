@@ -9,6 +9,6 @@ namespace BungieSharper.Schema.Destiny.Components.PlugSets
     public class DestinyPlugSetsComponent
     {
         /// <summary>The shared list of plugs for each relevant PlugSet, keyed by the hash identifier of the PlugSet (DestinyPlugSetDefinition).</summary>
-        public Dictionary<uint, IEnumerable<Schema.Destiny.Sockets.DestinyItemPlug>> plugs { get; set; }
+        public Dictionary<uint, IEnumerable<Destiny.Sockets.DestinyItemPlug>> plugs { get; set; }
     }
 }

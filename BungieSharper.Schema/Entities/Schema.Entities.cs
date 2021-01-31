@@ -4,6 +4,6 @@
     {
         public long entityId { get; set; }
 
-        public Schema.Exceptions.PlatformErrorCodes result { get; set; }
+        public Exceptions.PlatformErrorCodes result { get; set; }
     }
 }

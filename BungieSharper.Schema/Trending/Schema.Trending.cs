@@ -5,14 +5,14 @@ namespace BungieSharper.Schema.Trending
 {
     public class TrendingCategories
     {
-        public IEnumerable<Schema.Trending.TrendingCategory> categories { get; set; }
+        public IEnumerable<Trending.TrendingCategory> categories { get; set; }
     }
 
     public class TrendingCategory
     {
         public string categoryName { get; set; }
 
-        public Schema.SearchResultOfTrendingEntry entries { get; set; }
+        public SearchResultOfTrendingEntry entries { get; set; }
 
         public string categoryId { get; set; }
     }
@@ -31,7 +31,7 @@ namespace BungieSharper.Schema.Trending
         public string identifier { get; set; }
 
         /// <summary>An enum - unfortunately - dictating all of the possible kinds of trending items that you might get in your result set, in case you want to do custom rendering or call to get the details of the item.</summary>
-        public Schema.Trending.TrendingEntryType entityType { get; set; }
+        public Trending.TrendingEntryType entityType { get; set; }
 
         /// <summary>The localized "display name/article title/'primary localized identifier'" of the entity.</summary>
         public string displayName { get; set; }
@@ -57,7 +57,7 @@ namespace BungieSharper.Schema.Trending
         public string featureImage { get; set; }
 
         /// <summary>If the item is of entityType TrendingEntryType.Container, it may have items - also Trending Entries - contained within it. This is the ordered list of those to display under the Container's header.</summary>
-        public IEnumerable<Schema.Trending.TrendingEntry> items { get; set; }
+        public IEnumerable<Trending.TrendingEntry> items { get; set; }
 
         /// <summary>If the entry has a date at which it was created, this is that date.</summary>
         public DateTime? creationDate { get; set; }
@@ -97,29 +97,29 @@ namespace BungieSharper.Schema.Trending
     {
         public string identifier { get; set; }
 
-        public Schema.Trending.TrendingEntryType entityType { get; set; }
+        public Trending.TrendingEntryType entityType { get; set; }
 
-        public Schema.Trending.TrendingEntryNews news { get; set; }
+        public Trending.TrendingEntryNews news { get; set; }
 
-        public Schema.Trending.TrendingEntrySupportArticle support { get; set; }
+        public Trending.TrendingEntrySupportArticle support { get; set; }
 
-        public Schema.Trending.TrendingEntryDestinyItem destinyItem { get; set; }
+        public Trending.TrendingEntryDestinyItem destinyItem { get; set; }
 
-        public Schema.Trending.TrendingEntryDestinyActivity destinyActivity { get; set; }
+        public Trending.TrendingEntryDestinyActivity destinyActivity { get; set; }
 
-        public Schema.Trending.TrendingEntryDestinyRitual destinyRitual { get; set; }
+        public Trending.TrendingEntryDestinyRitual destinyRitual { get; set; }
 
-        public Schema.Trending.TrendingEntryCommunityCreation creation { get; set; }
+        public Trending.TrendingEntryCommunityCreation creation { get; set; }
     }
 
     public class TrendingEntryNews
     {
-        public Schema.Content.ContentItemPublicContract article { get; set; }
+        public Content.ContentItemPublicContract article { get; set; }
     }
 
     public class TrendingEntrySupportArticle
     {
-        public Schema.Content.ContentItemPublicContract article { get; set; }
+        public Content.ContentItemPublicContract article { get; set; }
     }
 
     public class TrendingEntryDestinyItem
@@ -131,7 +131,7 @@ namespace BungieSharper.Schema.Trending
     {
         public uint activityHash { get; set; }
 
-        public Schema.Destiny.Activities.DestinyPublicActivityStatus status { get; set; }
+        public Destiny.Activities.DestinyPublicActivityStatus status { get; set; }
     }
 
     public class TrendingEntryDestinyRitual
@@ -149,10 +149,10 @@ namespace BungieSharper.Schema.Trending
         public DateTime? dateEnd { get; set; }
 
         /// <summary>A destiny event does not necessarily have a related Milestone, but if it does the details will be returned here.</summary>
-        public Schema.Destiny.Milestones.DestinyPublicMilestone milestoneDetails { get; set; }
+        public Destiny.Milestones.DestinyPublicMilestone milestoneDetails { get; set; }
 
         /// <summary>A destiny event will not necessarily have milestone "custom content", but if it does the details will be here.</summary>
-        public Schema.Destiny.Milestones.DestinyMilestoneContent eventContent { get; set; }
+        public Destiny.Milestones.DestinyMilestoneContent eventContent { get; set; }
     }
 
     public class TrendingEntryCommunityCreation

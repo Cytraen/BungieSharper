@@ -4,7 +4,7 @@
     {
         public bool isIgnored { get; set; }
 
-        public Schema.Ignores.IgnoreStatus ignoreFlags { get; set; }
+        public Ignores.IgnoreStatus ignoreFlags { get; set; }
     }
 
     [System.Flags]

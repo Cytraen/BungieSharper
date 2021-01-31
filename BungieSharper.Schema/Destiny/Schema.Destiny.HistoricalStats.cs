@@ -12,13 +12,13 @@ namespace BungieSharper.Schema.Destiny.HistoricalStats
         public int? startingPhaseIndex { get; set; }
 
         /// <summary>Details about the activity.</summary>
-        public Schema.Destiny.HistoricalStats.DestinyHistoricalStatsActivity activityDetails { get; set; }
+        public Destiny.HistoricalStats.DestinyHistoricalStatsActivity activityDetails { get; set; }
 
         /// <summary>Collection of players and their data for this activity.</summary>
-        public IEnumerable<Schema.Destiny.HistoricalStats.DestinyPostGameCarnageReportEntry> entries { get; set; }
+        public IEnumerable<Destiny.HistoricalStats.DestinyPostGameCarnageReportEntry> entries { get; set; }
 
         /// <summary>Collection of stats for the player in this activity.</summary>
-        public IEnumerable<Schema.Destiny.HistoricalStats.DestinyPostGameCarnageReportTeamEntry> teams { get; set; }
+        public IEnumerable<Destiny.HistoricalStats.DestinyPostGameCarnageReportTeamEntry> teams { get; set; }
     }
 
     /// <summary>
@@ -39,16 +39,16 @@ namespace BungieSharper.Schema.Destiny.HistoricalStats
         public long instanceId { get; set; }
 
         /// <summary>Indicates the most specific game mode of the activity that we could find.</summary>
-        public Schema.Destiny.HistoricalStats.Definitions.DestinyActivityModeType mode { get; set; }
+        public Destiny.HistoricalStats.Definitions.DestinyActivityModeType mode { get; set; }
 
         /// <summary>The list of all Activity Modes to which this activity applies, including aggregates. This will let you see, for example, whether the activity was both Clash and part of the Trials of the Nine event.</summary>
-        public IEnumerable<Schema.Destiny.HistoricalStats.Definitions.DestinyActivityModeType> modes { get; set; }
+        public IEnumerable<Destiny.HistoricalStats.Definitions.DestinyActivityModeType> modes { get; set; }
 
         /// <summary>Whether or not the match was a private match.</summary>
         public bool isPrivate { get; set; }
 
         /// <summary>The Membership Type indicating the platform on which this match was played.</summary>
-        public Schema.BungieMembershipType membershipType { get; set; }
+        public BungieMembershipType membershipType { get; set; }
     }
 
     public class DestinyPostGameCarnageReportEntry
@@ -57,19 +57,19 @@ namespace BungieSharper.Schema.Destiny.HistoricalStats
         public int standing { get; set; }
 
         /// <summary>Score of the player if available</summary>
-        public Schema.Destiny.HistoricalStats.DestinyHistoricalStatsValue score { get; set; }
+        public Destiny.HistoricalStats.DestinyHistoricalStatsValue score { get; set; }
 
         /// <summary>Identity details of the player</summary>
-        public Schema.Destiny.HistoricalStats.DestinyPlayer player { get; set; }
+        public Destiny.HistoricalStats.DestinyPlayer player { get; set; }
 
         /// <summary>ID of the player's character used in the activity.</summary>
         public long characterId { get; set; }
 
         /// <summary>Collection of stats for the player in this activity.</summary>
-        public Dictionary<string, Schema.Destiny.HistoricalStats.DestinyHistoricalStatsValue> values { get; set; }
+        public Dictionary<string, Destiny.HistoricalStats.DestinyHistoricalStatsValue> values { get; set; }
 
         /// <summary>Extended data extracted from the activity blob.</summary>
-        public Schema.Destiny.HistoricalStats.DestinyPostGameCarnageReportExtendedData extended { get; set; }
+        public Destiny.HistoricalStats.DestinyPostGameCarnageReportExtendedData extended { get; set; }
     }
 
     public class DestinyHistoricalStatsValue
@@ -78,13 +78,13 @@ namespace BungieSharper.Schema.Destiny.HistoricalStats
         public string statId { get; set; }
 
         /// <summary>Basic stat value.</summary>
-        public Schema.Destiny.HistoricalStats.DestinyHistoricalStatsValuePair basic { get; set; }
+        public Destiny.HistoricalStats.DestinyHistoricalStatsValuePair basic { get; set; }
 
         /// <summary>Per game average for the statistic, if applicable</summary>
-        public Schema.Destiny.HistoricalStats.DestinyHistoricalStatsValuePair pga { get; set; }
+        public Destiny.HistoricalStats.DestinyHistoricalStatsValuePair pga { get; set; }
 
         /// <summary>Weighted value of the stat if a weight greater than 1 has been assigned.</summary>
-        public Schema.Destiny.HistoricalStats.DestinyHistoricalStatsValuePair weighted { get; set; }
+        public Destiny.HistoricalStats.DestinyHistoricalStatsValuePair weighted { get; set; }
 
         /// <summary>When a stat represents the best, most, longest, fastest or some other personal best, the actual activity ID where that personal best was established is available on this property.</summary>
         public long? activityId { get; set; }
@@ -102,7 +102,7 @@ namespace BungieSharper.Schema.Destiny.HistoricalStats
     public class DestinyPlayer
     {
         /// <summary>Details about the player as they are known in game (platform display name, Destiny emblem)</summary>
-        public Schema.User.UserInfoCard destinyUserInfo { get; set; }
+        public User.UserInfoCard destinyUserInfo { get; set; }
 
         /// <summary>Class of the character if applicable and available.</summary>
         public string characterClass { get; set; }
@@ -120,7 +120,7 @@ namespace BungieSharper.Schema.Destiny.HistoricalStats
         public int lightLevel { get; set; }
 
         /// <summary>Details about the player as they are known on BungieNet. This will be undefined if the player has marked their credential private, or does not have a BungieNet account.</summary>
-        public Schema.User.UserInfoCard bungieNetUserInfo { get; set; }
+        public User.UserInfoCard bungieNetUserInfo { get; set; }
 
         /// <summary>Current clan name for the player. This value may be null or an empty string if the user does not have a clan.</summary>
         public string clanName { get; set; }
@@ -135,10 +135,10 @@ namespace BungieSharper.Schema.Destiny.HistoricalStats
     public class DestinyPostGameCarnageReportExtendedData
     {
         /// <summary>List of weapons and their perspective values.</summary>
-        public IEnumerable<Schema.Destiny.HistoricalStats.DestinyHistoricalWeaponStats> weapons { get; set; }
+        public IEnumerable<Destiny.HistoricalStats.DestinyHistoricalWeaponStats> weapons { get; set; }
 
         /// <summary>Collection of stats for the player in this activity.</summary>
-        public Dictionary<string, Schema.Destiny.HistoricalStats.DestinyHistoricalStatsValue> values { get; set; }
+        public Dictionary<string, Destiny.HistoricalStats.DestinyHistoricalStatsValue> values { get; set; }
     }
 
     public class DestinyHistoricalWeaponStats
@@ -147,7 +147,7 @@ namespace BungieSharper.Schema.Destiny.HistoricalStats
         public uint referenceId { get; set; }
 
         /// <summary>Collection of stats for the period.</summary>
-        public Dictionary<string, Schema.Destiny.HistoricalStats.DestinyHistoricalStatsValue> values { get; set; }
+        public Dictionary<string, Destiny.HistoricalStats.DestinyHistoricalStatsValue> values { get; set; }
     }
 
     public class DestinyPostGameCarnageReportTeamEntry
@@ -156,10 +156,10 @@ namespace BungieSharper.Schema.Destiny.HistoricalStats
         public int teamId { get; set; }
 
         /// <summary>Team's standing relative to other teams.</summary>
-        public Schema.Destiny.HistoricalStats.DestinyHistoricalStatsValue standing { get; set; }
+        public Destiny.HistoricalStats.DestinyHistoricalStatsValue standing { get; set; }
 
         /// <summary>Score earned by the team</summary>
-        public Schema.Destiny.HistoricalStats.DestinyHistoricalStatsValue score { get; set; }
+        public Destiny.HistoricalStats.DestinyHistoricalStatsValue score { get; set; }
 
         /// <summary>Alpha or Bravo</summary>
         public string teamName { get; set; }
@@ -169,7 +169,7 @@ namespace BungieSharper.Schema.Destiny.HistoricalStats
     {
         public string statId { get; set; }
 
-        public IEnumerable<Schema.Destiny.HistoricalStats.DestinyLeaderboardEntry> entries { get; set; }
+        public IEnumerable<Destiny.HistoricalStats.DestinyLeaderboardEntry> entries { get; set; }
     }
 
     public class DestinyLeaderboardEntry
@@ -178,13 +178,13 @@ namespace BungieSharper.Schema.Destiny.HistoricalStats
         public int rank { get; set; }
 
         /// <summary>Identity details of the player</summary>
-        public Schema.Destiny.HistoricalStats.DestinyPlayer player { get; set; }
+        public Destiny.HistoricalStats.DestinyPlayer player { get; set; }
 
         /// <summary>ID of the player's best character for the reported stat.</summary>
         public long characterId { get; set; }
 
         /// <summary>Value of the stat for this player</summary>
-        public Schema.Destiny.HistoricalStats.DestinyHistoricalStatsValue value { get; set; }
+        public Destiny.HistoricalStats.DestinyHistoricalStatsValue value { get; set; }
     }
 
     public class DestinyLeaderboardResults
@@ -199,28 +199,28 @@ namespace BungieSharper.Schema.Destiny.HistoricalStats
     public class DestinyClanAggregateStat
     {
         /// <summary>The id of the mode of stats (allPvp, allPvE, etc)</summary>
-        public Schema.Destiny.HistoricalStats.Definitions.DestinyActivityModeType mode { get; set; }
+        public Destiny.HistoricalStats.Definitions.DestinyActivityModeType mode { get; set; }
 
         /// <summary>The id of the stat</summary>
         public string statId { get; set; }
 
         /// <summary>Value of the stat for this player</summary>
-        public Schema.Destiny.HistoricalStats.DestinyHistoricalStatsValue value { get; set; }
+        public Destiny.HistoricalStats.DestinyHistoricalStatsValue value { get; set; }
     }
 
     public class DestinyHistoricalStatsByPeriod
     {
-        public Dictionary<string, Schema.Destiny.HistoricalStats.DestinyHistoricalStatsValue> allTime { get; set; }
+        public Dictionary<string, Destiny.HistoricalStats.DestinyHistoricalStatsValue> allTime { get; set; }
 
-        public Dictionary<string, Schema.Destiny.HistoricalStats.DestinyHistoricalStatsValue> allTimeTier1 { get; set; }
+        public Dictionary<string, Destiny.HistoricalStats.DestinyHistoricalStatsValue> allTimeTier1 { get; set; }
 
-        public Dictionary<string, Schema.Destiny.HistoricalStats.DestinyHistoricalStatsValue> allTimeTier2 { get; set; }
+        public Dictionary<string, Destiny.HistoricalStats.DestinyHistoricalStatsValue> allTimeTier2 { get; set; }
 
-        public Dictionary<string, Schema.Destiny.HistoricalStats.DestinyHistoricalStatsValue> allTimeTier3 { get; set; }
+        public Dictionary<string, Destiny.HistoricalStats.DestinyHistoricalStatsValue> allTimeTier3 { get; set; }
 
-        public IEnumerable<Schema.Destiny.HistoricalStats.DestinyHistoricalStatsPeriodGroup> daily { get; set; }
+        public IEnumerable<Destiny.HistoricalStats.DestinyHistoricalStatsPeriodGroup> daily { get; set; }
 
-        public IEnumerable<Schema.Destiny.HistoricalStats.DestinyHistoricalStatsPeriodGroup> monthly { get; set; }
+        public IEnumerable<Destiny.HistoricalStats.DestinyHistoricalStatsPeriodGroup> monthly { get; set; }
     }
 
     public class DestinyHistoricalStatsPeriodGroup
@@ -229,26 +229,26 @@ namespace BungieSharper.Schema.Destiny.HistoricalStats
         public DateTime period { get; set; }
 
         /// <summary>If the period group is for a specific activity, this property will be set.</summary>
-        public Schema.Destiny.HistoricalStats.DestinyHistoricalStatsActivity activityDetails { get; set; }
+        public Destiny.HistoricalStats.DestinyHistoricalStatsActivity activityDetails { get; set; }
 
         /// <summary>Collection of stats for the period.</summary>
-        public Dictionary<string, Schema.Destiny.HistoricalStats.DestinyHistoricalStatsValue> values { get; set; }
+        public Dictionary<string, Destiny.HistoricalStats.DestinyHistoricalStatsValue> values { get; set; }
     }
 
     public class DestinyHistoricalStatsAccountResult
     {
-        public Schema.Destiny.HistoricalStats.DestinyHistoricalStatsWithMerged mergedDeletedCharacters { get; set; }
+        public Destiny.HistoricalStats.DestinyHistoricalStatsWithMerged mergedDeletedCharacters { get; set; }
 
-        public Schema.Destiny.HistoricalStats.DestinyHistoricalStatsWithMerged mergedAllCharacters { get; set; }
+        public Destiny.HistoricalStats.DestinyHistoricalStatsWithMerged mergedAllCharacters { get; set; }
 
-        public IEnumerable<Schema.Destiny.HistoricalStats.DestinyHistoricalStatsPerCharacter> characters { get; set; }
+        public IEnumerable<Destiny.HistoricalStats.DestinyHistoricalStatsPerCharacter> characters { get; set; }
     }
 
     public class DestinyHistoricalStatsWithMerged
     {
-        public Dictionary<string, Schema.Destiny.HistoricalStats.DestinyHistoricalStatsByPeriod> results { get; set; }
+        public Dictionary<string, Destiny.HistoricalStats.DestinyHistoricalStatsByPeriod> results { get; set; }
 
-        public Schema.Destiny.HistoricalStats.DestinyHistoricalStatsByPeriod merged { get; set; }
+        public Destiny.HistoricalStats.DestinyHistoricalStatsByPeriod merged { get; set; }
     }
 
     public class DestinyHistoricalStatsPerCharacter
@@ -257,27 +257,27 @@ namespace BungieSharper.Schema.Destiny.HistoricalStats
 
         public bool deleted { get; set; }
 
-        public Dictionary<string, Schema.Destiny.HistoricalStats.DestinyHistoricalStatsByPeriod> results { get; set; }
+        public Dictionary<string, Destiny.HistoricalStats.DestinyHistoricalStatsByPeriod> results { get; set; }
 
-        public Schema.Destiny.HistoricalStats.DestinyHistoricalStatsByPeriod merged { get; set; }
+        public Destiny.HistoricalStats.DestinyHistoricalStatsByPeriod merged { get; set; }
     }
 
     public class DestinyActivityHistoryResults
     {
         /// <summary>List of activities, the most recent activity first.</summary>
-        public IEnumerable<Schema.Destiny.HistoricalStats.DestinyHistoricalStatsPeriodGroup> activities { get; set; }
+        public IEnumerable<Destiny.HistoricalStats.DestinyHistoricalStatsPeriodGroup> activities { get; set; }
     }
 
     public class DestinyHistoricalWeaponStatsData
     {
         /// <summary>List of weapons and their perspective values.</summary>
-        public IEnumerable<Schema.Destiny.HistoricalStats.DestinyHistoricalWeaponStats> weapons { get; set; }
+        public IEnumerable<Destiny.HistoricalStats.DestinyHistoricalWeaponStats> weapons { get; set; }
     }
 
     public class DestinyAggregateActivityResults
     {
         /// <summary>List of all activities the player has participated in.</summary>
-        public IEnumerable<Schema.Destiny.HistoricalStats.DestinyAggregateActivityStats> activities { get; set; }
+        public IEnumerable<Destiny.HistoricalStats.DestinyAggregateActivityStats> activities { get; set; }
     }
 
     public class DestinyAggregateActivityStats
@@ -286,6 +286,6 @@ namespace BungieSharper.Schema.Destiny.HistoricalStats
         public uint activityHash { get; set; }
 
         /// <summary>Collection of stats for the player in this activity.</summary>
-        public Dictionary<string, Schema.Destiny.HistoricalStats.DestinyHistoricalStatsValue> values { get; set; }
+        public Dictionary<string, Destiny.HistoricalStats.DestinyHistoricalStatsValue> values { get; set; }
     }
 }

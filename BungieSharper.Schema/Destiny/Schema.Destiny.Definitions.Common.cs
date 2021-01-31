@@ -18,7 +18,7 @@ namespace BungieSharper.Schema.Destiny.Definitions.Common
         /// </summary>
         public string icon { get; set; }
 
-        public IEnumerable<Schema.Destiny.Definitions.Common.DestinyIconSequenceDefinition> iconSequences { get; set; }
+        public IEnumerable<Destiny.Definitions.Common.DestinyIconSequenceDefinition> iconSequences { get; set; }
 
         /// <summary>If this item has a high-res icon (at least for now, many things won't), then the path to that icon will be here.</summary>
         public string highResIcon { get; set; }

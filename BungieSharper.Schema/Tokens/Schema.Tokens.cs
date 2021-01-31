@@ -26,7 +26,7 @@ namespace BungieSharper.Schema.Tokens
 
         public string TransactionId { get; set; }
 
-        public IEnumerable<Schema.Tokens.PartnerOfferHistoryResponse> SkuOffers { get; set; }
+        public IEnumerable<Tokens.PartnerOfferHistoryResponse> SkuOffers { get; set; }
     }
 
     public class PartnerOfferHistoryResponse

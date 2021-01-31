@@ -169,16 +169,16 @@ namespace BungieSharper.Schema.Destiny.HistoricalStats.Definitions
         public string statId { get; set; }
 
         /// <summary>Statistic group</summary>
-        public Schema.Destiny.HistoricalStats.Definitions.DestinyStatsGroupType group { get; set; }
+        public Destiny.HistoricalStats.Definitions.DestinyStatsGroupType group { get; set; }
 
         /// <summary>Time periods the statistic covers</summary>
-        public IEnumerable<Schema.Destiny.HistoricalStats.Definitions.PeriodType> periodTypes { get; set; }
+        public IEnumerable<Destiny.HistoricalStats.Definitions.PeriodType> periodTypes { get; set; }
 
         /// <summary>Game modes where this statistic can be reported.</summary>
-        public IEnumerable<Schema.Destiny.HistoricalStats.Definitions.DestinyActivityModeType> modes { get; set; }
+        public IEnumerable<Destiny.HistoricalStats.Definitions.DestinyActivityModeType> modes { get; set; }
 
         /// <summary>Category for the stat.</summary>
-        public Schema.Destiny.HistoricalStats.Definitions.DestinyStatsCategoryType category { get; set; }
+        public Destiny.HistoricalStats.Definitions.DestinyStatsCategoryType category { get; set; }
 
         /// <summary>Display name</summary>
         public string statName { get; set; }
@@ -190,7 +190,7 @@ namespace BungieSharper.Schema.Destiny.HistoricalStats.Definitions
         public string statDescription { get; set; }
 
         /// <summary>Unit, if any, for the statistic</summary>
-        public Schema.Destiny.HistoricalStats.Definitions.UnitType unitType { get; set; }
+        public Destiny.HistoricalStats.Definitions.UnitType unitType { get; set; }
 
         /// <summary>Optional URI to an icon for the statistic</summary>
         public string iconImage { get; set; }

@@ -5,9 +5,9 @@ namespace BungieSharper.Schema.Destiny.Definitions.Presentation
     /// <summary>
     /// This is the base class for all presentation system children. Presentation Nodes, Records, Collectibles, and Metrics.
     /// </summary>
-    public class DestinyPresentationNodeBaseDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
+    public class DestinyPresentationNodeBaseDefinition : Destiny.Definitions.DestinyDefinition
     {
-        public Schema.Destiny.DestinyPresentationNodeType presentationNodeType { get; set; }
+        public Destiny.DestinyPresentationNodeType presentationNodeType { get; set; }
 
         public IEnumerable<string> traitIds { get; set; }
 
@@ -17,18 +17,9 @@ namespace BungieSharper.Schema.Destiny.Definitions.Presentation
         public IEnumerable<uint> parentNodeHashes { get; set; }
     }
 
-    public class DestinyScoredPresentationNodeBaseDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
+    public class DestinyScoredPresentationNodeBaseDefinition : Destiny.Definitions.Presentation.DestinyPresentationNodeBaseDefinition
     {
         public int maxCategoryRecordScore { get; set; }
-
-        public Schema.Destiny.DestinyPresentationNodeType presentationNodeType { get; set; }
-
-        public IEnumerable<string> traitIds { get; set; }
-
-        public IEnumerable<uint> traitHashes { get; set; }
-
-        /// <summary>A quick reference to presentation nodes that have this node as a child. Presentation nodes can be parented under multiple parents.</summary>
-        public IEnumerable<uint> parentNodeHashes { get; set; }
     }
 
     /// <summary>
@@ -38,9 +29,9 @@ namespace BungieSharper.Schema.Destiny.Definitions.Presentation
     /// Part of me wants to break these into conceptual definitions per entity being collected, but the possibility of these different types being mixed in the same UI and the possibility that it could actually be more useful to return the "bare metal" presentation node concept has resulted in me deciding against that for the time being.
     /// We'll see if I come to regret this as well.
     /// </summary>
-    public class DestinyPresentationNodeDefinition : BungieSharper.Schema.Destiny.Definitions.DestinyDefinition
+    public class DestinyPresentationNodeDefinition : Destiny.Definitions.Presentation.DestinyScoredPresentationNodeBaseDefinition
     {
-        public Schema.Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition displayProperties { get; set; }
 
         /// <summary>The original icon for this presentation node, before we futzed with it.</summary>
         public string originalIcon { get; set; }
@@ -48,10 +39,10 @@ namespace BungieSharper.Schema.Destiny.Definitions.Presentation
         /// <summary>Some presentation nodes are meant to be explicitly shown on the "root" or "entry" screens for the feature to which they are related. You should use this icon when showing them on such a view, if you have a similar "entry point" view in your UI. If you don't have a UI, then I guess it doesn't matter either way does it?</summary>
         public string rootViewIcon { get; set; }
 
-        public Schema.Destiny.DestinyPresentationNodeType nodeType { get; set; }
+        public Destiny.DestinyPresentationNodeType nodeType { get; set; }
 
         /// <summary>Indicates whether this presentation node's state is determined on a per-character or on an account-wide basis.</summary>
-        public Schema.Destiny.DestinyScope scope { get; set; }
+        public Destiny.DestinyScope scope { get; set; }
 
         /// <summary>If this presentation node shows a related objective (for instance, if it tracks the progress of its children), the objective being tracked is indicated here.</summary>
         public uint? objectiveHash { get; set; }
@@ -60,30 +51,19 @@ namespace BungieSharper.Schema.Destiny.Definitions.Presentation
         public uint? completionRecordHash { get; set; }
 
         /// <summary>The child entities contained by this presentation node.</summary>
-        public Schema.Destiny.Definitions.Presentation.DestinyPresentationNodeChildrenBlock children { get; set; }
+        public Destiny.Definitions.Presentation.DestinyPresentationNodeChildrenBlock children { get; set; }
 
         /// <summary>A hint for how to display this presentation node when it's shown in a list.</summary>
-        public Schema.Destiny.DestinyPresentationDisplayStyle displayStyle { get; set; }
+        public Destiny.DestinyPresentationDisplayStyle displayStyle { get; set; }
 
         /// <summary>A hint for how to display this presentation node when it's shown in its own detail screen.</summary>
-        public Schema.Destiny.DestinyPresentationScreenStyle screenStyle { get; set; }
+        public Destiny.DestinyPresentationScreenStyle screenStyle { get; set; }
 
         /// <summary>The requirements for being able to interact with this presentation node and its children.</summary>
-        public Schema.Destiny.Definitions.Presentation.DestinyPresentationNodeRequirementsBlock requirements { get; set; }
+        public Destiny.Definitions.Presentation.DestinyPresentationNodeRequirementsBlock requirements { get; set; }
 
         /// <summary>If this presentation node has children, but the game doesn't let you inspect the details of those children, that is indicated here.</summary>
         public bool disableChildSubscreenNavigation { get; set; }
-
-        public int maxCategoryRecordScore { get; set; }
-
-        public Schema.Destiny.DestinyPresentationNodeType presentationNodeType { get; set; }
-
-        public IEnumerable<string> traitIds { get; set; }
-
-        public IEnumerable<uint> traitHashes { get; set; }
-
-        /// <summary>A quick reference to presentation nodes that have this node as a child. Presentation nodes can be parented under multiple parents.</summary>
-        public IEnumerable<uint> parentNodeHashes { get; set; }
     }
 
     /// <summary>
@@ -91,13 +71,13 @@ namespace BungieSharper.Schema.Destiny.Definitions.Presentation
     /// </summary>
     public class DestinyPresentationNodeChildrenBlock
     {
-        public IEnumerable<Schema.Destiny.Definitions.Presentation.DestinyPresentationNodeChildEntry> presentationNodes { get; set; }
+        public IEnumerable<Destiny.Definitions.Presentation.DestinyPresentationNodeChildEntry> presentationNodes { get; set; }
 
-        public IEnumerable<Schema.Destiny.Definitions.Presentation.DestinyPresentationNodeCollectibleChildEntry> collectibles { get; set; }
+        public IEnumerable<Destiny.Definitions.Presentation.DestinyPresentationNodeCollectibleChildEntry> collectibles { get; set; }
 
-        public IEnumerable<Schema.Destiny.Definitions.Presentation.DestinyPresentationNodeRecordChildEntry> records { get; set; }
+        public IEnumerable<Destiny.Definitions.Presentation.DestinyPresentationNodeRecordChildEntry> records { get; set; }
 
-        public IEnumerable<Schema.Destiny.Definitions.Presentation.DestinyPresentationNodeMetricChildEntry> metrics { get; set; }
+        public IEnumerable<Destiny.Definitions.Presentation.DestinyPresentationNodeMetricChildEntry> metrics { get; set; }
     }
 
     public class DestinyPresentationNodeChildEntry
@@ -121,11 +101,11 @@ namespace BungieSharper.Schema.Destiny.Definitions.Presentation
 
     public class DestinyPresentationChildBlock
     {
-        public Schema.Destiny.DestinyPresentationNodeType presentationNodeType { get; set; }
+        public Destiny.DestinyPresentationNodeType presentationNodeType { get; set; }
 
         public IEnumerable<uint> parentPresentationNodeHashes { get; set; }
 
-        public Schema.Destiny.DestinyPresentationDisplayStyle displayStyle { get; set; }
+        public Destiny.DestinyPresentationDisplayStyle displayStyle { get; set; }
     }
 
     public class DestinyPresentationNodeRecordChildEntry

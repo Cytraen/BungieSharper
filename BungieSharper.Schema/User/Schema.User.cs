@@ -9,7 +9,7 @@ namespace BungieSharper.Schema.User
     public class UserMembership
     {
         /// <summary>Type of the membership. Not necessarily the native type.</summary>
-        public Schema.BungieMembershipType membershipType { get; set; }
+        public BungieMembershipType membershipType { get; set; }
 
         /// <summary>Membership ID as they user is known in the Accounts service</summary>
         public long membershipId { get; set; }
@@ -24,19 +24,19 @@ namespace BungieSharper.Schema.User
     public class CrossSaveUserMembership
     {
         /// <summary>If there is a cross save override in effect, this value will tell you the type that is overridding this one.</summary>
-        public Schema.BungieMembershipType crossSaveOverride { get; set; }
+        public BungieMembershipType crossSaveOverride { get; set; }
 
         /// <summary>
         /// The list of Membership Types indicating the platforms on which this Membership can be used.
         ///  Not in Cross Save = its original membership type. Cross Save Primary = Any membership types it is overridding, and its original membership type Cross Save Overridden = Empty list
         /// </summary>
-        public IEnumerable<Schema.BungieMembershipType> applicableMembershipTypes { get; set; }
+        public IEnumerable<BungieMembershipType> applicableMembershipTypes { get; set; }
 
         /// <summary>If True, this is a public user membership.</summary>
         public bool isPublic { get; set; }
 
         /// <summary>Type of the membership. Not necessarily the native type.</summary>
-        public Schema.BungieMembershipType membershipType { get; set; }
+        public BungieMembershipType membershipType { get; set; }
 
         /// <summary>Membership ID as they user is known in the Accounts service</summary>
         public long membershipId { get; set; }
@@ -57,19 +57,19 @@ namespace BungieSharper.Schema.User
         public string iconPath { get; set; }
 
         /// <summary>If there is a cross save override in effect, this value will tell you the type that is overridding this one.</summary>
-        public Schema.BungieMembershipType crossSaveOverride { get; set; }
+        public BungieMembershipType crossSaveOverride { get; set; }
 
         /// <summary>
         /// The list of Membership Types indicating the platforms on which this Membership can be used.
         ///  Not in Cross Save = its original membership type. Cross Save Primary = Any membership types it is overridding, and its original membership type Cross Save Overridden = Empty list
         /// </summary>
-        public IEnumerable<Schema.BungieMembershipType> applicableMembershipTypes { get; set; }
+        public IEnumerable<BungieMembershipType> applicableMembershipTypes { get; set; }
 
         /// <summary>If True, this is a public user membership.</summary>
         public bool isPublic { get; set; }
 
         /// <summary>Type of the membership. Not necessarily the native type.</summary>
-        public Schema.BungieMembershipType membershipType { get; set; }
+        public BungieMembershipType membershipType { get; set; }
 
         /// <summary>Membership ID as they user is known in the Accounts service</summary>
         public long membershipId { get; set; }
@@ -106,7 +106,7 @@ namespace BungieSharper.Schema.User
 
         public long? legacyPortalUID { get; set; }
 
-        public Schema.User.UserToUserContext context { get; set; }
+        public User.UserToUserContext context { get; set; }
 
         public string psnDisplayName { get; set; }
 
@@ -151,7 +151,7 @@ namespace BungieSharper.Schema.User
     {
         public bool isFollowing { get; set; }
 
-        public Schema.Ignores.IgnoreResponse ignoreStatus { get; set; }
+        public Ignores.IgnoreResponse ignoreStatus { get; set; }
 
         public DateTime? globalIgnoreEndDate { get; set; }
     }
@@ -159,7 +159,7 @@ namespace BungieSharper.Schema.User
     public class UserMembershipData
     {
         /// <summary>this allows you to see destiny memberships that are visible and linked to this account (regardless of whether or not they have characters on the world server)</summary>
-        public IEnumerable<Schema.GroupsV2.GroupUserInfoCard> destinyMemberships { get; set; }
+        public IEnumerable<GroupsV2.GroupUserInfoCard> destinyMemberships { get; set; }
 
         /// <summary>
         /// If this property is populated, it will have the membership ID of the account considered to be "primary" in this user's cross save relationship.
@@ -167,16 +167,16 @@ namespace BungieSharper.Schema.User
         /// </summary>
         public long? primaryMembershipId { get; set; }
 
-        public Schema.User.GeneralUser bungieNetUser { get; set; }
+        public User.GeneralUser bungieNetUser { get; set; }
     }
 
     public class HardLinkedUserMembership
     {
-        public Schema.BungieMembershipType membershipType { get; set; }
+        public BungieMembershipType membershipType { get; set; }
 
         public long membershipId { get; set; }
 
-        public Schema.BungieMembershipType CrossSaveOverriddenType { get; set; }
+        public BungieMembershipType CrossSaveOverriddenType { get; set; }
 
         public long? CrossSaveOverriddenMembershipId { get; set; }
     }
@@ -187,13 +187,13 @@ namespace BungieSharper.Schema.User
     public class EmailSettings
     {
         /// <summary>Keyed by the name identifier of the opt-in definition.</summary>
-        public Dictionary<string, Schema.User.EmailOptInDefinition> optInDefinitions { get; set; }
+        public Dictionary<string, User.EmailOptInDefinition> optInDefinitions { get; set; }
 
         /// <summary>Keyed by the name identifier of the Subscription definition.</summary>
-        public Dictionary<string, Schema.User.EmailSubscriptionDefinition> subscriptionDefinitions { get; set; }
+        public Dictionary<string, User.EmailSubscriptionDefinition> subscriptionDefinitions { get; set; }
 
         /// <summary>Keyed by the name identifier of the View definition.</summary>
-        public Dictionary<string, Schema.User.EmailViewDefinition> views { get; set; }
+        public Dictionary<string, User.EmailViewDefinition> views { get; set; }
     }
 
     /// <summary>
@@ -205,13 +205,13 @@ namespace BungieSharper.Schema.User
         public string name { get; set; }
 
         /// <summary>The flag value for this opt-in category. For historical reasons, this is defined as a flags enum.</summary>
-        public Schema.User.OptInFlags value { get; set; }
+        public User.OptInFlags value { get; set; }
 
         /// <summary>If true, this opt-in setting should be set by default in situations where accounts are created without explicit choices about what they're opting into.</summary>
         public bool setByDefault { get; set; }
 
         /// <summary>Information about the dependent subscriptions for this opt-in.</summary>
-        public IEnumerable<Schema.User.EmailSubscriptionDefinition> dependentSubscriptions { get; set; }
+        public IEnumerable<User.EmailSubscriptionDefinition> dependentSubscriptions { get; set; }
     }
 
     [Flags]
@@ -247,7 +247,7 @@ namespace BungieSharper.Schema.User
         public string name { get; set; }
 
         /// <summary>A dictionary of localized text for the EMail Opt-in setting, keyed by the locale.</summary>
-        public Dictionary<string, Schema.User.EMailSettingSubscriptionLocalization> localization { get; set; }
+        public Dictionary<string, User.EMailSettingSubscriptionLocalization> localization { get; set; }
 
         /// <summary>The bitflag value for this subscription. Should be a unique power of two value.</summary>
         public long value { get; set; }
@@ -292,7 +292,7 @@ namespace BungieSharper.Schema.User
         public string name { get; set; }
 
         /// <summary>The ordered list of settings to show in this view.</summary>
-        public IEnumerable<Schema.User.EmailViewDefinitionSetting> viewSettings { get; set; }
+        public IEnumerable<User.EmailViewDefinitionSetting> viewSettings { get; set; }
     }
 
     public class EmailViewDefinitionSetting
@@ -301,15 +301,15 @@ namespace BungieSharper.Schema.User
         public string name { get; set; }
 
         /// <summary>A dictionary of localized text for the EMail setting, keyed by the locale.</summary>
-        public Dictionary<string, Schema.User.EMailSettingLocalization> localization { get; set; }
+        public Dictionary<string, User.EMailSettingLocalization> localization { get; set; }
 
         /// <summary>If true, this setting should be set by default if the user hasn't chosen whether it's set or cleared yet.</summary>
         public bool setByDefault { get; set; }
 
         /// <summary>The OptInFlags value to set or clear if this setting is set or cleared in the UI. It is the aggregate of all underlying opt-in flags related to this setting.</summary>
-        public Schema.User.OptInFlags optInAggregateValue { get; set; }
+        public User.OptInFlags optInAggregateValue { get; set; }
 
         /// <summary>The subscriptions to show as children of this setting, if any.</summary>
-        public IEnumerable<Schema.User.EmailSubscriptionDefinition> subscriptions { get; set; }
+        public IEnumerable<User.EmailSubscriptionDefinition> subscriptions { get; set; }
     }
 }

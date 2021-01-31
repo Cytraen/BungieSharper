@@ -4,14 +4,14 @@ namespace BungieSharper.Schema.Destiny.Requests.Actions
 {
     public class DestinyActionRequest
     {
-        public Schema.BungieMembershipType membershipType { get; set; }
+        public BungieMembershipType membershipType { get; set; }
     }
 
     public class DestinyCharacterActionRequest
     {
         public long characterId { get; set; }
 
-        public Schema.BungieMembershipType membershipType { get; set; }
+        public BungieMembershipType membershipType { get; set; }
     }
 
     public class DestinyItemActionRequest
@@ -20,7 +20,7 @@ namespace BungieSharper.Schema.Destiny.Requests.Actions
 
         public long characterId { get; set; }
 
-        public Schema.BungieMembershipType membershipType { get; set; }
+        public BungieMembershipType membershipType { get; set; }
     }
 
     public class DestinyPostmasterTransferRequest
@@ -33,7 +33,7 @@ namespace BungieSharper.Schema.Destiny.Requests.Actions
 
         public long characterId { get; set; }
 
-        public Schema.BungieMembershipType membershipType { get; set; }
+        public BungieMembershipType membershipType { get; set; }
     }
 
     public class DestinyItemSetActionRequest
@@ -42,7 +42,7 @@ namespace BungieSharper.Schema.Destiny.Requests.Actions
 
         public long characterId { get; set; }
 
-        public Schema.BungieMembershipType membershipType { get; set; }
+        public BungieMembershipType membershipType { get; set; }
     }
 
     public class DestinyItemStateRequest
@@ -53,7 +53,7 @@ namespace BungieSharper.Schema.Destiny.Requests.Actions
 
         public long characterId { get; set; }
 
-        public Schema.BungieMembershipType membershipType { get; set; }
+        public BungieMembershipType membershipType { get; set; }
     }
 
     public class DestinyInsertPlugsActionRequest
@@ -65,11 +65,11 @@ namespace BungieSharper.Schema.Destiny.Requests.Actions
         public long itemInstanceId { get; set; }
 
         /// <summary>The plugs being inserted.</summary>
-        public Schema.Destiny.Requests.Actions.DestinyInsertPlugsRequestEntry plug { get; set; }
+        public Destiny.Requests.Actions.DestinyInsertPlugsRequestEntry plug { get; set; }
 
         public long characterId { get; set; }
 
-        public Schema.BungieMembershipType membershipType { get; set; }
+        public BungieMembershipType membershipType { get; set; }
     }
 
     /// <summary>
@@ -85,7 +85,7 @@ namespace BungieSharper.Schema.Destiny.Requests.Actions
         public int socketIndex { get; set; }
 
         /// <summary>This property, combined with the socketIndex, tells us which socket we are referring to (since operations can be performed on both Intrinsic and "default" sockets, and they occupy different arrays in the Inventory Item Definition). I know, I know. Don't give me that look.</summary>
-        public Schema.Destiny.Requests.Actions.DestinySocketArrayType socketArrayType { get; set; }
+        public Destiny.Requests.Actions.DestinySocketArrayType socketArrayType { get; set; }
 
         /// <summary>Plugs are never instanced (except in infusion). So with the hash alone, we should be able to: 1) Infer whether the player actually needs to have the item, or if it's a reusable plug 2) Perform any operation needed to use the Plug, including removing the plug item and running reward sheets.</summary>
         public uint plugItemHash { get; set; }

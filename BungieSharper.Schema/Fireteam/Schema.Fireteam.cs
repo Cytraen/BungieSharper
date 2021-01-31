@@ -55,7 +55,7 @@ namespace BungieSharper.Schema.Fireteam
 
         public long groupId { get; set; }
 
-        public Schema.Fireteam.FireteamPlatform platform { get; set; }
+        public Fireteam.FireteamPlatform platform { get; set; }
 
         public int activityType { get; set; }
 
@@ -92,18 +92,18 @@ namespace BungieSharper.Schema.Fireteam
 
     public class FireteamResponse
     {
-        public Schema.Fireteam.FireteamSummary Summary { get; set; }
+        public Fireteam.FireteamSummary Summary { get; set; }
 
-        public IEnumerable<Schema.Fireteam.FireteamMember> Members { get; set; }
+        public IEnumerable<Fireteam.FireteamMember> Members { get; set; }
 
-        public IEnumerable<Schema.Fireteam.FireteamMember> Alternates { get; set; }
+        public IEnumerable<Fireteam.FireteamMember> Alternates { get; set; }
     }
 
     public class FireteamMember
     {
-        public Schema.Fireteam.FireteamUserInfoCard destinyUserInfo { get; set; }
+        public Fireteam.FireteamUserInfoCard destinyUserInfo { get; set; }
 
-        public Schema.User.UserInfoCard bungieNetUserInfo { get; set; }
+        public User.UserInfoCard bungieNetUserInfo { get; set; }
 
         public long characterId { get; set; }
 
@@ -113,14 +113,14 @@ namespace BungieSharper.Schema.Fireteam
 
         public DateTime lastPlatformInviteAttemptDate { get; set; }
 
-        public Schema.Fireteam.FireteamPlatformInviteResult lastPlatformInviteAttemptResult { get; set; }
+        public Fireteam.FireteamPlatformInviteResult lastPlatformInviteAttemptResult { get; set; }
     }
 
     public class FireteamUserInfoCard
     {
         public string FireteamDisplayName { get; set; }
 
-        public Schema.BungieMembershipType FireteamMembershipType { get; set; }
+        public BungieMembershipType FireteamMembershipType { get; set; }
 
         public string FireteamPlatformProfileUrl { get; set; }
 
@@ -133,19 +133,19 @@ namespace BungieSharper.Schema.Fireteam
         public string iconPath { get; set; }
 
         /// <summary>If there is a cross save override in effect, this value will tell you the type that is overridding this one.</summary>
-        public Schema.BungieMembershipType crossSaveOverride { get; set; }
+        public BungieMembershipType crossSaveOverride { get; set; }
 
         /// <summary>
         /// The list of Membership Types indicating the platforms on which this Membership can be used.
         ///  Not in Cross Save = its original membership type. Cross Save Primary = Any membership types it is overridding, and its original membership type Cross Save Overridden = Empty list
         /// </summary>
-        public IEnumerable<Schema.BungieMembershipType> applicableMembershipTypes { get; set; }
+        public IEnumerable<BungieMembershipType> applicableMembershipTypes { get; set; }
 
         /// <summary>If True, this is a public user membership.</summary>
         public bool isPublic { get; set; }
 
         /// <summary>Type of the membership. Not necessarily the native type.</summary>
-        public Schema.BungieMembershipType membershipType { get; set; }
+        public BungieMembershipType membershipType { get; set; }
 
         /// <summary>Membership ID as they user is known in the Accounts service</summary>
         public long membershipId { get; set; }

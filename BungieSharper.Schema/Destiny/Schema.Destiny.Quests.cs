@@ -45,7 +45,7 @@ namespace BungieSharper.Schema.Destiny.Quests
         public uint stepHash { get; set; }
 
         /// <summary>A step can have multiple objectives. This will give you the progress for each objective in the current step, in the order in which they are rendered in-game.</summary>
-        public IEnumerable<Schema.Destiny.Quests.DestinyObjectiveProgress> stepObjectives { get; set; }
+        public IEnumerable<Destiny.Quests.DestinyObjectiveProgress> stepObjectives { get; set; }
 
         /// <summary>Whether or not the quest is tracked</summary>
         public bool tracked { get; set; }

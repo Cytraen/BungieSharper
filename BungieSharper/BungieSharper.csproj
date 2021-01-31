@@ -9,7 +9,7 @@
 		<RepositoryType>git</RepositoryType>
 
 		<TargetFrameworks>netstandard2.0;netstandard2.1;netcoreapp2.1;netcoreapp3.1;net5.0</TargetFrameworks>
-		<Version>0.6.0</Version>
+		<Version>0.6.1</Version>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -35,6 +35,7 @@
 		<Description>An HttpClient &amp; System.Text.Json-based Bungie.net API client.</Description>
 		<PackageProjectUrl>https://github.com/ashakoor/BungieSharper</PackageProjectUrl>
 		<PackageIcon>BungieSharper.png</PackageIcon>
+		<PackageTags>bungie bungie-net destiny destiny2 destiny-api</PackageTags>
 	</PropertyGroup>
 
 	<ItemGroup>

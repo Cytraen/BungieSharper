@@ -10,7 +10,7 @@
     <icon>BungieSharper.png</icon>
     <description>$description$</description>
     <copyright>$copyright$</copyright>
-    <tags>destiny-api bungie-net bungie destiny destiny2</tags>
+    <tags>$tags$</tags>
     <dependencies>
         <group targetFramework="netstandard2.0">
             <dependency id="BungieSharper.Schema" version="$version$" />

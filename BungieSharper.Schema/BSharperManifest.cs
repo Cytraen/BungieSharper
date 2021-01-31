@@ -20,9 +20,9 @@ using BungieSharper.Schema.Destiny.Definitions.Sockets;
 using BungieSharper.Schema.Destiny.Definitions.Traits;
 using System.Collections.Generic;
 
-namespace BungieSharper.Client
+namespace BungieSharper.Schema
 {
-    public class DestinyJsonManifest
+    public class BSharperManifest
     {
         // public Dictionary<uint, DestinyEnemyRaceDefinition> DestinyEnemyRaceDefinition { get; set; }
 

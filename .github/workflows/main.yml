@@ -32,13 +32,25 @@ jobs:
       with:
         dotnet-version: ${{ env.dotnet_sdk_version }}
 
+    - name: Build schema
+      run: dotnet build ./BungieSharper.Schema -c Release
+
     - name: Build client
       run: dotnet build ./BungieSharper -c Release
+
+    - name: Pack schema NuGet package
+      run: dotnet pack ./BungieSharper.Schema -c Release --no-build --output Packages --version-suffix "ci.$(date -u +%Y%m%dT%H%M%S)+sha.${GITHUB_SHA:0:9}" -p:ContinuousIntegrationBuild=true
 
     - name: Pack client NuGet package
       run: dotnet pack ./BungieSharper -c Release --no-build --output Packages --version-suffix "ci.$(date -u +%Y%m%dT%H%M%S)+sha.${GITHUB_SHA:0:9}" -p:ContinuousIntegrationBuild=true
 
-    - name: Upload artifacts (nupkg/snupkg)
+    - name: Upload schema artifacts (nupkg/snupkg)
+      uses: actions/upload-artifact@v1
+      with:
+        name: BungieSharper.Schema - ${{ env.SHA }}
+        path: Packages
+
+    - name: Upload client artifacts (nupkg/snupkg)
       uses: actions/upload-artifact@v1
       with:
         name: BungieSharper - ${{ env.SHA }}

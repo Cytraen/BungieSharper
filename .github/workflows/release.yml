@@ -27,8 +27,14 @@ jobs:
       with:
         dotnet-version: ${{ env.dotnet_sdk_version }}
 
+    - name: Build schema
+      run: dotnet build ./BungieSharper.Schema -c Release -p:Version=${{ steps.get_version.outputs.VERSION }}
+
     - name: Build client
       run: dotnet build ./BungieSharper -c Release -p:Version=${{ steps.get_version.outputs.VERSION }}
+
+    - name: Pack schema NuGet package
+      run: dotnet pack ./BungieSharper.Schema -c Release --no-build --output Packages -p:ContinuousIntegrationBuild=true -p:Version=${{ steps.get_version.outputs.VERSION }}
 
     - name: Pack client NuGet package
       run: dotnet pack ./BungieSharper -c Release --no-build --output Packages -p:ContinuousIntegrationBuild=true -p:Version=${{ steps.get_version.outputs.VERSION }}
@@ -44,8 +50,30 @@ jobs:
         draft: true
         prerelease: false
 
-    - name: Upload .nupkg release binary
-      id: upload-nupkg-release-asset
+    - name: Upload schema .nupkg release binary
+      id: upload-schema-nupkg-release-asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./Packages/BungieSharper.Schema.${{ steps.get_version.outputs.VERSION }}.nupkg
+        asset_name: BungieSharper.Schema.${{ steps.get_version.outputs.VERSION }}.nupkg
+        asset_content_type: application/zip
+
+    - name: Upload schema .snupkg release binary
+      id: upload-schema-snupkg-release-asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./Packages/BungieSharper.Schema.${{ steps.get_version.outputs.VERSION }}.snupkg
+        asset_name: BungieSharper.Schema.${{ steps.get_version.outputs.VERSION }}.snupkg
+        asset_content_type: application/zip
+
+    - name: Upload client .nupkg release binary
+      id: upload-client-nupkg-release-asset
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -55,8 +83,8 @@ jobs:
         asset_name: BungieSharper.${{ steps.get_version.outputs.VERSION }}.nupkg
         asset_content_type: application/zip
 
-    - name: Upload .snupkg release binary
-      id: upload-snupkg-release-asset
+    - name: Upload client .snupkg release binary
+      id: upload-client-snupkg-release-asset
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -66,10 +94,18 @@ jobs:
         asset_name: BungieSharper.${{ steps.get_version.outputs.VERSION }}.snupkg
         asset_content_type: application/zip
     
-    - name: Upload to NuGet
+    - name: Upload schema to NuGet
+      run: |
+        dotnet nuget push ./Packages/BungieSharper.Schema.${{ steps.get_version.outputs.VERSION }}.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicate    
+
+    - name: Upload client to NuGet
       run: |
         dotnet nuget push ./Packages/BungieSharper.${{ steps.get_version.outputs.VERSION }}.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicate
     
-    - name: Upload to GitHub Packages
+    - name: Upload schema to GitHub Packages
+      run: |
+        dotnet nuget push ./Packages/BungieSharper.Schema.${{ steps.get_version.outputs.VERSION }}.nupkg -k ${{ secrets.GITHUB_TOKEN }} -s https://nuget.pkg.github.com/ashakoor/index.json --skip-duplicate
+
+    - name: Upload client to GitHub Packages
       run: |
         dotnet nuget push ./Packages/BungieSharper.${{ steps.get_version.outputs.VERSION }}.nupkg -k ${{ secrets.GITHUB_TOKEN }} -s https://nuget.pkg.github.com/ashakoor/index.json --skip-duplicate

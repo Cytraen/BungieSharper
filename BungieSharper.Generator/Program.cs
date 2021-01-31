@@ -81,6 +81,8 @@ namespace BungieSharper.Generator
                 foreach (var (location, classes) in fileDictionary)
                 {
                     var combinedContent = string.Join("\n\n", classes);
+                    var topFolder = location.Replace(bungieSharperPath, "").Replace("Schema\\", "").Split('\\').First();
+                    Console.WriteLine(topFolder);
 
                     var regex = new Regex(@"^namespace (.*)\n[{]", RegexOptions.Multiline);
                     var matches = regex.Matches(combinedContent);
@@ -126,8 +128,13 @@ namespace BungieSharper.Generator
                         combinedContent = combinedContent.Replace("[System.Flags", "[Flags");
                     }
 
+                    if (!string.IsNullOrWhiteSpace(topFolder))
+                    {
+                        Directory.CreateDirectory(bungieSharperPath.TrimEnd('\\') + ".Schema\\" + topFolder);
+                    }
+
                     FileWriter.WriteFileWithContent(
-                        bungieSharperPath + "Schema\\",
+                        bungieSharperPath.TrimEnd('\\') + ".Schema\\" + topFolder,
                         (location.Replace(bungieSharperPath, "").Replace('\\', '.') + ".cs").Replace("..", "."),
                         combinedContent
                         );

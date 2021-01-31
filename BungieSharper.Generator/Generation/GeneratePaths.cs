@@ -218,6 +218,19 @@ namespace BungieSharper.Generator.Generation
                 "    }\n" +
                 "}";
 
+            if (!methodBase.Contains("JsonSerializer"))
+            {
+                methodBase = methodBase.Replace("\nusing System.Text.Json;", "");
+            }
+            if (!methodBase.Contains("Dictionary<") && !methodBase.Contains("IEnumerable<"))
+            {
+                methodBase = methodBase.Replace("\nusing System.Collections.Generic;", "");
+            }
+            if (!methodBase.Contains(".Select(x"))
+            {
+                methodBase = methodBase.Replace("\nusing System.Linq;", "");
+            }
+
             return methodBase;
         }
 

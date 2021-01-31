@@ -115,6 +115,16 @@ namespace BungieSharper.Generator.Generation
             var returnType = GeneratePathReturn(pathDetails);
             var pathName = ((string)pathDetails["summary"]).TrimStart('.').Replace('.', '_');
 
+            var whereTstring = "";
+            var tParam = "";
+
+            if (returnType == "Schema.Destiny.Definitions.DestinyDefinition")
+            {
+                returnType = "T";
+                tParam = "<T>";
+                whereTstring = " where T : Schema.Destiny.Definitions.DestinyDefinition";
+            }
+
             var optionalParameterString = string.Join(", ", optionalParameterStringList);
             var requiredParameterString = string.Join(", ", requiredParameterStringList);
 
@@ -198,7 +208,7 @@ namespace BungieSharper.Generator.Generation
                 $"{documentation}" +
                 $"{previewEndpointText}" +
                 $"{deprecatedEndpointText}" +
-                $"        public async Task<{returnType}> {pathName}({parameterString})\n" +
+                $"        public async Task<{returnType}> {pathName}{tParam}({parameterString}){whereTstring}\n" +
                 "        {\n" +
                 $"            return await _apiAccessor.ApiRequestAsync<{returnType}>(\n" +
                 $"                new Uri($\"{endpointPath}\"{queryStringParamFinal}, UriKind.Relative),\n" +
@@ -207,6 +217,19 @@ namespace BungieSharper.Generator.Generation
                 "        }\n" +
                 "    }\n" +
                 "}";
+
+            if (!methodBase.Contains("JsonSerializer"))
+            {
+                methodBase = methodBase.Replace("\nusing System.Text.Json;", "");
+            }
+            if (!methodBase.Contains("Dictionary<") && !methodBase.Contains("IEnumerable<"))
+            {
+                methodBase = methodBase.Replace("\nusing System.Collections.Generic;", "");
+            }
+            if (!methodBase.Contains(".Select(x"))
+            {
+                methodBase = methodBase.Replace("\nusing System.Linq;", "");
+            }
 
             return methodBase;
         }

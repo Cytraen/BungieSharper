@@ -1,4 +1,4 @@
-﻿using BungieSharper.Generator.Generation;
+using BungieSharper.Generator.Generation;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -81,6 +81,8 @@ namespace BungieSharper.Generator
                 foreach (var (location, classes) in fileDictionary)
                 {
                     var combinedContent = string.Join("\n\n", classes);
+                    var topFolder = location.Replace(bungieSharperPath, "").Replace("Schema\\", "").Split('\\').First();
+                    Console.WriteLine(topFolder);
 
                     var regex = new Regex(@"^namespace (.*)\n[{]", RegexOptions.Multiline);
                     var matches = regex.Matches(combinedContent);
@@ -97,6 +99,12 @@ namespace BungieSharper.Generator
                         combinedContent = combinedContent.Replace("using System.Collections.Generic;\n", "");
                         combinedContent = "using System.Collections.Generic;\n" + combinedContent;
                     }
+
+                    if ((combinedContent.Length - combinedContent.Replace("[System.Flags]", "").Count()) / 14 > 2)
+                    {
+                        combinedContent = "using System;\n" + combinedContent;
+                    }
+
                     if (combinedContent.Contains("using System;"))
                     {
                         combinedContent = combinedContent.Replace("using System;\n", "");
@@ -107,10 +115,26 @@ namespace BungieSharper.Generator
                     combinedContent = combinedContent.Replace("    }\n    public", "    }\n\n    public");
                     combinedContent = combinedContent.Replace("{\n\n    public", "{\n    public");
                     combinedContent = combinedContent.Replace("    }\n    [System.Flags", "    }\n\n    [System.Flags");
+                    combinedContent = combinedContent.Replace("    }\n    [Flags", "    }\n\n    [Flags");
                     combinedContent = combinedContent.Replace("    }\n    /// <summary>", "    }\n\n    /// <summary>");
+                    combinedContent = combinedContent.Replace("\n{\n\n    /// <summary>", "\n{\n    /// <summary>");
+                    combinedContent = combinedContent.Replace("\n\n\n\n", "\n\n");
+                    combinedContent = combinedContent.Replace("\n\n\n", "\n\n");
+
+                    combinedContent = combinedContent.Replace("\n    {\n\n    }\n", " { }\n");
+
+                    if (combinedContent.Contains("using System;"))
+                    {
+                        combinedContent = combinedContent.Replace("[System.Flags", "[Flags");
+                    }
+
+                    if (!string.IsNullOrWhiteSpace(topFolder))
+                    {
+                        Directory.CreateDirectory(bungieSharperPath.TrimEnd('\\') + ".Schema\\" + topFolder);
+                    }
 
                     FileWriter.WriteFileWithContent(
-                        bungieSharperPath + "Schema\\",
+                        bungieSharperPath.TrimEnd('\\') + ".Schema\\" + topFolder,
                         (location.Replace(bungieSharperPath, "").Replace('\\', '.') + ".cs").Replace("..", "."),
                         combinedContent
                         );

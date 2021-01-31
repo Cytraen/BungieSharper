@@ -45,6 +45,11 @@ namespace BungieSharper.Client
                 PlatformErrorCodes.ThrottleLimitExceededMinutes,
                 PlatformErrorCodes.ThrottleLimitExceededMomentarily,
                 PlatformErrorCodes.ThrottleLimitExceededSeconds,
+                PlatformErrorCodes.PerEndpointRequestThrottleExceeded,
+                PlatformErrorCodes.PerApplicationThrottleExceeded,
+                PlatformErrorCodes.PerApplicationAnonymousThrottleExceeded,
+                PlatformErrorCodes.PerApplicationAuthenticatedThrottleExceeded,
+                PlatformErrorCodes.PerUserThrottleExceeded,
                 PlatformErrorCodes.DestinyThrottledByGameServer
             };
         }
@@ -81,7 +86,7 @@ namespace BungieSharper.Client
             {
                 var throttleTask = Task.Delay(_msPerRequest, cancelToken);
                 var httpResponseMessage = await GetApiResponseAsync(httpRequestMessage, cancelToken).ConfigureAwait(false);
-                
+
                 if (cancelToken.IsCancellationRequested)
                 {
                     await AwaitThrottleAndReleaseSemaphore(throttleTask, _semaphore).ConfigureAwait(false);
@@ -131,7 +136,7 @@ namespace BungieSharper.Client
             }
         }
 
-        internal async Task<TokenRequestResponse> ApiTokenRequestResponseAsync(Uri uri, HttpContent httpContent, HttpMethod httpMethod, string authToken, AuthHeaderType authType,  CancellationToken cancelToken)
+        internal async Task<TokenRequestResponse> ApiTokenRequestResponseAsync(Uri uri, HttpContent httpContent, HttpMethod httpMethod, string authToken, AuthHeaderType authType, CancellationToken cancelToken)
         {
             var semaphoreTask = _semaphore.WaitAsync(cancelToken).ConfigureAwait(false);
             var httpRequestMessage = HttpRequestGenerator.MakeApiRequestMessage(uri, httpContent, httpMethod, authToken, authType);
@@ -141,7 +146,7 @@ namespace BungieSharper.Client
             {
                 var throttleTask = Task.Delay(_msPerRequest, cancelToken);
                 var httpResponseMessage = await GetApiResponseAsync(httpRequestMessage, cancelToken).ConfigureAwait(false);
-                
+
                 if (cancelToken.IsCancellationRequested)
                 {
                     await AwaitThrottleAndReleaseSemaphore(throttleTask, _semaphore).ConfigureAwait(false);

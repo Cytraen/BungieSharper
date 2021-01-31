@@ -10,10 +10,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BungieSharper", "BungieShar
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BungieSharper.Generator", "BungieSharper.Generator\BungieSharper.Generator.csproj", "{A86986CC-E64F-41E5-AF8C-BE501F66E382}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BungieSharper.Tests", "BungieSharper.Tests\BungieSharper.Tests.csproj", "{617D6A39-2449-4426-BBD8-0049329DE571}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BungieSharper.Tests", "BungieSharper.Tests\BungieSharper.Tests.csproj", "{617D6A39-2449-4426-BBD8-0049329DE571}"
 	ProjectSection(ProjectDependencies) = postProject
 		{6D376C61-D4DC-4398-9C6E-E523A572FF11} = {6D376C61-D4DC-4398-9C6E-E523A572FF11}
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BungieSharper.Schema", "BungieSharper.Schema\BungieSharper.Schema.csproj", "{8F8CD8CC-8208-4C3F-A811-E6BADEC43FE4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{617D6A39-2449-4426-BBD8-0049329DE571}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{617D6A39-2449-4426-BBD8-0049329DE571}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{617D6A39-2449-4426-BBD8-0049329DE571}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F8CD8CC-8208-4C3F-A811-E6BADEC43FE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F8CD8CC-8208-4C3F-A811-E6BADEC43FE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F8CD8CC-8208-4C3F-A811-E6BADEC43FE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F8CD8CC-8208-4C3F-A811-E6BADEC43FE4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

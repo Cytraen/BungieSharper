@@ -30,6 +30,9 @@ jobs:
     - name: Build client
       run: dotnet build ./BungieSharper -c Release -p:Version=${{ steps.get_version.outputs.VERSION }}
 
+    - name: Pack schema NuGet package
+      run: dotnet pack ./BungieSharper.Schema -c Release --no-build --output Packages -p:ContinuousIntegrationBuild=true -p:Version=${{ steps.get_version.outputs.VERSION }}
+
     - name: Pack client NuGet package
       run: dotnet pack ./BungieSharper -c Release --no-build --output Packages -p:ContinuousIntegrationBuild=true -p:Version=${{ steps.get_version.outputs.VERSION }}
 

@@ -97,6 +97,12 @@ namespace BungieSharper.Generator
                         combinedContent = combinedContent.Replace("using System.Collections.Generic;\n", "");
                         combinedContent = "using System.Collections.Generic;\n" + combinedContent;
                     }
+
+                    if ((combinedContent.Length - combinedContent.Replace("[System.Flags]", "").Count()) / 14 > 2)
+                    {
+                        combinedContent = "using System;\n" + combinedContent;
+                    }
+
                     if (combinedContent.Contains("using System;"))
                     {
                         combinedContent = combinedContent.Replace("using System;\n", "");

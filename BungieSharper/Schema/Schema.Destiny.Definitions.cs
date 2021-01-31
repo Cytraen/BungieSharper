@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace BungieSharper.Schema.Destiny.Definitions
 {
@@ -1728,7 +1729,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         public Schema.Destiny.Definitions.DestinyTalentNodeStepDamageTypes damageTypes { get; set; }
     }
 
-    [System.Flags]
+    [Flags]
     public enum DestinyTalentNodeStepWeaponPerformances
     {
         None = 0,
@@ -1762,7 +1763,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         All = 8191
     }
 
-    [System.Flags]
+    [Flags]
     public enum DestinyTalentNodeStepImpactEffects
     {
         None = 0,
@@ -1782,7 +1783,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         All = 63
     }
 
-    [System.Flags]
+    [Flags]
     public enum DestinyTalentNodeStepGuardianAttributes
     {
         None = 0,
@@ -1806,7 +1807,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         All = 255
     }
 
-    [System.Flags]
+    [Flags]
     public enum DestinyTalentNodeStepLightAbilities
     {
         None = 0,
@@ -1826,7 +1827,7 @@ namespace BungieSharper.Schema.Destiny.Definitions
         All = 63
     }
 
-    [System.Flags]
+    [Flags]
     public enum DestinyTalentNodeStepDamageTypes
     {
         None = 0,

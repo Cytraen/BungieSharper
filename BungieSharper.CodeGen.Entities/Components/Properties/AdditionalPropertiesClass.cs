@@ -26,7 +26,7 @@ namespace BungieSharper.CodeGen.Entities.Components.Properties
         public bool? XEnumIsBitmask { get; set; }
 
         [JsonPropertyName("additionalProperties"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public AdditionalPropertiesClass AdditionalProperties { get; set; }
+        public AdditionalPropertiesClass? AdditionalProperties { get; set; }
 
         [JsonPropertyName("x-dictionary-key"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public XDictionaryKeyClass XDictionaryKey { get; set; }

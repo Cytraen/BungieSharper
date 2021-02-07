@@ -8,7 +8,7 @@ namespace BungieSharper.CodeGen.Entities.Paths
         public string Summary { get; set; }
 
         [JsonPropertyName("description"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public string? Description { get; set; }
+        public string Description { get; set; }
 
         [JsonPropertyName("get"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public ResponseMethodClass? Get { get; set; }

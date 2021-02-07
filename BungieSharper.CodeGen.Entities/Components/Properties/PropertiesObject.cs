@@ -23,31 +23,31 @@ namespace BungieSharper.CodeGen.Entities.Components.Properties
         public bool? Nullable { get; set; }
 
         [JsonPropertyName("x-enum-reference"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public XEnumReferenceClass XEnumReference { get; set; }
+        public XEnumReferenceClass? XEnumReference { get; set; }
 
         [JsonPropertyName("x-enum-is-bitmask"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? XEnumIsBitmask { get; set; }
 
         [JsonPropertyName("$ref"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public string Ref { get; set; }
+        public string? Ref { get; set; }
 
         [JsonPropertyName("additionalProperties"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public AdditionalPropertiesClass AdditionalProperties { get; set; }
+        public AdditionalPropertiesClass? AdditionalProperties { get; set; }
 
         [JsonPropertyName("x-dictionary-key"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public XDictionaryKeyClass XDictionaryKey { get; set; }
+        public XDictionaryKeyClass? XDictionaryKey { get; set; }
 
         [JsonPropertyName("x-mapped-definition"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public XMappedDefinitionClass XMappedDefinition { get; set; }
+        public XMappedDefinitionClass? XMappedDefinition { get; set; }
 
         [JsonPropertyName("allOf"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public AllOfElementClass[] AllOf { get; set; }
+        public AllOfElementClass[]? AllOf { get; set; }
 
         [JsonPropertyName("enum"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public long[]? Enum { get; set; }
 
         [JsonPropertyName("x-enum-values"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public XEnumValueClass[] XEnumValues { get; set; }
+        public XEnumValueClass[]? XEnumValues { get; set; }
 
         [JsonPropertyName("x-destiny-component-type-dependency"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public string? XDestinyComponentTypeDependency { get; set; }

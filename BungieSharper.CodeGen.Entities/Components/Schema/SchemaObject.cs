@@ -10,12 +10,12 @@ namespace BungieSharper.CodeGen.Entities.Components.Schema
         [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long[]? Enum { get; set; }
 
-        [JsonPropertyName("type"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("type")]
         [JsonConverter(typeof(JsonStringEnumMemberConverter))]
-        public TypeEnum? Type { get; set; }
+        public TypeEnum Type { get; set; }
 
         [JsonPropertyName("properties"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public Dictionary<string, Properties.PropertiesObject> Properties { get; set; }
+        public Dictionary<string, Properties.PropertiesObject>? Properties { get; set; }
 
         [JsonPropertyName("description"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public string? Description { get; set; }
@@ -25,13 +25,13 @@ namespace BungieSharper.CodeGen.Entities.Components.Schema
         public FormatEnum? Format { get; set; }
 
         [JsonPropertyName("x-enum-values"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public XEnumValueClass[] XEnumValues { get; set; }
+        public XEnumValueClass[]? XEnumValues { get; set; }
 
         [JsonPropertyName("x-enum-is-bitmask"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? XEnumIsBitmask { get; set; }
 
         [JsonPropertyName("items"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public ItemClass Items { get; set; }
+        public ItemClass? Items { get; set; }
 
         [JsonPropertyName("x-mobile-manifest-name"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public string? XMobileManifestName { get; set; }
@@ -40,9 +40,9 @@ namespace BungieSharper.CodeGen.Entities.Components.Schema
         public string? XDestinyComponentTypeDependency { get; set; }
 
         [JsonPropertyName("additionalProperties"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public AdditionalPropertiesClass AdditionalProperties { get; set; }
+        public AdditionalPropertiesClass? AdditionalProperties { get; set; }
 
         [JsonPropertyName("x-dictionary-key"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public XDictionaryKeyClass XDictionaryKey { get; set; }
+        public XDictionaryKeyClass? XDictionaryKey { get; set; }
     }
 }

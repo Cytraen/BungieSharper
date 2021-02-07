@@ -10,10 +10,10 @@ namespace BungieSharper.CodeGen.Entities.Components.Schema
         public TypeEnum? Type { get; set; }
 
         [JsonPropertyName("additionalProperties"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public AdditionalPropertiesClass AdditionalProperties { get; set; }
+        public AdditionalPropertiesClass? AdditionalProperties { get; set; }
 
         [JsonPropertyName("x-dictionary-key"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public XDictionaryKeyClass XDictionaryKey { get; set; }
+        public XDictionaryKeyClass? XDictionaryKey { get; set; }
 
         [JsonPropertyName("$ref"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public string Ref { get; set; }

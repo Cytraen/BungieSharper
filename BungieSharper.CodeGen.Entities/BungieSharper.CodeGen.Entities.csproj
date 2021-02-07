@@ -17,8 +17,4 @@
     <PackageReference Include="Macross.Json.Extensions" Version="2.0.0-beta2" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Paths\" />
-  </ItemGroup>
-
 </Project>

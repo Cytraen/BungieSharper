@@ -1,5 +1,4 @@
-﻿using BungieSharper.CodeGen.Entities.Components;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace BungieSharper.CodeGen.Entities
@@ -19,10 +18,10 @@ namespace BungieSharper.CodeGen.Entities
         public List<dynamic> Servers { get; set; }
 
         [JsonPropertyName("paths")]
-        public Dictionary<string, dynamic> Paths { get; set; }
+        public Dictionary<string, Paths.PathObject> Paths { get; set; }
 
         [JsonPropertyName("components")]
-        public ComponentsObject Components { get; set; }
+        public Components.ComponentsObject Components { get; set; }
 
         // Don't care
         [JsonPropertyName("tags")]

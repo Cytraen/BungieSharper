@@ -6,7 +6,7 @@ namespace BungieSharper.CodeGen.Entities.Components
     public class ComponentsObject
     {
         [JsonPropertyName("schemas")]
-        public Dictionary<string, SchemaObject> Schemas { get; set; }
+        public Dictionary<string, Schema.SchemaObject> Schemas { get; set; }
 
         // Don't care, for now at least...
         [JsonPropertyName("responses")]

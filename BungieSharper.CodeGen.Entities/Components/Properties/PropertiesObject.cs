@@ -1,8 +1,7 @@
 ﻿using BungieSharper.CodeGen.Entities.Common;
-using BungieSharper.CodeGen.Entities.Components.Properties;
 using System.Text.Json.Serialization;
 
-namespace BungieSharper.CodeGen.Entities.Components
+namespace BungieSharper.CodeGen.Entities.Components.Properties
 {
     public class PropertiesObject
     {

@@ -2,9 +2,9 @@
 
 namespace BungieSharper.CodeGen.Generation
 {
-    internal static class FormatSummaries
+    internal static class FormatStrings
     {
-        public static string Format(string summary, int tabs, bool forceMultiline = false)
+        public static string FormatSummaries(string summary, int tabs, bool forceMultiline = false)
         {
             var spaces = tabs * 4;
             var formatted = "";
@@ -24,6 +24,22 @@ namespace BungieSharper.CodeGen.Generation
             }
 
             return formatted;
+        }
+
+        public static void FormatNamespace(string name, out string className, out string nameSpace)
+        {
+            var splitName = name.Split('.');
+            var parentName = splitName[..^1];
+            className = splitName[^1];
+
+            nameSpace = Program.BaseEntityNamespace + (splitName.Length == 1 ? "" : ".") + string.Join('.', parentName);
+        }
+
+        public static string ResolveRef(string reference)
+        {
+            var className = reference.Split('/')[^1];
+
+            return className;
         }
     }
 }

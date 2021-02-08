@@ -10,6 +10,9 @@ namespace BungieSharper.CodeGen
 {
     internal class Program
     {
+        internal static string BaseClientNamespace = "BungieSharper";
+        internal static string BaseEntityNamespace = "BungieSharper.Entities";
+
         private static async Task Main(string[] args)
         {
             const string openApiDefUrl = "https://raw.githubusercontent.com/Bungie-net/api/master/openapi.json";

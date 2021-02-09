@@ -15,12 +15,12 @@ namespace BungieSharper.CodeGen.Generation
             if (summary.Contains('\n') || forceMultiline)
             {
                 formatted += $"{spacing}/// <summary>\n";
-                formatted += string.Join("\n", summary.Split('\n').Select(x => spacing + "/// " + x.TrimEnd()));
+                formatted += string.Join("\n", summary.Split('\n').Select(x => spacing + "/// " + x.TrimEnd().TrimStart()));
                 formatted += $"\n{spacing}/// </summary>\n";
             }
             else
             {
-                formatted = $"{spacing}/// <summary>{summary.TrimEnd()}</summary>\n";
+                formatted = $"{spacing}/// <summary>{summary.TrimEnd().TrimStart()}</summary>\n";
             }
 
             return formatted;

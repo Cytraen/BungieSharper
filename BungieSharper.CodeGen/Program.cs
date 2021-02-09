@@ -1,9 +1,12 @@
-﻿using BungieSharper.CodeGen.Entities;
+using BungieSharper.CodeGen.Entities;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace BungieSharper.CodeGen
@@ -16,6 +19,9 @@ namespace BungieSharper.CodeGen
         private static async Task Main(string[] args)
         {
             const string openApiDefUrl = "https://raw.githubusercontent.com/Bungie-net/api/master/openapi.json";
+
+            var bungieSharperPath =
+                Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\..\BungieSharper\"));
 
             if (args.Contains("--download-new-definitions") || !File.Exists("openApi.json"))
             {

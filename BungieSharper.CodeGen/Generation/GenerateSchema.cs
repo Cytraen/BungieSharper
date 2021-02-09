@@ -1,4 +1,4 @@
-﻿using BungieSharper.CodeGen.Entities.Common;
+using BungieSharper.CodeGen.Entities.Common;
 using BungieSharper.CodeGen.Entities.Components.Properties;
 using BungieSharper.CodeGen.Entities.Components.Schema;
 using System;
@@ -68,8 +68,6 @@ namespace BungieSharper.CodeGen.Generation
         {
             var fileContent = "";
 
-            var description = def.Description;
-
             var properties = def.Properties;
 
             FormatStrings.FormatNamespace(name, out var className, out var nameSpace);
@@ -91,9 +89,9 @@ namespace BungieSharper.CodeGen.Generation
                 }
             }
 
-            fileContent += string.Join(",\n", propertyList);
+            fileContent += $"    public class {className}\n    {{\n";
+            fileContent += string.Join("\n\n", propertyList);
             fileContent += "\n    }\n}";
-            fileContent = fileContent.Replace(",\n        /// <summary>", ",\n\n        /// <summary>");
 
             return fileContent;
         }
@@ -101,12 +99,13 @@ namespace BungieSharper.CodeGen.Generation
         internal static string ResolveProperty(string name, PropertiesObject def)
         {
             var propListing = "";
-
-            var desc = def.Description;
-
             var propType = "";
 
-            if (def.Items is not null)
+            if (def.AllOf is not null)
+            {
+                propType += FormatStrings.ResolveRef(def.AllOf[0].Ref);
+            }
+            else if (def.Items is not null)
             {
                 propType += GenerateCommon.ResolveItems(def.Items);
             }
@@ -131,17 +130,22 @@ namespace BungieSharper.CodeGen.Generation
                 propType += Mapping.TypeToCSharp(def.Type!.Value);
             }
 
+            // TODO: use def.XDestinyComponentTypeDependency
+            if (def.Description is not null)
+            {
+                propListing += FormatStrings.FormatSummaries(def.Description, 2);
+            }
+
             if (def.Nullable == true)
             {
                 propType += "?";
+                propListing += $"        [JsonPropertyName(\"{name}\"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]\n";
             }
-
-            if (desc is not null)
+            else
             {
-                propListing += FormatStrings.FormatSummaries(desc, 2);
+                propListing += $"        [JsonPropertyName(\"{name}\")]\n";
             }
 
-            propListing += $"        [JsonPropertyName(\"{name}\"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]\n";
             propListing += $"        public {propType} {char.ToUpper(name[0]) + name[1..]} {{ get; set; }}";
 
             return propListing;

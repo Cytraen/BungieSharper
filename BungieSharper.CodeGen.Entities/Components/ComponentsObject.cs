@@ -8,9 +8,8 @@ namespace BungieSharper.CodeGen.Entities.Components
         [JsonPropertyName("schemas")]
         public Dictionary<string, Schema.SchemaObject> Schemas { get; set; }
 
-        // Don't care, for now at least...
         [JsonPropertyName("responses")]
-        public Dictionary<string, dynamic> Responses { get; set; }
+        public Dictionary<string, Response.ResponseObject> Responses { get; set; }
 
         // Don't care
         [JsonPropertyName("headers")]

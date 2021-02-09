@@ -136,6 +136,7 @@ if __name__ == "__main__":
     base_entity_attributes = {}
     base_property_attributes = {}
     path_attributes = {}
+    response_attributes = {}
 
     with urllib.request.urlopen(spec_url) as response, open(file_name, "wb") as out_file:
         shutil.copyfileobj(response, out_file)
@@ -147,6 +148,7 @@ if __name__ == "__main__":
 
     entities = spec_object["components"]["schemas"]
     paths = spec_object["paths"]
+    responses = spec_object["components"]["responses"]
 
     for key in entities:
         if "properties" in entities[key]:
@@ -166,12 +168,15 @@ if __name__ == "__main__":
             this_path_def = resolver(paths[path][property_name])
             replace_handler(property_name, this_path_def, path_attributes)
 
+    for key in responses:
+        for attribute in responses[key]:
+            this_response_definition = resolver(responses[key][attribute])
+            replace_handler(attribute, this_response_definition, response_attributes)
+
     base_attrs_string = json.dumps(base_entity_attributes, indent=4)
     prop_attrs_string = json.dumps(base_property_attributes, indent=4)
     path_attrs_string = json.dumps(path_attributes, indent=4)
-
-    print("\n")
-    print(path_attrs_string)
+    resp_attrs_string = json.dumps(response_attributes, indent=4)
 
     with open("base_attrs_spec.json", "w", encoding="utf8") as json_file:
         json_file.write(base_attrs_string)
@@ -181,6 +186,9 @@ if __name__ == "__main__":
 
     with open("path_attrs_spec.json", "w", encoding="utf8") as json_file:
         json_file.write(path_attrs_string)
+
+    with open("resp_attrs_spec.json", "w", encoding="utf8") as json_file:
+        json_file.write(resp_attrs_string)
 
     if os.path.exists(file_name):
         os.remove(file_name)

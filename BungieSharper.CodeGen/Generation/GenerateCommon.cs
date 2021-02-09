@@ -10,11 +10,11 @@ namespace BungieSharper.CodeGen.Generation
 
             if (items.XEnumReference?.Ref is not null)
             {
-                propType += FormatStrings.ResolveRef(items.XEnumReference.Ref);
+                propType += FormatStrings.ResolveRef(items.XEnumReference.Ref, false);
             }
             else if (items.Ref is not null)
             {
-                propType += FormatStrings.ResolveRef(items.Ref);
+                propType += FormatStrings.ResolveRef(items.Ref, false);
             }
             else if (items.Format is not null)
             {

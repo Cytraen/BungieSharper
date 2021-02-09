@@ -35,9 +35,14 @@ namespace BungieSharper.CodeGen.Generation
             nameSpace = Program.BaseEntityNamespace + (splitName.Length == 1 ? "" : ".") + string.Join('.', parentName);
         }
 
-        public static string ResolveRef(string reference)
+        public static string ResolveRef(string reference, bool appendEntities)
         {
             var className = reference.Split('/')[^1];
+
+            if (appendEntities)
+            {
+                return "Entities." + className;
+            }
 
             return className;
         }

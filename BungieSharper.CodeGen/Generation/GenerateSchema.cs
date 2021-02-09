@@ -103,7 +103,7 @@ namespace BungieSharper.CodeGen.Generation
 
             if (def.AllOf is not null)
             {
-                propType += FormatStrings.ResolveRef(def.AllOf[0].Ref);
+                propType += FormatStrings.ResolveRef(def.AllOf[0].Ref, false);
             }
             else if (def.Items is not null)
             {
@@ -115,11 +115,11 @@ namespace BungieSharper.CodeGen.Generation
             }
             else if (def.Ref is not null)
             {
-                propType += FormatStrings.ResolveRef(def.Ref);
+                propType += FormatStrings.ResolveRef(def.Ref, false);
             }
             else if (def.XEnumReference is not null)
             {
-                propType += FormatStrings.ResolveRef(def.XEnumReference.Ref);
+                propType += FormatStrings.ResolveRef(def.XEnumReference.Ref, false);
             }
             else if (def.Format is not null)
             {
@@ -157,7 +157,7 @@ namespace BungieSharper.CodeGen.Generation
 
             if (dictKey.XEnumReference is not null)
             {
-                classType += FormatStrings.ResolveRef(dictKey.XEnumReference.Ref);
+                classType += FormatStrings.ResolveRef(dictKey.XEnumReference.Ref, false);
             }
             else if (dictKey.Format is not null)
             {
@@ -180,11 +180,11 @@ namespace BungieSharper.CodeGen.Generation
             }
             else if (additionalProps.Ref is not null)
             {
-                classType += FormatStrings.ResolveRef(additionalProps.Ref);
+                classType += FormatStrings.ResolveRef(additionalProps.Ref, false);
             }
             else if (additionalProps.XEnumReference is not null)
             {
-                classType += FormatStrings.ResolveRef(additionalProps.XEnumReference.Ref);
+                classType += FormatStrings.ResolveRef(additionalProps.XEnumReference.Ref, false);
             }
             else if (additionalProps.Format is not null)
             {

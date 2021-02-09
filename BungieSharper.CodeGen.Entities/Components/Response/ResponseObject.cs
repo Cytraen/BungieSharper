@@ -9,7 +9,7 @@ namespace BungieSharper.CodeGen.Entities.Components.Response
         public string? Description { get; set; }
 
         [JsonPropertyName("content"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public ResponseContentClass? Content { get; set; }
+        public ResponseContentClass Content { get; set; }
     }
 
     public class ResponseContentClass
@@ -35,9 +35,8 @@ namespace BungieSharper.CodeGen.Entities.Components.Response
 
     public class ApplicationJsonSchemaPropertiesClass
     {
-        // TODO
         [JsonPropertyName("Response"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public dynamic Response { get; set; }
+        public SchemaPropertiesResponseClass Response { get; set; }
 
         [JsonPropertyName("ErrorCode"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public dynamic ErrorCode { get; set; }

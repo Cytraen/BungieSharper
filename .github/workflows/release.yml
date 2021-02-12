@@ -1,0 +1,108 @@
+name: Create release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      dotnet_sdk_version: '5.0.103'
+      DOTNET_CLI_TELEMETRY_OPTOUT: true
+      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+      TEST_BUNGIE_API_KEY: ${{ secrets.TEST_BUNGIE_API_KEY }}
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Get version number
+      id: get_version
+      run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/v}
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ env.dotnet_sdk_version }}
+
+    - name: Build client
+      run: dotnet build ./BungieSharper -c Release -p:Version=${{ steps.get_version.outputs.VERSION }}
+
+    - name: Pack entities NuGet package
+      run: dotnet pack ./BungieSharper.Entities -c Release --no-build --output Packages -p:ContinuousIntegrationBuild=true -p:Version=${{ steps.get_version.outputs.VERSION }}
+
+    - name: Pack client NuGet package
+      run: dotnet pack ./BungieSharper -c Release --no-build --output Packages -p:ContinuousIntegrationBuild=true -p:Version=${{ steps.get_version.outputs.VERSION }}
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v${{ steps.get_version.outputs.VERSION }}
+        release_name: v${{ steps.get_version.outputs.VERSION }}
+        draft: true
+        prerelease: false
+
+    - name: Upload entities .nupkg release binary
+      id: upload-entities-nupkg-release-asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./Packages/BungieSharper.Entities.${{ steps.get_version.outputs.VERSION }}.nupkg
+        asset_name: BungieSharper.Entities.${{ steps.get_version.outputs.VERSION }}.nupkg
+        asset_content_type: application/zip
+
+    - name: Upload entities .snupkg release binary
+      id: upload-entities-snupkg-release-asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./Packages/BungieSharper.Entities.${{ steps.get_version.outputs.VERSION }}.snupkg
+        asset_name: BungieSharper.Entities.${{ steps.get_version.outputs.VERSION }}.snupkg
+        asset_content_type: application/zip
+
+    - name: Upload client .nupkg release binary
+      id: upload-client-nupkg-release-asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./Packages/BungieSharper.${{ steps.get_version.outputs.VERSION }}.nupkg
+        asset_name: BungieSharper.${{ steps.get_version.outputs.VERSION }}.nupkg
+        asset_content_type: application/zip
+
+    - name: Upload client .snupkg release binary
+      id: upload-client-snupkg-release-asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./Packages/BungieSharper.${{ steps.get_version.outputs.VERSION }}.snupkg
+        asset_name: BungieSharper.${{ steps.get_version.outputs.VERSION }}.snupkg
+        asset_content_type: application/zip
+    
+    - name: Upload entities to NuGet
+      run: |
+        dotnet nuget push ./Packages/BungieSharper.Entities.${{ steps.get_version.outputs.VERSION }}.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicate    
+
+    - name: Upload client to NuGet
+      run: |
+        dotnet nuget push ./Packages/BungieSharper.${{ steps.get_version.outputs.VERSION }}.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicate
+    
+    - name: Upload entities to GitHub Packages
+      run: |
+        dotnet nuget push ./Packages/BungieSharper.Entities.${{ steps.get_version.outputs.VERSION }}.nupkg -k ${{ secrets.GITHUB_TOKEN }} -s https://nuget.pkg.github.com/ashakoor/index.json --skip-duplicate
+
+    - name: Upload client to GitHub Packages
+      run: |
+        dotnet nuget push ./Packages/BungieSharper.${{ steps.get_version.outputs.VERSION }}.nupkg -k ${{ secrets.GITHUB_TOKEN }} -s https://nuget.pkg.github.com/ashakoor/index.json --skip-duplicate

@@ -9,7 +9,7 @@
     <RepositoryType>git</RepositoryType>
     <Nullable>enable</Nullable>
 
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFrameworks>net5.0</TargetFrameworks>
     <Version>0.7.0-beta</Version>
   </PropertyGroup>
 

@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-﻿using BungieSharper.Schema.Exceptions;
-=======
 ﻿using BungieSharper.Entities.Exceptions;
->>>>>>> rewrite
 using System.Collections.Generic;
 
 namespace BungieSharper.Client

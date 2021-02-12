@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 using BungieSharper.Schema;
+=======
+using BungieSharper.Entities;
+>>>>>>> rewrite
 using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
@@ -18,7 +22,11 @@ namespace BungieSharper.Tests
         public async Task GetManifestTask()
         {
             var manifestData = await ClientFixture.TestClient.ApiEndpoints.Destiny2_GetDestinyManifest();
+<<<<<<< HEAD
             Assert.False(string.IsNullOrEmpty(manifestData.version));
+=======
+            Assert.False(string.IsNullOrEmpty(manifestData.Version));
+>>>>>>> rewrite
         }
 
         [Fact]
@@ -36,9 +44,15 @@ namespace BungieSharper.Tests
 
             var userCard = actualCards[0];
 
+<<<<<<< HEAD
             Assert.Equal(expectedMembershipType, userCard.membershipType);
             Assert.Equal(expectedMembershipId, userCard.membershipId);
             Assert.Equal(expectedDisplayName, userCard.displayName);
+=======
+            Assert.Equal(expectedMembershipType, userCard.MembershipType);
+            Assert.Equal(expectedMembershipId, userCard.MembershipId);
+            Assert.Equal(expectedDisplayName, userCard.DisplayName);
+>>>>>>> rewrite
         }
     }
 }

@@ -12,6 +12,7 @@
     <copyright>$copyright$</copyright>
     <tags>$tags$</tags>
     <dependencies>
+<<<<<<< HEAD
         <group targetFramework="netstandard2.0">
             <dependency id="BungieSharper.Schema" version="$version$" />
         </group>
@@ -26,6 +27,10 @@
         </group>
         <group targetFramework="net5.0">
             <dependency id="BungieSharper.Schema" version="$version$" />
+=======
+        <group targetFramework="net5.0">
+            <dependency id="BungieSharper.Entities" version="$version$" />
+>>>>>>> rewrite
         </group>
     </dependencies>
   </metadata>

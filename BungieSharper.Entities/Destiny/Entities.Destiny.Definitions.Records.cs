@@ -24,6 +24,9 @@ namespace BungieSharper.Entities.Destiny.Definitions.Records
         [JsonPropertyName("recordValueStyle")]
         public Destiny.DestinyRecordValueStyle RecordValueStyle { get; set; }
 
+        [JsonPropertyName("forTitleGilding")]
+        public bool ForTitleGilding { get; set; }
+
         [JsonPropertyName("titleInfo")]
         public Destiny.Definitions.Records.DestinyRecordTitleBlock TitleInfo { get; set; }
 
@@ -90,6 +93,9 @@ namespace BungieSharper.Entities.Destiny.Definitions.Records
         /// <summary>For those who prefer to use the definitions.</summary>
         [JsonPropertyName("titlesByGenderHash")]
         public Dictionary<uint, string> TitlesByGenderHash { get; set; }
+
+        [JsonPropertyName("gildingTrackingRecordHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public uint? GildingTrackingRecordHash { get; set; }
     }
 
     public class DestinyRecordCompletionBlock
@@ -137,6 +143,9 @@ namespace BungieSharper.Entities.Destiny.Definitions.Records
         [JsonPropertyName("intervalObjectives")]
         public IEnumerable<Destiny.Definitions.Records.DestinyRecordIntervalObjective> IntervalObjectives { get; set; }
 
+        [JsonPropertyName("intervalRewards")]
+        public IEnumerable<Destiny.Definitions.Records.DestinyRecordIntervalRewards> IntervalRewards { get; set; }
+
         [JsonPropertyName("originalObjectiveArrayInsertionIndex")]
         public int OriginalObjectiveArrayInsertionIndex { get; set; }
     }
@@ -148,5 +157,11 @@ namespace BungieSharper.Entities.Destiny.Definitions.Records
 
         [JsonPropertyName("intervalScoreValue")]
         public int IntervalScoreValue { get; set; }
+    }
+
+    public class DestinyRecordIntervalRewards
+    {
+        [JsonPropertyName("intervalRewardItems")]
+        public IEnumerable<Destiny.DestinyItemQuantity> IntervalRewardItems { get; set; }
     }
 }

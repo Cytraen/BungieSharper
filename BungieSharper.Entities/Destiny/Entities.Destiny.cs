@@ -227,6 +227,18 @@ namespace BungieSharper.Entities.Destiny
     }
 
     /// <summary>
+    /// Describes the type of progression that a vendor has.
+    /// </summary>
+    public enum DestinyVendorProgressionType : int
+    {
+        /// <summary>The original rank progression from token redemption.</summary>
+        Default = 0,
+
+        /// <summary>Progression from ranks in ritual content. For example: Crucible (Shaxx), Gambit (Drifter), and Season 13 Battlegrounds (War Table).</summary>
+        Ritual = 1
+    }
+
+    /// <summary>
     /// Display categories can have custom sort orders. These are the possible options.
     /// </summary>
     public enum VendorDisplayCategorySortOrder : int
@@ -601,7 +613,9 @@ namespace BungieSharper.Entities.Destiny
         Lore = 2,
         Badge = 3,
         MetaRecord = 4,
-        MedalComplete = 5
+        MedalComplete = 5,
+        SeasonChallengeComplete = 6,
+        GildedTitleComplete = 7
     }
 
     /// <summary>
@@ -835,7 +849,8 @@ namespace BungieSharper.Entities.Destiny
         DLC2 = 4,
         Forsaken = 8,
         YearTwoAnnualPass = 16,
-        Shadowkeep = 32
+        Shadowkeep = 32,
+        BeyondLight = 64
     }
 
     /// <summary>
@@ -1396,7 +1411,10 @@ namespace BungieSharper.Entities.Destiny
         DailyOffer = 4096,
 
         /// <summary>This indicates that the item is for charity.</summary>
-        Charity = 8192
+        Charity = 8192,
+
+        /// <summary>This indicates that the item has a seasonal reward expiration.</summary>
+        SeasonalRewardExpiration = 16384
     }
 
     /// <summary>

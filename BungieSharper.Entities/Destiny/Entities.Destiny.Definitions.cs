@@ -206,6 +206,9 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("itemTypeDisplayName")]
         public string ItemTypeDisplayName { get; set; }
 
+        [JsonPropertyName("flavorText")]
+        public string FlavorText { get; set; }
+
         /// <summary>A string identifier that the game's UI uses to determine how the item should be rendered in inventory screens and the like. This could really be anything - at the moment, we don't have the time to really breakdown and maintain all the possible strings this could be, partly because new ones could be added ad hoc. But if you want to use it to dictate your own UI, or look for items with a certain display style, go for it!</summary>
         [JsonPropertyName("uiItemDisplayStyle")]
         public string UiItemDisplayStyle { get; set; }
@@ -1138,6 +1141,10 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("displayProperties")]
         public Destiny.Definitions.DestinyVendorDisplayPropertiesDefinition DisplayProperties { get; set; }
 
+        /// <summary>The type of reward progression that this vendor has. Default - The original rank progression from token redemption. Ritual - Progression from ranks in ritual content. For example: Crucible (Shaxx), Gambit (Drifter), and Battlegrounds (War Table).</summary>
+        [JsonPropertyName("vendorProgressionType")]
+        public Destiny.DestinyVendorProgressionType VendorProgressionType { get; set; }
+
         /// <summary>If the vendor has a custom localized string describing the "buy" action, that is returned here.</summary>
         [JsonPropertyName("buyString")]
         public string BuyString { get; set; }
@@ -1969,10 +1976,6 @@ namespace BungieSharper.Entities.Destiny.Definitions
         /// <summary>If the activity will not be visible until a specific and known time, this will be the seconds since the Epoch when it will become visible.</summary>
         [JsonPropertyName("releaseTime")]
         public int ReleaseTime { get; set; }
-
-        /// <summary>The difficulty level of the activity.</summary>
-        [JsonPropertyName("activityLevel")]
-        public int ActivityLevel { get; set; }
 
         /// <summary>The recommended light level for this activity.</summary>
         [JsonPropertyName("activityLightLevel")]

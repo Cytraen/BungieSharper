@@ -17,7 +17,9 @@ namespace BungieSharper.CodeGen.Generation
 @"using BungieSharper.Client;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -27,8 +29,6 @@ namespace BungieSharper.Endpoints
     {
 ";
 
-            content += FormatStrings.FormatSummaries(pathDef.Description, 2, true);
-
             if (pathDef.Get is not null && pathDef.Post is not null)
             {
                 throw new NotSupportedException();
@@ -37,39 +37,41 @@ namespace BungieSharper.Endpoints
             var parameters = new List<PathResponseMethodParameterClass>();
             var responseType = "";
             var pathName = pathDef.Summary.Replace('.', '_');
+            ResponseMethodClass? responseMethodInfo = null;
 
             if (pathDef.Get is not null)
             {
                 httpMethod = "Get";
-                parameters = pathDef.Get.Parameters.ToList();
-
-                var responseRef = pathDef.Get.Responses[200].Ref;
-
-                if (responseRef.Contains("/components/responses/"))
-                {
-                    responseType = GetResponseRef(responseRef);
-                }
-                else
-                {
-                    responseType = FormatStrings.ResolveRef(responseRef, true);
-                }
+                responseMethodInfo = pathDef.Get;
             }
 
             if (pathDef.Post is not null)
             {
                 httpMethod = "Post";
-                parameters = pathDef.Post.Parameters.ToList();
+                responseMethodInfo = pathDef.Post;
+            }
 
-                var responseRef = pathDef.Post.Responses[200].Ref;
+            if (responseMethodInfo is null)
+            {
+                throw new NotSupportedException();
+            }
 
-                if (responseRef.Contains("/components/responses/"))
-                {
-                    responseType = GetResponseRef(responseRef);
-                }
-                else
-                {
-                    responseType = FormatStrings.ResolveRef(responseRef, true);
-                }
+            // parameters = responseMethodInfo.Parameters.Where(x => x.Deprecated != true).ToList();
+            parameters = responseMethodInfo.Parameters.ToList();
+
+            var requiredScopes = responseMethodInfo.Security != null ? responseMethodInfo.Security.Any() ? responseMethodInfo.Security[0].OAuth2 : null : null;
+
+            content += FormatStrings.FormatMethodSummaries(pathDef.Description, parameters, responseMethodInfo.XPreview ?? false, responseMethodInfo.Deprecated ?? false, requiredScopes);
+
+            var responseRef = responseMethodInfo.Responses[200].Ref;
+
+            if (responseRef.Contains("/components/responses/"))
+            {
+                responseType = GetResponseRef(responseRef);
+            }
+            else
+            {
+                responseType = FormatStrings.ResolveRef(responseRef, true);
             }
 
             var requiredParams = parameters.Where(x => x.Required == true);
@@ -77,12 +79,6 @@ namespace BungieSharper.Endpoints
 
             var declareParams = new List<string>();
             var queryParamTextList = new List<string>();
-
-            // TODO: trash deprecated parameters
-            // param.Deprecated
-
-            // TODO: add documentation for parameters
-            // param.Description
 
             foreach (var param in requiredParams)
             {
@@ -152,21 +148,18 @@ namespace BungieSharper.Endpoints
                     }
                 }
             }
+            if (responseMethodInfo.RequestBody is not null)
+            {
+                var requestBodyInfo = responseMethodInfo.RequestBody;
+                var paramTypeText = ParseRequestBodySchema(requestBodyInfo.Content.ApplicationJson.Schema, requestBodyInfo.Required);
+                declareParams.Add(paramTypeText + " requestBody" + (requestBodyInfo.Required == false ? " = null" : ""));
+            }
 
             var queryStringParamsNotEmpty = parameters.Where(x => x.In == ParameterInEnum.Query).Count() > 0;
 
             var queryStringParamText = queryStringParamsNotEmpty ? string.Join(", ", queryParamTextList) : "";
 
             var queryStringParamFinal = queryStringParamsNotEmpty ? $" + HttpRequestGenerator.MakeQuerystring({queryStringParamText})" : "";
-
-            // TODO: document preview methods
-            // pathDef.Get/Post.XPreview
-
-            // TODO: document required OAuth2 scopes
-            // pathDef.Get/Post.Security[0].OAuth2
-
-            // TODO: document deprecated methods
-            // pathDef.Get/Post.Deprecated
 
             declareParams.Add("string? authToken = null");
             declareParams.Add("CancellationToken cancelToken = default");
@@ -175,9 +168,7 @@ namespace BungieSharper.Endpoints
             content += $"            return await _apiAccessor.ApiRequestAsync<{responseType}>(\n";
             content += $"                new Uri($\"{path.TrimStart('/')}\"{queryStringParamFinal}, UriKind.Relative),\n";
 
-            // TODO: replace this 'null' with the requestBody param
-            // also, add the requestBody param in general
-            content += $"                null, HttpMethod.{httpMethod}, authToken, AuthHeaderType.Bearer, cancelToken\n";
+            content += $"                {(responseMethodInfo.RequestBody != null ? "new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, \"application/json\")" : "null")}, HttpMethod.{httpMethod}, authToken, AuthHeaderType.Bearer, cancelToken\n";
             content += $"                ).ConfigureAwait(false);\n        }}\n    }}\n}}";
 
             return content;
@@ -189,7 +180,7 @@ namespace BungieSharper.Endpoints
 
             if (paramSchema.Items is not null)
             {
-                paramType += GenerateCommon.ResolveItems(paramSchema.Items);
+                paramType += GenerateCommon.ResolveItems(paramSchema.Items, true);
             }
             else if (paramSchema.XEnumReference is not null)
             {
@@ -198,6 +189,31 @@ namespace BungieSharper.Endpoints
             else if (paramSchema.Format is not null)
             {
                 paramType += Mapping.FormatToCSharp(paramSchema.Format.Value);
+            }
+            else
+            {
+                paramType += Mapping.TypeToCSharp(paramSchema.Type!.Value);
+            }
+
+            if (required is not true)
+            {
+                paramType += "?";
+            }
+
+            return paramType;
+        }
+
+        public static string ParseRequestBodySchema(Entities.Paths.ContentApplicationJsonSchemaClass paramSchema, bool? required)
+        {
+            var paramType = "";
+
+            if (paramSchema.Items is not null)
+            {
+                paramType += GenerateCommon.ResolveItems(paramSchema.Items, true);
+            }
+            else if (paramSchema.Ref is not null)
+            {
+                paramType += FormatStrings.ResolveRef(paramSchema.Ref, true);
             }
             else
             {

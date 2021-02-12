@@ -19,7 +19,7 @@ namespace BungieSharper.CodeGen.Entities.Paths
         public PathResponseMethodParameterClass[] Parameters { get; set; }
 
         [JsonPropertyName("requestBody"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public RequestBodyClass RequestBody { get; set; }
+        public RequestBodyClass? RequestBody { get; set; }
 
         [JsonPropertyName("responses"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public Dictionary<short, ResponseClass> Responses { get; set; }

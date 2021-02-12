@@ -10,7 +10,7 @@ namespace BungieSharper.CodeGen.Entities.Paths
         public TypeEnum? Type { get; set; }
 
         [JsonPropertyName("items"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public ApplicationJsonSchemaItemsClass Items { get; set; }
+        public ItemClass Items { get; set; }
 
         [JsonPropertyName("$ref"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public string Ref { get; set; }

@@ -40,7 +40,7 @@ namespace BungieSharper.CodeGen.Generation
 
             if (!string.IsNullOrWhiteSpace(def.Description))
             {
-                fileContent += FormatStrings.FormatSummaries(def.Description, 1, true);
+                fileContent += FormatStrings.FormatClassSummaries(def.Description);
             }
             if (def.XEnumIsBitmask == true)
             {
@@ -50,7 +50,7 @@ namespace BungieSharper.CodeGen.Generation
             var enumList = new List<string>();
             foreach (var enumVal in def.XEnumValues!)
             {
-                var doc = string.IsNullOrWhiteSpace(enumVal.Description) ? "" : FormatStrings.FormatSummaries(enumVal.Description, 2);
+                var doc = string.IsNullOrWhiteSpace(enumVal.Description) ? "" : FormatStrings.FormatPropertySummaries(enumVal.Description);
                 var enumDef = $"        {enumVal.Identifier} = {enumVal.NumericValue}";
 
                 enumList.Add(doc + enumDef);
@@ -76,7 +76,7 @@ namespace BungieSharper.CodeGen.Generation
 
             if (!string.IsNullOrWhiteSpace(def.Description))
             {
-                fileContent += FormatStrings.FormatSummaries(def.Description, 1, true);
+                fileContent += FormatStrings.FormatClassSummaries(def.Description);
             }
 
             var propertyList = new List<string>();
@@ -107,7 +107,7 @@ namespace BungieSharper.CodeGen.Generation
             }
             else if (def.Items is not null)
             {
-                propType += GenerateCommon.ResolveItems(def.Items);
+                propType += GenerateCommon.ResolveItems(def.Items, false);
             }
             else if (def.AdditionalProperties is not null)
             {
@@ -130,10 +130,9 @@ namespace BungieSharper.CodeGen.Generation
                 propType += Mapping.TypeToCSharp(def.Type!.Value);
             }
 
-            // TODO: use def.XDestinyComponentTypeDependency
             if (def.Description is not null)
             {
-                propListing += FormatStrings.FormatSummaries(def.Description, 2);
+                propListing += FormatStrings.FormatPropertySummaries(def.Description);
             }
 
             if (def.Nullable == true)
@@ -176,7 +175,7 @@ namespace BungieSharper.CodeGen.Generation
             }
             else if (additionalProps.Items is not null)
             {
-                classType += GenerateCommon.ResolveItems(additionalProps.Items);
+                classType += GenerateCommon.ResolveItems(additionalProps.Items, false);
             }
             else if (additionalProps.Ref is not null)
             {

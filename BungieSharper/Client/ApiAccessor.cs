@@ -1,4 +1,4 @@
-using BungieSharper.Schema.Exceptions;
+using BungieSharper.Entities.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -76,7 +76,7 @@ namespace BungieSharper.Client
             _msPerRequest = TimeSpan.FromMilliseconds(1000.0 / requestsPerSecond * SimultaneousRequests);
         }
 
-        internal async Task<T> ApiRequestAsync<T>(Uri uri, HttpContent httpContent, HttpMethod httpMethod, string authToken, AuthHeaderType authType, CancellationToken cancelToken)
+        internal async Task<T> ApiRequestAsync<T>(Uri uri, HttpContent? httpContent, HttpMethod httpMethod, string? authToken, AuthHeaderType authType, CancellationToken cancelToken)
         {
             var semaphoreTask = _semaphore.WaitAsync(cancelToken).ConfigureAwait(false);
             var httpRequestMessage = HttpRequestGenerator.MakeApiRequestMessage(uri, httpContent, httpMethod, authToken, authType);
@@ -93,7 +93,7 @@ namespace BungieSharper.Client
                     throw new OperationCanceledException();
                 }
 
-                if (httpResponseMessage.Content.Headers.ContentType.MediaType != "application/json")
+                if (httpResponseMessage.Content.Headers.ContentType?.MediaType != "application/json")
                 {
                     await AwaitThrottleAndReleaseSemaphore(throttleTask, _semaphore).ConfigureAwait(false);
                     throw new ContentNotJsonException(httpResponseMessage);
@@ -136,7 +136,7 @@ namespace BungieSharper.Client
             }
         }
 
-        internal async Task<TokenRequestResponse> ApiTokenRequestResponseAsync(Uri uri, HttpContent httpContent, HttpMethod httpMethod, string authToken, AuthHeaderType authType, CancellationToken cancelToken)
+        internal async Task<TokenRequestResponse> ApiTokenRequestResponseAsync(Uri uri, HttpContent httpContent, HttpMethod httpMethod, string? authToken, AuthHeaderType authType, CancellationToken cancelToken)
         {
             var semaphoreTask = _semaphore.WaitAsync(cancelToken).ConfigureAwait(false);
             var httpRequestMessage = HttpRequestGenerator.MakeApiRequestMessage(uri, httpContent, httpMethod, authToken, authType);
@@ -153,7 +153,7 @@ namespace BungieSharper.Client
                     throw new OperationCanceledException();
                 }
 
-                if (httpResponseMessage.Content.Headers.ContentType.MediaType != "application/json")
+                if (httpResponseMessage.Content.Headers.ContentType?.MediaType != "application/json")
                 {
                     await AwaitThrottleAndReleaseSemaphore(throttleTask, _semaphore).ConfigureAwait(false);
                     throw new ContentNotJsonException(httpResponseMessage);

@@ -12,20 +12,8 @@
     <copyright>$copyright$</copyright>
     <tags>$tags$</tags>
     <dependencies>
-        <group targetFramework="netstandard2.0">
-            <dependency id="BungieSharper.Schema" version="$version$" />
-        </group>
-        <group targetFramework="netstandard2.1">
-            <dependency id="BungieSharper.Schema" version="$version$" />
-        </group>
-        <group targetFramework="netcoreapp2.1">
-            <dependency id="BungieSharper.Schema" version="$version$" />
-        </group>
-        <group targetFramework="netcoreapp3.1">
-            <dependency id="BungieSharper.Schema" version="$version$" />
-        </group>
         <group targetFramework="net5.0">
-            <dependency id="BungieSharper.Schema" version="$version$" />
+            <dependency id="BungieSharper.Entities" version="$version$" />
         </group>
     </dependencies>
   </metadata>

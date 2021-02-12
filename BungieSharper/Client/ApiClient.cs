@@ -1,4 +1,4 @@
-﻿using BungieSharper.Schema.Exceptions;
+﻿using BungieSharper.Entities.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,7 +42,7 @@ namespace BungieSharper.Client
 
         public void SetUserAgent(string userAgent)
         {
-            _apiAccessor.SetUserAgent(userAgent + " BungieSharper/" + typeof(BungieApiClient).Assembly.GetName().Version.ToString(3) + " (+github.com/ashakoor/BungieSharper)");
+            _apiAccessor.SetUserAgent(userAgent + " BungieSharper/" + typeof(BungieApiClient).Assembly.GetName().Version!.ToString(3) + " (+github.com/ashakoor/BungieSharper)");
         }
 
         public void SetRateLimit()

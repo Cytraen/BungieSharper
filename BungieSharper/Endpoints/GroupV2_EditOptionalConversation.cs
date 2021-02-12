@@ -1,5 +1,7 @@
 ﻿using BungieSharper.Client;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading;
@@ -11,8 +13,11 @@ namespace BungieSharper.Endpoints
     {
         /// <summary>
         /// Edit the settings of an optional conversation/chat channel. Requires admin permissions to the group.
+        /// Requires OAuth2 scope(s): AdminGroups
         /// </summary>
-        public async Task<long> GroupV2_EditOptionalConversation(long conversationId, long groupId, Schema.GroupsV2.GroupOptionalConversationEditRequest requestBody, string authToken = null, CancellationToken cancelToken = default)
+        /// <param name="conversationId">Conversation Id of the channel being edited.</param>
+        /// <param name="groupId">Group ID of the group to edit.</param>
+        public async Task<long> GroupV2_EditOptionalConversation(long conversationId, long groupId, Entities.GroupsV2.GroupOptionalConversationEditRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
         {
             return await _apiAccessor.ApiRequestAsync<long>(
                 new Uri($"GroupV2/{groupId}/OptionalConversations/Edit/{conversationId}/", UriKind.Relative),

@@ -1,4 +1,4 @@
-﻿using BungieSharper.Schema.Exceptions;
+﻿using BungieSharper.Entities.Exceptions;
 using System.Collections.Generic;
 
 namespace BungieSharper.Client

@@ -10,7 +10,7 @@ namespace BungieSharper.Tests
         private readonly string BungieApiKey = Environment.GetEnvironmentVariable("TEST_BUNGIE_API_KEY"); // YOUR BUNGIE.NET API KEY HERE
 
         private readonly string BungieUserAgent =
-            $"BungieSharper.Tests/{typeof(TestClientFixture).Assembly.GetName().Version.ToString(3)} (+github.com/ashakoor/BungieSharper)";
+            $"BungieSharper.Tests/{typeof(TestClientFixture).Assembly.GetName().Version!.ToString(3)} (+github.com/ashakoor/BungieSharper)";
 
         public TestClientFixture()
         {
@@ -25,6 +25,7 @@ namespace BungieSharper.Tests
 
         public void Dispose()
         {
+            GC.SuppressFinalize(this);
             TestClient.Dispose();
         }
     }

@@ -6,8 +6,13 @@ namespace BungieSharper.Client
 {
     internal static class HttpRequestGenerator
     {
-        internal static string MakeQuerystring(params string[] queries)
+        internal static string MakeQuerystring(params string?[]? queries)
         {
+            if (queries is null || !queries.Any())
+            {
+                return string.Empty;
+            }
+
             var qString = string.Join("&", queries.Where(x => x != null));
             if (qString != string.Empty)
             {
@@ -17,7 +22,7 @@ namespace BungieSharper.Client
             return string.Empty;
         }
 
-        internal static HttpRequestMessage MakeApiRequestMessage(Uri uri, HttpContent httpContent, HttpMethod httpMethod, string authToken, AuthHeaderType authType)
+        internal static HttpRequestMessage MakeApiRequestMessage(Uri uri, HttpContent? httpContent, HttpMethod httpMethod, string? authToken, AuthHeaderType authType)
         {
             var request = new HttpRequestMessage
             {

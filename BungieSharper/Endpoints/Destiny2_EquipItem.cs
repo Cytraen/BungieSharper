@@ -1,5 +1,7 @@
 ﻿using BungieSharper.Client;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading;
@@ -11,8 +13,9 @@ namespace BungieSharper.Endpoints
     {
         /// <summary>
         /// Equip an item. You must have a valid Destiny Account, and either be in a social space, in orbit, or offline.
+        /// Requires OAuth2 scope(s): MoveEquipDestinyItems
         /// </summary>
-        public async Task<int> Destiny2_EquipItem(Schema.Destiny.Requests.Actions.DestinyItemActionRequest requestBody, string authToken = null, CancellationToken cancelToken = default)
+        public async Task<int> Destiny2_EquipItem(Entities.Destiny.Requests.Actions.DestinyItemActionRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
         {
             return await _apiAccessor.ApiRequestAsync<int>(
                 new Uri($"Destiny2/Actions/Items/EquipItem/", UriKind.Relative),

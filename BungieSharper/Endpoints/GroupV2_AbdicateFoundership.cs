@@ -1,13 +1,9 @@
 ﻿using BungieSharper.Client;
 using System;
-<<<<<<< HEAD
-using System.Net.Http;
-=======
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
->>>>>>> rewrite
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -18,14 +14,10 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// An administrative method to allow the founder of a group or clan to give up their position to another admin permanently.
         /// </summary>
-<<<<<<< HEAD
-        public async Task<bool> GroupV2_AbdicateFoundership(long founderIdNew, long groupId, Schema.BungieMembershipType membershipType, string authToken = null, CancellationToken cancelToken = default)
-=======
         /// <param name="founderIdNew">The new founder for this group. Must already be a group admin.</param>
         /// <param name="groupId">The target group id.</param>
         /// <param name="membershipType">Membership type of the provided founderIdNew.</param>
         public async Task<bool> GroupV2_AbdicateFoundership(long founderIdNew, long groupId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
->>>>>>> rewrite
         {
             return await _apiAccessor.ApiRequestAsync<bool>(
                 new Uri($"GroupV2/{groupId}/Admin/AbdicateFoundership/{membershipType}/{founderIdNew}/", UriKind.Relative),

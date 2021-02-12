@@ -1,11 +1,6 @@
 
-<<<<<<< HEAD
-# Created by https://www.toptal.com/developers/gitignore/api/git,csharp,dotnetcore,jetbrains+all,visualstudiocode
-# Edit at https://www.toptal.com/developers/gitignore?templates=git,csharp,dotnetcore,jetbrains+all,visualstudiocode
-=======
 # Created by https://www.toptal.com/developers/gitignore/api/git,venv,csharp,python,dotnetcore,jetbrains+all,visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=git,venv,csharp,python,dotnetcore,jetbrains+all,visualstudiocode
->>>>>>> rewrite
 
 ### Csharp ###
 ## Ignore Visual Studio temporary files, build results, and
@@ -475,14 +470,6 @@ modules.xml
 # Sonarlint plugin
 .idea/sonarlint
 
-<<<<<<< HEAD
-### VisualStudioCode ###
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-=======
 ### Python ###
 # Byte-compiled / optimized / DLL files
 *.py[cod]
@@ -637,17 +624,11 @@ pip-selfcheck.json
 .vscode/*
 !.vscode/tasks.json
 !.vscode/launch.json
->>>>>>> rewrite
 *.code-workspace
 
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
 .history
-<<<<<<< HEAD
-
-# End of https://www.toptal.com/developers/gitignore/api/git,csharp,dotnetcore,jetbrains+all,visualstudiocode
-=======
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/git,venv,csharp,python,dotnetcore,jetbrains+all,visualstudiocode
->>>>>>> rewrite

@@ -25,6 +25,7 @@ namespace BungieSharper.Tests
 
         public void Dispose()
         {
+            GC.SuppressFinalize(this);
             TestClient.Dispose();
         }
     }

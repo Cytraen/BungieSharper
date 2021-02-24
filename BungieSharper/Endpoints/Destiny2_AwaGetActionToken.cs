@@ -16,12 +16,12 @@ namespace BungieSharper.Endpoints
         /// Requires OAuth2 scope(s): AdvancedWriteActions
         /// </summary>
         /// <param name="correlationId">The identifier for the advanced write action request.</param>
-        public async Task<Entities.Destiny.Advanced.AwaAuthorizationResult> Destiny2_AwaGetActionToken(string correlationId, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<Entities.Destiny.Advanced.AwaAuthorizationResult> Destiny2_AwaGetActionToken(string correlationId, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<Entities.Destiny.Advanced.AwaAuthorizationResult>(
+            return _apiAccessor.ApiRequestAsync<Entities.Destiny.Advanced.AwaAuthorizationResult>(
                 new Uri($"Destiny2/Awa/GetActionToken/{Uri.EscapeDataString(correlationId)}/", UriKind.Relative),
                 null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

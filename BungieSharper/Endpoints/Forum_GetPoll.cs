@@ -15,12 +15,12 @@ namespace BungieSharper.Endpoints
         /// Gets the specified forum poll.
         /// </summary>
         /// <param name="topicId">The post id of the topic that has the poll.</param>
-        public async Task<Entities.Forum.PostSearchResponse> Forum_GetPoll(long topicId, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<Entities.Forum.PostSearchResponse> Forum_GetPoll(long topicId, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<Entities.Forum.PostSearchResponse>(
+            return _apiAccessor.ApiRequestAsync<Entities.Forum.PostSearchResponse>(
                 new Uri($"Forum/Poll/{topicId}/", UriKind.Relative),
                 null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

@@ -16,12 +16,12 @@ namespace BungieSharper.Endpoints
         /// </summary>
         /// <param name="categoryId">The ID of the category for whom you want additional results.</param>
         /// <param name="pageNumber">The page # of results to return.</param>
-        public async Task<Entities.SearchResultOfTrendingEntry> Trending_GetTrendingCategory(string categoryId, int pageNumber, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<Entities.SearchResultOfTrendingEntry> Trending_GetTrendingCategory(string categoryId, int pageNumber, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<Entities.SearchResultOfTrendingEntry>(
+            return _apiAccessor.ApiRequestAsync<Entities.SearchResultOfTrendingEntry>(
                 new Uri($"Trending/Categories/{Uri.EscapeDataString(categoryId)}/{pageNumber}/", UriKind.Relative),
                 null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

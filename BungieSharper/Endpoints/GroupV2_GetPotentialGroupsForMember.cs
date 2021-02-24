@@ -18,12 +18,12 @@ namespace BungieSharper.Endpoints
         /// <param name="groupType">Type of group the supplied member applied.</param>
         /// <param name="membershipId">Membership ID to for which to find applied groups.</param>
         /// <param name="membershipType">Membership type of the supplied membership ID.</param>
-        public async Task<Entities.GroupsV2.GroupPotentialMembershipSearchResponse> GroupV2_GetPotentialGroupsForMember(Entities.GroupsV2.GroupPotentialMemberStatus filter, Entities.GroupsV2.GroupType groupType, long membershipId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<Entities.GroupsV2.GroupPotentialMembershipSearchResponse> GroupV2_GetPotentialGroupsForMember(Entities.GroupsV2.GroupPotentialMemberStatus filter, Entities.GroupsV2.GroupType groupType, long membershipId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<Entities.GroupsV2.GroupPotentialMembershipSearchResponse>(
+            return _apiAccessor.ApiRequestAsync<Entities.GroupsV2.GroupPotentialMembershipSearchResponse>(
                 new Uri($"GroupV2/User/Potential/{membershipType}/{membershipId}/{filter}/{groupType}/", UriKind.Relative),
                 null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

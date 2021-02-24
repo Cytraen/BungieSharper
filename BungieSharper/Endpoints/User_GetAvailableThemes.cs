@@ -14,12 +14,12 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Returns a list of all available user themes.
         /// </summary>
-        public async Task<IEnumerable<Entities.Config.UserTheme>> User_GetAvailableThemes(string? authToken = null, CancellationToken cancelToken = default)
+        public Task<IEnumerable<Entities.Config.UserTheme>> User_GetAvailableThemes(string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<IEnumerable<Entities.Config.UserTheme>>(
+            return _apiAccessor.ApiRequestAsync<IEnumerable<Entities.Config.UserTheme>>(
                 new Uri($"User/GetAvailableThemes/", UriKind.Relative),
                 null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

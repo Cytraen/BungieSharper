@@ -17,12 +17,12 @@ namespace BungieSharper.Endpoints
         /// </summary>
         /// <param name="fireteamId">The unique id of the fireteam.</param>
         /// <param name="groupId">The group id of the clan.</param>
-        public async Task<Entities.Fireteam.FireteamResponse> Fireteam_GetClanFireteam(long fireteamId, long groupId, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<Entities.Fireteam.FireteamResponse> Fireteam_GetClanFireteam(long fireteamId, long groupId, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<Entities.Fireteam.FireteamResponse>(
+            return _apiAccessor.ApiRequestAsync<Entities.Fireteam.FireteamResponse>(
                 new Uri($"Fireteam/Clan/{groupId}/Summary/{fireteamId}/", UriKind.Relative),
                 null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

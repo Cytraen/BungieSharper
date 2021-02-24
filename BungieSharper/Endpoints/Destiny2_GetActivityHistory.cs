@@ -20,12 +20,12 @@ namespace BungieSharper.Endpoints
         /// <param name="membershipType">A valid non-BungieNet membership type.</param>
         /// <param name="mode">A filter for the activity mode to be returned. None returns all activities. See the documentation for DestinyActivityModeType for valid values, and pass in string representation.</param>
         /// <param name="page">Page number to return, starting with 0.</param>
-        public async Task<Entities.Destiny.HistoricalStats.DestinyActivityHistoryResults> Destiny2_GetActivityHistory(long characterId, long destinyMembershipId, Entities.BungieMembershipType membershipType, int? count = null, Entities.Destiny.HistoricalStats.Definitions.DestinyActivityModeType? mode = null, int? page = null, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<Entities.Destiny.HistoricalStats.DestinyActivityHistoryResults> Destiny2_GetActivityHistory(long characterId, long destinyMembershipId, Entities.BungieMembershipType membershipType, int? count = null, Entities.Destiny.HistoricalStats.Definitions.DestinyActivityModeType? mode = null, int? page = null, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<Entities.Destiny.HistoricalStats.DestinyActivityHistoryResults>(
+            return _apiAccessor.ApiRequestAsync<Entities.Destiny.HistoricalStats.DestinyActivityHistoryResults>(
                 new Uri($"Destiny2/{membershipType}/Account/{destinyMembershipId}/Character/{characterId}/Stats/Activities/" + HttpRequestGenerator.MakeQuerystring(count != null ? $"count={count}" : null, mode != null ? $"mode={mode}" : null, page != null ? $"page={page}" : null), UriKind.Relative),
                 null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

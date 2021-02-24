@@ -22,12 +22,12 @@ namespace BungieSharper.Endpoints
         /// <param name="quickDate">A date filter.</param>
         /// <param name="sort">The sort mode.</param>
         /// <param name="tagstring">The tags to search, if any.</param>
-        public async Task<Entities.Forum.PostSearchResponse> Forum_GetTopicsPaged(Entities.Forum.ForumTopicsCategoryFiltersEnum categoryFilter, long group, int page, int pageSize, Entities.Forum.ForumTopicsQuickDateEnum quickDate, Entities.Forum.ForumTopicsSortEnum sort, string? locales = null, string? tagstring = null, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<Entities.Forum.PostSearchResponse> Forum_GetTopicsPaged(Entities.Forum.ForumTopicsCategoryFiltersEnum categoryFilter, long group, int page, int pageSize, Entities.Forum.ForumTopicsQuickDateEnum quickDate, Entities.Forum.ForumTopicsSortEnum sort, string? locales = null, string? tagstring = null, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<Entities.Forum.PostSearchResponse>(
+            return _apiAccessor.ApiRequestAsync<Entities.Forum.PostSearchResponse>(
                 new Uri($"Forum/GetTopicsPaged/{page}/{pageSize}/{group}/{sort}/{quickDate}/{categoryFilter}/" + HttpRequestGenerator.MakeQuerystring(locales != null ? $"locales={Uri.EscapeDataString(locales)}" : null, tagstring != null ? $"tagstring={Uri.EscapeDataString(tagstring)}" : null), UriKind.Relative),
                 null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

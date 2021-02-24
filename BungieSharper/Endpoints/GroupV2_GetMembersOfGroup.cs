@@ -18,12 +18,12 @@ namespace BungieSharper.Endpoints
         /// <param name="groupId">The ID of the group.</param>
         /// <param name="memberType">Filter out other member types. Use None for all members.</param>
         /// <param name="nameSearch">The name fragment upon which a search should be executed for members with matching display or unique names.</param>
-        public async Task<Entities.SearchResultOfGroupMember> GroupV2_GetMembersOfGroup(int currentpage, long groupId, Entities.GroupsV2.RuntimeGroupMemberType? memberType = null, string? nameSearch = null, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<Entities.SearchResultOfGroupMember> GroupV2_GetMembersOfGroup(int currentpage, long groupId, Entities.GroupsV2.RuntimeGroupMemberType? memberType = null, string? nameSearch = null, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<Entities.SearchResultOfGroupMember>(
+            return _apiAccessor.ApiRequestAsync<Entities.SearchResultOfGroupMember>(
                 new Uri($"GroupV2/{groupId}/Members/" + HttpRequestGenerator.MakeQuerystring(memberType != null ? $"memberType={memberType}" : null, nameSearch != null ? $"nameSearch={Uri.EscapeDataString(nameSearch)}" : null), UriKind.Relative),
                 null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

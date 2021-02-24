@@ -16,12 +16,12 @@ namespace BungieSharper.Endpoints
         /// Requires OAuth2 scope(s): BnetWrite
         /// </summary>
         /// <param name="activityId">The ID of the activity where you ran into the brigand that you're reporting.</param>
-        public async Task<int> Destiny2_ReportOffensivePostGameCarnageReportPlayer(long activityId, Entities.Destiny.Reporting.Requests.DestinyReportOffensePgcrRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<int> Destiny2_ReportOffensivePostGameCarnageReportPlayer(long activityId, Entities.Destiny.Reporting.Requests.DestinyReportOffensePgcrRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<int>(
+            return _apiAccessor.ApiRequestAsync<int>(
                 new Uri($"Destiny2/Stats/PostGameCarnageReport/{activityId}/Report/", UriKind.Relative),
                 new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

@@ -15,12 +15,12 @@ namespace BungieSharper.Endpoints
         /// Loads a bungienet user by membership id.
         /// </summary>
         /// <param name="id">The requested Bungie.net membership id.</param>
-        public async Task<Entities.User.GeneralUser> User_GetBungieNetUserById(long id, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<Entities.User.GeneralUser> User_GetBungieNetUserById(long id, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<Entities.User.GeneralUser>(
+            return _apiAccessor.ApiRequestAsync<Entities.User.GeneralUser>(
                 new Uri($"User/GetBungieNetUserById/{id}/", UriKind.Relative),
                 null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

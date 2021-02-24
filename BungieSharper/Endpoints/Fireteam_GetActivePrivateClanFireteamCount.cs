@@ -16,12 +16,12 @@ namespace BungieSharper.Endpoints
         /// Requires OAuth2 scope(s): ReadGroups
         /// </summary>
         /// <param name="groupId">The group id of the clan.</param>
-        public async Task<int> Fireteam_GetActivePrivateClanFireteamCount(long groupId, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<int> Fireteam_GetActivePrivateClanFireteamCount(long groupId, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<int>(
+            return _apiAccessor.ApiRequestAsync<int>(
                 new Uri($"Fireteam/Clan/{groupId}/ActiveCount/", UriKind.Relative),
                 null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

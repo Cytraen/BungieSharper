@@ -17,12 +17,12 @@ namespace BungieSharper.Endpoints
         /// </summary>
         /// <param name="currentpage">Page number (starting with 1). Each page has a fixed size of 50 entries.</param>
         /// <param name="groupId">Group ID whose banned members you are fetching</param>
-        public async Task<Entities.SearchResultOfGroupBan> GroupV2_GetBannedMembersOfGroup(int currentpage, long groupId, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<Entities.SearchResultOfGroupBan> GroupV2_GetBannedMembersOfGroup(int currentpage, long groupId, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<Entities.SearchResultOfGroupBan>(
+            return _apiAccessor.ApiRequestAsync<Entities.SearchResultOfGroupBan>(
                 new Uri($"GroupV2/{groupId}/Banned/", UriKind.Relative),
                 null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

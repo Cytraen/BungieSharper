@@ -17,12 +17,12 @@ namespace BungieSharper.Endpoints
         /// <param name="characterId">The id of the character to retrieve.</param>
         /// <param name="destinyMembershipId">The Destiny membershipId of the user to retrieve.</param>
         /// <param name="membershipType">A valid non-BungieNet membership type.</param>
-        public async Task<Entities.Destiny.HistoricalStats.DestinyHistoricalWeaponStatsData> Destiny2_GetUniqueWeaponHistory(long characterId, long destinyMembershipId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<Entities.Destiny.HistoricalStats.DestinyHistoricalWeaponStatsData> Destiny2_GetUniqueWeaponHistory(long characterId, long destinyMembershipId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<Entities.Destiny.HistoricalStats.DestinyHistoricalWeaponStatsData>(
+            return _apiAccessor.ApiRequestAsync<Entities.Destiny.HistoricalStats.DestinyHistoricalWeaponStatsData>(
                 new Uri($"Destiny2/{membershipType}/Account/{destinyMembershipId}/Character/{characterId}/Stats/UniqueWeapons/", UriKind.Relative),
                 null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

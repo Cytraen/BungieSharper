@@ -17,12 +17,12 @@ namespace BungieSharper.Endpoints
         /// <param name="destinyMembershipId">The Destiny membershipId of the user to retrieve.</param>
         /// <param name="groups">Groups of stats to include, otherwise only general stats are returned. Comma separated list is allowed. Values: General, Weapons, Medals.</param>
         /// <param name="membershipType">A valid non-BungieNet membership type.</param>
-        public async Task<Entities.Destiny.HistoricalStats.DestinyHistoricalStatsAccountResult> Destiny2_GetHistoricalStatsForAccount(long destinyMembershipId, Entities.BungieMembershipType membershipType, IEnumerable<Entities.Destiny.HistoricalStats.Definitions.DestinyStatsGroupType>? groups = null, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<Entities.Destiny.HistoricalStats.DestinyHistoricalStatsAccountResult> Destiny2_GetHistoricalStatsForAccount(long destinyMembershipId, Entities.BungieMembershipType membershipType, IEnumerable<Entities.Destiny.HistoricalStats.Definitions.DestinyStatsGroupType>? groups = null, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<Entities.Destiny.HistoricalStats.DestinyHistoricalStatsAccountResult>(
+            return _apiAccessor.ApiRequestAsync<Entities.Destiny.HistoricalStats.DestinyHistoricalStatsAccountResult>(
                 new Uri($"Destiny2/{membershipType}/Account/{destinyMembershipId}/Stats/" + HttpRequestGenerator.MakeQuerystring(groups != null ? $"groups={string.Join(",", groups.Select(x => x.ToString()))}" : null), UriKind.Relative),
                 null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

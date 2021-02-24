@@ -17,12 +17,12 @@ namespace BungieSharper.Endpoints
         /// </summary>
         /// <param name="membershipId">Membership ID of the member to unban from the group</param>
         /// <param name="membershipType">Membership type of the provided membership ID.</param>
-        public async Task<int> GroupV2_UnbanMember(long groupId, long membershipId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<int> GroupV2_UnbanMember(long groupId, long membershipId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<int>(
+            return _apiAccessor.ApiRequestAsync<int>(
                 new Uri($"GroupV2/{groupId}/Members/{membershipType}/{membershipId}/Unban/", UriKind.Relative),
                 null, HttpMethod.Post, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

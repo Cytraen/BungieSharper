@@ -14,12 +14,12 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Provide the result of the user interaction. Called by the Bungie Destiny App to approve or reject a request.
         /// </summary>
-        public async Task<int> Destiny2_AwaProvideAuthorizationResult(Entities.Destiny.Advanced.AwaUserResponse requestBody, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<int> Destiny2_AwaProvideAuthorizationResult(Entities.Destiny.Advanced.AwaUserResponse requestBody, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<int>(
+            return _apiAccessor.ApiRequestAsync<int>(
                 new Uri($"Destiny2/Awa/AwaProvideAuthorizationResult/", UriKind.Relative),
                 new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

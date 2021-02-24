@@ -155,7 +155,7 @@ namespace BungieSharper.Endpoints
                 declareParams.Add(paramTypeText + " requestBody" + (requestBodyInfo.Required == false ? " = null" : ""));
             }
 
-            var queryStringParamsNotEmpty = parameters.Where(x => x.In == ParameterInEnum.Query).Count() > 0;
+            var queryStringParamsNotEmpty = parameters.Where(x => x.In == ParameterInEnum.Query).Any();
 
             var queryStringParamText = queryStringParamsNotEmpty ? string.Join(", ", queryParamTextList) : "";
 
@@ -164,12 +164,12 @@ namespace BungieSharper.Endpoints
             declareParams.Add("string? authToken = null");
             declareParams.Add("CancellationToken cancelToken = default");
 
-            content += $"        public async Task<{responseType}> {pathName}({string.Join(", ", declareParams)})\n        {{\n";
-            content += $"            return await _apiAccessor.ApiRequestAsync<{responseType}>(\n";
+            content += $"        public Task<{responseType}> {pathName}({string.Join(", ", declareParams)})\n        {{\n";
+            content += $"            return _apiAccessor.ApiRequestAsync<{responseType}>(\n";
             content += $"                new Uri($\"{path.TrimStart('/')}\"{queryStringParamFinal}, UriKind.Relative),\n";
 
             content += $"                {(responseMethodInfo.RequestBody != null ? "new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, \"application/json\")" : "null")}, HttpMethod.{httpMethod}, authToken, AuthHeaderType.Bearer, cancelToken\n";
-            content += $"                ).ConfigureAwait(false);\n        }}\n    }}\n}}";
+            content += $"                );\n        }}\n    }}\n}}";
 
             return content;
         }

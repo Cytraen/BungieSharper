@@ -18,12 +18,12 @@ namespace BungieSharper.Endpoints
         /// <param name="applicationId">ID of the application to get usage statistics.</param>
         /// <param name="end">End time for query. Goes to now if not specified.</param>
         /// <param name="start">Start time for query. Goes to 24 hours ago if not specified.</param>
-        public async Task<Entities.Applications.ApiUsage> App_GetApplicationApiUsage(int applicationId, DateTime? end = null, DateTime? start = null, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<Entities.Applications.ApiUsage> App_GetApplicationApiUsage(int applicationId, DateTime? end = null, DateTime? start = null, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<Entities.Applications.ApiUsage>(
+            return _apiAccessor.ApiRequestAsync<Entities.Applications.ApiUsage>(
                 new Uri($"App/ApiUsage/{applicationId}/" + HttpRequestGenerator.MakeQuerystring(end != null ? $"end={end}" : null, start != null ? $"start={start}" : null), UriKind.Relative),
                 null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

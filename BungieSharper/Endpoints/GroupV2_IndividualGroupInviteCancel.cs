@@ -18,12 +18,12 @@ namespace BungieSharper.Endpoints
         /// <param name="groupId">ID of the group you would like to join.</param>
         /// <param name="membershipId">Membership id of the account being cancelled.</param>
         /// <param name="membershipType">MembershipType of the account being cancelled.</param>
-        public async Task<Entities.GroupsV2.GroupApplicationResponse> GroupV2_IndividualGroupInviteCancel(long groupId, long membershipId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<Entities.GroupsV2.GroupApplicationResponse> GroupV2_IndividualGroupInviteCancel(long groupId, long membershipId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<Entities.GroupsV2.GroupApplicationResponse>(
+            return _apiAccessor.ApiRequestAsync<Entities.GroupsV2.GroupApplicationResponse>(
                 new Uri($"GroupV2/{groupId}/Members/IndividualInviteCancel/{membershipType}/{membershipId}/", UriKind.Relative),
                 null, HttpMethod.Post, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

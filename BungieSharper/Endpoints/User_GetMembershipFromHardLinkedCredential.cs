@@ -16,12 +16,12 @@ namespace BungieSharper.Endpoints
         /// </summary>
         /// <param name="credential">The credential to look up. Must be a valid SteamID64.</param>
         /// <param name="crType">The credential type. 'SteamId' is the only valid value at present.</param>
-        public async Task<Entities.User.HardLinkedUserMembership> User_GetMembershipFromHardLinkedCredential(string credential, Entities.BungieCredentialType crType, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<Entities.User.HardLinkedUserMembership> User_GetMembershipFromHardLinkedCredential(string credential, Entities.BungieCredentialType crType, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<Entities.User.HardLinkedUserMembership>(
+            return _apiAccessor.ApiRequestAsync<Entities.User.HardLinkedUserMembership>(
                 new Uri($"User/GetMembershipFromHardLinkedCredential/{crType}/{Uri.EscapeDataString(credential)}/", UriKind.Relative),
                 null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

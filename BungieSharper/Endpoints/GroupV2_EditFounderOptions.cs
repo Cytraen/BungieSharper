@@ -16,12 +16,12 @@ namespace BungieSharper.Endpoints
         /// Requires OAuth2 scope(s): AdminGroups
         /// </summary>
         /// <param name="groupId">Group ID of the group to edit.</param>
-        public async Task<int> GroupV2_EditFounderOptions(long groupId, Entities.GroupsV2.GroupOptionsEditAction requestBody, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<int> GroupV2_EditFounderOptions(long groupId, Entities.GroupsV2.GroupOptionsEditAction requestBody, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<int>(
+            return _apiAccessor.ApiRequestAsync<int>(
                 new Uri($"GroupV2/{groupId}/EditFounderOptions/", UriKind.Relative),
                 new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

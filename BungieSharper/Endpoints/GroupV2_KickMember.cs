@@ -18,12 +18,12 @@ namespace BungieSharper.Endpoints
         /// <param name="groupId">Group ID to kick the user from.</param>
         /// <param name="membershipId">Membership ID to kick.</param>
         /// <param name="membershipType">Membership type of the provided membership ID.</param>
-        public async Task<Entities.GroupsV2.GroupMemberLeaveResult> GroupV2_KickMember(long groupId, long membershipId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<Entities.GroupsV2.GroupMemberLeaveResult> GroupV2_KickMember(long groupId, long membershipId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<Entities.GroupsV2.GroupMemberLeaveResult>(
+            return _apiAccessor.ApiRequestAsync<Entities.GroupsV2.GroupMemberLeaveResult>(
                 new Uri($"GroupV2/{groupId}/Members/{membershipType}/{membershipId}/Kick/", UriKind.Relative),
                 null, HttpMethod.Post, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

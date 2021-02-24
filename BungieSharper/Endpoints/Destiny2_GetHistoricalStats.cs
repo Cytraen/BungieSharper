@@ -22,12 +22,12 @@ namespace BungieSharper.Endpoints
         /// <param name="membershipType">A valid non-BungieNet membership type.</param>
         /// <param name="modes">Game modes to return. See the documentation for DestinyActivityModeType for valid values, and pass in string representation, comma delimited.</param>
         /// <param name="periodType">Indicates a specific period type to return. Optional. May be: Daily, AllTime, or Activity</param>
-        public async Task<Dictionary<string, Entities.Destiny.HistoricalStats.DestinyHistoricalStatsByPeriod>> Destiny2_GetHistoricalStats(long characterId, long destinyMembershipId, Entities.BungieMembershipType membershipType, DateTime? dayend = null, DateTime? daystart = null, IEnumerable<Entities.Destiny.HistoricalStats.Definitions.DestinyStatsGroupType>? groups = null, IEnumerable<Entities.Destiny.HistoricalStats.Definitions.DestinyActivityModeType>? modes = null, Entities.Destiny.HistoricalStats.Definitions.PeriodType? periodType = null, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<Dictionary<string, Entities.Destiny.HistoricalStats.DestinyHistoricalStatsByPeriod>> Destiny2_GetHistoricalStats(long characterId, long destinyMembershipId, Entities.BungieMembershipType membershipType, DateTime? dayend = null, DateTime? daystart = null, IEnumerable<Entities.Destiny.HistoricalStats.Definitions.DestinyStatsGroupType>? groups = null, IEnumerable<Entities.Destiny.HistoricalStats.Definitions.DestinyActivityModeType>? modes = null, Entities.Destiny.HistoricalStats.Definitions.PeriodType? periodType = null, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<Dictionary<string, Entities.Destiny.HistoricalStats.DestinyHistoricalStatsByPeriod>>(
+            return _apiAccessor.ApiRequestAsync<Dictionary<string, Entities.Destiny.HistoricalStats.DestinyHistoricalStatsByPeriod>>(
                 new Uri($"Destiny2/{membershipType}/Account/{destinyMembershipId}/Character/{characterId}/Stats/" + HttpRequestGenerator.MakeQuerystring(dayend != null ? $"dayend={dayend}" : null, daystart != null ? $"daystart={daystart}" : null, groups != null ? $"groups={string.Join(",", groups.Select(x => x.ToString()))}" : null, modes != null ? $"modes={string.Join(",", modes.Select(x => x.ToString()))}" : null, periodType != null ? $"periodType={periodType}" : null), UriKind.Relative),
                 null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

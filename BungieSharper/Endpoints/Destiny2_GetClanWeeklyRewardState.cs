@@ -15,12 +15,12 @@ namespace BungieSharper.Endpoints
         /// Returns information on the weekly clan rewards and if the clan has earned them or not. Note that this will always report rewards as not redeemed.
         /// </summary>
         /// <param name="groupId">A valid group id of clan.</param>
-        public async Task<Entities.Destiny.Milestones.DestinyMilestone> Destiny2_GetClanWeeklyRewardState(long groupId, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<Entities.Destiny.Milestones.DestinyMilestone> Destiny2_GetClanWeeklyRewardState(long groupId, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<Entities.Destiny.Milestones.DestinyMilestone>(
+            return _apiAccessor.ApiRequestAsync<Entities.Destiny.Milestones.DestinyMilestone>(
                 new Uri($"Destiny2/Clan/{groupId}/WeeklyRewardState/", UriKind.Relative),
                 null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

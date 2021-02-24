@@ -18,12 +18,12 @@ namespace BungieSharper.Endpoints
         /// <param name="destinyMembershipId">The membership ID of the destiny profile.</param>
         /// <param name="itemInstanceId">The Instance ID of the destiny item.</param>
         /// <param name="membershipType">A valid non-BungieNet membership type.</param>
-        public async Task<Entities.Destiny.Responses.DestinyItemResponse> Destiny2_GetItem(long destinyMembershipId, long itemInstanceId, Entities.BungieMembershipType membershipType, IEnumerable<Entities.Destiny.DestinyComponentType>? components = null, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<Entities.Destiny.Responses.DestinyItemResponse> Destiny2_GetItem(long destinyMembershipId, long itemInstanceId, Entities.BungieMembershipType membershipType, IEnumerable<Entities.Destiny.DestinyComponentType>? components = null, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<Entities.Destiny.Responses.DestinyItemResponse>(
+            return _apiAccessor.ApiRequestAsync<Entities.Destiny.Responses.DestinyItemResponse>(
                 new Uri($"Destiny2/{membershipType}/Profile/{destinyMembershipId}/Item/{itemInstanceId}/" + HttpRequestGenerator.MakeQuerystring(components != null ? $"components={string.Join(",", components.Select(x => x.ToString()))}" : null), UriKind.Relative),
                 null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

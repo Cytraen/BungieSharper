@@ -14,12 +14,12 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Get information about a specific group with the given name and type. The POST version.
         /// </summary>
-        public async Task<Entities.GroupsV2.GroupResponse> GroupV2_GetGroupByNameV2(Entities.GroupsV2.GroupNameSearchRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<Entities.GroupsV2.GroupResponse> GroupV2_GetGroupByNameV2(Entities.GroupsV2.GroupNameSearchRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<Entities.GroupsV2.GroupResponse>(
+            return _apiAccessor.ApiRequestAsync<Entities.GroupsV2.GroupResponse>(
                 new Uri($"GroupV2/NameV2/", UriKind.Relative),
                 new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

@@ -19,12 +19,12 @@ namespace BungieSharper.Endpoints
         /// <param name="membershipId">Membership ID to modify.</param>
         /// <param name="membershipType">Membership type of the provide membership ID.</param>
         /// <param name="memberType">New membertype for the specified member.</param>
-        public async Task<int> GroupV2_EditGroupMembership(long groupId, long membershipId, Entities.BungieMembershipType membershipType, Entities.GroupsV2.RuntimeGroupMemberType memberType, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<int> GroupV2_EditGroupMembership(long groupId, long membershipId, Entities.BungieMembershipType membershipType, Entities.GroupsV2.RuntimeGroupMemberType memberType, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<int>(
+            return _apiAccessor.ApiRequestAsync<int>(
                 new Uri($"GroupV2/{groupId}/Members/{membershipType}/{membershipId}/SetMembershipType/{memberType}/", UriKind.Relative),
                 null, HttpMethod.Post, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

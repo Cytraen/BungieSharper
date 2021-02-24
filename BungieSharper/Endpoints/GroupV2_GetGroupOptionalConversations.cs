@@ -15,12 +15,12 @@ namespace BungieSharper.Endpoints
         /// Gets a list of available optional conversation channels and their settings.
         /// </summary>
         /// <param name="groupId">Requested group's id.</param>
-        public async Task<IEnumerable<Entities.GroupsV2.GroupOptionalConversation>> GroupV2_GetGroupOptionalConversations(long groupId, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<IEnumerable<Entities.GroupsV2.GroupOptionalConversation>> GroupV2_GetGroupOptionalConversations(long groupId, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<IEnumerable<Entities.GroupsV2.GroupOptionalConversation>>(
+            return _apiAccessor.ApiRequestAsync<IEnumerable<Entities.GroupsV2.GroupOptionalConversation>>(
                 new Uri($"GroupV2/{groupId}/OptionalConversations/", UriKind.Relative),
                 null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

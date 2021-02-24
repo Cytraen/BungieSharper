@@ -16,12 +16,12 @@ namespace BungieSharper.Endpoints
         /// </summary>
         /// <param name="groupId">Group ID of the clan whose leaderboards you wish to fetch.</param>
         /// <param name="modes">List of game modes for which to get leaderboards. See the documentation for DestinyActivityModeType for valid values, and pass in string representation, comma delimited.</param>
-        public async Task<IEnumerable<Entities.Destiny.HistoricalStats.DestinyClanAggregateStat>> Destiny2_GetClanAggregateStats(long groupId, string? modes = null, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<IEnumerable<Entities.Destiny.HistoricalStats.DestinyClanAggregateStat>> Destiny2_GetClanAggregateStats(long groupId, string? modes = null, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<IEnumerable<Entities.Destiny.HistoricalStats.DestinyClanAggregateStat>>(
+            return _apiAccessor.ApiRequestAsync<IEnumerable<Entities.Destiny.HistoricalStats.DestinyClanAggregateStat>>(
                 new Uri($"Destiny2/Stats/AggregateClanStats/{groupId}/" + HttpRequestGenerator.MakeQuerystring(modes != null ? $"modes={Uri.EscapeDataString(modes)}" : null), UriKind.Relative),
                 null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

@@ -17,12 +17,12 @@ namespace BungieSharper.Endpoints
         /// <param name="founderIdNew">The new founder for this group. Must already be a group admin.</param>
         /// <param name="groupId">The target group id.</param>
         /// <param name="membershipType">Membership type of the provided founderIdNew.</param>
-        public async Task<bool> GroupV2_AbdicateFoundership(long founderIdNew, long groupId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<bool> GroupV2_AbdicateFoundership(long founderIdNew, long groupId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<bool>(
+            return _apiAccessor.ApiRequestAsync<bool>(
                 new Uri($"GroupV2/{groupId}/Admin/AbdicateFoundership/{membershipType}/{founderIdNew}/", UriKind.Relative),
                 null, HttpMethod.Post, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

@@ -16,12 +16,12 @@ namespace BungieSharper.Endpoints
         /// </summary>
         /// <param name="currentpage">Page number (starting with 1). Each page has a fixed size of 50 items per page.</param>
         /// <param name="groupId">The ID of the group.</param>
-        public async Task<Entities.SearchResultOfGroupMember> GroupV2_GetAdminsAndFounderOfGroup(int currentpage, long groupId, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<Entities.SearchResultOfGroupMember> GroupV2_GetAdminsAndFounderOfGroup(int currentpage, long groupId, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<Entities.SearchResultOfGroupMember>(
+            return _apiAccessor.ApiRequestAsync<Entities.SearchResultOfGroupMember>(
                 new Uri($"GroupV2/{groupId}/AdminsAndFounder/", UriKind.Relative),
                 null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

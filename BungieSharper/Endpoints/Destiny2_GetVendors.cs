@@ -19,12 +19,12 @@ namespace BungieSharper.Endpoints
         /// <param name="destinyMembershipId">Destiny membership ID of another user. You may be denied.</param>
         /// <param name="filter">The filter of what vendors and items to return, if any.</param>
         /// <param name="membershipType">A valid non-BungieNet membership type.</param>
-        public async Task<Entities.Destiny.Responses.DestinyVendorsResponse> Destiny2_GetVendors(long characterId, long destinyMembershipId, Entities.BungieMembershipType membershipType, IEnumerable<Entities.Destiny.DestinyComponentType>? components = null, Entities.Destiny.DestinyVendorFilter? filter = null, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<Entities.Destiny.Responses.DestinyVendorsResponse> Destiny2_GetVendors(long characterId, long destinyMembershipId, Entities.BungieMembershipType membershipType, IEnumerable<Entities.Destiny.DestinyComponentType>? components = null, Entities.Destiny.DestinyVendorFilter? filter = null, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<Entities.Destiny.Responses.DestinyVendorsResponse>(
+            return _apiAccessor.ApiRequestAsync<Entities.Destiny.Responses.DestinyVendorsResponse>(
                 new Uri($"Destiny2/{membershipType}/Profile/{destinyMembershipId}/Character/{characterId}/Vendors/" + HttpRequestGenerator.MakeQuerystring(components != null ? $"components={string.Join(",", components.Select(x => x.ToString()))}" : null, filter != null ? $"filter={filter}" : null), UriKind.Relative),
                 null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

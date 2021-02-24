@@ -17,12 +17,12 @@ namespace BungieSharper.Endpoints
         /// <param name="currentpage">Page number for the search results starting with page 1.</param>
         /// <param name="head">Not used.</param>
         /// <param name="itemsperpage">Not used.</param>
-        public async Task<Entities.SearchResultOfContentItemPublicContract> Content_SearchContentByTagAndType(string locale, string tag, string type, int? currentpage = null, bool? head = null, int? itemsperpage = null, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<Entities.SearchResultOfContentItemPublicContract> Content_SearchContentByTagAndType(string locale, string tag, string type, int? currentpage = null, bool? head = null, int? itemsperpage = null, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<Entities.SearchResultOfContentItemPublicContract>(
+            return _apiAccessor.ApiRequestAsync<Entities.SearchResultOfContentItemPublicContract>(
                 new Uri($"Content/SearchContentByTagAndType/{Uri.EscapeDataString(tag)}/{Uri.EscapeDataString(type)}/{Uri.EscapeDataString(locale)}/" + HttpRequestGenerator.MakeQuerystring(currentpage != null ? $"currentpage={currentpage}" : null, head != null ? $"head={head}" : null, itemsperpage != null ? $"itemsperpage={itemsperpage}" : null), UriKind.Relative),
                 null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

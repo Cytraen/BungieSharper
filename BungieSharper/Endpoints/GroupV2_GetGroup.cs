@@ -15,12 +15,12 @@ namespace BungieSharper.Endpoints
         /// Get information about a specific group of the given ID.
         /// </summary>
         /// <param name="groupId">Requested group's id.</param>
-        public async Task<Entities.GroupsV2.GroupResponse> GroupV2_GetGroup(long groupId, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<Entities.GroupsV2.GroupResponse> GroupV2_GetGroup(long groupId, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<Entities.GroupsV2.GroupResponse>(
+            return _apiAccessor.ApiRequestAsync<Entities.GroupsV2.GroupResponse>(
                 new Uri($"GroupV2/{groupId}/", UriKind.Relative),
                 null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

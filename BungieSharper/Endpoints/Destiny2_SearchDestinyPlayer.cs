@@ -17,12 +17,12 @@ namespace BungieSharper.Endpoints
         /// <param name="displayName">The full gamertag or PSN id of the player. Spaces and case are ignored.</param>
         /// <param name="membershipType">A valid non-BungieNet membership type, or All.</param>
         /// <param name="returnOriginalProfile">(optional) If passed in and set to true, we will return the original Destiny Profile(s) linked to that gamertag, and not their currently active Destiny Profile.</param>
-        public async Task<IEnumerable<Entities.User.UserInfoCard>> Destiny2_SearchDestinyPlayer(string displayName, Entities.BungieMembershipType membershipType, bool? returnOriginalProfile = null, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<IEnumerable<Entities.User.UserInfoCard>> Destiny2_SearchDestinyPlayer(string displayName, Entities.BungieMembershipType membershipType, bool? returnOriginalProfile = null, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<IEnumerable<Entities.User.UserInfoCard>>(
+            return _apiAccessor.ApiRequestAsync<IEnumerable<Entities.User.UserInfoCard>>(
                 new Uri($"Destiny2/SearchDestinyPlayer/{membershipType}/{Uri.EscapeDataString(displayName)}/" + HttpRequestGenerator.MakeQuerystring(returnOriginalProfile != null ? $"returnOriginalProfile={returnOriginalProfile}" : null), UriKind.Relative),
                 null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

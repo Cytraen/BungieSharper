@@ -14,12 +14,12 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Gets public information about currently available Milestones.
         /// </summary>
-        public async Task<Dictionary<uint, Entities.Destiny.Milestones.DestinyPublicMilestone>> Destiny2_GetPublicMilestones(string? authToken = null, CancellationToken cancelToken = default)
+        public Task<Dictionary<uint, Entities.Destiny.Milestones.DestinyPublicMilestone>> Destiny2_GetPublicMilestones(string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<Dictionary<uint, Entities.Destiny.Milestones.DestinyPublicMilestone>>(
+            return _apiAccessor.ApiRequestAsync<Dictionary<uint, Entities.Destiny.Milestones.DestinyPublicMilestone>>(
                 new Uri($"Destiny2/Milestones/", UriKind.Relative),
                 null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

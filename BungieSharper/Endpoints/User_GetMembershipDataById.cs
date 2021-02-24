@@ -16,12 +16,12 @@ namespace BungieSharper.Endpoints
         /// </summary>
         /// <param name="membershipId">The membership ID of the target user.</param>
         /// <param name="membershipType">Type of the supplied membership ID.</param>
-        public async Task<Entities.User.UserMembershipData> User_GetMembershipDataById(long membershipId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<Entities.User.UserMembershipData> User_GetMembershipDataById(long membershipId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<Entities.User.UserMembershipData>(
+            return _apiAccessor.ApiRequestAsync<Entities.User.UserMembershipData>(
                 new Uri($"User/GetMembershipsById/{membershipId}/{membershipType}/", UriKind.Relative),
                 null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

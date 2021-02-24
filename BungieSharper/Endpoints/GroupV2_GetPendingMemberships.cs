@@ -17,12 +17,12 @@ namespace BungieSharper.Endpoints
         /// </summary>
         /// <param name="currentpage">Page number (starting with 1). Each page has a fixed size of 50 items per page.</param>
         /// <param name="groupId">ID of the group.</param>
-        public async Task<Entities.SearchResultOfGroupMemberApplication> GroupV2_GetPendingMemberships(int currentpage, long groupId, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<Entities.SearchResultOfGroupMemberApplication> GroupV2_GetPendingMemberships(int currentpage, long groupId, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<Entities.SearchResultOfGroupMemberApplication>(
+            return _apiAccessor.ApiRequestAsync<Entities.SearchResultOfGroupMemberApplication>(
                 new Uri($"GroupV2/{groupId}/Members/Pending/", UriKind.Relative),
                 null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

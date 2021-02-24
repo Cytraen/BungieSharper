@@ -16,12 +16,12 @@ namespace BungieSharper.Endpoints
         /// Requires OAuth2 scope(s): ReadUserData
         /// </summary>
         /// <param name="mType">The Destiny membership type of the account we wish to access settings.</param>
-        public async Task<bool> GroupV2_GetUserClanInviteSetting(Entities.BungieMembershipType mType, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<bool> GroupV2_GetUserClanInviteSetting(Entities.BungieMembershipType mType, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<bool>(
+            return _apiAccessor.ApiRequestAsync<bool>(
                 new Uri($"GroupV2/GetUserClanInviteSetting/{mType}/", UriKind.Relative),
                 null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

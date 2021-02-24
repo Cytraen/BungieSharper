@@ -17,12 +17,12 @@ namespace BungieSharper.Endpoints
         /// <param name="groupType">Type of group the supplied member founded.</param>
         /// <param name="membershipId">Membership ID to for which to find founded groups.</param>
         /// <param name="membershipType">Membership type of the supplied membership ID.</param>
-        public async Task<Entities.GroupsV2.GroupMembershipSearchResponse> GroupV2_RecoverGroupForFounder(Entities.GroupsV2.GroupType groupType, long membershipId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<Entities.GroupsV2.GroupMembershipSearchResponse> GroupV2_RecoverGroupForFounder(Entities.GroupsV2.GroupType groupType, long membershipId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<Entities.GroupsV2.GroupMembershipSearchResponse>(
+            return _apiAccessor.ApiRequestAsync<Entities.GroupsV2.GroupMembershipSearchResponse>(
                 new Uri($"GroupV2/Recover/{membershipType}/{membershipId}/{groupType}/", UriKind.Relative),
                 null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

@@ -14,12 +14,12 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Gets historical stats definitions.
         /// </summary>
-        public async Task<Dictionary<string, Entities.Destiny.HistoricalStats.Definitions.DestinyHistoricalStatsDefinition>> Destiny2_GetHistoricalStatsDefinition(string? authToken = null, CancellationToken cancelToken = default)
+        public Task<Dictionary<string, Entities.Destiny.HistoricalStats.Definitions.DestinyHistoricalStatsDefinition>> Destiny2_GetHistoricalStatsDefinition(string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<Dictionary<string, Entities.Destiny.HistoricalStats.Definitions.DestinyHistoricalStatsDefinition>>(
+            return _apiAccessor.ApiRequestAsync<Dictionary<string, Entities.Destiny.HistoricalStats.Definitions.DestinyHistoricalStatsDefinition>>(
                 new Uri($"Destiny2/Stats/Definition/", UriKind.Relative),
                 null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

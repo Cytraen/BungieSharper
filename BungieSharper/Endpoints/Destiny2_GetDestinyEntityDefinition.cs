@@ -16,12 +16,12 @@ namespace BungieSharper.Endpoints
         /// </summary>
         /// <param name="entityType">The type of entity for whom you would like results. These correspond to the entity's definition contract name. For instance, if you are looking for items, this property should be 'DestinyInventoryItemDefinition'. PREVIEW: This endpoint is still in beta, and may experience rough edges. The schema is tentatively in final form, but there may be bugs that prevent desirable operation.</param>
         /// <param name="hashIdentifier">The hash identifier for the specific Entity you want returned.</param>
-        public async Task<Entities.Destiny.Definitions.DestinyDefinition> Destiny2_GetDestinyEntityDefinition(string entityType, uint hashIdentifier, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<Entities.Destiny.Definitions.DestinyDefinition> Destiny2_GetDestinyEntityDefinition(string entityType, uint hashIdentifier, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<Entities.Destiny.Definitions.DestinyDefinition>(
+            return _apiAccessor.ApiRequestAsync<Entities.Destiny.Definitions.DestinyDefinition>(
                 new Uri($"Destiny2/Manifest/{Uri.EscapeDataString(entityType)}/{hashIdentifier}/", UriKind.Relative),
                 null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

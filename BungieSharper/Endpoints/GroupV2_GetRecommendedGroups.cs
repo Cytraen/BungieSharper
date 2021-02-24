@@ -17,12 +17,12 @@ namespace BungieSharper.Endpoints
         /// </summary>
         /// <param name="createDateRange">Requested range in which to pull recommended groups</param>
         /// <param name="groupType">Type of groups requested</param>
-        public async Task<IEnumerable<Entities.GroupsV2.GroupV2Card>> GroupV2_GetRecommendedGroups(Entities.GroupsV2.GroupDateRange createDateRange, Entities.GroupsV2.GroupType groupType, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<IEnumerable<Entities.GroupsV2.GroupV2Card>> GroupV2_GetRecommendedGroups(Entities.GroupsV2.GroupDateRange createDateRange, Entities.GroupsV2.GroupType groupType, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<IEnumerable<Entities.GroupsV2.GroupV2Card>>(
+            return _apiAccessor.ApiRequestAsync<IEnumerable<Entities.GroupsV2.GroupV2Card>>(
                 new Uri($"GroupV2/Recommended/{groupType}/{createDateRange}/", UriKind.Relative),
                 null, HttpMethod.Post, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

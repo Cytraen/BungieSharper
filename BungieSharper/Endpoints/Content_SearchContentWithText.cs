@@ -20,12 +20,12 @@ namespace BungieSharper.Endpoints
         /// <param name="searchtext">Word or phrase for the search.</param>
         /// <param name="source">For analytics, hint at the part of the app that triggered the search. Optional.</param>
         /// <param name="tag">Tag used on the content to be searched.</param>
-        public async Task<Entities.SearchResultOfContentItemPublicContract> Content_SearchContentWithText(string locale, string? ctype = null, int? currentpage = null, bool? head = null, string? searchtext = null, string? source = null, string? tag = null, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<Entities.SearchResultOfContentItemPublicContract> Content_SearchContentWithText(string locale, string? ctype = null, int? currentpage = null, bool? head = null, string? searchtext = null, string? source = null, string? tag = null, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<Entities.SearchResultOfContentItemPublicContract>(
+            return _apiAccessor.ApiRequestAsync<Entities.SearchResultOfContentItemPublicContract>(
                 new Uri($"Content/Search/{Uri.EscapeDataString(locale)}/" + HttpRequestGenerator.MakeQuerystring(ctype != null ? $"ctype={Uri.EscapeDataString(ctype)}" : null, currentpage != null ? $"currentpage={currentpage}" : null, head != null ? $"head={head}" : null, searchtext != null ? $"searchtext={Uri.EscapeDataString(searchtext)}" : null, source != null ? $"source={Uri.EscapeDataString(source)}" : null, tag != null ? $"tag={Uri.EscapeDataString(tag)}" : null), UriKind.Relative),
                 null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

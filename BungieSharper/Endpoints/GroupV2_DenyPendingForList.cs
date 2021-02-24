@@ -16,12 +16,12 @@ namespace BungieSharper.Endpoints
         /// Requires OAuth2 scope(s): AdminGroups
         /// </summary>
         /// <param name="groupId">ID of the group.</param>
-        public async Task<IEnumerable<Entities.Entities.EntityActionResult>> GroupV2_DenyPendingForList(long groupId, Entities.GroupsV2.GroupApplicationListRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<IEnumerable<Entities.Entities.EntityActionResult>> GroupV2_DenyPendingForList(long groupId, Entities.GroupsV2.GroupApplicationListRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return await _apiAccessor.ApiRequestAsync<IEnumerable<Entities.Entities.EntityActionResult>>(
+            return _apiAccessor.ApiRequestAsync<IEnumerable<Entities.Entities.EntityActionResult>>(
                 new Uri($"GroupV2/{groupId}/Members/DenyList/", UriKind.Relative),
                 new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, AuthHeaderType.Bearer, cancelToken
-                ).ConfigureAwait(false);
+                );
         }
     }
 }

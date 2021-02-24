@@ -22,9 +22,9 @@ namespace BungieSharper.Client
 
     public class BungieBaseApiResponseException : BungieBaseException
     {
-        public ApiResponse ApiResponseMsg { get; }
+        public Entities.ApiResponse ApiResponseMsg { get; }
 
-        internal BungieBaseApiResponseException(ApiResponse apiResponseMsg, string message) : base(message)
+        internal BungieBaseApiResponseException(Entities.ApiResponse apiResponseMsg, string message) : base(message)
         {
             ApiResponseMsg = apiResponseMsg;
         }
@@ -52,7 +52,7 @@ namespace BungieSharper.Client
     {
         private const string DefaultErrorMessage = "The Bungie API returned an error code that should not be retried on.";
 
-        internal NonRetryErrorCodeException(ApiResponse apiResponse, string message = DefaultErrorMessage) : base(apiResponse, message)
+        internal NonRetryErrorCodeException(Entities.ApiResponse apiResponse, string message = DefaultErrorMessage) : base(apiResponse, message)
         {
         }
     }
@@ -61,7 +61,7 @@ namespace BungieSharper.Client
     {
         private const string DefaultErrorMessage = "The response provided by the Bungie API was null or empty.";
 
-        internal NullResponseException(ApiResponse apiResponse, string message = DefaultErrorMessage) : base(apiResponse, message)
+        internal NullResponseException(Entities.ApiResponse apiResponse, string message = DefaultErrorMessage) : base(apiResponse, message)
         {
         }
     }

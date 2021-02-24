@@ -7,10 +7,6 @@ namespace BungieSharper.CodeGen.Entities.Common
     public enum TagEnum
     {
         None,
-
-        [EnumMember(Value = "")]
-        Core,
-
         App,
         User,
         Content,
@@ -21,6 +17,9 @@ namespace BungieSharper.CodeGen.Entities.Common
         CommunityContent,
         Trending,
         Fireteam,
-        Preview
+        Preview,
+
+        [EnumMember(Value = "")]
+        Core,
     }
 }

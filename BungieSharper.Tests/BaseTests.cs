@@ -17,7 +17,7 @@ namespace BungieSharper.Tests
         [Fact]
         public async Task GetManifestTask()
         {
-            var manifestData = await ClientFixture.TestClient.ApiEndpoints.Destiny2_GetDestinyManifest();
+            var manifestData = await ClientFixture.TestClient.Api.Destiny2_GetDestinyManifest();
             Assert.False(string.IsNullOrEmpty(manifestData.Version));
         }
 
@@ -28,7 +28,7 @@ namespace BungieSharper.Tests
             const long expectedMembershipId = 4611686018511231764;
             const string expectedDisplayName = "FlighterLuid";
 
-            var actualCards = (await ClientFixture.TestClient.ApiEndpoints.Destiny2_SearchDestinyPlayer(
+            var actualCards = (await ClientFixture.TestClient.Api.Destiny2_SearchDestinyPlayer(
                 "FlighterLuid", BungieMembershipType.All
                 )).ToList();
 

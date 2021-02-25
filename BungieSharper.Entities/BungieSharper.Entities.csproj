@@ -10,7 +10,7 @@
     <Nullable>enable</Nullable>
 
     <TargetFrameworks>net5.0</TargetFrameworks>
-    <Version>0.7.1-beta.1</Version>
+    <Version>0.7.1-beta.2</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

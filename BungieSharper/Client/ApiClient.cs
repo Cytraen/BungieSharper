@@ -12,17 +12,17 @@ namespace BungieSharper.Client
 
         private readonly ApiAccessor _apiAccessor;
 
-        public Endpoints.Endpoints ApiEndpoints { get; }
+        public Endpoints.Endpoints Api { get; }
 
-        public Endpoints.OAuthRequests OAuthEndpoints { get; }
+        public Endpoints.OAuthRequests OAuth { get; }
 
         public BungieApiClient()
         {
             _apiAccessor = new ApiAccessor();
             SetRateLimit(DefaultRequestsPerSecond);
 
-            ApiEndpoints = new Endpoints.Endpoints(_apiAccessor);
-            OAuthEndpoints = new Endpoints.OAuthRequests(_apiAccessor);
+            Api = new Endpoints.Endpoints(_apiAccessor);
+            OAuth = new Endpoints.OAuthRequests(_apiAccessor);
         }
 
         public BungieApiClient(string apiKey) : this()
@@ -72,12 +72,12 @@ namespace BungieSharper.Client
 
         public void SetOAuthClientId(ushort clientId)
         {
-            OAuthEndpoints.SetOAuthClientId(clientId);
+            OAuth.SetOAuthClientId(clientId);
         }
 
         public void SetOAuthClientSecret(string clientSecret)
         {
-            OAuthEndpoints.SetOAuthClientSecret(clientSecret);
+            OAuth.SetOAuthClientSecret(clientSecret);
         }
 
         public void Dispose() => _apiAccessor.Dispose();

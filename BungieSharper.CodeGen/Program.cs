@@ -132,29 +132,79 @@ namespace BungieSharper.CodeGen
                     );
             }
 
+            var pathContentDict = new Dictionary<Entities.Common.TagEnum, List<string>>();
+
             foreach (var (pathUri, pathDef) in paths)
             {
+                var tag = Entities.Common.TagEnum.None;
+
+                if (pathDef.Get != null)
+                {
+                    var tagList = pathDef.Get.Tags.ToList();
+                    tagList.Remove(Entities.Common.TagEnum.Preview);
+                    tag = tagList[0];
+                }
+                if (pathDef.Post != null)
+                {
+                    var tagList = pathDef.Post.Tags.ToList();
+                    tagList.Remove(Entities.Common.TagEnum.Preview);
+                    tag = tagList[0];
+                }
+
+                if (!pathContentDict.ContainsKey(tag))
+                {
+                    pathContentDict[tag] = new();
+                }
+
                 var pathContent = Generation.GeneratePath.GeneratePathContent(pathUri, pathDef);
+                pathContentDict[tag].Add(pathContent);
+            }
 
-                if (!pathContent.Contains("System.DateTime"))
-                {
-                    pathContent = pathContent.Replace("using System;\n", "");
-                }
-                else
-                {
-                    pathContent = pathContent.Replace("System.DateTime", "DateTime");
-                }
+            foreach (var (tag, methods) in pathContentDict)
+            {
+                var aggregateFile = "";
 
-                if (!pathContent.Contains("IEnumerable<") && !pathContent.Contains("Dictionary<"))
+                aggregateFile +=
+@"using BungieSharper.Client;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Text.Json;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace BungieSharper.Endpoints
+{
+    public partial class Endpoints
+    {
+";
+
+                aggregateFile += string.Join("\n\n", methods);
+                aggregateFile += "\n    }\n}";
+                aggregateFile = aggregateFile.Replace("\r\n", "\n");
+
+                if (!aggregateFile.Contains("JsonSerializer.Serialize("))
                 {
-                    pathContent = pathContent.Replace("using System.Collections.Generic;\n", "");
+                    aggregateFile = aggregateFile.Replace("using System.Text.Json;\n", "");
+                }
+                if (!aggregateFile.Contains("IEnumerable<") && !aggregateFile.Contains("Dictionary<"))
+                {
+                    aggregateFile = aggregateFile.Replace("using System.Collections.Generic;\n", "");
+                }
+                if (!aggregateFile.Contains(".Select(x => x.") && !aggregateFile.Contains(".Where(x => x."))
+                {
+                    aggregateFile = aggregateFile.Replace("using System.Linq;\n", "");
                 }
 
                 WriteFileWithContent(
                     bungieSharperPath + "Endpoints\\",
-                    (pathDef.Summary.Replace('.', '_') + ".cs").Replace("..", ".").TrimStart('_'),
-                    pathContent);
+                    Generation.Mapping.TagToDescription(tag) + ".cs",
+                    aggregateFile);
             }
+
+            Console.WriteLine("Done. Press ENTER to exit.");
+            Console.ReadLine();
         }
 
         public static void WriteFileWithContent(string fileFolder, string fileName, string fileContent)

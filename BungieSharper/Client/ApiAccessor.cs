@@ -34,6 +34,7 @@ namespace BungieSharper.Client
                 CookieContainer = cookieContainer,
                 UseCookies = true
             };
+
             _httpClient = new HttpClient(httpClientHandler)
             {
                 BaseAddress = new Uri(BaseUrl, UriKind.Absolute)
@@ -99,8 +100,8 @@ namespace BungieSharper.Client
                     throw new ContentNotJsonException(httpResponseMessage);
                 }
 
-                var apiResponse = JsonSerializer.Deserialize<ApiResponse<T>>(
-                    await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false), _serializerOptions
+                var apiResponse = JsonSerializer.Deserialize<Entities.ApiResponse<T>>(
+                    await httpResponseMessage.Content.ReadAsStringAsync(cancelToken).ConfigureAwait(false), _serializerOptions
                     );
 
                 if (apiResponse is null)
@@ -113,7 +114,7 @@ namespace BungieSharper.Client
                     if (ApiRetry(apiResponse.ErrorCode))
                     {
                         await throttleTask.ConfigureAwait(false);
-                        await Task.Delay((int)apiResponse.ThrottleSeconds, cancelToken).ConfigureAwait(false);
+                        await Task.Delay(apiResponse.ThrottleSeconds, cancelToken).ConfigureAwait(false);
                     }
                     else
                     {
@@ -136,7 +137,7 @@ namespace BungieSharper.Client
             }
         }
 
-        internal async Task<TokenRequestResponse> ApiTokenRequestResponseAsync(Uri uri, HttpContent httpContent, HttpMethod httpMethod, string? authToken, AuthHeaderType authType, CancellationToken cancelToken)
+        internal async Task<Entities.TokenResponse> ApiTokenRequestResponseAsync(Uri uri, HttpContent httpContent, HttpMethod httpMethod, string? authToken, AuthHeaderType authType, CancellationToken cancelToken)
         {
             var semaphoreTask = _semaphore.WaitAsync(cancelToken).ConfigureAwait(false);
             var httpRequestMessage = HttpRequestGenerator.MakeApiRequestMessage(uri, httpContent, httpMethod, authToken, authType);
@@ -159,8 +160,8 @@ namespace BungieSharper.Client
                     throw new ContentNotJsonException(httpResponseMessage);
                 }
 
-                var apiResponse = JsonSerializer.Deserialize<TokenRequestResponse>(
-                    await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false), _serializerOptions
+                var apiResponse = JsonSerializer.Deserialize<Entities.TokenResponse>(
+                    await httpResponseMessage.Content.ReadAsStringAsync(cancelToken).ConfigureAwait(false), _serializerOptions
                     );
 
                 if (apiResponse is null)
@@ -173,9 +174,9 @@ namespace BungieSharper.Client
             }
         }
 
-        private async Task<HttpResponseMessage> GetApiResponseAsync(HttpRequestMessage request, CancellationToken cancelToken)
+        private Task<HttpResponseMessage> GetApiResponseAsync(HttpRequestMessage request, CancellationToken cancelToken)
         {
-            return await _httpClient.SendAsync(request, cancelToken).ConfigureAwait(false);
+            return _httpClient.SendAsync(request, cancelToken);
         }
 
         private static async Task AwaitThrottleAndReleaseSemaphore(Task throttleTask, SemaphoreSlim semaphore)

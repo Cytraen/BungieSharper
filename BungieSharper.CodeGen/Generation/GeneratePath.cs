@@ -13,22 +13,6 @@ namespace BungieSharper.CodeGen.Generation
             var httpMethod = "";
             var content = "";
 
-            content +=
-@"using BungieSharper.Client;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text.Json;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace BungieSharper.Endpoints
-{
-    public partial class Endpoints
-    {
-";
-
             if (pathDef.Get is not null && pathDef.Post is not null)
             {
                 throw new NotSupportedException();
@@ -36,7 +20,7 @@ namespace BungieSharper.Endpoints
 
             var parameters = new List<PathResponseMethodParameterClass>();
             var responseType = "";
-            var pathName = pathDef.Summary.Replace('.', '_');
+            var pathName = pathDef.Summary.Replace('.', '_').TrimStart('_');
             ResponseMethodClass? responseMethodInfo = null;
 
             if (pathDef.Get is not null)
@@ -155,7 +139,7 @@ namespace BungieSharper.Endpoints
                 declareParams.Add(paramTypeText + " requestBody" + (requestBodyInfo.Required == false ? " = null" : ""));
             }
 
-            var queryStringParamsNotEmpty = parameters.Where(x => x.In == ParameterInEnum.Query).Count() > 0;
+            var queryStringParamsNotEmpty = parameters.Where(x => x.In == ParameterInEnum.Query).Any();
 
             var queryStringParamText = queryStringParamsNotEmpty ? string.Join(", ", queryParamTextList) : "";
 
@@ -164,14 +148,14 @@ namespace BungieSharper.Endpoints
             declareParams.Add("string? authToken = null");
             declareParams.Add("CancellationToken cancelToken = default");
 
-            content += $"        public async Task<{responseType}> {pathName}({string.Join(", ", declareParams)})\n        {{\n";
-            content += $"            return await _apiAccessor.ApiRequestAsync<{responseType}>(\n";
+            content += $"        public Task<{responseType}> {pathName}({string.Join(", ", declareParams)})\n        {{\n";
+            content += $"            return _apiAccessor.ApiRequestAsync<{responseType}>(\n";
             content += $"                new Uri($\"{path.TrimStart('/')}\"{queryStringParamFinal}, UriKind.Relative),\n";
 
             content += $"                {(responseMethodInfo.RequestBody != null ? "new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, \"application/json\")" : "null")}, HttpMethod.{httpMethod}, authToken, AuthHeaderType.Bearer, cancelToken\n";
-            content += $"                ).ConfigureAwait(false);\n        }}\n    }}\n}}";
+            content += $"                );\n        }}";
 
-            return content;
+            return content.Replace("System.DateTime", "DateTime");
         }
 
         public static string ParseParameterSchema(ParameterSchemaClass paramSchema, bool? required)

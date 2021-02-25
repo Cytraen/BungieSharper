@@ -18,6 +18,7 @@ using BungieSharper.Entities.Destiny.Definitions.Reporting;
 using BungieSharper.Entities.Destiny.Definitions.Seasons;
 using BungieSharper.Entities.Destiny.Definitions.Sockets;
 using BungieSharper.Entities.Destiny.Definitions.Traits;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace BungieSharper.Entities
@@ -25,228 +26,228 @@ namespace BungieSharper.Entities
     public class AggregateDestinyDefinitions
     {
         // [JsonPropertyName("DestinyEnemyRaceDefinition")]
-        // public DestinyEnemyRaceDefinition? EnemyRaces { get; set; }
+        // public Dictionary<uint, DestinyEnemyRaceDefinition>? EnemyRaces { get; set; }
 
         // [JsonPropertyName("DestinyNodeStepSummaryDefinition")]
-        // public DestinyNodeStepSummaryDefinition? NodeStepSummaries { get; set; }
+        // public Dictionary<uint, DestinyNodeStepSummaryDefinition>? NodeStepSummaries { get; set; }
 
         // [JsonPropertyName("DestinyArtDyeChannelDefinition")]
-        // public DestinyArtDyeChannelDefinition? ArtDyeChannels { get; set; }
+        // public Dictionary<uint, DestinyArtDyeChannelDefinition>? ArtDyeChannels { get; set; }
 
         // [JsonPropertyName("DestinyArtDyeReferenceDefinition")]
-        // public DestinyArtDyeReferenceDefinition? ArtDyeReferences { get; set; }
+        // public Dictionary<uint, DestinyArtDyeReferenceDefinition>? ArtDyeReferences { get; set; }
 
         [JsonPropertyName("DestinyPlaceDefinition")]
-        public DestinyPlaceDefinition? Places { get; set; }
+        public Dictionary<uint, DestinyPlaceDefinition>? Places { get; set; }
 
         [JsonPropertyName("DestinyActivityDefinition")]
-        public DestinyActivityDefinition? Activities { get; set; }
+        public Dictionary<uint, DestinyActivityDefinition>? Activities { get; set; }
 
         [JsonPropertyName("DestinyActivityTypeDefinition")]
-        public DestinyActivityTypeDefinition? ActivityTypes { get; set; }
+        public Dictionary<uint, DestinyActivityTypeDefinition>? ActivityTypes { get; set; }
 
         [JsonPropertyName("DestinyClassDefinition")]
-        public DestinyClassDefinition? Classes { get; set; }
+        public Dictionary<uint, DestinyClassDefinition>? Classes { get; set; }
 
         [JsonPropertyName("DestinyGenderDefinition")]
-        public DestinyGenderDefinition? Genders { get; set; }
+        public Dictionary<uint, DestinyGenderDefinition>? Genders { get; set; }
 
         [JsonPropertyName("DestinyInventoryBucketDefinition")]
-        public DestinyInventoryBucketDefinition? InventoryBuckets { get; set; }
+        public Dictionary<uint, DestinyInventoryBucketDefinition>? InventoryBuckets { get; set; }
 
         [JsonPropertyName("DestinyRaceDefinition")]
-        public DestinyRaceDefinition? Races { get; set; }
+        public Dictionary<uint, DestinyRaceDefinition>? Races { get; set; }
 
         [JsonPropertyName("DestinyTalentGridDefinition")]
-        public DestinyTalentGridDefinition? TalentGrids { get; set; }
+        public Dictionary<uint, DestinyTalentGridDefinition>? TalentGrids { get; set; }
 
         [JsonPropertyName("DestinyUnlockDefinition")]
-        public DestinyUnlockDefinition? Unlocks { get; set; }
+        public Dictionary<uint, DestinyUnlockDefinition>? Unlocks { get; set; }
 
         [JsonPropertyName("DestinyMaterialRequirementSetDefinition")]
-        public DestinyMaterialRequirementSetDefinition? MaterialRequirementSets { get; set; }
+        public Dictionary<uint, DestinyMaterialRequirementSetDefinition>? MaterialRequirementSets { get; set; }
 
         [JsonPropertyName("DestinySandboxPerkDefinition")]
-        public DestinySandboxPerkDefinition? SandboxPerks { get; set; }
+        public Dictionary<uint, DestinySandboxPerkDefinition>? SandboxPerks { get; set; }
 
         [JsonPropertyName("DestinyStatGroupDefinition")]
-        public DestinyStatGroupDefinition? StatGroups { get; set; }
+        public Dictionary<uint, DestinyStatGroupDefinition>? StatGroups { get; set; }
 
         [JsonPropertyName("DestinyProgressionMappingDefinition")]
-        public DestinyProgressionMappingDefinition? ProgressionMappings { get; set; }
+        public Dictionary<uint, DestinyProgressionMappingDefinition>? ProgressionMappings { get; set; }
 
         [JsonPropertyName("DestinyFactionDefinition")]
-        public DestinyFactionDefinition? Factions { get; set; }
+        public Dictionary<uint, DestinyFactionDefinition>? Factions { get; set; }
 
         [JsonPropertyName("DestinyVendorGroupDefinition")]
-        public DestinyVendorGroupDefinition? VendorGroups { get; set; }
+        public Dictionary<uint, DestinyVendorGroupDefinition>? VendorGroups { get; set; }
 
         [JsonPropertyName("DestinyRewardSourceDefinition")]
-        public DestinyRewardSourceDefinition? RewardSources { get; set; }
+        public Dictionary<uint, DestinyRewardSourceDefinition>? RewardSources { get; set; }
 
         [JsonPropertyName("DestinyUnlockValueDefinition")]
-        public DestinyUnlockValueDefinition? UnlockValues { get; set; }
+        public Dictionary<uint, DestinyUnlockValueDefinition>? UnlockValues { get; set; }
 
         // [JsonPropertyName("DestinyRewardMappingDefinition")]
-        // public DestinyRewardMappingDefinition? RewardMappings { get; set; }
+        // public Dictionary<uint, DestinyRewardMappingDefinition>? RewardMappings { get; set; }
 
         // [JsonPropertyName("DestinyRewardSheetDefinition")]
-        // public DestinyRewardSheetDefinition? RewardSheets { get; set; }
+        // public Dictionary<uint, DestinyRewardSheetDefinition>? RewardSheets { get; set; }
 
         [JsonPropertyName("DestinyItemCategoryDefinition")]
-        public DestinyItemCategoryDefinition? ItemCategories { get; set; }
+        public Dictionary<uint, DestinyItemCategoryDefinition>? ItemCategories { get; set; }
 
         [JsonPropertyName("DestinyDamageTypeDefinition")]
-        public DestinyDamageTypeDefinition? DamageTypes { get; set; }
+        public Dictionary<uint, DestinyDamageTypeDefinition>? DamageTypes { get; set; }
 
         [JsonPropertyName("DestinyActivityModeDefinition")]
-        public DestinyActivityModeDefinition? ActivityModes { get; set; }
+        public Dictionary<uint, DestinyActivityModeDefinition>? ActivityModes { get; set; }
 
         // [JsonPropertyName("DestinyMedalTierDefinition")]
-        // public DestinyMedalTierDefinition? MedalTiers { get; set; }
+        // public Dictionary<uint, DestinyMedalTierDefinition>? MedalTiers { get; set; }
 
         // [JsonPropertyName("DestinyAchievementDefinition")]
-        // public DestinyAchievementDefinition? Achievements { get; set; }
+        // public Dictionary<uint, DestinyAchievementDefinition>? Achievements { get; set; }
 
         [JsonPropertyName("DestinyActivityGraphDefinition")]
-        public DestinyActivityGraphDefinition? ActivityGraphs { get; set; }
+        public Dictionary<uint, DestinyActivityGraphDefinition>? ActivityGraphs { get; set; }
 
         // [JsonPropertyName("DestinyActivityInteractableDefinition")]
-        // public DestinyActivityInteractableDefinition? ActivityInteractables { get; set; }
+        // public Dictionary<uint, DestinyActivityInteractableDefinition>? ActivityInteractables { get; set; }
 
         // [JsonPropertyName("DestinyBondDefinition")]
-        // public DestinyBondDefinition? Bonds { get; set; }
+        // public Dictionary<uint, DestinyBondDefinition>? Bonds { get; set; }
 
         // [JsonPropertyName("DestinyCharacterCustomizationCategoryDefinition")]
-        // public DestinyCharacterCustomizationCategoryDefinition? CharacterCustomizationCategories { get; set; }
+        // public Dictionary<uint, DestinyCharacterCustomizationCategoryDefinition>? CharacterCustomizationCategories { get; set; }
 
         // [JsonPropertyName("DestinyCharacterCustomizationOptionDefinition")]
-        // public DestinyCharacterCustomizationOptionDefinition? CharacterCustomizationOptions { get; set; }
+        // public Dictionary<uint, DestinyCharacterCustomizationOptionDefinition>? CharacterCustomizationOptions { get; set; }
 
         [JsonPropertyName("DestinyCollectibleDefinition")]
-        public DestinyCollectibleDefinition? Collectibles { get; set; }
+        public Dictionary<uint, DestinyCollectibleDefinition>? Collectibles { get; set; }
 
         [JsonPropertyName("DestinyDestinationDefinition")]
-        public DestinyDestinationDefinition? Destinations { get; set; }
+        public Dictionary<uint, DestinyDestinationDefinition>? Destinations { get; set; }
 
         // [JsonPropertyName("DestinyEntitlementOfferDefinition")]
-        // public DestinyEntitlementOfferDefinition? EntitlementOffers { get; set; }
+        // public Dictionary<uint, DestinyEntitlementOfferDefinition>? EntitlementOffers { get; set; }
 
         [JsonPropertyName("DestinyEquipmentSlotDefinition")]
-        public DestinyEquipmentSlotDefinition? EquipmentSlots { get; set; }
+        public Dictionary<uint, DestinyEquipmentSlotDefinition>? EquipmentSlots { get; set; }
 
         [JsonPropertyName("DestinyStatDefinition")]
-        public DestinyStatDefinition? Stats { get; set; }
+        public Dictionary<uint, DestinyStatDefinition>? Stats { get; set; }
 
         [JsonPropertyName("DestinyInventoryItemDefinition")]
-        public DestinyInventoryItemDefinition? InventoryItems { get; set; }
+        public Dictionary<uint, DestinyInventoryItemDefinition>? InventoryItems { get; set; }
 
         // [JsonPropertyName("DestinyInventoryItemLiteDefinition")]
-        // public DestinyInventoryItemLiteDefinition? InventoryItemsLite { get; set; }
+        // public Dictionary<uint, DestinyInventoryItemLiteDefinition>? InventoryItemsLite { get; set; }
 
         [JsonPropertyName("DestinyItemTierTypeDefinition")]
-        public DestinyItemTierTypeDefinition? ItemTierTypes { get; set; }
+        public Dictionary<uint, DestinyItemTierTypeDefinition>? ItemTierTypes { get; set; }
 
         [JsonPropertyName("DestinyLocationDefinition")]
-        public DestinyLocationDefinition? Locations { get; set; }
+        public Dictionary<uint, DestinyLocationDefinition>? Locations { get; set; }
 
         [JsonPropertyName("DestinyLoreDefinition")]
-        public DestinyLoreDefinition? Lore { get; set; }
+        public Dictionary<uint, DestinyLoreDefinition>? Lore { get; set; }
 
         [JsonPropertyName("DestinyMetricDefinition")]
-        public DestinyMetricDefinition? Metrics { get; set; }
+        public Dictionary<uint, DestinyMetricDefinition>? Metrics { get; set; }
 
         [JsonPropertyName("DestinyObjectiveDefinition")]
-        public DestinyObjectiveDefinition? Objectives { get; set; }
+        public Dictionary<uint, DestinyObjectiveDefinition>? Objectives { get; set; }
 
         // [JsonPropertyName("DestinyPlatformBucketMappingDefinition")]
-        // public DestinyPlatformBucketMappingDefinition? PlatformBucketMappings { get; set; }
+        // public Dictionary<uint, DestinyPlatformBucketMappingDefinition>? PlatformBucketMappings { get; set; }
 
         [JsonPropertyName("DestinyPlugSetDefinition")]
-        public DestinyPlugSetDefinition? PlugSets { get; set; }
+        public Dictionary<uint, DestinyPlugSetDefinition>? PlugSets { get; set; }
 
         [JsonPropertyName("DestinyPowerCapDefinition")]
-        public DestinyPowerCapDefinition? PowerCaps { get; set; }
+        public Dictionary<uint, DestinyPowerCapDefinition>? PowerCaps { get; set; }
 
         [JsonPropertyName("DestinyPresentationNodeDefinition")]
-        public DestinyPresentationNodeDefinition? PresentationNodes { get; set; }
+        public Dictionary<uint, DestinyPresentationNodeDefinition>? PresentationNodes { get; set; }
 
         [JsonPropertyName("DestinyPresentationNodeBaseDefinition")]
-        public DestinyPresentationNodeBaseDefinition? PresentationNodeBases { get; set; }
+        public Dictionary<uint, DestinyPresentationNodeBaseDefinition>? PresentationNodeBases { get; set; }
 
         [JsonPropertyName("DestinyProgressionDefinition")]
-        public DestinyProgressionDefinition? Progressions { get; set; }
+        public Dictionary<uint, DestinyProgressionDefinition>? Progressions { get; set; }
 
         [JsonPropertyName("DestinyProgressionLevelRequirementDefinition")]
-        public DestinyProgressionLevelRequirementDefinition? ProgressionLevelRequirements { get; set; }
+        public Dictionary<uint, DestinyProgressionLevelRequirementDefinition>? ProgressionLevelRequirements { get; set; }
 
         [JsonPropertyName("DestinyRecordDefinition")]
-        public DestinyRecordDefinition? Records { get; set; }
+        public Dictionary<uint, DestinyRecordDefinition>? Records { get; set; }
 
         // [JsonPropertyName("DestinyRewardAdjusterPointerDefinition")]
-        // public DestinyRewardAdjusterPointerDefinition? RewardAdjusterPointers { get; set; }
+        // public Dictionary<uint, DestinyRewardAdjusterPointerDefinition>? RewardAdjusterPointers { get; set; }
 
         // [JsonPropertyName("DestinyRewardAdjusterProgressionMapDefinition")]
-        // public DestinyRewardAdjusterProgressionMapDefinition? RewardAdjusterProgressionMaps { get; set; }
+        // public Dictionary<uint, DestinyRewardAdjusterProgressionMapDefinition>? RewardAdjusterProgressionMaps { get; set; }
 
         // [JsonPropertyName("DestinyRewardItemListDefinition")]
-        // public DestinyRewardItemListDefinition? RewardItemLists { get; set; }
+        // public Dictionary<uint, DestinyRewardItemListDefinition>? RewardItemLists { get; set; }
 
         // [JsonPropertyName("DestinySackRewardItemListDefinition")]
-        // public DestinySackRewardItemListDefinition? SackRewardItemLists { get; set; }
+        // public Dictionary<uint, DestinySackRewardItemListDefinition>? SackRewardItemLists { get; set; }
 
         // [JsonPropertyName("DestinySandboxPatternDefinition")]
-        // public DestinySandboxPatternDefinition? SandboxPatterns { get; set; }
+        // public Dictionary<uint, DestinySandboxPatternDefinition>? SandboxPatterns { get; set; }
 
         [JsonPropertyName("DestinySeasonDefinition")]
-        public DestinySeasonDefinition? Seasons { get; set; }
+        public Dictionary<uint, DestinySeasonDefinition>? Seasons { get; set; }
 
         [JsonPropertyName("DestinySeasonPassDefinition")]
-        public DestinySeasonPassDefinition? SeasonPasses { get; set; }
+        public Dictionary<uint, DestinySeasonPassDefinition>? SeasonPasses { get; set; }
 
         [JsonPropertyName("DestinySocketCategoryDefinition")]
-        public DestinySocketCategoryDefinition? SocketCategories { get; set; }
+        public Dictionary<uint, DestinySocketCategoryDefinition>? SocketCategories { get; set; }
 
         [JsonPropertyName("DestinySocketTypeDefinition")]
-        public DestinySocketTypeDefinition? SocketTypes { get; set; }
+        public Dictionary<uint, DestinySocketTypeDefinition>? SocketTypes { get; set; }
 
         [JsonPropertyName("DestinyTraitDefinition")]
-        public DestinyTraitDefinition? Traits { get; set; }
+        public Dictionary<uint, DestinyTraitDefinition>? Traits { get; set; }
 
         [JsonPropertyName("DestinyTraitCategoryDefinition")]
-        public DestinyTraitCategoryDefinition? TraitCategories { get; set; }
+        public Dictionary<uint, DestinyTraitCategoryDefinition>? TraitCategories { get; set; }
 
         // [JsonPropertyName("DestinyUnlockCountMappingDefinition")]
-        // public DestinyUnlockCountMappingDefinition? UnlockCountMappings { get; set; }
+        // public Dictionary<uint, DestinyUnlockCountMappingDefinition>? UnlockCountMappings { get; set; }
 
         // [JsonPropertyName("DestinyUnlockEventDefinition")]
-        // public DestinyUnlockEventDefinition? UnlockEvents { get; set; }
+        // public Dictionary<uint, DestinyUnlockEventDefinition>? UnlockEvents { get; set; }
 
         // [JsonPropertyName("DestinyUnlockExpressionMappingDefinition")]
-        // public DestinyUnlockExpressionMappingDefinition? UnlockExpressionMappings { get; set; }
+        // public Dictionary<uint, DestinyUnlockExpressionMappingDefinition>? UnlockExpressionMappings { get; set; }
 
         [JsonPropertyName("DestinyVendorDefinition")]
-        public DestinyVendorDefinition? Vendors { get; set; }
+        public Dictionary<uint, DestinyVendorDefinition>? Vendors { get; set; }
 
         [JsonPropertyName("DestinyMilestoneDefinition")]
-        public DestinyMilestoneDefinition? Milestones { get; set; }
+        public Dictionary<uint, DestinyMilestoneDefinition>? Milestones { get; set; }
 
         [JsonPropertyName("DestinyActivityModifierDefinition")]
-        public DestinyActivityModifierDefinition? ActivityModifiers { get; set; }
+        public Dictionary<uint, DestinyActivityModifierDefinition>? ActivityModifiers { get; set; }
 
         [JsonPropertyName("DestinyReportReasonCategoryDefinition")]
-        public DestinyReportReasonCategoryDefinition? ReportReasonCategories { get; set; }
+        public Dictionary<uint, DestinyReportReasonCategoryDefinition>? ReportReasonCategories { get; set; }
 
         [JsonPropertyName("DestinyArtifactDefinition")]
-        public DestinyArtifactDefinition? Artifacts { get; set; }
+        public Dictionary<uint, DestinyArtifactDefinition>? Artifacts { get; set; }
 
         [JsonPropertyName("DestinyBreakerTypeDefinition")]
-        public DestinyBreakerTypeDefinition? BreakerTypes { get; set; }
+        public Dictionary<uint, DestinyBreakerTypeDefinition>? BreakerTypes { get; set; }
 
         [JsonPropertyName("DestinyChecklistDefinition")]
-        public DestinyChecklistDefinition? Checklists { get; set; }
+        public Dictionary<uint, DestinyChecklistDefinition>? Checklists { get; set; }
 
         [JsonPropertyName("DestinyEnergyTypeDefinition")]
-        public DestinyEnergyTypeDefinition? EnergyTypes { get; set; }
+        public Dictionary<uint, DestinyEnergyTypeDefinition>? EnergyTypes { get; set; }
     }
 }

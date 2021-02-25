@@ -1,0 +1,88 @@
+﻿using BungieSharper.Client;
+using System;
+using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace BungieSharper.Endpoints
+{
+    public partial class Endpoints
+    {
+        /// <summary>
+        /// Gets an object describing a particular variant of content.
+        /// </summary>
+        public Task<Entities.Content.Models.ContentTypeDescription> Content_GetContentType(string type, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<Entities.Content.Models.ContentTypeDescription>(
+                new Uri($"Content/GetContentType/{Uri.EscapeDataString(type)}/", UriKind.Relative),
+                null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
+                );
+        }
+
+        /// <summary>
+        /// Returns a content item referenced by id
+        /// </summary>
+        /// <param name="head">false</param>
+        public Task<Entities.Content.ContentItemPublicContract> Content_GetContentById(long id, string locale, bool? head = null, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<Entities.Content.ContentItemPublicContract>(
+                new Uri($"Content/GetContentById/{id}/{Uri.EscapeDataString(locale)}/" + HttpRequestGenerator.MakeQuerystring(head != null ? $"head={head}" : null), UriKind.Relative),
+                null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
+                );
+        }
+
+        /// <summary>
+        /// Returns the newest item that matches a given tag and Content Type.
+        /// </summary>
+        /// <param name="head">Not used.</param>
+        public Task<Entities.Content.ContentItemPublicContract> Content_GetContentByTagAndType(string locale, string tag, string type, bool? head = null, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<Entities.Content.ContentItemPublicContract>(
+                new Uri($"Content/GetContentByTagAndType/{Uri.EscapeDataString(tag)}/{Uri.EscapeDataString(type)}/{Uri.EscapeDataString(locale)}/" + HttpRequestGenerator.MakeQuerystring(head != null ? $"head={head}" : null), UriKind.Relative),
+                null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
+                );
+        }
+
+        /// <summary>
+        /// Gets content based on querystring information passed in. Provides basic search and text search capabilities.
+        /// </summary>
+        /// <param name="ctype">Content type tag: Help, News, etc. Supply multiple ctypes separated by space.</param>
+        /// <param name="currentpage">Page number for the search results, starting with page 1.</param>
+        /// <param name="head">Not used.</param>
+        /// <param name="searchtext">Word or phrase for the search.</param>
+        /// <param name="source">For analytics, hint at the part of the app that triggered the search. Optional.</param>
+        /// <param name="tag">Tag used on the content to be searched.</param>
+        public Task<Entities.SearchResultOfContentItemPublicContract> Content_SearchContentWithText(string locale, string? ctype = null, int? currentpage = null, bool? head = null, string? searchtext = null, string? source = null, string? tag = null, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<Entities.SearchResultOfContentItemPublicContract>(
+                new Uri($"Content/Search/{Uri.EscapeDataString(locale)}/" + HttpRequestGenerator.MakeQuerystring(ctype != null ? $"ctype={Uri.EscapeDataString(ctype)}" : null, currentpage != null ? $"currentpage={currentpage}" : null, head != null ? $"head={head}" : null, searchtext != null ? $"searchtext={Uri.EscapeDataString(searchtext)}" : null, source != null ? $"source={Uri.EscapeDataString(source)}" : null, tag != null ? $"tag={Uri.EscapeDataString(tag)}" : null), UriKind.Relative),
+                null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
+                );
+        }
+
+        /// <summary>
+        /// Searches for Content Items that match the given Tag and Content Type.
+        /// </summary>
+        /// <param name="currentpage">Page number for the search results starting with page 1.</param>
+        /// <param name="head">Not used.</param>
+        /// <param name="itemsperpage">Not used.</param>
+        public Task<Entities.SearchResultOfContentItemPublicContract> Content_SearchContentByTagAndType(string locale, string tag, string type, int? currentpage = null, bool? head = null, int? itemsperpage = null, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<Entities.SearchResultOfContentItemPublicContract>(
+                new Uri($"Content/SearchContentByTagAndType/{Uri.EscapeDataString(tag)}/{Uri.EscapeDataString(type)}/{Uri.EscapeDataString(locale)}/" + HttpRequestGenerator.MakeQuerystring(currentpage != null ? $"currentpage={currentpage}" : null, head != null ? $"head={head}" : null, itemsperpage != null ? $"itemsperpage={itemsperpage}" : null), UriKind.Relative),
+                null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
+                );
+        }
+
+        /// <summary>
+        /// Search for Help Articles.
+        /// </summary>
+        public Task<dynamic> Content_SearchHelpArticles(string searchtext, string size, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<dynamic>(
+                new Uri($"Content/SearchHelpArticles/{Uri.EscapeDataString(searchtext)}/{Uri.EscapeDataString(size)}/", UriKind.Relative),
+                null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
+                );
+        }
+    }
+}

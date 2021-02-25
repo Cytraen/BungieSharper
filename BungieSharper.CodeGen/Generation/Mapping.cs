@@ -33,5 +33,26 @@ namespace BungieSharper.CodeGen.Generation
                 _ => throw new NotSupportedException(),
             };
         }
+
+        internal static string TagToDescription(TagEnum tag)
+        {
+            return tag switch
+            {
+                TagEnum.None => throw new NotSupportedException(),
+                TagEnum.App => "Application",
+                TagEnum.User => "User",
+                TagEnum.Content => "Content",
+                TagEnum.Forum => "Forum",
+                TagEnum.GroupV2 => "GroupV2",
+                TagEnum.Tokens => "Tokens",
+                TagEnum.Destiny2 => "Destiny2",
+                TagEnum.CommunityContent => "CommunityContent",
+                TagEnum.Trending => "Trending",
+                TagEnum.Fireteam => "Fireteam",
+                TagEnum.Preview => "Preview",
+                TagEnum.Core => "Core",
+                _ => throw new NotSupportedException(),
+            };
+        }
     }
 }

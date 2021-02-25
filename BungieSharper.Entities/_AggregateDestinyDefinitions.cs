@@ -22,7 +22,7 @@ using System.Text.Json.Serialization;
 
 namespace BungieSharper.Entities
 {
-    internal class AggregateDestinyDefinitions
+    public class AggregateDestinyDefinitions
     {
         // [JsonPropertyName("DestinyEnemyRaceDefinition")]
         // public DestinyEnemyRaceDefinition? EnemyRaces { get; set; }

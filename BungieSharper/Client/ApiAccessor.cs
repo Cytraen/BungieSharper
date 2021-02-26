@@ -1,6 +1,7 @@
 using BungieSharper.Entities.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Text.Json;
@@ -172,6 +173,20 @@ namespace BungieSharper.Client
                 await AwaitThrottleAndReleaseSemaphore(throttleTask, _semaphore).ConfigureAwait(false);
                 return apiResponse;
             }
+        }
+
+        internal async Task<Stream> GetStream(Uri uri, CancellationToken cancelToken)
+        {
+            var requestMsg = HttpRequestGenerator.MakeApiRequestMessage(uri, null, HttpMethod.Get, null, AuthHeaderType.None);
+            var response = await GetApiResponseAsync(requestMsg, cancelToken);
+            return await response.Content.ReadAsStreamAsync(cancelToken);
+        }
+
+        internal async Task<string> GetString(Uri uri, CancellationToken cancelToken)
+        {
+            var requestMsg = HttpRequestGenerator.MakeApiRequestMessage(uri, null, HttpMethod.Get, null, AuthHeaderType.None);
+            var response = await GetApiResponseAsync(requestMsg, cancelToken);
+            return await response.Content.ReadAsStringAsync(cancelToken);
         }
 
         private Task<HttpResponseMessage> GetApiResponseAsync(HttpRequestMessage request, CancellationToken cancelToken)

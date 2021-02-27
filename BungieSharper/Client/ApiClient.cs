@@ -1,7 +1,10 @@
 ﻿using BungieSharper.Entities.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace BungieSharper.Client
 {
@@ -70,7 +73,7 @@ namespace BungieSharper.Client
             SetRetryErrorCodes(errorCodes.ToList());
         }
 
-        public void SetOAuthClientId(ushort clientId)
+        public void SetOAuthClientId(uint clientId)
         {
             OAuth.SetOAuthClientId(clientId);
         }
@@ -80,6 +83,31 @@ namespace BungieSharper.Client
             OAuth.SetOAuthClientSecret(clientSecret);
         }
 
-        public void Dispose() => _apiAccessor.Dispose();
+        public Task DownloadFile(string uri, FileStream fileStream, CancellationToken cancelToken = default)
+        {
+            return DownloadFile(new Uri(uri, UriKind.Relative), fileStream, cancelToken);
+        }
+
+        public async Task DownloadFile(Uri uri, FileStream fileStream, CancellationToken cancelToken = default)
+        {
+            var stream = await _apiAccessor.GetStream(uri, cancelToken);
+            await stream.CopyToAsync(fileStream, cancelToken);
+        }
+
+        public Task<string> DownloadString(string uri, CancellationToken cancelToken = default)
+        {
+            return DownloadString(new Uri(uri, UriKind.Relative), cancelToken);
+        }
+
+        public Task<string> DownloadString(Uri uri, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.GetString(uri, cancelToken);
+        }
+
+        public void Dispose()
+        {
+            _apiAccessor.Dispose();
+            GC.SuppressFinalize(this);
+        }
     }
 }

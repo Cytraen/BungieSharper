@@ -32,37 +32,61 @@ namespace BungieSharper.Client
 
     public class ContentNotJsonException : BungieBaseHttpResponseException
     {
-        private const string DefaultErrorMessage = "The Bungie API returned content that was not of type 'application/json'.";
-
-        internal ContentNotJsonException(HttpResponseMessage httpResponse, string message = DefaultErrorMessage) : base(httpResponse, message)
+        private ContentNotJsonException(HttpResponseMessage httpResponse, string message) : base(httpResponse, message)
         {
+        }
+
+        internal static ContentNotJsonException NewContentNotJsonException(HttpResponseMessage httpResponse)
+        {
+            return new ContentNotJsonException(
+                httpResponse,
+                "The Bungie API returned content that was of type " + httpResponse.Content.Headers.ContentType?.MediaType + " instead of \"application/json\""
+                );
         }
     }
 
     public class ContentNullJsonException : BungieBaseHttpResponseException
     {
-        private const string DefaultErrorMessage = "The Bungie API returned json content that was null or empty.";
-
-        internal ContentNullJsonException(HttpResponseMessage httpResponse, string message = DefaultErrorMessage) : base(httpResponse, message)
+        private ContentNullJsonException(HttpResponseMessage httpResponse, string message) : base(httpResponse, message)
         {
+        }
+
+        internal static ContentNullJsonException NewContentNullJsonException(HttpResponseMessage httpResponse)
+        {
+            return new ContentNullJsonException(
+                httpResponse,
+                "The response contained JSON content that was null or empty."
+                );
         }
     }
 
     public class NonRetryErrorCodeException : BungieBaseApiResponseException
     {
-        private const string DefaultErrorMessage = "The Bungie API returned an error code that should not be retried on.";
-
-        internal NonRetryErrorCodeException(Entities.ApiResponse apiResponse, string message = DefaultErrorMessage) : base(apiResponse, message)
+        private NonRetryErrorCodeException(Entities.ApiResponse apiResponse, string message) : base(apiResponse, message)
         {
+        }
+
+        internal static NonRetryErrorCodeException NewNonRetryErrorCodeException(Entities.ApiResponse apiResponse)
+        {
+            return new NonRetryErrorCodeException(
+                apiResponse,
+                "The Bungie API returned an error code that will not be retried on."
+                );
         }
     }
 
     public class NullResponseException : BungieBaseApiResponseException
     {
-        private const string DefaultErrorMessage = "The response provided by the Bungie API was null or empty.";
-
-        internal NullResponseException(Entities.ApiResponse apiResponse, string message = DefaultErrorMessage) : base(apiResponse, message)
+        private NullResponseException(Entities.ApiResponse apiResponse, string message) : base(apiResponse, message)
         {
+        }
+
+        internal static NullResponseException NewNullResponseException(Entities.ApiResponse apiResponse)
+        {
+            return new NullResponseException(
+                apiResponse,
+                "The response provided by the Bungie API was null or empty."
+                );
         }
     }
 }

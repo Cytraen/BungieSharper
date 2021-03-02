@@ -46,6 +46,8 @@ namespace BungieSharper.CodeGen.Generation
             var requiredScopes = responseMethodInfo.Security != null ? responseMethodInfo.Security.Any() ? responseMethodInfo.Security[0].OAuth2 : null : null;
 
             content += FormatStrings.FormatMethodSummaries(pathDef.Description, parameters, responseMethodInfo.XPreview ?? false, responseMethodInfo.Deprecated ?? false, requiredScopes);
+            content += "        /// <param name=\"authToken\">The OAuth access token to autheticate the request with.</param>\n";
+            content += "        /// <param name=\"cancelToken\">The <see cref=\"CancellationToken\" /> to observe.</param>\n";
 
             var responseRef = responseMethodInfo.Responses[200].Ref;
 
@@ -152,7 +154,7 @@ namespace BungieSharper.CodeGen.Generation
             content += $"            return _apiAccessor.ApiRequestAsync<{responseType}>(\n";
             content += $"                new Uri($\"{path.TrimStart('/')}\"{queryStringParamFinal}, UriKind.Relative),\n";
 
-            content += $"                {(responseMethodInfo.RequestBody != null ? "new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, \"application/json\")" : "null")}, HttpMethod.{httpMethod}, authToken, AuthHeaderType.Bearer, cancelToken\n";
+            content += $"                {(responseMethodInfo.RequestBody != null ? "new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, \"application/json\")" : "null")}, HttpMethod.{httpMethod}, authToken, cancelToken\n";
             content += $"                );\n        }}";
 
             return content.Replace("System.DateTime", "DateTime");

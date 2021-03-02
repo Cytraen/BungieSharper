@@ -33,7 +33,8 @@ namespace BungieSharper.Client
             var httpClientHandler = new HttpClientHandler
             {
                 CookieContainer = cookieContainer,
-                UseCookies = true
+                UseCookies = true,
+                MaxConnectionsPerServer = SimultaneousRequests
             };
 
             _httpClient = new HttpClient(httpClientHandler)
@@ -62,9 +63,13 @@ namespace BungieSharper.Client
             _httpClient.DefaultRequestHeaders.Add("X-API-Key", apiKey);
         }
 
-        internal void SetUserAgent(string userAgent)
+        internal void RemoveUserAgent()
         {
             _httpClient.DefaultRequestHeaders.Remove("User-Agent");
+        }
+
+        internal void AddUserAgent(string userAgent)
+        {
             _httpClient.DefaultRequestHeaders.Add("User-Agent", userAgent);
         }
 
@@ -73,15 +78,15 @@ namespace BungieSharper.Client
             _retryErrorCodes = errorCodes;
         }
 
-        internal void SetRateLimit(ushort requestsPerSecond)
+        internal void SetRateLimit(byte requestsPerSecond)
         {
             _msPerRequest = TimeSpan.FromMilliseconds(1000.0 / requestsPerSecond * SimultaneousRequests);
         }
 
-        internal async Task<T> ApiRequestAsync<T>(Uri uri, HttpContent? httpContent, HttpMethod httpMethod, string? authToken, AuthHeaderType authType, CancellationToken cancelToken)
+        internal async Task<T> ApiRequestAsync<T>(Uri uri, HttpContent? httpContent, HttpMethod httpMethod, string? authToken, CancellationToken cancelToken)
         {
             var semaphoreTask = _semaphore.WaitAsync(cancelToken).ConfigureAwait(false);
-            var httpRequestMessage = HttpRequestGenerator.MakeApiRequestMessage(uri, httpContent, httpMethod, authToken, authType);
+            var httpRequestMessage = HttpRequestGenerator.MakeApiRequestMessage(uri, httpContent, httpMethod, authToken);
             await semaphoreTask;
 
             while (true)
@@ -98,7 +103,7 @@ namespace BungieSharper.Client
                 if (httpResponseMessage.Content.Headers.ContentType?.MediaType != "application/json")
                 {
                     await AwaitThrottleAndReleaseSemaphore(throttleTask, _semaphore).ConfigureAwait(false);
-                    throw new ContentNotJsonException(httpResponseMessage);
+                    throw ContentNotJsonException.NewContentNotJsonException(httpResponseMessage);
                 }
 
                 var apiResponse = JsonSerializer.Deserialize<Entities.ApiResponse<T>>(
@@ -107,7 +112,8 @@ namespace BungieSharper.Client
 
                 if (apiResponse is null)
                 {
-                    throw new ContentNullJsonException(httpResponseMessage);
+                    await AwaitThrottleAndReleaseSemaphore(throttleTask, _semaphore).ConfigureAwait(false);
+                    throw ContentNullJsonException.NewContentNullJsonException(httpResponseMessage);
                 }
 
                 if (apiResponse.ErrorCode != PlatformErrorCodes.Success)
@@ -120,8 +126,7 @@ namespace BungieSharper.Client
                     else
                     {
                         await AwaitThrottleAndReleaseSemaphore(throttleTask, _semaphore).ConfigureAwait(false);
-
-                        throw new NonRetryErrorCodeException(apiResponse);
+                        throw NonRetryErrorCodeException.NewNonRetryErrorCodeException(apiResponse);
                     }
                 }
                 else
@@ -129,7 +134,7 @@ namespace BungieSharper.Client
                     if (apiResponse.Response == null)
                     {
                         await AwaitThrottleAndReleaseSemaphore(throttleTask, _semaphore).ConfigureAwait(false);
-                        throw new NullResponseException(apiResponse);
+                        throw NullResponseException.NewNullResponseException(apiResponse);
                     }
 
                     await AwaitThrottleAndReleaseSemaphore(throttleTask, _semaphore).ConfigureAwait(false);
@@ -138,10 +143,10 @@ namespace BungieSharper.Client
             }
         }
 
-        internal async Task<Entities.TokenResponse> ApiTokenRequestResponseAsync(Uri uri, HttpContent httpContent, HttpMethod httpMethod, string? authToken, AuthHeaderType authType, CancellationToken cancelToken)
+        internal async Task<Entities.TokenResponse> ApiTokenRequestResponseAsync(Uri uri, HttpContent httpContent, HttpMethod httpMethod, CancellationToken cancelToken)
         {
             var semaphoreTask = _semaphore.WaitAsync(cancelToken).ConfigureAwait(false);
-            var httpRequestMessage = HttpRequestGenerator.MakeApiRequestMessage(uri, httpContent, httpMethod, authToken, authType);
+            var httpRequestMessage = HttpRequestGenerator.MakeApiRequestMessage(uri, httpContent, httpMethod);
             await semaphoreTask;
 
             while (true)
@@ -158,7 +163,7 @@ namespace BungieSharper.Client
                 if (httpResponseMessage.Content.Headers.ContentType?.MediaType != "application/json")
                 {
                     await AwaitThrottleAndReleaseSemaphore(throttleTask, _semaphore).ConfigureAwait(false);
-                    throw new ContentNotJsonException(httpResponseMessage);
+                    throw ContentNotJsonException.NewContentNotJsonException(httpResponseMessage);
                 }
 
                 var apiResponse = JsonSerializer.Deserialize<Entities.TokenResponse>(
@@ -167,7 +172,8 @@ namespace BungieSharper.Client
 
                 if (apiResponse is null)
                 {
-                    throw new ContentNullJsonException(httpResponseMessage);
+                    await AwaitThrottleAndReleaseSemaphore(throttleTask, _semaphore).ConfigureAwait(false);
+                    throw ContentNullJsonException.NewContentNullJsonException(httpResponseMessage);
                 }
 
                 await AwaitThrottleAndReleaseSemaphore(throttleTask, _semaphore).ConfigureAwait(false);
@@ -177,14 +183,14 @@ namespace BungieSharper.Client
 
         internal async Task<Stream> GetStream(Uri uri, CancellationToken cancelToken)
         {
-            var requestMsg = HttpRequestGenerator.MakeApiRequestMessage(uri, null, HttpMethod.Get, null, AuthHeaderType.None);
+            var requestMsg = HttpRequestGenerator.MakeApiRequestMessage(uri, null, HttpMethod.Get);
             var response = await GetApiResponseAsync(requestMsg, cancelToken);
             return await response.Content.ReadAsStreamAsync(cancelToken);
         }
 
         internal async Task<string> GetString(Uri uri, CancellationToken cancelToken)
         {
-            var requestMsg = HttpRequestGenerator.MakeApiRequestMessage(uri, null, HttpMethod.Get, null, AuthHeaderType.None);
+            var requestMsg = HttpRequestGenerator.MakeApiRequestMessage(uri, null, HttpMethod.Get);
             var response = await GetApiResponseAsync(requestMsg, cancelToken);
             return await response.Content.ReadAsStringAsync(cancelToken);
         }

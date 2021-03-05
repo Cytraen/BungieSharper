@@ -22,7 +22,7 @@ namespace BungieSharper.Client
             return string.Empty;
         }
 
-        internal static HttpRequestMessage MakeApiRequestMessage(Uri uri, HttpContent? httpContent, HttpMethod httpMethod, string? authToken, AuthHeaderType authType)
+        internal static HttpRequestMessage MakeApiRequestMessage(Uri uri, HttpContent? httpContent, HttpMethod httpMethod)
         {
             var request = new HttpRequestMessage
             {
@@ -31,9 +31,16 @@ namespace BungieSharper.Client
                 Content = httpContent
             };
 
-            if (!(string.IsNullOrWhiteSpace(authToken) || authType == AuthHeaderType.None))
+            return request;
+        }
+
+        internal static HttpRequestMessage MakeApiRequestMessage(Uri uri, HttpContent? httpContent, HttpMethod httpMethod, string? authToken)
+        {
+            var request = MakeApiRequestMessage(uri, httpContent, httpMethod);
+
+            if (!string.IsNullOrWhiteSpace(authToken))
             {
-                request.Headers.Add("Authorization", authType.ToString() + " " + authToken);
+                request.Headers.Add("Authorization", "Bearer " + authToken);
             }
 
             return request;

@@ -13,11 +13,13 @@ namespace BungieSharper.Endpoints
         /// Requires OAuth2 scope(s): ReadGroups
         /// </summary>
         /// <param name="groupId">The group id of the clan.</param>
+        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<int> Fireteam_GetActivePrivateClanFireteamCount(long groupId, string? authToken = null, CancellationToken cancelToken = default)
         {
             return _apiAccessor.ApiRequestAsync<int>(
                 new Uri($"Fireteam/Clan/{groupId}/ActiveCount/", UriKind.Relative),
-                null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
+                null, HttpMethod.Get, authToken, cancelToken
                 );
         }
 
@@ -33,11 +35,13 @@ namespace BungieSharper.Endpoints
         /// <param name="platform">The platform filter.</param>
         /// <param name="publicOnly">Determines public/private filtering.</param>
         /// <param name="slotFilter">Filters based on available slots</param>
+        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.SearchResultOfFireteamSummary> Fireteam_GetAvailableClanFireteams(int activityType, Entities.Fireteam.FireteamDateRange dateRange, long groupId, int page, Entities.Fireteam.FireteamPlatform platform, Entities.Fireteam.FireteamPublicSearchOption publicOnly, Entities.Fireteam.FireteamSlotSearch slotFilter, string? langFilter = null, string? authToken = null, CancellationToken cancelToken = default)
         {
             return _apiAccessor.ApiRequestAsync<Entities.SearchResultOfFireteamSummary>(
                 new Uri($"Fireteam/Clan/{groupId}/Available/{platform}/{activityType}/{dateRange}/{slotFilter}/{publicOnly}/{page}/" + HttpRequestGenerator.MakeQuerystring(langFilter != null ? $"langFilter={Uri.EscapeDataString(langFilter)}" : null), UriKind.Relative),
-                null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
+                null, HttpMethod.Get, authToken, cancelToken
                 );
         }
 
@@ -51,11 +55,13 @@ namespace BungieSharper.Endpoints
         /// <param name="page">Zero based page</param>
         /// <param name="platform">The platform filter.</param>
         /// <param name="slotFilter">Filters based on available slots</param>
+        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.SearchResultOfFireteamSummary> Fireteam_SearchPublicAvailableClanFireteams(int activityType, Entities.Fireteam.FireteamDateRange dateRange, int page, Entities.Fireteam.FireteamPlatform platform, Entities.Fireteam.FireteamSlotSearch slotFilter, string? langFilter = null, string? authToken = null, CancellationToken cancelToken = default)
         {
             return _apiAccessor.ApiRequestAsync<Entities.SearchResultOfFireteamSummary>(
                 new Uri($"Fireteam/Search/Available/{platform}/{activityType}/{dateRange}/{slotFilter}/{page}/" + HttpRequestGenerator.MakeQuerystring(langFilter != null ? $"langFilter={Uri.EscapeDataString(langFilter)}" : null), UriKind.Relative),
-                null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
+                null, HttpMethod.Get, authToken, cancelToken
                 );
         }
 
@@ -69,11 +75,13 @@ namespace BungieSharper.Endpoints
         /// <param name="langFilter">An optional language filter.</param>
         /// <param name="page">Deprecated parameter, ignored.</param>
         /// <param name="platform">The platform filter.</param>
+        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.SearchResultOfFireteamResponse> Fireteam_GetMyClanFireteams(long groupId, bool includeClosed, int page, Entities.Fireteam.FireteamPlatform platform, bool? groupFilter = null, string? langFilter = null, string? authToken = null, CancellationToken cancelToken = default)
         {
             return _apiAccessor.ApiRequestAsync<Entities.SearchResultOfFireteamResponse>(
                 new Uri($"Fireteam/Clan/{groupId}/My/{platform}/{includeClosed}/{page}/" + HttpRequestGenerator.MakeQuerystring(groupFilter != null ? $"groupFilter={groupFilter}" : null, langFilter != null ? $"langFilter={Uri.EscapeDataString(langFilter)}" : null), UriKind.Relative),
-                null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
+                null, HttpMethod.Get, authToken, cancelToken
                 );
         }
 
@@ -83,11 +91,13 @@ namespace BungieSharper.Endpoints
         /// </summary>
         /// <param name="fireteamId">The unique id of the fireteam.</param>
         /// <param name="groupId">The group id of the clan.</param>
+        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.Fireteam.FireteamResponse> Fireteam_GetClanFireteam(long fireteamId, long groupId, string? authToken = null, CancellationToken cancelToken = default)
         {
             return _apiAccessor.ApiRequestAsync<Entities.Fireteam.FireteamResponse>(
                 new Uri($"Fireteam/Clan/{groupId}/Summary/{fireteamId}/", UriKind.Relative),
-                null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
+                null, HttpMethod.Get, authToken, cancelToken
                 );
         }
     }

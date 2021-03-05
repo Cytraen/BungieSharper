@@ -36,22 +36,16 @@ jobs:
       run: dotnet build ./BungieSharper -c Release
 
     - name: Pack entities NuGet package
-      run: dotnet pack ./BungieSharper.Entities -c Release --no-build --output EntitiesPackage --version-suffix "ci.$(date -u +%Y%m%dT%H%M%S)+sha.${GITHUB_SHA:0:9}" -p:ContinuousIntegrationBuild=true
+      run: dotnet pack ./BungieSharper.Entities -c Release --no-build --output OutputPackage --version-suffix "ci.$(date -u +%Y%m%dT%H%M%S)+sha.${GITHUB_SHA:0:9}" -p:ContinuousIntegrationBuild=true
 
     - name: Pack client NuGet package
-      run: dotnet pack ./BungieSharper -c Release --no-build --output ClientPackage --version-suffix "ci.$(date -u +%Y%m%dT%H%M%S)+sha.${GITHUB_SHA:0:9}" -p:ContinuousIntegrationBuild=true
+      run: dotnet pack ./BungieSharper -c Release --no-build --output OutputPackage --version-suffix "ci.$(date -u +%Y%m%dT%H%M%S)+sha.${GITHUB_SHA:0:9}" -p:ContinuousIntegrationBuild=true
 
-    - name: Upload entities artifact (nupkg/snupkg)
-      uses: actions/upload-artifact@v1
-      with:
-        name: BungieSharper.Entities - ${{ env.SHA }}
-        path: EntitiesPackage
-
-    - name: Upload client artifact (nupkg/snupkg)
+    - name: Upload artifact (nupkg/snupkg)
       uses: actions/upload-artifact@v1
       with:
         name: BungieSharper - ${{ env.SHA }}
-        path: ClientPackage
+        path: OutputPackage
 
     - name: Build test
       run: dotnet build ./BungieSharper.Tests -c Release

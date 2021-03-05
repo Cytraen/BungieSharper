@@ -11,11 +11,13 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Returns trending items for Bungie.net, collapsed into the first page of items per category. For pagination within a category, call GetTrendingCategory.
         /// </summary>
+        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.Trending.TrendingCategories> Trending_GetTrendingCategories(string? authToken = null, CancellationToken cancelToken = default)
         {
             return _apiAccessor.ApiRequestAsync<Entities.Trending.TrendingCategories>(
                 new Uri($"Trending/Categories/", UriKind.Relative),
-                null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
+                null, HttpMethod.Get, authToken, cancelToken
                 );
         }
 
@@ -24,11 +26,13 @@ namespace BungieSharper.Endpoints
         /// </summary>
         /// <param name="categoryId">The ID of the category for whom you want additional results.</param>
         /// <param name="pageNumber">The page # of results to return.</param>
+        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.SearchResultOfTrendingEntry> Trending_GetTrendingCategory(string categoryId, int pageNumber, string? authToken = null, CancellationToken cancelToken = default)
         {
             return _apiAccessor.ApiRequestAsync<Entities.SearchResultOfTrendingEntry>(
                 new Uri($"Trending/Categories/{Uri.EscapeDataString(categoryId)}/{pageNumber}/", UriKind.Relative),
-                null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
+                null, HttpMethod.Get, authToken, cancelToken
                 );
         }
 
@@ -37,11 +41,13 @@ namespace BungieSharper.Endpoints
         /// </summary>
         /// <param name="identifier">The identifier for the entity to be returned.</param>
         /// <param name="trendingEntryType">The type of entity to be returned.</param>
+        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.Trending.TrendingDetail> Trending_GetTrendingEntryDetail(string identifier, Entities.Trending.TrendingEntryType trendingEntryType, string? authToken = null, CancellationToken cancelToken = default)
         {
             return _apiAccessor.ApiRequestAsync<Entities.Trending.TrendingDetail>(
                 new Uri($"Trending/Details/{trendingEntryType}/{Uri.EscapeDataString(identifier)}/", UriKind.Relative),
-                null, HttpMethod.Get, authToken, AuthHeaderType.Bearer, cancelToken
+                null, HttpMethod.Get, authToken, cancelToken
                 );
         }
     }

@@ -21,11 +21,18 @@ namespace BungieSharper.Entities
 
     public class ApiResponse<T> : ApiResponse
     {
+#if (NETSTANDARD2_1 || NETCOREAPP2_1 || NETCOREAPP3_1)
+        public T Response { get; set; }
+#else
         public T? Response { get; set; }
+#endif
     }
 
     public class TokenResponse
     {
+        /// <summary>
+        /// The access token, to be sent with authenticated requests
+        /// </summary>
         [JsonPropertyName("access_token")]
         public string? AccessToken { get; set; }
 
@@ -41,6 +48,9 @@ namespace BungieSharper.Entities
         [JsonPropertyName("expires_in")]
         public long? ExpiresIn { get; set; }
 
+        /// <summary>
+        /// The refresh token, to be used to refresh the <see cref="AccessToken"/> (for "confidential" clients only)
+        /// </summary>
         [JsonPropertyName("refresh_token")]
         public string? RefreshToken { get; set; }
 
@@ -56,9 +66,15 @@ namespace BungieSharper.Entities
         [JsonPropertyName("membership_id")]
         public long? MembershipId { get; set; }
 
+        /// <summary>
+        /// The error, if there is one
+        /// </summary>
         [JsonPropertyName("error")]
         public string? Error { get; set; }
 
+        /// <summary>
+        /// A (hopefully) more detailed description of the error, if there is one
+        /// </summary>
         [JsonPropertyName("error_description")]
         public string? ErrorDescription { get; set; }
     }

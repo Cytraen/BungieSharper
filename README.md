@@ -10,11 +10,8 @@ To my knowledge, everything **should.** Will it? Probably not.
 
 ## License
 ### BungieSharper License
-**BungieSharper** (the actual library) is licensed under the GNU LGPL, version 3.0 or later.
- - The terms of the LGPL v3.0 can be found in [`COPYING.LESSER.md`](COPYING.LESSER.md) or [here.](https://www.gnu.org/licenses/lgpl-3.0.en.html)
-
-**The rest** of BungieSharper (the generator, and the tests I guess) is licensed under the GNU AGPL, version 3.0 or later.
- - The terms of the AGPL v3.0 can be found in [`COPYING.md`](COPYING.md) or [here.](https://www.gnu.org/licenses/agpl-3.0.en.html)
+**BungieSharper** is licensed under the MIT License.
+ - The terms of the MIT License can be found in [`LICENSE.md`](LICENSE.md) or [here.](https://opensource.org/licenses/MIT)
 
 ### Bungie SDK License Agreement (BSD 3-Clause)
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"

@@ -2,11 +2,11 @@
 
 ## About
 **BungieSharper** is a .NET client library for the Bungie.net API.  
-**BungieSharper.Entities** Is also available standalone, if you would like to use your own client.
+**BungieSharper.Entities** Is also available standalone, if you would like to use your own client.  
 **BungieSharper.CodeGen** consumes [Bungie's OpenAPI spec,](https://github.com/Bungie-net/api) and turns it into code usable by BungieSharper.  
 
 ### What currently works
-To my knowledge, everything **should.** Will it? Probably not.
+To my knowledge, everything **should.** Will it? Most likely.
 
 ## License
 ### BungieSharper License

@@ -1,4 +1,4 @@
-﻿using BungieSharper.Client;
+using BungieSharper.Client;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -77,7 +77,12 @@ namespace BungieSharper.Endpoints
         /// <returns>The OAuth authorization URL.</returns>
         public string GetOAuthAuthorizationUrl()
         {
-            return OAuthAuthorizationUrl + _oAuthClientId;
+            if (!_oAuthClientId.HasValue)
+            {
+                throw new NullReferenceException(nameof(_oAuthClientId));
+            }
+
+            return OAuthAuthorizationUrl + _oAuthClientId.Value;
         }
 
         /// <summary>
@@ -87,7 +92,12 @@ namespace BungieSharper.Endpoints
         /// <returns>The OAuth authorization URL.</returns>
         public string GetOAuthAuthorizationUrl(string state)
         {
-            return OAuthAuthorizationUrl + _oAuthClientId + "&state=" + state;
+            if (string.IsNullOrWhiteSpace(state))
+            {
+                return GetOAuthAuthorizationUrl();
+            }
+
+            return GetOAuthAuthorizationUrl() + "&state=" + state;
         }
 
         internal void SetOAuthClientId(uint clientId)

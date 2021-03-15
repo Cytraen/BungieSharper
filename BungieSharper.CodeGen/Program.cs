@@ -120,11 +120,6 @@ namespace BungieSharper.CodeGen
                     combinedContent = combinedContent.Replace("System.DateTime", "DateTime");
                 }
 
-                if (!string.IsNullOrWhiteSpace(topFolder))
-                {
-                    Directory.CreateDirectory(bungieSharperPath.TrimEnd('\\') + ".Schema\\" + topFolder);
-                }
-
                 WriteFileWithContent(
                     bungieSharperPath.TrimEnd('\\') + ".Entities\\" + topFolder,
                     ("Entities." + location.Replace(bungieSharperPath, "").Replace('\\', '.') + ".cs").Replace("..", "."),

@@ -9,8 +9,8 @@
     <RepositoryType>git</RepositoryType>
     <Nullable>enable</Nullable>
 
-    <TargetFrameworks>net5.0</TargetFrameworks>
-    <Version>0.7.2-beta.1</Version>
+    <TargetFrameworks>net5.0;netcoreapp3.1;netstandard2.1</TargetFrameworks>
+    <Version>0.7.2</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

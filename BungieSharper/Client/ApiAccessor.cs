@@ -106,9 +106,15 @@ namespace BungieSharper.Client
                     throw ContentNotJsonException.NewContentNotJsonException(httpResponseMessage);
                 }
 
+#if (NETSTANDARD2_1 || NETCOREAPP2_1 || NETCOREAPP3_1)
                 var apiResponse = JsonSerializer.Deserialize<Entities.ApiResponse<T>>(
-                    await httpResponseMessage.Content.ReadAsStringAsync(cancelToken).ConfigureAwait(false), _serializerOptions
-                    );
+                    await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false),
+                    _serializerOptions);
+#else
+                var apiResponse = JsonSerializer.Deserialize<Entities.ApiResponse<T>>(
+                    await httpResponseMessage.Content.ReadAsStringAsync(cancelToken).ConfigureAwait(false),
+                    _serializerOptions);
+#endif
 
                 if (apiResponse is null)
                 {
@@ -166,9 +172,15 @@ namespace BungieSharper.Client
                     throw ContentNotJsonException.NewContentNotJsonException(httpResponseMessage);
                 }
 
+#if (NETSTANDARD2_1 || NETCOREAPP2_1 || NETCOREAPP3_1)
                 var apiResponse = JsonSerializer.Deserialize<Entities.TokenResponse>(
-                    await httpResponseMessage.Content.ReadAsStringAsync(cancelToken).ConfigureAwait(false), _serializerOptions
-                    );
+                    await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false),
+                    _serializerOptions);
+#else
+                var apiResponse = JsonSerializer.Deserialize<Entities.TokenResponse>(
+                    await httpResponseMessage.Content.ReadAsStringAsync(cancelToken).ConfigureAwait(false),
+                    _serializerOptions);
+#endif
 
                 if (apiResponse is null)
                 {
@@ -185,14 +197,24 @@ namespace BungieSharper.Client
         {
             var requestMsg = HttpRequestGenerator.MakeApiRequestMessage(uri, null, HttpMethod.Get);
             var response = await GetApiResponseAsync(requestMsg, cancelToken);
+
+#if (NETSTANDARD2_1 || NETCOREAPP2_1 || NETCOREAPP3_1)
+            return await response.Content.ReadAsStreamAsync();
+#else
             return await response.Content.ReadAsStreamAsync(cancelToken);
+#endif
         }
 
         internal async Task<string> GetString(Uri uri, CancellationToken cancelToken)
         {
             var requestMsg = HttpRequestGenerator.MakeApiRequestMessage(uri, null, HttpMethod.Get);
             var response = await GetApiResponseAsync(requestMsg, cancelToken);
+
+#if (NETSTANDARD2_1 || NETCOREAPP2_1 || NETCOREAPP3_1)
+            return await response.Content.ReadAsStringAsync();
+#else
             return await response.Content.ReadAsStringAsync(cancelToken);
+#endif
         }
 
         private Task<HttpResponseMessage> GetApiResponseAsync(HttpRequestMessage request, CancellationToken cancelToken)

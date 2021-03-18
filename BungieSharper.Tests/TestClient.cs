@@ -7,20 +7,15 @@ namespace BungieSharper.Tests
     {
         public BungieApiClient TestClient { get; }
 
-        private readonly string BungieApiKey = Environment.GetEnvironmentVariable("TEST_BUNGIE_API_KEY"); // YOUR BUNGIE.NET API KEY HERE
-
-        private readonly string BungieUserAgent =
-            $"BungieSharper.Tests/{typeof(TestClientFixture).Assembly.GetName().Version!.ToString(3)} (+github.com/ashakoor/BungieSharper)";
-
         public TestClientFixture()
         {
-            if (string.IsNullOrWhiteSpace(BungieApiKey))
-                throw new Exception();
+            var config = new BungieClientConfig
+            {
+                ApiKey = Environment.GetEnvironmentVariable("TEST_BUNGIE_API_KEY") ?? throw new NullReferenceException(),
+                UserAgent = $"BungieSharper.Tests/{typeof(TestClientFixture).Assembly.GetName().Version!.ToString(3)} (+github.com/ashakoor/BungieSharper)"
+            };
 
-            TestClient = new BungieApiClient();
-            TestClient.SetApiKey(BungieApiKey);
-            TestClient.SetUserAgent(BungieUserAgent);
-            TestClient.SetRateLimit(10);
+            TestClient = new BungieApiClient(config);
         }
 
         public void Dispose()

@@ -19,9 +19,44 @@ namespace BungieSharper.Client
         private readonly SemaphoreSlim _semaphore;
         private readonly JsonSerializerOptions _serializerOptions;
         private TimeSpan _msPerRequest;
-        private List<PlatformErrorCodes> _retryErrorCodes;
+        private HashSet<PlatformErrorCodes> _retryErrorCodes;
 
-        public void Dispose() => _httpClient.Dispose();
+        internal string ApiKey
+        {
+            set
+            {
+                _httpClient.DefaultRequestHeaders.Remove("X-API-Key");
+                _httpClient.DefaultRequestHeaders.Add("X-API-Key", value);
+            }
+        }
+
+        internal string? UserAgent
+        {
+            set
+            {
+                _httpClient.DefaultRequestHeaders.Remove("User-Agent");
+
+                if (value != null)
+                    _httpClient.DefaultRequestHeaders.Add("User-Agent", value);
+            }
+        }
+
+        internal HashSet<PlatformErrorCodes> RetryErrorCodes
+        {
+            set => _retryErrorCodes = value;
+        }
+
+        internal byte RequestsPerSecond
+        {
+            set => _msPerRequest = TimeSpan.FromMilliseconds(1000.0 / value * SimultaneousRequests);
+        }
+
+        public void Dispose()
+        {
+            _httpClient.CancelPendingRequests();
+            _httpClient.Dispose();
+            _semaphore.Dispose();
+        }
 
         internal ApiAccessor()
         {
@@ -42,7 +77,7 @@ namespace BungieSharper.Client
                 BaseAddress = new Uri(BaseUrl, UriKind.Absolute)
             };
 
-            _retryErrorCodes = new List<PlatformErrorCodes>
+            _retryErrorCodes = new HashSet<PlatformErrorCodes>
             {
                 PlatformErrorCodes.ThrottleLimitExceeded,
                 PlatformErrorCodes.ThrottleLimitExceededMinutes,
@@ -55,32 +90,6 @@ namespace BungieSharper.Client
                 PlatformErrorCodes.PerUserThrottleExceeded,
                 PlatformErrorCodes.DestinyThrottledByGameServer
             };
-        }
-
-        internal void SetApiKey(string apiKey)
-        {
-            _httpClient.DefaultRequestHeaders.Remove("X-API-Key");
-            _httpClient.DefaultRequestHeaders.Add("X-API-Key", apiKey);
-        }
-
-        internal void RemoveUserAgent()
-        {
-            _httpClient.DefaultRequestHeaders.Remove("User-Agent");
-        }
-
-        internal void AddUserAgent(string userAgent)
-        {
-            _httpClient.DefaultRequestHeaders.Add("User-Agent", userAgent);
-        }
-
-        internal void SetRetryErrorCodes(List<PlatformErrorCodes> errorCodes)
-        {
-            _retryErrorCodes = errorCodes;
-        }
-
-        internal void SetRateLimit(byte requestsPerSecond)
-        {
-            _msPerRequest = TimeSpan.FromMilliseconds(1000.0 / requestsPerSecond * SimultaneousRequests);
         }
 
         internal async Task<T> ApiRequestAsync<T>(Uri uri, HttpContent? httpContent, HttpMethod httpMethod, string? authToken, CancellationToken cancelToken)

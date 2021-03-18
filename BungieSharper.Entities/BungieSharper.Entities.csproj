@@ -9,7 +9,7 @@
     <Nullable>enable</Nullable>
 
     <TargetFrameworks>net5.0;netcoreapp3.1;netstandard2.1</TargetFrameworks>
-    <Version>0.7.2</Version>
+    <Version>0.8.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

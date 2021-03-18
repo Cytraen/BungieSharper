@@ -13,7 +13,7 @@ namespace BungieSharper.Endpoints
         private const string OAuthTokenUrl = "https://www.bungie.net/Platform/App/OAuth/Token/";
 
         private readonly ApiAccessor _apiAccessor;
-        private uint? _oAuthClientId;
+        private string? _oAuthClientId;
         private string? _oAuthClientSecret;
 
         internal OAuthRequests(ApiAccessor apiAccessor)
@@ -33,7 +33,7 @@ namespace BungieSharper.Endpoints
             {
                 new KeyValuePair<string?, string?>("grant_type", "authorization_code"),
                 new KeyValuePair<string?, string?>("code", authorizationCode),
-                new KeyValuePair<string?, string?>("client_id", _oAuthClientId.ToString())
+                new KeyValuePair<string?, string?>("client_id", _oAuthClientId)
             };
 
             if (!string.IsNullOrWhiteSpace(_oAuthClientSecret))
@@ -58,7 +58,7 @@ namespace BungieSharper.Endpoints
             {
                 new KeyValuePair<string?, string?>("grant_type", "refresh_token"),
                 new KeyValuePair<string?, string?>("refresh_token", refreshToken),
-                new KeyValuePair<string?, string?>("client_id", _oAuthClientId.ToString())
+                new KeyValuePair<string?, string?>("client_id", _oAuthClientId)
             };
 
             if (!string.IsNullOrWhiteSpace(_oAuthClientSecret))
@@ -77,12 +77,12 @@ namespace BungieSharper.Endpoints
         /// <returns>The OAuth authorization URL.</returns>
         public string GetOAuthAuthorizationUrl()
         {
-            if (!_oAuthClientId.HasValue)
+            if (string.IsNullOrWhiteSpace(_oAuthClientId))
             {
                 throw new NullReferenceException(nameof(_oAuthClientId));
             }
 
-            return OAuthAuthorizationUrl + _oAuthClientId.Value;
+            return OAuthAuthorizationUrl + _oAuthClientId;
         }
 
         /// <summary>
@@ -100,12 +100,12 @@ namespace BungieSharper.Endpoints
             return GetOAuthAuthorizationUrl() + "&state=" + state;
         }
 
-        internal void SetOAuthClientId(uint clientId)
+        internal void SetOAuthClientId(uint? clientId)
         {
-            _oAuthClientId = clientId;
+            _oAuthClientId = clientId.ToString();
         }
 
-        internal void SetOAuthClientSecret(string clientSecret)
+        internal void SetOAuthClientSecret(string? clientSecret)
         {
             _oAuthClientSecret = clientSecret;
         }

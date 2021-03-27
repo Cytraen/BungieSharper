@@ -14,15 +14,15 @@ namespace BungieSharper.CodeGen
     {
         internal static string BaseClientNamespace = "BungieSharper";
         internal static string BaseEntityNamespace = "BungieSharper.Entities";
+        internal static string BungieSharperPath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\..\BungieSharper\"));
+        internal static string EntityFolder = BungieSharperPath.TrimEnd('\\') + ".Entities\\";
+        internal static string EndpointFolder = BungieSharperPath.TrimEnd('\\') + "\\Endpoints\\";
 
         internal static OpenApiObject OpenApiDefinition;
 
         private static void Main(string[] args)
         {
             const string openApiDefUrl = "https://raw.githubusercontent.com/Bungie-net/api/master/openapi.json";
-
-            var bungieSharperPath =
-                Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\..\BungieSharper\"));
 
             if (args.Contains("--download-new-definitions") || !File.Exists("openApi.json"))
             {
@@ -44,6 +44,23 @@ namespace BungieSharper.CodeGen
             var schemas = OpenApiDefinition.Components.Schemas;
             var paths = OpenApiDefinition.Paths;
 
+            // entities
+
+            foreach (var subDir in Directory.GetDirectories(EntityFolder))
+            {
+                Directory.Delete(subDir, true);
+            }
+
+            foreach (var file in Directory.GetFiles(EntityFolder))
+            {
+                var fileName = file.Split('\\').Last();
+
+                if (fileName.EndsWith(".cs") && !fileName.StartsWith('_'))
+                {
+                    File.Delete(file);
+                }
+            }
+
             var schemaFileDict = new Dictionary<string, List<string>>();
 
             foreach (var (schemaName, schemaDef) in schemas)
@@ -54,7 +71,7 @@ namespace BungieSharper.CodeGen
 
                 if (!schemaFileDict.ContainsKey(fileFolder))
                 {
-                    schemaFileDict.Add(fileFolder, new());
+                    schemaFileDict.Add(fileFolder, new List<string>());
                 }
 
                 schemaFileDict[fileFolder].Add(Generation.GenerateSchema.GetSchemaFileContent(schemaName, schemaDef));
@@ -63,7 +80,6 @@ namespace BungieSharper.CodeGen
             foreach (var (location, classContents) in schemaFileDict)
             {
                 var combinedContent = string.Join("\n", classContents);
-                var topFolder = location.Replace(bungieSharperPath, "").Replace("Schema\\", "").Split('\\').First();
 
                 var regex = new Regex(@"^namespace (.*)\n[{]", RegexOptions.Multiline);
                 var matches = regex.Matches(combinedContent);
@@ -91,7 +107,7 @@ namespace BungieSharper.CodeGen
                     combinedContent = "using System.Collections.Generic;\n" + combinedContent;
                 }
 
-                if ((combinedContent.Length - combinedContent.Replace("[System.Flags]", "[Flags]").Replace("System.DateTime", "DateTime").Length) >= 14)
+                if (combinedContent.Length - combinedContent.Replace("[System.Flags]", "[Flags]").Replace("System.DateTime", "DateTime").Length >= 14)
                 {
                     combinedContent = "using System;\n" + combinedContent;
                 }
@@ -121,10 +137,31 @@ namespace BungieSharper.CodeGen
                 }
 
                 WriteFileWithContent(
-                    bungieSharperPath.TrimEnd('\\') + ".Entities\\" + topFolder,
-                    ("Entities." + location.Replace(bungieSharperPath, "").Replace('\\', '.') + ".cs").Replace("..", "."),
+                    EntityFolder + location.Replace(EntityFolder, "").Split('\\').First(),
+                    ("Entities." + location.Replace(BungieSharperPath, "").Replace('\\', '.') + ".cs").Replace("..", "."),
                     combinedContent
                     );
+            }
+
+            // endpoints
+
+            foreach (var subDir in Directory.GetDirectories(BungieSharperPath))
+            {
+                var folder = subDir.Split('\\').Last();
+                if (folder == "bin" || folder == "obj")
+                {
+                    Directory.Delete(subDir, true);
+                }
+            }
+
+            foreach (var file in Directory.GetFiles(EndpointFolder))
+            {
+                var fileName = file.Split('\\').Last();
+
+                if (fileName.EndsWith(".cs") && !fileName.StartsWith('_'))
+                {
+                    File.Delete(file);
+                }
             }
 
             var pathContentDict = new Dictionary<Entities.Common.TagEnum, List<string>>();
@@ -148,7 +185,7 @@ namespace BungieSharper.CodeGen
 
                 if (!pathContentDict.ContainsKey(tag))
                 {
-                    pathContentDict[tag] = new();
+                    pathContentDict[tag] = new List<string>();
                 }
 
                 var pathContent = Generation.GeneratePath.GeneratePathContent(pathUri, pathDef);
@@ -193,7 +230,7 @@ namespace BungieSharper.Endpoints
                 }
 
                 WriteFileWithContent(
-                    bungieSharperPath + "Endpoints\\",
+                    EndpointFolder,
                     Generation.Mapping.TagToDescription(tag) + ".cs",
                     aggregateFile);
             }

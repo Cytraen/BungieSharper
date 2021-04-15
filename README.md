@@ -10,8 +10,7 @@ To my knowledge, everything **should.** Will it? Most likely.
 
 ## License
 ### BungieSharper License
-**BungieSharper** is licensed under the MIT License.
- - The terms of the MIT License can be found in [`LICENSE.md`](LICENSE.md) or [here.](https://opensource.org/licenses/MIT)
+**BungieSharper** is licensed under the MIT License, the terms of which can be found in [`LICENSE.md`](LICENSE.md) or [here.](https://opensource.org/licenses/MIT)
 
 ### Bungie SDK License Agreement (BSD 3-Clause)
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"

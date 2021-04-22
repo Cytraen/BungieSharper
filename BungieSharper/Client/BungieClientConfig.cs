@@ -12,8 +12,9 @@ namespace BungieSharper.Client
         private string _apiKey = string.Empty;
 
         /// <summary>
-        /// The API key to set in the X-API-Key header. If you don't have one, you can get one at https://www.bungie.net/en/Application
+        /// The API key to set in the X-API-Key header.
         /// </summary>
+        /// <remarks> If you don't have one, you can get one at https://www.bungie.net/en/Application/ </remarks>
         public string ApiKey
         {
             internal get
@@ -35,8 +36,9 @@ namespace BungieSharper.Client
         private string? _userAgent;
 
         /// <summary>
-        /// The value of the "User-Agent" header. If <c>null</c>, it will be removed/omitted. Format should be {ProductName}/{ProductVersion} (+{contact info}) e.g.: YourAppName/v1.2.3 (+your@email.here)
+        /// The value of the "User-Agent" header. If <c>null</c>, it will be removed/omitted.
         /// </summary>
+        /// <remarks>Format should be {ProductName}/{ProductVersion} (+{contact info}) e.g.: YourAppName/v1.2.3 (+your@email.here)</remarks>
         public string? UserAgent
         {
             internal get
@@ -73,6 +75,7 @@ namespace BungieSharper.Client
         /// <summary>
         /// The client's OAuth client secret
         /// </summary>
+        /// <remarks>Only for confidential clients</remarks>
         public string? OAuthClientSecret
         {
             internal get
@@ -89,9 +92,10 @@ namespace BungieSharper.Client
         private byte _requestsPerSecond = BungieApiClient.DefaultRequestsPerSecond;
 
         /// <summary>
-        /// The maximum number of Bungie API requests to make per second. The official limit is 250/10sec/IP (25/sec.) The absolute maximum is 50, but if you go higher than 25, you're on your own.
+        /// The maximum number of Bungie API requests to make per second.
         /// </summary>
-        public byte RequestsPerSecond
+        /// <remarks>The official limit is 250/10sec/IP (25/sec.) The absolute maximum is 50, but if you go higher than 25, you're on your own.</remarks>
+        public byte RateLimit
         {
             internal get
             {
@@ -109,7 +113,7 @@ namespace BungieSharper.Client
             }
         }
 
-        private HashSet<PlatformErrorCodes> _retryErrorCodes = new HashSet<PlatformErrorCodes>
+        private HashSet<PlatformErrorCodes> _retryErrorCodes = new()
         {
             PlatformErrorCodes.ThrottleLimitExceeded,
             PlatformErrorCodes.ThrottleLimitExceededMinutes,

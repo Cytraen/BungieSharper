@@ -187,6 +187,10 @@ namespace BungieSharper.Entities.Destiny.Responses
         [JsonPropertyName("metrics")]
         public SingleComponentResponseOfDestinyMetricsComponent Metrics { get; set; }
 
+        /// <summary>COMPONENT TYPE: StringVariables</summary>
+        [JsonPropertyName("profileStringVariables")]
+        public SingleComponentResponseOfDestinyStringVariablesComponent ProfileStringVariables { get; set; }
+
         /// <summary>
         /// Basic information about each character, keyed by the CharacterId.
         /// COMPONENT TYPE: Characters
@@ -268,6 +272,10 @@ namespace BungieSharper.Entities.Destiny.Responses
         /// <summary>COMPONENT TYPE: Collectibles</summary>
         [JsonPropertyName("characterCollectibles")]
         public DictionaryComponentResponseOfint64AndDestinyCollectiblesComponent CharacterCollectibles { get; set; }
+
+        /// <summary>COMPONENT TYPE: StringVariables</summary>
+        [JsonPropertyName("characterStringVariables")]
+        public DictionaryComponentResponseOfint64AndDestinyStringVariablesComponent CharacterStringVariables { get; set; }
 
         /// <summary>
         /// Information about instanced items across all returned characters, keyed by the item's instance ID.

@@ -219,6 +219,10 @@ namespace BungieSharper.Entities.Destiny.Definitions.Milestones
         /// <summary>The amount of the item needed/available depending on the context of where DestinyItemQuantity is being used.</summary>
         [JsonPropertyName("quantity")]
         public int Quantity { get; set; }
+
+        /// <summary>Indicates that this item quantity may be conditionally shown or hidden, based on various sources of state. For example: server flags, account state, or character progress.</summary>
+        [JsonPropertyName("hasConditionalVisibility")]
+        public bool HasConditionalVisibility { get; set; }
     }
 
     /// <summary>

@@ -66,7 +66,7 @@ namespace BungieSharper.Endpoints
         }
 
         /// <summary>
-        /// Gets a listing of all clan fireteams that caller is an applicant, a member, or an alternate of.
+        /// Gets a listing of all fireteams that caller is an applicant, a member, or an alternate of.
         /// Requires OAuth2 scope(s): ReadGroups
         /// </summary>
         /// <param name="groupFilter">If true, filter by clan. Otherwise, ignore the clan and show all of the user's fireteams.</param>
@@ -86,7 +86,7 @@ namespace BungieSharper.Endpoints
         }
 
         /// <summary>
-        /// Gets a specific clan fireteam.
+        /// Gets a specific fireteam.
         /// Requires OAuth2 scope(s): ReadGroups
         /// </summary>
         /// <param name="fireteamId">The unique id of the fireteam.</param>

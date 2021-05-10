@@ -44,7 +44,10 @@ namespace BungieSharper.Entities.Applications
         AdvancedWriteActions = 2048,
 
         /// <summary>Can user the partner offer api to claim rewards defined for a partner</summary>
-        PartnerOfferGrant = 4096
+        PartnerOfferGrant = 4096,
+
+        /// <summary>Allows an app to query sensitive information like unlock flags and values not available through normal methods.</summary>
+        DestinyUnlockValueQuery = 8192
     }
 
     public class ApiUsage

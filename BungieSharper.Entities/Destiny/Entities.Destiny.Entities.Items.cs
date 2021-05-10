@@ -78,6 +78,10 @@ namespace BungieSharper.Entities.Destiny.Entities.Items
         /// <summary>The version of this item, used to index into the versions list in the item definition quality block.</summary>
         [JsonPropertyName("versionNumber"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? VersionNumber { get; set; }
+
+        /// <summary>If available, a list that describes which item values (rewards) should be shown (true) or hidden (false).</summary>
+        [JsonPropertyName("itemValueVisibility")]
+        public IEnumerable<bool> ItemValueVisibility { get; set; }
     }
 
     /// <summary>

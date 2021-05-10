@@ -394,6 +394,7 @@
         ClanRequiresExistingDestinyAccount = 750,
         ClanNameRestricted = 751,
         ClanCreationBan = 752,
+        ClanCreationTenureRequirementsNotMet = 753,
         ItemAlreadyFollowed = 801,
         ItemNotFollowed = 802,
         CannotFollowSelf = 803,
@@ -737,6 +738,9 @@
         ClanFireteamExpired = 3026,
         ClanFireteamInvalidAuthProvider = 3027,
         ClanFireteamInvalidAuthProviderXuid = 3028,
+        ClanFireteamThrottle = 3029,
+        ClanFireteamTooManyOpenScheduledFireteams = 3030,
+        ClanFireteamCannotReopenScheduledFireteams = 3031,
         CrossSaveOverriddenAccountNotFound = 3200,
         CrossSaveTooManyOverriddenPlatforms = 3201,
         CrossSaveNoOverriddenPlatforms = 3202,
@@ -780,6 +784,18 @@
         ErrorPhoneValidationTooManyUses = 3702,
         ErrorPhoneValidationNoAssociatedPhone = 3703,
         ErrorPhoneValidationCodeInvalid = 3705,
-        ErrorPhoneValidationBanned = 3706
+        ErrorPhoneValidationBanned = 3706,
+        ErrorPhoneValidationCodeTooRecentlySent = 3707,
+        ErrorPhoneValidationCodeExpired = 3708,
+        ErrorPhoneValidationInvalidNumberType = 3709,
+        ErrorPhoneValidationCodeTooRecentlyChecked = 3710,
+        ApplePushErrorUnknown = 3800,
+        ApplePushErrorNull = 3801,
+        ApplePushErrorTimeout = 3802,
+        ApplePushBadRequest = 3803,
+        ApplePushFailedAuth = 3804,
+        ApplePushThrottled = 3805,
+        ApplePushServiceUnavailable = 3806,
+        NotAnImageOrVideo = 3807
     }
 }

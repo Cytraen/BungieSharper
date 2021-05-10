@@ -30,6 +30,10 @@ namespace BungieSharper.Entities.Destiny.Components.Records
 
         [JsonPropertyName("intervalsRedeemedCount")]
         public int IntervalsRedeemedCount { get; set; }
+
+        /// <summary>If available, a list that describes which reward rewards should be shown (true) or hidden (false). This property is for regular record rewards, and not for interval objective rewards.</summary>
+        [JsonPropertyName("rewardVisibilty")]
+        public IEnumerable<bool> RewardVisibilty { get; set; }
     }
 
     public class DestinyProfileRecordsComponent

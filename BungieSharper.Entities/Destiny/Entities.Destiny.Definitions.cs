@@ -434,6 +434,10 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("traitIds")]
         public IEnumerable<string> TraitIds { get; set; }
 
+        /// <summary>These are the corresponding trait definition hashes for the entries in traitIds.</summary>
+        [JsonPropertyName("traitHashes")]
+        public IEnumerable<uint> TraitHashes { get; set; }
+
         /// <summary>
         /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
         /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
@@ -1814,6 +1818,10 @@ namespace BungieSharper.Entities.Destiny.Definitions
         /// <summary>The amount of the item needed/available depending on the context of where DestinyItemQuantity is being used.</summary>
         [JsonPropertyName("quantity")]
         public int Quantity { get; set; }
+
+        /// <summary>Indicates that this item quantity may be conditionally shown or hidden, based on various sources of state. For example: server flags, account state, or character progress.</summary>
+        [JsonPropertyName("hasConditionalVisibility")]
+        public bool HasConditionalVisibility { get; set; }
     }
 
     /// <summary>
@@ -3956,6 +3964,10 @@ namespace BungieSharper.Entities.Destiny.Definitions
         /// <summary>The amount of the item needed/available depending on the context of where DestinyItemQuantity is being used.</summary>
         [JsonPropertyName("quantity")]
         public int Quantity { get; set; }
+
+        /// <summary>Indicates that this item quantity may be conditionally shown or hidden, based on various sources of state. For example: server flags, account state, or character progress.</summary>
+        [JsonPropertyName("hasConditionalVisibility")]
+        public bool HasConditionalVisibility { get; set; }
     }
 
     /// <summary>

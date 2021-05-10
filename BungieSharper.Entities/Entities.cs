@@ -413,6 +413,19 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
+    public class SingleComponentResponseOfDestinyStringVariablesComponent
+    {
+        [JsonPropertyName("data")]
+        public Destiny.Components.StringVariables.DestinyStringVariablesComponent Data { get; set; }
+
+        [JsonPropertyName("privacy")]
+        public Components.ComponentPrivacySetting Privacy { get; set; }
+
+        /// <summary>If true, this component is disabled.</summary>
+        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public bool? Disabled { get; set; }
+    }
+
     public class DictionaryComponentResponseOfint64AndDestinyCharacterComponent
     {
         [JsonPropertyName("data")]
@@ -553,6 +566,19 @@ namespace BungieSharper.Entities
     {
         [JsonPropertyName("data")]
         public Dictionary<long, Destiny.Components.Collectibles.DestinyCollectiblesComponent> Data { get; set; }
+
+        [JsonPropertyName("privacy")]
+        public Components.ComponentPrivacySetting Privacy { get; set; }
+
+        /// <summary>If true, this component is disabled.</summary>
+        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public bool? Disabled { get; set; }
+    }
+
+    public class DictionaryComponentResponseOfint64AndDestinyStringVariablesComponent
+    {
+        [JsonPropertyName("data")]
+        public Dictionary<long, Destiny.Components.StringVariables.DestinyStringVariablesComponent> Data { get; set; }
 
         [JsonPropertyName("privacy")]
         public Components.ComponentPrivacySetting Privacy { get; set; }

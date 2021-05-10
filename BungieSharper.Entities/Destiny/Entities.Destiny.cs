@@ -142,6 +142,10 @@ namespace BungieSharper.Entities.Destiny
         /// <summary>The amount of the item needed/available depending on the context of where DestinyItemQuantity is being used.</summary>
         [JsonPropertyName("quantity")]
         public int Quantity { get; set; }
+
+        /// <summary>Indicates that this item quantity may be conditionally shown or hidden, based on various sources of state. For example: server flags, account state, or character progress.</summary>
+        [JsonPropertyName("hasConditionalVisibility")]
+        public bool HasConditionalVisibility { get; set; }
     }
 
     public enum TierType : int
@@ -966,7 +970,10 @@ namespace BungieSharper.Entities.Destiny
         Transitory = 1000,
 
         /// <summary>Returns summary status information about all "Metrics" (also known in the game as "Stat Trackers").</summary>
-        Metrics = 1100
+        Metrics = 1100,
+
+        /// <summary>Returns a mapping of localized string variable hashes to values, on a per-account or per-character basis.</summary>
+        StringVariables = 1200
     }
 
     /// <summary>

@@ -516,6 +516,13 @@ namespace BungieSharper.Entities.Destiny.Responses
         /// </summary>
         [JsonPropertyName("currencyLookups")]
         public SingleComponentResponseOfDestinyCurrenciesComponent CurrencyLookups { get; set; }
+
+        /// <summary>
+        /// A map of string variable values by hash for this character context.
+        /// COMPONENT TYPE: StringVariables
+        /// </summary>
+        [JsonPropertyName("stringVariables")]
+        public SingleComponentResponseOfDestinyStringVariablesComponent StringVariables { get; set; }
     }
 
     public class PersonalDestinyVendorSaleItemSetComponent
@@ -563,6 +570,13 @@ namespace BungieSharper.Entities.Destiny.Responses
         /// </summary>
         [JsonPropertyName("currencyLookups")]
         public SingleComponentResponseOfDestinyCurrenciesComponent CurrencyLookups { get; set; }
+
+        /// <summary>
+        /// A map of string variable values by hash for this character context.
+        /// COMPONENT TYPE: StringVariables
+        /// </summary>
+        [JsonPropertyName("stringVariables")]
+        public SingleComponentResponseOfDestinyStringVariablesComponent StringVariables { get; set; }
     }
 
     /// <summary>
@@ -600,6 +614,13 @@ namespace BungieSharper.Entities.Destiny.Responses
         /// </summary>
         [JsonPropertyName("sales")]
         public DictionaryComponentResponseOfuint32AndPublicDestinyVendorSaleItemSetComponent Sales { get; set; }
+
+        /// <summary>
+        /// A set of string variable values by hash for a public vendors context.
+        /// COMPONENT TYPE: StringVariables
+        /// </summary>
+        [JsonPropertyName("stringVariables")]
+        public SingleComponentResponseOfDestinyStringVariablesComponent StringVariables { get; set; }
     }
 
     public class PublicDestinyVendorSaleItemSetComponent

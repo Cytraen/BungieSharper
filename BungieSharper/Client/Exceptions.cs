@@ -38,7 +38,7 @@ namespace BungieSharper.Client
 
         internal static ContentNotJsonException NewContentNotJsonException(HttpResponseMessage httpResponse)
         {
-            return new ContentNotJsonException(
+            return new(
                 httpResponse,
                 "The Bungie API returned content that was of type " + httpResponse.Content.Headers.ContentType?.MediaType + " instead of \"application/json\""
                 );
@@ -53,7 +53,7 @@ namespace BungieSharper.Client
 
         internal static ContentNullJsonException NewContentNullJsonException(HttpResponseMessage httpResponse)
         {
-            return new ContentNullJsonException(
+            return new(
                 httpResponse,
                 "The response contained JSON content that was null or empty."
                 );
@@ -68,9 +68,9 @@ namespace BungieSharper.Client
 
         internal static NonRetryErrorCodeException NewNonRetryErrorCodeException(Entities.ApiResponse apiResponse)
         {
-            return new NonRetryErrorCodeException(
+            return new(
                 apiResponse,
-                "The Bungie API returned an error code that will not be retried on."
+                $"The Bungie API returned an error code ({(int)apiResponse.ErrorCode}: {apiResponse.ErrorCode}) that will not be retried on."
                 );
         }
     }
@@ -83,7 +83,7 @@ namespace BungieSharper.Client
 
         internal static NullResponseException NewNullResponseException(Entities.ApiResponse apiResponse)
         {
-            return new NullResponseException(
+            return new(
                 apiResponse,
                 "The response provided by the Bungie API was null or empty."
                 );

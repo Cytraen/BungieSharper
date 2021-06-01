@@ -47,7 +47,10 @@ namespace BungieSharper.Entities.Applications
         PartnerOfferGrant = 4096,
 
         /// <summary>Allows an app to query sensitive information like unlock flags and values not available through normal methods.</summary>
-        DestinyUnlockValueQuery = 8192
+        DestinyUnlockValueQuery = 8192,
+
+        /// <summary>Allows an app to query sensitive user PII, most notably email information.</summary>
+        UserPiiRead = 16384
     }
 
     public class ApiUsage

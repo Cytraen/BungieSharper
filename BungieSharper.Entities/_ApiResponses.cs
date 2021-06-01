@@ -1,4 +1,4 @@
-﻿using BungieSharper.Entities.Exceptions;
+using BungieSharper.Entities.Exceptions;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
@@ -21,11 +21,7 @@ namespace BungieSharper.Entities
 
     public class ApiResponse<T> : ApiResponse
     {
-#if (NETSTANDARD2_1 || NETCOREAPP2_1 || NETCOREAPP3_1)
-        public T Response { get; set; }
-#else
         public T? Response { get; set; }
-#endif
     }
 
     public class TokenResponse

@@ -6,7 +6,7 @@ namespace BungieSharper.Entities.Destiny.Components.Records
     public class DestinyRecordsComponent
     {
         [JsonPropertyName("records")]
-        public Dictionary<uint, Destiny.Components.Records.DestinyRecordComponent> Records { get; set; }
+        public Dictionary<uint, DestinyRecordComponent> Records { get; set; }
 
         /// <summary>The hash for the root presentation node definition of Triumph categories.</summary>
         [JsonPropertyName("recordCategoriesRootNodeHash")]
@@ -20,13 +20,13 @@ namespace BungieSharper.Entities.Destiny.Components.Records
     public class DestinyRecordComponent
     {
         [JsonPropertyName("state")]
-        public Destiny.DestinyRecordState State { get; set; }
+        public DestinyRecordState State { get; set; }
 
         [JsonPropertyName("objectives")]
-        public IEnumerable<Destiny.Quests.DestinyObjectiveProgress> Objectives { get; set; }
+        public IEnumerable<Quests.DestinyObjectiveProgress> Objectives { get; set; }
 
         [JsonPropertyName("intervalObjectives")]
-        public IEnumerable<Destiny.Quests.DestinyObjectiveProgress> IntervalObjectives { get; set; }
+        public IEnumerable<Quests.DestinyObjectiveProgress> IntervalObjectives { get; set; }
 
         [JsonPropertyName("intervalsRedeemedCount")]
         public int IntervalsRedeemedCount { get; set; }
@@ -59,7 +59,7 @@ namespace BungieSharper.Entities.Destiny.Components.Records
         public uint? TrackedRecordHash { get; set; }
 
         [JsonPropertyName("records")]
-        public Dictionary<uint, Destiny.Components.Records.DestinyRecordComponent> Records { get; set; }
+        public Dictionary<uint, DestinyRecordComponent> Records { get; set; }
 
         /// <summary>The hash for the root presentation node definition of Triumph categories.</summary>
         [JsonPropertyName("recordCategoriesRootNodeHash")]
@@ -76,7 +76,7 @@ namespace BungieSharper.Entities.Destiny.Components.Records
         public IEnumerable<uint> FeaturedRecordHashes { get; set; }
 
         [JsonPropertyName("records")]
-        public Dictionary<uint, Destiny.Components.Records.DestinyRecordComponent> Records { get; set; }
+        public Dictionary<uint, DestinyRecordComponent> Records { get; set; }
 
         /// <summary>The hash for the root presentation node definition of Triumph categories.</summary>
         [JsonPropertyName("recordCategoriesRootNodeHash")]

@@ -103,23 +103,23 @@ namespace BungieSharper.CodeGen.Generation
 
             if (def.AllOf is not null)
             {
-                propType += FormatStrings.ResolveRef(def.AllOf[0].Ref, false);
+                propType += FormatStrings.ResolveRef(def.AllOf[0].Ref, false, parentNameSpace);
             }
             else if (def.Items is not null)
             {
-                propType += GenerateCommon.ResolveItems(def.Items, false);
+                propType += GenerateCommon.ResolveItems(def.Items, false, parentNameSpace);
             }
             else if (def.AdditionalProperties is not null)
             {
-                propType += ResolvePropertyDictionary(def.XDictionaryKey!, def.AdditionalProperties);
+                propType += ResolvePropertyDictionary(def.XDictionaryKey!, def.AdditionalProperties, parentNameSpace);
             }
             else if (def.Ref is not null)
             {
-                propType += FormatStrings.ResolveRef(def.Ref, false);
+                propType += FormatStrings.ResolveRef(def.Ref, false, parentNameSpace);
             }
             else if (def.XEnumReference is not null)
             {
-                propType += FormatStrings.ResolveRef(def.XEnumReference.Ref, false);
+                propType += FormatStrings.ResolveRef(def.XEnumReference.Ref, false, parentNameSpace);
             }
             else if (def.Format is not null)
             {
@@ -145,23 +145,18 @@ namespace BungieSharper.CodeGen.Generation
                 propListing += $"        [JsonPropertyName(\"{name}\")]\n";
             }
 
-            if (!string.IsNullOrWhiteSpace(parentNameSpace) && propType.Length > parentNameSpace.Length && propType[0..parentNameSpace.Length] == parentNameSpace)
-            {
-                propType = propType.Remove(0, parentNameSpace.Length + 1);
-            }
-
             propListing += $"        public {propType} {char.ToUpper(name[0]) + name[1..]} {{ get; set; }}";
 
             return propListing;
         }
 
-        internal static string ResolvePropertyDictionary(Entities.Components.Properties.XDictionaryKeyClass dictKey, Entities.Components.Properties.AdditionalPropertiesClass additionalProps)
+        internal static string ResolvePropertyDictionary(Entities.Components.Properties.XDictionaryKeyClass dictKey, Entities.Components.Properties.AdditionalPropertiesClass additionalProps, string parentNameSpace)
         {
             var classType = "Dictionary<";
 
             if (dictKey.XEnumReference is not null)
             {
-                classType += FormatStrings.ResolveRef(dictKey.XEnumReference.Ref, false);
+                classType += FormatStrings.ResolveRef(dictKey.XEnumReference.Ref, false, parentNameSpace);
             }
             else if (dictKey.Format is not null)
             {
@@ -176,19 +171,19 @@ namespace BungieSharper.CodeGen.Generation
 
             if (additionalProps.AdditionalProperties is not null)
             {
-                classType += ResolvePropertyDictionary(additionalProps.XDictionaryKey, additionalProps.AdditionalProperties);
+                classType += ResolvePropertyDictionary(additionalProps.XDictionaryKey, additionalProps.AdditionalProperties, parentNameSpace);
             }
             else if (additionalProps.Items is not null)
             {
-                classType += GenerateCommon.ResolveItems(additionalProps.Items, false);
+                classType += GenerateCommon.ResolveItems(additionalProps.Items, false, parentNameSpace);
             }
             else if (additionalProps.Ref is not null)
             {
-                classType += FormatStrings.ResolveRef(additionalProps.Ref, false);
+                classType += FormatStrings.ResolveRef(additionalProps.Ref, false, parentNameSpace);
             }
             else if (additionalProps.XEnumReference is not null)
             {
-                classType += FormatStrings.ResolveRef(additionalProps.XEnumReference.Ref, false);
+                classType += FormatStrings.ResolveRef(additionalProps.XEnumReference.Ref, false, parentNameSpace);
             }
             else if (additionalProps.Format is not null)
             {

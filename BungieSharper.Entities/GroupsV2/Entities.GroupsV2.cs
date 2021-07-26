@@ -76,11 +76,11 @@ namespace BungieSharper.Entities.GroupsV2
 
         /// <summary>This property will be populated if the authenticated user is a member of the group. Note that because of account linking, a user can sometimes be part of a clan more than once. As such, this returns the highest member type available.</summary>
         [JsonPropertyName("currentUserMemberMap")]
-        public Dictionary<BungieMembershipType, GroupsV2.GroupMember> CurrentUserMemberMap { get; set; }
+        public Dictionary<BungieMembershipType, GroupMember> CurrentUserMemberMap { get; set; }
 
         /// <summary>This property will be populated if the authenticated user is an applicant or has an outstanding invitation to join. Note that because of account linking, a user can sometimes be part of a clan more than once.</summary>
         [JsonPropertyName("currentUserPotentialMemberMap")]
-        public Dictionary<BungieMembershipType, GroupsV2.GroupPotentialMember> CurrentUserPotentialMemberMap { get; set; }
+        public Dictionary<BungieMembershipType, GroupPotentialMember> CurrentUserPotentialMemberMap { get; set; }
     }
 
     public class GroupV2
@@ -477,7 +477,7 @@ namespace BungieSharper.Entities.GroupsV2
     public class GroupSearchResponse
     {
         [JsonPropertyName("results")]
-        public IEnumerable<GroupsV2.GroupV2Card> Results { get; set; }
+        public IEnumerable<GroupV2Card> Results { get; set; }
 
         [JsonPropertyName("totalResults")]
         public int TotalResults { get; set; }
@@ -825,7 +825,7 @@ namespace BungieSharper.Entities.GroupsV2
     public class GroupMembershipSearchResponse
     {
         [JsonPropertyName("results")]
-        public IEnumerable<GroupsV2.GroupMembership> Results { get; set; }
+        public IEnumerable<GroupMembership> Results { get; set; }
 
         [JsonPropertyName("totalResults")]
         public int TotalResults { get; set; }
@@ -859,7 +859,7 @@ namespace BungieSharper.Entities.GroupsV2
         public Dictionary<long, bool> AreAllMembershipsInactive { get; set; }
 
         [JsonPropertyName("results")]
-        public IEnumerable<GroupsV2.GroupMembership> Results { get; set; }
+        public IEnumerable<GroupMembership> Results { get; set; }
 
         [JsonPropertyName("totalResults")]
         public int TotalResults { get; set; }
@@ -895,7 +895,7 @@ namespace BungieSharper.Entities.GroupsV2
     public class GroupPotentialMembershipSearchResponse
     {
         [JsonPropertyName("results")]
-        public IEnumerable<GroupsV2.GroupPotentialMembership> Results { get; set; }
+        public IEnumerable<GroupPotentialMembership> Results { get; set; }
 
         [JsonPropertyName("totalResults")]
         public int TotalResults { get; set; }

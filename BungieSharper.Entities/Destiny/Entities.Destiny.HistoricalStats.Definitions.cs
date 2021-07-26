@@ -101,11 +101,11 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats.Definitions
 
         /// <summary>Time periods the statistic covers</summary>
         [JsonPropertyName("periodTypes")]
-        public IEnumerable<Destiny.HistoricalStats.Definitions.PeriodType> PeriodTypes { get; set; }
+        public IEnumerable<PeriodType> PeriodTypes { get; set; }
 
         /// <summary>Game modes where this statistic can be reported.</summary>
         [JsonPropertyName("modes")]
-        public IEnumerable<Destiny.HistoricalStats.Definitions.DestinyActivityModeType> Modes { get; set; }
+        public IEnumerable<DestinyActivityModeType> Modes { get; set; }
 
         /// <summary>Category for the stat.</summary>
         [JsonPropertyName("category")]

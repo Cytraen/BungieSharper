@@ -6,7 +6,7 @@ namespace BungieSharper.Entities.Destiny.Components.Metrics
     public class DestinyMetricsComponent
     {
         [JsonPropertyName("metrics")]
-        public Dictionary<uint, Destiny.Components.Metrics.DestinyMetricComponent> Metrics { get; set; }
+        public Dictionary<uint, DestinyMetricComponent> Metrics { get; set; }
 
         [JsonPropertyName("metricsRootNodeHash")]
         public uint MetricsRootNodeHash { get; set; }
@@ -18,6 +18,6 @@ namespace BungieSharper.Entities.Destiny.Components.Metrics
         public bool Invisible { get; set; }
 
         [JsonPropertyName("objectiveProgress")]
-        public Destiny.Quests.DestinyObjectiveProgress ObjectiveProgress { get; set; }
+        public Quests.DestinyObjectiveProgress ObjectiveProgress { get; set; }
     }
 }

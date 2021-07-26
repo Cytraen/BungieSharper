@@ -9,7 +9,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Lore
     public class DestinyLoreDefinition
     {
         [JsonPropertyName("displayProperties")]
-        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         [JsonPropertyName("subtitle")]
         public string Subtitle { get; set; }

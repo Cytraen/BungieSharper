@@ -11,6 +11,6 @@ namespace BungieSharper.Entities.Destiny.Components.PlugSets
     {
         /// <summary>The shared list of plugs for each relevant PlugSet, keyed by the hash identifier of the PlugSet (DestinyPlugSetDefinition).</summary>
         [JsonPropertyName("plugs")]
-        public Dictionary<uint, IEnumerable<Destiny.Sockets.DestinyItemPlug>> Plugs { get; set; }
+        public Dictionary<uint, IEnumerable<Sockets.DestinyItemPlug>> Plugs { get; set; }
     }
 }

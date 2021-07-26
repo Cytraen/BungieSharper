@@ -11,7 +11,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Sockets
     {
         /// <summary>There are fields for this display data, but they appear to be unpopulated as of now. I am not sure where in the UI these would show if they even were populated, but I will continue to return this data in case it becomes useful.</summary>
         [JsonPropertyName("displayProperties")]
-        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         /// <summary>Defines what happens when a plug is inserted into sockets of this type.</summary>
         [JsonPropertyName("insertAction")]
@@ -23,14 +23,14 @@ namespace BungieSharper.Entities.Destiny.Definitions.Sockets
         /// If the plug's category matches any whitelisted plug, or if the whitelist is empty, it is allowed to be inserted.
         /// </summary>
         [JsonPropertyName("plugWhitelist")]
-        public IEnumerable<Destiny.Definitions.Sockets.DestinyPlugWhitelistEntryDefinition> PlugWhitelist { get; set; }
+        public IEnumerable<DestinyPlugWhitelistEntryDefinition> PlugWhitelist { get; set; }
 
         [JsonPropertyName("socketCategoryHash")]
         public uint SocketCategoryHash { get; set; }
 
         /// <summary>Sometimes a socket isn't visible. These are some of the conditions under which sockets of this type are not visible. Unfortunately, the truth of visibility is much, much more complex. Best to rely on the live data for whether the socket is visible and enabled.</summary>
         [JsonPropertyName("visibility")]
-        public Destiny.DestinySocketVisibility Visibility { get; set; }
+        public DestinySocketVisibility Visibility { get; set; }
 
         [JsonPropertyName("alwaysRandomizeSockets")]
         public bool AlwaysRandomizeSockets { get; set; }
@@ -49,7 +49,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Sockets
         public bool AvoidDuplicatesOnInitialization { get; set; }
 
         [JsonPropertyName("currencyScalars")]
-        public IEnumerable<Destiny.Definitions.Sockets.DestinySocketTypeScalarMaterialRequirementEntry> CurrencyScalars { get; set; }
+        public IEnumerable<DestinySocketTypeScalarMaterialRequirementEntry> CurrencyScalars { get; set; }
 
         /// <summary>
         /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
@@ -78,7 +78,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Sockets
 
         /// <summary>The type of action being performed when you act on this Socket Type. The most common value is "insert plug", but there are others as well (for instance, a "Masterwork" socket may allow for Re-initialization, and an Infusion socket allows for items to be consumed to upgrade the item)</summary>
         [JsonPropertyName("actionType")]
-        public Destiny.SocketTypeActionType ActionType { get; set; }
+        public SocketTypeActionType ActionType { get; set; }
     }
 
     /// <summary>
@@ -128,7 +128,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Sockets
     public class DestinySocketCategoryDefinition
     {
         [JsonPropertyName("displayProperties")]
-        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         /// <summary>
         /// A string hinting to the game's UI system about how the sockets in this category should be displayed.
@@ -139,7 +139,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Sockets
 
         /// <summary>Same as uiCategoryStyle, but in a more usable enumeration form.</summary>
         [JsonPropertyName("categoryStyle")]
-        public Destiny.DestinySocketCategoryStyle CategoryStyle { get; set; }
+        public DestinySocketCategoryStyle CategoryStyle { get; set; }
 
         /// <summary>
         /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
@@ -167,14 +167,14 @@ namespace BungieSharper.Entities.Destiny.Definitions.Sockets
     {
         /// <summary>If you want to show these plugs in isolation, these are the display properties for them.</summary>
         [JsonPropertyName("displayProperties")]
-        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         /// <summary>
         /// This is a list of pre-determined plugs that can be plugged into this socket, without the character having the plug in their inventory.
         /// If this list is populated, you will not be allowed to plug an arbitrary item in the socket: you will only be able to choose from one of these reusable plugs.
         /// </summary>
         [JsonPropertyName("reusablePlugItems")]
-        public IEnumerable<Destiny.Definitions.DestinyItemSocketEntryPlugItemRandomizedDefinition> ReusablePlugItems { get; set; }
+        public IEnumerable<DestinyItemSocketEntryPlugItemRandomizedDefinition> ReusablePlugItems { get; set; }
 
         /// <summary>
         /// Mostly for our debugging or reporting bugs, BNet is making "fake" plug sets in a desperate effort to reduce socket sizes.

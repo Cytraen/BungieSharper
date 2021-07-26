@@ -8,7 +8,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.ActivityModifiers
     public class DestinyActivityModifierDefinition
     {
         [JsonPropertyName("displayProperties")]
-        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         /// <summary>
         /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.

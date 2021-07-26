@@ -14,27 +14,27 @@ namespace BungieSharper.Entities.Destiny.Definitions.Director
     {
         /// <summary>These represent the visual "nodes" on the map's view. These are the activities you can click on in the map.</summary>
         [JsonPropertyName("nodes")]
-        public IEnumerable<Destiny.Definitions.Director.DestinyActivityGraphNodeDefinition> Nodes { get; set; }
+        public IEnumerable<DestinyActivityGraphNodeDefinition> Nodes { get; set; }
 
         /// <summary>Represents one-off/special UI elements that appear on the map.</summary>
         [JsonPropertyName("artElements")]
-        public IEnumerable<Destiny.Definitions.Director.DestinyActivityGraphArtElementDefinition> ArtElements { get; set; }
+        public IEnumerable<DestinyActivityGraphArtElementDefinition> ArtElements { get; set; }
 
         /// <summary>Represents connections between graph nodes. However, it lacks context that we'd need to make good use of it.</summary>
         [JsonPropertyName("connections")]
-        public IEnumerable<Destiny.Definitions.Director.DestinyActivityGraphConnectionDefinition> Connections { get; set; }
+        public IEnumerable<DestinyActivityGraphConnectionDefinition> Connections { get; set; }
 
         /// <summary>Objectives can display on maps, and this is supposedly metadata for that. I have not had the time to analyze the details of what is useful within however: we could be missing important data to make this work. Expect this property to be expanded on later if possible.</summary>
         [JsonPropertyName("displayObjectives")]
-        public IEnumerable<Destiny.Definitions.Director.DestinyActivityGraphDisplayObjectiveDefinition> DisplayObjectives { get; set; }
+        public IEnumerable<DestinyActivityGraphDisplayObjectiveDefinition> DisplayObjectives { get; set; }
 
         /// <summary>Progressions can also display on maps, but similarly to displayObjectives we appear to lack some required information and context right now. We will have to look into it later and add more data if possible.</summary>
         [JsonPropertyName("displayProgressions")]
-        public IEnumerable<Destiny.Definitions.Director.DestinyActivityGraphDisplayProgressionDefinition> DisplayProgressions { get; set; }
+        public IEnumerable<DestinyActivityGraphDisplayProgressionDefinition> DisplayProgressions { get; set; }
 
         /// <summary>Represents links between this Activity Graph and other ones.</summary>
         [JsonPropertyName("linkedGraphs")]
-        public IEnumerable<Destiny.Definitions.Director.DestinyLinkedGraphDefinition> LinkedGraphs { get; set; }
+        public IEnumerable<DestinyLinkedGraphDefinition> LinkedGraphs { get; set; }
 
         /// <summary>
         /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
@@ -63,23 +63,23 @@ namespace BungieSharper.Entities.Destiny.Definitions.Director
 
         /// <summary>The node *may* have display properties that override the active Activity's display properties.</summary>
         [JsonPropertyName("overrideDisplay")]
-        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition OverrideDisplay { get; set; }
+        public Common.DestinyDisplayPropertiesDefinition OverrideDisplay { get; set; }
 
         /// <summary>The position on the map for this node.</summary>
         [JsonPropertyName("position")]
-        public Destiny.Definitions.Common.DestinyPositionDefinition Position { get; set; }
+        public Common.DestinyPositionDefinition Position { get; set; }
 
         /// <summary>The node may have various visual accents placed on it, or styles applied. These are the list of possible styles that the Node can have. The game iterates through each, looking for the first one that passes a check of the required game/character/account state in order to show that style, and then renders the node in that style.</summary>
         [JsonPropertyName("featuringStates")]
-        public IEnumerable<Destiny.Definitions.Director.DestinyActivityGraphNodeFeaturingStateDefinition> FeaturingStates { get; set; }
+        public IEnumerable<DestinyActivityGraphNodeFeaturingStateDefinition> FeaturingStates { get; set; }
 
         /// <summary>The node may have various possible activities that could be active for it, however only one may be active at a time. See the DestinyActivityGraphNodeActivityDefinition for details.</summary>
         [JsonPropertyName("activities")]
-        public IEnumerable<Destiny.Definitions.Director.DestinyActivityGraphNodeActivityDefinition> Activities { get; set; }
+        public IEnumerable<DestinyActivityGraphNodeActivityDefinition> Activities { get; set; }
 
         /// <summary>Represents possible states that the graph node can be in. These are combined with some checking that happens in the game client and server to determine which state is actually active at any given time.</summary>
         [JsonPropertyName("states")]
-        public IEnumerable<Destiny.Definitions.Director.DestinyActivityGraphNodeStateEntry> States { get; set; }
+        public IEnumerable<DestinyActivityGraphNodeStateEntry> States { get; set; }
     }
 
     /// <summary>
@@ -89,7 +89,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Director
     {
         /// <summary>The node can be highlighted in a variety of ways - the game iterates through these and finds the first FeaturingState that is valid at the present moment given the Game, Account, and Character state, and renders the node in that state. See the ActivityGraphNodeHighlightType enum for possible values.</summary>
         [JsonPropertyName("highlightType")]
-        public Destiny.ActivityGraphNodeHighlightType HighlightType { get; set; }
+        public ActivityGraphNodeHighlightType HighlightType { get; set; }
     }
 
     /// <summary>
@@ -112,7 +112,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Director
     public class DestinyActivityGraphNodeStateEntry
     {
         [JsonPropertyName("state")]
-        public Destiny.DestinyGraphNodeState State { get; set; }
+        public DestinyGraphNodeState State { get; set; }
     }
 
     /// <summary>
@@ -122,7 +122,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Director
     {
         /// <summary>The position on the map of the art element.</summary>
         [JsonPropertyName("position")]
-        public Destiny.Definitions.Common.DestinyPositionDefinition Position { get; set; }
+        public Common.DestinyPositionDefinition Position { get; set; }
     }
 
     /// <summary>
@@ -175,13 +175,13 @@ namespace BungieSharper.Entities.Destiny.Definitions.Director
         public string Name { get; set; }
 
         [JsonPropertyName("unlockExpression")]
-        public Destiny.Definitions.DestinyUnlockExpressionDefinition UnlockExpression { get; set; }
+        public DestinyUnlockExpressionDefinition UnlockExpression { get; set; }
 
         [JsonPropertyName("linkedGraphId")]
         public uint LinkedGraphId { get; set; }
 
         [JsonPropertyName("linkedGraphs")]
-        public IEnumerable<Destiny.Definitions.Director.DestinyLinkedGraphEntryDefinition> LinkedGraphs { get; set; }
+        public IEnumerable<DestinyLinkedGraphEntryDefinition> LinkedGraphs { get; set; }
 
         [JsonPropertyName("overview")]
         public string Overview { get; set; }

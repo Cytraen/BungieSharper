@@ -57,18 +57,18 @@ namespace BungieSharper.Entities.Applications
     {
         /// <summary>Counts for on API calls made for the time range.</summary>
         [JsonPropertyName("apiCalls")]
-        public IEnumerable<Applications.Series> ApiCalls { get; set; }
+        public IEnumerable<Series> ApiCalls { get; set; }
 
         /// <summary>Instances of blocked requests or requests that crossed the warn threshold during the time range.</summary>
         [JsonPropertyName("throttledRequests")]
-        public IEnumerable<Applications.Series> ThrottledRequests { get; set; }
+        public IEnumerable<Series> ThrottledRequests { get; set; }
     }
 
     public class Series
     {
         /// <summary>Collection of samples with time and value.</summary>
         [JsonPropertyName("datapoints")]
-        public IEnumerable<Applications.Datapoint> Datapoints { get; set; }
+        public IEnumerable<Datapoint> Datapoints { get; set; }
 
         /// <summary>Target to which to datapoints apply.</summary>
         [JsonPropertyName("target")]
@@ -130,7 +130,7 @@ namespace BungieSharper.Entities.Applications
 
         /// <summary>List of team members who manage this application on Bungie.net. Will always consist of at least the application owner.</summary>
         [JsonPropertyName("team")]
-        public IEnumerable<Applications.ApplicationDeveloper> Team { get; set; }
+        public IEnumerable<ApplicationDeveloper> Team { get; set; }
     }
 
     public enum ApplicationStatus : int

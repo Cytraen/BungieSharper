@@ -12,7 +12,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Checklists
     public class DestinyChecklistDefinition
     {
         [JsonPropertyName("displayProperties")]
-        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         /// <summary>A localized string prompting you to view the checklist.</summary>
         [JsonPropertyName("viewActionString")]
@@ -20,11 +20,11 @@ namespace BungieSharper.Entities.Destiny.Definitions.Checklists
 
         /// <summary>Indicates whether you will find this checklist on the Profile or Character components.</summary>
         [JsonPropertyName("scope")]
-        public Destiny.DestinyScope Scope { get; set; }
+        public DestinyScope Scope { get; set; }
 
         /// <summary>The individual checklist items. Gotta catch 'em all.</summary>
         [JsonPropertyName("entries")]
-        public IEnumerable<Destiny.Definitions.Checklists.DestinyChecklistEntryDefinition> Entries { get; set; }
+        public IEnumerable<DestinyChecklistEntryDefinition> Entries { get; set; }
 
         /// <summary>
         /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
@@ -54,7 +54,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Checklists
 
         /// <summary>Even if no other associations exist, we will give you *something* for display properties. In cases where we have no associated entities, it may be as simple as a numerical identifier.</summary>
         [JsonPropertyName("displayProperties")]
-        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         [JsonPropertyName("destinationHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? DestinationHash { get; set; }
@@ -83,6 +83,6 @@ namespace BungieSharper.Entities.Destiny.Definitions.Checklists
 
         /// <summary>The scope at which this specific entry can be computed.</summary>
         [JsonPropertyName("scope")]
-        public Destiny.DestinyScope Scope { get; set; }
+        public DestinyScope Scope { get; set; }
     }
 }

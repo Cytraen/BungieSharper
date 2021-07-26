@@ -22,6 +22,6 @@ namespace BungieSharper.Entities.Destiny.Activities
         /// These are often pointers to fake items that look good in a tooltip, but represent an abstract concept of what you will get for a reward rather than the specific items you may obtain.
         /// </summary>
         [JsonPropertyName("rewardTooltipItems")]
-        public IEnumerable<Destiny.DestinyItemQuantity> RewardTooltipItems { get; set; }
+        public IEnumerable<DestinyItemQuantity> RewardTooltipItems { get; set; }
     }
 }

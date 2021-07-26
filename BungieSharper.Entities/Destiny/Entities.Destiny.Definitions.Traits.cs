@@ -6,7 +6,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Traits
     public class DestinyTraitDefinition
     {
         [JsonPropertyName("displayProperties")]
-        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         [JsonPropertyName("traitCategoryId")]
         public string TraitCategoryId { get; set; }

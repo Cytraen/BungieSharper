@@ -52,7 +52,7 @@ namespace BungieSharper.Entities.Destiny.Character
     public class DestinyCharacterPeerView
     {
         [JsonPropertyName("equipment")]
-        public IEnumerable<Destiny.Character.DestinyItemPeerView> Equipment { get; set; }
+        public IEnumerable<DestinyItemPeerView> Equipment { get; set; }
     }
 
     /// <summary>
@@ -66,6 +66,6 @@ namespace BungieSharper.Entities.Destiny.Character
 
         /// <summary>The list of dyes that have been applied to this item.</summary>
         [JsonPropertyName("dyes")]
-        public IEnumerable<Destiny.DyeReference> Dyes { get; set; }
+        public IEnumerable<DyeReference> Dyes { get; set; }
     }
 }

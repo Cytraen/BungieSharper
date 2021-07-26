@@ -5,11 +5,11 @@ namespace BungieSharper.Entities.Destiny.Definitions.BreakerTypes
     public class DestinyBreakerTypeDefinition
     {
         [JsonPropertyName("displayProperties")]
-        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         /// <summary>We have an enumeration for Breaker types for quick reference. This is the current definition's breaker type enum value.</summary>
         [JsonPropertyName("enumValue")]
-        public Destiny.DestinyBreakerType EnumValue { get; set; }
+        public DestinyBreakerType EnumValue { get; set; }
 
         /// <summary>
         /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.

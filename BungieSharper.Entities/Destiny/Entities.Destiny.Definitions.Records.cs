@@ -6,14 +6,14 @@ namespace BungieSharper.Entities.Destiny.Definitions.Records
     public class DestinyRecordDefinition
     {
         [JsonPropertyName("displayProperties")]
-        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         /// <summary>Indicates whether this Record's state is determined on a per-character or on an account-wide basis.</summary>
         [JsonPropertyName("scope")]
-        public Destiny.DestinyScope Scope { get; set; }
+        public DestinyScope Scope { get; set; }
 
         [JsonPropertyName("presentationInfo")]
-        public Destiny.Definitions.Presentation.DestinyPresentationChildBlock PresentationInfo { get; set; }
+        public Presentation.DestinyPresentationChildBlock PresentationInfo { get; set; }
 
         [JsonPropertyName("loreHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? LoreHash { get; set; }
@@ -22,7 +22,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Records
         public IEnumerable<uint> ObjectiveHashes { get; set; }
 
         [JsonPropertyName("recordValueStyle")]
-        public Destiny.DestinyRecordValueStyle RecordValueStyle { get; set; }
+        public DestinyRecordValueStyle RecordValueStyle { get; set; }
 
         [JsonPropertyName("forTitleGilding")]
         public bool ForTitleGilding { get; set; }
@@ -37,7 +37,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Records
         public SchemaRecordStateBlock StateInfo { get; set; }
 
         [JsonPropertyName("requirements")]
-        public Destiny.Definitions.Presentation.DestinyPresentationNodeRequirementsBlock Requirements { get; set; }
+        public Presentation.DestinyPresentationNodeRequirementsBlock Requirements { get; set; }
 
         [JsonPropertyName("expirationInfo")]
         public DestinyRecordExpirationBlock ExpirationInfo { get; set; }
@@ -51,10 +51,10 @@ namespace BungieSharper.Entities.Destiny.Definitions.Records
         /// However, note that some records intentionally have "hidden" rewards. These will not be returned in this list.
         /// </summary>
         [JsonPropertyName("rewardItems")]
-        public IEnumerable<Destiny.DestinyItemQuantity> RewardItems { get; set; }
+        public IEnumerable<DestinyItemQuantity> RewardItems { get; set; }
 
         [JsonPropertyName("presentationNodeType")]
-        public Destiny.DestinyPresentationNodeType PresentationNodeType { get; set; }
+        public DestinyPresentationNodeType PresentationNodeType { get; set; }
 
         [JsonPropertyName("traitIds")]
         public IEnumerable<string> TraitIds { get; set; }
@@ -88,7 +88,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Records
         public bool HasTitle { get; set; }
 
         [JsonPropertyName("titlesByGender")]
-        public Dictionary<Destiny.DestinyGender, string> TitlesByGender { get; set; }
+        public Dictionary<DestinyGender, string> TitlesByGender { get; set; }
 
         /// <summary>For those who prefer to use the definitions.</summary>
         [JsonPropertyName("titlesByGenderHash")]
@@ -111,7 +111,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Records
         public bool ShouldFireToast { get; set; }
 
         [JsonPropertyName("toastStyle")]
-        public Destiny.DestinyRecordToastStyle ToastStyle { get; set; }
+        public DestinyRecordToastStyle ToastStyle { get; set; }
     }
 
     public class SchemaRecordStateBlock
@@ -141,10 +141,10 @@ namespace BungieSharper.Entities.Destiny.Definitions.Records
     public class DestinyRecordIntervalBlock
     {
         [JsonPropertyName("intervalObjectives")]
-        public IEnumerable<Destiny.Definitions.Records.DestinyRecordIntervalObjective> IntervalObjectives { get; set; }
+        public IEnumerable<DestinyRecordIntervalObjective> IntervalObjectives { get; set; }
 
         [JsonPropertyName("intervalRewards")]
-        public IEnumerable<Destiny.Definitions.Records.DestinyRecordIntervalRewards> IntervalRewards { get; set; }
+        public IEnumerable<DestinyRecordIntervalRewards> IntervalRewards { get; set; }
 
         [JsonPropertyName("originalObjectiveArrayInsertionIndex")]
         public int OriginalObjectiveArrayInsertionIndex { get; set; }
@@ -162,6 +162,6 @@ namespace BungieSharper.Entities.Destiny.Definitions.Records
     public class DestinyRecordIntervalRewards
     {
         [JsonPropertyName("intervalRewardItems")]
-        public IEnumerable<Destiny.DestinyItemQuantity> IntervalRewardItems { get; set; }
+        public IEnumerable<DestinyItemQuantity> IntervalRewardItems { get; set; }
     }
 }

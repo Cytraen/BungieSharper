@@ -10,11 +10,11 @@ namespace BungieSharper.Entities.Destiny.Definitions.Reporting
     public class DestinyReportReasonCategoryDefinition
     {
         [JsonPropertyName("displayProperties")]
-        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         /// <summary>The specific reasons for the report under this category.</summary>
         [JsonPropertyName("reasons")]
-        public Dictionary<uint, Destiny.Definitions.Reporting.DestinyReportReasonDefinition> Reasons { get; set; }
+        public Dictionary<uint, DestinyReportReasonDefinition> Reasons { get; set; }
 
         /// <summary>
         /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
@@ -42,6 +42,6 @@ namespace BungieSharper.Entities.Destiny.Definitions.Reporting
         public uint ReasonHash { get; set; }
 
         [JsonPropertyName("displayProperties")]
-        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
     }
 }

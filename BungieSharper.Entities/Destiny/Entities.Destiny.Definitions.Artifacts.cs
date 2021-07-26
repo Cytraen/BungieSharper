@@ -11,15 +11,15 @@ namespace BungieSharper.Entities.Destiny.Definitions.Artifacts
     {
         /// <summary>Any basic display info we know about the Artifact. Currently sourced from a related inventory item, but the source of this data is subject to change.</summary>
         [JsonPropertyName("displayProperties")]
-        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         /// <summary>Any Geometry/3D info we know about the Artifact. Currently sourced from a related inventory item's gearset information, but the source of this data is subject to change.</summary>
         [JsonPropertyName("translationBlock")]
-        public Destiny.Definitions.DestinyItemTranslationBlockDefinition TranslationBlock { get; set; }
+        public DestinyItemTranslationBlockDefinition TranslationBlock { get; set; }
 
         /// <summary>Any Tier/Rank data related to this artifact, listed in display order.  Currently sourced from a Vendor, but this source is subject to change.</summary>
         [JsonPropertyName("tiers")]
-        public IEnumerable<Destiny.Definitions.Artifacts.DestinyArtifactTierDefinition> Tiers { get; set; }
+        public IEnumerable<DestinyArtifactTierDefinition> Tiers { get; set; }
 
         /// <summary>
         /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
@@ -53,7 +53,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Artifacts
 
         /// <summary>The items that can be earned within this tier.</summary>
         [JsonPropertyName("items")]
-        public IEnumerable<Destiny.Definitions.Artifacts.DestinyArtifactTierItemDefinition> Items { get; set; }
+        public IEnumerable<DestinyArtifactTierItemDefinition> Items { get; set; }
 
         /// <summary>The minimum number of "unlock points" that you must have used before you can unlock items from this tier.</summary>
         [JsonPropertyName("minimumUnlockPointsUsedRequirement")]

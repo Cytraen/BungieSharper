@@ -10,7 +10,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Seasons
     public class DestinySeasonDefinition
     {
         [JsonPropertyName("displayProperties")]
-        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         [JsonPropertyName("backgroundImagePath")]
         public string BackgroundImagePath { get; set; }
@@ -78,7 +78,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Seasons
 
         /// <summary>A list of images to preview the seasonal content. Should have at least three to show.</summary>
         [JsonPropertyName("images")]
-        public IEnumerable<Destiny.Definitions.Seasons.DestinySeasonPreviewImageDefinition> Images { get; set; }
+        public IEnumerable<DestinySeasonPreviewImageDefinition> Images { get; set; }
     }
 
     /// <summary>
@@ -98,7 +98,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Seasons
     public class DestinySeasonPassDefinition
     {
         [JsonPropertyName("displayProperties")]
-        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         /// <summary>This is the progression definition related to the progression for the initial levels 1-100 that provide item rewards for the Season pass. Further experience after you reach the limit is provided in the "Prestige" progression referred to by prestigeProgressionHash.</summary>
         [JsonPropertyName("rewardProgressionHash")]

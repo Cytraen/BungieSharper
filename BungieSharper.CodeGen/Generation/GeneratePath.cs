@@ -57,7 +57,7 @@ namespace BungieSharper.CodeGen.Generation
             }
             else
             {
-                responseType = FormatStrings.ResolveRef(responseRef, true);
+                responseType = FormatStrings.ResolveRef(responseRef, true, null);
             }
 
             var requiredParams = parameters.Where(x => x.Required == true);
@@ -170,7 +170,7 @@ namespace BungieSharper.CodeGen.Generation
             }
             else if (paramSchema.XEnumReference is not null)
             {
-                paramType += FormatStrings.ResolveRef(paramSchema.XEnumReference.Ref, true);
+                paramType += FormatStrings.ResolveRef(paramSchema.XEnumReference.Ref, true, null);
             }
             else if (paramSchema.Format is not null)
             {
@@ -199,7 +199,7 @@ namespace BungieSharper.CodeGen.Generation
             }
             else if (paramSchema.Ref is not null)
             {
-                paramType += FormatStrings.ResolveRef(paramSchema.Ref, true);
+                paramType += FormatStrings.ResolveRef(paramSchema.Ref, true, null);
             }
             else
             {
@@ -231,7 +231,7 @@ namespace BungieSharper.CodeGen.Generation
 
             if (respObj.Items is not null)
             {
-                respType += "IEnumerable<" + FormatStrings.ResolveRef(respObj.Items.Ref, true) + ">";
+                respType += "IEnumerable<" + FormatStrings.ResolveRef(respObj.Items.Ref, true, null) + ">";
             }
             else if (respObj.AdditionalProperties is not null)
             {
@@ -239,7 +239,7 @@ namespace BungieSharper.CodeGen.Generation
             }
             else if (respObj.Ref is not null)
             {
-                respType += FormatStrings.ResolveRef(respObj.Ref, true);
+                respType += FormatStrings.ResolveRef(respObj.Ref, true, null);
             }
             else if (respObj.Format is not null)
             {
@@ -274,7 +274,7 @@ namespace BungieSharper.CodeGen.Generation
             }
             else if (additionalProps.Ref is not null)
             {
-                classType += FormatStrings.ResolveRef(additionalProps.Ref, true);
+                classType += FormatStrings.ResolveRef(additionalProps.Ref, true, null);
             }
             else
             {

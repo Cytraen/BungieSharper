@@ -59,11 +59,11 @@ namespace BungieSharper.Entities.Destiny
 
         /// <summary>Information about historical resets of this progression, if there is any data for it.</summary>
         [JsonPropertyName("seasonResets")]
-        public IEnumerable<Destiny.DestinyProgressionResetEntry> SeasonResets { get; set; }
+        public IEnumerable<DestinyProgressionResetEntry> SeasonResets { get; set; }
 
         /// <summary>Information about historical rewards for this progression, if there is any data for it.</summary>
         [JsonPropertyName("rewardItemStates")]
-        public IEnumerable<Destiny.DestinyProgressionRewardItemState> RewardItemStates { get; set; }
+        public IEnumerable<DestinyProgressionRewardItemState> RewardItemStates { get; set; }
     }
 
     /// <summary>
@@ -1170,7 +1170,7 @@ namespace BungieSharper.Entities.Destiny
         public DestinyActivityDifficultyTier DifficultyTier { get; set; }
 
         [JsonPropertyName("challenges")]
-        public IEnumerable<Destiny.Challenges.DestinyChallengeStatus> Challenges { get; set; }
+        public IEnumerable<Challenges.DestinyChallengeStatus> Challenges { get; set; }
 
         /// <summary>
         /// If the activity has modifiers, this will be the list of modifiers that all variants have in common. Perform lookups against DestinyActivityModifierDefinition which defines the modifier being applied to get at the modifier data.
@@ -1274,7 +1274,7 @@ namespace BungieSharper.Entities.Destiny
 
         /// <summary>If the node has material requirements to be activated, this is the list of those requirements.</summary>
         [JsonPropertyName("materialsToUpgrade")]
-        public IEnumerable<Destiny.Definitions.DestinyMaterialRequirement> MaterialsToUpgrade { get; set; }
+        public IEnumerable<Definitions.DestinyMaterialRequirement> MaterialsToUpgrade { get; set; }
 
         /// <summary>The progression level required on the Talent Grid in order to be able to activate this talent node. Talent Grids have their own Progression - similar to Character Level, but in this case it is experience related to the item itself.</summary>
         [JsonPropertyName("activationGridLevel")]
@@ -1318,11 +1318,11 @@ namespace BungieSharper.Entities.Destiny
     {
         /// <summary>The stat benefits conferred when this talent node is activated for the current Step that is active on the node.</summary>
         [JsonPropertyName("currentStepStats")]
-        public IEnumerable<Destiny.DestinyStat> CurrentStepStats { get; set; }
+        public IEnumerable<DestinyStat> CurrentStepStats { get; set; }
 
         /// <summary>This is a holdover from the old days of Destiny 1, when a node could be activated multiple times, conferring multiple steps worth of benefits: you would use this property to show what activating the "next" step on the node would provide vs. what the current step is providing. While Nodes are currently not being used this way, the underlying system for this functionality still exists. I hesitate to remove this property while the ability for designers to make such a talent grid still exists. Whether you want to show it is up to you.</summary>
         [JsonPropertyName("nextStepStats")]
-        public IEnumerable<Destiny.DestinyStat> NextStepStats { get; set; }
+        public IEnumerable<DestinyStat> NextStepStats { get; set; }
     }
 
     /// <summary>
@@ -1430,7 +1430,7 @@ namespace BungieSharper.Entities.Destiny
     public class DestinyEquipItemResults
     {
         [JsonPropertyName("equipResults")]
-        public IEnumerable<Destiny.DestinyEquipItemResult> EquipResults { get; set; }
+        public IEnumerable<DestinyEquipItemResult> EquipResults { get; set; }
     }
 
     /// <summary>

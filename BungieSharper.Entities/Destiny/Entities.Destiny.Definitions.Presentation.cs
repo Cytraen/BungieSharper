@@ -9,7 +9,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Presentation
     public class DestinyPresentationNodeBaseDefinition
     {
         [JsonPropertyName("presentationNodeType")]
-        public Destiny.DestinyPresentationNodeType PresentationNodeType { get; set; }
+        public DestinyPresentationNodeType PresentationNodeType { get; set; }
 
         [JsonPropertyName("traitIds")]
         public IEnumerable<string> TraitIds { get; set; }
@@ -43,7 +43,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Presentation
         public int MaxCategoryRecordScore { get; set; }
 
         [JsonPropertyName("presentationNodeType")]
-        public Destiny.DestinyPresentationNodeType PresentationNodeType { get; set; }
+        public DestinyPresentationNodeType PresentationNodeType { get; set; }
 
         [JsonPropertyName("traitIds")]
         public IEnumerable<string> TraitIds { get; set; }
@@ -81,7 +81,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Presentation
     public class DestinyPresentationNodeDefinition
     {
         [JsonPropertyName("displayProperties")]
-        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         /// <summary>The original icon for this presentation node, before we futzed with it.</summary>
         [JsonPropertyName("originalIcon")]
@@ -92,11 +92,11 @@ namespace BungieSharper.Entities.Destiny.Definitions.Presentation
         public string RootViewIcon { get; set; }
 
         [JsonPropertyName("nodeType")]
-        public Destiny.DestinyPresentationNodeType NodeType { get; set; }
+        public DestinyPresentationNodeType NodeType { get; set; }
 
         /// <summary>Indicates whether this presentation node's state is determined on a per-character or on an account-wide basis.</summary>
         [JsonPropertyName("scope")]
-        public Destiny.DestinyScope Scope { get; set; }
+        public DestinyScope Scope { get; set; }
 
         /// <summary>If this presentation node shows a related objective (for instance, if it tracks the progress of its children), the objective being tracked is indicated here.</summary>
         [JsonPropertyName("objectiveHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
@@ -112,11 +112,11 @@ namespace BungieSharper.Entities.Destiny.Definitions.Presentation
 
         /// <summary>A hint for how to display this presentation node when it's shown in a list.</summary>
         [JsonPropertyName("displayStyle")]
-        public Destiny.DestinyPresentationDisplayStyle DisplayStyle { get; set; }
+        public DestinyPresentationDisplayStyle DisplayStyle { get; set; }
 
         /// <summary>A hint for how to display this presentation node when it's shown in its own detail screen.</summary>
         [JsonPropertyName("screenStyle")]
-        public Destiny.DestinyPresentationScreenStyle ScreenStyle { get; set; }
+        public DestinyPresentationScreenStyle ScreenStyle { get; set; }
 
         /// <summary>The requirements for being able to interact with this presentation node and its children.</summary>
         [JsonPropertyName("requirements")]
@@ -130,7 +130,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Presentation
         public int MaxCategoryRecordScore { get; set; }
 
         [JsonPropertyName("presentationNodeType")]
-        public Destiny.DestinyPresentationNodeType PresentationNodeType { get; set; }
+        public DestinyPresentationNodeType PresentationNodeType { get; set; }
 
         [JsonPropertyName("traitIds")]
         public IEnumerable<string> TraitIds { get; set; }
@@ -164,16 +164,16 @@ namespace BungieSharper.Entities.Destiny.Definitions.Presentation
     public class DestinyPresentationNodeChildrenBlock
     {
         [JsonPropertyName("presentationNodes")]
-        public IEnumerable<Destiny.Definitions.Presentation.DestinyPresentationNodeChildEntry> PresentationNodes { get; set; }
+        public IEnumerable<DestinyPresentationNodeChildEntry> PresentationNodes { get; set; }
 
         [JsonPropertyName("collectibles")]
-        public IEnumerable<Destiny.Definitions.Presentation.DestinyPresentationNodeCollectibleChildEntry> Collectibles { get; set; }
+        public IEnumerable<DestinyPresentationNodeCollectibleChildEntry> Collectibles { get; set; }
 
         [JsonPropertyName("records")]
-        public IEnumerable<Destiny.Definitions.Presentation.DestinyPresentationNodeRecordChildEntry> Records { get; set; }
+        public IEnumerable<DestinyPresentationNodeRecordChildEntry> Records { get; set; }
 
         [JsonPropertyName("metrics")]
-        public IEnumerable<Destiny.Definitions.Presentation.DestinyPresentationNodeMetricChildEntry> Metrics { get; set; }
+        public IEnumerable<DestinyPresentationNodeMetricChildEntry> Metrics { get; set; }
     }
 
     public class DestinyPresentationNodeChildEntry
@@ -201,13 +201,13 @@ namespace BungieSharper.Entities.Destiny.Definitions.Presentation
     public class DestinyPresentationChildBlock
     {
         [JsonPropertyName("presentationNodeType")]
-        public Destiny.DestinyPresentationNodeType PresentationNodeType { get; set; }
+        public DestinyPresentationNodeType PresentationNodeType { get; set; }
 
         [JsonPropertyName("parentPresentationNodeHashes")]
         public IEnumerable<uint> ParentPresentationNodeHashes { get; set; }
 
         [JsonPropertyName("displayStyle")]
-        public Destiny.DestinyPresentationDisplayStyle DisplayStyle { get; set; }
+        public DestinyPresentationDisplayStyle DisplayStyle { get; set; }
     }
 
     public class DestinyPresentationNodeRecordChildEntry

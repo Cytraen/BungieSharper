@@ -103,10 +103,10 @@ namespace BungieSharper.Entities.Fireteam
         public FireteamSummary Summary { get; set; }
 
         [JsonPropertyName("Members")]
-        public IEnumerable<Fireteam.FireteamMember> Members { get; set; }
+        public IEnumerable<FireteamMember> Members { get; set; }
 
         [JsonPropertyName("Alternates")]
-        public IEnumerable<Fireteam.FireteamMember> Alternates { get; set; }
+        public IEnumerable<FireteamMember> Alternates { get; set; }
     }
 
     public class FireteamMember

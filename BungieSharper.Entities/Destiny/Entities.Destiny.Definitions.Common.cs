@@ -23,7 +23,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Common
         public string Icon { get; set; }
 
         [JsonPropertyName("iconSequences")]
-        public IEnumerable<Destiny.Definitions.Common.DestinyIconSequenceDefinition> IconSequences { get; set; }
+        public IEnumerable<DestinyIconSequenceDefinition> IconSequences { get; set; }
 
         /// <summary>If this item has a high-res icon (at least for now, many things won't), then the path to that icon will be here.</summary>
         [JsonPropertyName("highResIcon")]

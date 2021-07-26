@@ -31,7 +31,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Sources
 
         /// <summary>The stats computed for this level/quality range.</summary>
         [JsonPropertyName("computedStats")]
-        public Dictionary<uint, Destiny.Definitions.DestinyInventoryItemStatDefinition> ComputedStats { get; set; }
+        public Dictionary<uint, DestinyInventoryItemStatDefinition> ComputedStats { get; set; }
 
         /// <summary>The DestinyRewardSourceDefinitions found that can spawn the item at this level.</summary>
         [JsonPropertyName("sourceHashes")]

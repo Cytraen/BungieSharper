@@ -10,7 +10,7 @@ namespace BungieSharper.Entities.Destiny.Entities.Profiles
     {
         /// <summary>The receipts for refundable purchases made at a vendor.</summary>
         [JsonPropertyName("receipts")]
-        public IEnumerable<Destiny.Vendors.DestinyVendorReceipt> Receipts { get; set; }
+        public IEnumerable<Vendors.DestinyVendorReceipt> Receipts { get; set; }
     }
 
     /// <summary>
@@ -32,7 +32,7 @@ namespace BungieSharper.Entities.Destiny.Entities.Profiles
         /// If you don't care about per-platform ownership and only care about whatever platform it seems they are playing on most recently, then this should be "good enough." Otherwise, this should be considered deprecated. We do not have a good alternative to provide at this time with platform specific ownership data for DLC.
         /// </summary>
         [JsonPropertyName("versionsOwned")]
-        public Destiny.DestinyGameVersions VersionsOwned { get; set; }
+        public DestinyGameVersions VersionsOwned { get; set; }
 
         /// <summary>A list of the character IDs, for further querying on your part.</summary>
         [JsonPropertyName("characterIds")]

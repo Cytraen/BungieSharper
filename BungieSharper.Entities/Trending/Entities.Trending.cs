@@ -7,7 +7,7 @@ namespace BungieSharper.Entities.Trending
     public class TrendingCategories
     {
         [JsonPropertyName("categories")]
-        public IEnumerable<Trending.TrendingCategory> Categories { get; set; }
+        public IEnumerable<TrendingCategory> Categories { get; set; }
     }
 
     public class TrendingCategory
@@ -76,7 +76,7 @@ namespace BungieSharper.Entities.Trending
 
         /// <summary>If the item is of entityType TrendingEntryType.Container, it may have items - also Trending Entries - contained within it. This is the ordered list of those to display under the Container's header.</summary>
         [JsonPropertyName("items")]
-        public IEnumerable<Trending.TrendingEntry> Items { get; set; }
+        public IEnumerable<TrendingEntry> Items { get; set; }
 
         /// <summary>If the entry has a date at which it was created, this is that date.</summary>
         [JsonPropertyName("creationDate"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]

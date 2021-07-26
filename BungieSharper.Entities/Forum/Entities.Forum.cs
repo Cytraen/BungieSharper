@@ -105,7 +105,7 @@ namespace BungieSharper.Entities.Forum
     public class PostSearchResponse
     {
         [JsonPropertyName("relatedPosts")]
-        public IEnumerable<Forum.PostResponse> RelatedPosts { get; set; }
+        public IEnumerable<PostResponse> RelatedPosts { get; set; }
 
         [JsonPropertyName("authors")]
         public IEnumerable<User.GeneralUser> Authors { get; set; }
@@ -117,16 +117,16 @@ namespace BungieSharper.Entities.Forum
         public IEnumerable<Tags.Models.Contracts.TagResponse> SearchedTags { get; set; }
 
         [JsonPropertyName("polls")]
-        public IEnumerable<Forum.PollResponse> Polls { get; set; }
+        public IEnumerable<PollResponse> Polls { get; set; }
 
         [JsonPropertyName("recruitmentDetails")]
-        public IEnumerable<Forum.ForumRecruitmentDetail> RecruitmentDetails { get; set; }
+        public IEnumerable<ForumRecruitmentDetail> RecruitmentDetails { get; set; }
 
         [JsonPropertyName("availablePages"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? AvailablePages { get; set; }
 
         [JsonPropertyName("results")]
-        public IEnumerable<Forum.PostResponse> Results { get; set; }
+        public IEnumerable<PostResponse> Results { get; set; }
 
         [JsonPropertyName("totalResults")]
         public int TotalResults { get; set; }
@@ -156,7 +156,7 @@ namespace BungieSharper.Entities.Forum
         public long TopicId { get; set; }
 
         [JsonPropertyName("results")]
-        public IEnumerable<Forum.PollResult> Results { get; set; }
+        public IEnumerable<PollResult> Results { get; set; }
 
         [JsonPropertyName("totalVotes")]
         public int TotalVotes { get; set; }

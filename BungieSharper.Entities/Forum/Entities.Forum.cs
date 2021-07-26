@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 namespace BungieSharper.Entities.Forum
 {
     [Flags]
-    public enum ForumTopicsCategoryFiltersEnum : int
+    public enum ForumTopicsCategoryFiltersEnum
     {
         None = 0,
         Links = 1,
@@ -18,7 +18,7 @@ namespace BungieSharper.Entities.Forum
         Polls = 128
     }
 
-    public enum ForumTopicsQuickDateEnum : int
+    public enum ForumTopicsQuickDateEnum
     {
         All = 0,
         LastYear = 1,
@@ -84,7 +84,7 @@ namespace BungieSharper.Entities.Forum
         public string Locale { get; set; }
     }
 
-    public enum ForumMediaType : int
+    public enum ForumMediaType
     {
         None = 0,
         Image = 1,
@@ -92,7 +92,7 @@ namespace BungieSharper.Entities.Forum
         Youtube = 3
     }
 
-    public enum ForumPostPopularity : int
+    public enum ForumPostPopularity
     {
         Empty = 0,
         Default = 1,
@@ -227,7 +227,7 @@ namespace BungieSharper.Entities.Forum
         Rowdy = 2
     }
 
-    public enum ForumPostSortEnum : int
+    public enum ForumPostSortEnum
     {
         Default = 0,
         OldestFirst = 1

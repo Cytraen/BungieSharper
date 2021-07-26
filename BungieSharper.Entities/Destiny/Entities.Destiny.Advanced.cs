@@ -33,7 +33,7 @@ namespace BungieSharper.Entities.Destiny.Advanced
         public long? CharacterId { get; set; }
     }
 
-    public enum AwaType : int
+    public enum AwaType
     {
         None = 0,
 
@@ -56,7 +56,7 @@ namespace BungieSharper.Entities.Destiny.Advanced
         public IEnumerable<byte> Nonce { get; set; }
     }
 
-    public enum AwaUserSelection : int
+    public enum AwaUserSelection
     {
         None = 0,
         Rejected = 1,
@@ -97,7 +97,7 @@ namespace BungieSharper.Entities.Destiny.Advanced
         public BungieMembershipType MembershipType { get; set; }
     }
 
-    public enum AwaResponseReason : int
+    public enum AwaResponseReason
     {
         None = 0,
 

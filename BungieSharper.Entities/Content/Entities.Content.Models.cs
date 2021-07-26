@@ -198,7 +198,7 @@ namespace BungieSharper.Entities.Content.Models
         public bool IsImage { get; set; }
     }
 
-    public enum ContentPropertyDataTypeEnum : int
+    public enum ContentPropertyDataTypeEnum
     {
         None = 0,
         Plaintext = 1,

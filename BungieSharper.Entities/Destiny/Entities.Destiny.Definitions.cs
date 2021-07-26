@@ -2331,7 +2331,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
     }
 
     [Flags]
-    public enum DestinyTalentNodeStepWeaponPerformances : int
+    public enum DestinyTalentNodeStepWeaponPerformances
     {
         None = 0,
         RateOfFire = 1,
@@ -2351,7 +2351,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
     }
 
     [Flags]
-    public enum DestinyTalentNodeStepImpactEffects : int
+    public enum DestinyTalentNodeStepImpactEffects
     {
         None = 0,
         ArmorPiercing = 1,
@@ -2364,7 +2364,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
     }
 
     [Flags]
-    public enum DestinyTalentNodeStepGuardianAttributes : int
+    public enum DestinyTalentNodeStepGuardianAttributes
     {
         None = 0,
         Stats = 1,
@@ -2379,7 +2379,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
     }
 
     [Flags]
-    public enum DestinyTalentNodeStepLightAbilities : int
+    public enum DestinyTalentNodeStepLightAbilities
     {
         None = 0,
         Grenades = 1,
@@ -2392,7 +2392,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
     }
 
     [Flags]
-    public enum DestinyTalentNodeStepDamageTypes : int
+    public enum DestinyTalentNodeStepDamageTypes
     {
         None = 0,
         Kinetic = 1,
@@ -3026,7 +3026,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
     /// <summary>
     /// BNet's custom categorization of reward sources. We took a look at the existing ways that items could be spawned, and tried to make high-level categorizations of them. This needs to be re-evaluated for Destiny 2.
     /// </summary>
-    public enum DestinyRewardSourceCategory : int
+    public enum DestinyRewardSourceCategory
     {
         /// <summary>The source doesn't fit well into any of the other types.</summary>
         None = 0,

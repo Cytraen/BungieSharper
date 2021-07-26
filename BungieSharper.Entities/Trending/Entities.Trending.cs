@@ -86,7 +86,7 @@ namespace BungieSharper.Entities.Trending
     /// <summary>
     /// The known entity types that you can have returned from Trending.
     /// </summary>
-    public enum TrendingEntryType : int
+    public enum TrendingEntryType
     {
         News = 0,
         DestinyItem = 1,

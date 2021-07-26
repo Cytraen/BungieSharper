@@ -1,6 +1,6 @@
 ﻿namespace BungieSharper.Entities.Exceptions
 {
-    public enum PlatformErrorCodes : int
+    public enum PlatformErrorCodes
     {
         None = 0,
         Success = 1,

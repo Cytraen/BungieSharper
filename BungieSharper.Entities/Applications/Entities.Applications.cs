@@ -133,7 +133,7 @@ namespace BungieSharper.Entities.Applications
         public IEnumerable<ApplicationDeveloper> Team { get; set; }
     }
 
-    public enum ApplicationStatus : int
+    public enum ApplicationStatus
     {
         /// <summary>No value assigned</summary>
         None = 0,
@@ -163,7 +163,7 @@ namespace BungieSharper.Entities.Applications
         public User.UserInfoCard User { get; set; }
     }
 
-    public enum DeveloperRole : int
+    public enum DeveloperRole
     {
         None = 0,
         Owner = 1,

@@ -170,33 +170,33 @@ namespace BungieSharper.Entities.GroupsV2
         public GroupV2ClanInfoAndInvestment ClanInfo { get; set; }
     }
 
-    public enum GroupType : int
+    public enum GroupType
     {
         General = 0,
         Clan = 1
     }
 
-    public enum ChatSecuritySetting : int
+    public enum ChatSecuritySetting
     {
         Group = 0,
         Admins = 1
     }
 
-    public enum GroupHomepage : int
+    public enum GroupHomepage
     {
         Wall = 0,
         Forum = 1,
         AllianceForum = 2
     }
 
-    public enum MembershipOption : int
+    public enum MembershipOption
     {
         Reviewed = 0,
         Open = 1,
         Closed = 2
     }
 
-    public enum GroupPostPublicity : int
+    public enum GroupPostPublicity
     {
         Public = 0,
         Alliance = 1,
@@ -263,7 +263,7 @@ namespace BungieSharper.Entities.GroupsV2
     }
 
     [Flags]
-    public enum Capabilities : int
+    public enum Capabilities
     {
         None = 0,
         Leaderboards = 1,
@@ -278,7 +278,7 @@ namespace BungieSharper.Entities.GroupsV2
     /// <summary>
     /// Used for setting the guided game permission level override (admins and founders can always host guided games).
     /// </summary>
-    public enum HostGuidedGamesPermissionLevel : int
+    public enum HostGuidedGamesPermissionLevel
     {
         None = 0,
         Beginner = 1,
@@ -288,7 +288,7 @@ namespace BungieSharper.Entities.GroupsV2
     /// <summary>
     /// The member levels used by all V2 Groups API. Individual group types use their own mappings in their native storage (general uses BnetDbGroupMemberType and D2 clans use ClanMemberLevel), but they are all translated to this in the runtime api. These runtime values should NEVER be stored anywhere, so the values can be changed as necessary.
     /// </summary>
-    public enum RuntimeGroupMemberType : int
+    public enum RuntimeGroupMemberType
     {
         None = 0,
         Beginner = 1,
@@ -388,7 +388,7 @@ namespace BungieSharper.Entities.GroupsV2
         public DateTime JoinDate { get; set; }
     }
 
-    public enum GroupAllianceStatus : int
+    public enum GroupAllianceStatus
     {
         Unallied = 0,
         Parent = 1,
@@ -413,14 +413,14 @@ namespace BungieSharper.Entities.GroupsV2
         public DateTime JoinDate { get; set; }
     }
 
-    public enum GroupPotentialMemberStatus : int
+    public enum GroupPotentialMemberStatus
     {
         None = 0,
         Applicant = 1,
         Invitee = 2
     }
 
-    public enum GroupDateRange : int
+    public enum GroupDateRange
     {
         All = 0,
         PastDay = 1,
@@ -541,7 +541,7 @@ namespace BungieSharper.Entities.GroupsV2
         public string RequestContinuationToken { get; set; }
     }
 
-    public enum GroupSortBy : int
+    public enum GroupSortBy
     {
         Name = 0,
         Date = 1,
@@ -549,7 +549,7 @@ namespace BungieSharper.Entities.GroupsV2
         Id = 3
     }
 
-    public enum GroupMemberCountFilter : int
+    public enum GroupMemberCountFilter
     {
         All = 0,
         OneToTen = 1,
@@ -777,7 +777,7 @@ namespace BungieSharper.Entities.GroupsV2
         public User.UserInfoCard BungieNetUserInfo { get; set; }
     }
 
-    public enum GroupApplicationResolveState : int
+    public enum GroupApplicationResolveState
     {
         Unresolved = 0,
         Accepted = 1,
@@ -800,7 +800,7 @@ namespace BungieSharper.Entities.GroupsV2
         public string Message { get; set; }
     }
 
-    public enum GroupsForMemberFilter : int
+    public enum GroupsForMemberFilter
     {
         All = 0,
         Founded = 1,

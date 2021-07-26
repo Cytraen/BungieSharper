@@ -56,7 +56,14 @@ namespace BungieSharper.CodeGen.Generation
                 enumList.Add(doc + enumDef);
             }
 
-            fileContent += $"    public enum {className} : {Mapping.FormatToCSharp(def.Format!.Value)}\n    {{\n";
+            fileContent += $"    public enum {className}";
+
+            if (def.Format!.Value != FormatEnum.Int32)
+            {
+                fileContent += $" : {Mapping.FormatToCSharp(def.Format!.Value)}";
+            }
+
+            fileContent += "\n    {\n";
             fileContent += string.Join(",\n", enumList);
             fileContent += "\n    }\n}";
             fileContent = fileContent.Replace(",\n        /// <summary>", ",\n\n        /// <summary>");

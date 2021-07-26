@@ -12,7 +12,7 @@ namespace BungieSharper.Entities.Ignores
     }
 
     [System.Flags]
-    public enum IgnoreStatus : int
+    public enum IgnoreStatus
     {
         NotIgnored = 0,
         IgnoredUser = 1,
@@ -23,7 +23,7 @@ namespace BungieSharper.Entities.Ignores
         IgnoredGlobal = 32
     }
 
-    public enum IgnoreLength : int
+    public enum IgnoreLength
     {
         None = 0,
         Week = 1,

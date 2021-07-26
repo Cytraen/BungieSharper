@@ -115,7 +115,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Milestones
     /// A hint for the UI as to what display information ought to be shown. Defaults to showing the static MilestoneDefinition's display properties.
     /// If for some reason the indicated property is not populated, fall back to the MilestoneDefinition.displayProperties.
     /// </summary>
-    public enum DestinyMilestoneDisplayPreference : int
+    public enum DestinyMilestoneDisplayPreference
     {
         /// <summary>Indicates you should show DestinyMilestoneDefinition.displayProperties for this Milestone.</summary>
         MilestoneDefinition = 0,
@@ -130,7 +130,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Milestones
     /// <summary>
     /// The type of milestone. Milestones can be Tutorials, one-time/triggered/non-repeating but not necessarily tutorials, or Repeating Milestones.
     /// </summary>
-    public enum DestinyMilestoneType : int
+    public enum DestinyMilestoneType
     {
         Unknown = 0,
 

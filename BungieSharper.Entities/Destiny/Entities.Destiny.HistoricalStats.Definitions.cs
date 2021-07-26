@@ -6,7 +6,7 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats.Definitions
     /// <summary>
     /// For historical reasons, this list will have both D1 and D2-relevant Activity Modes in it. Please don't take this to mean that some D1-only feature is coming back!
     /// </summary>
-    public enum DestinyActivityModeType : int
+    public enum DestinyActivityModeType
     {
         None = 0,
         Story = 2,
@@ -151,7 +151,7 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats.Definitions
     /// <summary>
     /// If the enum value is > 100, it is a "special" group that cannot be queried for directly (special cases apply to when they are returned, and are not relevant in general cases)
     /// </summary>
-    public enum DestinyStatsGroupType : int
+    public enum DestinyStatsGroupType
     {
         None = 0,
         General = 1,
@@ -172,7 +172,7 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats.Definitions
         Internal = 104
     }
 
-    public enum DestinyStatsCategoryType : int
+    public enum DestinyStatsCategoryType
     {
         None = 0,
         Kills = 1,
@@ -192,7 +192,7 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats.Definitions
         MedalAbilities = 15
     }
 
-    public enum UnitType : int
+    public enum UnitType
     {
         None = 0,
 
@@ -236,7 +236,7 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats.Definitions
         CompletionReason = 13
     }
 
-    public enum DestinyStatsMergeMethod : int
+    public enum DestinyStatsMergeMethod
     {
         /// <summary>When collapsing multiple instances of the stat together, add the values.</summary>
         Add = 0,
@@ -248,7 +248,7 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats.Definitions
         Max = 2
     }
 
-    public enum PeriodType : int
+    public enum PeriodType
     {
         None = 0,
         Daily = 1,

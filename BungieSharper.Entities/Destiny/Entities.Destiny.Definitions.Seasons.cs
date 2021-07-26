@@ -41,7 +41,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Seasons
 
         /// <summary>Optional - Defines the promotional text, images, and links to preview this season.</summary>
         [JsonPropertyName("preview")]
-        public Destiny.Definitions.Seasons.DestinySeasonPreviewDefinition Preview { get; set; }
+        public DestinySeasonPreviewDefinition Preview { get; set; }
 
         /// <summary>
         /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.

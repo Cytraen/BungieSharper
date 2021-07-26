@@ -85,7 +85,7 @@ namespace BungieSharper.CodeGen.Generation
             {
                 foreach (var (propName, propDef) in properties)
                 {
-                    propertyList.Add(ResolveProperty(propName, propDef));
+                    propertyList.Add(ResolveProperty(propName, propDef, nameSpace.Replace("BungieSharper.Entities.", "")));
                 }
             }
 
@@ -96,7 +96,7 @@ namespace BungieSharper.CodeGen.Generation
             return fileContent;
         }
 
-        internal static string ResolveProperty(string name, PropertiesObject def)
+        internal static string ResolveProperty(string name, PropertiesObject def, string parentNameSpace)
         {
             var propListing = "";
             var propType = "";
@@ -143,6 +143,11 @@ namespace BungieSharper.CodeGen.Generation
             else
             {
                 propListing += $"        [JsonPropertyName(\"{name}\")]\n";
+            }
+
+            if (!string.IsNullOrWhiteSpace(parentNameSpace) && propType.Length > parentNameSpace.Length && propType[0..parentNameSpace.Length] == parentNameSpace)
+            {
+                propType = propType.Remove(0, parentNameSpace.Length + 1);
             }
 
             propListing += $"        public {propType} {char.ToUpper(name[0]) + name[1..]} {{ get; set; }}";

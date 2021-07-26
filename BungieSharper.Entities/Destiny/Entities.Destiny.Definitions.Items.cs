@@ -14,7 +14,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Items
 
         /// <summary>If this tier defines infusion properties, they will be contained here.</summary>
         [JsonPropertyName("infusionProcess")]
-        public Destiny.Definitions.Items.DestinyItemTierTypeInfusionBlock InfusionProcess { get; set; }
+        public DestinyItemTierTypeInfusionBlock InfusionProcess { get; set; }
 
         /// <summary>
         /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
@@ -161,15 +161,15 @@ namespace BungieSharper.Entities.Destiny.Definitions.Items
         /// If this is populated, it will have the override data to be applied when this plug is applied to an item.
         /// </summary>
         [JsonPropertyName("parentItemOverride")]
-        public Destiny.Definitions.Items.DestinyParentItemOverride ParentItemOverride { get; set; }
+        public DestinyParentItemOverride ParentItemOverride { get; set; }
 
         /// <summary>IF not null, this plug provides Energy capacity to the item in which it is socketed. In Armor 2.0 for example, is implemented in a similar way to Masterworks, where visually it's a single area of the UI being clicked on to "Upgrade" to higher energy levels, but it's actually socketing new plugs.</summary>
         [JsonPropertyName("energyCapacity")]
-        public Destiny.Definitions.Items.DestinyEnergyCapacityEntry EnergyCapacity { get; set; }
+        public DestinyEnergyCapacityEntry EnergyCapacity { get; set; }
 
         /// <summary>IF not null, this plug has an energy cost. This contains the details of that cost.</summary>
         [JsonPropertyName("energyCost")]
-        public Destiny.Definitions.Items.DestinyEnergyCostEntry EnergyCost { get; set; }
+        public DestinyEnergyCostEntry EnergyCost { get; set; }
     }
 
     /// <summary>

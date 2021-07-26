@@ -132,7 +132,7 @@ namespace BungieSharper.Entities.Content.Models
         public string VisibleOn { get; set; }
 
         [JsonPropertyName("datatype")]
-        public Content.Models.ContentPropertyDataTypeEnum Datatype { get; set; }
+        public ContentPropertyDataTypeEnum Datatype { get; set; }
 
         [JsonPropertyName("attributes")]
         public Dictionary<string, string> Attributes { get; set; }

@@ -54,7 +54,7 @@ namespace BungieSharper.Entities.Content
         public IEnumerable<string> Tags { get; set; }
 
         [JsonPropertyName("commentSummary")]
-        public Content.CommentSummary CommentSummary { get; set; }
+        public CommentSummary CommentSummary { get; set; }
     }
 
     public class ContentRepresentation

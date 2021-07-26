@@ -665,7 +665,7 @@ namespace BungieSharper.Entities.Destiny.Responses
     public class DestinyItemChangeResponse
     {
         [JsonPropertyName("item")]
-        public Destiny.Responses.DestinyItemResponse Item { get; set; }
+        public DestinyItemResponse Item { get; set; }
 
         /// <summary>Items that appeared in the inventory possibly as a result of an action.</summary>
         [JsonPropertyName("addedInventoryItems")]

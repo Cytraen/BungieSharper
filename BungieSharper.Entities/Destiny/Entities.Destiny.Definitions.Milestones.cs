@@ -24,7 +24,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Milestones
 
         /// <summary>A hint to the UI to indicate what to show as the display properties for this Milestone when showing "Live" milestone data. Feel free to show more than this if desired: this hint is meant to simplify our own UI, but it may prove useful to you as well.</summary>
         [JsonPropertyName("displayPreference")]
-        public Destiny.Definitions.Milestones.DestinyMilestoneDisplayPreference DisplayPreference { get; set; }
+        public DestinyMilestoneDisplayPreference DisplayPreference { get; set; }
 
         /// <summary>A custom image someone made just for the milestone. Isn't that special?</summary>
         [JsonPropertyName("image")]
@@ -32,7 +32,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Milestones
 
         /// <summary>An enumeration listing one of the possible types of milestones. Check out the DestinyMilestoneType enum for more info!</summary>
         [JsonPropertyName("milestoneType")]
-        public Destiny.Definitions.Milestones.DestinyMilestoneType MilestoneType { get; set; }
+        public DestinyMilestoneType MilestoneType { get; set; }
 
         /// <summary>If True, then the Milestone has been integrated with BNet's recruiting feature.</summary>
         [JsonPropertyName("recruitable")]
@@ -169,7 +169,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Milestones
 
         /// <summary>The rewards you will get for completing this quest, as best as we could extract them from our data. Sometimes, it'll be a decent amount of data. Sometimes, it's going to be sucky. Sorry.</summary>
         [JsonPropertyName("questRewards")]
-        public Destiny.Definitions.Milestones.DestinyMilestoneQuestRewardsDefinition QuestRewards { get; set; }
+        public DestinyMilestoneQuestRewardsDefinition QuestRewards { get; set; }
 
         /// <summary>The full set of all possible "conceptual activities" that are related to this Milestone. Tiers or alternative modes of play within these conceptual activities will be defined as sub-entities. Keyed by the Conceptual Activity Hash. Use the key to look up DestinyActivityDefinition.</summary>
         [JsonPropertyName("activities")]

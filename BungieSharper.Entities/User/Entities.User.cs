@@ -138,7 +138,7 @@ namespace BungieSharper.Entities.User
         public long? LegacyPortalUID { get; set; }
 
         [JsonPropertyName("context")]
-        public User.UserToUserContext Context { get; set; }
+        public UserToUserContext Context { get; set; }
 
         [JsonPropertyName("psnDisplayName")]
         public string PsnDisplayName { get; set; }
@@ -224,7 +224,7 @@ namespace BungieSharper.Entities.User
         public long? PrimaryMembershipId { get; set; }
 
         [JsonPropertyName("bungieNetUser")]
-        public User.GeneralUser BungieNetUser { get; set; }
+        public GeneralUser BungieNetUser { get; set; }
     }
 
     public class HardLinkedUserMembership
@@ -271,7 +271,7 @@ namespace BungieSharper.Entities.User
 
         /// <summary>The flag value for this opt-in category. For historical reasons, this is defined as a flags enum.</summary>
         [JsonPropertyName("value")]
-        public User.OptInFlags Value { get; set; }
+        public OptInFlags Value { get; set; }
 
         /// <summary>If true, this opt-in setting should be set by default in situations where accounts are created without explicit choices about what they're opting into.</summary>
         [JsonPropertyName("setByDefault")]
@@ -384,7 +384,7 @@ namespace BungieSharper.Entities.User
 
         /// <summary>The OptInFlags value to set or clear if this setting is set or cleared in the UI. It is the aggregate of all underlying opt-in flags related to this setting.</summary>
         [JsonPropertyName("optInAggregateValue")]
-        public User.OptInFlags OptInAggregateValue { get; set; }
+        public OptInFlags OptInAggregateValue { get; set; }
 
         /// <summary>The subscriptions to show as children of this setting, if any.</summary>
         [JsonPropertyName("subscriptions")]

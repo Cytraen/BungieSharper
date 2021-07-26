@@ -97,7 +97,7 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats.Definitions
 
         /// <summary>Statistic group</summary>
         [JsonPropertyName("group")]
-        public Destiny.HistoricalStats.Definitions.DestinyStatsGroupType Group { get; set; }
+        public DestinyStatsGroupType Group { get; set; }
 
         /// <summary>Time periods the statistic covers</summary>
         [JsonPropertyName("periodTypes")]
@@ -109,7 +109,7 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats.Definitions
 
         /// <summary>Category for the stat.</summary>
         [JsonPropertyName("category")]
-        public Destiny.HistoricalStats.Definitions.DestinyStatsCategoryType Category { get; set; }
+        public DestinyStatsCategoryType Category { get; set; }
 
         /// <summary>Display name</summary>
         [JsonPropertyName("statName")]
@@ -125,7 +125,7 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats.Definitions
 
         /// <summary>Unit, if any, for the statistic</summary>
         [JsonPropertyName("unitType")]
-        public Destiny.HistoricalStats.Definitions.UnitType UnitType { get; set; }
+        public UnitType UnitType { get; set; }
 
         /// <summary>Optional URI to an icon for the statistic</summary>
         [JsonPropertyName("iconImage")]

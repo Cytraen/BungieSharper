@@ -60,7 +60,7 @@ namespace BungieSharper.Entities.Common.Models
         public IEnumerable<Common.Models.CoreSetting> ClanBannerStandards { get; set; }
 
         [JsonPropertyName("destiny2CoreSettings")]
-        public Common.Models.Destiny2CoreSettings Destiny2CoreSettings { get; set; }
+        public Destiny2CoreSettings Destiny2CoreSettings { get; set; }
 
         [JsonPropertyName("emailSettings")]
         public User.EmailSettings EmailSettings { get; set; }

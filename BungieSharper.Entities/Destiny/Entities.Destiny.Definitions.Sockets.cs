@@ -15,7 +15,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Sockets
 
         /// <summary>Defines what happens when a plug is inserted into sockets of this type.</summary>
         [JsonPropertyName("insertAction")]
-        public Destiny.Definitions.Sockets.DestinyInsertPlugActionDefinition InsertAction { get; set; }
+        public DestinyInsertPlugActionDefinition InsertAction { get; set; }
 
         /// <summary>
         /// A list of Plug "Categories" that are allowed to be plugged into sockets of this type.

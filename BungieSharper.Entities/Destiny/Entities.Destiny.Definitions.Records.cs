@@ -28,23 +28,23 @@ namespace BungieSharper.Entities.Destiny.Definitions.Records
         public bool ForTitleGilding { get; set; }
 
         [JsonPropertyName("titleInfo")]
-        public Destiny.Definitions.Records.DestinyRecordTitleBlock TitleInfo { get; set; }
+        public DestinyRecordTitleBlock TitleInfo { get; set; }
 
         [JsonPropertyName("completionInfo")]
-        public Destiny.Definitions.Records.DestinyRecordCompletionBlock CompletionInfo { get; set; }
+        public DestinyRecordCompletionBlock CompletionInfo { get; set; }
 
         [JsonPropertyName("stateInfo")]
-        public Destiny.Definitions.Records.SchemaRecordStateBlock StateInfo { get; set; }
+        public SchemaRecordStateBlock StateInfo { get; set; }
 
         [JsonPropertyName("requirements")]
         public Destiny.Definitions.Presentation.DestinyPresentationNodeRequirementsBlock Requirements { get; set; }
 
         [JsonPropertyName("expirationInfo")]
-        public Destiny.Definitions.Records.DestinyRecordExpirationBlock ExpirationInfo { get; set; }
+        public DestinyRecordExpirationBlock ExpirationInfo { get; set; }
 
         /// <summary>Some records have multiple 'interval' objectives, and the record may be claimed at each completed interval</summary>
         [JsonPropertyName("intervalInfo")]
-        public Destiny.Definitions.Records.DestinyRecordIntervalBlock IntervalInfo { get; set; }
+        public DestinyRecordIntervalBlock IntervalInfo { get; set; }
 
         /// <summary>
         /// If there is any publicly available information about rewards earned for achieving this record, this is the list of those items.

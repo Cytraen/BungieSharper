@@ -18,7 +18,7 @@ namespace BungieSharper.Entities.Destiny.Advanced
     {
         /// <summary>Type of advanced write action.</summary>
         [JsonPropertyName("type")]
-        public Destiny.Advanced.AwaType Type { get; set; }
+        public AwaType Type { get; set; }
 
         /// <summary>Item instance ID the action shall be applied to. This is optional for all but a new AwaType values. Rule of thumb is to provide the item instance ID if one is available.</summary>
         [JsonPropertyName("affectedItemId"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
@@ -45,7 +45,7 @@ namespace BungieSharper.Entities.Destiny.Advanced
     {
         /// <summary>Indication of the selection the user has made (Approving or rejecting the action)</summary>
         [JsonPropertyName("selection")]
-        public Destiny.Advanced.AwaUserSelection Selection { get; set; }
+        public AwaUserSelection Selection { get; set; }
 
         /// <summary>Correlation ID of the request</summary>
         [JsonPropertyName("correlationId")]
@@ -67,10 +67,10 @@ namespace BungieSharper.Entities.Destiny.Advanced
     {
         /// <summary>Indication of how the user responded to the request. If the value is "Approved" the actionToken will contain the token that can be presented when performing the advanced write action.</summary>
         [JsonPropertyName("userSelection")]
-        public Destiny.Advanced.AwaUserSelection UserSelection { get; set; }
+        public AwaUserSelection UserSelection { get; set; }
 
         [JsonPropertyName("responseReason")]
-        public Destiny.Advanced.AwaResponseReason ResponseReason { get; set; }
+        public AwaResponseReason ResponseReason { get; set; }
 
         /// <summary>Message to the app developer to help understand the response.</summary>
         [JsonPropertyName("developerNote")]
@@ -90,7 +90,7 @@ namespace BungieSharper.Entities.Destiny.Advanced
 
         /// <summary>Advanced Write Action Type from the permission request.</summary>
         [JsonPropertyName("type")]
-        public Destiny.Advanced.AwaType Type { get; set; }
+        public AwaType Type { get; set; }
 
         /// <summary>MembershipType from the permission request.</summary>
         [JsonPropertyName("membershipType")]

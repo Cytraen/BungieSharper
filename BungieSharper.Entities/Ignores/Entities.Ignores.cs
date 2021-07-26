@@ -8,7 +8,7 @@ namespace BungieSharper.Entities.Ignores
         public bool IsIgnored { get; set; }
 
         [JsonPropertyName("ignoreFlags")]
-        public Ignores.IgnoreStatus IgnoreFlags { get; set; }
+        public IgnoreStatus IgnoreFlags { get; set; }
     }
 
     [System.Flags]

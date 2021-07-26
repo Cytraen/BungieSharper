@@ -1167,7 +1167,7 @@ namespace BungieSharper.Entities.Destiny
 
         /// <summary>A DestinyActivityDifficultyTier enum value indicating the difficulty of the activity.</summary>
         [JsonPropertyName("difficultyTier")]
-        public Destiny.DestinyActivityDifficultyTier DifficultyTier { get; set; }
+        public DestinyActivityDifficultyTier DifficultyTier { get; set; }
 
         [JsonPropertyName("challenges")]
         public IEnumerable<Destiny.Challenges.DestinyChallengeStatus> Challenges { get; set; }
@@ -1262,7 +1262,7 @@ namespace BungieSharper.Entities.Destiny
 
         /// <summary>An DestinyTalentNodeState enum value indicating the node's state: whether it can be activated or swapped, and why not if neither can be performed.</summary>
         [JsonPropertyName("state")]
-        public Destiny.DestinyTalentNodeState State { get; set; }
+        public DestinyTalentNodeState State { get; set; }
 
         /// <summary>If true, the node is activated: it's current step then provides its benefits.</summary>
         [JsonPropertyName("isActivated")]
@@ -1290,7 +1290,7 @@ namespace BungieSharper.Entities.Destiny
 
         /// <summary>This property has some history. A talent grid can provide stats on both the item it's related to and the character equipping the item. This returns data about those stat bonuses.</summary>
         [JsonPropertyName("nodeStatsBlock")]
-        public Destiny.DestinyTalentNodeStatBlock NodeStatsBlock { get; set; }
+        public DestinyTalentNodeStatBlock NodeStatsBlock { get; set; }
     }
 
     public enum DestinyTalentNodeState : int

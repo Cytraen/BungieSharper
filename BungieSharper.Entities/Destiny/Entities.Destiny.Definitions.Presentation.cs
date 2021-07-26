@@ -108,7 +108,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Presentation
 
         /// <summary>The child entities contained by this presentation node.</summary>
         [JsonPropertyName("children")]
-        public Destiny.Definitions.Presentation.DestinyPresentationNodeChildrenBlock Children { get; set; }
+        public DestinyPresentationNodeChildrenBlock Children { get; set; }
 
         /// <summary>A hint for how to display this presentation node when it's shown in a list.</summary>
         [JsonPropertyName("displayStyle")]
@@ -120,7 +120,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Presentation
 
         /// <summary>The requirements for being able to interact with this presentation node and its children.</summary>
         [JsonPropertyName("requirements")]
-        public Destiny.Definitions.Presentation.DestinyPresentationNodeRequirementsBlock Requirements { get; set; }
+        public DestinyPresentationNodeRequirementsBlock Requirements { get; set; }
 
         /// <summary>If this presentation node has children, but the game doesn't let you inspect the details of those children, that is indicated here.</summary>
         [JsonPropertyName("disableChildSubscreenNavigation")]

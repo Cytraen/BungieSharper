@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -21,12 +20,12 @@ namespace BungieSharper.Client
         /// <summary>
         /// Contains methods to use the API endpoints for the Bungie.net API.
         /// </summary>
-        public Endpoints.Endpoints Api { get; }
+        public Endpoints.Endpoints Api { get; private init; }
 
         /// <summary>
         /// Contains methods to use the OAuth endpoints for the Bungie.net API.
         /// </summary>
-        public Endpoints.OAuthRequests OAuth { get; }
+        public Endpoints.OAuthRequests OAuth { get; private init; }
 
         /// <summary>
         /// The API key to set in the X-API-Key header.
@@ -34,33 +33,45 @@ namespace BungieSharper.Client
         /// <remarks> If you don't have one, you can get one at https://www.bungie.net/en/Application/ </remarks>
         public string ApiKey
         {
-            init => SetApiKey(value);
+            init
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("The parameter must not be null or whitespace.", nameof(value));
+                }
+
+                _apiAccessor.ApiKey = value;
+            }
         }
 
         /// <summary>
         /// The value of the "User-Agent" header. If <c>null</c>, it will be removed/omitted.
         /// </summary>
         /// <remarks>Format should be {ProductName}/{ProductVersion} (+{contact info}) e.g.: YourAppName/v1.2.3 (+your@email.here)</remarks>
-        public string UserAgent
+        public string? UserAgent
         {
-            init => SetUserAgent(value);
+            init
+            {
+                var bungieSharperUserAgent = "BungieSharper/" + typeof(BungieApiClient).Assembly.GetName().Version!.ToString(3) + " (+github.com/ashakoor/BungieSharper)";
+                _apiAccessor.UserAgent = value is null ? bungieSharperUserAgent : value + " " + bungieSharperUserAgent;
+            }
         }
 
         /// <summary>
         /// The client's OAuth client ID
         /// </summary>
-        public uint OAuthClientId
+        public uint? OAuthClientId
         {
-            init => SetOAuthClientId(value);
+            init => OAuth.OAuthClientId = value.ToString();
         }
 
         /// <summary>
         /// The client's OAuth client secret
         /// </summary>
         /// <remarks>Only for confidential clients</remarks>
-        public string OAuthClientSecret
+        public string? OAuthClientSecret
         {
-            init => SetOAuthClientSecret(value);
+            init => OAuth.OAuthClientSecret = value;
         }
 
         /// <summary>
@@ -69,21 +80,21 @@ namespace BungieSharper.Client
         /// <remarks>The official limit is 250/10sec/IP (25/sec.) The absolute maximum is 50, but if you go higher than 25, you're on your own.</remarks>
         public byte RateLimit
         {
-            set => SetRateLimit(value);
+            set => _apiAccessor.RequestsPerSecond = value;
         }
 
         /// <summary>
         /// Sets the list of <see cref="PlatformErrorCodes">PlatformErrorCodes</see> that will automatically be retried on (after waiting for the throttle from the API response, if provided)
         /// </summary>
-        public HashSet<PlatformErrorCodes> RetryErrorCodes
+        public HashSet<PlatformErrorCodes>? RetryErrorCodes
         {
-            set => SetRetryErrorCodes(value);
+            set => _apiAccessor.RetryErrorCodes = value ?? new HashSet<PlatformErrorCodes>();
         }
 
         private BungieApiClient()
         {
             _apiAccessor = new ApiAccessor();
-            SetRateLimit(DefaultRequestsPerSecond);
+            RateLimit = DefaultRequestsPerSecond;
 
             Api = new Endpoints.Endpoints(_apiAccessor);
             OAuth = new Endpoints.OAuthRequests(_apiAccessor);
@@ -95,87 +106,13 @@ namespace BungieSharper.Client
         /// <param name="config">The <see cref="BungieClientConfig">BungieClientConfig</see> containing the settings for the client.</param>
         public BungieApiClient(BungieClientConfig config) : this()
         {
-            SetApiKey(config.ApiKey);
-            SetUserAgent(config.UserAgent);
-            SetOAuthClientId(config.OAuthClientId);
-            SetOAuthClientSecret(config.OAuthClientSecret);
-            SetRateLimit(config.RateLimit);
-            SetRetryErrorCodes(config.RetryErrorCodes);
-        }
+            ApiKey = config.ApiKey;
+            UserAgent = config.UserAgent;
+            OAuthClientId = config.OAuthClientId;
+            OAuthClientSecret = config.OAuthClientSecret;
 
-        private void SetApiKey(string apiKey)
-        {
-            if (string.IsNullOrWhiteSpace(apiKey))
-            {
-                throw new ArgumentException("The parameter must not be null or whitespace.", nameof(apiKey));
-            }
-
-            _apiAccessor.ApiKey = apiKey;
-        }
-
-        private void SetUserAgent(string? userAgent)
-        {
-            _apiAccessor.UserAgent = userAgent + " BungieSharper/" + typeof(BungieApiClient).Assembly.GetName().Version!.ToString(3) + " (+github.com/ashakoor/BungieSharper)";
-        }
-
-        private void SetOAuthClientId(uint? clientId)
-        {
-            OAuth.SetOAuthClientId(clientId);
-        }
-
-        private void SetOAuthClientSecret(string? clientSecret)
-        {
-            OAuth.SetOAuthClientSecret(clientSecret);
-        }
-
-        /// <summary>
-        /// Sets the maximum number of requests per second that the client can make to the default value, 10/sec.
-        /// </summary>
-        public void SetRateLimit()
-        {
-            _apiAccessor.RequestsPerSecond = DefaultRequestsPerSecond;
-        }
-
-        /// <summary>
-        /// Sets the maximum number of requests per second that the client can make.
-        /// </summary>
-        /// <param name="requestsPerSecond">The maximum number of requests to make per second. The absolute maximum is 50, but the official limit is 250/10sec/IP (25/sec) If you go higher than 25, you're on your own.</param>
-        public void SetRateLimit(byte requestsPerSecond)
-        {
-            if (requestsPerSecond > MaxRequestsPerSecond)
-            {
-                throw new ArgumentOutOfRangeException(nameof(requestsPerSecond),
-                    "\"requestsPerSecond\" must be below " + MaxRequestsPerSecond);
-            }
-
-            _apiAccessor.RequestsPerSecond = requestsPerSecond;
-        }
-
-        /// <summary>
-        /// Sets the list of <see cref="PlatformErrorCodes">PlatformErrorCodes</see> that will automatically be retried on (after waiting for the throttle, if provided)
-        /// </summary>
-        /// <param name="errorCodes">The list of <see cref="PlatformErrorCodes">PlatformErrorCodes</see> to automatically retry upon receipt.</param>
-        public void SetRetryErrorCodes(HashSet<PlatformErrorCodes>? errorCodes)
-        {
-            _apiAccessor.RetryErrorCodes = errorCodes ?? new HashSet<PlatformErrorCodes>();
-        }
-
-        /// <summary>
-        /// Sets the list of <see cref="PlatformErrorCodes">PlatformErrorCodes</see> that will automatically be retried on (after waiting for the throttle, if provided)
-        /// </summary>
-        /// <param name="errorCodes">The list of <see cref="PlatformErrorCodes">PlatformErrorCodes</see> to automatically retry upon receipt. Will be converted to a <see cref="HashSet{PlatformErrorCodes}">HashSet&lt;PlatformErrorCodes&gt;</see></param>
-        public void SetRetryErrorCodes(IEnumerable<PlatformErrorCodes>? errorCodes)
-        {
-            SetRetryErrorCodes(errorCodes?.ToHashSet());
-        }
-
-        /// <summary>
-        /// Sets the list of <see cref="PlatformErrorCodes">PlatformErrorCodes</see> that will automatically be retried on (after waiting for the throttle, if provided)
-        /// </summary>
-        /// <param name="errorCodes">The list of <see cref="PlatformErrorCodes">PlatformErrorCodes</see> to automatically retry upon receipt. Will be converted to a <see cref="HashSet{PlatformErrorCodes}">HashSet&lt;PlatformErrorCodes&gt;</see></param>
-        public void SetRetryErrorCodes(params PlatformErrorCodes[]? errorCodes)
-        {
-            SetRetryErrorCodes(errorCodes?.ToHashSet());
+            RateLimit = config.RateLimit;
+            RetryErrorCodes = config.RetryErrorCodes;
         }
 
         /// <summary>

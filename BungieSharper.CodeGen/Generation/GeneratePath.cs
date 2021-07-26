@@ -218,6 +218,11 @@ namespace BungieSharper.CodeGen.Generation
         {
             var openApi = Program.OpenApiDefinition;
 
+            if (openApi is null)
+            {
+                throw new NullReferenceException();
+            }
+
             var objRef = refString.Replace("#/components/responses/", "");
 
             var respObj = openApi.Components.Responses[objRef].Content.ApplicaionJson.Schema.Properties.Response;

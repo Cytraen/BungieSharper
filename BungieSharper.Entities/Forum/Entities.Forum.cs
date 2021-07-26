@@ -48,13 +48,13 @@ namespace BungieSharper.Entities.Forum
         public bool IsPinned { get; set; }
 
         [JsonPropertyName("urlMediaType")]
-        public Forum.ForumMediaType UrlMediaType { get; set; }
+        public ForumMediaType UrlMediaType { get; set; }
 
         [JsonPropertyName("thumbnail")]
         public string Thumbnail { get; set; }
 
         [JsonPropertyName("popularity")]
-        public Forum.ForumPostPopularity Popularity { get; set; }
+        public ForumPostPopularity Popularity { get; set; }
 
         [JsonPropertyName("isActive")]
         public bool IsActive { get; set; }
@@ -189,10 +189,10 @@ namespace BungieSharper.Entities.Forum
         public bool MicrophoneRequired { get; set; }
 
         [JsonPropertyName("intensity")]
-        public Forum.ForumRecruitmentIntensityLabel Intensity { get; set; }
+        public ForumRecruitmentIntensityLabel Intensity { get; set; }
 
         [JsonPropertyName("tone")]
-        public Forum.ForumRecruitmentToneLabel Tone { get; set; }
+        public ForumRecruitmentToneLabel Tone { get; set; }
 
         [JsonPropertyName("approved")]
         public bool Approved { get; set; }

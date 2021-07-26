@@ -31,10 +31,10 @@ namespace BungieSharper.Entities.Destiny.Definitions.Collectibles
         public uint ItemHash { get; set; }
 
         [JsonPropertyName("acquisitionInfo")]
-        public Destiny.Definitions.Collectibles.DestinyCollectibleAcquisitionBlock AcquisitionInfo { get; set; }
+        public DestinyCollectibleAcquisitionBlock AcquisitionInfo { get; set; }
 
         [JsonPropertyName("stateInfo")]
-        public Destiny.Definitions.Collectibles.DestinyCollectibleStateBlock StateInfo { get; set; }
+        public DestinyCollectibleStateBlock StateInfo { get; set; }
 
         [JsonPropertyName("presentationInfo")]
         public Destiny.Definitions.Presentation.DestinyPresentationChildBlock PresentationInfo { get; set; }

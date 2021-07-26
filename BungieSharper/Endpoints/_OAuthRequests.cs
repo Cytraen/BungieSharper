@@ -13,8 +13,26 @@ namespace BungieSharper.Endpoints
         private const string OAuthTokenUrl = "https://www.bungie.net/Platform/App/OAuth/Token/";
 
         private readonly ApiAccessor _apiAccessor;
+
         private string? _oAuthClientId;
+
+        internal string? OAuthClientId
+        {
+            set
+            {
+                _oAuthClientId = value;
+            }
+        }
+
         private string? _oAuthClientSecret;
+
+        internal string? OAuthClientSecret
+        {
+            set
+            {
+                _oAuthClientSecret = value;
+            }
+        }
 
         internal OAuthRequests(ApiAccessor apiAccessor)
         {
@@ -98,16 +116,6 @@ namespace BungieSharper.Endpoints
             }
 
             return GetOAuthAuthorizationUrl() + "&state=" + state;
-        }
-
-        internal void SetOAuthClientId(uint? clientId)
-        {
-            _oAuthClientId = clientId.ToString();
-        }
-
-        internal void SetOAuthClientSecret(string? clientSecret)
-        {
-            _oAuthClientSecret = clientSecret;
         }
     }
 }

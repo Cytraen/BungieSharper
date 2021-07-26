@@ -114,7 +114,7 @@ namespace BungieSharper.Entities.Applications
 
         /// <summary>Current status of the application.</summary>
         [JsonPropertyName("status")]
-        public Applications.ApplicationStatus Status { get; set; }
+        public ApplicationStatus Status { get; set; }
 
         /// <summary>Date the application was first added to our database.</summary>
         [JsonPropertyName("creationDate")]
@@ -154,7 +154,7 @@ namespace BungieSharper.Entities.Applications
     public class ApplicationDeveloper
     {
         [JsonPropertyName("role")]
-        public Applications.DeveloperRole Role { get; set; }
+        public DeveloperRole Role { get; set; }
 
         [JsonPropertyName("apiEulaVersion")]
         public int ApiEulaVersion { get; set; }

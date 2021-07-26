@@ -87,7 +87,7 @@ namespace BungieSharper.Entities.Destiny.Requests.Actions
 
         /// <summary>The plugs being inserted.</summary>
         [JsonPropertyName("plug")]
-        public Destiny.Requests.Actions.DestinyInsertPlugsRequestEntry Plug { get; set; }
+        public DestinyInsertPlugsRequestEntry Plug { get; set; }
 
         [JsonPropertyName("characterId")]
         public long CharacterId { get; set; }
@@ -111,7 +111,7 @@ namespace BungieSharper.Entities.Destiny.Requests.Actions
 
         /// <summary>This property, combined with the socketIndex, tells us which socket we are referring to (since operations can be performed on both Intrinsic and "default" sockets, and they occupy different arrays in the Inventory Item Definition). I know, I know. Don't give me that look.</summary>
         [JsonPropertyName("socketArrayType")]
-        public Destiny.Requests.Actions.DestinySocketArrayType SocketArrayType { get; set; }
+        public DestinySocketArrayType SocketArrayType { get; set; }
 
         /// <summary>Plugs are never instanced (except in infusion). So with the hash alone, we should be able to: 1) Infer whether the player actually needs to have the item, or if it's a reusable plug 2) Perform any operation needed to use the Plug, including removing the plug item and running reward sheets.</summary>
         [JsonPropertyName("plugItemHash")]

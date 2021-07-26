@@ -165,7 +165,7 @@ namespace BungieSharper.Entities.Destiny.Entities.Items
 
         /// <summary>IF populated, this item supports Energy mechanics (i.e. Armor 2.0), and these are the current details of its energy type and available capacity to spend energy points.</summary>
         [JsonPropertyName("energy")]
-        public Destiny.Entities.Items.DestinyItemInstanceEnergy Energy { get; set; }
+        public DestinyItemInstanceEnergy Energy { get; set; }
     }
 
     public class DestinyItemInstanceEnergy

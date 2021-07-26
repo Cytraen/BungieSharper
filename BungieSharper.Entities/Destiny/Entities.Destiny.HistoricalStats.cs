@@ -16,7 +16,7 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
 
         /// <summary>Details about the activity.</summary>
         [JsonPropertyName("activityDetails")]
-        public Destiny.HistoricalStats.DestinyHistoricalStatsActivity ActivityDetails { get; set; }
+        public DestinyHistoricalStatsActivity ActivityDetails { get; set; }
 
         /// <summary>Collection of players and their data for this activity.</summary>
         [JsonPropertyName("entries")]
@@ -49,7 +49,7 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
 
         /// <summary>Indicates the most specific game mode of the activity that we could find.</summary>
         [JsonPropertyName("mode")]
-        public Destiny.HistoricalStats.Definitions.DestinyActivityModeType Mode { get; set; }
+        public Definitions.DestinyActivityModeType Mode { get; set; }
 
         /// <summary>The list of all Activity Modes to which this activity applies, including aggregates. This will let you see, for example, whether the activity was both Clash and part of the Trials of the Nine event.</summary>
         [JsonPropertyName("modes")]
@@ -72,11 +72,11 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
 
         /// <summary>Score of the player if available</summary>
         [JsonPropertyName("score")]
-        public Destiny.HistoricalStats.DestinyHistoricalStatsValue Score { get; set; }
+        public DestinyHistoricalStatsValue Score { get; set; }
 
         /// <summary>Identity details of the player</summary>
         [JsonPropertyName("player")]
-        public Destiny.HistoricalStats.DestinyPlayer Player { get; set; }
+        public DestinyPlayer Player { get; set; }
 
         /// <summary>ID of the player's character used in the activity.</summary>
         [JsonPropertyName("characterId")]
@@ -88,7 +88,7 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
 
         /// <summary>Extended data extracted from the activity blob.</summary>
         [JsonPropertyName("extended")]
-        public Destiny.HistoricalStats.DestinyPostGameCarnageReportExtendedData Extended { get; set; }
+        public DestinyPostGameCarnageReportExtendedData Extended { get; set; }
     }
 
     public class DestinyHistoricalStatsValue
@@ -99,15 +99,15 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
 
         /// <summary>Basic stat value.</summary>
         [JsonPropertyName("basic")]
-        public Destiny.HistoricalStats.DestinyHistoricalStatsValuePair Basic { get; set; }
+        public DestinyHistoricalStatsValuePair Basic { get; set; }
 
         /// <summary>Per game average for the statistic, if applicable</summary>
         [JsonPropertyName("pga")]
-        public Destiny.HistoricalStats.DestinyHistoricalStatsValuePair Pga { get; set; }
+        public DestinyHistoricalStatsValuePair Pga { get; set; }
 
         /// <summary>Weighted value of the stat if a weight greater than 1 has been assigned.</summary>
         [JsonPropertyName("weighted")]
-        public Destiny.HistoricalStats.DestinyHistoricalStatsValuePair Weighted { get; set; }
+        public DestinyHistoricalStatsValuePair Weighted { get; set; }
 
         /// <summary>When a stat represents the best, most, longest, fastest or some other personal best, the actual activity ID where that personal best was established is available on this property.</summary>
         [JsonPropertyName("activityId"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
@@ -199,11 +199,11 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
 
         /// <summary>Team's standing relative to other teams.</summary>
         [JsonPropertyName("standing")]
-        public Destiny.HistoricalStats.DestinyHistoricalStatsValue Standing { get; set; }
+        public DestinyHistoricalStatsValue Standing { get; set; }
 
         /// <summary>Score earned by the team</summary>
         [JsonPropertyName("score")]
-        public Destiny.HistoricalStats.DestinyHistoricalStatsValue Score { get; set; }
+        public DestinyHistoricalStatsValue Score { get; set; }
 
         /// <summary>Alpha or Bravo</summary>
         [JsonPropertyName("teamName")]
@@ -227,7 +227,7 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
 
         /// <summary>Identity details of the player</summary>
         [JsonPropertyName("player")]
-        public Destiny.HistoricalStats.DestinyPlayer Player { get; set; }
+        public DestinyPlayer Player { get; set; }
 
         /// <summary>ID of the player's best character for the reported stat.</summary>
         [JsonPropertyName("characterId")]
@@ -235,7 +235,7 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
 
         /// <summary>Value of the stat for this player</summary>
         [JsonPropertyName("value")]
-        public Destiny.HistoricalStats.DestinyHistoricalStatsValue Value { get; set; }
+        public DestinyHistoricalStatsValue Value { get; set; }
     }
 
     public class DestinyLeaderboardResults
@@ -253,7 +253,7 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
     {
         /// <summary>The id of the mode of stats (allPvp, allPvE, etc)</summary>
         [JsonPropertyName("mode")]
-        public Destiny.HistoricalStats.Definitions.DestinyActivityModeType Mode { get; set; }
+        public Definitions.DestinyActivityModeType Mode { get; set; }
 
         /// <summary>The id of the stat</summary>
         [JsonPropertyName("statId")]
@@ -261,7 +261,7 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
 
         /// <summary>Value of the stat for this player</summary>
         [JsonPropertyName("value")]
-        public Destiny.HistoricalStats.DestinyHistoricalStatsValue Value { get; set; }
+        public DestinyHistoricalStatsValue Value { get; set; }
     }
 
     public class DestinyHistoricalStatsByPeriod
@@ -293,7 +293,7 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
 
         /// <summary>If the period group is for a specific activity, this property will be set.</summary>
         [JsonPropertyName("activityDetails")]
-        public Destiny.HistoricalStats.DestinyHistoricalStatsActivity ActivityDetails { get; set; }
+        public DestinyHistoricalStatsActivity ActivityDetails { get; set; }
 
         /// <summary>Collection of stats for the period.</summary>
         [JsonPropertyName("values")]
@@ -305,10 +305,10 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
     public class DestinyHistoricalStatsAccountResult
     {
         [JsonPropertyName("mergedDeletedCharacters")]
-        public Destiny.HistoricalStats.DestinyHistoricalStatsWithMerged MergedDeletedCharacters { get; set; }
+        public DestinyHistoricalStatsWithMerged MergedDeletedCharacters { get; set; }
 
         [JsonPropertyName("mergedAllCharacters")]
-        public Destiny.HistoricalStats.DestinyHistoricalStatsWithMerged MergedAllCharacters { get; set; }
+        public DestinyHistoricalStatsWithMerged MergedAllCharacters { get; set; }
 
         [JsonPropertyName("characters")]
         public IEnumerable<Destiny.HistoricalStats.DestinyHistoricalStatsPerCharacter> Characters { get; set; }
@@ -320,7 +320,7 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
         public Dictionary<string, Destiny.HistoricalStats.DestinyHistoricalStatsByPeriod> Results { get; set; }
 
         [JsonPropertyName("merged")]
-        public Destiny.HistoricalStats.DestinyHistoricalStatsByPeriod Merged { get; set; }
+        public DestinyHistoricalStatsByPeriod Merged { get; set; }
     }
 
     public class DestinyHistoricalStatsPerCharacter
@@ -335,7 +335,7 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
         public Dictionary<string, Destiny.HistoricalStats.DestinyHistoricalStatsByPeriod> Results { get; set; }
 
         [JsonPropertyName("merged")]
-        public Destiny.HistoricalStats.DestinyHistoricalStatsByPeriod Merged { get; set; }
+        public DestinyHistoricalStatsByPeriod Merged { get; set; }
     }
 
     public class DestinyActivityHistoryResults

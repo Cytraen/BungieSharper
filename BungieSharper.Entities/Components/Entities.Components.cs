@@ -8,7 +8,7 @@ namespace BungieSharper.Entities.Components
     public class ComponentResponse
     {
         [JsonPropertyName("privacy")]
-        public Components.ComponentPrivacySetting Privacy { get; set; }
+        public ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
         [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]

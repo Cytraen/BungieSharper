@@ -71,7 +71,7 @@ namespace BungieSharper.Entities.Destiny.Milestones
 
         /// <summary>*IF* the Milestone has an active Activity that can give you greater details about what you need to do, it will be returned here. Remember to associate this with the DestinyMilestoneDefinition's activities to get details about the activity, including what specific quest it is related to if you have multiple quests to choose from.</summary>
         [JsonPropertyName("activity")]
-        public Destiny.Milestones.DestinyMilestoneActivity Activity { get; set; }
+        public DestinyMilestoneActivity Activity { get; set; }
 
         /// <summary>The activities referred to by this quest can have many associated challenges. They are all contained here, with activityHashes so that you can associate them with the specific activity variants in which they can be found. In retrospect, I probably should have put these under the specific Activity Variants, but it's too late to change it now. Theoretically, a quest without Activities can still have Challenges, which is why this is on a higher level than activity/variants, but it probably should have been in both places. That may come as a later revision.</summary>
         [JsonPropertyName("challenges")]
@@ -115,7 +115,7 @@ namespace BungieSharper.Entities.Destiny.Milestones
 
         /// <summary>An OPTIONAL component: if it makes sense to talk about this activity variant in terms of whether or not it has been completed or what progress you have made in it, this will be returned. Otherwise, this will be NULL.</summary>
         [JsonPropertyName("completionStatus")]
-        public Destiny.Milestones.DestinyMilestoneActivityCompletionStatus CompletionStatus { get; set; }
+        public DestinyMilestoneActivityCompletionStatus CompletionStatus { get; set; }
 
         /// <summary>The hash identifier of the most specific Activity Mode under which this activity is played. This is useful for situations where the activity in question is - for instance - a PVP map, but it's not clear what mode the PVP map is being played under. If it's a playlist, this will be less specific: but hopefully useful in some way.</summary>
         [JsonPropertyName("activityModeHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
@@ -315,7 +315,7 @@ namespace BungieSharper.Entities.Destiny.Milestones
 
         /// <summary>A milestone need not have an active activity, but if there is one it will be returned here, along with any variant and additional information.</summary>
         [JsonPropertyName("activity")]
-        public Destiny.Milestones.DestinyPublicMilestoneActivity Activity { get; set; }
+        public DestinyPublicMilestoneActivity Activity { get; set; }
 
         /// <summary>For the given quest there could be 0-to-Many challenges: mini quests that you can perform in the course of doing this quest, that may grant you rewards and benefits.</summary>
         [JsonPropertyName("challenges")]

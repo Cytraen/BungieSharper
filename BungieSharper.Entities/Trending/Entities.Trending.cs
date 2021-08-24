@@ -7,7 +7,7 @@ namespace BungieSharper.Entities.Trending
     public class TrendingCategories
     {
         [JsonPropertyName("categories")]
-        public IEnumerable<TrendingCategory> Categories { get; set; }
+        public IEnumerable<Trending.TrendingCategory> Categories { get; set; }
     }
 
     public class TrendingCategory
@@ -40,7 +40,7 @@ namespace BungieSharper.Entities.Trending
 
         /// <summary>An enum - unfortunately - dictating all of the possible kinds of trending items that you might get in your result set, in case you want to do custom rendering or call to get the details of the item.</summary>
         [JsonPropertyName("entityType")]
-        public TrendingEntryType EntityType { get; set; }
+        public Trending.TrendingEntryType EntityType { get; set; }
 
         /// <summary>The localized "display name/article title/'primary localized identifier'" of the entity.</summary>
         [JsonPropertyName("displayName")]
@@ -76,7 +76,7 @@ namespace BungieSharper.Entities.Trending
 
         /// <summary>If the item is of entityType TrendingEntryType.Container, it may have items - also Trending Entries - contained within it. This is the ordered list of those to display under the Container's header.</summary>
         [JsonPropertyName("items")]
-        public IEnumerable<TrendingEntry> Items { get; set; }
+        public IEnumerable<Trending.TrendingEntry> Items { get; set; }
 
         /// <summary>If the entry has a date at which it was created, this is that date.</summary>
         [JsonPropertyName("creationDate"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
@@ -86,7 +86,7 @@ namespace BungieSharper.Entities.Trending
     /// <summary>
     /// The known entity types that you can have returned from Trending.
     /// </summary>
-    public enum TrendingEntryType
+    public enum TrendingEntryType : int
     {
         News = 0,
         DestinyItem = 1,
@@ -108,25 +108,25 @@ namespace BungieSharper.Entities.Trending
         public string Identifier { get; set; }
 
         [JsonPropertyName("entityType")]
-        public TrendingEntryType EntityType { get; set; }
+        public Trending.TrendingEntryType EntityType { get; set; }
 
         [JsonPropertyName("news")]
-        public TrendingEntryNews News { get; set; }
+        public Trending.TrendingEntryNews News { get; set; }
 
         [JsonPropertyName("support")]
-        public TrendingEntrySupportArticle Support { get; set; }
+        public Trending.TrendingEntrySupportArticle Support { get; set; }
 
         [JsonPropertyName("destinyItem")]
-        public TrendingEntryDestinyItem DestinyItem { get; set; }
+        public Trending.TrendingEntryDestinyItem DestinyItem { get; set; }
 
         [JsonPropertyName("destinyActivity")]
-        public TrendingEntryDestinyActivity DestinyActivity { get; set; }
+        public Trending.TrendingEntryDestinyActivity DestinyActivity { get; set; }
 
         [JsonPropertyName("destinyRitual")]
-        public TrendingEntryDestinyRitual DestinyRitual { get; set; }
+        public Trending.TrendingEntryDestinyRitual DestinyRitual { get; set; }
 
         [JsonPropertyName("creation")]
-        public TrendingEntryCommunityCreation Creation { get; set; }
+        public Trending.TrendingEntryCommunityCreation Creation { get; set; }
     }
 
     public class TrendingEntryNews

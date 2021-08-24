@@ -61,21 +61,21 @@ namespace BungieSharper.Entities.Destiny.Entities.Characters
         /// It'll be preferable in the general case to look up the related definition: but for some people this was too convenient to remove.
         /// </summary>
         [JsonPropertyName("raceType")]
-        public DestinyRace RaceType { get; set; }
+        public Destiny.DestinyRace RaceType { get; set; }
 
         /// <summary>
         /// Mostly for historical purposes at this point, this is an enumeration for the character's class.
         /// It'll be preferable in the general case to look up the related definition: but for some people this was too convenient to remove.
         /// </summary>
         [JsonPropertyName("classType")]
-        public DestinyClass ClassType { get; set; }
+        public Destiny.DestinyClass ClassType { get; set; }
 
         /// <summary>
         /// Mostly for historical purposes at this point, this is an enumeration for the character's Gender.
         /// It'll be preferable in the general case to look up the related definition: but for some people this was too convenient to remove. And yeah, it's an enumeration and not a boolean. Fight me.
         /// </summary>
         [JsonPropertyName("genderType")]
-        public DestinyGender GenderType { get; set; }
+        public Destiny.DestinyGender GenderType { get; set; }
 
         /// <summary>A shortcut path to the user's currently equipped emblem image. If you're just showing summary info for a user, this is more convenient than examining their equipped emblem and looking up the definition.</summary>
         [JsonPropertyName("emblemPath")]
@@ -91,11 +91,11 @@ namespace BungieSharper.Entities.Destiny.Entities.Characters
 
         /// <summary>A shortcut for getting the background color of the user's currently equipped emblem without having to do a DestinyInventoryItemDefinition lookup.</summary>
         [JsonPropertyName("emblemColor")]
-        public Misc.DestinyColor EmblemColor { get; set; }
+        public Destiny.Misc.DestinyColor EmblemColor { get; set; }
 
         /// <summary>The progression that indicates your character's level. Not their light level, but their character level: you know, the thing you max out a couple hours in and then ignore for the sake of light level.</summary>
         [JsonPropertyName("levelProgression")]
-        public DestinyProgression LevelProgression { get; set; }
+        public Destiny.DestinyProgression LevelProgression { get; set; }
 
         /// <summary>The "base" level of your character, not accounting for any light level.</summary>
         [JsonPropertyName("baseCharacterLevel")]
@@ -120,15 +120,15 @@ namespace BungieSharper.Entities.Destiny.Entities.Characters
         /// Not all progressions have user-facing data, but those who do will have that data contained in the DestinyProgressionDefinition.
         /// </summary>
         [JsonPropertyName("progressions")]
-        public Dictionary<uint, DestinyProgression> Progressions { get; set; }
+        public Dictionary<uint, Destiny.DestinyProgression> Progressions { get; set; }
 
         /// <summary>A dictionary of all known Factions, keyed by the Faction's hash. It contains data about this character's status with the faction.</summary>
         [JsonPropertyName("factions")]
-        public Dictionary<uint, Progression.DestinyFactionProgression> Factions { get; set; }
+        public Dictionary<uint, Destiny.Progression.DestinyFactionProgression> Factions { get; set; }
 
         /// <summary>Milestones are related to the simple progressions shown in the game, but return additional and hopefully helpful information for users about the specifics of the Milestone's status.</summary>
         [JsonPropertyName("milestones")]
-        public Dictionary<uint, Milestones.DestinyMilestone> Milestones { get; set; }
+        public Dictionary<uint, Destiny.Milestones.DestinyMilestone> Milestones { get; set; }
 
         /// <summary>
         /// If the user has any active quests, the quests' statuses will be returned here.
@@ -136,14 +136,14 @@ namespace BungieSharper.Entities.Destiny.Entities.Characters
         /// (Fun fact: quests came back as I feared they would, but we never looped back to populate this... I'm going to put that in the backlog.)
         /// </summary>
         [JsonPropertyName("quests")]
-        public IEnumerable<Quests.DestinyQuestStatus> Quests { get; set; }
+        public IEnumerable<Destiny.Quests.DestinyQuestStatus> Quests { get; set; }
 
         /// <summary>
         /// Sometimes, you have items in your inventory that don't have instances, but still have Objective information. This provides you that objective information for uninstanced items.
         /// This dictionary is keyed by the item's hash: which you can use to look up the name and description for the overall task(s) implied by the objective. The value is the list of objectives for this item, and their statuses.
         /// </summary>
         [JsonPropertyName("uninstancedItemObjectives")]
-        public Dictionary<uint, IEnumerable<Quests.DestinyObjectiveProgress>> UninstancedItemObjectives { get; set; }
+        public Dictionary<uint, IEnumerable<Destiny.Quests.DestinyObjectiveProgress>> UninstancedItemObjectives { get; set; }
 
         /// <summary>
         /// The set of checklists that can be examined for this specific character, keyed by the hash identifier of the Checklist (DestinyChecklistDefinition)
@@ -154,7 +154,7 @@ namespace BungieSharper.Entities.Destiny.Entities.Characters
 
         /// <summary>Data related to your progress on the current season's artifact that can vary per character.</summary>
         [JsonPropertyName("seasonalArtifact")]
-        public Artifacts.DestinyArtifactCharacterScoped SeasonalArtifact { get; set; }
+        public Destiny.Artifacts.DestinyArtifactCharacterScoped SeasonalArtifact { get; set; }
     }
 
     /// <summary>
@@ -165,11 +165,11 @@ namespace BungieSharper.Entities.Destiny.Entities.Characters
     {
         /// <summary>Custom dyes, calculated by iterating over the character's equipped items. Useful for pre-fetching all of the dye data needed from our server.</summary>
         [JsonPropertyName("customDyes")]
-        public IEnumerable<DyeReference> CustomDyes { get; set; }
+        public IEnumerable<Destiny.DyeReference> CustomDyes { get; set; }
 
         /// <summary>This is actually something that Spasm.js *doesn't* do right now, and that we don't return assets for yet. This is the data about what character customization options you picked. You can combine this with DestinyCharacterCustomizationOptionDefinition to show some cool info, and hopefully someday to actually render a user's face in 3D. We'll see if we ever end up with time for that.</summary>
         [JsonPropertyName("customization")]
-        public Character.DestinyCharacterCustomization Customization { get; set; }
+        public Destiny.Character.DestinyCharacterCustomization Customization { get; set; }
 
         /// <summary>
         /// A minimal view of:
@@ -178,7 +178,7 @@ namespace BungieSharper.Entities.Destiny.Entities.Characters
         /// Combined, that should be enough to render all of the items on the equipped character.
         /// </summary>
         [JsonPropertyName("peerView")]
-        public Character.DestinyCharacterPeerView PeerView { get; set; }
+        public Destiny.Character.DestinyCharacterPeerView PeerView { get; set; }
     }
 
     /// <summary>
@@ -192,7 +192,7 @@ namespace BungieSharper.Entities.Destiny.Entities.Characters
 
         /// <summary>The list of activities that the user can play.</summary>
         [JsonPropertyName("availableActivities")]
-        public IEnumerable<DestinyActivity> AvailableActivities { get; set; }
+        public IEnumerable<Destiny.DestinyActivity> AvailableActivities { get; set; }
 
         /// <summary>If the user is in an activity, this will be the hash of the Activity being played. Note that you must combine this info with currentActivityModeHash to get a real picture of what the user is doing right now. For instance, PVP "Activities" are just maps: it's the ActivityMode that determines what type of PVP game they're playing.</summary>
         [JsonPropertyName("currentActivityHash")]
@@ -212,7 +212,7 @@ namespace BungieSharper.Entities.Destiny.Entities.Characters
 
         /// <summary>All Activity Modes that apply to the current activity being played, in enum form.</summary>
         [JsonPropertyName("currentActivityModeTypes")]
-        public IEnumerable<HistoricalStats.Definitions.DestinyActivityModeType> CurrentActivityModeTypes { get; set; }
+        public IEnumerable<Destiny.HistoricalStats.Definitions.DestinyActivityModeType> CurrentActivityModeTypes { get; set; }
 
         /// <summary>If the user is in a playlist, this is the hash identifier for the playlist that they chose.</summary>
         [JsonPropertyName("currentPlaylistActivityHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]

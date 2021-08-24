@@ -13,7 +13,7 @@ namespace BungieSharper.Entities.Destiny.Components.Items
         /// If a socket doesn't have any reusable plugs defined at the item scope, there will be no entry for that socket.
         /// </summary>
         [JsonPropertyName("plugs")]
-        public Dictionary<int, IEnumerable<Sockets.DestinyItemPlugBase>> Plugs { get; set; }
+        public Dictionary<int, IEnumerable<Destiny.Sockets.DestinyItemPlugBase>> Plugs { get; set; }
     }
 
     public class DestinyItemPlugObjectivesComponent
@@ -25,7 +25,7 @@ namespace BungieSharper.Entities.Destiny.Components.Items
         /// Sometimes, Plugs may have objectives: generally, these are used for flavor and display purposes. For instance, a Plug might be tracking the number of PVP kills you have made. It will use the parent item's data about that tracking status to determine what to show, and will generally show it using the DestinyObjectiveDefinition's progressDescription property. Refer to the plug's itemHash and objective property for more information if you would like to display even more data.
         /// </summary>
         [JsonPropertyName("objectivesPerPlug")]
-        public Dictionary<uint, IEnumerable<Quests.DestinyObjectiveProgress>> ObjectivesPerPlug { get; set; }
+        public Dictionary<uint, IEnumerable<Destiny.Quests.DestinyObjectiveProgress>> ObjectivesPerPlug { get; set; }
     }
 
     /// <summary>
@@ -36,7 +36,7 @@ namespace BungieSharper.Entities.Destiny.Components.Items
     {
         /// <summary>Sometimes, Plugs may have objectives: these are often used for flavor and display purposes, but they can be used for any arbitrary purpose (both fortunately and unfortunately). Recently (with Season 2) they were expanded in use to be used as the "gating" for whether the plug can be inserted at all. For instance, a Plug might be tracking the number of PVP kills you have made. It will use the parent item's data about that tracking status to determine what to show, and will generally show it using the DestinyObjectiveDefinition's progressDescription property. Refer to the plug's itemHash and objective property for more information if you would like to display even more data.</summary>
         [JsonPropertyName("plugObjectives")]
-        public IEnumerable<Quests.DestinyObjectiveProgress> PlugObjectives { get; set; }
+        public IEnumerable<Destiny.Quests.DestinyObjectiveProgress> PlugObjectives { get; set; }
 
         /// <summary>The hash identifier of the DestinyInventoryItemDefinition that represents this plug.</summary>
         [JsonPropertyName("plugItemHash")]

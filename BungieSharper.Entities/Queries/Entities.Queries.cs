@@ -11,7 +11,7 @@ namespace BungieSharper.Entities.Queries
         public bool HasMore { get; set; }
 
         [JsonPropertyName("query")]
-        public PagedQuery Query { get; set; }
+        public Queries.PagedQuery Query { get; set; }
 
         [JsonPropertyName("replacementContinuationToken")]
         public string ReplacementContinuationToken { get; set; }

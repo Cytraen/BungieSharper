@@ -57,18 +57,18 @@ namespace BungieSharper.Entities.Applications
     {
         /// <summary>Counts for on API calls made for the time range.</summary>
         [JsonPropertyName("apiCalls")]
-        public IEnumerable<Series> ApiCalls { get; set; }
+        public IEnumerable<Applications.Series> ApiCalls { get; set; }
 
         /// <summary>Instances of blocked requests or requests that crossed the warn threshold during the time range.</summary>
         [JsonPropertyName("throttledRequests")]
-        public IEnumerable<Series> ThrottledRequests { get; set; }
+        public IEnumerable<Applications.Series> ThrottledRequests { get; set; }
     }
 
     public class Series
     {
         /// <summary>Collection of samples with time and value.</summary>
         [JsonPropertyName("datapoints")]
-        public IEnumerable<Datapoint> Datapoints { get; set; }
+        public IEnumerable<Applications.Datapoint> Datapoints { get; set; }
 
         /// <summary>Target to which to datapoints apply.</summary>
         [JsonPropertyName("target")]
@@ -114,7 +114,7 @@ namespace BungieSharper.Entities.Applications
 
         /// <summary>Current status of the application.</summary>
         [JsonPropertyName("status")]
-        public ApplicationStatus Status { get; set; }
+        public Applications.ApplicationStatus Status { get; set; }
 
         /// <summary>Date the application was first added to our database.</summary>
         [JsonPropertyName("creationDate")]
@@ -130,10 +130,10 @@ namespace BungieSharper.Entities.Applications
 
         /// <summary>List of team members who manage this application on Bungie.net. Will always consist of at least the application owner.</summary>
         [JsonPropertyName("team")]
-        public IEnumerable<ApplicationDeveloper> Team { get; set; }
+        public IEnumerable<Applications.ApplicationDeveloper> Team { get; set; }
     }
 
-    public enum ApplicationStatus
+    public enum ApplicationStatus : int
     {
         /// <summary>No value assigned</summary>
         None = 0,
@@ -154,7 +154,7 @@ namespace BungieSharper.Entities.Applications
     public class ApplicationDeveloper
     {
         [JsonPropertyName("role")]
-        public DeveloperRole Role { get; set; }
+        public Applications.DeveloperRole Role { get; set; }
 
         [JsonPropertyName("apiEulaVersion")]
         public int ApiEulaVersion { get; set; }
@@ -163,7 +163,7 @@ namespace BungieSharper.Entities.Applications
         public User.UserInfoCard User { get; set; }
     }
 
-    public enum DeveloperRole
+    public enum DeveloperRole : int
     {
         None = 0,
         Owner = 1,

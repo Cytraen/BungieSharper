@@ -46,7 +46,7 @@ namespace BungieSharper.Entities.Fireteam
         public long GroupId { get; set; }
 
         [JsonPropertyName("platform")]
-        public FireteamPlatform Platform { get; set; }
+        public Fireteam.FireteamPlatform Platform { get; set; }
 
         [JsonPropertyName("activityType")]
         public int ActivityType { get; set; }
@@ -100,19 +100,19 @@ namespace BungieSharper.Entities.Fireteam
     public class FireteamResponse
     {
         [JsonPropertyName("Summary")]
-        public FireteamSummary Summary { get; set; }
+        public Fireteam.FireteamSummary Summary { get; set; }
 
         [JsonPropertyName("Members")]
-        public IEnumerable<FireteamMember> Members { get; set; }
+        public IEnumerable<Fireteam.FireteamMember> Members { get; set; }
 
         [JsonPropertyName("Alternates")]
-        public IEnumerable<FireteamMember> Alternates { get; set; }
+        public IEnumerable<Fireteam.FireteamMember> Alternates { get; set; }
     }
 
     public class FireteamMember
     {
         [JsonPropertyName("destinyUserInfo")]
-        public FireteamUserInfoCard DestinyUserInfo { get; set; }
+        public Fireteam.FireteamUserInfoCard DestinyUserInfo { get; set; }
 
         [JsonPropertyName("bungieNetUserInfo")]
         public User.UserInfoCard BungieNetUserInfo { get; set; }
@@ -130,7 +130,7 @@ namespace BungieSharper.Entities.Fireteam
         public DateTime LastPlatformInviteAttemptDate { get; set; }
 
         [JsonPropertyName("lastPlatformInviteAttemptResult")]
-        public FireteamPlatformInviteResult LastPlatformInviteAttemptResult { get; set; }
+        public Fireteam.FireteamPlatformInviteResult LastPlatformInviteAttemptResult { get; set; }
     }
 
     public class FireteamUserInfoCard

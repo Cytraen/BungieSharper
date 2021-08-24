@@ -47,14 +47,14 @@ namespace BungieSharper.Entities.Content
         public Dictionary<string, dynamic> Properties { get; set; }
 
         [JsonPropertyName("representations")]
-        public IEnumerable<ContentRepresentation> Representations { get; set; }
+        public IEnumerable<Content.ContentRepresentation> Representations { get; set; }
 
         /// <summary>NOTE: Tags will always be lower case.</summary>
         [JsonPropertyName("tags")]
         public IEnumerable<string> Tags { get; set; }
 
         [JsonPropertyName("commentSummary")]
-        public CommentSummary CommentSummary { get; set; }
+        public Content.CommentSummary CommentSummary { get; set; }
     }
 
     public class ContentRepresentation

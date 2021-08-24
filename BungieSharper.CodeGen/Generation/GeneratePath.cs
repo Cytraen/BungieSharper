@@ -57,7 +57,7 @@ namespace BungieSharper.CodeGen.Generation
             }
             else
             {
-                responseType = FormatStrings.ResolveRef(responseRef, true, null);
+                responseType = FormatStrings.ResolveRef(responseRef, true);
             }
 
             var requiredParams = parameters.Where(x => x.Required == true);
@@ -170,7 +170,7 @@ namespace BungieSharper.CodeGen.Generation
             }
             else if (paramSchema.XEnumReference is not null)
             {
-                paramType += FormatStrings.ResolveRef(paramSchema.XEnumReference.Ref, true, null);
+                paramType += FormatStrings.ResolveRef(paramSchema.XEnumReference.Ref, true);
             }
             else if (paramSchema.Format is not null)
             {
@@ -199,7 +199,7 @@ namespace BungieSharper.CodeGen.Generation
             }
             else if (paramSchema.Ref is not null)
             {
-                paramType += FormatStrings.ResolveRef(paramSchema.Ref, true, null);
+                paramType += FormatStrings.ResolveRef(paramSchema.Ref, true);
             }
             else
             {
@@ -218,11 +218,6 @@ namespace BungieSharper.CodeGen.Generation
         {
             var openApi = Program.OpenApiDefinition;
 
-            if (openApi is null)
-            {
-                throw new NullReferenceException();
-            }
-
             var objRef = refString.Replace("#/components/responses/", "");
 
             var respObj = openApi.Components.Responses[objRef].Content.ApplicaionJson.Schema.Properties.Response;
@@ -231,7 +226,7 @@ namespace BungieSharper.CodeGen.Generation
 
             if (respObj.Items is not null)
             {
-                respType += "IEnumerable<" + FormatStrings.ResolveRef(respObj.Items.Ref, true, null) + ">";
+                respType += "IEnumerable<" + FormatStrings.ResolveRef(respObj.Items.Ref, true) + ">";
             }
             else if (respObj.AdditionalProperties is not null)
             {
@@ -239,7 +234,7 @@ namespace BungieSharper.CodeGen.Generation
             }
             else if (respObj.Ref is not null)
             {
-                respType += FormatStrings.ResolveRef(respObj.Ref, true, null);
+                respType += FormatStrings.ResolveRef(respObj.Ref, true);
             }
             else if (respObj.Format is not null)
             {
@@ -274,7 +269,7 @@ namespace BungieSharper.CodeGen.Generation
             }
             else if (additionalProps.Ref is not null)
             {
-                classType += FormatStrings.ResolveRef(additionalProps.Ref, true, null);
+                classType += FormatStrings.ResolveRef(additionalProps.Ref, true);
             }
             else
             {

@@ -19,7 +19,7 @@ namespace BungieSharper.Entities.Destiny.Components.Profiles
 
         /// <summary>Data related to your progress on the current season's artifact that is the same across characters.</summary>
         [JsonPropertyName("seasonalArtifact")]
-        public Artifacts.DestinyArtifactProfileScoped SeasonalArtifact { get; set; }
+        public Destiny.Artifacts.DestinyArtifactProfileScoped SeasonalArtifact { get; set; }
     }
 
     /// <summary>
@@ -30,19 +30,19 @@ namespace BungieSharper.Entities.Destiny.Components.Profiles
     {
         /// <summary>If you have any members currently in your party, this is some (very) bare-bones information about those members.</summary>
         [JsonPropertyName("partyMembers")]
-        public IEnumerable<DestinyProfileTransitoryPartyMember> PartyMembers { get; set; }
+        public IEnumerable<Destiny.Components.Profiles.DestinyProfileTransitoryPartyMember> PartyMembers { get; set; }
 
         /// <summary>If you are in an activity, this is some transitory info about the activity currently being played.</summary>
         [JsonPropertyName("currentActivity")]
-        public DestinyProfileTransitoryCurrentActivity CurrentActivity { get; set; }
+        public Destiny.Components.Profiles.DestinyProfileTransitoryCurrentActivity CurrentActivity { get; set; }
 
         /// <summary>Information about whether and what might prevent you from joining this person on a fireteam.</summary>
         [JsonPropertyName("joinability")]
-        public DestinyProfileTransitoryJoinability Joinability { get; set; }
+        public Destiny.Components.Profiles.DestinyProfileTransitoryJoinability Joinability { get; set; }
 
         /// <summary>Information about tracked entities.</summary>
         [JsonPropertyName("tracking")]
-        public IEnumerable<DestinyProfileTransitoryTrackingEntry> Tracking { get; set; }
+        public IEnumerable<Destiny.Components.Profiles.DestinyProfileTransitoryTrackingEntry> Tracking { get; set; }
 
         /// <summary>The hash identifier for the DestinyDestinationDefinition of the last location you were orbiting when in orbit.</summary>
         [JsonPropertyName("lastOrbitedDestinationHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
@@ -69,7 +69,7 @@ namespace BungieSharper.Entities.Destiny.Components.Profiles
 
         /// <summary>A Flags Enumeration value indicating the states that the player is in relevant to being on a fireteam.</summary>
         [JsonPropertyName("status")]
-        public DestinyPartyMemberStates Status { get; set; }
+        public Destiny.DestinyPartyMemberStates Status { get; set; }
     }
 
     /// <summary>
@@ -114,11 +114,11 @@ namespace BungieSharper.Entities.Destiny.Components.Profiles
 
         /// <summary>Who the person is currently allowing invites from.</summary>
         [JsonPropertyName("privacySetting")]
-        public DestinyGamePrivacySetting PrivacySetting { get; set; }
+        public Destiny.DestinyGamePrivacySetting PrivacySetting { get; set; }
 
         /// <summary>Reasons why a person can't join this person's fireteam.</summary>
         [JsonPropertyName("closedReasons")]
-        public DestinyJoinClosedReasons ClosedReasons { get; set; }
+        public Destiny.DestinyJoinClosedReasons ClosedReasons { get; set; }
     }
 
     /// <summary>

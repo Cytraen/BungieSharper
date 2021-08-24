@@ -9,11 +9,11 @@ namespace BungieSharper.Entities.Destiny.Definitions.Collectibles
     public class DestinyCollectibleDefinition
     {
         [JsonPropertyName("displayProperties")]
-        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         /// <summary>Indicates whether the state of this Collectible is determined on a per-character or on an account-wide basis.</summary>
         [JsonPropertyName("scope")]
-        public DestinyScope Scope { get; set; }
+        public Destiny.DestinyScope Scope { get; set; }
 
         /// <summary>A human readable string for a hint about how to acquire the item.</summary>
         [JsonPropertyName("sourceString")]
@@ -31,16 +31,16 @@ namespace BungieSharper.Entities.Destiny.Definitions.Collectibles
         public uint ItemHash { get; set; }
 
         [JsonPropertyName("acquisitionInfo")]
-        public DestinyCollectibleAcquisitionBlock AcquisitionInfo { get; set; }
+        public Destiny.Definitions.Collectibles.DestinyCollectibleAcquisitionBlock AcquisitionInfo { get; set; }
 
         [JsonPropertyName("stateInfo")]
-        public DestinyCollectibleStateBlock StateInfo { get; set; }
+        public Destiny.Definitions.Collectibles.DestinyCollectibleStateBlock StateInfo { get; set; }
 
         [JsonPropertyName("presentationInfo")]
-        public Presentation.DestinyPresentationChildBlock PresentationInfo { get; set; }
+        public Destiny.Definitions.Presentation.DestinyPresentationChildBlock PresentationInfo { get; set; }
 
         [JsonPropertyName("presentationNodeType")]
-        public DestinyPresentationNodeType PresentationNodeType { get; set; }
+        public Destiny.DestinyPresentationNodeType PresentationNodeType { get; set; }
 
         [JsonPropertyName("traitIds")]
         public IEnumerable<string> TraitIds { get; set; }
@@ -83,6 +83,6 @@ namespace BungieSharper.Entities.Destiny.Definitions.Collectibles
         public uint? ObscuredOverrideItemHash { get; set; }
 
         [JsonPropertyName("requirements")]
-        public Presentation.DestinyPresentationNodeRequirementsBlock Requirements { get; set; }
+        public Destiny.Definitions.Presentation.DestinyPresentationNodeRequirementsBlock Requirements { get; set; }
     }
 }

@@ -3,7 +3,7 @@
 namespace BungieSharper.Entities.Forums
 {
     [Flags]
-    public enum ForumPostCategoryEnums
+    public enum ForumPostCategoryEnums : int
     {
         None = 0,
         TextOnly = 1,
@@ -20,7 +20,7 @@ namespace BungieSharper.Entities.Forums
     }
 
     [Flags]
-    public enum ForumFlagsEnum
+    public enum ForumFlagsEnum : int
     {
         None = 0,
         BungieStaffPost = 1,

@@ -6,7 +6,7 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats.Definitions
     /// <summary>
     /// For historical reasons, this list will have both D1 and D2-relevant Activity Modes in it. Please don't take this to mean that some D1-only feature is coming back!
     /// </summary>
-    public enum DestinyActivityModeType
+    public enum DestinyActivityModeType : int
     {
         None = 0,
         Story = 2,
@@ -97,19 +97,19 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats.Definitions
 
         /// <summary>Statistic group</summary>
         [JsonPropertyName("group")]
-        public DestinyStatsGroupType Group { get; set; }
+        public Destiny.HistoricalStats.Definitions.DestinyStatsGroupType Group { get; set; }
 
         /// <summary>Time periods the statistic covers</summary>
         [JsonPropertyName("periodTypes")]
-        public IEnumerable<PeriodType> PeriodTypes { get; set; }
+        public IEnumerable<Destiny.HistoricalStats.Definitions.PeriodType> PeriodTypes { get; set; }
 
         /// <summary>Game modes where this statistic can be reported.</summary>
         [JsonPropertyName("modes")]
-        public IEnumerable<DestinyActivityModeType> Modes { get; set; }
+        public IEnumerable<Destiny.HistoricalStats.Definitions.DestinyActivityModeType> Modes { get; set; }
 
         /// <summary>Category for the stat.</summary>
         [JsonPropertyName("category")]
-        public DestinyStatsCategoryType Category { get; set; }
+        public Destiny.HistoricalStats.Definitions.DestinyStatsCategoryType Category { get; set; }
 
         /// <summary>Display name</summary>
         [JsonPropertyName("statName")]
@@ -125,7 +125,7 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats.Definitions
 
         /// <summary>Unit, if any, for the statistic</summary>
         [JsonPropertyName("unitType")]
-        public UnitType UnitType { get; set; }
+        public Destiny.HistoricalStats.Definitions.UnitType UnitType { get; set; }
 
         /// <summary>Optional URI to an icon for the statistic</summary>
         [JsonPropertyName("iconImage")]
@@ -151,7 +151,7 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats.Definitions
     /// <summary>
     /// If the enum value is > 100, it is a "special" group that cannot be queried for directly (special cases apply to when they are returned, and are not relevant in general cases)
     /// </summary>
-    public enum DestinyStatsGroupType
+    public enum DestinyStatsGroupType : int
     {
         None = 0,
         General = 1,
@@ -172,7 +172,7 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats.Definitions
         Internal = 104
     }
 
-    public enum DestinyStatsCategoryType
+    public enum DestinyStatsCategoryType : int
     {
         None = 0,
         Kills = 1,
@@ -192,7 +192,7 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats.Definitions
         MedalAbilities = 15
     }
 
-    public enum UnitType
+    public enum UnitType : int
     {
         None = 0,
 
@@ -236,7 +236,7 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats.Definitions
         CompletionReason = 13
     }
 
-    public enum DestinyStatsMergeMethod
+    public enum DestinyStatsMergeMethod : int
     {
         /// <summary>When collapsing multiple instances of the stat together, add the values.</summary>
         Add = 0,
@@ -248,7 +248,7 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats.Definitions
         Max = 2
     }
 
-    public enum PeriodType
+    public enum PeriodType : int
     {
         None = 0,
         Daily = 1,

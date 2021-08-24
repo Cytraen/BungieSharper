@@ -138,7 +138,7 @@ namespace BungieSharper.Entities.User
         public long? LegacyPortalUID { get; set; }
 
         [JsonPropertyName("context")]
-        public UserToUserContext Context { get; set; }
+        public User.UserToUserContext Context { get; set; }
 
         [JsonPropertyName("psnDisplayName")]
         public string PsnDisplayName { get; set; }
@@ -224,7 +224,7 @@ namespace BungieSharper.Entities.User
         public long? PrimaryMembershipId { get; set; }
 
         [JsonPropertyName("bungieNetUser")]
-        public GeneralUser BungieNetUser { get; set; }
+        public User.GeneralUser BungieNetUser { get; set; }
     }
 
     public class HardLinkedUserMembership
@@ -249,15 +249,15 @@ namespace BungieSharper.Entities.User
     {
         /// <summary>Keyed by the name identifier of the opt-in definition.</summary>
         [JsonPropertyName("optInDefinitions")]
-        public Dictionary<string, EmailOptInDefinition> OptInDefinitions { get; set; }
+        public Dictionary<string, User.EmailOptInDefinition> OptInDefinitions { get; set; }
 
         /// <summary>Keyed by the name identifier of the Subscription definition.</summary>
         [JsonPropertyName("subscriptionDefinitions")]
-        public Dictionary<string, EmailSubscriptionDefinition> SubscriptionDefinitions { get; set; }
+        public Dictionary<string, User.EmailSubscriptionDefinition> SubscriptionDefinitions { get; set; }
 
         /// <summary>Keyed by the name identifier of the View definition.</summary>
         [JsonPropertyName("views")]
-        public Dictionary<string, EmailViewDefinition> Views { get; set; }
+        public Dictionary<string, User.EmailViewDefinition> Views { get; set; }
     }
 
     /// <summary>
@@ -271,7 +271,7 @@ namespace BungieSharper.Entities.User
 
         /// <summary>The flag value for this opt-in category. For historical reasons, this is defined as a flags enum.</summary>
         [JsonPropertyName("value")]
-        public OptInFlags Value { get; set; }
+        public User.OptInFlags Value { get; set; }
 
         /// <summary>If true, this opt-in setting should be set by default in situations where accounts are created without explicit choices about what they're opting into.</summary>
         [JsonPropertyName("setByDefault")]
@@ -279,7 +279,7 @@ namespace BungieSharper.Entities.User
 
         /// <summary>Information about the dependent subscriptions for this opt-in.</summary>
         [JsonPropertyName("dependentSubscriptions")]
-        public IEnumerable<EmailSubscriptionDefinition> DependentSubscriptions { get; set; }
+        public IEnumerable<User.EmailSubscriptionDefinition> DependentSubscriptions { get; set; }
     }
 
     [Flags]
@@ -308,7 +308,7 @@ namespace BungieSharper.Entities.User
 
         /// <summary>A dictionary of localized text for the EMail Opt-in setting, keyed by the locale.</summary>
         [JsonPropertyName("localization")]
-        public Dictionary<string, EMailSettingSubscriptionLocalization> Localization { get; set; }
+        public Dictionary<string, User.EMailSettingSubscriptionLocalization> Localization { get; set; }
 
         /// <summary>The bitflag value for this subscription. Should be a unique power of two value.</summary>
         [JsonPropertyName("value")]
@@ -365,7 +365,7 @@ namespace BungieSharper.Entities.User
 
         /// <summary>The ordered list of settings to show in this view.</summary>
         [JsonPropertyName("viewSettings")]
-        public IEnumerable<EmailViewDefinitionSetting> ViewSettings { get; set; }
+        public IEnumerable<User.EmailViewDefinitionSetting> ViewSettings { get; set; }
     }
 
     public class EmailViewDefinitionSetting
@@ -376,7 +376,7 @@ namespace BungieSharper.Entities.User
 
         /// <summary>A dictionary of localized text for the EMail setting, keyed by the locale.</summary>
         [JsonPropertyName("localization")]
-        public Dictionary<string, EMailSettingLocalization> Localization { get; set; }
+        public Dictionary<string, User.EMailSettingLocalization> Localization { get; set; }
 
         /// <summary>If true, this setting should be set by default if the user hasn't chosen whether it's set or cleared yet.</summary>
         [JsonPropertyName("setByDefault")]
@@ -384,10 +384,10 @@ namespace BungieSharper.Entities.User
 
         /// <summary>The OptInFlags value to set or clear if this setting is set or cleared in the UI. It is the aggregate of all underlying opt-in flags related to this setting.</summary>
         [JsonPropertyName("optInAggregateValue")]
-        public OptInFlags OptInAggregateValue { get; set; }
+        public User.OptInFlags OptInAggregateValue { get; set; }
 
         /// <summary>The subscriptions to show as children of this setting, if any.</summary>
         [JsonPropertyName("subscriptions")]
-        public IEnumerable<EmailSubscriptionDefinition> Subscriptions { get; set; }
+        public IEnumerable<User.EmailSubscriptionDefinition> Subscriptions { get; set; }
     }
 }

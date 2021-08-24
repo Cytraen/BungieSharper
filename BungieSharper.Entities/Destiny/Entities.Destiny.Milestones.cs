@@ -15,14 +15,14 @@ namespace BungieSharper.Entities.Destiny.Milestones
 
         /// <summary>Indicates what quests are available for this Milestone. Usually this will be only a single Quest, but some quests have multiple available that you can choose from at any given time. All possible quests for a milestone can be found in the DestinyMilestoneDefinition, but they must be combined with this Live data to determine which one(s) are actually active right now. It is possible for Milestones to not have any quests.</summary>
         [JsonPropertyName("availableQuests")]
-        public IEnumerable<DestinyMilestoneQuest> AvailableQuests { get; set; }
+        public IEnumerable<Destiny.Milestones.DestinyMilestoneQuest> AvailableQuests { get; set; }
 
         /// <summary>
         /// The currently active Activities in this milestone, when the Milestone is driven by Challenges.
         /// Not all Milestones have Challenges, but when they do this will indicate the Activities and Challenges under those Activities related to this Milestone.
         /// </summary>
         [JsonPropertyName("activities")]
-        public IEnumerable<DestinyMilestoneChallengeActivity> Activities { get; set; }
+        public IEnumerable<Destiny.Milestones.DestinyMilestoneChallengeActivity> Activities { get; set; }
 
         /// <summary>Milestones may have arbitrary key/value pairs associated with them, for data that users will want to know about but that doesn't fit neatly into any of the common components such as Quests. A good example of this would be - if this existed in Destiny 1 - the number of wins you currently have on your Trials of Osiris ticket. Looking in the DestinyMilestoneDefinition, you can use the string identifier of this dictionary to look up more info about the value, including localized string content for displaying the value. The value in the dictionary is the floating point number. The definition will tell you how to format this number.</summary>
         [JsonPropertyName("values")]
@@ -37,11 +37,11 @@ namespace BungieSharper.Entities.Destiny.Milestones
 
         /// <summary>Replaces vendorHashes, which I knew was going to be trouble the day it walked in the door. This will return not only what Vendors are active and relevant to the activity (in an implied order that you can choose to ignore), but also other data - for example, if the Vendor is featuring a specific item relevant to this event that you should show with them.</summary>
         [JsonPropertyName("vendors")]
-        public IEnumerable<DestinyMilestoneVendor> Vendors { get; set; }
+        public IEnumerable<Destiny.Milestones.DestinyMilestoneVendor> Vendors { get; set; }
 
         /// <summary>If the entity to which this component is attached has known active Rewards for the player, this will detail information about those rewards, keyed by the RewardEntry Hash. (See DestinyMilestoneDefinition for more information about Reward Entries) Note that these rewards are not for the Quests related to the Milestone. Think of these as "overview/checklist" rewards that may be provided for Milestones that may provide rewards for performing a variety of tasks that aren't under a specific Quest.</summary>
         [JsonPropertyName("rewards")]
-        public IEnumerable<DestinyMilestoneRewardCategory> Rewards { get; set; }
+        public IEnumerable<Destiny.Milestones.DestinyMilestoneRewardCategory> Rewards { get; set; }
 
         /// <summary>If known, this is the date when the event last began or refreshed. It will only be populated for events with fixed and repeating start and end dates.</summary>
         [JsonPropertyName("startDate"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
@@ -67,15 +67,15 @@ namespace BungieSharper.Entities.Destiny.Milestones
 
         /// <summary>The current status of the quest for the character making the request.</summary>
         [JsonPropertyName("status")]
-        public Quests.DestinyQuestStatus Status { get; set; }
+        public Destiny.Quests.DestinyQuestStatus Status { get; set; }
 
         /// <summary>*IF* the Milestone has an active Activity that can give you greater details about what you need to do, it will be returned here. Remember to associate this with the DestinyMilestoneDefinition's activities to get details about the activity, including what specific quest it is related to if you have multiple quests to choose from.</summary>
         [JsonPropertyName("activity")]
-        public DestinyMilestoneActivity Activity { get; set; }
+        public Destiny.Milestones.DestinyMilestoneActivity Activity { get; set; }
 
         /// <summary>The activities referred to by this quest can have many associated challenges. They are all contained here, with activityHashes so that you can associate them with the specific activity variants in which they can be found. In retrospect, I probably should have put these under the specific Activity Variants, but it's too late to change it now. Theoretically, a quest without Activities can still have Challenges, which is why this is on a higher level than activity/variants, but it probably should have been in both places. That may come as a later revision.</summary>
         [JsonPropertyName("challenges")]
-        public IEnumerable<Challenges.DestinyChallengeStatus> Challenges { get; set; }
+        public IEnumerable<Destiny.Challenges.DestinyChallengeStatus> Challenges { get; set; }
     }
 
     /// <summary>
@@ -101,7 +101,7 @@ namespace BungieSharper.Entities.Destiny.Milestones
 
         /// <summary>If you want more than just name/location/etc... you're going to have to dig into and show the variants of the conceptual activity. These will differ in seemingly arbitrary ways, like difficulty level and modifiers applied. Show it in whatever way tickles your fancy.</summary>
         [JsonPropertyName("variants")]
-        public IEnumerable<DestinyMilestoneActivityVariant> Variants { get; set; }
+        public IEnumerable<Destiny.Milestones.DestinyMilestoneActivityVariant> Variants { get; set; }
     }
 
     /// <summary>
@@ -115,7 +115,7 @@ namespace BungieSharper.Entities.Destiny.Milestones
 
         /// <summary>An OPTIONAL component: if it makes sense to talk about this activity variant in terms of whether or not it has been completed or what progress you have made in it, this will be returned. Otherwise, this will be NULL.</summary>
         [JsonPropertyName("completionStatus")]
-        public DestinyMilestoneActivityCompletionStatus CompletionStatus { get; set; }
+        public Destiny.Milestones.DestinyMilestoneActivityCompletionStatus CompletionStatus { get; set; }
 
         /// <summary>The hash identifier of the most specific Activity Mode under which this activity is played. This is useful for situations where the activity in question is - for instance - a PVP map, but it's not clear what mode the PVP map is being played under. If it's a playlist, this will be less specific: but hopefully useful in some way.</summary>
         [JsonPropertyName("activityModeHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
@@ -137,7 +137,7 @@ namespace BungieSharper.Entities.Destiny.Milestones
 
         /// <summary>If the Activity has discrete "phases" that we can track, that info will be here. Otherwise, this value will be NULL. Note that this is a list and not a dictionary: the order implies the ascending order of phases or progression in this activity.</summary>
         [JsonPropertyName("phases")]
-        public IEnumerable<DestinyMilestoneActivityPhase> Phases { get; set; }
+        public IEnumerable<Destiny.Milestones.DestinyMilestoneActivityPhase> Phases { get; set; }
     }
 
     /// <summary>
@@ -160,7 +160,7 @@ namespace BungieSharper.Entities.Destiny.Milestones
         public uint ActivityHash { get; set; }
 
         [JsonPropertyName("challenges")]
-        public IEnumerable<Challenges.DestinyChallengeStatus> Challenges { get; set; }
+        public IEnumerable<Destiny.Challenges.DestinyChallengeStatus> Challenges { get; set; }
 
         /// <summary>
         /// If the activity has modifiers, this will be the list of modifiers that all variants have in common. Perform lookups against DestinyActivityModifierDefinition which defines the modifier being applied to get at the modifier data.
@@ -184,7 +184,7 @@ namespace BungieSharper.Entities.Destiny.Milestones
 
         /// <summary>If the Activity has discrete "phases" that we can track, that info will be here. Otherwise, this value will be NULL. Note that this is a list and not a dictionary: the order implies the ascending order of phases or progression in this activity.</summary>
         [JsonPropertyName("phases")]
-        public IEnumerable<DestinyMilestoneActivityPhase> Phases { get; set; }
+        public IEnumerable<Destiny.Milestones.DestinyMilestoneActivityPhase> Phases { get; set; }
     }
 
     /// <summary>
@@ -212,7 +212,7 @@ namespace BungieSharper.Entities.Destiny.Milestones
 
         /// <summary>The individual reward entries for this category, and their status.</summary>
         [JsonPropertyName("entries")]
-        public IEnumerable<DestinyMilestoneRewardEntry> Entries { get; set; }
+        public IEnumerable<Destiny.Milestones.DestinyMilestoneRewardEntry> Entries { get; set; }
     }
 
     /// <summary>
@@ -252,7 +252,7 @@ namespace BungieSharper.Entities.Destiny.Milestones
 
         /// <summary>If DPS has defined items related to this Milestone, they can categorize those items in the Firehose. That data will then be returned as item categories here.</summary>
         [JsonPropertyName("itemCategories")]
-        public IEnumerable<DestinyMilestoneContentItemCategory> ItemCategories { get; set; }
+        public IEnumerable<Destiny.Milestones.DestinyMilestoneContentItemCategory> ItemCategories { get; set; }
     }
 
     /// <summary>
@@ -278,10 +278,10 @@ namespace BungieSharper.Entities.Destiny.Milestones
 
         /// <summary>A milestone not need have even a single quest, but if there are active quests they will be returned here.</summary>
         [JsonPropertyName("availableQuests")]
-        public IEnumerable<DestinyPublicMilestoneQuest> AvailableQuests { get; set; }
+        public IEnumerable<Destiny.Milestones.DestinyPublicMilestoneQuest> AvailableQuests { get; set; }
 
         [JsonPropertyName("activities")]
-        public IEnumerable<DestinyPublicMilestoneChallengeActivity> Activities { get; set; }
+        public IEnumerable<Destiny.Milestones.DestinyPublicMilestoneChallengeActivity> Activities { get; set; }
 
         /// <summary>
         /// Sometimes milestones - or activities active in milestones - will have relevant vendors. These are the vendors that are currently relevant.
@@ -292,7 +292,7 @@ namespace BungieSharper.Entities.Destiny.Milestones
 
         /// <summary>This is why we can't have nice things. This is the ordered list of vendors to be shown that relate to this milestone, potentially along with other interesting data.</summary>
         [JsonPropertyName("vendors")]
-        public IEnumerable<DestinyPublicMilestoneVendor> Vendors { get; set; }
+        public IEnumerable<Destiny.Milestones.DestinyPublicMilestoneVendor> Vendors { get; set; }
 
         /// <summary>If known, this is the date when the Milestone started/became active.</summary>
         [JsonPropertyName("startDate"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
@@ -315,11 +315,11 @@ namespace BungieSharper.Entities.Destiny.Milestones
 
         /// <summary>A milestone need not have an active activity, but if there is one it will be returned here, along with any variant and additional information.</summary>
         [JsonPropertyName("activity")]
-        public DestinyPublicMilestoneActivity Activity { get; set; }
+        public Destiny.Milestones.DestinyPublicMilestoneActivity Activity { get; set; }
 
         /// <summary>For the given quest there could be 0-to-Many challenges: mini quests that you can perform in the course of doing this quest, that may grant you rewards and benefits.</summary>
         [JsonPropertyName("challenges")]
-        public IEnumerable<DestinyPublicMilestoneChallenge> Challenges { get; set; }
+        public IEnumerable<Destiny.Milestones.DestinyPublicMilestoneChallenge> Challenges { get; set; }
     }
 
     /// <summary>
@@ -337,7 +337,7 @@ namespace BungieSharper.Entities.Destiny.Milestones
 
         /// <summary>Every relevant variation of this conceptual activity, including the conceptual activity itself, have variants defined here.</summary>
         [JsonPropertyName("variants")]
-        public IEnumerable<DestinyPublicMilestoneActivityVariant> Variants { get; set; }
+        public IEnumerable<Destiny.Milestones.DestinyPublicMilestoneActivityVariant> Variants { get; set; }
 
         /// <summary>The hash identifier of the most specific Activity Mode under which this activity is played. This is useful for situations where the activity in question is - for instance - a PVP map, but it's not clear what mode the PVP map is being played under. If it's a playlist, this will be less specific: but hopefully useful in some way.</summary>
         [JsonPropertyName("activityModeHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]

@@ -6,7 +6,7 @@ namespace BungieSharper.Entities.Destiny.Components.Collectibles
     public class DestinyCollectiblesComponent
     {
         [JsonPropertyName("collectibles")]
-        public Dictionary<uint, DestinyCollectibleComponent> Collectibles { get; set; }
+        public Dictionary<uint, Destiny.Components.Collectibles.DestinyCollectibleComponent> Collectibles { get; set; }
 
         /// <summary>The hash for the root presentation node definition of Collection categories.</summary>
         [JsonPropertyName("collectionCategoriesRootNodeHash")]
@@ -20,7 +20,7 @@ namespace BungieSharper.Entities.Destiny.Components.Collectibles
     public class DestinyCollectibleComponent
     {
         [JsonPropertyName("state")]
-        public DestinyCollectibleState State { get; set; }
+        public Destiny.DestinyCollectibleState State { get; set; }
     }
 
     public class DestinyProfileCollectiblesComponent
@@ -37,7 +37,7 @@ namespace BungieSharper.Entities.Destiny.Components.Collectibles
         public IEnumerable<uint> NewnessFlaggedCollectibleHashes { get; set; }
 
         [JsonPropertyName("collectibles")]
-        public Dictionary<uint, DestinyCollectibleComponent> Collectibles { get; set; }
+        public Dictionary<uint, Destiny.Components.Collectibles.DestinyCollectibleComponent> Collectibles { get; set; }
 
         /// <summary>The hash for the root presentation node definition of Collection categories.</summary>
         [JsonPropertyName("collectionCategoriesRootNodeHash")]

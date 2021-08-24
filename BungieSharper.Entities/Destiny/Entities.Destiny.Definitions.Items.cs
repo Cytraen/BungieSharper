@@ -10,11 +10,11 @@ namespace BungieSharper.Entities.Destiny.Definitions.Items
     public class DestinyItemTierTypeDefinition
     {
         [JsonPropertyName("displayProperties")]
-        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         /// <summary>If this tier defines infusion properties, they will be contained here.</summary>
         [JsonPropertyName("infusionProcess")]
-        public DestinyItemTierTypeInfusionBlock InfusionProcess { get; set; }
+        public Destiny.Definitions.Items.DestinyItemTierTypeInfusionBlock InfusionProcess { get; set; }
 
         /// <summary>
         /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
@@ -55,7 +55,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Items
 
         /// <summary>This is the list of all of the items for this category and the basic properties we'll know about them.</summary>
         [JsonPropertyName("items")]
-        public IEnumerable<DestinyDerivedItemDefinition> Items { get; set; }
+        public IEnumerable<Destiny.Definitions.Items.DestinyDerivedItemDefinition> Items { get; set; }
     }
 
     /// <summary>
@@ -99,7 +99,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Items
         /// The live data DestinyItemPlugComponent.insertFailIndexes will be an index into this array, so you can pull out the failure strings appropriate for the user.
         /// </summary>
         [JsonPropertyName("insertionRules")]
-        public IEnumerable<DestinyPlugRuleDefinition> InsertionRules { get; set; }
+        public IEnumerable<Destiny.Definitions.Items.DestinyPlugRuleDefinition> InsertionRules { get; set; }
 
         /// <summary>The string identifier for the plug's category. Use the socket's DestinySocketTypeDefinition.plugWhitelist to determine whether this plug can be inserted into the socket.</summary>
         [JsonPropertyName("plugCategoryIdentifier")]
@@ -130,18 +130,18 @@ namespace BungieSharper.Entities.Destiny.Definitions.Items
         /// The live data DestinyItemPlugComponent.enableFailIndexes will be an index into this array, so you can pull out the failure strings appropriate for the user.
         /// </summary>
         [JsonPropertyName("enabledRules")]
-        public IEnumerable<DestinyPlugRuleDefinition> EnabledRules { get; set; }
+        public IEnumerable<Destiny.Definitions.Items.DestinyPlugRuleDefinition> EnabledRules { get; set; }
 
         /// <summary>Plugs can have arbitrary, UI-defined identifiers that the UI designers use to determine the style applied to plugs. Unfortunately, we have neither a definitive list of these labels nor advance warning of when new labels might be applied or how that relates to how they get rendered. If you want to, you can refer to known labels to change your own styles: but know that new ones can be created arbitrarily, and we have no way of associating the labels with any specific UI style guidance... you'll have to piece that together on your end. Or do what we do, and just show plugs more generically, without specialized styles.</summary>
         [JsonPropertyName("uiPlugLabel")]
         public string UiPlugLabel { get; set; }
 
         [JsonPropertyName("plugStyle")]
-        public PlugUiStyles PlugStyle { get; set; }
+        public Destiny.PlugUiStyles PlugStyle { get; set; }
 
         /// <summary>Indicates the rules about when this plug can be used. See the PlugAvailabilityMode enumeration for more information!</summary>
         [JsonPropertyName("plugAvailability")]
-        public PlugAvailabilityMode PlugAvailability { get; set; }
+        public Destiny.PlugAvailabilityMode PlugAvailability { get; set; }
 
         /// <summary>If the plug meets certain state requirements, it may have an alternative label applied to it. This is the alternative label that will be applied in such a situation.</summary>
         [JsonPropertyName("alternateUiPlugLabel")]
@@ -149,7 +149,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Items
 
         /// <summary>The alternate plug of the plug: only applies when the item is in states that only the server can know about and control, unfortunately. See AlternateUiPlugLabel for the related label info.</summary>
         [JsonPropertyName("alternatePlugStyle")]
-        public PlugUiStyles AlternatePlugStyle { get; set; }
+        public Destiny.PlugUiStyles AlternatePlugStyle { get; set; }
 
         /// <summary>If TRUE, this plug is used for UI display purposes only, and doesn't have any interesting effects of its own.</summary>
         [JsonPropertyName("isDummyPlug")]
@@ -161,15 +161,15 @@ namespace BungieSharper.Entities.Destiny.Definitions.Items
         /// If this is populated, it will have the override data to be applied when this plug is applied to an item.
         /// </summary>
         [JsonPropertyName("parentItemOverride")]
-        public DestinyParentItemOverride ParentItemOverride { get; set; }
+        public Destiny.Definitions.Items.DestinyParentItemOverride ParentItemOverride { get; set; }
 
         /// <summary>IF not null, this plug provides Energy capacity to the item in which it is socketed. In Armor 2.0 for example, is implemented in a similar way to Masterworks, where visually it's a single area of the UI being clicked on to "Upgrade" to higher energy levels, but it's actually socketing new plugs.</summary>
         [JsonPropertyName("energyCapacity")]
-        public DestinyEnergyCapacityEntry EnergyCapacity { get; set; }
+        public Destiny.Definitions.Items.DestinyEnergyCapacityEntry EnergyCapacity { get; set; }
 
         /// <summary>IF not null, this plug has an energy cost. This contains the details of that cost.</summary>
         [JsonPropertyName("energyCost")]
-        public DestinyEnergyCostEntry EnergyCost { get; set; }
+        public Destiny.Definitions.Items.DestinyEnergyCostEntry EnergyCost { get; set; }
     }
 
     /// <summary>
@@ -207,7 +207,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Items
 
         /// <summary>The Energy Type for this energy capacity, in enum form for easy use.</summary>
         [JsonPropertyName("energyType")]
-        public DestinyEnergyType EnergyType { get; set; }
+        public Destiny.DestinyEnergyType EnergyType { get; set; }
     }
 
     /// <summary>
@@ -225,6 +225,6 @@ namespace BungieSharper.Entities.Destiny.Definitions.Items
 
         /// <summary>The type of energy that this plug costs, in enum form.</summary>
         [JsonPropertyName("energyType")]
-        public DestinyEnergyType EnergyType { get; set; }
+        public Destiny.DestinyEnergyType EnergyType { get; set; }
     }
 }

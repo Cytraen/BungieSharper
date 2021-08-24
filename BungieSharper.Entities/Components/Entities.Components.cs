@@ -8,7 +8,7 @@ namespace BungieSharper.Entities.Components
     public class ComponentResponse
     {
         [JsonPropertyName("privacy")]
-        public ComponentPrivacySetting Privacy { get; set; }
+        public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
         [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
@@ -18,7 +18,7 @@ namespace BungieSharper.Entities.Components
     /// <summary>
     /// A set of flags for reason(s) why the component populated in the way that it did. Inspect the individual flags for the reasons.
     /// </summary>
-    public enum ComponentPrivacySetting
+    public enum ComponentPrivacySetting : int
     {
         None = 0,
         Public = 1,

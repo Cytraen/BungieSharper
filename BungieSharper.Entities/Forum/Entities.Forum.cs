@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 namespace BungieSharper.Entities.Forum
 {
     [Flags]
-    public enum ForumTopicsCategoryFiltersEnum
+    public enum ForumTopicsCategoryFiltersEnum : int
     {
         None = 0,
         Links = 1,
@@ -18,7 +18,7 @@ namespace BungieSharper.Entities.Forum
         Polls = 128
     }
 
-    public enum ForumTopicsQuickDateEnum
+    public enum ForumTopicsQuickDateEnum : int
     {
         All = 0,
         LastYear = 1,
@@ -48,13 +48,13 @@ namespace BungieSharper.Entities.Forum
         public bool IsPinned { get; set; }
 
         [JsonPropertyName("urlMediaType")]
-        public ForumMediaType UrlMediaType { get; set; }
+        public Forum.ForumMediaType UrlMediaType { get; set; }
 
         [JsonPropertyName("thumbnail")]
         public string Thumbnail { get; set; }
 
         [JsonPropertyName("popularity")]
-        public ForumPostPopularity Popularity { get; set; }
+        public Forum.ForumPostPopularity Popularity { get; set; }
 
         [JsonPropertyName("isActive")]
         public bool IsActive { get; set; }
@@ -84,7 +84,7 @@ namespace BungieSharper.Entities.Forum
         public string Locale { get; set; }
     }
 
-    public enum ForumMediaType
+    public enum ForumMediaType : int
     {
         None = 0,
         Image = 1,
@@ -92,7 +92,7 @@ namespace BungieSharper.Entities.Forum
         Youtube = 3
     }
 
-    public enum ForumPostPopularity
+    public enum ForumPostPopularity : int
     {
         Empty = 0,
         Default = 1,
@@ -105,7 +105,7 @@ namespace BungieSharper.Entities.Forum
     public class PostSearchResponse
     {
         [JsonPropertyName("relatedPosts")]
-        public IEnumerable<PostResponse> RelatedPosts { get; set; }
+        public IEnumerable<Forum.PostResponse> RelatedPosts { get; set; }
 
         [JsonPropertyName("authors")]
         public IEnumerable<User.GeneralUser> Authors { get; set; }
@@ -117,16 +117,16 @@ namespace BungieSharper.Entities.Forum
         public IEnumerable<Tags.Models.Contracts.TagResponse> SearchedTags { get; set; }
 
         [JsonPropertyName("polls")]
-        public IEnumerable<PollResponse> Polls { get; set; }
+        public IEnumerable<Forum.PollResponse> Polls { get; set; }
 
         [JsonPropertyName("recruitmentDetails")]
-        public IEnumerable<ForumRecruitmentDetail> RecruitmentDetails { get; set; }
+        public IEnumerable<Forum.ForumRecruitmentDetail> RecruitmentDetails { get; set; }
 
         [JsonPropertyName("availablePages"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? AvailablePages { get; set; }
 
         [JsonPropertyName("results")]
-        public IEnumerable<PostResponse> Results { get; set; }
+        public IEnumerable<Forum.PostResponse> Results { get; set; }
 
         [JsonPropertyName("totalResults")]
         public int TotalResults { get; set; }
@@ -156,7 +156,7 @@ namespace BungieSharper.Entities.Forum
         public long TopicId { get; set; }
 
         [JsonPropertyName("results")]
-        public IEnumerable<PollResult> Results { get; set; }
+        public IEnumerable<Forum.PollResult> Results { get; set; }
 
         [JsonPropertyName("totalVotes")]
         public int TotalVotes { get; set; }
@@ -189,10 +189,10 @@ namespace BungieSharper.Entities.Forum
         public bool MicrophoneRequired { get; set; }
 
         [JsonPropertyName("intensity")]
-        public ForumRecruitmentIntensityLabel Intensity { get; set; }
+        public Forum.ForumRecruitmentIntensityLabel Intensity { get; set; }
 
         [JsonPropertyName("tone")]
-        public ForumRecruitmentToneLabel Tone { get; set; }
+        public Forum.ForumRecruitmentToneLabel Tone { get; set; }
 
         [JsonPropertyName("approved")]
         public bool Approved { get; set; }
@@ -227,7 +227,7 @@ namespace BungieSharper.Entities.Forum
         Rowdy = 2
     }
 
-    public enum ForumPostSortEnum
+    public enum ForumPostSortEnum : int
     {
         Default = 0,
         OldestFirst = 1

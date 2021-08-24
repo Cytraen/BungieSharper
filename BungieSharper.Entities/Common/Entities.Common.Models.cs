@@ -9,64 +9,64 @@ namespace BungieSharper.Entities.Common.Models
         public string Environment { get; set; }
 
         [JsonPropertyName("systems")]
-        public Dictionary<string, CoreSystem> Systems { get; set; }
+        public Dictionary<string, Common.Models.CoreSystem> Systems { get; set; }
 
         [JsonPropertyName("ignoreReasons")]
-        public IEnumerable<CoreSetting> IgnoreReasons { get; set; }
+        public IEnumerable<Common.Models.CoreSetting> IgnoreReasons { get; set; }
 
         [JsonPropertyName("forumCategories")]
-        public IEnumerable<CoreSetting> ForumCategories { get; set; }
+        public IEnumerable<Common.Models.CoreSetting> ForumCategories { get; set; }
 
         [JsonPropertyName("groupAvatars")]
-        public IEnumerable<CoreSetting> GroupAvatars { get; set; }
+        public IEnumerable<Common.Models.CoreSetting> GroupAvatars { get; set; }
 
         [JsonPropertyName("destinyMembershipTypes")]
-        public IEnumerable<CoreSetting> DestinyMembershipTypes { get; set; }
+        public IEnumerable<Common.Models.CoreSetting> DestinyMembershipTypes { get; set; }
 
         [JsonPropertyName("recruitmentPlatformTags")]
-        public IEnumerable<CoreSetting> RecruitmentPlatformTags { get; set; }
+        public IEnumerable<Common.Models.CoreSetting> RecruitmentPlatformTags { get; set; }
 
         [JsonPropertyName("recruitmentMiscTags")]
-        public IEnumerable<CoreSetting> RecruitmentMiscTags { get; set; }
+        public IEnumerable<Common.Models.CoreSetting> RecruitmentMiscTags { get; set; }
 
         [JsonPropertyName("recruitmentActivities")]
-        public IEnumerable<CoreSetting> RecruitmentActivities { get; set; }
+        public IEnumerable<Common.Models.CoreSetting> RecruitmentActivities { get; set; }
 
         [JsonPropertyName("userContentLocales")]
-        public IEnumerable<CoreSetting> UserContentLocales { get; set; }
+        public IEnumerable<Common.Models.CoreSetting> UserContentLocales { get; set; }
 
         [JsonPropertyName("systemContentLocales")]
-        public IEnumerable<CoreSetting> SystemContentLocales { get; set; }
+        public IEnumerable<Common.Models.CoreSetting> SystemContentLocales { get; set; }
 
         [JsonPropertyName("clanBannerDecals")]
-        public IEnumerable<CoreSetting> ClanBannerDecals { get; set; }
+        public IEnumerable<Common.Models.CoreSetting> ClanBannerDecals { get; set; }
 
         [JsonPropertyName("clanBannerDecalColors")]
-        public IEnumerable<CoreSetting> ClanBannerDecalColors { get; set; }
+        public IEnumerable<Common.Models.CoreSetting> ClanBannerDecalColors { get; set; }
 
         [JsonPropertyName("clanBannerGonfalons")]
-        public IEnumerable<CoreSetting> ClanBannerGonfalons { get; set; }
+        public IEnumerable<Common.Models.CoreSetting> ClanBannerGonfalons { get; set; }
 
         [JsonPropertyName("clanBannerGonfalonColors")]
-        public IEnumerable<CoreSetting> ClanBannerGonfalonColors { get; set; }
+        public IEnumerable<Common.Models.CoreSetting> ClanBannerGonfalonColors { get; set; }
 
         [JsonPropertyName("clanBannerGonfalonDetails")]
-        public IEnumerable<CoreSetting> ClanBannerGonfalonDetails { get; set; }
+        public IEnumerable<Common.Models.CoreSetting> ClanBannerGonfalonDetails { get; set; }
 
         [JsonPropertyName("clanBannerGonfalonDetailColors")]
-        public IEnumerable<CoreSetting> ClanBannerGonfalonDetailColors { get; set; }
+        public IEnumerable<Common.Models.CoreSetting> ClanBannerGonfalonDetailColors { get; set; }
 
         [JsonPropertyName("clanBannerStandards")]
-        public IEnumerable<CoreSetting> ClanBannerStandards { get; set; }
+        public IEnumerable<Common.Models.CoreSetting> ClanBannerStandards { get; set; }
 
         [JsonPropertyName("destiny2CoreSettings")]
-        public Destiny2CoreSettings Destiny2CoreSettings { get; set; }
+        public Common.Models.Destiny2CoreSettings Destiny2CoreSettings { get; set; }
 
         [JsonPropertyName("emailSettings")]
         public User.EmailSettings EmailSettings { get; set; }
 
         [JsonPropertyName("fireteamActivities")]
-        public IEnumerable<CoreSetting> FireteamActivities { get; set; }
+        public IEnumerable<Common.Models.CoreSetting> FireteamActivities { get; set; }
     }
 
     public class CoreSystem
@@ -96,7 +96,7 @@ namespace BungieSharper.Entities.Common.Models
         public string ImagePath { get; set; }
 
         [JsonPropertyName("childSettings")]
-        public IEnumerable<CoreSetting> ChildSettings { get; set; }
+        public IEnumerable<Common.Models.CoreSetting> ChildSettings { get; set; }
     }
 
     public class Destiny2CoreSettings

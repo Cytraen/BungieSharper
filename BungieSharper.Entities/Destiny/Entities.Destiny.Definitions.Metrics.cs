@@ -6,7 +6,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Metrics
     public class DestinyMetricDefinition
     {
         [JsonPropertyName("displayProperties")]
-        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         [JsonPropertyName("trackingObjectiveHash")]
         public uint TrackingObjectiveHash { get; set; }
@@ -15,7 +15,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Metrics
         public bool LowerValueIsBetter { get; set; }
 
         [JsonPropertyName("presentationNodeType")]
-        public DestinyPresentationNodeType PresentationNodeType { get; set; }
+        public Destiny.DestinyPresentationNodeType PresentationNodeType { get; set; }
 
         [JsonPropertyName("traitIds")]
         public IEnumerable<string> TraitIds { get; set; }

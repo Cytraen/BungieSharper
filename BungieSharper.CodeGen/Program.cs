@@ -18,7 +18,7 @@ namespace BungieSharper.CodeGen
         internal static string EntityFolder = BungieSharperPath.TrimEnd('\\') + ".Entities\\";
         internal static string EndpointFolder = BungieSharperPath.TrimEnd('\\') + "\\Endpoints\\";
 
-        internal static OpenApiObject? OpenApiDefinition;
+        internal static OpenApiObject OpenApiDefinition;
 
         private static void Main(string[] args)
         {

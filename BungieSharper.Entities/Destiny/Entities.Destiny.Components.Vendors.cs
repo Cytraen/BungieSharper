@@ -11,7 +11,7 @@ namespace BungieSharper.Entities.Destiny.Components.Vendors
     {
         /// <summary>The ordered list of groups being returned.</summary>
         [JsonPropertyName("groups")]
-        public IEnumerable<DestinyVendorGroup> Groups { get; set; }
+        public IEnumerable<Destiny.Components.Vendors.DestinyVendorGroup> Groups { get; set; }
     }
 
     /// <summary>
@@ -83,7 +83,7 @@ namespace BungieSharper.Entities.Destiny.Components.Vendors
 
         /// <summary>A summary of the current costs of the item.</summary>
         [JsonPropertyName("costs")]
-        public IEnumerable<DestinyItemQuantity> Costs { get; set; }
+        public IEnumerable<Destiny.DestinyItemQuantity> Costs { get; set; }
 
         /// <summary>
         /// If this item has its own custom date where it may be removed from the Vendor's rotation, this is that date.
@@ -152,7 +152,7 @@ namespace BungieSharper.Entities.Destiny.Components.Vendors
 
         /// <summary>A summary of the current costs of the item.</summary>
         [JsonPropertyName("costs")]
-        public IEnumerable<DestinyItemQuantity> Costs { get; set; }
+        public IEnumerable<Destiny.DestinyItemQuantity> Costs { get; set; }
 
         /// <summary>
         /// If this item has its own custom date where it may be removed from the Vendor's rotation, this is that date.

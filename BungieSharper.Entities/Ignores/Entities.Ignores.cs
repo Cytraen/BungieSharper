@@ -8,11 +8,11 @@ namespace BungieSharper.Entities.Ignores
         public bool IsIgnored { get; set; }
 
         [JsonPropertyName("ignoreFlags")]
-        public IgnoreStatus IgnoreFlags { get; set; }
+        public Ignores.IgnoreStatus IgnoreFlags { get; set; }
     }
 
     [System.Flags]
-    public enum IgnoreStatus
+    public enum IgnoreStatus : int
     {
         NotIgnored = 0,
         IgnoredUser = 1,
@@ -23,7 +23,7 @@ namespace BungieSharper.Entities.Ignores
         IgnoredGlobal = 32
     }
 
-    public enum IgnoreLength
+    public enum IgnoreLength : int
     {
         None = 0,
         Week = 1,

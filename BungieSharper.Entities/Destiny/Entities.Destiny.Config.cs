@@ -15,7 +15,7 @@ namespace BungieSharper.Entities.Destiny.Config
         public string MobileAssetContentPath { get; set; }
 
         [JsonPropertyName("mobileGearAssetDataBases")]
-        public IEnumerable<GearAssetDataBaseDefinition> MobileGearAssetDataBases { get; set; }
+        public IEnumerable<Destiny.Config.GearAssetDataBaseDefinition> MobileGearAssetDataBases { get; set; }
 
         [JsonPropertyName("mobileWorldContentPaths")]
         public Dictionary<string, string> MobileWorldContentPaths { get; set; }
@@ -36,7 +36,7 @@ namespace BungieSharper.Entities.Destiny.Config
 
         /// <summary>Information about the "Image Pyramid" for Destiny icons. Where possible, we create smaller versions of Destiny icons. These are found as subfolders under the location of the "original/full size" Destiny images, with the same file name and extension as the original image itself. (this lets us avoid sending largely redundant path info with every entity, at the expense of the smaller versions of the image being less discoverable)</summary>
         [JsonPropertyName("iconImagePyramidInfo")]
-        public IEnumerable<ImagePyramidEntry> IconImagePyramidInfo { get; set; }
+        public IEnumerable<Destiny.Config.ImagePyramidEntry> IconImagePyramidInfo { get; set; }
     }
 
     public class GearAssetDataBaseDefinition

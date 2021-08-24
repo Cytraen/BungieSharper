@@ -53,19 +53,19 @@ namespace BungieSharper.Entities.GroupsV2
     public class GroupResponse
     {
         [JsonPropertyName("detail")]
-        public GroupV2 Detail { get; set; }
+        public GroupsV2.GroupV2 Detail { get; set; }
 
         [JsonPropertyName("founder")]
-        public GroupMember Founder { get; set; }
+        public GroupsV2.GroupMember Founder { get; set; }
 
         [JsonPropertyName("alliedIds")]
         public IEnumerable<long> AlliedIds { get; set; }
 
         [JsonPropertyName("parentGroup")]
-        public GroupV2 ParentGroup { get; set; }
+        public GroupsV2.GroupV2 ParentGroup { get; set; }
 
         [JsonPropertyName("allianceStatus")]
-        public GroupAllianceStatus AllianceStatus { get; set; }
+        public GroupsV2.GroupAllianceStatus AllianceStatus { get; set; }
 
         [JsonPropertyName("groupJoinInviteCount")]
         public int GroupJoinInviteCount { get; set; }
@@ -76,11 +76,11 @@ namespace BungieSharper.Entities.GroupsV2
 
         /// <summary>This property will be populated if the authenticated user is a member of the group. Note that because of account linking, a user can sometimes be part of a clan more than once. As such, this returns the highest member type available.</summary>
         [JsonPropertyName("currentUserMemberMap")]
-        public Dictionary<BungieMembershipType, GroupMember> CurrentUserMemberMap { get; set; }
+        public Dictionary<BungieMembershipType, GroupsV2.GroupMember> CurrentUserMemberMap { get; set; }
 
         /// <summary>This property will be populated if the authenticated user is an applicant or has an outstanding invitation to join. Note that because of account linking, a user can sometimes be part of a clan more than once.</summary>
         [JsonPropertyName("currentUserPotentialMemberMap")]
-        public Dictionary<BungieMembershipType, GroupPotentialMember> CurrentUserPotentialMemberMap { get; set; }
+        public Dictionary<BungieMembershipType, GroupsV2.GroupPotentialMember> CurrentUserPotentialMemberMap { get; set; }
     }
 
     public class GroupV2
@@ -92,7 +92,7 @@ namespace BungieSharper.Entities.GroupsV2
         public string Name { get; set; }
 
         [JsonPropertyName("groupType")]
-        public GroupType GroupType { get; set; }
+        public GroupsV2.GroupType GroupType { get; set; }
 
         [JsonPropertyName("membershipIdCreated")]
         public long MembershipIdCreated { get; set; }
@@ -128,7 +128,7 @@ namespace BungieSharper.Entities.GroupsV2
         public bool IsDefaultPostPublic { get; set; }
 
         [JsonPropertyName("chatSecurity")]
-        public ChatSecuritySetting ChatSecurity { get; set; }
+        public GroupsV2.ChatSecuritySetting ChatSecurity { get; set; }
 
         [JsonPropertyName("locale")]
         public string Locale { get; set; }
@@ -137,13 +137,13 @@ namespace BungieSharper.Entities.GroupsV2
         public int AvatarImageIndex { get; set; }
 
         [JsonPropertyName("homepage")]
-        public GroupHomepage Homepage { get; set; }
+        public GroupsV2.GroupHomepage Homepage { get; set; }
 
         [JsonPropertyName("membershipOption")]
-        public MembershipOption MembershipOption { get; set; }
+        public GroupsV2.MembershipOption MembershipOption { get; set; }
 
         [JsonPropertyName("defaultPublicity")]
-        public GroupPostPublicity DefaultPublicity { get; set; }
+        public GroupsV2.GroupPostPublicity DefaultPublicity { get; set; }
 
         [JsonPropertyName("theme")]
         public string Theme { get; set; }
@@ -164,39 +164,39 @@ namespace BungieSharper.Entities.GroupsV2
         public DateTime? BanExpireDate { get; set; }
 
         [JsonPropertyName("features")]
-        public GroupFeatures Features { get; set; }
+        public GroupsV2.GroupFeatures Features { get; set; }
 
         [JsonPropertyName("clanInfo")]
-        public GroupV2ClanInfoAndInvestment ClanInfo { get; set; }
+        public GroupsV2.GroupV2ClanInfoAndInvestment ClanInfo { get; set; }
     }
 
-    public enum GroupType
+    public enum GroupType : int
     {
         General = 0,
         Clan = 1
     }
 
-    public enum ChatSecuritySetting
+    public enum ChatSecuritySetting : int
     {
         Group = 0,
         Admins = 1
     }
 
-    public enum GroupHomepage
+    public enum GroupHomepage : int
     {
         Wall = 0,
         Forum = 1,
         AllianceForum = 2
     }
 
-    public enum MembershipOption
+    public enum MembershipOption : int
     {
         Reviewed = 0,
         Open = 1,
         Closed = 2
     }
 
-    public enum GroupPostPublicity
+    public enum GroupPostPublicity : int
     {
         Public = 0,
         Alliance = 1,
@@ -213,7 +213,7 @@ namespace BungieSharper.Entities.GroupsV2
         public int MaximumMembershipsOfGroupType { get; set; }
 
         [JsonPropertyName("capabilities")]
-        public Capabilities Capabilities { get; set; }
+        public GroupsV2.Capabilities Capabilities { get; set; }
 
         [JsonPropertyName("membershipTypes")]
         public IEnumerable<BungieMembershipType> MembershipTypes { get; set; }
@@ -243,7 +243,7 @@ namespace BungieSharper.Entities.GroupsV2
         /// Default is Member for clans, None for groups, although this means nothing for groups.
         /// </summary>
         [JsonPropertyName("hostGuidedGamePermissionOverride")]
-        public HostGuidedGamesPermissionLevel HostGuidedGamePermissionOverride { get; set; }
+        public GroupsV2.HostGuidedGamesPermissionLevel HostGuidedGamePermissionOverride { get; set; }
 
         /// <summary>
         /// Minimum Member Level allowed to update banner
@@ -259,11 +259,11 @@ namespace BungieSharper.Entities.GroupsV2
         /// Default is Beginner.
         /// </summary>
         [JsonPropertyName("joinLevel")]
-        public RuntimeGroupMemberType JoinLevel { get; set; }
+        public GroupsV2.RuntimeGroupMemberType JoinLevel { get; set; }
     }
 
     [Flags]
-    public enum Capabilities
+    public enum Capabilities : int
     {
         None = 0,
         Leaderboards = 1,
@@ -278,7 +278,7 @@ namespace BungieSharper.Entities.GroupsV2
     /// <summary>
     /// Used for setting the guided game permission level override (admins and founders can always host guided games).
     /// </summary>
-    public enum HostGuidedGamesPermissionLevel
+    public enum HostGuidedGamesPermissionLevel : int
     {
         None = 0,
         Beginner = 1,
@@ -288,7 +288,7 @@ namespace BungieSharper.Entities.GroupsV2
     /// <summary>
     /// The member levels used by all V2 Groups API. Individual group types use their own mappings in their native storage (general uses BnetDbGroupMemberType and D2 clans use ClanMemberLevel), but they are all translated to this in the runtime api. These runtime values should NEVER be stored anywhere, so the values can be changed as necessary.
     /// </summary>
-    public enum RuntimeGroupMemberType
+    public enum RuntimeGroupMemberType : int
     {
         None = 0,
         Beginner = 1,
@@ -307,7 +307,7 @@ namespace BungieSharper.Entities.GroupsV2
         public string ClanCallsign { get; set; }
 
         [JsonPropertyName("clanBannerData")]
-        public ClanBanner ClanBannerData { get; set; }
+        public GroupsV2.ClanBanner ClanBannerData { get; set; }
     }
 
     public class ClanBanner
@@ -346,7 +346,7 @@ namespace BungieSharper.Entities.GroupsV2
         public string ClanCallsign { get; set; }
 
         [JsonPropertyName("clanBannerData")]
-        public ClanBanner ClanBannerData { get; set; }
+        public GroupsV2.ClanBanner ClanBannerData { get; set; }
     }
 
     public class GroupUserBase
@@ -355,7 +355,7 @@ namespace BungieSharper.Entities.GroupsV2
         public long GroupId { get; set; }
 
         [JsonPropertyName("destinyUserInfo")]
-        public GroupUserInfoCard DestinyUserInfo { get; set; }
+        public GroupsV2.GroupUserInfoCard DestinyUserInfo { get; set; }
 
         [JsonPropertyName("bungieNetUserInfo")]
         public User.UserInfoCard BungieNetUserInfo { get; set; }
@@ -367,7 +367,7 @@ namespace BungieSharper.Entities.GroupsV2
     public class GroupMember
     {
         [JsonPropertyName("memberType")]
-        public RuntimeGroupMemberType MemberType { get; set; }
+        public GroupsV2.RuntimeGroupMemberType MemberType { get; set; }
 
         [JsonPropertyName("isOnline")]
         public bool IsOnline { get; set; }
@@ -379,7 +379,7 @@ namespace BungieSharper.Entities.GroupsV2
         public long GroupId { get; set; }
 
         [JsonPropertyName("destinyUserInfo")]
-        public GroupUserInfoCard DestinyUserInfo { get; set; }
+        public GroupsV2.GroupUserInfoCard DestinyUserInfo { get; set; }
 
         [JsonPropertyName("bungieNetUserInfo")]
         public User.UserInfoCard BungieNetUserInfo { get; set; }
@@ -388,7 +388,7 @@ namespace BungieSharper.Entities.GroupsV2
         public DateTime JoinDate { get; set; }
     }
 
-    public enum GroupAllianceStatus
+    public enum GroupAllianceStatus : int
     {
         Unallied = 0,
         Parent = 1,
@@ -398,13 +398,13 @@ namespace BungieSharper.Entities.GroupsV2
     public class GroupPotentialMember
     {
         [JsonPropertyName("potentialStatus")]
-        public GroupPotentialMemberStatus PotentialStatus { get; set; }
+        public GroupsV2.GroupPotentialMemberStatus PotentialStatus { get; set; }
 
         [JsonPropertyName("groupId")]
         public long GroupId { get; set; }
 
         [JsonPropertyName("destinyUserInfo")]
-        public GroupUserInfoCard DestinyUserInfo { get; set; }
+        public GroupsV2.GroupUserInfoCard DestinyUserInfo { get; set; }
 
         [JsonPropertyName("bungieNetUserInfo")]
         public User.UserInfoCard BungieNetUserInfo { get; set; }
@@ -413,14 +413,14 @@ namespace BungieSharper.Entities.GroupsV2
         public DateTime JoinDate { get; set; }
     }
 
-    public enum GroupPotentialMemberStatus
+    public enum GroupPotentialMemberStatus : int
     {
         None = 0,
         Applicant = 1,
         Invitee = 2
     }
 
-    public enum GroupDateRange
+    public enum GroupDateRange : int
     {
         All = 0,
         PastDay = 1,
@@ -441,7 +441,7 @@ namespace BungieSharper.Entities.GroupsV2
         public string Name { get; set; }
 
         [JsonPropertyName("groupType")]
-        public GroupType GroupType { get; set; }
+        public GroupsV2.GroupType GroupType { get; set; }
 
         [JsonPropertyName("creationDate")]
         public DateTime CreationDate { get; set; }
@@ -459,13 +459,13 @@ namespace BungieSharper.Entities.GroupsV2
         public string Locale { get; set; }
 
         [JsonPropertyName("membershipOption")]
-        public MembershipOption MembershipOption { get; set; }
+        public GroupsV2.MembershipOption MembershipOption { get; set; }
 
         [JsonPropertyName("capabilities")]
-        public Capabilities Capabilities { get; set; }
+        public GroupsV2.Capabilities Capabilities { get; set; }
 
         [JsonPropertyName("clanInfo")]
-        public GroupV2ClanInfo ClanInfo { get; set; }
+        public GroupsV2.GroupV2ClanInfo ClanInfo { get; set; }
 
         [JsonPropertyName("avatarPath")]
         public string AvatarPath { get; set; }
@@ -477,7 +477,7 @@ namespace BungieSharper.Entities.GroupsV2
     public class GroupSearchResponse
     {
         [JsonPropertyName("results")]
-        public IEnumerable<GroupV2Card> Results { get; set; }
+        public IEnumerable<GroupsV2.GroupV2Card> Results { get; set; }
 
         [JsonPropertyName("totalResults")]
         public int TotalResults { get; set; }
@@ -514,13 +514,13 @@ namespace BungieSharper.Entities.GroupsV2
         public string Name { get; set; }
 
         [JsonPropertyName("groupType")]
-        public GroupType GroupType { get; set; }
+        public GroupsV2.GroupType GroupType { get; set; }
 
         [JsonPropertyName("creationDate")]
-        public GroupDateRange CreationDate { get; set; }
+        public GroupsV2.GroupDateRange CreationDate { get; set; }
 
         [JsonPropertyName("sortBy")]
-        public GroupSortBy SortBy { get; set; }
+        public GroupsV2.GroupSortBy SortBy { get; set; }
 
         [JsonPropertyName("groupMemberCountFilter"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? GroupMemberCountFilter { get; set; }
@@ -541,7 +541,7 @@ namespace BungieSharper.Entities.GroupsV2
         public string RequestContinuationToken { get; set; }
     }
 
-    public enum GroupSortBy
+    public enum GroupSortBy : int
     {
         Name = 0,
         Date = 1,
@@ -549,7 +549,7 @@ namespace BungieSharper.Entities.GroupsV2
         Id = 3
     }
 
-    public enum GroupMemberCountFilter
+    public enum GroupMemberCountFilter : int
     {
         All = 0,
         OneToTen = 1,
@@ -563,7 +563,7 @@ namespace BungieSharper.Entities.GroupsV2
         public string GroupName { get; set; }
 
         [JsonPropertyName("groupType")]
-        public GroupType GroupType { get; set; }
+        public GroupsV2.GroupType GroupType { get; set; }
     }
 
     public class GroupOptionalConversation
@@ -581,7 +581,7 @@ namespace BungieSharper.Entities.GroupsV2
         public string ChatName { get; set; }
 
         [JsonPropertyName("chatSecurity")]
-        public ChatSecuritySetting ChatSecurity { get; set; }
+        public GroupsV2.ChatSecuritySetting ChatSecurity { get; set; }
     }
 
     public class GroupEditAction
@@ -687,7 +687,7 @@ namespace BungieSharper.Entities.GroupsV2
         public string ChatName { get; set; }
 
         [JsonPropertyName("chatSecurity")]
-        public ChatSecuritySetting ChatSecurity { get; set; }
+        public GroupsV2.ChatSecuritySetting ChatSecurity { get; set; }
     }
 
     public class GroupOptionalConversationEditRequest
@@ -705,7 +705,7 @@ namespace BungieSharper.Entities.GroupsV2
     public class GroupMemberLeaveResult
     {
         [JsonPropertyName("group")]
-        public GroupV2 Group { get; set; }
+        public GroupsV2.GroupV2 Group { get; set; }
 
         [JsonPropertyName("groupDeleted")]
         public bool GroupDeleted { get; set; }
@@ -744,7 +744,7 @@ namespace BungieSharper.Entities.GroupsV2
         public User.UserInfoCard BungieNetUserInfo { get; set; }
 
         [JsonPropertyName("destinyUserInfo")]
-        public GroupUserInfoCard DestinyUserInfo { get; set; }
+        public GroupsV2.GroupUserInfoCard DestinyUserInfo { get; set; }
     }
 
     public class GroupMemberApplication
@@ -756,7 +756,7 @@ namespace BungieSharper.Entities.GroupsV2
         public DateTime CreationDate { get; set; }
 
         [JsonPropertyName("resolveState")]
-        public GroupApplicationResolveState ResolveState { get; set; }
+        public GroupsV2.GroupApplicationResolveState ResolveState { get; set; }
 
         [JsonPropertyName("resolveDate"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public DateTime? ResolveDate { get; set; }
@@ -771,13 +771,13 @@ namespace BungieSharper.Entities.GroupsV2
         public string ResolveMessage { get; set; }
 
         [JsonPropertyName("destinyUserInfo")]
-        public GroupUserInfoCard DestinyUserInfo { get; set; }
+        public GroupsV2.GroupUserInfoCard DestinyUserInfo { get; set; }
 
         [JsonPropertyName("bungieNetUserInfo")]
         public User.UserInfoCard BungieNetUserInfo { get; set; }
     }
 
-    public enum GroupApplicationResolveState
+    public enum GroupApplicationResolveState : int
     {
         Unresolved = 0,
         Accepted = 1,
@@ -800,7 +800,7 @@ namespace BungieSharper.Entities.GroupsV2
         public string Message { get; set; }
     }
 
-    public enum GroupsForMemberFilter
+    public enum GroupsForMemberFilter : int
     {
         All = 0,
         Founded = 1,
@@ -810,22 +810,22 @@ namespace BungieSharper.Entities.GroupsV2
     public class GroupMembershipBase
     {
         [JsonPropertyName("group")]
-        public GroupV2 Group { get; set; }
+        public GroupsV2.GroupV2 Group { get; set; }
     }
 
     public class GroupMembership
     {
         [JsonPropertyName("member")]
-        public GroupMember Member { get; set; }
+        public GroupsV2.GroupMember Member { get; set; }
 
         [JsonPropertyName("group")]
-        public GroupV2 Group { get; set; }
+        public GroupsV2.GroupV2 Group { get; set; }
     }
 
     public class GroupMembershipSearchResponse
     {
         [JsonPropertyName("results")]
-        public IEnumerable<GroupMembership> Results { get; set; }
+        public IEnumerable<GroupsV2.GroupMembership> Results { get; set; }
 
         [JsonPropertyName("totalResults")]
         public int TotalResults { get; set; }
@@ -859,7 +859,7 @@ namespace BungieSharper.Entities.GroupsV2
         public Dictionary<long, bool> AreAllMembershipsInactive { get; set; }
 
         [JsonPropertyName("results")]
-        public IEnumerable<GroupMembership> Results { get; set; }
+        public IEnumerable<GroupsV2.GroupMembership> Results { get; set; }
 
         [JsonPropertyName("totalResults")]
         public int TotalResults { get; set; }
@@ -886,16 +886,16 @@ namespace BungieSharper.Entities.GroupsV2
     public class GroupPotentialMembership
     {
         [JsonPropertyName("member")]
-        public GroupPotentialMember Member { get; set; }
+        public GroupsV2.GroupPotentialMember Member { get; set; }
 
         [JsonPropertyName("group")]
-        public GroupV2 Group { get; set; }
+        public GroupsV2.GroupV2 Group { get; set; }
     }
 
     public class GroupPotentialMembershipSearchResponse
     {
         [JsonPropertyName("results")]
-        public IEnumerable<GroupPotentialMembership> Results { get; set; }
+        public IEnumerable<GroupsV2.GroupPotentialMembership> Results { get; set; }
 
         [JsonPropertyName("totalResults")]
         public int TotalResults { get; set; }
@@ -922,6 +922,6 @@ namespace BungieSharper.Entities.GroupsV2
     public class GroupApplicationResponse
     {
         [JsonPropertyName("resolution")]
-        public GroupApplicationResolveState Resolution { get; set; }
+        public GroupsV2.GroupApplicationResolveState Resolution { get; set; }
     }
 }

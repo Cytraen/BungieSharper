@@ -10,11 +10,11 @@ namespace BungieSharper.Entities.Destiny.Vendors
     {
         /// <summary>The amount paid for the item, in terms of items that were consumed in the purchase and their quantity.</summary>
         [JsonPropertyName("currencyPaid")]
-        public IEnumerable<DestinyItemQuantity> CurrencyPaid { get; set; }
+        public IEnumerable<Destiny.DestinyItemQuantity> CurrencyPaid { get; set; }
 
         /// <summary>The item that was received, and its quantity.</summary>
         [JsonPropertyName("itemReceived")]
-        public DestinyItemQuantity ItemReceived { get; set; }
+        public Destiny.DestinyItemQuantity ItemReceived { get; set; }
 
         /// <summary>The unlock flag used to determine whether you still have the purchased item.</summary>
         [JsonPropertyName("licenseUnlockHash")]
@@ -26,7 +26,7 @@ namespace BungieSharper.Entities.Destiny.Vendors
 
         /// <summary>Whether you can get a refund, and what happens in order for the refund to be received. See the DestinyVendorItemRefundPolicy enum for details.</summary>
         [JsonPropertyName("refundPolicy")]
-        public DestinyVendorItemRefundPolicy RefundPolicy { get; set; }
+        public Destiny.DestinyVendorItemRefundPolicy RefundPolicy { get; set; }
 
         /// <summary>The identifier of this receipt.</summary>
         [JsonPropertyName("sequenceNumber")]

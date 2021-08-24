@@ -10,6 +10,6 @@ namespace BungieSharper.Entities.Destiny.Challenges
     {
         /// <summary>The progress - including completion status - of the active challenge.</summary>
         [JsonPropertyName("objective")]
-        public Quests.DestinyObjectiveProgress Objective { get; set; }
+        public Destiny.Quests.DestinyObjectiveProgress Objective { get; set; }
     }
 }

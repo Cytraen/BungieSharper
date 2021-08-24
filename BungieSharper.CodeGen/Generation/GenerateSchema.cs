@@ -56,14 +56,7 @@ namespace BungieSharper.CodeGen.Generation
                 enumList.Add(doc + enumDef);
             }
 
-            fileContent += $"    public enum {className}";
-
-            if (def.Format!.Value != FormatEnum.Int32)
-            {
-                fileContent += $" : {Mapping.FormatToCSharp(def.Format!.Value)}";
-            }
-
-            fileContent += "\n    {\n";
+            fileContent += $"    public enum {className} : {Mapping.FormatToCSharp(def.Format!.Value)}\n    {{\n";
             fileContent += string.Join(",\n", enumList);
             fileContent += "\n    }\n}";
             fileContent = fileContent.Replace(",\n        /// <summary>", ",\n\n        /// <summary>");
@@ -92,7 +85,7 @@ namespace BungieSharper.CodeGen.Generation
             {
                 foreach (var (propName, propDef) in properties)
                 {
-                    propertyList.Add(ResolveProperty(propName, propDef, nameSpace.Replace("BungieSharper.Entities.", "")));
+                    propertyList.Add(ResolveProperty(propName, propDef));
                 }
             }
 
@@ -103,30 +96,30 @@ namespace BungieSharper.CodeGen.Generation
             return fileContent;
         }
 
-        internal static string ResolveProperty(string name, PropertiesObject def, string parentNameSpace)
+        internal static string ResolveProperty(string name, PropertiesObject def)
         {
             var propListing = "";
             var propType = "";
 
             if (def.AllOf is not null)
             {
-                propType += FormatStrings.ResolveRef(def.AllOf[0].Ref, false, parentNameSpace);
+                propType += FormatStrings.ResolveRef(def.AllOf[0].Ref, false);
             }
             else if (def.Items is not null)
             {
-                propType += GenerateCommon.ResolveItems(def.Items, false, parentNameSpace);
+                propType += GenerateCommon.ResolveItems(def.Items, false);
             }
             else if (def.AdditionalProperties is not null)
             {
-                propType += ResolvePropertyDictionary(def.XDictionaryKey!, def.AdditionalProperties, parentNameSpace);
+                propType += ResolvePropertyDictionary(def.XDictionaryKey!, def.AdditionalProperties);
             }
             else if (def.Ref is not null)
             {
-                propType += FormatStrings.ResolveRef(def.Ref, false, parentNameSpace);
+                propType += FormatStrings.ResolveRef(def.Ref, false);
             }
             else if (def.XEnumReference is not null)
             {
-                propType += FormatStrings.ResolveRef(def.XEnumReference.Ref, false, parentNameSpace);
+                propType += FormatStrings.ResolveRef(def.XEnumReference.Ref, false);
             }
             else if (def.Format is not null)
             {
@@ -157,13 +150,13 @@ namespace BungieSharper.CodeGen.Generation
             return propListing;
         }
 
-        internal static string ResolvePropertyDictionary(Entities.Components.Properties.XDictionaryKeyClass dictKey, Entities.Components.Properties.AdditionalPropertiesClass additionalProps, string parentNameSpace)
+        internal static string ResolvePropertyDictionary(Entities.Components.Properties.XDictionaryKeyClass dictKey, Entities.Components.Properties.AdditionalPropertiesClass additionalProps)
         {
             var classType = "Dictionary<";
 
             if (dictKey.XEnumReference is not null)
             {
-                classType += FormatStrings.ResolveRef(dictKey.XEnumReference.Ref, false, parentNameSpace);
+                classType += FormatStrings.ResolveRef(dictKey.XEnumReference.Ref, false);
             }
             else if (dictKey.Format is not null)
             {
@@ -178,19 +171,19 @@ namespace BungieSharper.CodeGen.Generation
 
             if (additionalProps.AdditionalProperties is not null)
             {
-                classType += ResolvePropertyDictionary(additionalProps.XDictionaryKey, additionalProps.AdditionalProperties, parentNameSpace);
+                classType += ResolvePropertyDictionary(additionalProps.XDictionaryKey, additionalProps.AdditionalProperties);
             }
             else if (additionalProps.Items is not null)
             {
-                classType += GenerateCommon.ResolveItems(additionalProps.Items, false, parentNameSpace);
+                classType += GenerateCommon.ResolveItems(additionalProps.Items, false);
             }
             else if (additionalProps.Ref is not null)
             {
-                classType += FormatStrings.ResolveRef(additionalProps.Ref, false, parentNameSpace);
+                classType += FormatStrings.ResolveRef(additionalProps.Ref, false);
             }
             else if (additionalProps.XEnumReference is not null)
             {
-                classType += FormatStrings.ResolveRef(additionalProps.XEnumReference.Ref, false, parentNameSpace);
+                classType += FormatStrings.ResolveRef(additionalProps.XEnumReference.Ref, false);
             }
             else if (additionalProps.Format is not null)
             {

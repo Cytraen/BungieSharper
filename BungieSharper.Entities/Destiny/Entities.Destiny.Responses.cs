@@ -11,7 +11,7 @@ namespace BungieSharper.Entities.Destiny.Responses
     {
         /// <summary>Any Destiny account for whom we could successfully pull characters will be returned here, as the Platform-level summary of user data. (no character data, no Destiny account data other than the Membership ID and Type so you can make further queries)</summary>
         [JsonPropertyName("profiles")]
-        public IEnumerable<DestinyProfileUserInfoCard> Profiles { get; set; }
+        public IEnumerable<Destiny.Responses.DestinyProfileUserInfoCard> Profiles { get; set; }
 
         /// <summary>
         /// If the requested membership had a linked Bungie.Net membership ID, this is the basic information about that BNet account.
@@ -22,7 +22,7 @@ namespace BungieSharper.Entities.Destiny.Responses
 
         /// <summary>This is brief summary info for profiles that we believe have valid Destiny info, but who failed to return data for some other reason and thus we know that subsequent calls for their info will also fail.</summary>
         [JsonPropertyName("profilesWithErrors")]
-        public IEnumerable<DestinyErrorProfile> ProfilesWithErrors { get; set; }
+        public IEnumerable<Destiny.Responses.DestinyErrorProfile> ProfilesWithErrors { get; set; }
     }
 
     public class DestinyProfileUserInfoCard
@@ -43,7 +43,7 @@ namespace BungieSharper.Entities.Destiny.Responses
         /// This is only available if you are requesting yourself.
         /// </summary>
         [JsonPropertyName("platformSilver")]
-        public Components.Inventory.DestinyPlatformSilverComponent PlatformSilver { get; set; }
+        public Destiny.Components.Inventory.DestinyPlatformSilverComponent PlatformSilver { get; set; }
 
         /// <summary>
         /// If this profile is not in a cross save pairing, this will return the game versions that we believe this profile has access to.
@@ -528,7 +528,7 @@ namespace BungieSharper.Entities.Destiny.Responses
     public class PersonalDestinyVendorSaleItemSetComponent
     {
         [JsonPropertyName("saleItems")]
-        public Dictionary<int, Entities.Vendors.DestinyVendorSaleItemComponent> SaleItems { get; set; }
+        public Dictionary<int, Destiny.Entities.Vendors.DestinyVendorSaleItemComponent> SaleItems { get; set; }
     }
 
     /// <summary>
@@ -626,7 +626,7 @@ namespace BungieSharper.Entities.Destiny.Responses
     public class PublicDestinyVendorSaleItemSetComponent
     {
         [JsonPropertyName("saleItems")]
-        public Dictionary<int, Components.Vendors.DestinyPublicVendorSaleItemComponent> SaleItems { get; set; }
+        public Dictionary<int, Destiny.Components.Vendors.DestinyPublicVendorSaleItemComponent> SaleItems { get; set; }
     }
 
     /// <summary>
@@ -655,24 +655,24 @@ namespace BungieSharper.Entities.Destiny.Responses
     {
         /// <summary>Items that appeared in the inventory possibly as a result of an action.</summary>
         [JsonPropertyName("addedInventoryItems")]
-        public IEnumerable<Entities.Items.DestinyItemComponent> AddedInventoryItems { get; set; }
+        public IEnumerable<Destiny.Entities.Items.DestinyItemComponent> AddedInventoryItems { get; set; }
 
         /// <summary>Items that disappeared from the inventory possibly as a result of an action.</summary>
         [JsonPropertyName("removedInventoryItems")]
-        public IEnumerable<Entities.Items.DestinyItemComponent> RemovedInventoryItems { get; set; }
+        public IEnumerable<Destiny.Entities.Items.DestinyItemComponent> RemovedInventoryItems { get; set; }
     }
 
     public class DestinyItemChangeResponse
     {
         [JsonPropertyName("item")]
-        public DestinyItemResponse Item { get; set; }
+        public Destiny.Responses.DestinyItemResponse Item { get; set; }
 
         /// <summary>Items that appeared in the inventory possibly as a result of an action.</summary>
         [JsonPropertyName("addedInventoryItems")]
-        public IEnumerable<Entities.Items.DestinyItemComponent> AddedInventoryItems { get; set; }
+        public IEnumerable<Destiny.Entities.Items.DestinyItemComponent> AddedInventoryItems { get; set; }
 
         /// <summary>Items that disappeared from the inventory possibly as a result of an action.</summary>
         [JsonPropertyName("removedInventoryItems")]
-        public IEnumerable<Entities.Items.DestinyItemComponent> RemovedInventoryItems { get; set; }
+        public IEnumerable<Destiny.Entities.Items.DestinyItemComponent> RemovedInventoryItems { get; set; }
     }
 }

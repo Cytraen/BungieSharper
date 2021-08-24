@@ -37,7 +37,7 @@ namespace BungieSharper.Entities.Tokens
         public string TransactionId { get; set; }
 
         [JsonPropertyName("SkuOffers")]
-        public IEnumerable<PartnerOfferHistoryResponse> SkuOffers { get; set; }
+        public IEnumerable<Tokens.PartnerOfferHistoryResponse> SkuOffers { get; set; }
     }
 
     public class PartnerOfferHistoryResponse

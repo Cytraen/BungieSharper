@@ -10,7 +10,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Seasons
     public class DestinySeasonDefinition
     {
         [JsonPropertyName("displayProperties")]
-        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         [JsonPropertyName("backgroundImagePath")]
         public string BackgroundImagePath { get; set; }
@@ -41,7 +41,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Seasons
 
         /// <summary>Optional - Defines the promotional text, images, and links to preview this season.</summary>
         [JsonPropertyName("preview")]
-        public DestinySeasonPreviewDefinition Preview { get; set; }
+        public Destiny.Definitions.Seasons.DestinySeasonPreviewDefinition Preview { get; set; }
 
         /// <summary>
         /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
@@ -78,7 +78,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Seasons
 
         /// <summary>A list of images to preview the seasonal content. Should have at least three to show.</summary>
         [JsonPropertyName("images")]
-        public IEnumerable<DestinySeasonPreviewImageDefinition> Images { get; set; }
+        public IEnumerable<Destiny.Definitions.Seasons.DestinySeasonPreviewImageDefinition> Images { get; set; }
     }
 
     /// <summary>
@@ -98,7 +98,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Seasons
     public class DestinySeasonPassDefinition
     {
         [JsonPropertyName("displayProperties")]
-        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         /// <summary>This is the progression definition related to the progression for the initial levels 1-100 that provide item rewards for the Season pass. Further experience after you reach the limit is provided in the "Prestige" progression referred to by prestigeProgressionHash.</summary>
         [JsonPropertyName("rewardProgressionHash")]

@@ -6,7 +6,7 @@ namespace BungieSharper.Entities
     /// <summary>
     /// The types of membership the Accounts system supports. This is the external facing enum used in place of the internal-only Bungie.SharedDefinitions.MembershipType.
     /// </summary>
-    public enum BungieMembershipType
+    public enum BungieMembershipType : int
     {
         None = 0,
         TigerXbox = 1,
@@ -1545,7 +1545,7 @@ namespace BungieSharper.Entities
         public StreamInfo StreamInfo { get; set; }
     }
 
-    public enum GlobalAlertLevel
+    public enum GlobalAlertLevel : int
     {
         Unknown = 0,
         Blue = 1,
@@ -1553,7 +1553,7 @@ namespace BungieSharper.Entities
         Red = 3
     }
 
-    public enum GlobalAlertType
+    public enum GlobalAlertType : int
     {
         GlobalAlert = 0,
         StreamingAlert = 1

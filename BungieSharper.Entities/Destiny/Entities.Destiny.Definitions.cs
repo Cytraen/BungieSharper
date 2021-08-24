@@ -35,14 +35,14 @@ namespace BungieSharper.Entities.Destiny.Definitions
     public class DestinyProgressionDefinition
     {
         [JsonPropertyName("displayProperties")]
-        public DestinyProgressionDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Destiny.Definitions.DestinyProgressionDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         /// <summary>
         /// The "Scope" of the progression indicates the source of the progression's live data.
         /// See the DestinyProgressionScope enum for more info: but essentially, a Progression can either be backed by a stored value, or it can be a calculated derivative of other values.
         /// </summary>
         [JsonPropertyName("scope")]
-        public DestinyProgressionScope Scope { get; set; }
+        public Destiny.DestinyProgressionScope Scope { get; set; }
 
         /// <summary>If this is True, then the progression doesn't have a maximum level.</summary>
         [JsonPropertyName("repeatLastStep")]
@@ -57,7 +57,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
         /// These and more calculations are done for you if you grab live character progression data, such as in the DestinyCharacterProgressionComponent.
         /// </summary>
         [JsonPropertyName("steps")]
-        public IEnumerable<DestinyProgressionStepDefinition> Steps { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyProgressionStepDefinition> Steps { get; set; }
 
         /// <summary>
         /// If true, the Progression is something worth showing to users.
@@ -75,14 +75,14 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>The #RGB string value for the color related to this progression, if there is one.</summary>
         [JsonPropertyName("color")]
-        public Misc.DestinyColor Color { get; set; }
+        public Destiny.Misc.DestinyColor Color { get; set; }
 
         /// <summary>For progressions that have it, this is the rank icon we use in the Companion, displayed above the progressions' rank value.</summary>
         [JsonPropertyName("rankIcon")]
         public string RankIcon { get; set; }
 
         [JsonPropertyName("rewardItems")]
-        public IEnumerable<DestinyProgressionRewardItemQuantity> RewardItems { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyProgressionRewardItemQuantity> RewardItems { get; set; }
 
         /// <summary>
         /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
@@ -121,7 +121,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public string Icon { get; set; }
 
         [JsonPropertyName("iconSequences")]
-        public IEnumerable<Common.DestinyIconSequenceDefinition> IconSequences { get; set; }
+        public IEnumerable<Destiny.Definitions.Common.DestinyIconSequenceDefinition> IconSequences { get; set; }
 
         /// <summary>If this item has a high-res icon (at least for now, many things won't), then the path to that icon will be here.</summary>
         [JsonPropertyName("highResIcon")]
@@ -142,7 +142,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>This appears to be, when you "level up", whether a visual effect will display and on what entity. See DestinyProgressionStepDisplayEffect for slightly more info.</summary>
         [JsonPropertyName("displayEffectType")]
-        public DestinyProgressionStepDisplayEffect DisplayEffectType { get; set; }
+        public Destiny.DestinyProgressionStepDisplayEffect DisplayEffectType { get; set; }
 
         /// <summary>The total amount of progression points/"experience" you will need to initially reach this step. If this is the last step and the progression is repeating indefinitely (DestinyProgressionDefinition.repeatLastStep), this will also be the progress needed to level it up further by repeating this step again.</summary>
         [JsonPropertyName("progressTotal")]
@@ -150,7 +150,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>A listing of items rewarded as a result of reaching this level.</summary>
         [JsonPropertyName("rewardItems")]
-        public IEnumerable<DestinyItemQuantity> RewardItems { get; set; }
+        public IEnumerable<Destiny.DestinyItemQuantity> RewardItems { get; set; }
 
         /// <summary>If this progression step has a specific icon related to it, this is the icon to show.</summary>
         [JsonPropertyName("icon")]
@@ -164,11 +164,11 @@ namespace BungieSharper.Entities.Destiny.Definitions
     public class DestinyInventoryItemDefinition
     {
         [JsonPropertyName("displayProperties")]
-        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         /// <summary>Tooltips that only come up conditionally for the item. Check the live data DestinyItemComponent.tooltipNotificationIndexes property for which of these should be shown at runtime.</summary>
         [JsonPropertyName("tooltipNotifications")]
-        public IEnumerable<DestinyItemTooltipNotification> TooltipNotifications { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyItemTooltipNotification> TooltipNotifications { get; set; }
 
         /// <summary>If this item has a collectible related to it, this is the hash identifier of that collectible entry.</summary>
         [JsonPropertyName("collectibleHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
@@ -196,7 +196,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>Sometimes, an item will have a background color. Most notably this occurs with Emblems, who use the Background Color for small character nameplates such as the "friends" view you see in-game. There are almost certainly other items that have background color as well, though I have not bothered to investigate what items have it nor what purposes they serve: use it as you will.</summary>
         [JsonPropertyName("backgroundColor")]
-        public Misc.DestinyColor BackgroundColor { get; set; }
+        public Destiny.Misc.DestinyColor BackgroundColor { get; set; }
 
         /// <summary>If we were able to acquire an in-game screenshot for the item, the path to that screenshot will be returned here. Note that not all items have screenshots: particularly not any non-equippable items.</summary>
         [JsonPropertyName("screenshot")]
@@ -227,19 +227,19 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>If the item can be "used", this block will be non-null, and will have data related to the action performed when using the item. (Guess what? 99% of the time, this action is "dismantle". Shocker)</summary>
         [JsonPropertyName("action")]
-        public DestinyItemActionBlockDefinition Action { get; set; }
+        public Destiny.Definitions.DestinyItemActionBlockDefinition Action { get; set; }
 
         /// <summary>If this item can exist in an inventory, this block will be non-null. In practice, every item that currently exists has one of these blocks. But note that it is not necessarily guaranteed.</summary>
         [JsonPropertyName("inventory")]
-        public DestinyItemInventoryBlockDefinition Inventory { get; set; }
+        public Destiny.Definitions.DestinyItemInventoryBlockDefinition Inventory { get; set; }
 
         /// <summary>If this item is a quest, this block will be non-null. In practice, I wish I had called this the Quest block, but at the time it wasn't clear to me whether it would end up being used for purposes other than quests. It will contain data about the steps in the quest, and mechanics we can use for displaying and tracking the quest.</summary>
         [JsonPropertyName("setData")]
-        public DestinyItemSetBlockDefinition SetData { get; set; }
+        public Destiny.Definitions.DestinyItemSetBlockDefinition SetData { get; set; }
 
         /// <summary>If this item can have stats (such as a weapon, armor, or vehicle), this block will be non-null and populated with the stats found on the item.</summary>
         [JsonPropertyName("stats")]
-        public DestinyItemStatBlockDefinition Stats { get; set; }
+        public Destiny.Definitions.DestinyItemStatBlockDefinition Stats { get; set; }
 
         /// <summary>If the item is an emblem that has a special Objective attached to it - for instance, if the emblem tracks PVP Kills, or what-have-you. This is a bit different from, for example, the Vanguard Kill Tracker mod, which pipes data into the "art channel". When I get some time, I would like to standardize these so you can get at the values they expose without having to care about what they're being used for and how they are wired up, but for now here's the raw data.</summary>
         [JsonPropertyName("emblemObjectiveHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
@@ -247,67 +247,67 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>If this item can be equipped, this block will be non-null and will be populated with the conditions under which it can be equipped.</summary>
         [JsonPropertyName("equippingBlock")]
-        public DestinyEquippingBlockDefinition EquippingBlock { get; set; }
+        public Destiny.Definitions.DestinyEquippingBlockDefinition EquippingBlock { get; set; }
 
         /// <summary>If this item can be rendered, this block will be non-null and will be populated with rendering information.</summary>
         [JsonPropertyName("translationBlock")]
-        public DestinyItemTranslationBlockDefinition TranslationBlock { get; set; }
+        public Destiny.Definitions.DestinyItemTranslationBlockDefinition TranslationBlock { get; set; }
 
         /// <summary>If this item can be Used or Acquired to gain other items (for instance, how Eververse Boxes can be consumed to get items from the box), this block will be non-null and will give summary information for the items that can be acquired.</summary>
         [JsonPropertyName("preview")]
-        public DestinyItemPreviewBlockDefinition Preview { get; set; }
+        public Destiny.Definitions.DestinyItemPreviewBlockDefinition Preview { get; set; }
 
         /// <summary>If this item can have a level or stats, this block will be non-null and will be populated with default quality (item level, "quality", and infusion) data. See the block for more details, there's often less upfront information in D2 so you'll want to be aware of how you use quality and item level on the definition level now.</summary>
         [JsonPropertyName("quality")]
-        public DestinyItemQualityBlockDefinition Quality { get; set; }
+        public Destiny.Definitions.DestinyItemQualityBlockDefinition Quality { get; set; }
 
         /// <summary>The conceptual "Value" of an item, if any was defined. See the DestinyItemValueBlockDefinition for more details.</summary>
         [JsonPropertyName("value")]
-        public DestinyItemValueBlockDefinition Value { get; set; }
+        public Destiny.Definitions.DestinyItemValueBlockDefinition Value { get; set; }
 
         /// <summary>If this item has a known source, this block will be non-null and populated with source information. Unfortunately, at this time we are not generating sources: that is some aggressively manual work which we didn't have time for, and I'm hoping to get back to at some point in the future.</summary>
         [JsonPropertyName("sourceData")]
-        public DestinyItemSourceBlockDefinition SourceData { get; set; }
+        public Destiny.Definitions.DestinyItemSourceBlockDefinition SourceData { get; set; }
 
         /// <summary>If this item has Objectives (extra tasks that can be accomplished related to the item... most frequently when the item is a Quest Step and the Objectives need to be completed to move on to the next Quest Step), this block will be non-null and the objectives defined herein.</summary>
         [JsonPropertyName("objectives")]
-        public DestinyItemObjectiveBlockDefinition Objectives { get; set; }
+        public Destiny.Definitions.DestinyItemObjectiveBlockDefinition Objectives { get; set; }
 
         /// <summary>If this item has available metrics to be shown, this block will be non-null have the appropriate hashes defined.</summary>
         [JsonPropertyName("metrics")]
-        public DestinyItemMetricBlockDefinition Metrics { get; set; }
+        public Destiny.Definitions.DestinyItemMetricBlockDefinition Metrics { get; set; }
 
         /// <summary>If this item *is* a Plug, this will be non-null and the info defined herein. See DestinyItemPlugDefinition for more information.</summary>
         [JsonPropertyName("plug")]
-        public Items.DestinyItemPlugDefinition Plug { get; set; }
+        public Destiny.Definitions.Items.DestinyItemPlugDefinition Plug { get; set; }
 
         /// <summary>If this item has related items in a "Gear Set", this will be non-null and the relationships defined herein.</summary>
         [JsonPropertyName("gearset")]
-        public DestinyItemGearsetBlockDefinition Gearset { get; set; }
+        public Destiny.Definitions.DestinyItemGearsetBlockDefinition Gearset { get; set; }
 
         /// <summary>If this item is a "reward sack" that can be opened to provide other items, this will be non-null and the properties of the sack contained herein.</summary>
         [JsonPropertyName("sack")]
-        public DestinyItemSackBlockDefinition Sack { get; set; }
+        public Destiny.Definitions.DestinyItemSackBlockDefinition Sack { get; set; }
 
         /// <summary>If this item has any Sockets, this will be non-null and the individual sockets on the item will be defined herein.</summary>
         [JsonPropertyName("sockets")]
-        public DestinyItemSocketBlockDefinition Sockets { get; set; }
+        public Destiny.Definitions.DestinyItemSocketBlockDefinition Sockets { get; set; }
 
         /// <summary>Summary data about the item.</summary>
         [JsonPropertyName("summary")]
-        public DestinyItemSummaryBlockDefinition Summary { get; set; }
+        public Destiny.Definitions.DestinyItemSummaryBlockDefinition Summary { get; set; }
 
         /// <summary>If the item has a Talent Grid, this will be non-null and the properties of the grid defined herein. Note that, while many items still have talent grids, the only ones with meaningful Nodes still on them will be Subclass/"Build" items.</summary>
         [JsonPropertyName("talentGrid")]
-        public DestinyItemTalentGridBlockDefinition TalentGrid { get; set; }
+        public Destiny.Definitions.DestinyItemTalentGridBlockDefinition TalentGrid { get; set; }
 
         /// <summary>If the item has stats, this block will be defined. It has the "raw" investment stats for the item. These investment stats don't take into account the ways that the items can spawn, nor do they take into account any Stat Group transformations. I have retained them for debugging purposes, but I do not know how useful people will find them.</summary>
         [JsonPropertyName("investmentStats")]
-        public IEnumerable<DestinyItemInvestmentStatDefinition> InvestmentStats { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyItemInvestmentStatDefinition> InvestmentStats { get; set; }
 
         /// <summary>If the item has any *intrinsic* Perks (Perks that it will provide regardless of Sockets, Talent Grid, and other transitory state), they will be defined here.</summary>
         [JsonPropertyName("perks")]
-        public IEnumerable<DestinyItemPerkEntryDefinition> Perks { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyItemPerkEntryDefinition> Perks { get; set; }
 
         /// <summary>If the item has any related Lore (DestinyLoreDefinition), this will be the hash identifier you can use to look up the lore definition.</summary>
         [JsonPropertyName("loreHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
@@ -322,7 +322,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>If any animations were extracted from game content for this item, these will be the definitions of those animations.</summary>
         [JsonPropertyName("animations")]
-        public IEnumerable<Animations.DestinyAnimationReference> Animations { get; set; }
+        public IEnumerable<Destiny.Definitions.Animations.DestinyAnimationReference> Animations { get; set; }
 
         /// <summary>BNet may forbid the execution of actions on this item via the API. If that is occurring, allowActions will be set to false.</summary>
         [JsonPropertyName("allowActions")]
@@ -356,32 +356,32 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>In Destiny 1, we identified some items as having particular categories that we'd like to know about for various internal logic purposes. These are defined in SpecialItemType, and while these days the itemCategoryHashes are the preferred way of identifying types, we have retained this enum for its convenience.</summary>
         [JsonPropertyName("specialItemType")]
-        public SpecialItemType SpecialItemType { get; set; }
+        public Destiny.SpecialItemType SpecialItemType { get; set; }
 
         /// <summary>
         /// A value indicating the "base" the of the item. This enum is a useful but dramatic oversimplification of what it means for an item to have a "Type". Still, it's handy in many situations.
         /// itemCategoryHashes are the preferred way of identifying types, we have retained this enum for its convenience.
         /// </summary>
         [JsonPropertyName("itemType")]
-        public DestinyItemType ItemType { get; set; }
+        public Destiny.DestinyItemType ItemType { get; set; }
 
         /// <summary>
         /// A value indicating the "sub-type" of the item. For instance, where an item might have an itemType value "Weapon", this will be something more specific like "Auto Rifle".
         /// itemCategoryHashes are the preferred way of identifying types, we have retained this enum for its convenience.
         /// </summary>
         [JsonPropertyName("itemSubType")]
-        public DestinyItemSubType ItemSubType { get; set; }
+        public Destiny.DestinyItemSubType ItemSubType { get; set; }
 
         /// <summary>
         /// We run a similarly weak-sauce algorithm to try and determine whether an item is restricted to a specific class. If we find it to be restricted in such a way, we set this classType property to match the class' enumeration value so that users can easily identify class restricted items.
         /// If you see a mis-classed item, please inform the developers in the Bungie API forum.
         /// </summary>
         [JsonPropertyName("classType")]
-        public DestinyClass ClassType { get; set; }
+        public Destiny.DestinyClass ClassType { get; set; }
 
         /// <summary>Some weapons and plugs can have a "Breaker Type": a special ability that works sort of like damage type vulnerabilities. This is (almost?) always set on items by plugs.</summary>
         [JsonPropertyName("breakerType")]
-        public DestinyBreakerType BreakerType { get; set; }
+        public Destiny.DestinyBreakerType BreakerType { get; set; }
 
         /// <summary>Since we also have a breaker type definition, this is the hash for that breaker type for your convenience. Whether you use the enum or hash and look up the definition depends on what's cleanest for your code.</summary>
         [JsonPropertyName("breakerTypeHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
@@ -406,14 +406,14 @@ namespace BungieSharper.Entities.Destiny.Definitions
         /// - Known, reusable plugs for sockets
         /// </summary>
         [JsonPropertyName("damageTypes")]
-        public IEnumerable<DamageType> DamageTypes { get; set; }
+        public IEnumerable<Destiny.DamageType> DamageTypes { get; set; }
 
         /// <summary>
         /// If the item has a damage type that could be considered to be default, it will be populated here.
         /// For various upsetting reasons, it's surprisingly cumbersome to figure this out. I hope you're happy.
         /// </summary>
         [JsonPropertyName("defaultDamageType")]
-        public DamageType DefaultDamageType { get; set; }
+        public Destiny.DamageType DefaultDamageType { get; set; }
 
         /// <summary>
         /// Similar to defaultDamageType, but represented as the hash identifier for a DestinyDamageTypeDefinition.
@@ -494,11 +494,11 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>If the action requires other items to exist or be destroyed, this is the list of those items and requirements.</summary>
         [JsonPropertyName("requiredItems")]
-        public IEnumerable<DestinyItemActionRequiredItemDefinition> RequiredItems { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyItemActionRequiredItemDefinition> RequiredItems { get; set; }
 
         /// <summary>If performing this action earns you Progression, this is the list of progressions and values granted for those progressions by performing this action.</summary>
         [JsonPropertyName("progressionRewards")]
-        public IEnumerable<DestinyProgressionRewardDefinition> ProgressionRewards { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyProgressionRewardDefinition> ProgressionRewards { get; set; }
 
         /// <summary>The internal identifier for the action.</summary>
         [JsonPropertyName("actionTypeLabel")]
@@ -570,7 +570,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
     {
         /// <summary>Infrequently defined in practice. Defer to the individual progressions' display properties.</summary>
         [JsonPropertyName("displayProperties")]
-        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         /// <summary>The localized unit of measurement for progression across the progressions defined in this mapping. Unfortunately, this is very infrequently defined. Defer to the individual progressions' display units.</summary>
         [JsonPropertyName("displayUnits")]
@@ -627,7 +627,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>The enumeration matching the tier type of the item to known values, again for convenience sake.</summary>
         [JsonPropertyName("tierType")]
-        public TierType TierType { get; set; }
+        public Destiny.TierType TierType { get; set; }
 
         /// <summary>The tooltip message to show, if any, when the item expires.</summary>
         [JsonPropertyName("expirationTooltip")]
@@ -653,15 +653,15 @@ namespace BungieSharper.Entities.Destiny.Definitions
     public class DestinyInventoryBucketDefinition
     {
         [JsonPropertyName("displayProperties")]
-        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         /// <summary>Where the bucket is found. 0 = Character, 1 = Account</summary>
         [JsonPropertyName("scope")]
-        public BucketScope Scope { get; set; }
+        public Destiny.BucketScope Scope { get; set; }
 
         /// <summary>An enum value for what items can be found in the bucket. See the BucketCategory enum for more details.</summary>
         [JsonPropertyName("category")]
-        public BucketCategory Category { get; set; }
+        public Destiny.BucketCategory Category { get; set; }
 
         /// <summary>Use this property to provide a quick-and-dirty recommended ordering for buckets in the UI. Most UIs will likely want to forsake this for something more custom and manual.</summary>
         [JsonPropertyName("bucketOrder")]
@@ -680,7 +680,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
         /// Note that location includes the Vault and the Postmaster (both of whom being just inventory buckets with additional actions that can be performed on them through a Vendor)
         /// </summary>
         [JsonPropertyName("location")]
-        public ItemLocation Location { get; set; }
+        public Destiny.ItemLocation Location { get; set; }
 
         /// <summary>If TRUE, there is at least one Vendor that can transfer items to/from this bucket. See the DestinyVendorDefinition's acceptedItems property for more information on how transferring works.</summary>
         [JsonPropertyName("hasTransferDestination")]
@@ -717,7 +717,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
     {
         /// <summary>A collection of hashes of set items, for items such as Quest Metadata items that possess this data.</summary>
         [JsonPropertyName("itemList")]
-        public IEnumerable<DestinyItemSetBlockEntryDefinition> ItemList { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyItemSetBlockEntryDefinition> ItemList { get; set; }
 
         /// <summary>If true, items in the set can only be added in increasing order, and adding an item will remove any previous item. For Quests, this is by necessity true. Only one quest step is present at a time, and previous steps are removed as you advance in the quest.</summary>
         [JsonPropertyName("requireOrderedSetItemAdd")]
@@ -784,7 +784,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
         /// These stats are keyed by the DestinyStatDefinition's hash identifier for the stat that's found on the item.
         /// </summary>
         [JsonPropertyName("stats")]
-        public Dictionary<uint, DestinyInventoryItemStatDefinition> Stats { get; set; }
+        public Dictionary<uint, Destiny.Definitions.DestinyInventoryItemStatDefinition> Stats { get; set; }
 
         /// <summary>A quick and lazy way to determine whether any stat other than the "primary" stat is actually visible on the item. Items often have stats that we return in case people find them useful, but they're not part of the "Stat Group" and thus we wouldn't display them in our UI. If this is False, then we're not going to display any of these stats other than the primary one.</summary>
         [JsonPropertyName("hasDisplayableStats")]
@@ -851,11 +851,11 @@ namespace BungieSharper.Entities.Destiny.Definitions
     public class DestinyStatDefinition
     {
         [JsonPropertyName("displayProperties")]
-        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         /// <summary>Stats can exist on a character or an item, and they may potentially be aggregated in different ways. The DestinyStatAggregationType enum value indicates the way that this stat is being aggregated.</summary>
         [JsonPropertyName("aggregationType")]
-        public DestinyStatAggregationType AggregationType { get; set; }
+        public Destiny.DestinyStatAggregationType AggregationType { get; set; }
 
         /// <summary>
         /// True if the stat is computed rather than being delivered as a raw value on items.
@@ -866,7 +866,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>The category of the stat, according to the game.</summary>
         [JsonPropertyName("statCategory")]
-        public DestinyStatCategory StatCategory { get; set; }
+        public Destiny.DestinyStatCategory StatCategory { get; set; }
 
         /// <summary>
         /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
@@ -907,14 +907,14 @@ namespace BungieSharper.Entities.Destiny.Definitions
         /// In retrospect, I wouldn't mind if this was a dictionary keyed by the stat hash instead. But I'm going to leave it be because [[After Apple Picking]].
         /// </summary>
         [JsonPropertyName("scaledStats")]
-        public IEnumerable<DestinyStatDisplayDefinition> ScaledStats { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyStatDisplayDefinition> ScaledStats { get; set; }
 
         /// <summary>
         /// The game has the ability to override, based on the stat group, what the localized text is that is displayed for Stats being shown on the item.
         /// Mercifully, no Stat Groups use this feature currently. If they start using them, we'll all need to start using them (and those of you who are more prudent than I am can go ahead and start pre-checking for this.)
         /// </summary>
         [JsonPropertyName("overrides")]
-        public Dictionary<uint, DestinyStatOverrideDefinition> Overrides { get; set; }
+        public Dictionary<uint, Destiny.Definitions.DestinyStatOverrideDefinition> Overrides { get; set; }
 
         /// <summary>
         /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
@@ -975,7 +975,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>The display properties to show instead of the base DestinyStatDefinition display properties.</summary>
         [JsonPropertyName("displayProperties")]
-        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
     }
 
     /// <summary>
@@ -1007,11 +1007,11 @@ namespace BungieSharper.Entities.Destiny.Definitions
         /// For now, this can only be "equip on acquire", which would mean that the item will be automatically equipped as soon as you pick it up.
         /// </summary>
         [JsonPropertyName("attributes")]
-        public EquippingItemBlockAttributes Attributes { get; set; }
+        public Destiny.EquippingItemBlockAttributes Attributes { get; set; }
 
         /// <summary>Ammo type used by a weapon is no longer determined by the bucket in which it is contained. If the item has an ammo type - i.e. if it is a weapon - this will be the type of ammunition expected.</summary>
         [JsonPropertyName("ammoType")]
-        public DestinyAmmunitionType AmmoType { get; set; }
+        public Destiny.DestinyAmmunitionType AmmoType { get; set; }
 
         /// <summary>These are strings that represent the possible Game/Account/Character state failure conditions that can occur when trying to equip the item. They match up one-to-one with requiredUnlockExpressions.</summary>
         [JsonPropertyName("displayStrings")]
@@ -1026,7 +1026,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
     public class DestinyEquipmentSlotDefinition
     {
         [JsonPropertyName("displayProperties")]
-        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         /// <summary>These technically point to "Equipment Category Definitions". But don't get excited. There's nothing of significant value in those definitions, so I didn't bother to expose them. You can use the hash here to group equipment slots by common functionality, which serves the same purpose as if we had the Equipment Category definitions exposed.</summary>
         [JsonPropertyName("equipmentCategoryHash")]
@@ -1042,7 +1042,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>The Art Dye Channels that apply to this equipment slot.</summary>
         [JsonPropertyName("artDyeChannels")]
-        public IEnumerable<DestinyArtDyeReference> ArtDyeChannels { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyArtDyeReference> ArtDyeChannels { get; set; }
 
         /// <summary>
         /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
@@ -1078,16 +1078,16 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public uint WeaponPatternHash { get; set; }
 
         [JsonPropertyName("defaultDyes")]
-        public IEnumerable<DyeReference> DefaultDyes { get; set; }
+        public IEnumerable<Destiny.DyeReference> DefaultDyes { get; set; }
 
         [JsonPropertyName("lockedDyes")]
-        public IEnumerable<DyeReference> LockedDyes { get; set; }
+        public IEnumerable<Destiny.DyeReference> LockedDyes { get; set; }
 
         [JsonPropertyName("customDyes")]
-        public IEnumerable<DyeReference> CustomDyes { get; set; }
+        public IEnumerable<Destiny.DyeReference> CustomDyes { get; set; }
 
         [JsonPropertyName("arrangements")]
-        public IEnumerable<DestinyGearArtArrangementReference> Arrangements { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyGearArtArrangementReference> Arrangements { get; set; }
 
         [JsonPropertyName("hasGeometry")]
         public bool HasGeometry { get; set; }
@@ -1126,7 +1126,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>This is a list of the items being previewed, categorized in the same way as they are in the preview UI.</summary>
         [JsonPropertyName("derivedItemCategories")]
-        public IEnumerable<Items.DestinyDerivedItemCategoryDefinition> DerivedItemCategories { get; set; }
+        public IEnumerable<Destiny.Definitions.Items.DestinyDerivedItemCategoryDefinition> DerivedItemCategories { get; set; }
     }
 
     /// <summary>
@@ -1143,11 +1143,11 @@ namespace BungieSharper.Entities.Destiny.Definitions
     public class DestinyVendorDefinition
     {
         [JsonPropertyName("displayProperties")]
-        public DestinyVendorDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Destiny.Definitions.DestinyVendorDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         /// <summary>The type of reward progression that this vendor has. Default - The original rank progression from token redemption. Ritual - Progression from ranks in ritual content. For example: Crucible (Shaxx), Gambit (Drifter), and Battlegrounds (War Table).</summary>
         [JsonPropertyName("vendorProgressionType")]
-        public DestinyVendorProgressionType VendorProgressionType { get; set; }
+        public Destiny.DestinyVendorProgressionType VendorProgressionType { get; set; }
 
         /// <summary>If the vendor has a custom localized string describing the "buy" action, that is returned here.</summary>
         [JsonPropertyName("buyString")]
@@ -1231,7 +1231,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>Describes "actions" that can be performed on a vendor. Currently, none of these exist. But theoretically a Vendor could let you interact with it by performing actions. We'll see what these end up looking like if they ever get used.</summary>
         [JsonPropertyName("actions")]
-        public IEnumerable<DestinyVendorActionDefinition> Actions { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyVendorActionDefinition> Actions { get; set; }
 
         /// <summary>
         /// These are the headers for sections of items that the vendor is selling. When you see items organized by category in the header, it is these categories that it is showing.
@@ -1239,41 +1239,41 @@ namespace BungieSharper.Entities.Destiny.Definitions
         /// These are the categories post-concatenation, if the vendor had concatenation applied. If you want the pre-aggregated category data, use originalCategories.
         /// </summary>
         [JsonPropertyName("categories")]
-        public IEnumerable<DestinyVendorCategoryEntryDefinition> Categories { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyVendorCategoryEntryDefinition> Categories { get; set; }
 
         /// <summary>See the categories property for a description of categories and why originalCategories exists.</summary>
         [JsonPropertyName("originalCategories")]
-        public IEnumerable<DestinyVendorCategoryEntryDefinition> OriginalCategories { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyVendorCategoryEntryDefinition> OriginalCategories { get; set; }
 
         /// <summary>
         /// Display Categories are different from "categories" in that these are specifically for visual grouping and display of categories in Vendor UI.
         /// The "categories" structure is for validation of the contained items, and can be categorized entirely separately from "Display Categories", there need be and often will be no meaningful relationship between the two.
         /// </summary>
         [JsonPropertyName("displayCategories")]
-        public IEnumerable<DestinyDisplayCategoryDefinition> DisplayCategories { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyDisplayCategoryDefinition> DisplayCategories { get; set; }
 
         /// <summary>In addition to selling items, vendors can have "interactions": UI where you "talk" with the vendor and they offer you a reward, some item, or merely acknowledge via dialog that you did something cool.</summary>
         [JsonPropertyName("interactions")]
-        public IEnumerable<DestinyVendorInteractionDefinition> Interactions { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyVendorInteractionDefinition> Interactions { get; set; }
 
         /// <summary>If the vendor shows you items from your own inventory - such as the Vault vendor does - this data describes the UI around showing those inventory buckets and which ones get shown.</summary>
         [JsonPropertyName("inventoryFlyouts")]
-        public IEnumerable<DestinyVendorInventoryFlyoutDefinition> InventoryFlyouts { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyVendorInventoryFlyoutDefinition> InventoryFlyouts { get; set; }
 
         /// <summary>
         /// If the vendor sells items (or merely has a list of items to show like the "Sack" vendors do), this is the list of those items that the vendor can sell. From this list, only a subset will be available from the vendor at any given time, selected randomly and reset on the vendor's refresh interval.
         /// Note that a vendor can sell the same item multiple ways: for instance, nothing stops a vendor from selling you some specific weapon but using two different currencies, or the same weapon at multiple "item levels".
         /// </summary>
         [JsonPropertyName("itemList")]
-        public IEnumerable<DestinyVendorItemDefinition> ItemList { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyVendorItemDefinition> ItemList { get; set; }
 
         /// <summary>BNet doesn't use this data yet, but it appears to be an optional list of flavor text about services that the Vendor can provide.</summary>
         [JsonPropertyName("services")]
-        public IEnumerable<DestinyVendorServiceDefinition> Services { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyVendorServiceDefinition> Services { get; set; }
 
         /// <summary>If the Vendor is actually a vehicle for the transferring of items (like the Vault and Postmaster vendors), this defines the list of source->destination buckets for transferring.</summary>
         [JsonPropertyName("acceptedItems")]
-        public IEnumerable<DestinyVendorAcceptedItemDefinition> AcceptedItems { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyVendorAcceptedItemDefinition> AcceptedItems { get; set; }
 
         /// <summary>As many of you know, Vendor data has historically been pretty brutal on the BNet servers. In an effort to reduce this workload, only Vendors with this flag set will be returned on Vendor requests. This allows us to filter out Vendors that don't dynamic data that's particularly useful: things like "Preview/Sack" vendors, for example, that you can usually suss out the details for using just the definitions themselves.</summary>
         [JsonPropertyName("returnWithVendorRequest")]
@@ -1281,11 +1281,11 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>A vendor can be at different places in the world depending on the game/character/account state. This is the list of possible locations for the vendor, along with conditions we use to determine which one is currently active.</summary>
         [JsonPropertyName("locations")]
-        public IEnumerable<Vendors.DestinyVendorLocationDefinition> Locations { get; set; }
+        public IEnumerable<Destiny.Definitions.Vendors.DestinyVendorLocationDefinition> Locations { get; set; }
 
         /// <summary>A vendor can be a part of 0 or 1 "groups" at a time: a group being a collection of Vendors related by either location or function/purpose. It's used for our our Companion Vendor UI. Only one of these can be active for a Vendor at a time.</summary>
         [JsonPropertyName("groups")]
-        public IEnumerable<DestinyVendorGroupReference> Groups { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyVendorGroupReference> Groups { get; set; }
 
         /// <summary>Some items don't make sense to return in the API, for example because they represent an action to be performed rather than an item being sold. I'd rather we not do this, but at least in the short term this is a workable workaround.</summary>
         [JsonPropertyName("ignoreSaleItemHashes")]
@@ -1322,7 +1322,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>Vendors, in addition to expected display property data, may also show some "common requirements" as statically defined definition data. This might be when a vendor accepts a single type of currency, or when the currency is unique to the vendor and the designers wanted to show that currency when you interact with the vendor.</summary>
         [JsonPropertyName("requirementsDisplay")]
-        public IEnumerable<DestinyVendorRequirementDisplayEntryDefinition> RequirementsDisplay { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyVendorRequirementDisplayEntryDefinition> RequirementsDisplay { get; set; }
 
         /// <summary>This is the icon used in parts of the game UI such as the vendor's waypoint.</summary>
         [JsonPropertyName("smallTransparentIcon")]
@@ -1351,7 +1351,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public string Icon { get; set; }
 
         [JsonPropertyName("iconSequences")]
-        public IEnumerable<Common.DestinyIconSequenceDefinition> IconSequences { get; set; }
+        public IEnumerable<Destiny.Definitions.Common.DestinyIconSequenceDefinition> IconSequences { get; set; }
 
         /// <summary>If this item has a high-res icon (at least for now, many things won't), then the path to that icon will be here.</summary>
         [JsonPropertyName("highResIcon")]
@@ -1459,7 +1459,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>If this category has an overlay prompt that should appear, this contains the details of that prompt.</summary>
         [JsonPropertyName("overlay")]
-        public DestinyVendorCategoryOverlayDefinition Overlay { get; set; }
+        public Destiny.Definitions.DestinyVendorCategoryOverlayDefinition Overlay { get; set; }
 
         /// <summary>A shortcut for the vendor item indexes sold under this category. Saves us from some expensive reorganization at runtime.</summary>
         [JsonPropertyName("vendorItemIndexes")]
@@ -1518,7 +1518,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public uint DisplayCategoryHash { get; set; }
 
         [JsonPropertyName("displayProperties")]
-        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         /// <summary>If true, this category should be displayed in the "Banner" section of the vendor's UI.</summary>
         [JsonPropertyName("displayInBanner")]
@@ -1533,7 +1533,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>If this category sorts items in a nonstandard way, this will be the way we sort.</summary>
         [JsonPropertyName("sortOrder")]
-        public VendorDisplayCategorySortOrder SortOrder { get; set; }
+        public Destiny.VendorDisplayCategorySortOrder SortOrder { get; set; }
 
         /// <summary>An indicator of how the category will be displayed in the UI. It's up to you to do something cool or interesting in response to this, or just to treat it as a normal category.</summary>
         [JsonPropertyName("displayStyleHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
@@ -1555,7 +1555,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>The potential replies that the user can make to the interaction.</summary>
         [JsonPropertyName("replies")]
-        public IEnumerable<DestinyVendorInteractionReplyDefinition> Replies { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyVendorInteractionReplyDefinition> Replies { get; set; }
 
         /// <summary>If >= 0, this is the category of sale items to show along with this interaction dialog.</summary>
         [JsonPropertyName("vendorCategoryIndex")]
@@ -1567,7 +1567,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>If this interaction is meant to show you sacks, this is the list of types of sacks to be shown. If empty, the interaction is not meant to show sacks.</summary>
         [JsonPropertyName("sackInteractionList")]
-        public IEnumerable<DestinyVendorInteractionSackEntryDefinition> SackInteractionList { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyVendorInteractionSackEntryDefinition> SackInteractionList { get; set; }
 
         /// <summary>A UI hint for the behavior of the interaction screen. This is useful to determine what type of interaction is occurring, such as a prompt to receive a rank up reward or a prompt to choose a reward for completing a quest. The hash isn't as useful as the Enum in retrospect, well what can you do. Try using interactionType instead.</summary>
         [JsonPropertyName("uiInteractionType")]
@@ -1575,7 +1575,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>The enumerated version of the possible UI hints for vendor interactions, which is a little easier to grok than the hash found in uiInteractionType.</summary>
         [JsonPropertyName("interactionType")]
-        public VendorInteractionType InteractionType { get; set; }
+        public Destiny.VendorInteractionType InteractionType { get; set; }
 
         /// <summary>If this interaction is displaying rewards, this is the text to use for the header of the reward-displaying section of the interaction.</summary>
         [JsonPropertyName("rewardBlockLabel")]
@@ -1595,7 +1595,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>The header for the interaction dialog.</summary>
         [JsonPropertyName("headerDisplayProperties")]
-        public Common.DestinyDisplayPropertiesDefinition HeaderDisplayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition HeaderDisplayProperties { get; set; }
 
         /// <summary>The localized text telling the player what to do when they see this dialog.</summary>
         [JsonPropertyName("instructions")]
@@ -1610,7 +1610,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
     {
         /// <summary>The rewards granted upon responding to the vendor.</summary>
         [JsonPropertyName("itemRewardsSelection")]
-        public DestinyVendorInteractionRewardSelection ItemRewardsSelection { get; set; }
+        public Destiny.DestinyVendorInteractionRewardSelection ItemRewardsSelection { get; set; }
 
         /// <summary>The localized text for the reply.</summary>
         [JsonPropertyName("reply")]
@@ -1618,7 +1618,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>An enum indicating the type of reply being made.</summary>
         [JsonPropertyName("replyType")]
-        public DestinyVendorReplyType ReplyType { get; set; }
+        public Destiny.DestinyVendorReplyType ReplyType { get; set; }
     }
 
     /// <summary>
@@ -1641,11 +1641,11 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>The title and other common properties of the flyout.</summary>
         [JsonPropertyName("displayProperties")]
-        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         /// <summary>A list of inventory buckets and other metadata to show on the screen.</summary>
         [JsonPropertyName("buckets")]
-        public IEnumerable<DestinyVendorInventoryFlyoutBucketDefinition> Buckets { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyVendorInventoryFlyoutBucketDefinition> Buckets { get; set; }
 
         /// <summary>An identifier for the flyout, in case anything else needs to refer to them.</summary>
         [JsonPropertyName("flyoutId")]
@@ -1675,7 +1675,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>The methodology to use for sorting items from the flyout.</summary>
         [JsonPropertyName("sortItemsBy")]
-        public DestinyItemSortType SortItemsBy { get; set; }
+        public Destiny.DestinyItemSortType SortItemsBy { get; set; }
     }
 
     /// <summary>
@@ -1707,11 +1707,11 @@ namespace BungieSharper.Entities.Destiny.Definitions
         /// The somewhat crappy part about this is that, now that item quantity overrides have dynamic modifiers, this will not necessarily be statically true. If you were using this instead of live data, switch to using live data.
         /// </summary>
         [JsonPropertyName("currencies")]
-        public IEnumerable<DestinyVendorItemQuantity> Currencies { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyVendorItemQuantity> Currencies { get; set; }
 
         /// <summary>If this item can be refunded, this is the policy for what will be refundd, how, and in what time period.</summary>
         [JsonPropertyName("refundPolicy")]
-        public DestinyVendorItemRefundPolicy RefundPolicy { get; set; }
+        public Destiny.DestinyVendorItemRefundPolicy RefundPolicy { get; set; }
 
         /// <summary>The amount of time before refundability of the newly purchased item will expire.</summary>
         [JsonPropertyName("refundTimeLimit")]
@@ -1719,7 +1719,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>The Default level at which the item will spawn. Almost always driven by an adjusto these days. Ideally should be singular. It's a long story how this ended up as a list, but there is always either going to be 0:1 of these entities.</summary>
         [JsonPropertyName("creationLevels")]
-        public IEnumerable<DestinyItemCreationEntryLevelDefinition> CreationLevels { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyItemCreationEntryLevelDefinition> CreationLevels { get; set; }
 
         /// <summary>This is an index specifically into the display category, as opposed to the server-side Categories (which do not need to match or pair with each other in any way: server side categories are really just structures for common validation. Display Category will let us more easily categorize items visually)</summary>
         [JsonPropertyName("displayCategoryIndex")]
@@ -1743,7 +1743,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>The action to be performed when purchasing the item, if it's not just "buy".</summary>
         [JsonPropertyName("action")]
-        public DestinyVendorSaleItemActionBlockDefinition Action { get; set; }
+        public Destiny.Definitions.DestinyVendorSaleItemActionBlockDefinition Action { get; set; }
 
         /// <summary>The string identifier for the category selling this item.</summary>
         [JsonPropertyName("displayCategory")]
@@ -1758,14 +1758,14 @@ namespace BungieSharper.Entities.Destiny.Definitions
         /// This can be determined by Unlock gating, or by whether or not the item has purchase level requirements (minimumLevel and maximumLevel properties).
         /// </summary>
         [JsonPropertyName("visibilityScope")]
-        public DestinyGatingScope VisibilityScope { get; set; }
+        public Destiny.DestinyGatingScope VisibilityScope { get; set; }
 
         /// <summary>
         /// Similar to visibilityScope, it represents the most restrictive scope that determines whether the item can be purchased. It will at least be as restrictive as visibilityScope, but could be more restrictive if the item has additional purchase requirements beyond whether it is merely visible or not.
         /// See DestinyGatingScope's documentation for more information.
         /// </summary>
         [JsonPropertyName("purchasableScope")]
-        public DestinyGatingScope PurchasableScope { get; set; }
+        public Destiny.DestinyGatingScope PurchasableScope { get; set; }
 
         /// <summary>If this item can only be purchased by a given platform, this indicates the platform to which it is restricted.</summary>
         [JsonPropertyName("exclusivity")]
@@ -1792,7 +1792,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public IEnumerable<int> RedirectToSaleIndexes { get; set; }
 
         [JsonPropertyName("socketOverrides")]
-        public IEnumerable<DestinyVendorItemSocketOverride> SocketOverrides { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyVendorItemSocketOverride> SocketOverrides { get; set; }
 
         /// <summary>
         /// If true, this item is some sort of dummy sale item that cannot actually be purchased. It may be a display only item, or some fluff left by a content designer for testing purposes, or something that got disabled because it was a terrible idea. You get the picture. We won't know *why* it can't be purchased, only that it can't be. Sorry.
@@ -1899,7 +1899,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
     public class DestinyDestinationDefinition
     {
         [JsonPropertyName("displayProperties")]
-        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         /// <summary>The place that "owns" this Destination. Use this hash to look up the DestinyPlaceDefinition.</summary>
         [JsonPropertyName("placeHash")]
@@ -1911,7 +1911,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>If the Destination has default Activity Graphs (i.e. "Map") that should be shown in the director, this is the list of those Graphs. At most, only one should be active at any given time for a Destination: these would represent, for example, different variants on a Map if the Destination is changing on a macro level based on game state.</summary>
         [JsonPropertyName("activityGraphEntries")]
-        public IEnumerable<DestinyActivityGraphListEntryDefinition> ActivityGraphEntries { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyActivityGraphListEntryDefinition> ActivityGraphEntries { get; set; }
 
         /// <summary>
         /// A Destination may have many "Bubbles" zones with human readable properties.
@@ -1919,14 +1919,14 @@ namespace BungieSharper.Entities.Destiny.Definitions
         /// DEPRECATED - Just use bubbles, it now has this data.
         /// </summary>
         [JsonPropertyName("bubbleSettings")]
-        public IEnumerable<DestinyDestinationBubbleSettingDefinition> BubbleSettings { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyDestinationBubbleSettingDefinition> BubbleSettings { get; set; }
 
         /// <summary>
         /// This provides the unique identifiers for every bubble in the destination (only guaranteed unique within the destination), and any intrinsic properties of the bubble.
         /// bubbleSettings and bubbles both have the identical number of entries, and you should match up their indexes to provide matching bubble and bubbleSettings data.
         /// </summary>
         [JsonPropertyName("bubbles")]
-        public IEnumerable<DestinyBubbleDefinition> Bubbles { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyBubbleDefinition> Bubbles { get; set; }
 
         /// <summary>
         /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
@@ -1967,15 +1967,15 @@ namespace BungieSharper.Entities.Destiny.Definitions
     {
         /// <summary>The title, subtitle, and icon for the activity. We do a little post-processing on this to try and account for Activities where the designers have left this data too minimal to determine what activity is actually being played.</summary>
         [JsonPropertyName("displayProperties")]
-        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         /// <summary>The unadulterated form of the display properties, as they ought to be shown in the Director (if the activity appears in the director).</summary>
         [JsonPropertyName("originalDisplayProperties")]
-        public Common.DestinyDisplayPropertiesDefinition OriginalDisplayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition OriginalDisplayProperties { get; set; }
 
         /// <summary>The title, subtitle, and icon for the activity as determined by Selection Screen data, if there is any for this activity. There won't be data in this field if the activity is never shown in a selection/options screen.</summary>
         [JsonPropertyName("selectionScreenDisplayProperties")]
-        public Common.DestinyDisplayPropertiesDefinition SelectionScreenDisplayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition SelectionScreenDisplayProperties { get; set; }
 
         /// <summary>If the activity has an icon associated with a specific release (such as a DLC), this is the path to that release's icon.</summary>
         [JsonPropertyName("releaseIcon")]
@@ -2011,11 +2011,11 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>The expected possible rewards for the activity. These rewards may or may not be accessible for an individual player based on their character state, the account state, and even the game's state overall. But it is a useful reference for possible rewards you can earn in the activity. These match up to rewards displayed when you hover over the Activity in the in-game Director, and often refer to Placeholder or "Dummy" items: items that tell you what you can earn in vague terms rather than what you'll specifically be earning (partly because the game doesn't even know what you'll earn specifically until you roll for it at the end)</summary>
         [JsonPropertyName("rewards")]
-        public IEnumerable<DestinyActivityRewardDefinition> Rewards { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyActivityRewardDefinition> Rewards { get; set; }
 
         /// <summary>Activities can have Modifiers, as defined in DestinyActivityModifierDefinition. These are references to the modifiers that *can* be applied to that activity, along with data that we use to determine if that modifier is actually active at any given point in time.</summary>
         [JsonPropertyName("modifiers")]
-        public IEnumerable<DestinyActivityModifierReferenceDefinition> Modifiers { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyActivityModifierReferenceDefinition> Modifiers { get; set; }
 
         /// <summary>If True, this Activity is actually a Playlist that refers to multiple possible specific Activities and Activity Modes. For instance, a Crucible Playlist may have references to multiple Activities (Maps) with multiple Activity Modes (specific PvP gameplay modes). If this is true, refer to the playlistItems property for the specific entries in the playlist.</summary>
         [JsonPropertyName("isPlaylist")]
@@ -2023,27 +2023,27 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>An activity can have many Challenges, of which any subset of them may be active for play at any given period of time. This gives the information about the challenges and data that we use to understand when they're active and what rewards they provide. Sadly, at the moment there's no central definition for challenges: much like "Skulls" were in Destiny 1, these are defined on individual activities and there can be many duplicates/near duplicates across the Destiny 2 ecosystem. I have it in mind to centralize these in a future revision of the API, but we are out of time.</summary>
         [JsonPropertyName("challenges")]
-        public IEnumerable<DestinyActivityChallengeDefinition> Challenges { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyActivityChallengeDefinition> Challenges { get; set; }
 
         /// <summary>If there are status strings related to the activity and based on internal state of the game, account, or character, then this will be the definition of those strings and the states needed in order for the strings to be shown.</summary>
         [JsonPropertyName("optionalUnlockStrings")]
-        public IEnumerable<DestinyActivityUnlockStringDefinition> OptionalUnlockStrings { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyActivityUnlockStringDefinition> OptionalUnlockStrings { get; set; }
 
         /// <summary>Represents all of the possible activities that could be played in the Playlist, along with information that we can use to determine if they are active at the present time.</summary>
         [JsonPropertyName("playlistItems")]
-        public IEnumerable<DestinyActivityPlaylistItemDefinition> PlaylistItems { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyActivityPlaylistItemDefinition> PlaylistItems { get; set; }
 
         /// <summary>Unfortunately, in practice this is almost never populated. In theory, this is supposed to tell which Activity Graph to show if you bring up the director while in this activity.</summary>
         [JsonPropertyName("activityGraphList")]
-        public IEnumerable<DestinyActivityGraphListEntryDefinition> ActivityGraphList { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyActivityGraphListEntryDefinition> ActivityGraphList { get; set; }
 
         /// <summary>This block of data provides information about the Activity's matchmaking attributes: how many people can join and such.</summary>
         [JsonPropertyName("matchmaking")]
-        public DestinyActivityMatchmakingBlockDefinition Matchmaking { get; set; }
+        public Destiny.Definitions.DestinyActivityMatchmakingBlockDefinition Matchmaking { get; set; }
 
         /// <summary>This block of data, if it exists, provides information about the guided game experience and restrictions for this activity. If it doesn't exist, the game is not able to be played as a guided game.</summary>
         [JsonPropertyName("guidedGame")]
-        public DestinyActivityGuidedBlockDefinition GuidedGame { get; set; }
+        public Destiny.Definitions.DestinyActivityGuidedBlockDefinition GuidedGame { get; set; }
 
         /// <summary>If this activity had an activity mode directly defined on it, this will be the hash of that mode.</summary>
         [JsonPropertyName("directActivityModeHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
@@ -2055,7 +2055,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>The set of all possible loadout requirements that could be active for this activity. Only one will be active at any given time, and you can discover which one through activity-associated data such as Milestones that have activity info on them.</summary>
         [JsonPropertyName("loadouts")]
-        public IEnumerable<DestinyActivityLoadoutRequirementSet> Loadouts { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyActivityLoadoutRequirementSet> Loadouts { get; set; }
 
         /// <summary>The hash identifiers for Activity Modes relevant to this activity.  Note that if this is a playlist, the specific playlist entry chosen will determine the actual activity modes that end up being relevant.</summary>
         [JsonPropertyName("activityModeHashes")]
@@ -2063,7 +2063,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>The activity modes - if any - in enum form. Because we can't seem to escape the enums.</summary>
         [JsonPropertyName("activityModeTypes")]
-        public IEnumerable<HistoricalStats.Definitions.DestinyActivityModeType> ActivityModeTypes { get; set; }
+        public IEnumerable<Destiny.HistoricalStats.Definitions.DestinyActivityModeType> ActivityModeTypes { get; set; }
 
         /// <summary>If true, this activity is a PVP activity or playlist.</summary>
         [JsonPropertyName("isPvP")]
@@ -2071,11 +2071,11 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>The list of phases or points of entry into an activity, along with information we can use to determine their gating and availability.</summary>
         [JsonPropertyName("insertionPoints")]
-        public IEnumerable<DestinyActivityInsertionPointDefinition> InsertionPoints { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyActivityInsertionPointDefinition> InsertionPoints { get; set; }
 
         /// <summary>A list of location mappings that are affected by this activity. Pulled out of DestinyLocationDefinitions for our/your lookup convenience.</summary>
         [JsonPropertyName("activityLocationMappings")]
-        public IEnumerable<Constants.DestinyEnvironmentLocationMapping> ActivityLocationMappings { get; set; }
+        public IEnumerable<Destiny.Constants.DestinyEnvironmentLocationMapping> ActivityLocationMappings { get; set; }
 
         /// <summary>
         /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
@@ -2107,7 +2107,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
         /// Interesting trivia: you actually *do* earn these items when you complete the activity. They go into a single-slot bucket on your profile, which is how you see the pop-ups of these rewards when you complete an activity that match these "dummy" items. You can even see them if you look at the last one you earned in your profile-level inventory through the BNet API! Who said reading documentation is a waste of time?
         /// </summary>
         [JsonPropertyName("rewardItems")]
-        public IEnumerable<DestinyItemQuantity> RewardItems { get; set; }
+        public IEnumerable<Destiny.DestinyItemQuantity> RewardItems { get; set; }
     }
 
     /// <summary>
@@ -2135,7 +2135,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
         /// If the quantity is 0, don't show the quantity.
         /// </summary>
         [JsonPropertyName("dummyRewards")]
-        public IEnumerable<DestinyItemQuantity> DummyRewards { get; set; }
+        public IEnumerable<Destiny.DestinyItemQuantity> DummyRewards { get; set; }
     }
 
     /// <summary>
@@ -2151,7 +2151,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
     {
         /// <summary>Ideally, this should tell you what your task is. I'm not going to lie to you though. Sometimes this doesn't have useful information at all. Which sucks, but there's nothing either of us can do about it.</summary>
         [JsonPropertyName("displayProperties")]
-        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         /// <summary>The value that the unlock value defined in unlockValueHash must reach in order for the objective to be considered Completed. Used in calculating progress and completion status.</summary>
         [JsonPropertyName("completionValue")]
@@ -2159,7 +2159,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>A shortcut for determining the most restrictive gating that this Objective is set to use. This includes both the dynamic determination of progress and of completion values. See the DestinyGatingScope enum's documentation for more details.</summary>
         [JsonPropertyName("scope")]
-        public DestinyGatingScope Scope { get; set; }
+        public Destiny.DestinyGatingScope Scope { get; set; }
 
         /// <summary>OPTIONAL: a hash identifier for the location at which this objective must be accomplished, if there is a location defined. Look up the DestinyLocationDefinition for this hash for that additional location info.</summary>
         [JsonPropertyName("locationHash")]
@@ -2185,7 +2185,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>The UI style applied to the objective. It's an enum, take a look at DestinyUnlockValueUIStyle for details of the possible styles. Use this info as you wish to customize your UI.</summary>
         [JsonPropertyName("valueStyle")]
-        public DestinyUnlockValueUIStyle ValueStyle { get; set; }
+        public Destiny.DestinyUnlockValueUIStyle ValueStyle { get; set; }
 
         /// <summary>Text to describe the progress bar.</summary>
         [JsonPropertyName("progressDescription")]
@@ -2193,11 +2193,11 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>If this objective enables Perks intrinsically, the conditions for that enabling are defined here.</summary>
         [JsonPropertyName("perks")]
-        public DestinyObjectivePerkEntryDefinition Perks { get; set; }
+        public Destiny.Definitions.DestinyObjectivePerkEntryDefinition Perks { get; set; }
 
         /// <summary>If this objective enables modifications on a player's stats intrinsically, the conditions are defined here.</summary>
         [JsonPropertyName("stats")]
-        public DestinyObjectiveStatEntryDefinition Stats { get; set; }
+        public Destiny.Definitions.DestinyObjectiveStatEntryDefinition Stats { get; set; }
 
         /// <summary>If nonzero, this is the minimum value at which the objective's progression should be shown. Otherwise, don't show it yet.</summary>
         [JsonPropertyName("minimumVisibilityThreshold")]
@@ -2213,11 +2213,11 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>The style to use when the objective is completed.</summary>
         [JsonPropertyName("completedValueStyle")]
-        public DestinyUnlockValueUIStyle CompletedValueStyle { get; set; }
+        public Destiny.DestinyUnlockValueUIStyle CompletedValueStyle { get; set; }
 
         /// <summary>The style to use when the objective is still in progress.</summary>
         [JsonPropertyName("inProgressValueStyle")]
-        public DestinyUnlockValueUIStyle InProgressValueStyle { get; set; }
+        public Destiny.DestinyUnlockValueUIStyle InProgressValueStyle { get; set; }
 
         /// <summary>
         /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
@@ -2247,7 +2247,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>An enumeration indicating whether it will be applied as long as the Objective is active, when it's completed, or until it's completed.</summary>
         [JsonPropertyName("style")]
-        public DestinyObjectiveGrantStyle Style { get; set; }
+        public Destiny.DestinyObjectiveGrantStyle Style { get; set; }
     }
 
     /// <summary>
@@ -2262,7 +2262,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
     {
         /// <summary>These display properties are by no means guaranteed to be populated. Usually when it is, it's only because we back-filled them with the displayProperties of some Talent Node or Plug item that happened to be uniquely providing that perk.</summary>
         [JsonPropertyName("displayProperties")]
-        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         /// <summary>The string identifier for the perk.</summary>
         [JsonPropertyName("perkIdentifier")]
@@ -2277,7 +2277,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
         /// Unless you have a compelling reason to use this enum value, use the damageTypeHash instead to look up the actual DestinyDamageTypeDefinition.
         /// </summary>
         [JsonPropertyName("damageType")]
-        public DamageType DamageType { get; set; }
+        public Destiny.DamageType DamageType { get; set; }
 
         /// <summary>
         /// The hash identifier for looking up the DestinyDamageTypeDefinition, if this perk has a damage type.
@@ -2291,7 +2291,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
         /// It is as yet unpopulated, and there will be quite a bit of work needed to restore it to its former working order.
         /// </summary>
         [JsonPropertyName("perkGroups")]
-        public DestinyTalentNodeStepGroups PerkGroups { get; set; }
+        public Destiny.Definitions.DestinyTalentNodeStepGroups PerkGroups { get; set; }
 
         /// <summary>
         /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
@@ -2315,23 +2315,23 @@ namespace BungieSharper.Entities.Destiny.Definitions
     public class DestinyTalentNodeStepGroups
     {
         [JsonPropertyName("weaponPerformance")]
-        public DestinyTalentNodeStepWeaponPerformances WeaponPerformance { get; set; }
+        public Destiny.Definitions.DestinyTalentNodeStepWeaponPerformances WeaponPerformance { get; set; }
 
         [JsonPropertyName("impactEffects")]
-        public DestinyTalentNodeStepImpactEffects ImpactEffects { get; set; }
+        public Destiny.Definitions.DestinyTalentNodeStepImpactEffects ImpactEffects { get; set; }
 
         [JsonPropertyName("guardianAttributes")]
-        public DestinyTalentNodeStepGuardianAttributes GuardianAttributes { get; set; }
+        public Destiny.Definitions.DestinyTalentNodeStepGuardianAttributes GuardianAttributes { get; set; }
 
         [JsonPropertyName("lightAbilities")]
-        public DestinyTalentNodeStepLightAbilities LightAbilities { get; set; }
+        public Destiny.Definitions.DestinyTalentNodeStepLightAbilities LightAbilities { get; set; }
 
         [JsonPropertyName("damageTypes")]
-        public DestinyTalentNodeStepDamageTypes DamageTypes { get; set; }
+        public Destiny.Definitions.DestinyTalentNodeStepDamageTypes DamageTypes { get; set; }
     }
 
     [Flags]
-    public enum DestinyTalentNodeStepWeaponPerformances
+    public enum DestinyTalentNodeStepWeaponPerformances : int
     {
         None = 0,
         RateOfFire = 1,
@@ -2351,7 +2351,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
     }
 
     [Flags]
-    public enum DestinyTalentNodeStepImpactEffects
+    public enum DestinyTalentNodeStepImpactEffects : int
     {
         None = 0,
         ArmorPiercing = 1,
@@ -2364,7 +2364,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
     }
 
     [Flags]
-    public enum DestinyTalentNodeStepGuardianAttributes
+    public enum DestinyTalentNodeStepGuardianAttributes : int
     {
         None = 0,
         Stats = 1,
@@ -2379,7 +2379,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
     }
 
     [Flags]
-    public enum DestinyTalentNodeStepLightAbilities
+    public enum DestinyTalentNodeStepLightAbilities : int
     {
         None = 0,
         Grenades = 1,
@@ -2392,7 +2392,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
     }
 
     [Flags]
-    public enum DestinyTalentNodeStepDamageTypes
+    public enum DestinyTalentNodeStepDamageTypes : int
     {
         None = 0,
         Kinetic = 1,
@@ -2409,11 +2409,11 @@ namespace BungieSharper.Entities.Destiny.Definitions
     {
         /// <summary>The stat being modified, and the value used.</summary>
         [JsonPropertyName("stat")]
-        public DestinyItemInvestmentStatDefinition Stat { get; set; }
+        public Destiny.Definitions.DestinyItemInvestmentStatDefinition Stat { get; set; }
 
         /// <summary>Whether it will be applied as long as the objective is active, when it's completed, or until it's completed.</summary>
         [JsonPropertyName("style")]
-        public DestinyObjectiveGrantStyle Style { get; set; }
+        public Destiny.DestinyObjectiveGrantStyle Style { get; set; }
     }
 
     /// <summary>
@@ -2447,7 +2447,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>A Location may refer to different specific spots in the world based on the world's current state. This is a list of those potential spots, and the data we can use at runtime to determine which one of the spots is the currently valid one.</summary>
         [JsonPropertyName("locationReleases")]
-        public IEnumerable<DestinyLocationReleaseDefinition> LocationReleases { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyLocationReleaseDefinition> LocationReleases { get; set; }
 
         /// <summary>
         /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
@@ -2472,7 +2472,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
     {
         /// <summary>Sadly, these don't appear to be populated anymore (ever?)</summary>
         [JsonPropertyName("displayProperties")]
-        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         [JsonPropertyName("smallTransparentIcon")]
         public string SmallTransparentIcon { get; set; }
@@ -2517,7 +2517,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>The type of Nav Point that this represents. See the enumeration for more info.</summary>
         [JsonPropertyName("navPointType")]
-        public DestinyActivityNavPointType NavPointType { get; set; }
+        public Destiny.DestinyActivityNavPointType NavPointType { get; set; }
 
         /// <summary>Looks like it should be the position on the map, but sadly it does not look populated... yet?</summary>
         [JsonPropertyName("worldPosition")]
@@ -2557,7 +2557,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>The activity modes - if any - in enum form. Because we can't seem to escape the enums.</summary>
         [JsonPropertyName("activityModeTypes")]
-        public IEnumerable<HistoricalStats.Definitions.DestinyActivityModeType> ActivityModeTypes { get; set; }
+        public IEnumerable<Destiny.HistoricalStats.Definitions.DestinyActivityModeType> ActivityModeTypes { get; set; }
     }
 
     /// <summary>
@@ -2567,7 +2567,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
     public class DestinyActivityModeDefinition
     {
         [JsonPropertyName("displayProperties")]
-        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         /// <summary>If this activity mode has a related PGCR image, this will be the path to said image.</summary>
         [JsonPropertyName("pgcrImage")]
@@ -2575,11 +2575,11 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>The Enumeration value for this Activity Mode. Pass this identifier into Stats endpoints to get aggregate stats for this mode.</summary>
         [JsonPropertyName("modeType")]
-        public HistoricalStats.Definitions.DestinyActivityModeType ModeType { get; set; }
+        public Destiny.HistoricalStats.Definitions.DestinyActivityModeType ModeType { get; set; }
 
         /// <summary>The type of play being performed in broad terms (PVP, PVE)</summary>
         [JsonPropertyName("activityModeCategory")]
-        public DestinyActivityModeCategory ActivityModeCategory { get; set; }
+        public Destiny.DestinyActivityModeCategory ActivityModeCategory { get; set; }
 
         /// <summary>
         /// If True, this mode has oppositional teams fighting against each other rather than "Free-For-All" or Co-operative modes of play.
@@ -2602,7 +2602,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>If this exists, the mode has specific Activities (referred to by the Key) that should instead map to other Activity Modes when they are played. This was useful in D1 for Private Matches, where we wanted to have Private Matches as an activity mode while still referring to the specific mode being played.</summary>
         [JsonPropertyName("activityModeMappings")]
-        public Dictionary<uint, HistoricalStats.Definitions.DestinyActivityModeType> ActivityModeMappings { get; set; }
+        public Dictionary<uint, Destiny.HistoricalStats.Definitions.DestinyActivityModeType> ActivityModeMappings { get; set; }
 
         /// <summary>If FALSE, we want to ignore this type when we're showing activity modes in BNet UI. It will still be returned in case 3rd parties want to use it for any purpose.</summary>
         [JsonPropertyName("display")]
@@ -2676,7 +2676,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
     {
         /// <summary>The set of requirements that will be applied on the activity if this requirement set is active.</summary>
         [JsonPropertyName("requirements")]
-        public IEnumerable<DestinyActivityLoadoutRequirement> Requirements { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyActivityLoadoutRequirement> Requirements { get; set; }
     }
 
     public class DestinyActivityLoadoutRequirement
@@ -2688,7 +2688,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public IEnumerable<uint> AllowedEquippedItemHashes { get; set; }
 
         [JsonPropertyName("allowedWeaponSubTypes")]
-        public IEnumerable<DestinyItemSubType> AllowedWeaponSubTypes { get; set; }
+        public IEnumerable<Destiny.DestinyItemSubType> AllowedWeaponSubTypes { get; set; }
     }
 
     /// <summary>
@@ -2709,7 +2709,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
     public class DestinyPlaceDefinition
     {
         [JsonPropertyName("displayProperties")]
-        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         /// <summary>
         /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
@@ -2737,7 +2737,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
     public class DestinyActivityTypeDefinition
     {
         [JsonPropertyName("displayProperties")]
-        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         /// <summary>
         /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
@@ -2763,7 +2763,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
     {
         /// <summary>A shortcut for determining the most restrictive gating that this expression performs. See the DestinyGatingScope enum's documentation for more details.</summary>
         [JsonPropertyName("scope")]
-        public DestinyGatingScope Scope { get; set; }
+        public Destiny.DestinyGatingScope Scope { get; set; }
     }
 
     /// <summary>
@@ -2773,7 +2773,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
     public class DestinyDestinationBubbleSettingDefinition
     {
         [JsonPropertyName("displayProperties")]
-        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
     }
 
     /// <summary>
@@ -2787,7 +2787,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>The display properties of this bubble, so you don't have to look them up in a separate list anymore.</summary>
         [JsonPropertyName("displayProperties")]
-        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
     }
 
     public class DestinyVendorGroupReference
@@ -2835,7 +2835,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
     public class DestinyFactionDefinition
     {
         [JsonPropertyName("displayProperties")]
-        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         /// <summary>The hash identifier for the DestinyProgressionDefinition that indicates the character's relationship with this faction in terms of experience and levels.</summary>
         [JsonPropertyName("progressionHash")]
@@ -2855,7 +2855,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>List of vendors that are associated with this faction. The last vendor that passes the unlock flag checks is the one that should be shown.</summary>
         [JsonPropertyName("vendors")]
-        public IEnumerable<DestinyFactionVendorDefinition> Vendors { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyFactionVendorDefinition> Vendors { get; set; }
 
         /// <summary>
         /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
@@ -2938,7 +2938,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>The list of versions available for this item.</summary>
         [JsonPropertyName("versions")]
-        public IEnumerable<DestinyItemVersionDefinition> Versions { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyItemVersionDefinition> Versions { get; set; }
 
         /// <summary>Icon overlays to denote the item version and power cap status.</summary>
         [JsonPropertyName("displayVersionWatermarkIcons")]
@@ -2964,7 +2964,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
     {
         /// <summary>References to the items that make up this item's "value", and the quantity.</summary>
         [JsonPropertyName("itemValue")]
-        public IEnumerable<DestinyItemQuantity> ItemValue { get; set; }
+        public IEnumerable<Destiny.DestinyItemQuantity> ItemValue { get; set; }
 
         /// <summary>If there's a localized text description of the value provided, this will be said description.</summary>
         [JsonPropertyName("valueDescription")]
@@ -2982,7 +2982,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>A collection of details about the stats that were computed for the ways we found that the item could be spawned.</summary>
         [JsonPropertyName("sources")]
-        public IEnumerable<Sources.DestinyItemSourceDefinition> Sources { get; set; }
+        public IEnumerable<Destiny.Definitions.Sources.DestinyItemSourceDefinition> Sources { get; set; }
 
         /// <summary>If we found that this item is exclusive to a specific platform, this will be set to the BungieMembershipType enumeration that matches that platform.</summary>
         [JsonPropertyName("exclusive")]
@@ -2990,7 +2990,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>A denormalized reference back to vendors that potentially sell this item.</summary>
         [JsonPropertyName("vendorSources")]
-        public IEnumerable<DestinyItemVendorSourceReference> VendorSources { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyItemVendorSourceReference> VendorSources { get; set; }
     }
 
     /// <summary>
@@ -3001,11 +3001,11 @@ namespace BungieSharper.Entities.Destiny.Definitions
     public class DestinyRewardSourceDefinition
     {
         [JsonPropertyName("displayProperties")]
-        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         /// <summary>Sources are grouped into categories: common ways that items are provided. I hope to see this expand in Destiny 2 once we have time to generate accurate reward source data.</summary>
         [JsonPropertyName("category")]
-        public DestinyRewardSourceCategory Category { get; set; }
+        public Destiny.Definitions.DestinyRewardSourceCategory Category { get; set; }
 
         /// <summary>
         /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
@@ -3026,7 +3026,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
     /// <summary>
     /// BNet's custom categorization of reward sources. We took a look at the existing ways that items could be spawned, and tried to make high-level categorizations of them. This needs to be re-evaluated for Destiny 2.
     /// </summary>
-    public enum DestinyRewardSourceCategory
+    public enum DestinyRewardSourceCategory : int
     {
         /// <summary>The source doesn't fit well into any of the other types.</summary>
         None = 0,
@@ -3100,7 +3100,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>One entry per Objective on the item, it will have related display information.</summary>
         [JsonPropertyName("perObjectiveDisplayProperties")]
-        public IEnumerable<DestinyObjectiveDisplayProperties> PerObjectiveDisplayProperties { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyObjectiveDisplayProperties> PerObjectiveDisplayProperties { get; set; }
 
         [JsonPropertyName("displayAsStatTracker")]
         public bool DisplayAsStatTracker { get; set; }
@@ -3135,7 +3135,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
     {
         /// <summary>The list of all materials that are required.</summary>
         [JsonPropertyName("materials")]
-        public IEnumerable<DestinyMaterialRequirement> Materials { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyMaterialRequirement> Materials { get; set; }
 
         /// <summary>
         /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
@@ -3203,10 +3203,10 @@ namespace BungieSharper.Entities.Destiny.Definitions
     {
         /// <summary>This is a quick reference enumeration for all of the currently defined Genders. We use the enumeration for quicker lookups in related data, like DestinyClassDefinition.genderedClassNames.</summary>
         [JsonPropertyName("genderType")]
-        public DestinyGender GenderType { get; set; }
+        public Destiny.DestinyGender GenderType { get; set; }
 
         [JsonPropertyName("displayProperties")]
-        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         /// <summary>
         /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
@@ -3272,15 +3272,15 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>Each non-intrinsic (or mutable) socket on an item is defined here. Check inside for more info.</summary>
         [JsonPropertyName("socketEntries")]
-        public IEnumerable<DestinyItemSocketEntryDefinition> SocketEntries { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyItemSocketEntryDefinition> SocketEntries { get; set; }
 
         /// <summary>Each intrinsic (or immutable/permanent) socket on an item is defined here, along with the plug that is permanently affixed to the socket.</summary>
         [JsonPropertyName("intrinsicSockets")]
-        public IEnumerable<DestinyItemIntrinsicSocketEntryDefinition> IntrinsicSockets { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyItemIntrinsicSocketEntryDefinition> IntrinsicSockets { get; set; }
 
         /// <summary>A convenience property, that refers to the sockets in the "sockets" property, pre-grouped by category and ordered in the manner that they should be grouped in the UI. You could form this yourself with the existing data, but why would you want to? Enjoy life man.</summary>
         [JsonPropertyName("socketCategories")]
-        public IEnumerable<DestinyItemSocketCategoryDefinition> SocketCategories { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyItemSocketCategoryDefinition> SocketCategories { get; set; }
     }
 
     /// <summary>
@@ -3301,7 +3301,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
         /// If this list is populated, you will not be allowed to plug an arbitrary item in the socket: you will only be able to choose from one of these reusable plugs.
         /// </summary>
         [JsonPropertyName("reusablePlugItems")]
-        public IEnumerable<DestinyItemSocketEntryPlugItemDefinition> ReusablePlugItems { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyItemSocketEntryPlugItemDefinition> ReusablePlugItems { get; set; }
 
         /// <summary>
         /// If this is true, then the socket will not be initialized with a plug if the item is purchased from a Vendor.
@@ -3316,7 +3316,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>Indicates where you should go to get plugs for this socket. This will affect how you populate your UI, as well as what plugs are valid for this socket. It's an alternative to having to check for the existence of certain properties (reusablePlugItems for example) to infer where plugs should come from.</summary>
         [JsonPropertyName("plugSources")]
-        public SocketPlugSources PlugSources { get; set; }
+        public Destiny.SocketPlugSources PlugSources { get; set; }
 
         /// <summary>
         /// If this socket's plugs come from a reusable DestinyPlugSetDefinition, this is the identifier for that set. We added this concept to reduce some major duplication that's going to come from sockets as replacements for what was once implemented as large sets of items and kiosks (like Emotes).
@@ -3420,7 +3420,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>If the talent grid implies a damage type, this is the enum value for that damage type.</summary>
         [JsonPropertyName("hudDamageType")]
-        public DamageType HudDamageType { get; set; }
+        public Destiny.DamageType HudDamageType { get; set; }
 
         /// <summary>If the talent grid has a special icon that's shown in the game UI (like builds, funny that), this is the identifier for that icon. Sadly, we don't actually get that icon right now. I'll be looking to replace this with a path to the actual icon itself.</summary>
         [JsonPropertyName("hudIcon")]
@@ -3451,7 +3451,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>The list of Talent Nodes on the Grid (recall that Nodes themselves are really just locations in the UI to show whatever their current Step is. You will only know the current step for a node by retrieving instanced data through platform calls to the API that return DestinyItemTalentGridComponent).</summary>
         [JsonPropertyName("nodes")]
-        public IEnumerable<DestinyTalentNodeDefinition> Nodes { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyTalentNodeDefinition> Nodes { get; set; }
 
         /// <summary>
         /// Talent Nodes can exist in "exclusive sets": these are sets of nodes in which only a single node in the set can be activated at any given time. Activating a node in this set will automatically deactivate the other nodes in the set (referred to as a "Swap").
@@ -3459,7 +3459,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
         /// Not to be confused with Exclusive Groups. (how the heck do we NOT get confused by that? Jeez) See the groups property for information about that only-tangentially-related concept.
         /// </summary>
         [JsonPropertyName("exclusiveSets")]
-        public IEnumerable<DestinyTalentNodeExclusiveSetDefinition> ExclusiveSets { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyTalentNodeExclusiveSetDefinition> ExclusiveSets { get; set; }
 
         /// <summary>This is a quick reference to the indexes of nodes that are not part of exclusive sets. Handy for knowing which talent nodes can only be activated directly, rather than via swapping.</summary>
         [JsonPropertyName("independentNodeIndexes")]
@@ -3470,14 +3470,14 @@ namespace BungieSharper.Entities.Destiny.Definitions
         /// Look at the definition of DestinyTalentExclusiveGroup for more information and how they work. These groups are keyed by the "groupHash" from DestinyTalentExclusiveGroup.
         /// </summary>
         [JsonPropertyName("groups")]
-        public Dictionary<uint, DestinyTalentExclusiveGroup> Groups { get; set; }
+        public Dictionary<uint, Destiny.Definitions.DestinyTalentExclusiveGroup> Groups { get; set; }
 
         /// <summary>
         /// BNet wants to show talent nodes grouped by similar purpose with localized titles. This is the ordered list of those categories: if you want to show nodes by category, you can iterate over this list, render the displayProperties for the category as the title, and then iterate over the talent nodes referenced by the category to show the related nodes.
         /// Note that this is different from Exclusive Groups or Sets, because these categories also incorporate "Independent" nodes that belong to neither sets nor groups. These are purely for visual grouping of nodes rather than functional grouping.
         /// </summary>
         [JsonPropertyName("nodeCategories")]
-        public IEnumerable<DestinyTalentNodeCategory> NodeCategories { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyTalentNodeCategory> NodeCategories { get; set; }
 
         /// <summary>
         /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
@@ -3555,7 +3555,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
         /// The system still exists to do this, as far as I know, so it may yet come back around!
         /// </summary>
         [JsonPropertyName("randomActivationRequirement")]
-        public DestinyNodeActivationRequirement RandomActivationRequirement { get; set; }
+        public Destiny.Definitions.DestinyNodeActivationRequirement RandomActivationRequirement { get; set; }
 
         /// <summary>If this is true, the node can be "re-rolled" to acquire a different random current step. This is not used, but still exists for a theoretical future of talent grids.</summary>
         [JsonPropertyName("isRandomRepurchasable")]
@@ -3566,7 +3566,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
         /// If you need to know a step as it truly exists - such as when recreating Node logic when processing Vendor data - you'll have to use the "realSteps" property below.
         /// </summary>
         [JsonPropertyName("steps")]
-        public IEnumerable<DestinyNodeStepDefinition> Steps { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyNodeStepDefinition> Steps { get; set; }
 
         /// <summary>
         /// The nodeHash values for nodes that are in an Exclusive Set with this node.
@@ -3635,7 +3635,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
     {
         /// <summary>These are the display properties actually used to render the Talent Node. The currently active step's displayProperties are shown.</summary>
         [JsonPropertyName("displayProperties")]
-        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         /// <summary>
         /// The index of this step in the list of Steps on the Talent Node.
@@ -3654,7 +3654,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>An enum representing a damage type granted by activating this step, if any.</summary>
         [JsonPropertyName("damageType")]
-        public DamageType DamageType { get; set; }
+        public Destiny.DamageType DamageType { get; set; }
 
         /// <summary>If the step provides a damage type, this will be the hash identifier used to look up the damage type's DestinyDamageTypeDefinition.</summary>
         [JsonPropertyName("damageTypeHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
@@ -3662,7 +3662,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>If the step has requirements for activation (they almost always do, if nothing else than for the Talent Grid's Progression to have reached a certain level), they will be defined here.</summary>
         [JsonPropertyName("activationRequirement")]
-        public DestinyNodeActivationRequirement ActivationRequirement { get; set; }
+        public Destiny.Definitions.DestinyNodeActivationRequirement ActivationRequirement { get; set; }
 
         /// <summary>
         /// There was a time when talent nodes could be activated multiple times, and the effects of subsequent Steps would be compounded on each other, essentially "upgrading" the node. We have moved away from this, but theoretically the capability still exists.
@@ -3703,7 +3703,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>In Destiny 1, the Armory's Perk Filtering was driven by a concept of TalentNodeStepGroups: categorizations of talent nodes based on their functionality. While the Armory isn't a BNet-facing thing for now, and the new Armory will need to account for Sockets rather than Talent Nodes, this categorization capability feels useful enough to still keep around.</summary>
         [JsonPropertyName("stepGroups")]
-        public DestinyTalentNodeStepGroups StepGroups { get; set; }
+        public Destiny.Definitions.DestinyTalentNodeStepGroups StepGroups { get; set; }
 
         /// <summary>If true, this step can affect the level of the item. See DestinyInventoryItemDefintion for more information about item levels and their effect on stats.</summary>
         [JsonPropertyName("affectsLevel")]
@@ -3711,7 +3711,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>If this step is activated, this will be a list of information used to replace socket items with new Plugs. See DestinyInventoryItemDefinition for more information about sockets and plugs.</summary>
         [JsonPropertyName("socketReplacements")]
-        public IEnumerable<DestinyNodeSocketReplaceResponse> SocketReplacements { get; set; }
+        public IEnumerable<Destiny.Definitions.DestinyNodeSocketReplaceResponse> SocketReplacements { get; set; }
     }
 
     /// <summary>
@@ -3735,7 +3735,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
     {
         /// <summary>The description of the damage type, icon etc...</summary>
         [JsonPropertyName("displayProperties")]
-        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         /// <summary>A variant of the icon that is transparent and colorless.</summary>
         [JsonPropertyName("transparentIconPath")]
@@ -3747,7 +3747,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>We have an enumeration for damage types for quick reference. This is the current definition's damage type enum value.</summary>
         [JsonPropertyName("enumValue")]
-        public DamageType EnumValue { get; set; }
+        public Destiny.DamageType EnumValue { get; set; }
 
         /// <summary>
         /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
@@ -3817,7 +3817,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>Will contain at least the "name", which will be the title of the category. We will likely not have description and an icon yet, but I'm going to keep my options open.</summary>
         [JsonPropertyName("displayProperties")]
-        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         /// <summary>The set of all hash identifiers for Talent Nodes (DestinyTalentNodeDefinition) in this Talent Grid that are part of this Category.</summary>
         [JsonPropertyName("nodeHashes")]
@@ -3839,7 +3839,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>Indicates whether this perk should be shown, or if it should be shown disabled.</summary>
         [JsonPropertyName("perkVisibility")]
-        public ItemPerkVisibility PerkVisibility { get; set; }
+        public Destiny.ItemPerkVisibility PerkVisibility { get; set; }
     }
 
     /// <summary>
@@ -3850,7 +3850,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
     public class DestinyItemCategoryDefinition
     {
         [JsonPropertyName("displayProperties")]
-        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         /// <summary>If True, this category should be visible in UI. Sometimes we make categories that we don't think are interesting externally. It's up to you if you want to skip on showing them.</summary>
         [JsonPropertyName("visible")]
@@ -3870,7 +3870,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>If the item in question has this category, it also should have this breaker type.</summary>
         [JsonPropertyName("grantDestinyBreakerType")]
-        public DestinyBreakerType GrantDestinyBreakerType { get; set; }
+        public Destiny.DestinyBreakerType GrantDestinyBreakerType { get; set; }
 
         /// <summary>If the item is a plug, this is the identifier we expect to find associated with it if it is in this category.</summary>
         [JsonPropertyName("plugCategoryIdentifier")]
@@ -3886,7 +3886,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>If an item belongs to this category, it will also receive this item type. This is now how DestinyItemType is populated for items: it used to be an even jankier process, but that's a story that requires more alcohol.</summary>
         [JsonPropertyName("grantDestinyItemType")]
-        public DestinyItemType GrantDestinyItemType { get; set; }
+        public Destiny.DestinyItemType GrantDestinyItemType { get; set; }
 
         /// <summary>
         /// If an item belongs to this category, it will also receive this subtype enum value.
@@ -3894,14 +3894,14 @@ namespace BungieSharper.Entities.Destiny.Definitions
         /// The last one processed wins, as is the case with all of these "grant" enums. Now you can see one reason why we moved away from these enums... but they're so convenient when they work, aren't they?
         /// </summary>
         [JsonPropertyName("grantDestinySubType")]
-        public DestinyItemSubType GrantDestinySubType { get; set; }
+        public Destiny.DestinyItemSubType GrantDestinySubType { get; set; }
 
         /// <summary>
         /// If an item belongs to this category, it will also get this class restriction enum value.
         /// See the other "grant"-prefixed properties on this definition for my color commentary.
         /// </summary>
         [JsonPropertyName("grantDestinyClass")]
-        public DestinyClass GrantDestinyClass { get; set; }
+        public Destiny.DestinyClass GrantDestinyClass { get; set; }
 
         /// <summary>The traitId that can be found on items that belong to this category.</summary>
         [JsonPropertyName("traitId")]
@@ -3945,7 +3945,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public int RewardedAtProgressionLevel { get; set; }
 
         [JsonPropertyName("acquisitionBehavior")]
-        public DestinyProgressionRewardItemAcquisitionBehavior AcquisitionBehavior { get; set; }
+        public Destiny.DestinyProgressionRewardItemAcquisitionBehavior AcquisitionBehavior { get; set; }
 
         [JsonPropertyName("uiDisplayStyle")]
         public string UiDisplayStyle { get; set; }
@@ -3976,15 +3976,15 @@ namespace BungieSharper.Entities.Destiny.Definitions
     public class DestinyRaceDefinition
     {
         [JsonPropertyName("displayProperties")]
-        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         /// <summary>An enumeration defining the existing, known Races/Species for player characters. This value will be the enum value matching this definition.</summary>
         [JsonPropertyName("raceType")]
-        public DestinyRace RaceType { get; set; }
+        public Destiny.DestinyRace RaceType { get; set; }
 
         /// <summary>A localized string referring to the singular form of the Race's name when referred to in gendered form. Keyed by the DestinyGender.</summary>
         [JsonPropertyName("genderedRaceNames")]
-        public Dictionary<DestinyGender, string> GenderedRaceNames { get; set; }
+        public Dictionary<Destiny.DestinyGender, string> GenderedRaceNames { get; set; }
 
         [JsonPropertyName("genderedRaceNamesByGenderHash")]
         public Dictionary<uint, string> GenderedRaceNamesByGenderHash { get; set; }
@@ -4012,14 +4012,14 @@ namespace BungieSharper.Entities.Destiny.Definitions
     {
         /// <summary>In Destiny 1, we added a convenience Enumeration for referring to classes. We've kept it, though mostly for posterity. This is the enum value for this definition's class.</summary>
         [JsonPropertyName("classType")]
-        public DestinyClass ClassType { get; set; }
+        public Destiny.DestinyClass ClassType { get; set; }
 
         [JsonPropertyName("displayProperties")]
-        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         /// <summary>A localized string referring to the singular form of the Class's name when referred to in gendered form. Keyed by the DestinyGender.</summary>
         [JsonPropertyName("genderedClassNames")]
-        public Dictionary<DestinyGender, string> GenderedClassNames { get; set; }
+        public Dictionary<Destiny.DestinyGender, string> GenderedClassNames { get; set; }
 
         [JsonPropertyName("genderedClassNamesByGenderHash")]
         public Dictionary<uint, string> GenderedClassNamesByGenderHash { get; set; }
@@ -4051,7 +4051,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
     {
         /// <summary>Sometimes, but not frequently, these unlock flags also have human readable information: usually when they are being directly tested for some requirement, in which case the string is a localized description of why the requirement check failed.</summary>
         [JsonPropertyName("displayProperties")]
-        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         /// <summary>
         /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
@@ -4098,7 +4098,7 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         /// <summary>Basic display properties on the entity, so you don't have to look up the definition to show basic results for the item.</summary>
         [JsonPropertyName("displayProperties")]
-        public Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
         /// <summary>The ranking value for sorting that we calculated using our relevance formula. This will hopefully get better with time and iteration.</summary>
         [JsonPropertyName("weight")]

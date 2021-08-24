@@ -66,10 +66,10 @@ namespace BungieSharper.Entities.Destiny.Progression
 
         /// <summary>Information about historical resets of this progression, if there is any data for it.</summary>
         [JsonPropertyName("seasonResets")]
-        public IEnumerable<DestinyProgressionResetEntry> SeasonResets { get; set; }
+        public IEnumerable<Destiny.DestinyProgressionResetEntry> SeasonResets { get; set; }
 
         /// <summary>Information about historical rewards for this progression, if there is any data for it.</summary>
         [JsonPropertyName("rewardItemStates")]
-        public IEnumerable<DestinyProgressionRewardItemState> RewardItemStates { get; set; }
+        public IEnumerable<Destiny.DestinyProgressionRewardItemState> RewardItemStates { get; set; }
     }
 }

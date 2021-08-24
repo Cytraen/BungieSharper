@@ -24,13 +24,13 @@ namespace BungieSharper.Entities.Content.Models
         public string Reminder { get; set; }
 
         [JsonPropertyName("properties")]
-        public IEnumerable<ContentTypeProperty> Properties { get; set; }
+        public IEnumerable<Content.Models.ContentTypeProperty> Properties { get; set; }
 
         [JsonPropertyName("tagMetadata")]
-        public IEnumerable<TagMetadataDefinition> TagMetadata { get; set; }
+        public IEnumerable<Content.Models.TagMetadataDefinition> TagMetadata { get; set; }
 
         [JsonPropertyName("tagMetadataItems")]
-        public Dictionary<string, TagMetadataItem> TagMetadataItems { get; set; }
+        public Dictionary<string, Content.Models.TagMetadataItem> TagMetadataItems { get; set; }
 
         [JsonPropertyName("usageExamples")]
         public IEnumerable<string> UsageExamples { get; set; }
@@ -60,13 +60,13 @@ namespace BungieSharper.Entities.Content.Models
         public bool BulkUploadable { get; set; }
 
         [JsonPropertyName("previews")]
-        public IEnumerable<ContentPreview> Previews { get; set; }
+        public IEnumerable<Content.Models.ContentPreview> Previews { get; set; }
 
         [JsonPropertyName("suppressCmsPath")]
         public bool SuppressCmsPath { get; set; }
 
         [JsonPropertyName("propertySections")]
-        public IEnumerable<ContentTypePropertySection> PropertySections { get; set; }
+        public IEnumerable<Content.Models.ContentTypePropertySection> PropertySections { get; set; }
     }
 
     public class ContentTypeProperty
@@ -132,13 +132,13 @@ namespace BungieSharper.Entities.Content.Models
         public string VisibleOn { get; set; }
 
         [JsonPropertyName("datatype")]
-        public ContentPropertyDataTypeEnum Datatype { get; set; }
+        public Content.Models.ContentPropertyDataTypeEnum Datatype { get; set; }
 
         [JsonPropertyName("attributes")]
         public Dictionary<string, string> Attributes { get; set; }
 
         [JsonPropertyName("childProperties")]
-        public IEnumerable<ContentTypeProperty> ChildProperties { get; set; }
+        public IEnumerable<Content.Models.ContentTypeProperty> ChildProperties { get; set; }
 
         [JsonPropertyName("contentTypeAllowed")]
         public string ContentTypeAllowed { get; set; }
@@ -153,7 +153,7 @@ namespace BungieSharper.Entities.Content.Models
         public Dictionary<string, string> RepresentationSelection { get; set; }
 
         [JsonPropertyName("defaultValues")]
-        public IEnumerable<ContentTypeDefaultValue> DefaultValues { get; set; }
+        public IEnumerable<Content.Models.ContentTypeDefaultValue> DefaultValues { get; set; }
 
         [JsonPropertyName("isExternalAllowed")]
         public bool IsExternalAllowed { get; set; }
@@ -198,7 +198,7 @@ namespace BungieSharper.Entities.Content.Models
         public bool IsImage { get; set; }
     }
 
-    public enum ContentPropertyDataTypeEnum
+    public enum ContentPropertyDataTypeEnum : int
     {
         None = 0,
         Plaintext = 1,
@@ -238,7 +238,7 @@ namespace BungieSharper.Entities.Content.Models
         public int Order { get; set; }
 
         [JsonPropertyName("items")]
-        public IEnumerable<TagMetadataItem> Items { get; set; }
+        public IEnumerable<Content.Models.TagMetadataItem> Items { get; set; }
 
         [JsonPropertyName("datatype")]
         public string Datatype { get; set; }

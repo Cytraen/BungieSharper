@@ -15,7 +15,7 @@ namespace BungieSharper.Entities.Fireteam
 
     public enum FireteamPlatform : byte
     {
-        Unknown = 0,
+        Any = 0,
         Playstation4 = 1,
         XboxOne = 2,
         Blizzard = 3,
@@ -141,12 +141,6 @@ namespace BungieSharper.Entities.Fireteam
         [JsonPropertyName("FireteamMembershipType")]
         public BungieMembershipType FireteamMembershipType { get; set; }
 
-        [JsonPropertyName("FireteamPlatformProfileUrl")]
-        public string FireteamPlatformProfileUrl { get; set; }
-
-        [JsonPropertyName("FireteamPlatformUniqueIdentifier")]
-        public string FireteamPlatformUniqueIdentifier { get; set; }
-
         /// <summary>A platform specific additional display name - ex: psn Real Name, bnet Unique Name, etc.</summary>
         [JsonPropertyName("supplementalDisplayName")]
         public string SupplementalDisplayName { get; set; }
@@ -181,6 +175,14 @@ namespace BungieSharper.Entities.Fireteam
         /// <summary>Display Name the player has chosen for themselves. The display name is optional when the data type is used as input to a platform API.</summary>
         [JsonPropertyName("displayName")]
         public string DisplayName { get; set; }
+
+        /// <summary>The bungie global display name, if set.</summary>
+        [JsonPropertyName("bungieGlobalDisplayName")]
+        public string BungieGlobalDisplayName { get; set; }
+
+        /// <summary>The bungie global display name code, if set.</summary>
+        [JsonPropertyName("bungieGlobalDisplayNameCode"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public short? BungieGlobalDisplayNameCode { get; set; }
     }
 
     public enum FireteamPlatformInviteResult : byte

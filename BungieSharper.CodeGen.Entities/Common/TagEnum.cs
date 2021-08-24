@@ -17,6 +17,7 @@ namespace BungieSharper.CodeGen.Entities.Common
         CommunityContent,
         Trending,
         Fireteam,
+        Social,
         Preview,
 
         [EnumMember(Value = "")]

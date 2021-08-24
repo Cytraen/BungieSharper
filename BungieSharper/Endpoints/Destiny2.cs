@@ -40,17 +40,16 @@ namespace BungieSharper.Endpoints
         }
 
         /// <summary>
-        /// Returns a list of Destiny memberships given a full Gamertag or PSN ID. Unless you pass returnOriginalProfile=true, this will return membership information for the users' Primary Cross Save Profile if they are engaged in cross save rather than any original Destiny profile that is now being overridden.
+        /// Returns a list of Destiny memberships given a global Bungie Display Name. This method will hide overridden memberships due to cross save.
         /// </summary>
-        /// <param name="displayName">The full gamertag or PSN id of the player. Spaces and case are ignored.</param>
-        /// <param name="membershipType">A valid non-BungieNet membership type, or All.</param>
-        /// <param name="returnOriginalProfile">(optional) If passed in and set to true, we will return the original Destiny Profile(s) linked to that gamertag, and not their currently active Destiny Profile.</param>
+        /// <param name="displayName">The full bungie global display name to look up, include the # and the code at the end. This is an exact match lookup.</param>
+        /// <param name="membershipType">A valid non-BungieNet membership type, or All. Indicates which memberships to return. You probably want this set to All.</param>
         /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
-        public Task<IEnumerable<Entities.User.UserInfoCard>> Destiny2_SearchDestinyPlayer(string displayName, Entities.BungieMembershipType membershipType, bool? returnOriginalProfile = null, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<IEnumerable<Entities.User.UserInfoCard>> Destiny2_SearchDestinyPlayer(string displayName, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
         {
             return _apiAccessor.ApiRequestAsync<IEnumerable<Entities.User.UserInfoCard>>(
-                new Uri($"Destiny2/SearchDestinyPlayer/{membershipType}/{Uri.EscapeDataString(displayName)}/" + HttpRequestGenerator.MakeQuerystring(returnOriginalProfile != null ? $"returnOriginalProfile={returnOriginalProfile}" : null), UriKind.Relative),
+                new Uri($"Destiny2/SearchDestinyPlayer/{membershipType}/{Uri.EscapeDataString(displayName)}/", UriKind.Relative),
                 null, HttpMethod.Get, authToken, cancelToken
                 );
         }
@@ -114,6 +113,19 @@ namespace BungieSharper.Endpoints
         {
             return _apiAccessor.ApiRequestAsync<Entities.Destiny.Milestones.DestinyMilestone>(
                 new Uri($"Destiny2/Clan/{groupId}/WeeklyRewardState/", UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
+        /// <summary>
+        /// Returns the dictionary of values for the Clan Banner
+        /// </summary>
+        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
+        public Task<Entities.Config.ClanBanner.ClanBannerSource> Destiny2_GetClanBannerSource(string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<Entities.Config.ClanBanner.ClanBannerSource>(
+                new Uri($"Destiny2/Clan/ClanBannerDictionary/", UriKind.Relative),
                 null, HttpMethod.Get, authToken, cancelToken
                 );
         }

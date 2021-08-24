@@ -26,6 +26,9 @@ namespace BungieSharper.CodeGen.Entities.Common
         [EnumMember(Value = "int64")]
         Int64,
 
+        [EnumMember(Value = "int16")]
+        Int16,
+
         [EnumMember(Value = "uint32")]
         Uint32
     }

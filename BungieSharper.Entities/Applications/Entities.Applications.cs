@@ -131,6 +131,10 @@ namespace BungieSharper.Entities.Applications
         /// <summary>List of team members who manage this application on Bungie.net. Will always consist of at least the application owner.</summary>
         [JsonPropertyName("team")]
         public IEnumerable<Applications.ApplicationDeveloper> Team { get; set; }
+
+        /// <summary>An optional override for the Authorize view name.</summary>
+        [JsonPropertyName("overrideAuthorizeViewName")]
+        public string OverrideAuthorizeViewName { get; set; }
     }
 
     public enum ApplicationStatus : int

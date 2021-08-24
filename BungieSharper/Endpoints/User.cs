@@ -24,20 +24,6 @@ namespace BungieSharper.Endpoints
         }
 
         /// <summary>
-        /// Returns a list of possible users based on the search string
-        /// </summary>
-        /// <param name="q">The search string.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
-        /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
-        public Task<IEnumerable<Entities.User.GeneralUser>> User_SearchUsers(string? q = null, string? authToken = null, CancellationToken cancelToken = default)
-        {
-            return _apiAccessor.ApiRequestAsync<IEnumerable<Entities.User.GeneralUser>>(
-                new Uri($"User/SearchUsers/" + HttpRequestGenerator.MakeQuerystring(q != null ? $"q={Uri.EscapeDataString(q)}" : null), UriKind.Relative),
-                null, HttpMethod.Get, authToken, cancelToken
-                );
-        }
-
-        /// <summary>
         /// Returns a list of credential types attached to the requested account
         /// </summary>
         /// <param name="membershipId">The user's membership id</param>

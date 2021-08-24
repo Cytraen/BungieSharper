@@ -29,20 +29,23 @@ namespace BungieSharper.Tests
         public async Task SearchUserTest_Steam()
         {
             const BungieMembershipType expectedMembershipType = BungieMembershipType.TigerSteam;
-            const long expectedMembershipId = 4611686018511231764;
-            const string expectedDisplayName = "FlighterLuid";
+            const long expectedMembershipId = 4611686018467948914;
+            const string expectedDisplayName = "Cytraen";
+            const short expectedDisplayNameCode = 2213;
 
             var actualCards = (await ClientFixture.TestClient.Api.Destiny2_SearchDestinyPlayer(
-                "FlighterLuid", BungieMembershipType.All
+                $"{expectedDisplayName}#{expectedDisplayNameCode}", BungieMembershipType.All
                 )).ToList();
 
-            Assert.Single(actualCards);
+            Assert.Equal(4, actualCards.Count);
 
-            var userCard = actualCards[0];
+            var userCard = actualCards.Single(x => x.MembershipType == BungieMembershipType.TigerSteam);
 
+            Assert.NotEmpty(userCard.ApplicableMembershipTypes);
             Assert.Equal(expectedMembershipType, userCard.MembershipType);
             Assert.Equal(expectedMembershipId, userCard.MembershipId);
-            Assert.Equal(expectedDisplayName, userCard.DisplayName);
+            Assert.Equal(expectedDisplayName, userCard.BungieGlobalDisplayName);
+            Assert.Equal(expectedDisplayNameCode, userCard.BungieGlobalDisplayNameCode);
         }
 
         [Fact]

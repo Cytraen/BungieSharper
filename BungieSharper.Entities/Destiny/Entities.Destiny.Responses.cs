@@ -87,6 +87,14 @@ namespace BungieSharper.Entities.Destiny.Responses
         /// <summary>Display Name the player has chosen for themselves. The display name is optional when the data type is used as input to a platform API.</summary>
         [JsonPropertyName("displayName")]
         public string DisplayName { get; set; }
+
+        /// <summary>The bungie global display name, if set.</summary>
+        [JsonPropertyName("bungieGlobalDisplayName")]
+        public string BungieGlobalDisplayName { get; set; }
+
+        /// <summary>The bungie global display name code, if set.</summary>
+        [JsonPropertyName("bungieGlobalDisplayNameCode"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public short? BungieGlobalDisplayNameCode { get; set; }
     }
 
     /// <summary>

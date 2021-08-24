@@ -20,6 +20,14 @@ namespace BungieSharper.Entities.User
         /// <summary>Display Name the player has chosen for themselves. The display name is optional when the data type is used as input to a platform API.</summary>
         [JsonPropertyName("displayName")]
         public string DisplayName { get; set; }
+
+        /// <summary>The bungie global display name, if set.</summary>
+        [JsonPropertyName("bungieGlobalDisplayName")]
+        public string BungieGlobalDisplayName { get; set; }
+
+        /// <summary>The bungie global display name code, if set.</summary>
+        [JsonPropertyName("bungieGlobalDisplayNameCode"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public short? BungieGlobalDisplayNameCode { get; set; }
     }
 
     /// <summary>
@@ -53,6 +61,14 @@ namespace BungieSharper.Entities.User
         /// <summary>Display Name the player has chosen for themselves. The display name is optional when the data type is used as input to a platform API.</summary>
         [JsonPropertyName("displayName")]
         public string DisplayName { get; set; }
+
+        /// <summary>The bungie global display name, if set.</summary>
+        [JsonPropertyName("bungieGlobalDisplayName")]
+        public string BungieGlobalDisplayName { get; set; }
+
+        /// <summary>The bungie global display name code, if set.</summary>
+        [JsonPropertyName("bungieGlobalDisplayNameCode"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public short? BungieGlobalDisplayNameCode { get; set; }
     }
 
     /// <summary>
@@ -94,6 +110,14 @@ namespace BungieSharper.Entities.User
         /// <summary>Display Name the player has chosen for themselves. The display name is optional when the data type is used as input to a platform API.</summary>
         [JsonPropertyName("displayName")]
         public string DisplayName { get; set; }
+
+        /// <summary>The bungie global display name, if set.</summary>
+        [JsonPropertyName("bungieGlobalDisplayName")]
+        public string BungieGlobalDisplayName { get; set; }
+
+        /// <summary>The bungie global display name code, if set.</summary>
+        [JsonPropertyName("bungieGlobalDisplayNameCode"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public short? BungieGlobalDisplayNameCode { get; set; }
     }
 
     public class GeneralUser
@@ -196,6 +220,12 @@ namespace BungieSharper.Entities.User
 
         [JsonPropertyName("twitchDisplayName")]
         public string TwitchDisplayName { get; set; }
+
+        [JsonPropertyName("cachedBungieGlobalDisplayName")]
+        public string CachedBungieGlobalDisplayName { get; set; }
+
+        [JsonPropertyName("cachedBungieGlobalDisplayNameCode"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public short? CachedBungieGlobalDisplayNameCode { get; set; }
     }
 
     public class UserToUserContext

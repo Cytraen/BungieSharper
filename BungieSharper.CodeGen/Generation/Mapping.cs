@@ -29,6 +29,7 @@ namespace BungieSharper.CodeGen.Generation
                 FormatEnum.Float => "float",
                 FormatEnum.Int32 => "int",
                 FormatEnum.Int64 => "long",
+                FormatEnum.Int16 => "short",
                 FormatEnum.Uint32 => "uint",
                 _ => throw new NotSupportedException(),
             };
@@ -49,6 +50,7 @@ namespace BungieSharper.CodeGen.Generation
                 TagEnum.CommunityContent => "CommunityContent",
                 TagEnum.Trending => "Trending",
                 TagEnum.Fireteam => "Fireteam",
+                TagEnum.Social => "Social",
                 TagEnum.Preview => "Preview",
                 TagEnum.Core => "Core",
                 _ => throw new NotSupportedException(),

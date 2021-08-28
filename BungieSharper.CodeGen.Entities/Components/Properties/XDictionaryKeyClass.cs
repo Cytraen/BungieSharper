@@ -17,7 +17,7 @@ namespace BungieSharper.CodeGen.Entities.Components.Properties
         public FormatEnum? Format { get; set; }
 
         [JsonPropertyName("x-enum-reference"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public XEnumReferenceClass XEnumReference { get; set; }
+        public XEnumReferenceClass? XEnumReference { get; set; }
 
         [JsonPropertyName("x-enum-is-bitmask"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? XEnumIsBitmask { get; set; }

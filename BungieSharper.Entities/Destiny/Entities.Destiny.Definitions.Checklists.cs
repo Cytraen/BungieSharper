@@ -56,29 +56,36 @@ namespace BungieSharper.Entities.Destiny.Definitions.Checklists
         [JsonPropertyName("displayProperties")]
         public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
-        [JsonPropertyName("destinationHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("destinationHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? DestinationHash { get; set; }
 
-        [JsonPropertyName("locationHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("locationHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? LocationHash { get; set; }
 
         /// <summary>
         /// Note that a Bubble's hash doesn't uniquely identify a "top level" entity in Destiny. Only the combination of location and bubble can uniquely identify a place in the world of Destiny: so if bubbleHash is populated, locationHash must too be populated for it to have any meaning.
         /// You can use this property if it is populated to look up the DestinyLocationDefinition's associated .locationReleases[].activityBubbleName property.
         /// </summary>
-        [JsonPropertyName("bubbleHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("bubbleHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? BubbleHash { get; set; }
 
-        [JsonPropertyName("activityHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("activityHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? ActivityHash { get; set; }
 
-        [JsonPropertyName("itemHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("itemHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? ItemHash { get; set; }
 
-        [JsonPropertyName("vendorHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("vendorHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? VendorHash { get; set; }
 
-        [JsonPropertyName("vendorInteractionIndex"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("vendorInteractionIndex")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? VendorInteractionIndex { get; set; }
 
         /// <summary>The scope at which this specific entry can be computed.</summary>

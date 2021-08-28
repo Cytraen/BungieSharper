@@ -6,7 +6,8 @@ namespace BungieSharper.CodeGen.Entities.Components.Schema
 {
     public class SchemaObject
     {
-        [JsonPropertyName("enum"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("enum")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long[]? Enum { get; set; }
 

@@ -132,7 +132,8 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats.Definitions
         public string IconImage { get; set; }
 
         /// <summary>Optional icon for the statistic</summary>
-        [JsonPropertyName("mergeMethod"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("mergeMethod")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? MergeMethod { get; set; }
 
         /// <summary>Localized Unit Name for the stat.</summary>
@@ -144,7 +145,8 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats.Definitions
         public int Weight { get; set; }
 
         /// <summary>The tier associated with this medal - be it implicitly or explicitly.</summary>
-        [JsonPropertyName("medalTierHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("medalTierHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? MedalTierHash { get; set; }
     }
 

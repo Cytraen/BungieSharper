@@ -53,10 +53,12 @@ namespace BungieSharper.Entities.Trending
         [JsonPropertyName("image")]
         public string Image { get; set; }
 
-        [JsonPropertyName("startDate"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("startDate")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public DateTime? StartDate { get; set; }
 
-        [JsonPropertyName("endDate"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("endDate")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public DateTime? EndDate { get; set; }
 
         [JsonPropertyName("link")]
@@ -79,7 +81,8 @@ namespace BungieSharper.Entities.Trending
         public IEnumerable<Trending.TrendingEntry> Items { get; set; }
 
         /// <summary>If the entry has a date at which it was created, this is that date.</summary>
-        [JsonPropertyName("creationDate"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("creationDate")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public DateTime? CreationDate { get; set; }
     }
 
@@ -170,10 +173,12 @@ namespace BungieSharper.Entities.Trending
         [JsonPropertyName("subtitle")]
         public string Subtitle { get; set; }
 
-        [JsonPropertyName("dateStart"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("dateStart")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public DateTime? DateStart { get; set; }
 
-        [JsonPropertyName("dateEnd"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("dateEnd")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public DateTime? DateEnd { get; set; }
 
         /// <summary>A destiny event does not necessarily have a related Milestone, but if it does the details will be returned here.</summary>
@@ -197,9 +202,11 @@ namespace BungieSharper.Entities.Trending
         public string Author { get; set; }
 
         [JsonPropertyName("authorMembershipId")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long AuthorMembershipId { get; set; }
 
         [JsonPropertyName("postId")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long PostId { get; set; }
 
         [JsonPropertyName("body")]

@@ -61,7 +61,8 @@ namespace BungieSharper.Entities.Destiny.Progression
         public int NextLevelAt { get; set; }
 
         /// <summary>The number of resets of this progression you've executed this season, if applicable to this progression.</summary>
-        [JsonPropertyName("currentResetCount"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("currentResetCount")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? CurrentResetCount { get; set; }
 
         /// <summary>Information about historical resets of this progression, if there is any data for it.</summary>

@@ -176,7 +176,8 @@ namespace BungieSharper.Entities.Destiny.Definitions.Milestones
         public Dictionary<uint, Destiny.Definitions.Milestones.DestinyMilestoneActivityDefinition> Activities { get; set; }
 
         /// <summary>Sometimes, a Milestone's quest is related to an entire Destination rather than a specific activity. In that situation, this will be the hash of that Destination. Hotspots are currently the only Milestones that expose this data, but that does not preclude this data from being returned for other Milestones in the future.</summary>
-        [JsonPropertyName("destinationHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("destinationHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? DestinationHash { get; set; }
     }
 
@@ -201,11 +202,13 @@ namespace BungieSharper.Entities.Destiny.Definitions.Milestones
     public class DestinyMilestoneQuestRewardItem
     {
         /// <summary>The quest reward item *may* be associated with a vendor. If so, this is that vendor. Use this hash to look up the DestinyVendorDefinition.</summary>
-        [JsonPropertyName("vendorHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("vendorHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? VendorHash { get; set; }
 
         /// <summary>The quest reward item *may* be associated with a vendor. If so, this is the index of the item being sold, which we can use at runtime to find instanced item information for the reward item.</summary>
-        [JsonPropertyName("vendorItemIndex"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("vendorItemIndex")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? VendorItemIndex { get; set; }
 
         /// <summary>The hash identifier for the item in question. Use it to look up the item's DestinyInventoryItemDefinition.</summary>
@@ -213,7 +216,9 @@ namespace BungieSharper.Entities.Destiny.Definitions.Milestones
         public uint ItemHash { get; set; }
 
         /// <summary>If this quantity is referring to a specific instance of an item, this will have the item's instance ID. Normally, this will be null.</summary>
-        [JsonPropertyName("itemInstanceId"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("itemInstanceId")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long? ItemInstanceId { get; set; }
 
         /// <summary>The amount of the item needed/available depending on the context of where DestinyItemQuantity is being used.</summary>
@@ -313,7 +318,8 @@ namespace BungieSharper.Entities.Destiny.Definitions.Milestones
         public IEnumerable<Destiny.DestinyItemQuantity> Items { get; set; }
 
         /// <summary>If this reward is redeemed at a Vendor, this is the hash of the Vendor to go to in order to redeem the reward. Use this hash to look up the DestinyVendorDefinition.</summary>
-        [JsonPropertyName("vendorHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("vendorHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? VendorHash { get; set; }
 
         /// <summary>For us to bother returning this info, we should be able to return some kind of information about why these rewards are grouped together. This is ideally that information. Look at how confident I am that this will always remain true.</summary>

@@ -17,7 +17,6 @@ namespace BungieSharper.Client
 
         private readonly HttpClient _httpClient;
         private readonly SemaphoreSlim _semaphore;
-        private readonly JsonSerializerOptions _serializerOptions;
         private TimeSpan _msPerRequest;
         private HashSet<PlatformErrorCodes> _retryErrorCodes;
 
@@ -61,8 +60,6 @@ namespace BungieSharper.Client
         internal ApiAccessor()
         {
             _semaphore = new SemaphoreSlim(SimultaneousRequests, SimultaneousRequests);
-            _serializerOptions = new JsonSerializerOptions();
-            _serializerOptions.Converters.Add(new JsonLongConverter());
 
             var cookieContainer = new CookieContainer();
             var httpClientHandler = new HttpClientHandler
@@ -116,8 +113,8 @@ namespace BungieSharper.Client
                 }
 
                 var apiResponse = JsonSerializer.Deserialize<Entities.ApiResponse<T>>(
-                    await httpResponseMessage.Content.ReadAsStringAsync(cancelToken).ConfigureAwait(false),
-                    _serializerOptions);
+                    await httpResponseMessage.Content.ReadAsStringAsync(cancelToken).ConfigureAwait(false)
+                    );
 
                 if (apiResponse is null)
                 {
@@ -176,8 +173,8 @@ namespace BungieSharper.Client
                 }
 
                 var apiResponse = JsonSerializer.Deserialize<Entities.TokenResponse>(
-                    await httpResponseMessage.Content.ReadAsStringAsync(cancelToken).ConfigureAwait(false),
-                    _serializerOptions);
+                    await httpResponseMessage.Content.ReadAsStringAsync(cancelToken).ConfigureAwait(false)
+                    );
 
                 if (apiResponse is null)
                 {

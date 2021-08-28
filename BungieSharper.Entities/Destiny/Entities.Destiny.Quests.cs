@@ -13,15 +13,18 @@ namespace BungieSharper.Entities.Destiny.Quests
         public uint ObjectiveHash { get; set; }
 
         /// <summary>If the Objective has a Destination associated with it, this is the unique identifier of the Destination being referred to. Use to look up the DestinyDestinationDefinition in static data. This will give localized data about *where* in the universe the objective should be achieved.</summary>
-        [JsonPropertyName("destinationHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("destinationHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? DestinationHash { get; set; }
 
         /// <summary>If the Objective has an Activity associated with it, this is the unique identifier of the Activity being referred to. Use to look up the DestinyActivityDefinition in static data. This will give localized data about *what* you should be playing for the objective to be achieved.</summary>
-        [JsonPropertyName("activityHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("activityHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? ActivityHash { get; set; }
 
         /// <summary>If progress has been made, and the progress can be measured numerically, this will be the value of that progress. You can compare it to the DestinyObjectiveDefinition.completionValue property for current vs. upper bounds, and use DestinyObjectiveDefinition.valueStyle to determine how this should be rendered. Note that progress, in Destiny 2, need not be a literal numeric progression. It could be one of a number of possible values, even a Timestamp. Always examine DestinyObjectiveDefinition.valueStyle before rendering progress.</summary>
-        [JsonPropertyName("progress"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("progress")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? Progress { get; set; }
 
         /// <summary>
@@ -64,6 +67,7 @@ namespace BungieSharper.Entities.Destiny.Quests
 
         /// <summary>The current Quest Step will be an instanced item in the player's inventory. If you care about that, this is the instance ID of that item.</summary>
         [JsonPropertyName("itemInstanceId")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long ItemInstanceId { get; set; }
 
         /// <summary>Whether or not the whole quest has been completed, regardless of whether or not you have redeemed the rewards for the quest.</summary>
@@ -79,7 +83,8 @@ namespace BungieSharper.Entities.Destiny.Quests
         public bool Started { get; set; }
 
         /// <summary>If the quest has a related Vendor that you should talk to in order to initiate the quest/earn rewards/continue the quest, this will be the hash identifier of that Vendor. Look it up its DestinyVendorDefinition.</summary>
-        [JsonPropertyName("vendorHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("vendorHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? VendorHash { get; set; }
     }
 }

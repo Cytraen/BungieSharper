@@ -99,11 +99,13 @@ namespace BungieSharper.Entities.Destiny.Definitions.Presentation
         public Destiny.DestinyScope Scope { get; set; }
 
         /// <summary>If this presentation node shows a related objective (for instance, if it tracks the progress of its children), the objective being tracked is indicated here.</summary>
-        [JsonPropertyName("objectiveHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("objectiveHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? ObjectiveHash { get; set; }
 
         /// <summary>If this presentation node has an associated "Record" that you can accomplish for completing its children, this is the identifier of that Record.</summary>
-        [JsonPropertyName("completionRecordHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("completionRecordHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? CompletionRecordHash { get; set; }
 
         /// <summary>The child entities contained by this presentation node.</summary>

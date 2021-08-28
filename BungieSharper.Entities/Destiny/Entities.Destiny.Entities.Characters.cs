@@ -11,6 +11,7 @@ namespace BungieSharper.Entities.Destiny.Entities.Characters
     {
         /// <summary>Every Destiny Profile has a membershipId. This is provided on the character as well for convenience.</summary>
         [JsonPropertyName("membershipId")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long MembershipId { get; set; }
 
         /// <summary>membershipType tells you the platform on which the character plays. Examine the BungieMembershipType enumeration for possible values.</summary>
@@ -19,6 +20,7 @@ namespace BungieSharper.Entities.Destiny.Entities.Characters
 
         /// <summary>The unique identifier for the character.</summary>
         [JsonPropertyName("characterId")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long CharacterId { get; set; }
 
         /// <summary>The last date that the user played Destiny.</summary>
@@ -27,10 +29,12 @@ namespace BungieSharper.Entities.Destiny.Entities.Characters
 
         /// <summary>If the user is currently playing, this is how long they've been playing.</summary>
         [JsonPropertyName("minutesPlayedThisSession")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long MinutesPlayedThisSession { get; set; }
 
         /// <summary>If this value is 525,600, then they played Destiny for a year. Or they're a very dedicated Rent fan. Note that this includes idle time, not just time spent actually in activities shooting things.</summary>
         [JsonPropertyName("minutesPlayedTotal")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long MinutesPlayedTotal { get; set; }
 
         /// <summary>The user's calculated "Light Level". Light level is an indicator of your power that mostly matters in the end game, once you've reached the maximum character level: it's a level that's dependent on the average Attack/Defense power of your items.</summary>
@@ -106,7 +110,8 @@ namespace BungieSharper.Entities.Destiny.Entities.Characters
         public float PercentToNextLevel { get; set; }
 
         /// <summary>If this Character has a title assigned to it, this is the identifier of the DestinyRecordDefinition that has that title information.</summary>
-        [JsonPropertyName("titleRecordHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("titleRecordHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? TitleRecordHash { get; set; }
     }
 
@@ -203,7 +208,8 @@ namespace BungieSharper.Entities.Destiny.Entities.Characters
         public uint CurrentActivityModeHash { get; set; }
 
         /// <summary>And the current activity's most specific mode type, if it can be found.</summary>
-        [JsonPropertyName("currentActivityModeType"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("currentActivityModeType")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? CurrentActivityModeType { get; set; }
 
         /// <summary>If the user is in an activity, this will be the hashes of the DestinyActivityModeDefinition being played. Combine with currentActivityHash to give a person a full picture of what they're doing right now.</summary>
@@ -215,7 +221,8 @@ namespace BungieSharper.Entities.Destiny.Entities.Characters
         public IEnumerable<Destiny.HistoricalStats.Definitions.DestinyActivityModeType> CurrentActivityModeTypes { get; set; }
 
         /// <summary>If the user is in a playlist, this is the hash identifier for the playlist that they chose.</summary>
-        [JsonPropertyName("currentPlaylistActivityHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("currentPlaylistActivityHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? CurrentPlaylistActivityHash { get; set; }
 
         /// <summary>This will have the activity hash of the last completed story/campaign mission, in case you care about that.</summary>

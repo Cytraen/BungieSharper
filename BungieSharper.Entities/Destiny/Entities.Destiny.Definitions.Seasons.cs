@@ -18,25 +18,32 @@ namespace BungieSharper.Entities.Destiny.Definitions.Seasons
         [JsonPropertyName("seasonNumber")]
         public int SeasonNumber { get; set; }
 
-        [JsonPropertyName("startDate"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("startDate")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public DateTime? StartDate { get; set; }
 
-        [JsonPropertyName("endDate"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("endDate")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public DateTime? EndDate { get; set; }
 
-        [JsonPropertyName("seasonPassHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("seasonPassHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? SeasonPassHash { get; set; }
 
-        [JsonPropertyName("seasonPassProgressionHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("seasonPassProgressionHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? SeasonPassProgressionHash { get; set; }
 
-        [JsonPropertyName("artifactItemHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("artifactItemHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? ArtifactItemHash { get; set; }
 
-        [JsonPropertyName("sealPresentationNodeHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("sealPresentationNodeHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? SealPresentationNodeHash { get; set; }
 
-        [JsonPropertyName("seasonalChallengesPresentationNodeHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("seasonalChallengesPresentationNodeHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? SeasonalChallengesPresentationNodeHash { get; set; }
 
         /// <summary>Optional - Defines the promotional text, images, and links to preview this season.</summary>

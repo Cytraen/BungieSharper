@@ -10,6 +10,7 @@ namespace BungieSharper.Entities.Tokens
         public string PartnerOfferId { get; set; }
 
         [JsonPropertyName("BungieNetMembershipId")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long BungieNetMembershipId { get; set; }
 
         [JsonPropertyName("TransactionId")]
@@ -45,10 +46,13 @@ namespace BungieSharper.Entities.Tokens
         [JsonPropertyName("PartnerOfferKey")]
         public string PartnerOfferKey { get; set; }
 
-        [JsonPropertyName("MembershipId"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("MembershipId")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long? MembershipId { get; set; }
 
-        [JsonPropertyName("MembershipType"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("MembershipType")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? MembershipType { get; set; }
 
         [JsonPropertyName("LocalizedName")]
@@ -63,7 +67,8 @@ namespace BungieSharper.Entities.Tokens
         [JsonPropertyName("QuantityApplied")]
         public int QuantityApplied { get; set; }
 
-        [JsonPropertyName("ApplyDate"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("ApplyDate")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public DateTime? ApplyDate { get; set; }
     }
 }

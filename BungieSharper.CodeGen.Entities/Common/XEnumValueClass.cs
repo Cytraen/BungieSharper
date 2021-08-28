@@ -5,6 +5,7 @@ namespace BungieSharper.CodeGen.Entities.Common
     public class XEnumValueClass
     {
         [JsonPropertyName("numericValue")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long NumericValue { get; set; }
 
         [JsonPropertyName("identifier")]

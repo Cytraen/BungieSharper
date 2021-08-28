@@ -46,11 +46,13 @@ namespace BungieSharper.Entities.Destiny.Entities.Profiles
         public IEnumerable<uint> SeasonHashes { get; set; }
 
         /// <summary>If populated, this is a reference to the season that is currently active.</summary>
-        [JsonPropertyName("currentSeasonHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("currentSeasonHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? CurrentSeasonHash { get; set; }
 
         /// <summary>If populated, this is the reward power cap for the current season.</summary>
-        [JsonPropertyName("currentSeasonRewardPowerCap"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("currentSeasonRewardPowerCap")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? CurrentSeasonRewardPowerCap { get; set; }
     }
 }

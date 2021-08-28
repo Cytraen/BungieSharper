@@ -12,6 +12,7 @@ namespace BungieSharper.Entities.Destiny.Requests.Actions
     public class DestinyCharacterActionRequest
     {
         [JsonPropertyName("characterId")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long CharacterId { get; set; }
 
         [JsonPropertyName("membershipType")]
@@ -21,9 +22,11 @@ namespace BungieSharper.Entities.Destiny.Requests.Actions
     public class DestinyItemActionRequest
     {
         [JsonPropertyName("itemId")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long ItemId { get; set; }
 
         [JsonPropertyName("characterId")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long CharacterId { get; set; }
 
         [JsonPropertyName("membershipType")]
@@ -39,9 +42,11 @@ namespace BungieSharper.Entities.Destiny.Requests.Actions
         public int StackSize { get; set; }
 
         [JsonPropertyName("itemId")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long ItemId { get; set; }
 
         [JsonPropertyName("characterId")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long CharacterId { get; set; }
 
         [JsonPropertyName("membershipType")]
@@ -54,6 +59,7 @@ namespace BungieSharper.Entities.Destiny.Requests.Actions
         public IEnumerable<long> ItemIds { get; set; }
 
         [JsonPropertyName("characterId")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long CharacterId { get; set; }
 
         [JsonPropertyName("membershipType")]
@@ -66,9 +72,11 @@ namespace BungieSharper.Entities.Destiny.Requests.Actions
         public bool State { get; set; }
 
         [JsonPropertyName("itemId")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long ItemId { get; set; }
 
         [JsonPropertyName("characterId")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long CharacterId { get; set; }
 
         [JsonPropertyName("membershipType")]
@@ -83,6 +91,7 @@ namespace BungieSharper.Entities.Destiny.Requests.Actions
 
         /// <summary>The instance ID of the item having a plug inserted. Only instanced items can have sockets.</summary>
         [JsonPropertyName("itemInstanceId")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long ItemInstanceId { get; set; }
 
         /// <summary>The plugs being inserted.</summary>
@@ -90,6 +99,7 @@ namespace BungieSharper.Entities.Destiny.Requests.Actions
         public Destiny.Requests.Actions.DestinyInsertPlugsRequestEntry Plug { get; set; }
 
         [JsonPropertyName("characterId")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long CharacterId { get; set; }
 
         [JsonPropertyName("membershipType")]

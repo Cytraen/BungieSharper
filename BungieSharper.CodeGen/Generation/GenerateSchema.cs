@@ -3,6 +3,7 @@ using BungieSharper.CodeGen.Entities.Components.Properties;
 using BungieSharper.CodeGen.Entities.Components.Schema;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BungieSharper.CodeGen.Generation
 {
@@ -10,23 +11,19 @@ namespace BungieSharper.CodeGen.Generation
     {
         internal static string GetSchemaFileContent(string name, SchemaObject def)
         {
-            var fileContent = "";
-
-            if (def.Type == TypeEnum.Integer)
+            return def.Type switch
             {
-                if (def.Enum is null || def.XEnumValues is null || def.Enum.Length == 0 || def.Enum.Length != def.XEnumValues.Length)
-                {
-                    throw new Exception();
-                }
-
-                fileContent = GetEnumFileContent(name, def);
-            }
-            if (def.Type == TypeEnum.Object)
-            {
-                fileContent = GetObjectFileContent(name, def);
-            }
-
-            return fileContent;
+                TypeEnum.Integer when def.Enum is null || def.XEnumValues is null || !def.Enum.Any() ||
+                                      def.Enum.Length != def.XEnumValues.Length => throw new NotSupportedException(),
+                TypeEnum.Integer => GetEnumFileContent(name, def),
+                TypeEnum.Object => GetObjectFileContent(name, def),
+                TypeEnum.None => throw new NotSupportedException(),
+                TypeEnum.Array => throw new NotSupportedException(),
+                TypeEnum.Boolean => throw new NotSupportedException(),
+                TypeEnum.Number => throw new NotSupportedException(),
+                TypeEnum.String => throw new NotSupportedException(),
+                _ => throw new NotSupportedException()
+            };
         }
 
         internal static string GetEnumFileContent(string name, SchemaObject def)
@@ -138,14 +135,20 @@ namespace BungieSharper.CodeGen.Generation
             if (def.Nullable == true)
             {
                 propType += "?";
-                propListing += $"        [JsonPropertyName(\"{name}\"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]\n";
+                propListing += $"{"",8}[JsonPropertyName(\"{name}\")]\n";
+                propListing += $"{"",8}[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]\n";
             }
             else
             {
-                propListing += $"        [JsonPropertyName(\"{name}\")]\n";
+                propListing += $"{"",8}[JsonPropertyName(\"{name}\")]\n";
             }
 
-            propListing += $"        public {propType} {char.ToUpper(name[0]) + name[1..]} {{ get; set; }}";
+            if (def.Format == FormatEnum.Int64)
+            {
+                propListing += $"{"",8}[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]\n";
+            }
+
+            propListing += $"{"",8}public {propType} {char.ToUpper(name[0]) + name[1..]} {{ get; set; }}";
 
             return propListing;
         }
@@ -171,6 +174,10 @@ namespace BungieSharper.CodeGen.Generation
 
             if (additionalProps.AdditionalProperties is not null)
             {
+                if (additionalProps.XDictionaryKey is null)
+                {
+                    throw new NullReferenceException();
+                }
                 classType += ResolvePropertyDictionary(additionalProps.XDictionaryKey, additionalProps.AdditionalProperties);
             }
             else if (additionalProps.Items is not null)

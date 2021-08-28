@@ -155,10 +155,12 @@ namespace BungieSharper.Entities.Common.Models
         [JsonPropertyName("currentSeasonalArtifactHash")]
         public uint CurrentSeasonalArtifactHash { get; set; }
 
-        [JsonPropertyName("currentSeasonHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("currentSeasonHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? CurrentSeasonHash { get; set; }
 
-        [JsonPropertyName("seasonalChallengesPresentationNodeHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("seasonalChallengesPresentationNodeHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? SeasonalChallengesPresentationNodeHash { get; set; }
 
         [JsonPropertyName("futureSeasonHashes")]

@@ -54,7 +54,8 @@ namespace BungieSharper.Entities.Destiny
         public int NextLevelAt { get; set; }
 
         /// <summary>The number of resets of this progression you've executed this season, if applicable to this progression.</summary>
-        [JsonPropertyName("currentResetCount"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("currentResetCount")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? CurrentResetCount { get; set; }
 
         /// <summary>Information about historical resets of this progression, if there is any data for it.</summary>
@@ -136,7 +137,9 @@ namespace BungieSharper.Entities.Destiny
         public uint ItemHash { get; set; }
 
         /// <summary>If this quantity is referring to a specific instance of an item, this will have the item's instance ID. Normally, this will be null.</summary>
-        [JsonPropertyName("itemInstanceId"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("itemInstanceId")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long? ItemInstanceId { get; set; }
 
         /// <summary>The amount of the item needed/available depending on the context of where DestinyItemQuantity is being used.</summary>
@@ -1158,11 +1161,13 @@ namespace BungieSharper.Entities.Destiny
         public bool IsVisible { get; set; }
 
         /// <summary>The difficulty level of the activity, if applicable.</summary>
-        [JsonPropertyName("displayLevel"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("displayLevel")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? DisplayLevel { get; set; }
 
         /// <summary>The recommended light level for the activity, if applicable.</summary>
-        [JsonPropertyName("recommendedLight"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("recommendedLight")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? RecommendedLight { get; set; }
 
         /// <summary>A DestinyActivityDifficultyTier enum value indicating the difficulty of the activity.</summary>
@@ -1189,7 +1194,8 @@ namespace BungieSharper.Entities.Destiny
         public Dictionary<uint, bool> BooleanActivityOptions { get; set; }
 
         /// <summary>If returned, this is the index into the DestinyActivityDefinition's "loadouts" property, indicating the currently active loadout requirements.</summary>
-        [JsonPropertyName("loadoutRequirementIndex"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("loadoutRequirementIndex")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? LoadoutRequirementIndex { get; set; }
     }
 
@@ -1446,6 +1452,7 @@ namespace BungieSharper.Entities.Destiny
     {
         /// <summary>The instance ID of the item in question (all items that can be equipped must, but definition, be Instanced and thus have an Instance ID that you can use to refer to them)</summary>
         [JsonPropertyName("itemInstanceId")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long ItemInstanceId { get; set; }
 
         /// <summary>A PlatformErrorCodes enum indicating whether it succeeded, and if it failed why.</summary>

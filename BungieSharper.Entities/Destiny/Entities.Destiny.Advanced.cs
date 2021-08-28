@@ -21,7 +21,9 @@ namespace BungieSharper.Entities.Destiny.Advanced
         public Destiny.Advanced.AwaType Type { get; set; }
 
         /// <summary>Item instance ID the action shall be applied to. This is optional for all but a new AwaType values. Rule of thumb is to provide the item instance ID if one is available.</summary>
-        [JsonPropertyName("affectedItemId"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("affectedItemId")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long? AffectedItemId { get; set; }
 
         /// <summary>Destiny membership type of the account to modify.</summary>
@@ -29,7 +31,9 @@ namespace BungieSharper.Entities.Destiny.Advanced
         public BungieMembershipType MembershipType { get; set; }
 
         /// <summary>Destiny character ID, if applicable, that will be affected by the action.</summary>
-        [JsonPropertyName("characterId"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("characterId")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long? CharacterId { get; set; }
     }
 
@@ -85,7 +89,8 @@ namespace BungieSharper.Entities.Destiny.Advanced
         public int MaximumNumberOfUses { get; set; }
 
         /// <summary>Time, UTC, when token expires.</summary>
-        [JsonPropertyName("validUntil"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("validUntil")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public System.DateTime? ValidUntil { get; set; }
 
         /// <summary>Advanced Write Action Type from the permission request.</summary>

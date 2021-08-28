@@ -50,7 +50,8 @@ namespace BungieSharper.Entities.Destiny.Responses
         /// For the time being, we will not return this information for any membership that is in a cross save pairing. The gist is that, once the pairing occurs, we do not currently have a consistent way to get that information for the profile's original Platform, and thus gameVersions would be too inconsistent (based on the last platform they happened to play on) for the info to be useful.
         /// If we ever can get this data, this field will be deprecated and replaced with data on the DestinyLinkedProfileResponse itself, with game versions per linked Platform. But since we can't get that, we have this as a stop-gap measure for getting the data in the only situation that we currently need it.
         /// </summary>
-        [JsonPropertyName("unpairedGameVersions"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("unpairedGameVersions")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? UnpairedGameVersions { get; set; }
 
         /// <summary>A platform specific additional display name - ex: psn Real Name, bnet Unique Name, etc.</summary>
@@ -82,6 +83,7 @@ namespace BungieSharper.Entities.Destiny.Responses
 
         /// <summary>Membership ID as they user is known in the Accounts service</summary>
         [JsonPropertyName("membershipId")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long MembershipId { get; set; }
 
         /// <summary>Display Name the player has chosen for themselves. The display name is optional when the data type is used as input to a platform API.</summary>
@@ -93,7 +95,8 @@ namespace BungieSharper.Entities.Destiny.Responses
         public string BungieGlobalDisplayName { get; set; }
 
         /// <summary>The bungie global display name code, if set.</summary>
-        [JsonPropertyName("bungieGlobalDisplayNameCode"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("bungieGlobalDisplayNameCode")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public short? BungieGlobalDisplayNameCode { get; set; }
     }
 
@@ -402,7 +405,9 @@ namespace BungieSharper.Entities.Destiny.Responses
     public class DestinyItemResponse
     {
         /// <summary>If the item is on a character, this will return the ID of the character that is holding the item.</summary>
-        [JsonPropertyName("characterId"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("characterId")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long? CharacterId { get; set; }
 
         /// <summary>

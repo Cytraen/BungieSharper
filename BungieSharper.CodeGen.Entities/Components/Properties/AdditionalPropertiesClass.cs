@@ -6,7 +6,7 @@ namespace BungieSharper.CodeGen.Entities.Components.Properties
     public class AdditionalPropertiesClass
     {
         [JsonPropertyName("$ref"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public string Ref { get; set; }
+        public string? Ref { get; set; }
 
         [JsonPropertyName("type"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         [JsonConverter(typeof(JsonStringEnumMemberConverter))]
@@ -20,7 +20,7 @@ namespace BungieSharper.CodeGen.Entities.Components.Properties
         public FormatEnum? Format { get; set; }
 
         [JsonPropertyName("x-enum-reference"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public XEnumReferenceClass XEnumReference { get; set; }
+        public XEnumReferenceClass? XEnumReference { get; set; }
 
         [JsonPropertyName("x-enum-is-bitmask"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? XEnumIsBitmask { get; set; }
@@ -29,10 +29,10 @@ namespace BungieSharper.CodeGen.Entities.Components.Properties
         public AdditionalPropertiesClass? AdditionalProperties { get; set; }
 
         [JsonPropertyName("x-dictionary-key"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public XDictionaryKeyClass XDictionaryKey { get; set; }
+        public XDictionaryKeyClass? XDictionaryKey { get; set; }
 
         [JsonPropertyName("items"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public ItemClass Items { get; set; }
+        public ItemClass? Items { get; set; }
 
         [JsonPropertyName("x-destiny-component-type-dependency"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public string? XDestinyComponentTypeDependency { get; set; }

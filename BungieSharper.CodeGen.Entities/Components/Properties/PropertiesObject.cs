@@ -10,7 +10,7 @@ namespace BungieSharper.CodeGen.Entities.Components.Properties
         public TypeEnum? Type { get; set; }
 
         [JsonPropertyName("items"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public ItemClass Items { get; set; }
+        public ItemClass? Items { get; set; }
 
         [JsonPropertyName("description"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public string? Description { get; set; }
@@ -43,7 +43,9 @@ namespace BungieSharper.CodeGen.Entities.Components.Properties
         [JsonPropertyName("allOf"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public AllOfElementClass[]? AllOf { get; set; }
 
-        [JsonPropertyName("enum"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("enum")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long[]? Enum { get; set; }
 
         [JsonPropertyName("x-enum-values"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]

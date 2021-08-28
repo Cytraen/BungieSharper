@@ -15,7 +15,8 @@ namespace BungieSharper.Entities.Destiny.Definitions.Records
         [JsonPropertyName("presentationInfo")]
         public Destiny.Definitions.Presentation.DestinyPresentationChildBlock PresentationInfo { get; set; }
 
-        [JsonPropertyName("loreHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("loreHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? LoreHash { get; set; }
 
         [JsonPropertyName("objectiveHashes")]
@@ -94,7 +95,8 @@ namespace BungieSharper.Entities.Destiny.Definitions.Records
         [JsonPropertyName("titlesByGenderHash")]
         public Dictionary<uint, string> TitlesByGenderHash { get; set; }
 
-        [JsonPropertyName("gildingTrackingRecordHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("gildingTrackingRecordHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? GildingTrackingRecordHash { get; set; }
     }
 

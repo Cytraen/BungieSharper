@@ -45,7 +45,8 @@ namespace BungieSharper.Entities.Destiny.Components.Profiles
         public IEnumerable<Destiny.Components.Profiles.DestinyProfileTransitoryTrackingEntry> Tracking { get; set; }
 
         /// <summary>The hash identifier for the DestinyDestinationDefinition of the last location you were orbiting when in orbit.</summary>
-        [JsonPropertyName("lastOrbitedDestinationHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("lastOrbitedDestinationHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? LastOrbitedDestinationHash { get; set; }
     }
 
@@ -57,6 +58,7 @@ namespace BungieSharper.Entities.Destiny.Components.Profiles
     {
         /// <summary>The Membership ID that matches the party member.</summary>
         [JsonPropertyName("membershipId")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long MembershipId { get; set; }
 
         /// <summary>The identifier for the DestinyInventoryItemDefinition of the player's emblem.</summary>
@@ -79,11 +81,13 @@ namespace BungieSharper.Entities.Destiny.Components.Profiles
     public class DestinyProfileTransitoryCurrentActivity
     {
         /// <summary>When the activity started.</summary>
-        [JsonPropertyName("startTime"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("startTime")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public DateTime? StartTime { get; set; }
 
         /// <summary>If you're still in it but it "ended" (like when folks are dancing around the loot after they beat a boss), this is when the activity ended.</summary>
-        [JsonPropertyName("endTime"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("endTime")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public DateTime? EndTime { get; set; }
 
         /// <summary>This is what our non-authoritative source thought the score was.</summary>
@@ -129,30 +133,36 @@ namespace BungieSharper.Entities.Destiny.Components.Profiles
     public class DestinyProfileTransitoryTrackingEntry
     {
         /// <summary>OPTIONAL - If this is tracking a DestinyLocationDefinition, this is the identifier for that location.</summary>
-        [JsonPropertyName("locationHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("locationHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? LocationHash { get; set; }
 
         /// <summary>OPTIONAL - If this is tracking the status of a DestinyInventoryItemDefinition, this is the identifier for that item.</summary>
-        [JsonPropertyName("itemHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("itemHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? ItemHash { get; set; }
 
         /// <summary>OPTIONAL - If this is tracking the status of a DestinyObjectiveDefinition, this is the identifier for that objective.</summary>
-        [JsonPropertyName("objectiveHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("objectiveHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? ObjectiveHash { get; set; }
 
         /// <summary>OPTIONAL - If this is tracking the status of a DestinyActivityDefinition, this is the identifier for that activity.</summary>
-        [JsonPropertyName("activityHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("activityHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? ActivityHash { get; set; }
 
         /// <summary>OPTIONAL - If this is tracking the status of a quest, this is the identifier for the DestinyInventoryItemDefinition that containst that questline data.</summary>
-        [JsonPropertyName("questlineItemHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("questlineItemHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? QuestlineItemHash { get; set; }
 
         /// <summary>
         /// OPTIONAL - I've got to level with you, I don't really know what this is. Is it when you started tracking it? Is it only populated for tracked items that have time limits?
         /// I don't know, but we can get at it - when I get time to actually test what it is, I'll update this. In the meantime, bask in the mysterious data.
         /// </summary>
-        [JsonPropertyName("trackedDate"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("trackedDate")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public DateTime? TrackedDate { get; set; }
     }
 }

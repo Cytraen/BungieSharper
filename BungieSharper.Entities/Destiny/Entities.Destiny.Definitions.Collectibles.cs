@@ -24,7 +24,8 @@ namespace BungieSharper.Entities.Destiny.Definitions.Collectibles
         /// I can't promise that it's going to be 100% accurate, but if the designers were consistent in assigning the same source strings to items with the same sources, it *ought to* be. No promises though.
         /// This hash also doesn't relate to an actual definition, just to note: we've got nothing useful other than the source string for this data.
         /// </summary>
-        [JsonPropertyName("sourceHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("sourceHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? SourceHash { get; set; }
 
         [JsonPropertyName("itemHash")]
@@ -70,16 +71,19 @@ namespace BungieSharper.Entities.Destiny.Definitions.Collectibles
 
     public class DestinyCollectibleAcquisitionBlock
     {
-        [JsonPropertyName("acquireMaterialRequirementHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("acquireMaterialRequirementHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? AcquireMaterialRequirementHash { get; set; }
 
-        [JsonPropertyName("acquireTimestampUnlockValueHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("acquireTimestampUnlockValueHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? AcquireTimestampUnlockValueHash { get; set; }
     }
 
     public class DestinyCollectibleStateBlock
     {
-        [JsonPropertyName("obscuredOverrideItemHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("obscuredOverrideItemHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? ObscuredOverrideItemHash { get; set; }
 
         [JsonPropertyName("requirements")]

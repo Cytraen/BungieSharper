@@ -32,7 +32,8 @@ namespace BungieSharper.Entities.Destiny.Components.Records
         public int IntervalsRedeemedCount { get; set; }
 
         /// <summary>If available, this is the number of times this record has been completed. For example, the number of times a seal title has been gilded.</summary>
-        [JsonPropertyName("completedCount"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("completedCount")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? CompletedCount { get; set; }
 
         /// <summary>If available, a list that describes which reward rewards should be shown (true) or hidden (false). This property is for regular record rewards, and not for interval objective rewards.</summary>
@@ -59,7 +60,8 @@ namespace BungieSharper.Entities.Destiny.Components.Records
         public int LifetimeScore { get; set; }
 
         /// <summary>If this profile is tracking a record, this is the hash identifier of the record it is tracking.</summary>
-        [JsonPropertyName("trackedRecordHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("trackedRecordHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? TrackedRecordHash { get; set; }
 
         [JsonPropertyName("records")]

@@ -11,7 +11,8 @@ namespace BungieSharper.Entities.Components
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 

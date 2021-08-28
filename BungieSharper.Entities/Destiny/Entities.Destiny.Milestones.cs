@@ -44,11 +44,13 @@ namespace BungieSharper.Entities.Destiny.Milestones
         public IEnumerable<Destiny.Milestones.DestinyMilestoneRewardCategory> Rewards { get; set; }
 
         /// <summary>If known, this is the date when the event last began or refreshed. It will only be populated for events with fixed and repeating start and end dates.</summary>
-        [JsonPropertyName("startDate"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("startDate")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public DateTime? StartDate { get; set; }
 
         /// <summary>If known, this is the date when the event will next end or repeat. It will only be populated for events with fixed and repeating start and end dates.</summary>
-        [JsonPropertyName("endDate"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("endDate")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public DateTime? EndDate { get; set; }
 
         /// <summary>Used for ordering milestones in a display to match how we order them in BNet. May pull from static data, or possibly in the future from dynamic information.</summary>
@@ -88,11 +90,13 @@ namespace BungieSharper.Entities.Destiny.Milestones
         public uint ActivityHash { get; set; }
 
         /// <summary>The hash identifier of the most specific Activity Mode under which this activity is played. This is useful for situations where the activity in question is - for instance - a PVP map, but it's not clear what mode the PVP map is being played under. If it's a playlist, this will be less specific: but hopefully useful in some way.</summary>
-        [JsonPropertyName("activityModeHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("activityModeHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? ActivityModeHash { get; set; }
 
         /// <summary>The enumeration equivalent of the most specific Activity Mode under which this activity is played.</summary>
-        [JsonPropertyName("activityModeType"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("activityModeType")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? ActivityModeType { get; set; }
 
         /// <summary>If the activity has modifiers, this will be the list of modifiers that all variants have in common. Perform lookups against DestinyActivityModifierDefinition which defines the modifier being applied to get at the modifier data. Note that, in the DestiyActivityDefinition, you will see many more modifiers than this being referred to: those are all *possible* modifiers for the activity, not the active ones. Use only the active ones to match what's really live.</summary>
@@ -118,11 +122,13 @@ namespace BungieSharper.Entities.Destiny.Milestones
         public Destiny.Milestones.DestinyMilestoneActivityCompletionStatus CompletionStatus { get; set; }
 
         /// <summary>The hash identifier of the most specific Activity Mode under which this activity is played. This is useful for situations where the activity in question is - for instance - a PVP map, but it's not clear what mode the PVP map is being played under. If it's a playlist, this will be less specific: but hopefully useful in some way.</summary>
-        [JsonPropertyName("activityModeHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("activityModeHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? ActivityModeHash { get; set; }
 
         /// <summary>The enumeration equivalent of the most specific Activity Mode under which this activity is played.</summary>
-        [JsonPropertyName("activityModeType"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("activityModeType")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? ActivityModeType { get; set; }
     }
 
@@ -179,7 +185,8 @@ namespace BungieSharper.Entities.Destiny.Milestones
         public Dictionary<uint, bool> BooleanActivityOptions { get; set; }
 
         /// <summary>If returned, this is the index into the DestinyActivityDefinition's "loadouts" property, indicating the currently active loadout requirements.</summary>
-        [JsonPropertyName("loadoutRequirementIndex"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("loadoutRequirementIndex")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? LoadoutRequirementIndex { get; set; }
 
         /// <summary>If the Activity has discrete "phases" that we can track, that info will be here. Otherwise, this value will be NULL. Note that this is a list and not a dictionary: the order implies the ascending order of phases or progression in this activity.</summary>
@@ -197,7 +204,8 @@ namespace BungieSharper.Entities.Destiny.Milestones
         public uint VendorHash { get; set; }
 
         /// <summary>If this vendor is featuring a specific item for this event, this will be the hash identifier of that item. I'm taking bets now on how long we go before this needs to be a list or some other, more complex representation instead and I deprecate this too. I'm going to go with 5 months. Calling it now, 2017-09-14 at 9:46pm PST.</summary>
-        [JsonPropertyName("previewItemHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("previewItemHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? PreviewItemHash { get; set; }
     }
 
@@ -295,11 +303,13 @@ namespace BungieSharper.Entities.Destiny.Milestones
         public IEnumerable<Destiny.Milestones.DestinyPublicMilestoneVendor> Vendors { get; set; }
 
         /// <summary>If known, this is the date when the Milestone started/became active.</summary>
-        [JsonPropertyName("startDate"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("startDate")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public DateTime? StartDate { get; set; }
 
         /// <summary>If known, this is the date when the Milestone will expire/recycle/end.</summary>
-        [JsonPropertyName("endDate"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("endDate")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public DateTime? EndDate { get; set; }
 
         /// <summary>Used for ordering milestones in a display to match how we order them in BNet. May pull from static data, or possibly in the future from dynamic information.</summary>
@@ -340,11 +350,13 @@ namespace BungieSharper.Entities.Destiny.Milestones
         public IEnumerable<Destiny.Milestones.DestinyPublicMilestoneActivityVariant> Variants { get; set; }
 
         /// <summary>The hash identifier of the most specific Activity Mode under which this activity is played. This is useful for situations where the activity in question is - for instance - a PVP map, but it's not clear what mode the PVP map is being played under. If it's a playlist, this will be less specific: but hopefully useful in some way.</summary>
-        [JsonPropertyName("activityModeHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("activityModeHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? ActivityModeHash { get; set; }
 
         /// <summary>The enumeration equivalent of the most specific Activity Mode under which this activity is played.</summary>
-        [JsonPropertyName("activityModeType"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("activityModeType")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? ActivityModeType { get; set; }
     }
 
@@ -358,11 +370,13 @@ namespace BungieSharper.Entities.Destiny.Milestones
         public uint ActivityHash { get; set; }
 
         /// <summary>The hash identifier of the most specific Activity Mode under which this activity is played. This is useful for situations where the activity in question is - for instance - a PVP map, but it's not clear what mode the PVP map is being played under. If it's a playlist, this will be less specific: but hopefully useful in some way.</summary>
-        [JsonPropertyName("activityModeHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("activityModeHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? ActivityModeHash { get; set; }
 
         /// <summary>The enumeration equivalent of the most specific Activity Mode under which this activity is played.</summary>
-        [JsonPropertyName("activityModeType"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("activityModeType")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? ActivityModeType { get; set; }
     }
 
@@ -376,7 +390,8 @@ namespace BungieSharper.Entities.Destiny.Milestones
         public uint ObjectiveHash { get; set; }
 
         /// <summary>IF the Objective is related to a specific Activity, this will be that activity's hash. Use it to look up the DestinyActivityDefinition for additional data to show.</summary>
-        [JsonPropertyName("activityHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("activityHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? ActivityHash { get; set; }
     }
 
@@ -396,7 +411,8 @@ namespace BungieSharper.Entities.Destiny.Milestones
         public IEnumerable<uint> ModifierHashes { get; set; }
 
         /// <summary>If returned, this is the index into the DestinyActivityDefinition's "loadouts" property, indicating the currently active loadout requirements.</summary>
-        [JsonPropertyName("loadoutRequirementIndex"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("loadoutRequirementIndex")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? LoadoutRequirementIndex { get; set; }
 
         /// <summary>The ordered list of phases for this activity, if any. Note that we have no human readable info for phases, nor any entities to relate them to: relating these hashes to something human readable is up to you unfortunately.</summary>
@@ -419,7 +435,8 @@ namespace BungieSharper.Entities.Destiny.Milestones
         public uint VendorHash { get; set; }
 
         /// <summary>If this vendor is featuring a specific item for this event, this will be the hash identifier of that item. I'm taking bets now on how long we go before this needs to be a list or some other, more complex representation instead and I deprecate this too. I'm going to go with 5 months. Calling it now, 2017-09-14 at 9:46pm PST.</summary>
-        [JsonPropertyName("previewItemHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("previewItemHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? PreviewItemHash { get; set; }
     }
 }

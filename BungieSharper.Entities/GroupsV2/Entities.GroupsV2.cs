@@ -43,6 +43,7 @@ namespace BungieSharper.Entities.GroupsV2
 
         /// <summary>Membership ID as they user is known in the Accounts service</summary>
         [JsonPropertyName("membershipId")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long MembershipId { get; set; }
 
         /// <summary>Display Name the player has chosen for themselves. The display name is optional when the data type is used as input to a platform API.</summary>
@@ -54,7 +55,8 @@ namespace BungieSharper.Entities.GroupsV2
         public string BungieGlobalDisplayName { get; set; }
 
         /// <summary>The bungie global display name code, if set.</summary>
-        [JsonPropertyName("bungieGlobalDisplayNameCode"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("bungieGlobalDisplayNameCode")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public short? BungieGlobalDisplayNameCode { get; set; }
     }
 
@@ -94,6 +96,7 @@ namespace BungieSharper.Entities.GroupsV2
     public class GroupV2
     {
         [JsonPropertyName("groupId")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long GroupId { get; set; }
 
         [JsonPropertyName("name")]
@@ -103,6 +106,7 @@ namespace BungieSharper.Entities.GroupsV2
         public GroupsV2.GroupType GroupType { get; set; }
 
         [JsonPropertyName("membershipIdCreated")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long MembershipIdCreated { get; set; }
 
         [JsonPropertyName("creationDate")]
@@ -163,12 +167,14 @@ namespace BungieSharper.Entities.GroupsV2
         public string AvatarPath { get; set; }
 
         [JsonPropertyName("conversationId")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long ConversationId { get; set; }
 
         [JsonPropertyName("enableInvitationMessagingForAdmins")]
         public bool EnableInvitationMessagingForAdmins { get; set; }
 
-        [JsonPropertyName("banExpireDate"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("banExpireDate")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public DateTime? BanExpireDate { get; set; }
 
         [JsonPropertyName("features")]
@@ -360,6 +366,7 @@ namespace BungieSharper.Entities.GroupsV2
     public class GroupUserBase
     {
         [JsonPropertyName("groupId")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long GroupId { get; set; }
 
         [JsonPropertyName("destinyUserInfo")]
@@ -381,9 +388,11 @@ namespace BungieSharper.Entities.GroupsV2
         public bool IsOnline { get; set; }
 
         [JsonPropertyName("lastOnlineStatusChange")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long LastOnlineStatusChange { get; set; }
 
         [JsonPropertyName("groupId")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long GroupId { get; set; }
 
         [JsonPropertyName("destinyUserInfo")]
@@ -409,6 +418,7 @@ namespace BungieSharper.Entities.GroupsV2
         public GroupsV2.GroupPotentialMemberStatus PotentialStatus { get; set; }
 
         [JsonPropertyName("groupId")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long GroupId { get; set; }
 
         [JsonPropertyName("destinyUserInfo")]
@@ -443,6 +453,7 @@ namespace BungieSharper.Entities.GroupsV2
     public class GroupV2Card
     {
         [JsonPropertyName("groupId")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long GroupId { get; set; }
 
         [JsonPropertyName("name")]
@@ -530,7 +541,8 @@ namespace BungieSharper.Entities.GroupsV2
         [JsonPropertyName("sortBy")]
         public GroupsV2.GroupSortBy SortBy { get; set; }
 
-        [JsonPropertyName("groupMemberCountFilter"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("groupMemberCountFilter")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? GroupMemberCountFilter { get; set; }
 
         [JsonPropertyName("localeFilter")]
@@ -577,9 +589,11 @@ namespace BungieSharper.Entities.GroupsV2
     public class GroupOptionalConversation
     {
         [JsonPropertyName("groupId")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long GroupId { get; set; }
 
         [JsonPropertyName("conversationId")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long ConversationId { get; set; }
 
         [JsonPropertyName("chatEnabled")]
@@ -606,25 +620,31 @@ namespace BungieSharper.Entities.GroupsV2
         [JsonPropertyName("theme")]
         public string Theme { get; set; }
 
-        [JsonPropertyName("avatarImageIndex"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("avatarImageIndex")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? AvatarImageIndex { get; set; }
 
         [JsonPropertyName("tags")]
         public string Tags { get; set; }
 
-        [JsonPropertyName("isPublic"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("isPublic")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? IsPublic { get; set; }
 
-        [JsonPropertyName("membershipOption"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("membershipOption")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? MembershipOption { get; set; }
 
-        [JsonPropertyName("isPublicTopicAdminOnly"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("isPublicTopicAdminOnly")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? IsPublicTopicAdminOnly { get; set; }
 
-        [JsonPropertyName("allowChat"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("allowChat")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? AllowChat { get; set; }
 
-        [JsonPropertyName("chatSecurity"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("chatSecurity")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? ChatSecurity { get; set; }
 
         [JsonPropertyName("callsign")]
@@ -633,13 +653,16 @@ namespace BungieSharper.Entities.GroupsV2
         [JsonPropertyName("locale")]
         public string Locale { get; set; }
 
-        [JsonPropertyName("homepage"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("homepage")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? Homepage { get; set; }
 
-        [JsonPropertyName("enableInvitationMessagingForAdmins"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("enableInvitationMessagingForAdmins")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? EnableInvitationMessagingForAdmins { get; set; }
 
-        [JsonPropertyName("defaultPublicity"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("defaultPublicity")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? DefaultPublicity { get; set; }
     }
 
@@ -651,7 +674,8 @@ namespace BungieSharper.Entities.GroupsV2
         /// True means admins have this power, false means they don't
         /// Default is false for clans, true for groups.
         /// </summary>
-        [JsonPropertyName("InvitePermissionOverride"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("InvitePermissionOverride")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? InvitePermissionOverride { get; set; }
 
         /// <summary>
@@ -660,7 +684,8 @@ namespace BungieSharper.Entities.GroupsV2
         /// True means admins have this power, false means they don't
         /// Default is false for clans, true for groups.
         /// </summary>
-        [JsonPropertyName("UpdateCulturePermissionOverride"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("UpdateCulturePermissionOverride")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? UpdateCulturePermissionOverride { get; set; }
 
         /// <summary>
@@ -669,7 +694,8 @@ namespace BungieSharper.Entities.GroupsV2
         /// Allowed Overrides: None, Member, Beginner
         /// Default is Member for clans, None for groups, although this means nothing for groups.
         /// </summary>
-        [JsonPropertyName("HostGuidedGamePermissionOverride"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("HostGuidedGamePermissionOverride")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? HostGuidedGamePermissionOverride { get; set; }
 
         /// <summary>
@@ -678,14 +704,16 @@ namespace BungieSharper.Entities.GroupsV2
         /// True means admins have this power, false means they don't
         /// Default is false for clans, true for groups.
         /// </summary>
-        [JsonPropertyName("UpdateBannerPermissionOverride"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("UpdateBannerPermissionOverride")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? UpdateBannerPermissionOverride { get; set; }
 
         /// <summary>
         /// Level to join a member at when accepting an invite, application, or joining an open clan
         /// Default is Beginner.
         /// </summary>
-        [JsonPropertyName("JoinLevel"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("JoinLevel")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? JoinLevel { get; set; }
     }
 
@@ -700,13 +728,15 @@ namespace BungieSharper.Entities.GroupsV2
 
     public class GroupOptionalConversationEditRequest
     {
-        [JsonPropertyName("chatEnabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("chatEnabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? ChatEnabled { get; set; }
 
         [JsonPropertyName("chatName")]
         public string ChatName { get; set; }
 
-        [JsonPropertyName("chatSecurity"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("chatSecurity")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? ChatSecurity { get; set; }
     }
 
@@ -731,6 +761,7 @@ namespace BungieSharper.Entities.GroupsV2
     public class GroupBan
     {
         [JsonPropertyName("groupId")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long GroupId { get; set; }
 
         [JsonPropertyName("lastModifiedBy")]
@@ -758,6 +789,7 @@ namespace BungieSharper.Entities.GroupsV2
     public class GroupMemberApplication
     {
         [JsonPropertyName("groupId")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long GroupId { get; set; }
 
         [JsonPropertyName("creationDate")]
@@ -766,10 +798,13 @@ namespace BungieSharper.Entities.GroupsV2
         [JsonPropertyName("resolveState")]
         public GroupsV2.GroupApplicationResolveState ResolveState { get; set; }
 
-        [JsonPropertyName("resolveDate"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("resolveDate")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public DateTime? ResolveDate { get; set; }
 
-        [JsonPropertyName("resolvedByMembershipId"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("resolvedByMembershipId")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long? ResolvedByMembershipId { get; set; }
 
         [JsonPropertyName("requestMessage")]

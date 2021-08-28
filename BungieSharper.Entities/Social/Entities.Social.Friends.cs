@@ -12,6 +12,7 @@ namespace BungieSharper.Entities.Social.Friends
     public class BungieFriend
     {
         [JsonPropertyName("lastSeenAsMembershipId")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long LastSeenAsMembershipId { get; set; }
 
         [JsonPropertyName("lastSeenAsBungieMembershipType")]
@@ -20,7 +21,8 @@ namespace BungieSharper.Entities.Social.Friends
         [JsonPropertyName("bungieGlobalDisplayName")]
         public string BungieGlobalDisplayName { get; set; }
 
-        [JsonPropertyName("bungieGlobalDisplayNameCode"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("bungieGlobalDisplayNameCode")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public short? BungieGlobalDisplayNameCode { get; set; }
 
         [JsonPropertyName("onlineStatus")]
@@ -98,19 +100,25 @@ namespace BungieSharper.Entities.Social.Friends
         [JsonPropertyName("friendPlatform")]
         public Social.Friends.PlatformFriendType FriendPlatform { get; set; }
 
-        [JsonPropertyName("destinyMembershipId"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("destinyMembershipId")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long? DestinyMembershipId { get; set; }
 
-        [JsonPropertyName("destinyMembershipType"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("destinyMembershipType")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? DestinyMembershipType { get; set; }
 
-        [JsonPropertyName("bungieNetMembershipId"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("bungieNetMembershipId")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long? BungieNetMembershipId { get; set; }
 
         [JsonPropertyName("bungieGlobalDisplayName")]
         public string BungieGlobalDisplayName { get; set; }
 
-        [JsonPropertyName("bungieGlobalDisplayNameCode"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("bungieGlobalDisplayNameCode")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public short? BungieGlobalDisplayNameCode { get; set; }
     }
 }

@@ -12,11 +12,11 @@ namespace BungieSharper.CodeGen
 {
     internal class Program
     {
-        internal static string BaseClientNamespace = "BungieSharper";
-        internal static string BaseEntityNamespace = "BungieSharper.Entities";
-        internal static string BungieSharperPath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\..\BungieSharper\"));
-        internal static string EntityFolder = BungieSharperPath.TrimEnd('\\') + ".Entities\\";
-        internal static string EndpointFolder = BungieSharperPath.TrimEnd('\\') + "\\Endpoints\\";
+        internal const string BaseClientNamespace = "BungieSharper";
+        internal const string BaseEntityNamespace = "BungieSharper.Entities";
+        internal static readonly string BungieSharperPath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\..\BungieSharper\"));
+        internal static readonly string EntityFolder = BungieSharperPath.TrimEnd('\\') + ".Entities\\";
+        internal static readonly string EndpointFolder = BungieSharperPath.TrimEnd('\\') + "\\Endpoints\\";
 
         internal static OpenApiObject OpenApiDefinition;
 
@@ -28,7 +28,7 @@ namespace BungieSharper.CodeGen
             {
                 Console.Write($"Downloading new OpenAPI definitions from {openApiDefUrl}... ");
                 var webClient = new WebClient();
-                webClient.DownloadFile(new Uri("https://raw.githubusercontent.com/Bungie-net/api/master/openapi.json", UriKind.Absolute), "openapi.json");
+                webClient.DownloadFile(new Uri(openApiDefUrl, UriKind.Absolute), "openapi.json");
                 Console.WriteLine("done.");
             }
             else
@@ -36,11 +36,8 @@ namespace BungieSharper.CodeGen
                 Console.WriteLine("Using provided OpenAPI definitions.");
             }
 
-            var _serializerOptions = new JsonSerializerOptions();
-            _serializerOptions.Converters.Add(new JsonLongConverter());
-
             var fileContent = File.ReadAllText("openapi.json");
-            OpenApiDefinition = JsonSerializer.Deserialize<OpenApiObject>(fileContent, _serializerOptions)!;
+            OpenApiDefinition = JsonSerializer.Deserialize<OpenApiObject>(fileContent)!;
             var schemas = OpenApiDefinition.Components.Schemas;
             var paths = OpenApiDefinition.Paths;
 

@@ -20,6 +20,7 @@ namespace BungieSharper.Entities.Destiny.Reporting.Requests
 
         /// <summary>Within the PGCR provided when calling the Reporting endpoint, this should be the character ID of the user that you thought was violating terms of use. They must exist in the PGCR provided.</summary>
         [JsonPropertyName("offendingCharacterId")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long OffendingCharacterId { get; set; }
     }
 }

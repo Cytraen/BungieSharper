@@ -15,6 +15,7 @@ namespace BungieSharper.Entities.User
 
         /// <summary>Membership ID as they user is known in the Accounts service</summary>
         [JsonPropertyName("membershipId")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long MembershipId { get; set; }
 
         /// <summary>Display Name the player has chosen for themselves. The display name is optional when the data type is used as input to a platform API.</summary>
@@ -26,7 +27,8 @@ namespace BungieSharper.Entities.User
         public string BungieGlobalDisplayName { get; set; }
 
         /// <summary>The bungie global display name code, if set.</summary>
-        [JsonPropertyName("bungieGlobalDisplayNameCode"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("bungieGlobalDisplayNameCode")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public short? BungieGlobalDisplayNameCode { get; set; }
     }
 
@@ -56,6 +58,7 @@ namespace BungieSharper.Entities.User
 
         /// <summary>Membership ID as they user is known in the Accounts service</summary>
         [JsonPropertyName("membershipId")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long MembershipId { get; set; }
 
         /// <summary>Display Name the player has chosen for themselves. The display name is optional when the data type is used as input to a platform API.</summary>
@@ -67,7 +70,8 @@ namespace BungieSharper.Entities.User
         public string BungieGlobalDisplayName { get; set; }
 
         /// <summary>The bungie global display name code, if set.</summary>
-        [JsonPropertyName("bungieGlobalDisplayNameCode"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("bungieGlobalDisplayNameCode")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public short? BungieGlobalDisplayNameCode { get; set; }
     }
 
@@ -105,6 +109,7 @@ namespace BungieSharper.Entities.User
 
         /// <summary>Membership ID as they user is known in the Accounts service</summary>
         [JsonPropertyName("membershipId")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long MembershipId { get; set; }
 
         /// <summary>Display Name the player has chosen for themselves. The display name is optional when the data type is used as input to a platform API.</summary>
@@ -116,13 +121,15 @@ namespace BungieSharper.Entities.User
         public string BungieGlobalDisplayName { get; set; }
 
         /// <summary>The bungie global display name code, if set.</summary>
-        [JsonPropertyName("bungieGlobalDisplayNameCode"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("bungieGlobalDisplayNameCode")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public short? BungieGlobalDisplayNameCode { get; set; }
     }
 
     public class GeneralUser
     {
         [JsonPropertyName("membershipId")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long MembershipId { get; set; }
 
         [JsonPropertyName("uniqueName")]
@@ -144,6 +151,7 @@ namespace BungieSharper.Entities.User
         public int UserTitle { get; set; }
 
         [JsonPropertyName("successMessageFlags")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long SuccessMessageFlags { get; set; }
 
         [JsonPropertyName("isDeleted")]
@@ -152,13 +160,17 @@ namespace BungieSharper.Entities.User
         [JsonPropertyName("about")]
         public string About { get; set; }
 
-        [JsonPropertyName("firstAccess"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("firstAccess")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public DateTime? FirstAccess { get; set; }
 
-        [JsonPropertyName("lastUpdate"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("lastUpdate")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public DateTime? LastUpdate { get; set; }
 
-        [JsonPropertyName("legacyPortalUID"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("legacyPortalUID")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long? LegacyPortalUID { get; set; }
 
         [JsonPropertyName("context")]
@@ -173,7 +185,8 @@ namespace BungieSharper.Entities.User
         [JsonPropertyName("fbDisplayName")]
         public string FbDisplayName { get; set; }
 
-        [JsonPropertyName("showActivity"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("showActivity")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? ShowActivity { get; set; }
 
         [JsonPropertyName("locale")]
@@ -182,7 +195,9 @@ namespace BungieSharper.Entities.User
         [JsonPropertyName("localeInheritDefault")]
         public bool LocaleInheritDefault { get; set; }
 
-        [JsonPropertyName("lastBanReportId"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("lastBanReportId")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long? LastBanReportId { get; set; }
 
         [JsonPropertyName("showGroupMessaging")]
@@ -206,7 +221,8 @@ namespace BungieSharper.Entities.User
         [JsonPropertyName("statusDate")]
         public DateTime StatusDate { get; set; }
 
-        [JsonPropertyName("profileBanExpire"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("profileBanExpire")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public DateTime? ProfileBanExpire { get; set; }
 
         [JsonPropertyName("blizzardDisplayName")]
@@ -224,7 +240,8 @@ namespace BungieSharper.Entities.User
         [JsonPropertyName("cachedBungieGlobalDisplayName")]
         public string CachedBungieGlobalDisplayName { get; set; }
 
-        [JsonPropertyName("cachedBungieGlobalDisplayNameCode"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("cachedBungieGlobalDisplayNameCode")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public short? CachedBungieGlobalDisplayNameCode { get; set; }
     }
 
@@ -236,7 +253,8 @@ namespace BungieSharper.Entities.User
         [JsonPropertyName("ignoreStatus")]
         public Ignores.IgnoreResponse IgnoreStatus { get; set; }
 
-        [JsonPropertyName("globalIgnoreEndDate"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("globalIgnoreEndDate")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public DateTime? GlobalIgnoreEndDate { get; set; }
     }
 
@@ -250,7 +268,9 @@ namespace BungieSharper.Entities.User
         /// If this property is populated, it will have the membership ID of the account considered to be "primary" in this user's cross save relationship.
         /// If null, this user has no cross save relationship, nor primary account.
         /// </summary>
-        [JsonPropertyName("primaryMembershipId"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("primaryMembershipId")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long? PrimaryMembershipId { get; set; }
 
         [JsonPropertyName("bungieNetUser")]
@@ -263,12 +283,15 @@ namespace BungieSharper.Entities.User
         public BungieMembershipType MembershipType { get; set; }
 
         [JsonPropertyName("membershipId")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long MembershipId { get; set; }
 
         [JsonPropertyName("CrossSaveOverriddenType")]
         public BungieMembershipType CrossSaveOverriddenType { get; set; }
 
-        [JsonPropertyName("CrossSaveOverriddenMembershipId"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("CrossSaveOverriddenMembershipId")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long? CrossSaveOverriddenMembershipId { get; set; }
     }
 
@@ -301,6 +324,7 @@ namespace BungieSharper.Entities.User
 
         /// <summary>The flag value for this opt-in category. For historical reasons, this is defined as a flags enum.</summary>
         [JsonPropertyName("value")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public User.OptInFlags Value { get; set; }
 
         /// <summary>If true, this opt-in setting should be set by default in situations where accounts are created without explicit choices about what they're opting into.</summary>
@@ -342,6 +366,7 @@ namespace BungieSharper.Entities.User
 
         /// <summary>The bitflag value for this subscription. Should be a unique power of two value.</summary>
         [JsonPropertyName("value")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long Value { get; set; }
     }
 
@@ -414,6 +439,7 @@ namespace BungieSharper.Entities.User
 
         /// <summary>The OptInFlags value to set or clear if this setting is set or cleared in the UI. It is the aggregate of all underlying opt-in flags related to this setting.</summary>
         [JsonPropertyName("optInAggregateValue")]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public User.OptInFlags OptInAggregateValue { get; set; }
 
         /// <summary>The subscriptions to show as children of this setting, if any.</summary>

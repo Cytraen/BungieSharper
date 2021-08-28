@@ -14,7 +14,9 @@ namespace BungieSharper.Entities.Destiny.Entities.Items
         public uint ItemHash { get; set; }
 
         /// <summary>If the item is instanced, it will have an instance ID. Lack of an instance ID implies that the item has no distinct local qualities aside from stack size.</summary>
-        [JsonPropertyName("itemInstanceId"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("itemInstanceId")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long? ItemInstanceId { get; set; }
 
         /// <summary>The quantity of the item in this stack. Note that Instanced items cannot stack. If an instanced item, this value will always be 1 (as the stack has exactly one item in it)</summary>
@@ -49,11 +51,13 @@ namespace BungieSharper.Entities.Destiny.Entities.Items
         /// If populated, this is the hash of the item whose icon (and other secondary styles, but *not* the human readable strings) should override whatever icons/styles are on the item being sold.
         /// If you don't do this, certain items whose styles are being overridden by socketed items - such as the "Recycle Shader" item - would show whatever their default icon/style is, and it wouldn't be pretty or look accurate.
         /// </summary>
-        [JsonPropertyName("overrideStyleItemHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("overrideStyleItemHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? OverrideStyleItemHash { get; set; }
 
         /// <summary>If the item can expire, this is the date at which it will/did expire.</summary>
-        [JsonPropertyName("expirationDate"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("expirationDate")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public DateTime? ExpirationDate { get; set; }
 
         /// <summary>
@@ -68,7 +72,8 @@ namespace BungieSharper.Entities.Destiny.Entities.Items
         public IEnumerable<int> TooltipNotificationIndexes { get; set; }
 
         /// <summary>The identifier for the currently-selected metric definition, to be displayed on the emblem nameplate.</summary>
-        [JsonPropertyName("metricHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("metricHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? MetricHash { get; set; }
 
         /// <summary>The objective progress for the currently-selected metric definition, to be displayed on the emblem nameplate.</summary>
@@ -76,7 +81,8 @@ namespace BungieSharper.Entities.Destiny.Entities.Items
         public Destiny.Quests.DestinyObjectiveProgress MetricObjective { get; set; }
 
         /// <summary>The version of this item, used to index into the versions list in the item definition quality block.</summary>
-        [JsonPropertyName("versionNumber"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("versionNumber")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? VersionNumber { get; set; }
 
         /// <summary>If available, a list that describes which item values (rewards) should be shown (true) or hidden (false).</summary>
@@ -101,7 +107,8 @@ namespace BungieSharper.Entities.Destiny.Entities.Items
         public Destiny.Quests.DestinyObjectiveProgress FlavorObjective { get; set; }
 
         /// <summary>If we have any information on when these objectives were completed, this will be the date of that completion. This won't be on many items, but could be interesting for some items that do store this information.</summary>
-        [JsonPropertyName("dateCompleted"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("dateCompleted")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public DateTime? DateCompleted { get; set; }
     }
 
@@ -117,7 +124,8 @@ namespace BungieSharper.Entities.Destiny.Entities.Items
         public Destiny.DamageType DamageType { get; set; }
 
         /// <summary>The current damage type's hash, so you can look up localized info and icons for it.</summary>
-        [JsonPropertyName("damageTypeHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("damageTypeHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? DamageTypeHash { get; set; }
 
         /// <summary>The item stat that we consider to be "primary" for the item. For instance, this would be "Attack" for Weapons or "Defense" for armor.</summary>
@@ -156,11 +164,13 @@ namespace BungieSharper.Entities.Destiny.Entities.Items
         public Destiny.EquipFailureReason CannotEquipReason { get; set; }
 
         /// <summary>If populated, this item has a breaker type corresponding to the given value. See DestinyBreakerTypeDefinition for more details.</summary>
-        [JsonPropertyName("breakerType"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("breakerType")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? BreakerType { get; set; }
 
         /// <summary>If populated, this is the hash identifier for the item's breaker type. See DestinyBreakerTypeDefinition for more details.</summary>
-        [JsonPropertyName("breakerTypeHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("breakerTypeHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? BreakerTypeHash { get; set; }
 
         /// <summary>IF populated, this item supports Energy mechanics (i.e. Armor 2.0), and these are the current details of its energy type and available capacity to spend energy points.</summary>
@@ -254,7 +264,8 @@ namespace BungieSharper.Entities.Destiny.Entities.Items
         /// The currently active plug, if any.
         /// Note that, because all plugs are statically defined, its effect on stats and perks can be statically determined using the plug item's definition. The stats and perks can be taken at face value on the plug item as the stats and perks it will provide to the user/item.
         /// </summary>
-        [JsonPropertyName("plugHash"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("plugHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? PlugHash { get; set; }
 
         /// <summary>

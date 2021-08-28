@@ -266,7 +266,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -279,7 +280,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -292,7 +294,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -305,7 +308,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -318,7 +322,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -331,7 +336,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -344,7 +350,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -357,7 +364,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -370,7 +378,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -383,7 +392,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -396,7 +406,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -409,7 +420,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -422,7 +434,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -435,7 +448,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -448,7 +462,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -461,7 +476,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -474,7 +490,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -487,7 +504,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -500,7 +518,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -513,7 +532,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -532,7 +552,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -545,7 +566,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -558,7 +580,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -571,7 +594,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -584,7 +608,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -603,7 +628,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -649,7 +675,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -662,7 +689,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -675,7 +703,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -688,7 +717,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -701,7 +731,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -714,7 +745,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -727,7 +759,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -740,7 +773,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -753,7 +787,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -766,7 +801,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -779,7 +815,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -792,7 +829,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -805,7 +843,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -818,7 +857,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -831,7 +871,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -844,7 +885,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -857,7 +899,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -870,7 +913,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -883,7 +927,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -896,7 +941,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -909,7 +955,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -922,7 +969,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -935,7 +983,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -948,7 +997,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -961,7 +1011,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -974,7 +1025,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -987,7 +1039,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -1000,7 +1053,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -1013,7 +1067,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -1026,7 +1081,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -1045,7 +1101,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -1064,7 +1121,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -1110,7 +1168,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -1123,7 +1182,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -1136,7 +1196,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -1149,7 +1210,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -1162,7 +1224,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -1175,7 +1238,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -1188,7 +1252,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -1201,7 +1266,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -1214,7 +1280,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -1227,7 +1294,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -1240,7 +1308,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -1253,7 +1322,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -1272,7 +1342,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -1318,7 +1389,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -1331,7 +1403,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -1344,7 +1417,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -1357,7 +1431,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -1370,7 +1445,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -1383,7 +1459,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -1396,7 +1473,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 
@@ -1409,7 +1487,8 @@ namespace BungieSharper.Entities
         public Components.ComponentPrivacySetting Privacy { get; set; }
 
         /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
 

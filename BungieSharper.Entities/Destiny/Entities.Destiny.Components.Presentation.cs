@@ -27,7 +27,8 @@ namespace BungieSharper.Entities.Destiny.Components.Presentation
         public int CompletionValue { get; set; }
 
         /// <summary>If available, this is the current score for the record category that this node represents.</summary>
-        [JsonPropertyName("recordCategoryScore"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("recordCategoryScore")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? RecordCategoryScore { get; set; }
     }
 }

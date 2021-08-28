@@ -83,7 +83,6 @@ namespace BungieSharper.Entities.Destiny.Responses
 
         /// <summary>Membership ID as they user is known in the Accounts service</summary>
         [JsonPropertyName("membershipId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long MembershipId { get; set; }
 
         /// <summary>Display Name the player has chosen for themselves. The display name is optional when the data type is used as input to a platform API.</summary>
@@ -407,7 +406,6 @@ namespace BungieSharper.Entities.Destiny.Responses
         /// <summary>If the item is on a character, this will return the ID of the character that is holding the item.</summary>
         [JsonPropertyName("characterId")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long? CharacterId { get; set; }
 
         /// <summary>

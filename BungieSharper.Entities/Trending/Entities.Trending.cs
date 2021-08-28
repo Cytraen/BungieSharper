@@ -202,11 +202,9 @@ namespace BungieSharper.Entities.Trending
         public string Author { get; set; }
 
         [JsonPropertyName("authorMembershipId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long AuthorMembershipId { get; set; }
 
         [JsonPropertyName("postId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long PostId { get; set; }
 
         [JsonPropertyName("body")]

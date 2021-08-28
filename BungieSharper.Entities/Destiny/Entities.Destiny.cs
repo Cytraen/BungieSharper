@@ -139,7 +139,6 @@ namespace BungieSharper.Entities.Destiny
         /// <summary>If this quantity is referring to a specific instance of an item, this will have the item's instance ID. Normally, this will be null.</summary>
         [JsonPropertyName("itemInstanceId")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long? ItemInstanceId { get; set; }
 
         /// <summary>The amount of the item needed/available depending on the context of where DestinyItemQuantity is being used.</summary>
@@ -1452,7 +1451,6 @@ namespace BungieSharper.Entities.Destiny
     {
         /// <summary>The instance ID of the item in question (all items that can be equipped must, but definition, be Instanced and thus have an Instance ID that you can use to refer to them)</summary>
         [JsonPropertyName("itemInstanceId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long ItemInstanceId { get; set; }
 
         /// <summary>A PlatformErrorCodes enum indicating whether it succeeded, and if it failed why.</summary>

@@ -12,7 +12,6 @@ namespace BungieSharper.Entities.Social.Friends
     public class BungieFriend
     {
         [JsonPropertyName("lastSeenAsMembershipId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long LastSeenAsMembershipId { get; set; }
 
         [JsonPropertyName("lastSeenAsBungieMembershipType")]
@@ -102,7 +101,6 @@ namespace BungieSharper.Entities.Social.Friends
 
         [JsonPropertyName("destinyMembershipId")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long? DestinyMembershipId { get; set; }
 
         [JsonPropertyName("destinyMembershipType")]
@@ -111,7 +109,6 @@ namespace BungieSharper.Entities.Social.Friends
 
         [JsonPropertyName("bungieNetMembershipId")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long? BungieNetMembershipId { get; set; }
 
         [JsonPropertyName("bungieGlobalDisplayName")]

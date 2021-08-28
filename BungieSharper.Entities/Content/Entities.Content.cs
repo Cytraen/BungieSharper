@@ -7,7 +7,6 @@ namespace BungieSharper.Entities.Content
     public class ContentItemPublicContract
     {
         [JsonPropertyName("contentId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long ContentId { get; set; }
 
         [JsonPropertyName("cType")]
@@ -73,7 +72,6 @@ namespace BungieSharper.Entities.Content
     public class CommentSummary
     {
         [JsonPropertyName("topicId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long TopicId { get; set; }
 
         [JsonPropertyName("commentCount")]

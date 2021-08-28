@@ -218,7 +218,6 @@ namespace BungieSharper.Entities.Destiny.Definitions.Milestones
         /// <summary>If this quantity is referring to a specific instance of an item, this will have the item's instance ID. Normally, this will be null.</summary>
         [JsonPropertyName("itemInstanceId")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long? ItemInstanceId { get; set; }
 
         /// <summary>The amount of the item needed/available depending on the context of where DestinyItemQuantity is being used.</summary>

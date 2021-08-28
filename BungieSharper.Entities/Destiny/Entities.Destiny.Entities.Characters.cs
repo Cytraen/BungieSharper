@@ -11,7 +11,6 @@ namespace BungieSharper.Entities.Destiny.Entities.Characters
     {
         /// <summary>Every Destiny Profile has a membershipId. This is provided on the character as well for convenience.</summary>
         [JsonPropertyName("membershipId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long MembershipId { get; set; }
 
         /// <summary>membershipType tells you the platform on which the character plays. Examine the BungieMembershipType enumeration for possible values.</summary>
@@ -20,7 +19,6 @@ namespace BungieSharper.Entities.Destiny.Entities.Characters
 
         /// <summary>The unique identifier for the character.</summary>
         [JsonPropertyName("characterId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long CharacterId { get; set; }
 
         /// <summary>The last date that the user played Destiny.</summary>
@@ -29,12 +27,10 @@ namespace BungieSharper.Entities.Destiny.Entities.Characters
 
         /// <summary>If the user is currently playing, this is how long they've been playing.</summary>
         [JsonPropertyName("minutesPlayedThisSession")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long MinutesPlayedThisSession { get; set; }
 
         /// <summary>If this value is 525,600, then they played Destiny for a year. Or they're a very dedicated Rent fan. Note that this includes idle time, not just time spent actually in activities shooting things.</summary>
         [JsonPropertyName("minutesPlayedTotal")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long MinutesPlayedTotal { get; set; }
 
         /// <summary>The user's calculated "Light Level". Light level is an indicator of your power that mostly matters in the end game, once you've reached the maximum character level: it's a level that's dependent on the average Attack/Defense power of your items.</summary>

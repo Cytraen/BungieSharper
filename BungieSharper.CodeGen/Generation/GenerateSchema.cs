@@ -143,11 +143,6 @@ namespace BungieSharper.CodeGen.Generation
                 propListing += $"{"",8}[JsonPropertyName(\"{name}\")]\n";
             }
 
-            if (def.Format == FormatEnum.Int64)
-            {
-                propListing += $"{"",8}[JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]\n";
-            }
-
             propListing += $"{"",8}public {propType} {char.ToUpper(name[0]) + name[1..]} {{ get; set; }}";
 
             return propListing;

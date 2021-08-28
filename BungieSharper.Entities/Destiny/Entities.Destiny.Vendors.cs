@@ -22,7 +22,6 @@ namespace BungieSharper.Entities.Destiny.Vendors
 
         /// <summary>The ID of the character who made the purchase.</summary>
         [JsonPropertyName("purchasedByCharacterId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long PurchasedByCharacterId { get; set; }
 
         /// <summary>Whether you can get a refund, and what happens in order for the refund to be received. See the DestinyVendorItemRefundPolicy enum for details.</summary>
@@ -35,7 +34,6 @@ namespace BungieSharper.Entities.Destiny.Vendors
 
         /// <summary>The seconds since epoch at which this receipt is rendered invalid.</summary>
         [JsonPropertyName("timeToExpiration")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long TimeToExpiration { get; set; }
 
         /// <summary>The date at which this receipt is rendered invalid.</summary>

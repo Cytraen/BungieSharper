@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 
 namespace BungieSharper.CodeGen
@@ -36,8 +37,10 @@ namespace BungieSharper.CodeGen
                 Console.WriteLine("Using provided OpenAPI definitions.");
             }
 
+            var serializerOptions = new JsonSerializerOptions { NumberHandling = JsonNumberHandling.AllowReadingFromString };
+
             var fileContent = File.ReadAllText("openapi.json");
-            OpenApiDefinition = JsonSerializer.Deserialize<OpenApiObject>(fileContent)!;
+            OpenApiDefinition = JsonSerializer.Deserialize<OpenApiObject>(fileContent, serializerOptions)!;
             var schemas = OpenApiDefinition.Components.Schemas;
             var paths = OpenApiDefinition.Paths;
 

@@ -40,11 +40,9 @@ namespace BungieSharper.Entities.Fireteam
     public class FireteamSummary
     {
         [JsonPropertyName("fireteamId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long FireteamId { get; set; }
 
         [JsonPropertyName("groupId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long GroupId { get; set; }
 
         [JsonPropertyName("platform")]
@@ -61,7 +59,6 @@ namespace BungieSharper.Entities.Fireteam
         public DateTime? ScheduledTime { get; set; }
 
         [JsonPropertyName("ownerMembershipId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long OwnerMembershipId { get; set; }
 
         [JsonPropertyName("playerSlotCount")]
@@ -124,7 +121,6 @@ namespace BungieSharper.Entities.Fireteam
         public User.UserInfoCard BungieNetUserInfo { get; set; }
 
         [JsonPropertyName("characterId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long CharacterId { get; set; }
 
         [JsonPropertyName("dateJoined")]
@@ -177,7 +173,6 @@ namespace BungieSharper.Entities.Fireteam
 
         /// <summary>Membership ID as they user is known in the Accounts service</summary>
         [JsonPropertyName("membershipId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long MembershipId { get; set; }
 
         /// <summary>Display Name the player has chosen for themselves. The display name is optional when the data type is used as input to a platform API.</summary>

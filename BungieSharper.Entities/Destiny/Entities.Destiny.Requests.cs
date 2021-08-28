@@ -14,11 +14,9 @@ namespace BungieSharper.Entities.Destiny.Requests
         public bool TransferToVault { get; set; }
 
         [JsonPropertyName("itemId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long ItemId { get; set; }
 
         [JsonPropertyName("characterId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long CharacterId { get; set; }
 
         [JsonPropertyName("membershipType")]

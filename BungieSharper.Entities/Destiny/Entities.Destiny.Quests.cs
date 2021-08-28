@@ -67,7 +67,6 @@ namespace BungieSharper.Entities.Destiny.Quests
 
         /// <summary>The current Quest Step will be an instanced item in the player's inventory. If you care about that, this is the instance ID of that item.</summary>
         [JsonPropertyName("itemInstanceId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long ItemInstanceId { get; set; }
 
         /// <summary>Whether or not the whole quest has been completed, regardless of whether or not you have redeemed the rewards for the quest.</summary>

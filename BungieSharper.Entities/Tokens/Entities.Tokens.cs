@@ -10,7 +10,6 @@ namespace BungieSharper.Entities.Tokens
         public string PartnerOfferId { get; set; }
 
         [JsonPropertyName("BungieNetMembershipId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long BungieNetMembershipId { get; set; }
 
         [JsonPropertyName("TransactionId")]
@@ -48,7 +47,6 @@ namespace BungieSharper.Entities.Tokens
 
         [JsonPropertyName("MembershipId")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long? MembershipId { get; set; }
 
         [JsonPropertyName("MembershipType")]

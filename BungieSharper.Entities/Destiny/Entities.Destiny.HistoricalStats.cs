@@ -46,7 +46,6 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
         /// This value can be used to get additional data about this activity such as who else was playing via the GetPostGameCarnageReport endpoint.
         /// </summary>
         [JsonPropertyName("instanceId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long InstanceId { get; set; }
 
         /// <summary>Indicates the most specific game mode of the activity that we could find.</summary>
@@ -82,7 +81,6 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
 
         /// <summary>ID of the player's character used in the activity.</summary>
         [JsonPropertyName("characterId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long CharacterId { get; set; }
 
         /// <summary>Collection of stats for the player in this activity.</summary>
@@ -115,7 +113,6 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
         /// <summary>When a stat represents the best, most, longest, fastest or some other personal best, the actual activity ID where that personal best was established is available on this property.</summary>
         [JsonPropertyName("activityId")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long? ActivityId { get; set; }
     }
 
@@ -236,7 +233,6 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
 
         /// <summary>ID of the player's best character for the reported stat.</summary>
         [JsonPropertyName("characterId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long CharacterId { get; set; }
 
         /// <summary>Value of the stat for this player</summary>
@@ -249,13 +245,11 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
         /// <summary>Indicate the membership ID of the account that is the focal point of the provided leaderboards.</summary>
         [JsonPropertyName("focusMembershipId")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long? FocusMembershipId { get; set; }
 
         /// <summary>Indicate the character ID of the character that is the focal point of the provided leaderboards. May be null, in which case any character from the focus membership can appear in the provided leaderboards.</summary>
         [JsonPropertyName("focusCharacterId")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long? FocusCharacterId { get; set; }
     }
 
@@ -336,7 +330,6 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
     public class DestinyHistoricalStatsPerCharacter
     {
         [JsonPropertyName("characterId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long CharacterId { get; set; }
 
         [JsonPropertyName("deleted")]

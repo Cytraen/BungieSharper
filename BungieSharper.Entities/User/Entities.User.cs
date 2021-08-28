@@ -15,7 +15,6 @@ namespace BungieSharper.Entities.User
 
         /// <summary>Membership ID as they user is known in the Accounts service</summary>
         [JsonPropertyName("membershipId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long MembershipId { get; set; }
 
         /// <summary>Display Name the player has chosen for themselves. The display name is optional when the data type is used as input to a platform API.</summary>
@@ -58,7 +57,6 @@ namespace BungieSharper.Entities.User
 
         /// <summary>Membership ID as they user is known in the Accounts service</summary>
         [JsonPropertyName("membershipId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long MembershipId { get; set; }
 
         /// <summary>Display Name the player has chosen for themselves. The display name is optional when the data type is used as input to a platform API.</summary>
@@ -109,7 +107,6 @@ namespace BungieSharper.Entities.User
 
         /// <summary>Membership ID as they user is known in the Accounts service</summary>
         [JsonPropertyName("membershipId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long MembershipId { get; set; }
 
         /// <summary>Display Name the player has chosen for themselves. The display name is optional when the data type is used as input to a platform API.</summary>
@@ -129,7 +126,6 @@ namespace BungieSharper.Entities.User
     public class GeneralUser
     {
         [JsonPropertyName("membershipId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long MembershipId { get; set; }
 
         [JsonPropertyName("uniqueName")]
@@ -151,7 +147,6 @@ namespace BungieSharper.Entities.User
         public int UserTitle { get; set; }
 
         [JsonPropertyName("successMessageFlags")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long SuccessMessageFlags { get; set; }
 
         [JsonPropertyName("isDeleted")]
@@ -170,7 +165,6 @@ namespace BungieSharper.Entities.User
 
         [JsonPropertyName("legacyPortalUID")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long? LegacyPortalUID { get; set; }
 
         [JsonPropertyName("context")]
@@ -197,7 +191,6 @@ namespace BungieSharper.Entities.User
 
         [JsonPropertyName("lastBanReportId")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long? LastBanReportId { get; set; }
 
         [JsonPropertyName("showGroupMessaging")]
@@ -270,7 +263,6 @@ namespace BungieSharper.Entities.User
         /// </summary>
         [JsonPropertyName("primaryMembershipId")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long? PrimaryMembershipId { get; set; }
 
         [JsonPropertyName("bungieNetUser")]
@@ -283,7 +275,6 @@ namespace BungieSharper.Entities.User
         public BungieMembershipType MembershipType { get; set; }
 
         [JsonPropertyName("membershipId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long MembershipId { get; set; }
 
         [JsonPropertyName("CrossSaveOverriddenType")]
@@ -291,7 +282,6 @@ namespace BungieSharper.Entities.User
 
         [JsonPropertyName("CrossSaveOverriddenMembershipId")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long? CrossSaveOverriddenMembershipId { get; set; }
     }
 
@@ -324,7 +314,6 @@ namespace BungieSharper.Entities.User
 
         /// <summary>The flag value for this opt-in category. For historical reasons, this is defined as a flags enum.</summary>
         [JsonPropertyName("value")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public User.OptInFlags Value { get; set; }
 
         /// <summary>If true, this opt-in setting should be set by default in situations where accounts are created without explicit choices about what they're opting into.</summary>
@@ -366,7 +355,6 @@ namespace BungieSharper.Entities.User
 
         /// <summary>The bitflag value for this subscription. Should be a unique power of two value.</summary>
         [JsonPropertyName("value")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long Value { get; set; }
     }
 
@@ -439,7 +427,6 @@ namespace BungieSharper.Entities.User
 
         /// <summary>The OptInFlags value to set or clear if this setting is set or cleared in the UI. It is the aggregate of all underlying opt-in flags related to this setting.</summary>
         [JsonPropertyName("optInAggregateValue")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public User.OptInFlags OptInAggregateValue { get; set; }
 
         /// <summary>The subscriptions to show as children of this setting, if any.</summary>

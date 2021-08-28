@@ -72,11 +72,9 @@ namespace BungieSharper.Entities.Forum
         public bool UserHasMutedPost { get; set; }
 
         [JsonPropertyName("latestReplyPostId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long LatestReplyPostId { get; set; }
 
         [JsonPropertyName("latestReplyAuthorId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long LatestReplyAuthorId { get; set; }
 
         [JsonPropertyName("ignoreStatus")]
@@ -156,7 +154,6 @@ namespace BungieSharper.Entities.Forum
     public class PollResponse
     {
         [JsonPropertyName("topicId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long TopicId { get; set; }
 
         [JsonPropertyName("results")]
@@ -187,7 +184,6 @@ namespace BungieSharper.Entities.Forum
     public class ForumRecruitmentDetail
     {
         [JsonPropertyName("topicId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long TopicId { get; set; }
 
         [JsonPropertyName("microphoneRequired")]
@@ -204,7 +200,6 @@ namespace BungieSharper.Entities.Forum
 
         [JsonPropertyName("conversationId")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long? ConversationId { get; set; }
 
         [JsonPropertyName("playerSlotsTotal")]

@@ -58,7 +58,6 @@ namespace BungieSharper.Entities.Destiny.Components.Profiles
     {
         /// <summary>The Membership ID that matches the party member.</summary>
         [JsonPropertyName("membershipId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long MembershipId { get; set; }
 
         /// <summary>The identifier for the DestinyInventoryItemDefinition of the player's emblem.</summary>

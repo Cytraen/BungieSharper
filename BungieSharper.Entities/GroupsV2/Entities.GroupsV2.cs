@@ -43,7 +43,6 @@ namespace BungieSharper.Entities.GroupsV2
 
         /// <summary>Membership ID as they user is known in the Accounts service</summary>
         [JsonPropertyName("membershipId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long MembershipId { get; set; }
 
         /// <summary>Display Name the player has chosen for themselves. The display name is optional when the data type is used as input to a platform API.</summary>
@@ -96,7 +95,6 @@ namespace BungieSharper.Entities.GroupsV2
     public class GroupV2
     {
         [JsonPropertyName("groupId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long GroupId { get; set; }
 
         [JsonPropertyName("name")]
@@ -106,7 +104,6 @@ namespace BungieSharper.Entities.GroupsV2
         public GroupsV2.GroupType GroupType { get; set; }
 
         [JsonPropertyName("membershipIdCreated")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long MembershipIdCreated { get; set; }
 
         [JsonPropertyName("creationDate")]
@@ -167,7 +164,6 @@ namespace BungieSharper.Entities.GroupsV2
         public string AvatarPath { get; set; }
 
         [JsonPropertyName("conversationId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long ConversationId { get; set; }
 
         [JsonPropertyName("enableInvitationMessagingForAdmins")]
@@ -366,7 +362,6 @@ namespace BungieSharper.Entities.GroupsV2
     public class GroupUserBase
     {
         [JsonPropertyName("groupId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long GroupId { get; set; }
 
         [JsonPropertyName("destinyUserInfo")]
@@ -388,11 +383,9 @@ namespace BungieSharper.Entities.GroupsV2
         public bool IsOnline { get; set; }
 
         [JsonPropertyName("lastOnlineStatusChange")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long LastOnlineStatusChange { get; set; }
 
         [JsonPropertyName("groupId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long GroupId { get; set; }
 
         [JsonPropertyName("destinyUserInfo")]
@@ -418,7 +411,6 @@ namespace BungieSharper.Entities.GroupsV2
         public GroupsV2.GroupPotentialMemberStatus PotentialStatus { get; set; }
 
         [JsonPropertyName("groupId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long GroupId { get; set; }
 
         [JsonPropertyName("destinyUserInfo")]
@@ -453,7 +445,6 @@ namespace BungieSharper.Entities.GroupsV2
     public class GroupV2Card
     {
         [JsonPropertyName("groupId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long GroupId { get; set; }
 
         [JsonPropertyName("name")]
@@ -589,11 +580,9 @@ namespace BungieSharper.Entities.GroupsV2
     public class GroupOptionalConversation
     {
         [JsonPropertyName("groupId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long GroupId { get; set; }
 
         [JsonPropertyName("conversationId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long ConversationId { get; set; }
 
         [JsonPropertyName("chatEnabled")]
@@ -761,7 +750,6 @@ namespace BungieSharper.Entities.GroupsV2
     public class GroupBan
     {
         [JsonPropertyName("groupId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long GroupId { get; set; }
 
         [JsonPropertyName("lastModifiedBy")]
@@ -789,7 +777,6 @@ namespace BungieSharper.Entities.GroupsV2
     public class GroupMemberApplication
     {
         [JsonPropertyName("groupId")]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long GroupId { get; set; }
 
         [JsonPropertyName("creationDate")]
@@ -804,7 +791,6 @@ namespace BungieSharper.Entities.GroupsV2
 
         [JsonPropertyName("resolvedByMembershipId")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
         public long? ResolvedByMembershipId { get; set; }
 
         [JsonPropertyName("requestMessage")]

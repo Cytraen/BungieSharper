@@ -285,6 +285,35 @@ namespace BungieSharper.Entities.User
         public long? CrossSaveOverriddenMembershipId { get; set; }
     }
 
+    public class UserSearchResponse
+    {
+        [JsonPropertyName("searchResults")]
+        public IEnumerable<User.UserSearchResponseDetail> SearchResults { get; set; }
+
+        [JsonPropertyName("page")]
+        public int Page { get; set; }
+
+        [JsonPropertyName("hasMore")]
+        public bool HasMore { get; set; }
+    }
+
+    public class UserSearchResponseDetail
+    {
+        [JsonPropertyName("bungieGlobalDisplayName")]
+        public string BungieGlobalDisplayName { get; set; }
+
+        [JsonPropertyName("bungieGlobalDisplayNameCode")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public short? BungieGlobalDisplayNameCode { get; set; }
+
+        [JsonPropertyName("bungieNetMembershipId")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public long? BungieNetMembershipId { get; set; }
+
+        [JsonPropertyName("destinyMemberships")]
+        public IEnumerable<User.UserInfoCard> DestinyMemberships { get; set; }
+    }
+
     /// <summary>
     /// The set of all email subscription/opt-in settings and definitions.
     /// </summary>

@@ -93,5 +93,20 @@ namespace BungieSharper.Endpoints
                 null, HttpMethod.Get, authToken, cancelToken
                 );
         }
+
+        /// <summary>
+        /// Given the prefix of a global display name, returns all users who share that name.
+        /// </summary>
+        /// <param name="displayNamePrefix">The display name prefix you're looking for.</param>
+        /// <param name="page">The zero-based page of results you desire.</param>
+        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
+        public Task<Entities.User.UserSearchResponse> User_SearchByGlobalNamePrefix(string displayNamePrefix, int page, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<Entities.User.UserSearchResponse>(
+                new Uri($"User/Search/Prefix/{Uri.EscapeDataString(displayNamePrefix)}/{page}/", UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
     }
 }

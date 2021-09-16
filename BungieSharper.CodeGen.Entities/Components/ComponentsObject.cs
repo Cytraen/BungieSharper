@@ -13,10 +13,10 @@ namespace BungieSharper.CodeGen.Entities.Components
 
         // Don't care
         [JsonPropertyName("headers")]
-        public Dictionary<string, dynamic> Headers { get; set; }
+        public Dictionary<string, object> Headers { get; set; }
 
         // Don't care
         [JsonPropertyName("securitySchemes")]
-        public Dictionary<string, dynamic> SecuritySchemes { get; set; }
+        public Dictionary<string, object> SecuritySchemes { get; set; }
     }
 }

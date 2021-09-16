@@ -7,9 +7,9 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-2022
+
     env:
-      dotnet_sdk_version: '5.0.x'
       DOTNET_CLI_TELEMETRY_OPTOUT: true
       DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
       TEST_BUNGIE_API_KEY: ${{ secrets.TEST_BUNGIE_API_KEY }}
@@ -22,10 +22,17 @@ jobs:
       id: get_version
       run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/v}
 
-    - name: Setup .NET
+    - name: Setup .NET 5
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: ${{ env.dotnet_sdk_version }}
+        dotnet-version: '5.0.x'
+        include-prerelease: false
+
+    - name: Setup .NET 6
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '6.0.x'
+        include-prerelease: true
 
     - name: Build client
       run: dotnet build ./BungieSharper -c Release -p:Version=${{ steps.get_version.outputs.VERSION }}

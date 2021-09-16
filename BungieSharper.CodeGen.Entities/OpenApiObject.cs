@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace BungieSharper.CodeGen.Entities
@@ -11,11 +11,11 @@ namespace BungieSharper.CodeGen.Entities
 
         // Don't care
         [JsonPropertyName("info")]
-        public dynamic Info { get; set; }
+        public object Info { get; set; }
 
         // Don't care
         [JsonPropertyName("servers")]
-        public List<dynamic> Servers { get; set; }
+        public List<object> Servers { get; set; }
 
         [JsonPropertyName("paths")]
         public Dictionary<string, Paths.PathObject> Paths { get; set; }
@@ -25,10 +25,10 @@ namespace BungieSharper.CodeGen.Entities
 
         // Don't care
         [JsonPropertyName("tags")]
-        public List<dynamic> Tags { get; set; }
+        public List<object> Tags { get; set; }
 
         // Don't care
         [JsonPropertyName("externalDocs")]
-        public dynamic ExternalDocs { get; set; }
+        public object ExternalDocs { get; set; }
     }
 }

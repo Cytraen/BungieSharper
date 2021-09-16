@@ -8,8 +8,8 @@
     <RepositoryType>git</RepositoryType>
     <Nullable>enable</Nullable>
 
-    <TargetFramework>net5.0</TargetFramework>
-    <Version>0.8.3</Version>
+    <TargetFrameworks>net5.0;net6.0</TargetFrameworks>
+    <Version>0.8.5</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

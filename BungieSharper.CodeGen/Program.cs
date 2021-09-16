@@ -1,9 +1,9 @@
-﻿using BungieSharper.CodeGen.Entities;
+using BungieSharper.CodeGen.Entities;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -24,23 +24,26 @@ namespace BungieSharper.CodeGen
         private static void Main(string[] args)
         {
             const string openApiDefUrl = "https://raw.githubusercontent.com/Bungie-net/api/master/openapi.json";
+            string content;
 
             if (args.Contains("--download-new-definitions") || !File.Exists("openApi.json"))
             {
                 Console.Write($"Downloading new OpenAPI definitions from {openApiDefUrl}... ");
-                var webClient = new WebClient();
-                webClient.DownloadFile(new Uri(openApiDefUrl, UriKind.Absolute), "openapi.json");
+                var httpClient = new HttpClient();
+                var response = httpClient.GetAsync(openApiDefUrl).GetAwaiter().GetResult();
+                content = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                File.WriteAllText("openapi.json", content);
                 Console.WriteLine("done.");
             }
             else
             {
                 Console.WriteLine("Using provided OpenAPI definitions.");
+                content = File.ReadAllText("openapi.json");
             }
 
             var serializerOptions = new JsonSerializerOptions { NumberHandling = JsonNumberHandling.AllowReadingFromString };
 
-            var fileContent = File.ReadAllText("openapi.json");
-            OpenApiDefinition = JsonSerializer.Deserialize<OpenApiObject>(fileContent, serializerOptions)!;
+            OpenApiDefinition = JsonSerializer.Deserialize<OpenApiObject>(content, serializerOptions)!;
             var schemas = OpenApiDefinition.Components.Schemas;
             var paths = OpenApiDefinition.Paths;
 
@@ -91,7 +94,7 @@ namespace BungieSharper.CodeGen
                 combinedContent = combinedContent.Replace($"namespace {matches[0].Groups[1]}", "");
                 combinedContent = $"namespace {matches[0].Groups[1]}\n{{" + combinedContent + "\n}";
 
-                if (combinedContent.Contains("[JsonPropertyName(\""))
+                if (combinedContent.Contains("JsonSerializable") && combinedContent.Contains("JsonSourceGenerationOptions") && combinedContent.Contains("JsonSerializerContext"))
                 {
                     combinedContent = "using System.Text.Json.Serialization;\n" + combinedContent;
                 }
@@ -141,6 +144,8 @@ namespace BungieSharper.CodeGen
                     ("Entities." + location.Replace(BungieSharperPath, "").Replace('\\', '.') + ".cs").Replace("..", "."),
                     combinedContent
                     );
+
+                Console.WriteLine($"Wrote Entities.{location.Replace(BungieSharperPath, "").Replace('\\', '.')}");
             }
 
             // endpoints

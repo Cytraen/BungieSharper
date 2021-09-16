@@ -13,7 +13,7 @@ namespace BungieSharper.CodeGen.Generation
                 TypeEnum.Boolean => "bool",
                 TypeEnum.Integer => "int",
                 TypeEnum.Number => "float",
-                TypeEnum.Object => "dynamic",
+                TypeEnum.Object => "object",
                 TypeEnum.String => "string",
                 _ => throw new NotSupportedException(),
             };

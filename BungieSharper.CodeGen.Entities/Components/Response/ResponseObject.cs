@@ -39,21 +39,21 @@ namespace BungieSharper.CodeGen.Entities.Components.Response
         public SchemaPropertiesResponseClass Response { get; set; }
 
         [JsonPropertyName("ErrorCode"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public dynamic ErrorCode { get; set; }
+        public object ErrorCode { get; set; }
 
         [JsonPropertyName("ThrottleSeconds"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public dynamic ThrottleSeconds { get; set; }
+        public object ThrottleSeconds { get; set; }
 
         [JsonPropertyName("ErrorStatus"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public dynamic ErrorStatus { get; set; }
+        public object ErrorStatus { get; set; }
 
         [JsonPropertyName("Message"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public dynamic Message { get; set; }
+        public object Message { get; set; }
 
         [JsonPropertyName("MessageData"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public dynamic MessageData { get; set; }
+        public object MessageData { get; set; }
 
         [JsonPropertyName("DetailedErrorTrace"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public dynamic DetailedErrorTrace { get; set; }
+        public object DetailedErrorTrace { get; set; }
     }
 }

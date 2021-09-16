@@ -250,4 +250,9 @@ namespace BungieSharper.Entities
         [JsonPropertyName("DestinyEnergyTypeDefinition")]
         public Dictionary<uint, DestinyEnergyTypeDefinition>? EnergyTypes { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(AggregateDestinyDefinitions))]
+    internal partial class AggregateDestinyDefinitionsJsonContext : JsonSerializerContext { }
+#endif
 }

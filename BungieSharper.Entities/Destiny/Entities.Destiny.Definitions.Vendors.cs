@@ -15,4 +15,10 @@ namespace BungieSharper.Entities.Destiny.Definitions.Vendors
         [JsonPropertyName("backgroundImagePath")]
         public string BackgroundImagePath { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyVendorLocationDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyVendorLocationDefinitionJsonContext : JsonSerializerContext { }
+#endif
 }

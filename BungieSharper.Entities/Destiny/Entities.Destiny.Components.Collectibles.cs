@@ -17,11 +17,23 @@ namespace BungieSharper.Entities.Destiny.Components.Collectibles
         public uint CollectionBadgesRootNodeHash { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyCollectiblesComponent))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyCollectiblesComponentJsonContext : JsonSerializerContext { }
+#endif
+
     public class DestinyCollectibleComponent
     {
         [JsonPropertyName("state")]
         public Destiny.DestinyCollectibleState State { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyCollectibleComponent))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyCollectibleComponentJsonContext : JsonSerializerContext { }
+#endif
 
     public class DestinyProfileCollectiblesComponent
     {
@@ -47,4 +59,10 @@ namespace BungieSharper.Entities.Destiny.Components.Collectibles
         [JsonPropertyName("collectionBadgesRootNodeHash")]
         public uint CollectionBadgesRootNodeHash { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyProfileCollectiblesComponent))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyProfileCollectiblesComponentJsonContext : JsonSerializerContext { }
+#endif
 }

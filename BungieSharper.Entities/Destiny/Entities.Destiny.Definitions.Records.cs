@@ -83,6 +83,12 @@ namespace BungieSharper.Entities.Destiny.Definitions.Records
         public bool Redacted { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyRecordDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyRecordDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     public class DestinyRecordTitleBlock
     {
         [JsonPropertyName("hasTitle")]
@@ -100,6 +106,12 @@ namespace BungieSharper.Entities.Destiny.Definitions.Records
         public uint? GildingTrackingRecordHash { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyRecordTitleBlock))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyRecordTitleBlockJsonContext : JsonSerializerContext { }
+#endif
+
     public class DestinyRecordCompletionBlock
     {
         /// <summary>The number of objectives that must be completed before the objective is considered "complete"</summary>
@@ -116,6 +128,12 @@ namespace BungieSharper.Entities.Destiny.Definitions.Records
         public Destiny.DestinyRecordToastStyle ToastStyle { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyRecordCompletionBlock))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyRecordCompletionBlockJsonContext : JsonSerializerContext { }
+#endif
+
     public class SchemaRecordStateBlock
     {
         [JsonPropertyName("featuredPriority")]
@@ -124,6 +142,12 @@ namespace BungieSharper.Entities.Destiny.Definitions.Records
         [JsonPropertyName("obscuredString")]
         public string ObscuredString { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(SchemaRecordStateBlock))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class SchemaRecordStateBlockJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// If this record has an expiration after which it cannot be earned, this is some information about that expiration.
@@ -140,6 +164,12 @@ namespace BungieSharper.Entities.Destiny.Definitions.Records
         public string Icon { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyRecordExpirationBlock))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyRecordExpirationBlockJsonContext : JsonSerializerContext { }
+#endif
+
     public class DestinyRecordIntervalBlock
     {
         [JsonPropertyName("intervalObjectives")]
@@ -152,6 +182,12 @@ namespace BungieSharper.Entities.Destiny.Definitions.Records
         public int OriginalObjectiveArrayInsertionIndex { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyRecordIntervalBlock))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyRecordIntervalBlockJsonContext : JsonSerializerContext { }
+#endif
+
     public class DestinyRecordIntervalObjective
     {
         [JsonPropertyName("intervalObjectiveHash")]
@@ -161,9 +197,21 @@ namespace BungieSharper.Entities.Destiny.Definitions.Records
         public int IntervalScoreValue { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyRecordIntervalObjective))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyRecordIntervalObjectiveJsonContext : JsonSerializerContext { }
+#endif
+
     public class DestinyRecordIntervalRewards
     {
         [JsonPropertyName("intervalRewardItems")]
         public IEnumerable<Destiny.DestinyItemQuantity> IntervalRewardItems { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyRecordIntervalRewards))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyRecordIntervalRewardsJsonContext : JsonSerializerContext { }
+#endif
 }

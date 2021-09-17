@@ -44,6 +44,12 @@ namespace BungieSharper.Entities.Destiny.Quests
         public bool Visible { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyObjectiveProgress))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyObjectiveProgressJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// Data regarding the progress of a Quest for a specific character. Quests are composed of multiple steps, each with potentially multiple objectives: this QuestStatus will return Objective data for the *currently active* step in this quest.
     /// </summary>
@@ -86,4 +92,10 @@ namespace BungieSharper.Entities.Destiny.Quests
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? VendorHash { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyQuestStatus))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyQuestStatusJsonContext : JsonSerializerContext { }
+#endif
 }

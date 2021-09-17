@@ -89,9 +89,9 @@ namespace BungieSharper.Endpoints
         /// </summary>
         /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
-        public Task<dynamic> Content_SearchHelpArticles(string searchtext, string size, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<object> Content_SearchHelpArticles(string searchtext, string size, string? authToken = null, CancellationToken cancelToken = default)
         {
-            return _apiAccessor.ApiRequestAsync<dynamic>(
+            return _apiAccessor.ApiRequestAsync<object>(
                 new Uri($"Content/SearchHelpArticles/{Uri.EscapeDataString(searchtext)}/{Uri.EscapeDataString(size)}/", UriKind.Relative),
                 null, HttpMethod.Get, authToken, cancelToken
                 );

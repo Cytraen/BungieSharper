@@ -42,4 +42,10 @@ namespace BungieSharper.Entities.Destiny.Definitions.Metrics
         [JsonPropertyName("redacted")]
         public bool Redacted { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyMetricDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyMetricDefinitionJsonContext : JsonSerializerContext { }
+#endif
 }

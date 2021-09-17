@@ -16,6 +16,12 @@ namespace BungieSharper.Entities.Tokens
         public string TransactionId { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(PartnerOfferClaimRequest))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class PartnerOfferClaimRequestJsonContext : JsonSerializerContext { }
+#endif
+
     public class PartnerOfferSkuHistoryResponse
     {
         [JsonPropertyName("SkuIdentifier")]
@@ -39,6 +45,12 @@ namespace BungieSharper.Entities.Tokens
         [JsonPropertyName("SkuOffers")]
         public IEnumerable<Tokens.PartnerOfferHistoryResponse> SkuOffers { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(PartnerOfferSkuHistoryResponse))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class PartnerOfferSkuHistoryResponseJsonContext : JsonSerializerContext { }
+#endif
 
     public class PartnerOfferHistoryResponse
     {
@@ -69,4 +81,10 @@ namespace BungieSharper.Entities.Tokens
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public DateTime? ApplyDate { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(PartnerOfferHistoryResponse))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class PartnerOfferHistoryResponseJsonContext : JsonSerializerContext { }
+#endif
 }

@@ -10,6 +10,12 @@ namespace BungieSharper.Entities.Destiny.Components.Inventory
         public Dictionary<BungieMembershipType, Destiny.Entities.Items.DestinyItemComponent> PlatformSilver { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyPlatformSilverComponent))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyPlatformSilverComponentJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// This component provides a quick lookup of every item the requested character has and how much of that item they have.
     /// Requesting this component will allow you to circumvent manually putting together the list of which currencies you have for the purpose of testing currency requirements on an item being purchased, or operations that have costs.
@@ -24,4 +30,10 @@ namespace BungieSharper.Entities.Destiny.Components.Inventory
         [JsonPropertyName("itemQuantities")]
         public Dictionary<uint, int> ItemQuantities { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyCurrenciesComponent))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyCurrenciesComponentJsonContext : JsonSerializerContext { }
+#endif
 }

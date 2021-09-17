@@ -11,6 +11,12 @@ namespace BungieSharper.Entities.Interpolation
         public int Weight { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(InterpolationPoint))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class InterpolationPointJsonContext : JsonSerializerContext { }
+#endif
+
     public class InterpolationPointFloat
     {
         [JsonPropertyName("value")]
@@ -19,4 +25,10 @@ namespace BungieSharper.Entities.Interpolation
         [JsonPropertyName("weight")]
         public float Weight { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(InterpolationPointFloat))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class InterpolationPointFloatJsonContext : JsonSerializerContext { }
+#endif
 }

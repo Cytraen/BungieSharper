@@ -37,6 +37,12 @@ namespace BungieSharper.Entities.Destiny.Definitions.Presentation
         public bool Redacted { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyPresentationNodeBaseDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyPresentationNodeBaseDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     public class DestinyScoredPresentationNodeBaseDefinition
     {
         [JsonPropertyName("maxCategoryRecordScore")]
@@ -70,6 +76,12 @@ namespace BungieSharper.Entities.Destiny.Definitions.Presentation
         [JsonPropertyName("redacted")]
         public bool Redacted { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyScoredPresentationNodeBaseDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyScoredPresentationNodeBaseDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// A PresentationNode is an entity that represents a logical grouping of other entities visually/organizationally.
@@ -160,6 +172,12 @@ namespace BungieSharper.Entities.Destiny.Definitions.Presentation
         public bool Redacted { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyPresentationNodeDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyPresentationNodeDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// As/if presentation nodes begin to host more entities as children, these lists will be added to. One list property exists per type of entity that can be treated as a child of this presentation node, and each holds the identifier of the entity and any associated information needed to display the UI for that entity (if anything)
     /// </summary>
@@ -178,17 +196,35 @@ namespace BungieSharper.Entities.Destiny.Definitions.Presentation
         public IEnumerable<Destiny.Definitions.Presentation.DestinyPresentationNodeMetricChildEntry> Metrics { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyPresentationNodeChildrenBlock))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyPresentationNodeChildrenBlockJsonContext : JsonSerializerContext { }
+#endif
+
     public class DestinyPresentationNodeChildEntry
     {
         [JsonPropertyName("presentationNodeHash")]
         public uint PresentationNodeHash { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyPresentationNodeChildEntry))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyPresentationNodeChildEntryJsonContext : JsonSerializerContext { }
+#endif
+
     public class DestinyPresentationNodeCollectibleChildEntry
     {
         [JsonPropertyName("collectibleHash")]
         public uint CollectibleHash { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyPresentationNodeCollectibleChildEntry))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyPresentationNodeCollectibleChildEntryJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// Presentation nodes can be restricted by various requirements. This defines the rules of those requirements, and the message(s) to be shown if these requirements aren't met.
@@ -199,6 +235,12 @@ namespace BungieSharper.Entities.Destiny.Definitions.Presentation
         [JsonPropertyName("entitlementUnavailableMessage")]
         public string EntitlementUnavailableMessage { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyPresentationNodeRequirementsBlock))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyPresentationNodeRequirementsBlockJsonContext : JsonSerializerContext { }
+#endif
 
     public class DestinyPresentationChildBlock
     {
@@ -212,15 +254,33 @@ namespace BungieSharper.Entities.Destiny.Definitions.Presentation
         public Destiny.DestinyPresentationDisplayStyle DisplayStyle { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyPresentationChildBlock))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyPresentationChildBlockJsonContext : JsonSerializerContext { }
+#endif
+
     public class DestinyPresentationNodeRecordChildEntry
     {
         [JsonPropertyName("recordHash")]
         public uint RecordHash { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyPresentationNodeRecordChildEntry))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyPresentationNodeRecordChildEntryJsonContext : JsonSerializerContext { }
+#endif
+
     public class DestinyPresentationNodeMetricChildEntry
     {
         [JsonPropertyName("metricHash")]
         public uint MetricHash { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyPresentationNodeMetricChildEntry))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyPresentationNodeMetricChildEntryJsonContext : JsonSerializerContext { }
+#endif
 }

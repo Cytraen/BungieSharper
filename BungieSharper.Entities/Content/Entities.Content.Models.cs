@@ -69,6 +69,12 @@ namespace BungieSharper.Entities.Content.Models
         public IEnumerable<Content.Models.ContentTypePropertySection> PropertySections { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(ContentTypeDescription))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class ContentTypeDescriptionJsonContext : JsonSerializerContext { }
+#endif
+
     public class ContentTypeProperty
     {
         [JsonPropertyName("name")]
@@ -198,6 +204,12 @@ namespace BungieSharper.Entities.Content.Models
         public bool IsImage { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(ContentTypeProperty))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class ContentTypePropertyJsonContext : JsonSerializerContext { }
+#endif
+
     public enum ContentPropertyDataTypeEnum : int
     {
         None = 0,
@@ -229,6 +241,12 @@ namespace BungieSharper.Entities.Content.Models
         public string DefaultValue { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(ContentTypeDefaultValue))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class ContentTypeDefaultValueJsonContext : JsonSerializerContext { }
+#endif
+
     public class TagMetadataDefinition
     {
         [JsonPropertyName("description")]
@@ -250,6 +268,12 @@ namespace BungieSharper.Entities.Content.Models
         public bool IsRequired { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(TagMetadataDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class TagMetadataDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     public class TagMetadataItem
     {
         [JsonPropertyName("description")]
@@ -267,6 +291,12 @@ namespace BungieSharper.Entities.Content.Models
         [JsonPropertyName("name")]
         public string Name { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(TagMetadataItem))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class TagMetadataItemJsonContext : JsonSerializerContext { }
+#endif
 
     public class ContentPreview
     {
@@ -289,6 +319,12 @@ namespace BungieSharper.Entities.Content.Models
         public int UseSetId { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(ContentPreview))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class ContentPreviewJsonContext : JsonSerializerContext { }
+#endif
+
     public class ContentTypePropertySection
     {
         [JsonPropertyName("name")]
@@ -300,4 +336,10 @@ namespace BungieSharper.Entities.Content.Models
         [JsonPropertyName("collapsed")]
         public bool Collapsed { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(ContentTypePropertySection))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class ContentTypePropertySectionJsonContext : JsonSerializerContext { }
+#endif
 }

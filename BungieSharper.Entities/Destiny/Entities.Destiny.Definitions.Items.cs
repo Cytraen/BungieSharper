@@ -32,6 +32,12 @@ namespace BungieSharper.Entities.Destiny.Definitions.Items
         public bool Redacted { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyItemTierTypeDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyItemTierTypeDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     public class DestinyItemTierTypeInfusionBlock
     {
         /// <summary>The default portion of quality that will transfer from the infuser to the infusee item. (InfuserQuality - InfuseeQuality) * baseQualityTransferRatio = base quality transferred.</summary>
@@ -42,6 +48,12 @@ namespace BungieSharper.Entities.Destiny.Definitions.Items
         [JsonPropertyName("minimumQualityIncrement")]
         public int MinimumQualityIncrement { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyItemTierTypeInfusionBlock))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyItemTierTypeInfusionBlockJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// A shortcut for the fact that some items have a "Preview Vendor" - See DestinyInventoryItemDefinition.preview.previewVendorHash - that is intended to be used to show what items you can get as a result of acquiring or using this item.
@@ -57,6 +69,12 @@ namespace BungieSharper.Entities.Destiny.Definitions.Items
         [JsonPropertyName("items")]
         public IEnumerable<Destiny.Definitions.Items.DestinyDerivedItemDefinition> Items { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyDerivedItemCategoryDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyDerivedItemCategoryDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// This is a reference to, and summary data for, a specific item that you can get as a result of Using or Acquiring some other Item (For example, this could be summary information for an Emote that you can get by opening an an Eververse Box) See DestinyDerivedItemCategoryDefinition for more information.
@@ -88,6 +106,12 @@ namespace BungieSharper.Entities.Destiny.Definitions.Items
         [JsonPropertyName("vendorItemIndex")]
         public int VendorItemIndex { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyDerivedItemDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyDerivedItemDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// If an item is a Plug, its DestinyInventoryItemDefinition.plug property will be populated with an instance of one of these bad boys.
@@ -173,6 +197,12 @@ namespace BungieSharper.Entities.Destiny.Definitions.Items
         public Destiny.Definitions.Items.DestinyEnergyCostEntry EnergyCost { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyItemPlugDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyItemPlugDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// Dictates a rule around whether the plug is enabled or insertable.
     /// In practice, the live Destiny data will refer to these entries by index. You can then look up that index in the appropriate property (enabledRules or insertionRules) to get the localized string for the failure message if it failed.
@@ -184,6 +214,12 @@ namespace BungieSharper.Entities.Destiny.Definitions.Items
         public string FailureMessage { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyPlugRuleDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyPlugRuleDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     public class DestinyParentItemOverride
     {
         [JsonPropertyName("additionalEquipRequirementsDisplayStrings")]
@@ -192,6 +228,12 @@ namespace BungieSharper.Entities.Destiny.Definitions.Items
         [JsonPropertyName("pipIcon")]
         public string PipIcon { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyParentItemOverride))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyParentItemOverrideJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// Items can have Energy Capacity, and plugs can provide that capacity such as on a piece of Armor in Armor 2.0. This is how much "Energy" can be spent on activating plugs for this item.
@@ -211,6 +253,12 @@ namespace BungieSharper.Entities.Destiny.Definitions.Items
         public Destiny.DestinyEnergyType EnergyType { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyEnergyCapacityEntry))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyEnergyCapacityEntryJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// Some plugs cost Energy, which is a stat on the item that can be increased by other plugs (that, at least in Armor 2.0, have a "masterworks-like" mechanic for upgrading). If a plug has costs, the details of that cost are defined here.
     /// </summary>
@@ -228,4 +276,10 @@ namespace BungieSharper.Entities.Destiny.Definitions.Items
         [JsonPropertyName("energyType")]
         public Destiny.DestinyEnergyType EnergyType { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyEnergyCostEntry))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyEnergyCostEntryJsonContext : JsonSerializerContext { }
+#endif
 }

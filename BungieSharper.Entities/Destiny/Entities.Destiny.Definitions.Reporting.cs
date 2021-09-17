@@ -32,6 +32,12 @@ namespace BungieSharper.Entities.Destiny.Definitions.Reporting
         public bool Redacted { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyReportReasonCategoryDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyReportReasonCategoryDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// A specific reason for being banned. Only accessible under the related category (DestinyReportReasonCategoryDefinition) under which it is shown. Note that this means that report reasons' reasonHash are not globally unique: and indeed, entries like "Other" are defined under most categories for example.
     /// </summary>
@@ -44,4 +50,10 @@ namespace BungieSharper.Entities.Destiny.Definitions.Reporting
         [JsonPropertyName("displayProperties")]
         public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyReportReasonDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyReportReasonDefinitionJsonContext : JsonSerializerContext { }
+#endif
 }

@@ -25,6 +25,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public bool Redacted { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// A "Progression" in Destiny is best explained by an example.
     /// A Character's "Level" is a progression: it has Experience that can be earned, levels that can be gained, and is evaluated and displayed at various points in the game. A Character's "Faction Reputation" is also a progression for much the same reason.
@@ -101,6 +107,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public bool Redacted { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyProgressionDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyProgressionDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     public class DestinyProgressionDisplayPropertiesDefinition
     {
         /// <summary>When progressions show your "experience" gained, that bar has units (i.e. "Experience", "Bad Dudes Snuffed Out", whatever). This is the localized string for that unit of measurement.</summary>
@@ -132,6 +144,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public bool HasIcon { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyProgressionDisplayPropertiesDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyProgressionDisplayPropertiesDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// This defines a single Step in a progression (which roughly equates to a level. See DestinyProgressionDefinition for caveats).
     /// </summary>
@@ -157,6 +175,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("icon")]
         public string Icon { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyProgressionStepDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyProgressionStepDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// So much of what you see in Destiny is actually an Item used in a new and creative way. This is the definition for Items in Destiny, which started off as just entities that could exist in your Inventory but ended up being the backing data for so much more: quests, reward previews, slots, and subclasses.
@@ -462,6 +486,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public bool Redacted { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyInventoryItemDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyInventoryItemDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     public class DestinyItemTooltipNotification
     {
         [JsonPropertyName("displayString")]
@@ -470,6 +500,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("displayStyle")]
         public string DisplayStyle { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyItemTooltipNotification))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyItemTooltipNotificationJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// If an item can have an action performed on it (like "Dismantle"), it will be defined here if you care.
@@ -533,6 +569,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public bool UseOnAcquire { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyItemActionBlockDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyItemActionBlockDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// The definition of an item and quantity required in a character's inventory in order to perform an action.
     /// </summary>
@@ -550,6 +592,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("deleteOnAction")]
         public bool DeleteOnAction { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyItemActionRequiredItemDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyItemActionRequiredItemDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// Inventory Items can reward progression when actions are performed on them. A common example of this in Destiny 1 was Bounties, which would reward Experience on your Character and the like when you completed the bounty.
@@ -569,6 +617,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("applyThrottles")]
         public bool ApplyThrottles { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyProgressionRewardDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyProgressionRewardDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// Aggregations of multiple progressions.
@@ -599,6 +653,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("redacted")]
         public bool Redacted { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyProgressionMappingDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyProgressionMappingDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// If the item can exist in an inventory - the overwhelming majority of them can and do - then this is the basic properties regarding the item's relationship with the inventory.
@@ -652,6 +712,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("suppressExpirationWhenObjectivesComplete")]
         public bool SuppressExpirationWhenObjectivesComplete { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyItemInventoryBlockDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyItemInventoryBlockDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// An Inventory (be it Character or Profile level) is comprised of many Buckets. An example of a bucket is "Primary Weapons", where all of the primary weapons on a character are gathered together into a single visual element in the UI: a subset of the inventory that has a limited number of slots, and in this case also has an associated Equipment Slot for equipping an item in the bucket.
@@ -718,6 +784,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public bool Redacted { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyInventoryBucketDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyInventoryBucketDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// Primarily for Quests, this is the definition of properties related to the item if it is a quest and its various quest steps.
     /// </summary>
@@ -752,6 +824,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public string QuestStepSummary { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyItemSetBlockDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyItemSetBlockDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// Defines a particular entry in an ItemSet (AKA a particular Quest Step in a Quest)
     /// </summary>
@@ -765,6 +843,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("itemHash")]
         public uint ItemHash { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyItemSetBlockEntryDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyItemSetBlockEntryDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// Information about the item's calculated stats, with as much data as we can find for the stats without having an actual instance of the item.
@@ -807,6 +891,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public uint PrimaryBaseStatHash { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyItemStatBlockDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyItemStatBlockDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// Defines a specific stat value on an item, and the minimum/maximum range that we could compute for the item based on our heuristics for how the item might be generated.
     /// Not guaranteed to match real-world instances of the item, but should hopefully at least be close. If it's not close, let us know on the Bungie API forums.
@@ -845,6 +935,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? DisplayMaximum { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyInventoryItemStatDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyInventoryItemStatDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// This represents a stat that's applied to a character or an item (such as a weapon, piece of armor, or a vehicle).
@@ -894,6 +990,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public bool Redacted { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyStatDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyStatDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// When an inventory item (DestinyInventoryItemDefinition) has Stats (such as Attack Power), the item will refer to a Stat Group. This definition enumerates the properties used to transform the item's "Investment" stats into "Display" stats.
     /// See DestinyStatDefinition's documentation for information about the transformation of Stats, and the meaning of an Investment vs. a Display stat.
@@ -942,6 +1044,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public bool Redacted { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyStatGroupDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyStatGroupDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// Describes the way that an Item Stat (see DestinyStatDefinition) is transformed using the DestinyStatGroupDefinition related to that item. See both of the aforementioned definitions for more information about the stages of stat transformation.
     /// This represents the transformation of a stat into a "Display" stat (the closest value that BNet can get to the in-game display value of the stat)
@@ -971,6 +1079,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public IEnumerable<Interpolation.InterpolationPoint> DisplayInterpolation { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyStatDisplayDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyStatDisplayDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// Stat Groups (DestinyStatGroupDefinition) has the ability to override the localized text associated with stats that are to be shown on the items with which they are associated.
     /// This defines a specific overridden stat. You could theoretically check these before rendering your stat UI, and for each stat that has an override show these displayProperties instead of those on the DestinyStatDefinition.
@@ -987,6 +1101,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("displayProperties")]
         public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyStatOverrideDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyStatOverrideDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// Items that can be equipped define this block. It contains information we need to understand how and when the item can be equipped.
@@ -1028,6 +1148,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("displayStrings")]
         public IEnumerable<string> DisplayStrings { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyEquippingBlockDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyEquippingBlockDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// Characters can not only have Inventory buckets (containers of items that are generally matched by their type or functionality), they can also have Equipment Slots.
@@ -1071,11 +1197,23 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public bool Redacted { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyEquipmentSlotDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyEquipmentSlotDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     public class DestinyArtDyeReference
     {
         [JsonPropertyName("artDyeChannelHash")]
         public uint ArtDyeChannelHash { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyArtDyeReference))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyArtDyeReferenceJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// This Block defines the rendering data associated with the item, if any.
@@ -1104,6 +1242,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public bool HasGeometry { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyItemTranslationBlockDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyItemTranslationBlockDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     public class DestinyGearArtArrangementReference
     {
         [JsonPropertyName("classHash")]
@@ -1112,6 +1256,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("artArrangementHash")]
         public uint ArtArrangementHash { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyGearArtArrangementReference))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyGearArtArrangementReferenceJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// Items like Sacks or Boxes can have items that it shows in-game when you view details that represent the items you can obtain if you use or acquire the item.
@@ -1140,6 +1290,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("derivedItemCategories")]
         public IEnumerable<Destiny.Definitions.Items.DestinyDerivedItemCategoryDefinition> DerivedItemCategories { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyItemPreviewBlockDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyItemPreviewBlockDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// These are the definitions for Vendors.
@@ -1319,6 +1475,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public bool Redacted { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyVendorDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyVendorDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     public class DestinyVendorDisplayPropertiesDefinition
     {
         /// <summary>I regret calling this a "large icon". It's more like a medium-sized image with a picture of the vendor's mug on it, trying their best to look cool. Not what one would call an icon.</summary>
@@ -1373,6 +1535,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public bool HasIcon { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyVendorDisplayPropertiesDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyVendorDisplayPropertiesDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// The localized properties of the requirementsDisplay, allowing information about the requirement or item being featured to be seen.
     /// </summary>
@@ -1390,6 +1558,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("type")]
         public string Type { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyVendorRequirementDisplayEntryDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyVendorRequirementDisplayEntryDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// If a vendor can ever end up performing actions, these are the properties that will be related to those actions. I'm not going to bother documenting this yet, as it is unused and unclear if it will ever be used... but in case it is ever populated and someone finds it useful, it is defined here.
@@ -1423,6 +1597,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("autoPerformAction")]
         public bool AutoPerformAction { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyVendorActionDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyVendorActionDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// This is the definition for a single Vendor Category, into which Sale Items are grouped.
@@ -1492,6 +1672,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public int ResetOffsetMinutesOverride { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyVendorCategoryEntryDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyVendorCategoryEntryDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// The details of an overlay prompt to show to a user. They are all fairly self-explanatory localized strings that can be shown.
     /// </summary>
@@ -1514,6 +1700,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public uint? CurrencyItemHash { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyVendorCategoryOverlayDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyVendorCategoryOverlayDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// Display Categories are different from "categories" in that these are specifically for visual grouping and display of categories in Vendor UI. The "categories" structure is for validation of the contained items, and can be categorized entirely separately from "Display Categories", there need be and often will be no meaningful relationship between the two.
@@ -1558,6 +1750,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("displayStyleIdentifier")]
         public string DisplayStyleIdentifier { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyDisplayCategoryDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyDisplayCategoryDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// A Vendor Interaction is a dialog shown by the vendor other than sale items or transfer screens. The vendor is showing you something, and asking you to reply to it by choosing an option or reward.
@@ -1617,6 +1815,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public string Instructions { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyVendorInteractionDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyVendorInteractionDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// When the interaction is replied to, Reward sites will fire and items potentially selected based on whether the given unlock expression is TRUE.
     /// You can potentially choose one from multiple replies when replying to an interaction: this is how you get either/or rewards from vendors.
@@ -1636,6 +1840,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public Destiny.DestinyVendorReplyType ReplyType { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyVendorInteractionReplyDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyVendorInteractionReplyDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// Compare this sackType to the sack identifier in the DestinyInventoryItemDefinition.vendorSackType property of items. If they match, show this sack with this interaction.
     /// </summary>
@@ -1644,6 +1854,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("sackType")]
         public uint SackType { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyVendorInteractionSackEntryDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyVendorInteractionSackEntryDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// The definition for an "inventory flyout": a UI screen where we show you part of an otherwise hidden vendor inventory: like the Vault inventory buckets.
@@ -1676,6 +1892,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public uint? EquipmentSlotHash { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyVendorInventoryFlyoutDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyVendorInventoryFlyoutDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// Information about a single inventory bucket in a vendor flyout UI and how it is shown.
     /// </summary>
@@ -1693,6 +1915,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("sortItemsBy")]
         public Destiny.DestinyItemSortType SortItemsBy { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyVendorInventoryFlyoutBucketDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyVendorInventoryFlyoutBucketDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// This represents an item being sold by the vendor.
@@ -1821,6 +2049,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public bool? Unpurchasable { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyVendorItemDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyVendorItemDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// In addition to item quantity information for vendor prices, this also has any optional information that may exist about how the item's quantity can be modified. (unfortunately not information that is able to be read outside of the BNet servers, but it's there)
     /// </summary>
@@ -1844,6 +2078,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public bool HasConditionalVisibility { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyVendorItemQuantity))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyVendorItemQuantityJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// An overly complicated wrapper for the item level at which the item should spawn.
     /// </summary>
@@ -1852,6 +2092,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("level")]
         public int Level { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyItemCreationEntryLevelDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyItemCreationEntryLevelDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// Not terribly useful, some basic cooldown interaction info.
@@ -1864,6 +2110,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("isPositive")]
         public bool IsPositive { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyVendorSaleItemActionBlockDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyVendorSaleItemActionBlockDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// The information for how the vendor purchase should override a given socket with custom plug data.
@@ -1887,6 +2139,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public uint SocketTypeHash { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyVendorItemSocketOverride))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyVendorItemSocketOverrideJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// When a vendor provides services, this is the localized name of those services.
     /// </summary>
@@ -1896,6 +2154,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("name")]
         public string Name { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyVendorServiceDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyVendorServiceDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// If you ever wondered how the Vault works, here it is.
@@ -1912,6 +2176,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("destinationInventoryBucketHash")]
         public uint DestinationInventoryBucketHash { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyVendorAcceptedItemDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyVendorAcceptedItemDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// On to one of the more confusing subjects of the API. What is a Destination, and what is the relationship between it, Activities, Locations, and Places?
@@ -1965,6 +2235,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public bool Redacted { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyDestinationDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyDestinationDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// Destinations and Activities may have default Activity Graphs that should be shown when you bring up the Director and are playing in either.
     /// This contract defines the graph referred to and the gating for when it is relevant.
@@ -1975,6 +2251,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("activityGraphHash")]
         public uint ActivityGraphHash { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyActivityGraphListEntryDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyActivityGraphListEntryDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// The static data about Activities in Destiny 2.
@@ -2116,6 +2398,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public bool Redacted { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyActivityDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyActivityDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// Activities can refer to one or more sets of tooltip-friendly reward data. These are the definitions for those tooltip friendly rewards.
     /// </summary>
@@ -2133,6 +2421,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public IEnumerable<Destiny.DestinyItemQuantity> RewardItems { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyActivityRewardDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyActivityRewardDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// A reference to an Activity Modifier from another entity, such as an Activity (for now, just Activities).
     /// This defines some
@@ -2143,6 +2437,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("activityModifierHash")]
         public uint ActivityModifierHash { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyActivityModifierReferenceDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyActivityModifierReferenceDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// Represents a reference to a Challenge, which for now is just an Objective.
@@ -2160,6 +2460,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("dummyRewards")]
         public IEnumerable<Destiny.DestinyItemQuantity> DummyRewards { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyActivityChallengeDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyActivityChallengeDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// Defines an "Objective".
@@ -2258,6 +2564,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public bool Redacted { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyObjectiveDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyObjectiveDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// Defines the conditions under which an intrinsic perk is applied while participating in an Objective.
     /// These perks will generally not be benefit-granting perks, but rather a perk that modifies gameplay in some interesting way.
@@ -2272,6 +2584,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("style")]
         public Destiny.DestinyObjectiveGrantStyle Style { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyObjectivePerkEntryDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyObjectivePerkEntryDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// Perks are modifiers to a character or item that can be applied situationally.
@@ -2333,6 +2651,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public bool Redacted { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinySandboxPerkDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinySandboxPerkDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// These properties are an attempt to categorize talent node steps by certain common properties. See the related enumerations for the type of properties being categorized.
     /// </summary>
@@ -2353,6 +2677,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("damageTypes")]
         public Destiny.Definitions.DestinyTalentNodeStepDamageTypes DamageTypes { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyTalentNodeStepGroups))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyTalentNodeStepGroupsJsonContext : JsonSerializerContext { }
+#endif
 
     [Flags]
     public enum DestinyTalentNodeStepWeaponPerformances : int
@@ -2440,6 +2770,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public Destiny.DestinyObjectiveGrantStyle Style { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyObjectiveStatEntryDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyObjectiveStatEntryDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// Represents a "raw" investment stat, before calculated stats are calculated and before any DestinyStatGroupDefinition is applied to transform the stat into something closer to what you see in-game.
     /// Because these won't match what you see in-game, consider carefully whether you really want to use these stats. I have left them in case someone can do something useful or interesting with the pre-processed statistics.
@@ -2458,6 +2794,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("isConditionallyActive")]
         public bool IsConditionallyActive { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyItemInvestmentStatDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyItemInvestmentStatDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// A "Location" is a sort of shortcut for referring to a specific combination of Activity, Destination, Place, and even Bubble or NavPoint within a space.
@@ -2488,6 +2830,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("redacted")]
         public bool Redacted { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyLocationDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyLocationDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// A specific "spot" referred to by a location. Only one of these can be active at a time for a given Location.
@@ -2548,6 +2896,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public IEnumerable<int> WorldPosition { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyLocationReleaseDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyLocationReleaseDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// Represents a status string that could be conditionally displayed about an activity. Note that externally, you can only see the strings themselves. Internally we combine this information with server state to determine which strings should be shown.
     /// </summary>
@@ -2557,6 +2911,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("displayString")]
         public string DisplayString { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyActivityUnlockStringDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyActivityUnlockStringDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// If the activity is a playlist, this is the definition for a specific entry in the playlist: a single possible combination of Activity and Activity Mode that can be chosen.
@@ -2585,6 +2945,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("activityModeTypes")]
         public IEnumerable<Destiny.HistoricalStats.Definitions.DestinyActivityModeType> ActivityModeTypes { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyActivityPlaylistItemDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyActivityPlaylistItemDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// This definition represents an "Activity Mode" as it exists in the Historical Stats endpoints. An individual Activity Mode represents a collection of activities that are played in a certain way. For example, Nightfall Strikes are part of a "Nightfall" activity mode, and any activities played as the PVP mode "Clash" are part of the "Clash activity mode.
@@ -2654,6 +3020,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public bool Redacted { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyActivityModeDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyActivityModeDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// Information about matchmaking and party size for the activity.
     /// </summary>
@@ -2680,6 +3052,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public bool RequiresGuardianOath { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyActivityMatchmakingBlockDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyActivityMatchmakingBlockDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// Guided Game information for this activity.
     /// </summary>
@@ -2698,12 +3076,24 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public int GuidedDisbandCount { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyActivityGuidedBlockDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyActivityGuidedBlockDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     public class DestinyActivityLoadoutRequirementSet
     {
         /// <summary>The set of requirements that will be applied on the activity if this requirement set is active.</summary>
         [JsonPropertyName("requirements")]
         public IEnumerable<Destiny.Definitions.DestinyActivityLoadoutRequirement> Requirements { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyActivityLoadoutRequirementSet))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyActivityLoadoutRequirementSetJsonContext : JsonSerializerContext { }
+#endif
 
     public class DestinyActivityLoadoutRequirement
     {
@@ -2717,6 +3107,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public IEnumerable<Destiny.DestinyItemSubType> AllowedWeaponSubTypes { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyActivityLoadoutRequirement))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyActivityLoadoutRequirementJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// A point of entry into an activity, gated by an unlock flag and with some more-or-less useless (for our purposes) phase information. I'm including it in case we end up being able to bolt more useful information onto it in the future.
     /// UPDATE: Turns out this information isn't actually useless, and is in fact actually useful for people. Who would have thought? We still don't have localized info for it, but at least this will help people when they're looking at phase indexes in stats data, or when they want to know what phases have been completed on a weekly achievement.
@@ -2727,6 +3123,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("phaseHash")]
         public uint PhaseHash { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyActivityInsertionPointDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyActivityInsertionPointDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// Okay, so Activities (DestinyActivityDefinition) take place in Destinations (DestinyDestinationDefinition). Destinations are part of larger locations known as Places (you're reading its documentation right now).
@@ -2752,6 +3154,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("redacted")]
         public bool Redacted { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyPlaceDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyPlaceDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// The definition for an Activity Type.
@@ -2781,6 +3189,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public bool Redacted { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyActivityTypeDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyActivityTypeDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// Where the sausage gets made. Unlock Expressions are the foundation of the game's gating mechanics and investment-related restrictions. They can test Unlock Flags and Unlock Values for certain states, using a sufficient amount of logical operators such that unlock expressions are effectively Turing complete.
     /// Use UnlockExpressionParser to evaluate expressions using an IUnlockContext parsed from Babel.
@@ -2792,6 +3206,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public Destiny.DestinyGatingScope Scope { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyUnlockExpressionDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyUnlockExpressionDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// Human readable data about the bubble. Combine with DestinyBubbleDefinition - see DestinyDestinationDefinition.bubbleSettings for more information.
     /// DEPRECATED - Just use bubbles.
@@ -2801,6 +3221,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("displayProperties")]
         public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyDestinationBubbleSettingDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyDestinationBubbleSettingDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// Basic identifying data about the bubble. Combine with DestinyDestinationBubbleSettingDefinition - see DestinyDestinationDefinition.bubbleSettings for more information.
@@ -2816,12 +3242,24 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyBubbleDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyBubbleDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     public class DestinyVendorGroupReference
     {
         /// <summary>The DestinyVendorGroupDefinition to which this Vendor can belong.</summary>
         [JsonPropertyName("vendorGroupHash")]
         public uint VendorGroupHash { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyVendorGroupReference))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyVendorGroupReferenceJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// BNet attempts to group vendors into similar collections. These groups aren't technically game canonical, but they are helpful for filtering vendors or showing them organized into a clean view on a webpage or app.
@@ -2853,6 +3291,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("redacted")]
         public bool Redacted { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyVendorGroupDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyVendorGroupDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// These definitions represent Factions in the game. Factions have ended up unilaterally being related to Vendors that represent them, but that need not necessarily be the case.
@@ -2899,6 +3343,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public bool Redacted { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyFactionDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyFactionDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// These definitions represent faction vendors at different points in the game.
     /// A single faction may contain multiple vendors, or the same vendor available at two different locations.
@@ -2917,6 +3367,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("backgroundImagePath")]
         public string BackgroundImagePath { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyFactionVendorDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyFactionVendorDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// An item's "Quality" determines its calculated stats. The Level at which the item spawns is combined with its "qualityLevel" along with some additional calculations to determine the value of those stats.
@@ -2971,6 +3427,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public IEnumerable<string> DisplayVersionWatermarkIcons { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyItemQualityBlockDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyItemQualityBlockDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// The version definition currently just holds a reference to the power cap.
     /// </summary>
@@ -2980,6 +3442,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("powerCapHash")]
         public uint PowerCapHash { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyItemVersionDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyItemVersionDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// This defines an item's "Value". Unfortunately, this appears to be used in different ways depending on the way that the item itself is used.
@@ -2996,6 +3464,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("valueDescription")]
         public string ValueDescription { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyItemValueBlockDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyItemValueBlockDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// Data about an item's "sources": ways that the item can be obtained.
@@ -3018,6 +3492,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("vendorSources")]
         public IEnumerable<Destiny.Definitions.DestinyItemVendorSourceReference> VendorSources { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyItemSourceBlockDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyItemSourceBlockDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// Represents a heuristically-determined "item source" according to Bungie.net. These item sources are non-canonical: we apply a combination of special configuration and often-fragile heuristics to attempt to discern whether an item should be part of a given "source," but we have known cases of false positives and negatives due to our imperfect heuristics.
@@ -3048,6 +3528,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("redacted")]
         public bool Redacted { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyRewardSourceDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyRewardSourceDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// BNet's custom categorization of reward sources. We took a look at the existing ways that items could be spawned, and tried to make high-level categorizations of them. This needs to be re-evaluated for Destiny 2.
@@ -3082,6 +3568,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("vendorItemIndexes")]
         public IEnumerable<int> VendorItemIndexes { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyItemVendorSourceReference))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyItemVendorSourceReferenceJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// An item can have objectives on it. In practice, these are the exclusive purview of "Quest Step" items: DestinyInventoryItemDefinitions that represent a specific step in a Quest.
@@ -3132,6 +3624,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public bool DisplayAsStatTracker { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyItemObjectiveBlockDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyItemObjectiveBlockDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     public class DestinyObjectiveDisplayProperties
     {
         /// <summary>The activity associated with this objective in the context of this item, if any.</summary>
@@ -3144,6 +3642,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public bool DisplayOnItemPreviewScreen { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyObjectiveDisplayProperties))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyObjectiveDisplayPropertiesJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// The metrics available for display and selection on an item.
     /// </summary>
@@ -3153,6 +3657,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("availableMetricCategoryNodeHashes")]
         public IEnumerable<uint> AvailableMetricCategoryNodeHashes { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyItemMetricBlockDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyItemMetricBlockDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// Represent a set of material requirements: Items that either need to be owned or need to be consumed in order to perform an action.
@@ -3180,6 +3690,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public bool Redacted { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyMaterialRequirementSetDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyMaterialRequirementSetDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// Many actions relating to items require you to expend materials: - Activating a talent node - Inserting a plug into a socket The items will refer to material requirements by a materialRequirementsHash in these cases, and this is the definition for those requirements in terms of the item required, how much of it is required and other interesting info. This is one of the rare/strange times where a single contract class is used both in definitions *and* in live data response contracts. I'm not sure yet whether I regret that.
     /// </summary>
@@ -3202,6 +3718,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public bool OmitFromRequirements { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyMaterialRequirement))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyMaterialRequirementJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// An Unlock Value is an internal integer value, stored on the server and used in a variety of ways, most frequently for the gating/requirement checks that the game performs across all of its main features. They can also be used as the storage data for mapped Progressions, Objectives, and other features that require storage of variable numeric values.
     /// </summary>
@@ -3222,6 +3744,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("redacted")]
         public bool Redacted { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyUnlockValueDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyUnlockValueDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// Gender is a social construct, and as such we have definitions for Genders. Right now there happens to only be two, but we'll see what the future holds.
@@ -3251,6 +3779,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public bool Redacted { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyGenderDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyGenderDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// If an item has a related gearset, this is the list of items in that set, and an unlock expression that evaluates to a number representing the progress toward gearset completion (a very rare use for unlock expressions!)
     /// </summary>
@@ -3264,6 +3798,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("itemList")]
         public IEnumerable<uint> ItemList { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyItemGearsetBlockDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyItemGearsetBlockDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// Some items are "sacks" - they can be "opened" to produce other items. This is information related to its sack status, mostly UI strings. Engrams are an example of items that are considered to be "Sacks".
@@ -3288,6 +3828,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public bool OpenOnAcquire { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyItemSackBlockDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyItemSackBlockDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// If defined, the item has at least one socket.
     /// </summary>
@@ -3309,6 +3855,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("socketCategories")]
         public IEnumerable<Destiny.Definitions.DestinyItemSocketCategoryDefinition> SocketCategories { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyItemSocketBlockDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyItemSocketBlockDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// The definition information for a specific socket on an item. This will determine how the socket behaves in-game.
@@ -3366,6 +3918,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public bool DefaultVisible { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyItemSocketEntryDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyItemSocketEntryDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// The definition of a known, reusable plug that can be applied to a socket.
     /// </summary>
@@ -3375,6 +3933,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("plugItemHash")]
         public uint PlugItemHash { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyItemSocketEntryPlugItemDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyItemSocketEntryPlugItemDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     public class DestinyItemSocketEntryPlugItemRandomizedDefinition
     {
@@ -3386,6 +3950,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("plugItemHash")]
         public uint PlugItemHash { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyItemSocketEntryPlugItemRandomizedDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyItemSocketEntryPlugItemRandomizedDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// Represents a socket that has a plug associated with it intrinsically. This is useful for situations where the weapon needs to have a visual plug/Mod on it, but that plug/Mod should never change.
@@ -3405,6 +3975,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public bool DefaultVisible { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyItemIntrinsicSocketEntryDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyItemIntrinsicSocketEntryDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// Sockets are grouped into categories in the UI. These define which category and which sockets are under that category.
     /// </summary>
@@ -3419,6 +3995,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public IEnumerable<int> SocketIndexes { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyItemSocketCategoryDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyItemSocketCategoryDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// This appears to be information used when rendering rewards. We don't currently use it on BNet.
     /// </summary>
@@ -3428,6 +4010,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("sortPriority")]
         public int SortPriority { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyItemSummaryBlockDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyItemSummaryBlockDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// This defines information that can only come from a talent grid on an item. Items mostly have negligible talent grid data these days, but instanced items still retain grids as a source for some of this common information.
@@ -3455,6 +4043,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("hudIcon")]
         public string HudIcon { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyItemTalentGridBlockDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyItemTalentGridBlockDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// The time has unfortunately come to talk about Talent Grids.
@@ -3523,6 +4117,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("redacted")]
         public bool Redacted { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyTalentGridDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyTalentGridDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// Talent Grids on items have Nodes. These nodes have positions in the talent grid's UI, and contain "Steps" (DestinyTalentNodeStepDefinition), one of whom will be the "Current" step.
@@ -3635,6 +4235,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public bool IgnoreForCompletion { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyTalentNodeDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyTalentNodeDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// Talent nodes have requirements that must be met before they can be activated.
     /// This describes the material costs, the Level of the Talent Grid's progression required, and other conditional information that limits whether a talent node can be activated.
@@ -3655,6 +4261,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("materialRequirementHashes")]
         public IEnumerable<uint> MaterialRequirementHashes { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyNodeActivationRequirement))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyNodeActivationRequirementJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// This defines the properties of a "Talent Node Step". When you see a talent node in game, the actual visible properties that you see (its icon, description, the perks and stats it provides) are not provided by the Node itself, but rather by the currently active Step on the node.
@@ -3746,6 +4358,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public IEnumerable<Destiny.Definitions.DestinyNodeSocketReplaceResponse> SocketReplacements { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyNodeStepDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyNodeStepDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// This is a bit of an odd duck. Apparently, if talent nodes steps have this data, the game will go through on step activation and alter the first Socket it finds on the item that has a type matching the given socket type, inserting the indicated plug item.
     /// </summary>
@@ -3759,6 +4377,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("plugItemHash")]
         public uint PlugItemHash { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyNodeSocketReplaceResponse))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyNodeSocketReplaceResponseJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// All damage types that are possible in the game are defined here, along with localized info and icons as needed.
@@ -3797,6 +4421,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public bool Redacted { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyDamageTypeDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyDamageTypeDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// The list of indexes into the Talent Grid's "nodes" property for nodes in this exclusive set. (See DestinyTalentNodeDefinition.nodeIndex)
     /// </summary>
@@ -3806,6 +4436,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("nodeIndexes")]
         public IEnumerable<int> NodeIndexes { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyTalentNodeExclusiveSetDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyTalentNodeExclusiveSetDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// As of Destiny 2, nodes can exist as part of "Exclusive Groups". These differ from exclusive sets in that, within the group, many nodes can be activated. But the act of activating any node in the group will cause "opposing" nodes (nodes in groups that are not allowed to be activated at the same time as this group) to deactivate.
@@ -3834,6 +4470,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public IEnumerable<uint> OpposingNodeHashes { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyTalentExclusiveGroup))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyTalentExclusiveGroupJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// An artificial construct provided by Bungie.Net, where we attempt to group talent nodes by functionality.
     /// This is a single set of references to Talent Nodes that share a common trait or purpose.
@@ -3857,6 +4499,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public IEnumerable<uint> NodeHashes { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyTalentNodeCategory))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyTalentNodeCategoryJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// An intrinsic perk on an item, and the requirements for it to be activated.
     /// </summary>
@@ -3874,6 +4522,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("perkVisibility")]
         public Destiny.ItemPerkVisibility PerkVisibility { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyItemPerkEntryDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyItemPerkEntryDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// In an attempt to categorize items by type, usage, and other interesting properties, we created DestinyItemCategoryDefinition: information about types that is assembled using a set of heuristics that examine the properties of an item such as what inventory bucket it's in, its item type name, and whether it has or is missing certain blocks of data.
@@ -3972,6 +4626,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public bool Redacted { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyItemCategoryDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyItemCategoryDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     public class DestinyProgressionRewardItemQuantity
     {
         [JsonPropertyName("rewardedAtProgressionLevel")]
@@ -4003,6 +4663,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("hasConditionalVisibility")]
         public bool HasConditionalVisibility { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyProgressionRewardItemQuantity))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyProgressionRewardItemQuantityJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// In Destiny, "Races" are really more like "Species". Sort of. I mean, are the Awoken a separate species from humans? I'm not sure. But either way, they're defined here. You'll see Exo, Awoken, and Human as examples of these Species. Players will choose one for their character.
@@ -4038,6 +4704,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("redacted")]
         public bool Redacted { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyRaceDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyRaceDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// Defines a Character Class in Destiny 2. These are types of characters you can play, like Titan, Warlock, and Hunter.
@@ -4079,6 +4751,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public bool Redacted { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyClassDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyClassDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// Unlock Flags are small bits (literally, a bit, as in a boolean value) that the game server uses for an extremely wide range of state checks, progress storage, and other interesting tidbits of information.
     /// </summary>
@@ -4104,6 +4782,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         public bool Redacted { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyUnlockDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyUnlockDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// The results of a search for Destiny content. This will be improved on over time, I've been doing some experimenting to see what might be useful.
     /// </summary>
@@ -4117,6 +4801,12 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("results")]
         public SearchResultOfDestinyEntitySearchResultItem Results { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyEntitySearchResult))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyEntitySearchResultJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// An individual Destiny Entity returned from the entity search.
@@ -4139,4 +4829,10 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("weight")]
         public double Weight { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyEntitySearchResultItem))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyEntitySearchResultItemJsonContext : JsonSerializerContext { }
+#endif
 }

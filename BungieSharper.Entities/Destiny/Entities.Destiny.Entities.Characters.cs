@@ -111,6 +111,12 @@ namespace BungieSharper.Entities.Destiny.Entities.Characters
         public uint? TitleRecordHash { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyCharacterComponent))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyCharacterComponentJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// This component returns anything that could be considered "Progression" on a user: data where the user is gaining levels, reputation, completions, rewards, etc...
     /// </summary>
@@ -158,6 +164,12 @@ namespace BungieSharper.Entities.Destiny.Entities.Characters
         public Destiny.Artifacts.DestinyArtifactCharacterScoped SeasonalArtifact { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyCharacterProgressionComponent))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyCharacterProgressionComponentJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// Only really useful if you're attempting to render the character's current appearance in 3D, this returns a bare minimum of information, pre-aggregated, that you'll need to perform that rendering. Note that you need to combine this with other 3D assets and data from our servers.
     /// Examine the Javascript returned by https://bungie.net/sharedbundle/spasm to see how we use this data, but be warned: the rabbit hole goes pretty deep.
@@ -181,6 +193,12 @@ namespace BungieSharper.Entities.Destiny.Entities.Characters
         [JsonPropertyName("peerView")]
         public Destiny.Character.DestinyCharacterPeerView PeerView { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyCharacterRenderComponent))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyCharacterRenderComponentJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// This component holds activity data for a character. It will tell you about the character's current activity status, as well as activities that are available to the user.
@@ -225,4 +243,10 @@ namespace BungieSharper.Entities.Destiny.Entities.Characters
         [JsonPropertyName("lastCompletedStoryHash")]
         public uint LastCompletedStoryHash { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyCharacterActivitiesComponent))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyCharacterActivitiesComponentJsonContext : JsonSerializerContext { }
+#endif
 }

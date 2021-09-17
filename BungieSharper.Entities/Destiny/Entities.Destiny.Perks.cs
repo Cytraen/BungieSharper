@@ -24,4 +24,10 @@ namespace BungieSharper.Entities.Destiny.Perks
         [JsonPropertyName("visible")]
         public bool Visible { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyPerkReference))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyPerkReferenceJsonContext : JsonSerializerContext { }
+#endif
 }

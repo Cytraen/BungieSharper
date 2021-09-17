@@ -39,6 +39,12 @@ namespace BungieSharper.Entities.Destiny.Config
         public IEnumerable<Destiny.Config.ImagePyramidEntry> IconImagePyramidInfo { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyManifest))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyManifestJsonContext : JsonSerializerContext { }
+#endif
+
     public class GearAssetDataBaseDefinition
     {
         [JsonPropertyName("version")]
@@ -47,6 +53,12 @@ namespace BungieSharper.Entities.Destiny.Config
         [JsonPropertyName("path")]
         public string Path { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(GearAssetDataBaseDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class GearAssetDataBaseDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     public class ImagePyramidEntry
     {
@@ -58,4 +70,10 @@ namespace BungieSharper.Entities.Destiny.Config
         [JsonPropertyName("factor")]
         public float Factor { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(ImagePyramidEntry))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class ImagePyramidEntryJsonContext : JsonSerializerContext { }
+#endif
 }

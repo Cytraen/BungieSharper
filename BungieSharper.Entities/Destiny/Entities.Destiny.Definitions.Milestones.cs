@@ -111,6 +111,12 @@ namespace BungieSharper.Entities.Destiny.Definitions.Milestones
         public bool Redacted { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyMilestoneDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyMilestoneDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// A hint for the UI as to what display information ought to be shown. Defaults to showing the static MilestoneDefinition's display properties.
     /// If for some reason the indicated property is not populated, fall back to the MilestoneDefinition.displayProperties.
@@ -181,6 +187,12 @@ namespace BungieSharper.Entities.Destiny.Definitions.Milestones
         public uint? DestinationHash { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyMilestoneQuestDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyMilestoneQuestDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// If rewards are given in a quest - as opposed to overall in the entire Milestone - there's way less to track. We're going to simplify this contract as a result. However, this also gives us the opportunity to potentially put more than just item information into the reward data if we're able to mine it out in the future. Remember this if you come back and ask "why are quest reward items nested inside of their own class?"
     /// </summary>
@@ -194,6 +206,12 @@ namespace BungieSharper.Entities.Destiny.Definitions.Milestones
         [JsonPropertyName("items")]
         public IEnumerable<Destiny.Definitions.Milestones.DestinyMilestoneQuestRewardItem> Items { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyMilestoneQuestRewardsDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyMilestoneQuestRewardsDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// A subclass of DestinyItemQuantity, that provides not just the item and its quantity but also information that BNet can - at some point - use internally to provide more robust runtime information about the item's qualities.
@@ -229,6 +247,12 @@ namespace BungieSharper.Entities.Destiny.Definitions.Milestones
         public bool HasConditionalVisibility { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyMilestoneQuestRewardItem))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyMilestoneQuestRewardItemJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// Milestones can have associated activities which provide additional information about the context, challenges, modifiers, state etc... related to this Milestone.
     /// Information we need to be able to return that data is defined here, along with Tier data to establish a relationship between a conceptual Activity and its difficulty levels and variants.
@@ -252,6 +276,12 @@ namespace BungieSharper.Entities.Destiny.Definitions.Milestones
         public Dictionary<uint, Destiny.Definitions.Milestones.DestinyMilestoneActivityVariantDefinition> Variants { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyMilestoneActivityDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyMilestoneActivityDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// Represents a variant on an activity for a Milestone: a specific difficulty tier, or a specific activity variant for example.
     /// These will often have more specific details, such as an associated Guided Game, progression steps, tier-specific rewards, and custom values.
@@ -272,6 +302,12 @@ namespace BungieSharper.Entities.Destiny.Definitions.Milestones
         [JsonPropertyName("order")]
         public int Order { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyMilestoneActivityVariantDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyMilestoneActivityVariantDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// The definition of a category of rewards, that contains many individual rewards.
@@ -298,6 +334,12 @@ namespace BungieSharper.Entities.Destiny.Definitions.Milestones
         [JsonPropertyName("order")]
         public int Order { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyMilestoneRewardCategoryDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyMilestoneRewardCategoryDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// The definition of a specific reward, which may be contained in a category of rewards and that has optional information about how it is obtained.
@@ -330,6 +372,12 @@ namespace BungieSharper.Entities.Destiny.Definitions.Milestones
         public int Order { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyMilestoneRewardEntryDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyMilestoneRewardEntryDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// If the Milestone or a component has vendors whose inventories could/should be displayed that are relevant to it, this will return the vendor in question.
     /// It also contains information we need to determine whether that vendor is actually relevant at the moment, given the user's current state.
@@ -340,6 +388,12 @@ namespace BungieSharper.Entities.Destiny.Definitions.Milestones
         [JsonPropertyName("vendorHash")]
         public uint VendorHash { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyMilestoneVendorDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyMilestoneVendorDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// The definition for information related to a key/value pair that is relevant for a particular Milestone or component within the Milestone.
@@ -353,6 +407,12 @@ namespace BungieSharper.Entities.Destiny.Definitions.Milestones
         [JsonPropertyName("displayProperties")]
         public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyMilestoneValueDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyMilestoneValueDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     public class DestinyMilestoneChallengeActivityDefinition
     {
@@ -375,12 +435,24 @@ namespace BungieSharper.Entities.Destiny.Definitions.Milestones
         public IEnumerable<Destiny.Definitions.Milestones.DestinyMilestoneChallengeActivityPhase> Phases { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyMilestoneChallengeActivityDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyMilestoneChallengeActivityDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     public class DestinyMilestoneChallengeDefinition
     {
         /// <summary>The challenge related to this milestone.</summary>
         [JsonPropertyName("challengeObjectiveHash")]
         public uint ChallengeObjectiveHash { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyMilestoneChallengeDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyMilestoneChallengeDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     public class DestinyMilestoneChallengeActivityGraphNodeEntry
     {
@@ -391,10 +463,22 @@ namespace BungieSharper.Entities.Destiny.Definitions.Milestones
         public uint ActivityGraphNodeHash { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyMilestoneChallengeActivityGraphNodeEntry))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyMilestoneChallengeActivityGraphNodeEntryJsonContext : JsonSerializerContext { }
+#endif
+
     public class DestinyMilestoneChallengeActivityPhase
     {
         /// <summary>The hash identifier of the activity's phase.</summary>
         [JsonPropertyName("phaseHash")]
         public uint PhaseHash { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyMilestoneChallengeActivityPhase))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyMilestoneChallengeActivityPhaseJsonContext : JsonSerializerContext { }
+#endif
 }

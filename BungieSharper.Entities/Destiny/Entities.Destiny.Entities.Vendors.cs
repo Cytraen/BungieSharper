@@ -46,6 +46,12 @@ namespace BungieSharper.Entities.Destiny.Entities.Vendors
         public bool Enabled { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyVendorComponent))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyVendorComponentJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// A vendor can have many categories of items that they sell. This component will return the category information for available items, as well as the index into those items in the user's sale item list.
     /// Note that, since both the category and items are indexes, this data is Content Version dependent. Be sure to check that your content is up to date before using this data. This is an unfortunate, but permanent, limitation of Vendor data.
@@ -60,6 +66,12 @@ namespace BungieSharper.Entities.Destiny.Entities.Vendors
         public IEnumerable<Destiny.Entities.Vendors.DestinyVendorCategory> Categories { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyVendorCategoriesComponent))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyVendorCategoriesComponentJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// Information about the category and items currently sold in that category.
     /// </summary>
@@ -73,6 +85,12 @@ namespace BungieSharper.Entities.Destiny.Entities.Vendors
         [JsonPropertyName("itemIndexes")]
         public IEnumerable<int> ItemIndexes { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyVendorCategory))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyVendorCategoryJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// Request this component if you want the details about an item being sold in relation to the character making the request: whether the character can buy it, whether they can afford it, and other data related to purchasing the item.
@@ -156,4 +174,10 @@ namespace BungieSharper.Entities.Destiny.Entities.Vendors
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? ApiPurchasable { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyVendorSaleItemComponent))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyVendorSaleItemComponentJsonContext : JsonSerializerContext { }
+#endif
 }

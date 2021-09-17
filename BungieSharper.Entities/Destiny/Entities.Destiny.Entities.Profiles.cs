@@ -13,6 +13,12 @@ namespace BungieSharper.Entities.Destiny.Entities.Profiles
         public IEnumerable<Destiny.Vendors.DestinyVendorReceipt> Receipts { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyVendorReceiptsComponent))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyVendorReceiptsComponentJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// The most essential summary information about a Profile (in Destiny 1, we called these "Accounts").
     /// </summary>
@@ -55,4 +61,10 @@ namespace BungieSharper.Entities.Destiny.Entities.Profiles
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? CurrentSeasonRewardPowerCap { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyProfileComponent))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyProfileComponentJsonContext : JsonSerializerContext { }
+#endif
 }

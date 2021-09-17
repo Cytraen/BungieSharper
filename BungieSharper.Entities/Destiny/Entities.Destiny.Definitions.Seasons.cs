@@ -66,6 +66,12 @@ namespace BungieSharper.Entities.Destiny.Definitions.Seasons
         public bool Redacted { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinySeasonDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinySeasonDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// Defines the promotional text, images, and links to preview this season.
     /// </summary>
@@ -88,6 +94,12 @@ namespace BungieSharper.Entities.Destiny.Definitions.Seasons
         public IEnumerable<Destiny.Definitions.Seasons.DestinySeasonPreviewImageDefinition> Images { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinySeasonPreviewDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinySeasonPreviewDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// Defines the thumbnail icon, high-res image, and video link for promotional images
     /// </summary>
@@ -101,6 +113,12 @@ namespace BungieSharper.Entities.Destiny.Definitions.Seasons
         [JsonPropertyName("highResImage")]
         public string HighResImage { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinySeasonPreviewImageDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinySeasonPreviewImageDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     public class DestinySeasonPassDefinition
     {
@@ -133,4 +151,10 @@ namespace BungieSharper.Entities.Destiny.Definitions.Seasons
         [JsonPropertyName("redacted")]
         public bool Redacted { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinySeasonPassDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinySeasonPassDefinitionJsonContext : JsonSerializerContext { }
+#endif
 }

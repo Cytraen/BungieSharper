@@ -14,6 +14,12 @@ namespace BungieSharper.Entities.Destiny.Components.Vendors
         public IEnumerable<Destiny.Components.Vendors.DestinyVendorGroup> Groups { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyVendorGroupComponent))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyVendorGroupComponentJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// Represents a specific group of vendors that can be rendered in the recommended order.
     /// How do we figure out this order? It's a long story, and will likely get more complicated over time.
@@ -27,6 +33,12 @@ namespace BungieSharper.Entities.Destiny.Components.Vendors
         [JsonPropertyName("vendorHashes")]
         public IEnumerable<uint> VendorHashes { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyVendorGroup))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyVendorGroupJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// This component contains essential/summary information about the vendor.
@@ -52,6 +64,12 @@ namespace BungieSharper.Entities.Destiny.Components.Vendors
         [JsonPropertyName("enabled")]
         public bool Enabled { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyVendorBaseComponent))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyVendorBaseComponentJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// The base class for Vendor Sale Item data. Has a bunch of character-agnostic state about the item being sold.
@@ -100,6 +118,12 @@ namespace BungieSharper.Entities.Destiny.Components.Vendors
         public bool? ApiPurchasable { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyVendorSaleItemBaseComponent))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyVendorSaleItemBaseComponentJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// This component contains essential/summary information about the vendor from the perspective of a character-agnostic view.
     /// </summary>
@@ -124,6 +148,12 @@ namespace BungieSharper.Entities.Destiny.Components.Vendors
         [JsonPropertyName("enabled")]
         public bool Enabled { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyPublicVendorComponent))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyPublicVendorComponentJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// Has character-agnostic information about an item being sold by a vendor.
@@ -171,4 +201,10 @@ namespace BungieSharper.Entities.Destiny.Components.Vendors
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? ApiPurchasable { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyPublicVendorSaleItemComponent))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyPublicVendorSaleItemComponentJsonContext : JsonSerializerContext { }
+#endif
 }

@@ -69,6 +69,12 @@ namespace BungieSharper.Entities.Destiny.Definitions.Collectibles
         public bool Redacted { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyCollectibleDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyCollectibleDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     public class DestinyCollectibleAcquisitionBlock
     {
         [JsonPropertyName("acquireMaterialRequirementHash")]
@@ -80,6 +86,12 @@ namespace BungieSharper.Entities.Destiny.Definitions.Collectibles
         public uint? AcquireTimestampUnlockValueHash { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyCollectibleAcquisitionBlock))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyCollectibleAcquisitionBlockJsonContext : JsonSerializerContext { }
+#endif
+
     public class DestinyCollectibleStateBlock
     {
         [JsonPropertyName("obscuredOverrideItemHash")]
@@ -89,4 +101,10 @@ namespace BungieSharper.Entities.Destiny.Definitions.Collectibles
         [JsonPropertyName("requirements")]
         public Destiny.Definitions.Presentation.DestinyPresentationNodeRequirementsBlock Requirements { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyCollectibleStateBlock))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyCollectibleStateBlockJsonContext : JsonSerializerContext { }
+#endif
 }

@@ -44,7 +44,7 @@ namespace BungieSharper.Entities.Content
         /// As Cole Porter would have crooned, "Anything Goes" with Firehose properties. They are most often strings, but they can theoretically be anything. They are JSON encoded, and could be JSON structures, simple strings, numbers etc... The Content Type of the item (cType) will describe the properties, and thus how they ought to be deserialized.
         /// </summary>
         [JsonPropertyName("properties")]
-        public Dictionary<string, dynamic> Properties { get; set; }
+        public Dictionary<string, object> Properties { get; set; }
 
         [JsonPropertyName("representations")]
         public IEnumerable<Content.ContentRepresentation> Representations { get; set; }
@@ -56,6 +56,12 @@ namespace BungieSharper.Entities.Content
         [JsonPropertyName("commentSummary")]
         public Content.CommentSummary CommentSummary { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(ContentItemPublicContract))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class ContentItemPublicContractJsonContext : JsonSerializerContext { }
+#endif
 
     public class ContentRepresentation
     {
@@ -69,6 +75,12 @@ namespace BungieSharper.Entities.Content
         public string ValidationString { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(ContentRepresentation))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class ContentRepresentationJsonContext : JsonSerializerContext { }
+#endif
+
     public class CommentSummary
     {
         [JsonPropertyName("topicId")]
@@ -77,4 +89,10 @@ namespace BungieSharper.Entities.Content
         [JsonPropertyName("commentCount")]
         public int CommentCount { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(CommentSummary))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class CommentSummaryJsonContext : JsonSerializerContext { }
+#endif
 }

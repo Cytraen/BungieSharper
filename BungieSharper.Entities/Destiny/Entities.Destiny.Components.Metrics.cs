@@ -12,6 +12,12 @@ namespace BungieSharper.Entities.Destiny.Components.Metrics
         public uint MetricsRootNodeHash { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyMetricsComponent))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyMetricsComponentJsonContext : JsonSerializerContext { }
+#endif
+
     public class DestinyMetricComponent
     {
         [JsonPropertyName("invisible")]
@@ -20,4 +26,10 @@ namespace BungieSharper.Entities.Destiny.Components.Metrics
         [JsonPropertyName("objectiveProgress")]
         public Destiny.Quests.DestinyObjectiveProgress ObjectiveProgress { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyMetricComponent))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyMetricComponentJsonContext : JsonSerializerContext { }
+#endif
 }

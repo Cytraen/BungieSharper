@@ -32,6 +32,12 @@ namespace BungieSharper.Entities.Destiny.Sockets
         public IEnumerable<int> EnableFailIndexes { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyItemPlugBase))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyItemPlugBaseJsonContext : JsonSerializerContext { }
+#endif
+
     public class DestinyItemPlug
     {
         /// <summary>Sometimes, Plugs may have objectives: these are often used for flavor and display purposes, but they can be used for any arbitrary purpose (both fortunately and unfortunately). Recently (with Season 2) they were expanded in use to be used as the "gating" for whether the plug can be inserted at all. For instance, a Plug might be tracking the number of PVP kills you have made. It will use the parent item's data about that tracking status to determine what to show, and will generally show it using the DestinyObjectiveDefinition's progressDescription property. Refer to the plug's itemHash and objective property for more information if you would like to display even more data.</summary>
@@ -64,4 +70,10 @@ namespace BungieSharper.Entities.Destiny.Sockets
         [JsonPropertyName("enableFailIndexes")]
         public IEnumerable<int> EnableFailIndexes { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyItemPlug))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyItemPlugJsonContext : JsonSerializerContext { }
+#endif
 }

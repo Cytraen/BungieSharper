@@ -64,6 +64,12 @@ namespace BungieSharper.Entities.Applications
         public IEnumerable<Applications.Series> ThrottledRequests { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(ApiUsage))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class ApiUsageJsonContext : JsonSerializerContext { }
+#endif
+
     public class Series
     {
         /// <summary>Collection of samples with time and value.</summary>
@@ -74,6 +80,12 @@ namespace BungieSharper.Entities.Applications
         [JsonPropertyName("target")]
         public string Target { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(Series))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class SeriesJsonContext : JsonSerializerContext { }
+#endif
 
     public class Datapoint
     {
@@ -86,6 +98,12 @@ namespace BungieSharper.Entities.Applications
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public double? Count { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(Datapoint))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DatapointJsonContext : JsonSerializerContext { }
+#endif
 
     public class Application
     {
@@ -138,6 +156,12 @@ namespace BungieSharper.Entities.Applications
         public string OverrideAuthorizeViewName { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(Application))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class ApplicationJsonContext : JsonSerializerContext { }
+#endif
+
     public enum ApplicationStatus : int
     {
         /// <summary>No value assigned</summary>
@@ -167,6 +191,12 @@ namespace BungieSharper.Entities.Applications
         [JsonPropertyName("user")]
         public User.UserInfoCard User { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(ApplicationDeveloper))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class ApplicationDeveloperJsonContext : JsonSerializerContext { }
+#endif
 
     public enum DeveloperRole : int
     {

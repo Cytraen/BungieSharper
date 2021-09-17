@@ -67,6 +67,12 @@ namespace BungieSharper.Entities.Destiny
         public IEnumerable<Destiny.DestinyProgressionRewardItemState> RewardItemStates { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyProgression))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyProgressionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// Represents a season and the number of resets you had in that season.
     /// We do not necessarily - even for progressions with resets - track it over all seasons. So be careful and check the season numbers being returned.
@@ -79,6 +85,12 @@ namespace BungieSharper.Entities.Destiny
         [JsonPropertyName("resets")]
         public int Resets { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyProgressionResetEntry))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyProgressionResetEntryJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// Represents the different states a progression reward item can be in.
@@ -149,6 +161,12 @@ namespace BungieSharper.Entities.Destiny
         [JsonPropertyName("hasConditionalVisibility")]
         public bool HasConditionalVisibility { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyItemQuantity))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyItemQuantityJsonContext : JsonSerializerContext { }
+#endif
 
     public enum TierType : int
     {
@@ -231,6 +249,12 @@ namespace BungieSharper.Entities.Destiny
         [JsonPropertyName("dyeHash")]
         public uint DyeHash { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DyeReference))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DyeReferenceJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// Describes the type of progression that a vendor has.
@@ -1199,6 +1223,12 @@ namespace BungieSharper.Entities.Destiny
         public int? LoadoutRequirementIndex { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyActivity))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyActivityJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// An enumeration representing the potential difficulty levels of an activity. Their names are... more qualitative than quantitative.
     /// </summary>
@@ -1227,6 +1257,12 @@ namespace BungieSharper.Entities.Destiny
         [JsonPropertyName("value")]
         public int Value { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyStat))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyStatJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// The reasons why an item cannot be equipped, if any. Many flags can be set, or "None" if
@@ -1299,6 +1335,12 @@ namespace BungieSharper.Entities.Destiny
         public Destiny.DestinyTalentNodeStatBlock NodeStatsBlock { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyTalentNode))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyTalentNodeJsonContext : JsonSerializerContext { }
+#endif
+
     public enum DestinyTalentNodeState : int
     {
         Invalid = 0,
@@ -1330,6 +1372,12 @@ namespace BungieSharper.Entities.Destiny
         [JsonPropertyName("nextStepStats")]
         public IEnumerable<Destiny.DestinyStat> NextStepStats { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyTalentNodeStatBlock))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyTalentNodeStatBlockJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// Indicates the type of filter to apply to Vendor results.
@@ -1374,6 +1422,12 @@ namespace BungieSharper.Entities.Destiny
         [JsonPropertyName("isSet")]
         public bool IsSet { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyUnlockStatus))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyUnlockStatusJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// The possible states of Destiny Profile Records. IMPORTANT: Any given item can theoretically have many of these states simultaneously: as a result, this was altered to be a flags enumeration/bitmask for v3.2.0.
@@ -1445,6 +1499,12 @@ namespace BungieSharper.Entities.Destiny
         public IEnumerable<Destiny.DestinyEquipItemResult> EquipResults { get; set; }
     }
 
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyEquipItemResults))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyEquipItemResultsJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// The results of an Equipping operation performed through the Destiny API.
     /// </summary>
@@ -1458,4 +1518,10 @@ namespace BungieSharper.Entities.Destiny
         [JsonPropertyName("equipStatus")]
         public Exceptions.PlatformErrorCodes EquipStatus { get; set; }
     }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyEquipItemResult))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyEquipItemResultJsonContext : JsonSerializerContext { }
+#endif
 }

@@ -1,7 +1,7 @@
 # BungieSharper
-![Nuget](https://img.shields.io/nuget/v/BungieSharper?color=green&label=nuget&style=flat-square)
-![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/BungieSharper?label=prerelease&style=flat-square)
-![GitHub branch checks state](https://img.shields.io/github/checks-status/ashakoor/BungieSharper/main?label=checks&style=flat-square)
+[![Nuget](https://img.shields.io/nuget/v/BungieSharper?color=green&label=NuGet&style=flat-square)](https://www.nuget.org/packages/BungieSharper/latest)
+[![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/BungieSharper?label=Prerelease&style=flat-square)](https://www.nuget.org/packages/BungieSharper/absoluteLatest)
+[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fashakoor%2FBungieSharper%2Fbadge%3Fref%3Dmain&style=flat-square)](https://github.com/ashakoor/BungieSharper/actions)
 
 ## About
 **BungieSharper** is a .NET client library for the Bungie.net API.  

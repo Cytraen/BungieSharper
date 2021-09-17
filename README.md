@@ -1,4 +1,7 @@
 # BungieSharper
+![Nuget](https://img.shields.io/nuget/v/BungieSharper?color=green&label=nuget&style=flat-square)
+![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/BungieSharper?label=prerelease&style=flat-square)
+![GitHub branch checks state](https://img.shields.io/github/checks-status/ashakoor/BungieSharper/main?label=checks&style=flat-square)
 
 ## About
 **BungieSharper** is a .NET client library for the Bungie.net API.  

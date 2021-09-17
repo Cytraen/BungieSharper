@@ -9,7 +9,7 @@
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
 
-	<TargetFrameworks>net5.0;net6.0</TargetFrameworks>
+    <TargetFrameworks>net5.0;net6.0</TargetFrameworks>
     <Version>0.8.5</Version>
   </PropertyGroup>
 

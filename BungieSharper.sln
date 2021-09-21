@@ -1,19 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30907.101
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31717.71
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BungieSharper.CodeGen", "BungieSharper.CodeGen\BungieSharper.CodeGen.csproj", "{099EC676-4613-4618-885A-B91D00D63308}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BungieSharper.CodeGen", "BungieSharper.CodeGen\BungieSharper.CodeGen.csproj", "{099EC676-4613-4618-885A-B91D00D63308}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BungieSharper.CodeGen.Entities", "BungieSharper.CodeGen.Entities\BungieSharper.CodeGen.Entities.csproj", "{CDAE14F1-CB05-48D9-AE67-1D1BBE6A4401}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BungieSharper.CodeGen.Entities", "BungieSharper.CodeGen.Entities\BungieSharper.CodeGen.Entities.csproj", "{CDAE14F1-CB05-48D9-AE67-1D1BBE6A4401}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BungieSharper.Entities", "BungieSharper.Entities\BungieSharper.Entities.csproj", "{3E0315EC-0053-4E4C-89F1-45EE87E2F1F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BungieSharper.Entities", "BungieSharper.Entities\BungieSharper.Entities.csproj", "{3E0315EC-0053-4E4C-89F1-45EE87E2F1F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BungieSharper", "BungieSharper\BungieSharper.csproj", "{C33E2A92-FB1E-4B85-AEA9-0DD750759D38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BungieSharper", "BungieSharper\BungieSharper.csproj", "{C33E2A92-FB1E-4B85-AEA9-0DD750759D38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BungieSharper.Tests", "BungieSharper.Tests\BungieSharper.Tests.csproj", "{6BCF6F03-E112-41D4-A526-85023B6E5A2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BungieSharper.Tests", "BungieSharper.Tests\BungieSharper.Tests.csproj", "{6BCF6F03-E112-41D4-A526-85023B6E5A2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BungieSharper.CodeGen.Entities.Tests", "BungieSharper.CodeGen.Entities.Tests\BungieSharper.CodeGen.Entities.Tests.csproj", "{04573ED6-0058-4D1F-9A7D-FB323C9D7A7B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BungieSharper.CodeGen.Entities.Tests", "BungieSharper.CodeGen.Entities.Tests\BungieSharper.CodeGen.Entities.Tests.csproj", "{04573ED6-0058-4D1F-9A7D-FB323C9D7A7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BungieSharper.Benchmark", "BungieSharper.Benchmark\BungieSharper.Benchmark.csproj", "{A95AD779-CBF5-4D5A-BBD6-8D4ACB6D4F70}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{04573ED6-0058-4D1F-9A7D-FB323C9D7A7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04573ED6-0058-4D1F-9A7D-FB323C9D7A7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04573ED6-0058-4D1F-9A7D-FB323C9D7A7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A95AD779-CBF5-4D5A-BBD6-8D4ACB6D4F70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A95AD779-CBF5-4D5A-BBD6-8D4ACB6D4F70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A95AD779-CBF5-4D5A-BBD6-8D4ACB6D4F70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A95AD779-CBF5-4D5A-BBD6-8D4ACB6D4F70}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <Authors>ashakoor</Authors>
+    <Copyright>Copyright © 2020-2021 ashakoor</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/ashakoor/BungieSharper</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Nullable>enable</Nullable>
+
+    <TargetFrameworks>net5.0;net6.0</TargetFrameworks>
+    <Version>0.8.5</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BenchmarkDotNet" Version="0.13.1" />
+    <PackageReference Include="BungieSharper" Version="0.8.5-beta.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="GetDestinyManifest_v2.12.1_97514.21.09.07.2012-2-bnet.40158.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="InventoryItemDefinitions_v2.12.1_97514.21.09.07.2012-2-bnet.40158.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="SearchDestinyPlayer_v2.12.1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

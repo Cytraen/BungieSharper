@@ -1,0 +1,48 @@
+{
+    "Response": [{
+        "iconPath": "/img/theme/bungienet/icons/steamLogo.png",
+        "crossSaveOverride": 3,
+        "applicableMembershipTypes": [1, 2, 5, 3],
+        "isPublic": true,
+        "membershipType": 3,
+        "membershipId": "4611686018467948914",
+        "displayName": "Cytraen",
+        "bungieGlobalDisplayName": "Cytraen",
+        "bungieGlobalDisplayNameCode": 2213
+    }, {
+        "iconPath": "/img/theme/bungienet/icons/xboxLiveLogo.png",
+        "crossSaveOverride": 3,
+        "applicableMembershipTypes": [],
+        "isPublic": true,
+        "membershipType": 1,
+        "membershipId": "4611686018488683447",
+        "displayName": "Cytraen",
+        "bungieGlobalDisplayName": "Cytraen",
+        "bungieGlobalDisplayNameCode": 2213
+    }, {
+        "iconPath": "/img/theme/bungienet/icons/psnLogo.png",
+        "crossSaveOverride": 3,
+        "applicableMembershipTypes": [],
+        "isPublic": true,
+        "membershipType": 2,
+        "membershipId": "4611686018488684170",
+        "displayName": "Cytraen",
+        "bungieGlobalDisplayName": "Cytraen",
+        "bungieGlobalDisplayNameCode": 2213
+    }, {
+        "iconPath": "/img/theme/destiny/icons/icon_stadia.png",
+        "crossSaveOverride": 3,
+        "applicableMembershipTypes": [],
+        "isPublic": true,
+        "membershipType": 5,
+        "membershipId": "4611686018505194043",
+        "displayName": "Cytraen#9938",
+        "bungieGlobalDisplayName": "Cytraen",
+        "bungieGlobalDisplayNameCode": 2213
+    }],
+    "ErrorCode": 1,
+    "ThrottleSeconds": 0,
+    "ErrorStatus": "Success",
+    "Message": "Ok",
+    "MessageData": {}
+}

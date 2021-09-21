@@ -112,7 +112,7 @@ namespace BungieSharper.Client
                 if (httpResponseMessage.Content.Headers.ContentType?.MediaType != "application/json")
                 {
                     await AwaitThrottleAndReleaseSemaphore(throttleTask, _semaphore).ConfigureAwait(false);
-                    throw ContentNotJsonException.NewContentNotJsonException(httpResponseMessage);
+                    throw new BungieResponseContentNotJsonException(httpResponseMessage);
                 }
 
                 var apiResponse = JsonSerializer.Deserialize<Entities.ApiResponse<T>>(
@@ -122,7 +122,7 @@ namespace BungieSharper.Client
                 if (apiResponse is null)
                 {
                     await AwaitThrottleAndReleaseSemaphore(throttleTask, _semaphore).ConfigureAwait(false);
-                    throw ContentNullJsonException.NewContentNullJsonException(httpResponseMessage);
+                    throw new BungieResponseContentEmptyJsonException(httpResponseMessage);
                 }
 
                 if (apiResponse.ErrorCode != PlatformErrorCodes.Success)
@@ -135,7 +135,7 @@ namespace BungieSharper.Client
                     else
                     {
                         await AwaitThrottleAndReleaseSemaphore(throttleTask, _semaphore).ConfigureAwait(false);
-                        throw NonRetryErrorCodeException.NewNonRetryErrorCodeException(apiResponse);
+                        throw new BungieApiNoRetryException(apiResponse);
                     }
                 }
                 else
@@ -143,7 +143,7 @@ namespace BungieSharper.Client
                     if (apiResponse.Response == null)
                     {
                         await AwaitThrottleAndReleaseSemaphore(throttleTask, _semaphore).ConfigureAwait(false);
-                        throw NullResponseException.NewNullResponseException(apiResponse);
+                        throw new BungieApiNullResponseException(apiResponse);
                     }
 
                     await AwaitThrottleAndReleaseSemaphore(throttleTask, _semaphore).ConfigureAwait(false);
@@ -172,7 +172,7 @@ namespace BungieSharper.Client
                 if (httpResponseMessage.Content.Headers.ContentType?.MediaType != "application/json")
                 {
                     await AwaitThrottleAndReleaseSemaphore(throttleTask, _semaphore).ConfigureAwait(false);
-                    throw ContentNotJsonException.NewContentNotJsonException(httpResponseMessage);
+                    throw new BungieResponseContentNotJsonException(httpResponseMessage);
                 }
 
                 var apiResponse = JsonSerializer.Deserialize<Entities.TokenResponse>(
@@ -182,7 +182,7 @@ namespace BungieSharper.Client
                 if (apiResponse is null)
                 {
                     await AwaitThrottleAndReleaseSemaphore(throttleTask, _semaphore).ConfigureAwait(false);
-                    throw ContentNullJsonException.NewContentNullJsonException(httpResponseMessage);
+                    throw new BungieResponseContentEmptyJsonException(httpResponseMessage);
                 }
 
                 await AwaitThrottleAndReleaseSemaphore(throttleTask, _semaphore).ConfigureAwait(false);

@@ -30,63 +30,47 @@ namespace BungieSharper.Client
         }
     }
 
-    public class ContentNotJsonException : BungieBaseHttpResponseException
+    public class BungieResponseContentNotJsonException : BungieBaseHttpResponseException
     {
-        private ContentNotJsonException(HttpResponseMessage httpResponse, string message) : base(httpResponse, message)
+        internal BungieResponseContentNotJsonException(HttpResponseMessage httpResponse, string message) : base(httpResponse, message)
         {
         }
 
-        internal static ContentNotJsonException NewContentNotJsonException(HttpResponseMessage httpResponse)
+        internal BungieResponseContentNotJsonException(HttpResponseMessage httpResponse) : this(httpResponse, $"The Bungie API returned content that was of type {httpResponse.Content.Headers.ContentType?.MediaType} instead of \"application/json\"")
         {
-            return new(
-                httpResponse,
-                "The Bungie API returned content that was of type " + httpResponse.Content.Headers.ContentType?.MediaType + " instead of \"application/json\""
-                );
         }
     }
 
-    public class ContentNullJsonException : BungieBaseHttpResponseException
+    public class BungieResponseContentEmptyJsonException : BungieBaseHttpResponseException
     {
-        private ContentNullJsonException(HttpResponseMessage httpResponse, string message) : base(httpResponse, message)
+        internal BungieResponseContentEmptyJsonException(HttpResponseMessage httpResponse, string message) : base(httpResponse, message)
         {
         }
 
-        internal static ContentNullJsonException NewContentNullJsonException(HttpResponseMessage httpResponse)
+        internal BungieResponseContentEmptyJsonException(HttpResponseMessage httpResponse) : this(httpResponse, "The Bungie API response contained empty or null JSON.")
         {
-            return new(
-                httpResponse,
-                "The response contained JSON content that was null or empty."
-                );
         }
     }
 
-    public class NonRetryErrorCodeException : BungieBaseApiResponseException
+    public class BungieApiNoRetryException : BungieBaseApiResponseException
     {
-        private NonRetryErrorCodeException(Entities.ApiResponse apiResponse, string message) : base(apiResponse, message)
+        internal BungieApiNoRetryException(Entities.ApiResponse apiResponse, string message) : base(apiResponse, message)
         {
         }
 
-        internal static NonRetryErrorCodeException NewNonRetryErrorCodeException(Entities.ApiResponse apiResponse)
+        internal BungieApiNoRetryException(Entities.ApiResponse apiResponse) : this(apiResponse, $"The Bungie API returned an error code ({(int)apiResponse.ErrorCode}: {apiResponse.ErrorCode}) that will not be retried on.")
         {
-            return new(
-                apiResponse,
-                $"The Bungie API returned an error code ({(int)apiResponse.ErrorCode}: {apiResponse.ErrorCode}) that will not be retried on."
-                );
         }
     }
 
-    public class NullResponseException : BungieBaseApiResponseException
+    public class BungieApiNullResponseException : BungieBaseApiResponseException
     {
-        private NullResponseException(Entities.ApiResponse apiResponse, string message) : base(apiResponse, message)
+        internal BungieApiNullResponseException(Entities.ApiResponse apiResponse, string message) : base(apiResponse, message)
         {
         }
 
-        internal static NullResponseException NewNullResponseException(Entities.ApiResponse apiResponse)
+        internal BungieApiNullResponseException(Entities.ApiResponse apiResponse) : this(apiResponse, "The \"Response\" property of the API response was null or empty.")
         {
-            return new(
-                apiResponse,
-                "The response provided by the Bungie API was null or empty."
-                );
         }
     }
 }

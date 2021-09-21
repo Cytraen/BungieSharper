@@ -14,7 +14,7 @@ namespace BungieSharper.Endpoints
         /// Claim a partner offer as the authenticated user.
         /// Requires OAuth2 scope(s): PartnerOfferGrant
         /// </summary>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<bool> Tokens_ClaimPartnerOffer(Entities.Tokens.PartnerOfferClaimRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -30,7 +30,7 @@ namespace BungieSharper.Endpoints
         /// </summary>
         /// <param name="partnerApplicationId">The partner application identifier.</param>
         /// <param name="targetBnetMembershipId">The bungie.net user to apply missing offers to. If not self, elevated permissions are required.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<bool> Tokens_ApplyMissingPartnerOffersWithoutClaim(int partnerApplicationId, long targetBnetMembershipId, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -46,7 +46,7 @@ namespace BungieSharper.Endpoints
         /// </summary>
         /// <param name="partnerApplicationId">The partner application identifier.</param>
         /// <param name="targetBnetMembershipId">The bungie.net user to apply missing offers to. If not self, elevated permissions are required.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<IEnumerable<Entities.Tokens.PartnerOfferSkuHistoryResponse>> Tokens_GetPartnerOfferSkuHistory(int partnerApplicationId, long targetBnetMembershipId, string? authToken = null, CancellationToken cancelToken = default)
         {

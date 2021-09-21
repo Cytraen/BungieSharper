@@ -16,7 +16,7 @@ namespace BungieSharper.Endpoints
         /// <param name="applicationId">ID of the application to get usage statistics.</param>
         /// <param name="end">End time for query. Goes to now if not specified.</param>
         /// <param name="start">Start time for query. Goes to 24 hours ago if not specified.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.Applications.ApiUsage> App_GetApplicationApiUsage(int applicationId, DateTime? end = null, DateTime? start = null, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -29,7 +29,7 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Get list of applications created by Bungie.
         /// </summary>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<IEnumerable<Entities.Applications.Application>> App_GetBungieApplications(string? authToken = null, CancellationToken cancelToken = default)
         {

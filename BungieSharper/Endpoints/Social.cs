@@ -12,7 +12,7 @@ namespace BungieSharper.Endpoints
         /// Returns your Bungie Friend list
         /// Requires OAuth2 scope(s): ReadUserData
         /// </summary>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.Social.Friends.BungieFriendListResponse> Social_GetFriendList(string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -26,7 +26,7 @@ namespace BungieSharper.Endpoints
         /// Returns your friend request queue.
         /// Requires OAuth2 scope(s): ReadUserData
         /// </summary>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.Social.Friends.BungieFriendRequestListResponse> Social_GetFriendRequestList(string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -41,7 +41,7 @@ namespace BungieSharper.Endpoints
         /// Requires OAuth2 scope(s): BnetWrite
         /// </summary>
         /// <param name="membershipId">The membership id of the user you wish to add.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<bool> Social_IssueFriendRequest(string membershipId, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -56,7 +56,7 @@ namespace BungieSharper.Endpoints
         /// Requires OAuth2 scope(s): BnetWrite
         /// </summary>
         /// <param name="membershipId">The membership id of the user you wish to accept.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<bool> Social_AcceptFriendRequest(string membershipId, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -71,7 +71,7 @@ namespace BungieSharper.Endpoints
         /// Requires OAuth2 scope(s): BnetWrite
         /// </summary>
         /// <param name="membershipId">The membership id of the user you wish to decline.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<bool> Social_DeclineFriendRequest(string membershipId, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -86,7 +86,7 @@ namespace BungieSharper.Endpoints
         /// Requires OAuth2 scope(s): BnetWrite
         /// </summary>
         /// <param name="membershipId">The membership id of the user you wish to remove.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<bool> Social_RemoveFriend(string membershipId, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -101,7 +101,7 @@ namespace BungieSharper.Endpoints
         /// Requires OAuth2 scope(s): BnetWrite
         /// </summary>
         /// <param name="membershipId">The membership id of the user you wish to remove.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<bool> Social_RemoveFriendRequest(string membershipId, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -116,7 +116,7 @@ namespace BungieSharper.Endpoints
         /// </summary>
         /// <param name="friendPlatform">The platform friend type.</param>
         /// <param name="page">The zero based page to return. Page size is 100.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.Social.Friends.PlatformFriendResponse> Social_GetPlatformFriendList(Entities.Social.Friends.PlatformFriendType friendPlatform, string page, string? authToken = null, CancellationToken cancelToken = default)
         {

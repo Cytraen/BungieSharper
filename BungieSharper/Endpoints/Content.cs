@@ -11,7 +11,7 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Gets an object describing a particular variant of content.
         /// </summary>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.Content.Models.ContentTypeDescription> Content_GetContentType(string type, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -25,7 +25,7 @@ namespace BungieSharper.Endpoints
         /// Returns a content item referenced by id
         /// </summary>
         /// <param name="head">false</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.Content.ContentItemPublicContract> Content_GetContentById(long id, string locale, bool? head = null, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -39,7 +39,7 @@ namespace BungieSharper.Endpoints
         /// Returns the newest item that matches a given tag and Content Type.
         /// </summary>
         /// <param name="head">Not used.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.Content.ContentItemPublicContract> Content_GetContentByTagAndType(string locale, string tag, string type, bool? head = null, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -58,7 +58,7 @@ namespace BungieSharper.Endpoints
         /// <param name="searchtext">Word or phrase for the search.</param>
         /// <param name="source">For analytics, hint at the part of the app that triggered the search. Optional.</param>
         /// <param name="tag">Tag used on the content to be searched.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.SearchResultOfContentItemPublicContract> Content_SearchContentWithText(string locale, string? ctype = null, int? currentpage = null, bool? head = null, string? searchtext = null, string? source = null, string? tag = null, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -74,7 +74,7 @@ namespace BungieSharper.Endpoints
         /// <param name="currentpage">Page number for the search results starting with page 1.</param>
         /// <param name="head">Not used.</param>
         /// <param name="itemsperpage">Not used.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.SearchResultOfContentItemPublicContract> Content_SearchContentByTagAndType(string locale, string tag, string type, int? currentpage = null, bool? head = null, int? itemsperpage = null, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -87,7 +87,7 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Search for Help Articles.
         /// </summary>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<object> Content_SearchHelpArticles(string searchtext, string size, string? authToken = null, CancellationToken cancelToken = default)
         {

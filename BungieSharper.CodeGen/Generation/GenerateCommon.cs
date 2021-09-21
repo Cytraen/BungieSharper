@@ -1,8 +1,8 @@
-﻿using BungieSharper.CodeGen.Entities.Common;
+using BungieSharper.CodeGen.Entities.Common;
 
 namespace BungieSharper.CodeGen.Generation
 {
-    internal class GenerateCommon
+    internal static class GenerateCommon
     {
         public static string ResolveItems(ItemClass items, bool appendEntities)
         {

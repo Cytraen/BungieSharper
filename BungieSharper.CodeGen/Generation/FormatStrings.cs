@@ -59,18 +59,20 @@ namespace BungieSharper.CodeGen.Generation
 
             formatted += string.Join("\n", summary.Split('\n').Select(x => spacing + "/// " + x.Trim())) + "\n";
 
-            if (oauthScopes != null && oauthScopes.Any())
+            var oAuthScopes = oauthScopes?.ToList() ?? new List<OAuthScopeEnum>();
+            if (oAuthScopes.Any())
             {
-                formatted += $"{spacing}/// Requires OAuth2 scope(s): {string.Join(", ", oauthScopes)}\n";
+                formatted += $"{spacing}/// Requires OAuth2 scope(s): {string.Join(", ", oAuthScopes)}\n";
             }
 
             formatted += $"{spacing}/// </summary>\n";
 
             var paramsWithDescriptions = parameters.Where(x => !string.IsNullOrWhiteSpace(x.Description));
 
-            if (paramsWithDescriptions.Any())
+            var pathResponseMethodParameterClasses = paramsWithDescriptions.ToList();
+            if (pathResponseMethodParameterClasses.Any())
             {
-                formatted += string.Join("\n", paramsWithDescriptions.Select(x => spacing + "/// <param name=\"" + x.Name + "\">" + x.Description.Trim() + "</param>"));
+                formatted += string.Join("\n", pathResponseMethodParameterClasses.Select(x => spacing + "/// <param name=\"" + x.Name + "\">" + x.Description.Trim() + "</param>"));
                 formatted += "\n";
             }
 

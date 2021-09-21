@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace BungieSharper.CodeGen.Generation
 {
-    internal class GenerateSchema
+    internal static class GenerateSchema
     {
         internal static string GetSchemaFileContent(string name, SchemaObject def)
         {
@@ -26,7 +26,7 @@ namespace BungieSharper.CodeGen.Generation
             };
         }
 
-        internal static string GetEnumFileContent(string name, SchemaObject def)
+        private static string GetEnumFileContent(string name, SchemaObject def)
         {
             var fileContent = "";
             const string enumFlagsString = "    [System.Flags]\n";
@@ -44,14 +44,7 @@ namespace BungieSharper.CodeGen.Generation
                 fileContent += enumFlagsString;
             }
 
-            var enumList = new List<string>();
-            foreach (var enumVal in def.XEnumValues!)
-            {
-                var doc = string.IsNullOrWhiteSpace(enumVal.Description) ? "" : FormatStrings.FormatPropertySummaries(enumVal.Description);
-                var enumDef = $"        {enumVal.Identifier} = {enumVal.NumericValue}";
-
-                enumList.Add(doc + enumDef);
-            }
+            var enumList = (from enumVal in def.XEnumValues! let doc = string.IsNullOrWhiteSpace(enumVal.Description) ? "" : FormatStrings.FormatPropertySummaries(enumVal.Description) let enumDef = $"        {enumVal.Identifier} = {enumVal.NumericValue}" select doc + enumDef).ToList();
 
             fileContent += $"    public enum {className} : {Mapping.FormatToCSharp(def.Format!.Value)}\n    {{\n";
             fileContent += string.Join(",\n", enumList);
@@ -61,7 +54,7 @@ namespace BungieSharper.CodeGen.Generation
             return fileContent;
         }
 
-        internal static string GetObjectFileContent(string name, SchemaObject def)
+        private static string GetObjectFileContent(string name, SchemaObject def)
         {
             var fileContent = "";
 
@@ -90,18 +83,18 @@ namespace BungieSharper.CodeGen.Generation
             fileContent += string.Join("\n\n", propertyList);
             fileContent += "\n    }\n\n";
 
-            fileContent += $"#if NET6_0_OR_GREATER\n";
+            fileContent += "#if NET6_0_OR_GREATER\n";
             fileContent += $"    [JsonSerializable(typeof({className}))]\n";
-            fileContent += $"    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]\n";
+            fileContent += "    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]\n";
             fileContent += $"    internal partial class {className}JsonContext : JsonSerializerContext {{ }}\n";
-            fileContent += $"#endif\n";
+            fileContent += "#endif\n";
 
             fileContent += "}";
 
             return fileContent;
         }
 
-        internal static string ResolveProperty(string name, PropertiesObject def)
+        private static string ResolveProperty(string name, PropertiesObject def)
         {
             var propListing = "";
             var propType = "";
@@ -156,7 +149,7 @@ namespace BungieSharper.CodeGen.Generation
             return propListing;
         }
 
-        internal static string ResolvePropertyDictionary(Entities.Components.Properties.XDictionaryKeyClass dictKey, Entities.Components.Properties.AdditionalPropertiesClass additionalProps)
+        private static string ResolvePropertyDictionary(Entities.Components.Properties.XDictionaryKeyClass dictKey, Entities.Components.Properties.AdditionalPropertiesClass additionalProps)
         {
             var classType = "Dictionary<";
 

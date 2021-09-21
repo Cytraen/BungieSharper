@@ -3,7 +3,7 @@ using System;
 
 namespace BungieSharper.CodeGen.Generation
 {
-    internal class Mapping
+    internal static class Mapping
     {
         internal static string TypeToCSharp(TypeEnum type)
         {
@@ -15,7 +15,8 @@ namespace BungieSharper.CodeGen.Generation
                 TypeEnum.Number => "float",
                 TypeEnum.Object => "object",
                 TypeEnum.String => "string",
-                _ => throw new NotSupportedException(),
+                TypeEnum.None => throw new NotSupportedException(),
+                _ => throw new NotSupportedException()
             };
         }
 
@@ -31,7 +32,8 @@ namespace BungieSharper.CodeGen.Generation
                 FormatEnum.Int64 => "long",
                 FormatEnum.Int16 => "short",
                 FormatEnum.Uint32 => "uint",
-                _ => throw new NotSupportedException(),
+                FormatEnum.None => throw new NotSupportedException(),
+                _ => throw new NotSupportedException()
             };
         }
 
@@ -53,7 +55,7 @@ namespace BungieSharper.CodeGen.Generation
                 TagEnum.Social => "Social",
                 TagEnum.Preview => "Preview",
                 TagEnum.Core => "Core",
-                _ => throw new NotSupportedException(),
+                _ => throw new NotSupportedException()
             };
         }
     }

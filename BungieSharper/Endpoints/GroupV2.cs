@@ -13,7 +13,7 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Returns a list of all available group avatars for the signed-in user.
         /// </summary>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Dictionary<int, string>> GroupV2_GetAvailableAvatars(string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -26,7 +26,7 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Returns a list of all available group themes.
         /// </summary>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<IEnumerable<Entities.Config.GroupTheme>> GroupV2_GetAvailableThemes(string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -41,7 +41,7 @@ namespace BungieSharper.Endpoints
         /// Requires OAuth2 scope(s): ReadUserData
         /// </summary>
         /// <param name="mType">The Destiny membership type of the account we wish to access settings.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<bool> GroupV2_GetUserClanInviteSetting(Entities.BungieMembershipType mType, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -57,7 +57,7 @@ namespace BungieSharper.Endpoints
         /// </summary>
         /// <param name="createDateRange">Requested range in which to pull recommended groups</param>
         /// <param name="groupType">Type of groups requested</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<IEnumerable<Entities.GroupsV2.GroupV2Card>> GroupV2_GetRecommendedGroups(Entities.GroupsV2.GroupDateRange createDateRange, Entities.GroupsV2.GroupType groupType, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -70,7 +70,7 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Search for Groups.
         /// </summary>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.GroupsV2.GroupSearchResponse> GroupV2_GroupSearch(Entities.GroupsV2.GroupQuery requestBody, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -84,7 +84,7 @@ namespace BungieSharper.Endpoints
         /// Get information about a specific group of the given ID.
         /// </summary>
         /// <param name="groupId">Requested group's id.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.GroupsV2.GroupResponse> GroupV2_GetGroup(long groupId, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -99,7 +99,7 @@ namespace BungieSharper.Endpoints
         /// </summary>
         /// <param name="groupName">Exact name of the group to find.</param>
         /// <param name="groupType">Type of group to find.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.GroupsV2.GroupResponse> GroupV2_GetGroupByName(string groupName, Entities.GroupsV2.GroupType groupType, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -112,7 +112,7 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Get information about a specific group with the given name and type. The POST version.
         /// </summary>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.GroupsV2.GroupResponse> GroupV2_GetGroupByNameV2(Entities.GroupsV2.GroupNameSearchRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -126,7 +126,7 @@ namespace BungieSharper.Endpoints
         /// Gets a list of available optional conversation channels and their settings.
         /// </summary>
         /// <param name="groupId">Requested group's id.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<IEnumerable<Entities.GroupsV2.GroupOptionalConversation>> GroupV2_GetGroupOptionalConversations(long groupId, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -141,7 +141,7 @@ namespace BungieSharper.Endpoints
         /// Requires OAuth2 scope(s): AdminGroups
         /// </summary>
         /// <param name="groupId">Group ID of the group to edit.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<int> GroupV2_EditGroup(long groupId, Entities.GroupsV2.GroupEditAction requestBody, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -156,7 +156,7 @@ namespace BungieSharper.Endpoints
         /// Requires OAuth2 scope(s): AdminGroups
         /// </summary>
         /// <param name="groupId">Group ID of the group to edit.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<int> GroupV2_EditClanBanner(long groupId, Entities.GroupsV2.ClanBanner requestBody, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -171,7 +171,7 @@ namespace BungieSharper.Endpoints
         /// Requires OAuth2 scope(s): AdminGroups
         /// </summary>
         /// <param name="groupId">Group ID of the group to edit.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<int> GroupV2_EditFounderOptions(long groupId, Entities.GroupsV2.GroupOptionsEditAction requestBody, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -186,7 +186,7 @@ namespace BungieSharper.Endpoints
         /// Requires OAuth2 scope(s): AdminGroups
         /// </summary>
         /// <param name="groupId">Group ID of the group to edit.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<long> GroupV2_AddOptionalConversation(long groupId, Entities.GroupsV2.GroupOptionalConversationAddRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -202,7 +202,7 @@ namespace BungieSharper.Endpoints
         /// </summary>
         /// <param name="conversationId">Conversation Id of the channel being edited.</param>
         /// <param name="groupId">Group ID of the group to edit.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<long> GroupV2_EditOptionalConversation(long conversationId, long groupId, Entities.GroupsV2.GroupOptionalConversationEditRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -219,7 +219,7 @@ namespace BungieSharper.Endpoints
         /// <param name="groupId">The ID of the group.</param>
         /// <param name="memberType">Filter out other member types. Use None for all members.</param>
         /// <param name="nameSearch">The name fragment upon which a search should be executed for members with matching display or unique names.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.SearchResultOfGroupMember> GroupV2_GetMembersOfGroup(int currentpage, long groupId, Entities.GroupsV2.RuntimeGroupMemberType? memberType = null, string? nameSearch = null, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -234,7 +234,7 @@ namespace BungieSharper.Endpoints
         /// </summary>
         /// <param name="currentpage">Page number (starting with 1). Each page has a fixed size of 50 items per page.</param>
         /// <param name="groupId">The ID of the group.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.SearchResultOfGroupMember> GroupV2_GetAdminsAndFounderOfGroup(int currentpage, long groupId, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -252,7 +252,7 @@ namespace BungieSharper.Endpoints
         /// <param name="membershipId">Membership ID to modify.</param>
         /// <param name="membershipType">Membership type of the provide membership ID.</param>
         /// <param name="memberType">New membertype for the specified member.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<int> GroupV2_EditGroupMembership(long groupId, long membershipId, Entities.BungieMembershipType membershipType, Entities.GroupsV2.RuntimeGroupMemberType memberType, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -269,7 +269,7 @@ namespace BungieSharper.Endpoints
         /// <param name="groupId">Group ID to kick the user from.</param>
         /// <param name="membershipId">Membership ID to kick.</param>
         /// <param name="membershipType">Membership type of the provided membership ID.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.GroupsV2.GroupMemberLeaveResult> GroupV2_KickMember(long groupId, long membershipId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -286,7 +286,7 @@ namespace BungieSharper.Endpoints
         /// <param name="groupId">Group ID that has the member to ban.</param>
         /// <param name="membershipId">Membership ID of the member to ban from the group.</param>
         /// <param name="membershipType">Membership type of the provided membership ID.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<int> GroupV2_BanMember(long groupId, long membershipId, Entities.BungieMembershipType membershipType, Entities.GroupsV2.GroupBanRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -302,7 +302,7 @@ namespace BungieSharper.Endpoints
         /// </summary>
         /// <param name="membershipId">Membership ID of the member to unban from the group</param>
         /// <param name="membershipType">Membership type of the provided membership ID.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<int> GroupV2_UnbanMember(long groupId, long membershipId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -318,7 +318,7 @@ namespace BungieSharper.Endpoints
         /// </summary>
         /// <param name="currentpage">Page number (starting with 1). Each page has a fixed size of 50 entries.</param>
         /// <param name="groupId">Group ID whose banned members you are fetching</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.SearchResultOfGroupBan> GroupV2_GetBannedMembersOfGroup(int currentpage, long groupId, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -334,7 +334,7 @@ namespace BungieSharper.Endpoints
         /// <param name="founderIdNew">The new founder for this group. Must already be a group admin.</param>
         /// <param name="groupId">The target group id.</param>
         /// <param name="membershipType">Membership type of the provided founderIdNew.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<bool> GroupV2_AbdicateFoundership(long founderIdNew, long groupId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -350,7 +350,7 @@ namespace BungieSharper.Endpoints
         /// </summary>
         /// <param name="currentpage">Page number (starting with 1). Each page has a fixed size of 50 items per page.</param>
         /// <param name="groupId">ID of the group.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.SearchResultOfGroupMemberApplication> GroupV2_GetPendingMemberships(int currentpage, long groupId, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -366,7 +366,7 @@ namespace BungieSharper.Endpoints
         /// </summary>
         /// <param name="currentpage">Page number (starting with 1). Each page has a fixed size of 50 items per page.</param>
         /// <param name="groupId">ID of the group.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.SearchResultOfGroupMemberApplication> GroupV2_GetInvitedIndividuals(int currentpage, long groupId, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -381,7 +381,7 @@ namespace BungieSharper.Endpoints
         /// Requires OAuth2 scope(s): AdminGroups
         /// </summary>
         /// <param name="groupId">ID of the group.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<IEnumerable<Entities.Entities.EntityActionResult>> GroupV2_ApproveAllPending(long groupId, Entities.GroupsV2.GroupApplicationRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -396,7 +396,7 @@ namespace BungieSharper.Endpoints
         /// Requires OAuth2 scope(s): AdminGroups
         /// </summary>
         /// <param name="groupId">ID of the group.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<IEnumerable<Entities.Entities.EntityActionResult>> GroupV2_DenyAllPending(long groupId, Entities.GroupsV2.GroupApplicationRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -411,7 +411,7 @@ namespace BungieSharper.Endpoints
         /// Requires OAuth2 scope(s): AdminGroups
         /// </summary>
         /// <param name="groupId">ID of the group.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<IEnumerable<Entities.Entities.EntityActionResult>> GroupV2_ApprovePendingForList(long groupId, Entities.GroupsV2.GroupApplicationListRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -428,7 +428,7 @@ namespace BungieSharper.Endpoints
         /// <param name="groupId">ID of the group.</param>
         /// <param name="membershipId">The membership id being approved.</param>
         /// <param name="membershipType">Membership type of the supplied membership ID.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<bool> GroupV2_ApprovePending(long groupId, long membershipId, Entities.BungieMembershipType membershipType, Entities.GroupsV2.GroupApplicationRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -443,7 +443,7 @@ namespace BungieSharper.Endpoints
         /// Requires OAuth2 scope(s): AdminGroups
         /// </summary>
         /// <param name="groupId">ID of the group.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<IEnumerable<Entities.Entities.EntityActionResult>> GroupV2_DenyPendingForList(long groupId, Entities.GroupsV2.GroupApplicationListRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -460,7 +460,7 @@ namespace BungieSharper.Endpoints
         /// <param name="groupType">Type of group the supplied member founded.</param>
         /// <param name="membershipId">Membership ID to for which to find founded groups.</param>
         /// <param name="membershipType">Membership type of the supplied membership ID.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.GroupsV2.GetGroupsForMemberResponse> GroupV2_GetGroupsForMember(Entities.GroupsV2.GroupsForMemberFilter filter, Entities.GroupsV2.GroupType groupType, long membershipId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -476,7 +476,7 @@ namespace BungieSharper.Endpoints
         /// <param name="groupType">Type of group the supplied member founded.</param>
         /// <param name="membershipId">Membership ID to for which to find founded groups.</param>
         /// <param name="membershipType">Membership type of the supplied membership ID.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.GroupsV2.GroupMembershipSearchResponse> GroupV2_RecoverGroupForFounder(Entities.GroupsV2.GroupType groupType, long membershipId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -493,7 +493,7 @@ namespace BungieSharper.Endpoints
         /// <param name="groupType">Type of group the supplied member applied.</param>
         /// <param name="membershipId">Membership ID to for which to find applied groups.</param>
         /// <param name="membershipType">Membership type of the supplied membership ID.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.GroupsV2.GroupPotentialMembershipSearchResponse> GroupV2_GetPotentialGroupsForMember(Entities.GroupsV2.GroupPotentialMemberStatus filter, Entities.GroupsV2.GroupType groupType, long membershipId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -510,7 +510,7 @@ namespace BungieSharper.Endpoints
         /// <param name="groupId">ID of the group you would like to join.</param>
         /// <param name="membershipId">Membership id of the account being invited.</param>
         /// <param name="membershipType">MembershipType of the account being invited.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.GroupsV2.GroupApplicationResponse> GroupV2_IndividualGroupInvite(long groupId, long membershipId, Entities.BungieMembershipType membershipType, Entities.GroupsV2.GroupApplicationRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -527,7 +527,7 @@ namespace BungieSharper.Endpoints
         /// <param name="groupId">ID of the group you would like to join.</param>
         /// <param name="membershipId">Membership id of the account being cancelled.</param>
         /// <param name="membershipType">MembershipType of the account being cancelled.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.GroupsV2.GroupApplicationResponse> GroupV2_IndividualGroupInviteCancel(long groupId, long membershipId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
         {

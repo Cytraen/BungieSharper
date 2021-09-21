@@ -14,7 +14,7 @@ namespace BungieSharper.Endpoints
         /// <param name="mediaFilter">The type of media to get</param>
         /// <param name="page">Zero based page</param>
         /// <param name="sort">The sort mode.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.Forum.PostSearchResponse> CommunityContent_GetCommunityContent(Entities.Forum.ForumTopicsCategoryFiltersEnum mediaFilter, int page, Entities.Forum.CommunityContentSortMode sort, string? authToken = null, CancellationToken cancelToken = default)
         {

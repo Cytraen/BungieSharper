@@ -11,13 +11,12 @@ using System.Text.RegularExpressions;
 
 namespace BungieSharper.CodeGen
 {
-    internal class Program
+    internal static class Program
     {
-        internal const string BaseClientNamespace = "BungieSharper";
         internal const string BaseEntityNamespace = "BungieSharper.Entities";
-        internal static readonly string BungieSharperPath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\..\BungieSharper\"));
-        internal static readonly string EntityFolder = BungieSharperPath.TrimEnd('\\') + ".Entities\\";
-        internal static readonly string EndpointFolder = BungieSharperPath.TrimEnd('\\') + "\\Endpoints\\";
+        private static readonly string BungieSharperPath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\..\BungieSharper\"));
+        private static readonly string EntityFolder = BungieSharperPath.TrimEnd('\\') + ".Entities\\";
+        private static readonly string EndpointFolder = BungieSharperPath.TrimEnd('\\') + "\\Endpoints\\";
 
         internal static OpenApiObject OpenApiDefinition;
 
@@ -153,7 +152,7 @@ namespace BungieSharper.CodeGen
             foreach (var subDir in Directory.GetDirectories(BungieSharperPath))
             {
                 var folder = subDir.Split('\\').Last();
-                if (folder == "bin" || folder == "obj")
+                if (folder is "bin" or "obj")
                 {
                     Directory.Delete(subDir, true);
                 }
@@ -244,7 +243,7 @@ namespace BungieSharper.Endpoints
             Console.ReadLine();
         }
 
-        public static void WriteFileWithContent(string fileFolder, string fileName, string fileContent)
+        private static void WriteFileWithContent(string fileFolder, string fileName, string fileContent)
         {
             Directory.CreateDirectory(fileFolder);
 

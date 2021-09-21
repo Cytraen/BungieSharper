@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace BungieSharper.CodeGen.Generation
 {
-    internal class GeneratePath
+    internal static class GeneratePath
     {
         public static string GeneratePathContent(string path, PathObject pathDef)
         {
@@ -46,19 +46,12 @@ namespace BungieSharper.CodeGen.Generation
             var requiredScopes = responseMethodInfo.Security != null ? responseMethodInfo.Security.Any() ? responseMethodInfo.Security[0].OAuth2 : null : null;
 
             content += FormatStrings.FormatMethodSummaries(pathDef.Description, parameters, responseMethodInfo.XPreview ?? false, responseMethodInfo.Deprecated, requiredScopes);
-            content += "        /// <param name=\"authToken\">The OAuth access token to autheticate the request with.</param>\n";
+            content += "        /// <param name=\"authToken\">The OAuth access token to authenticate the request with.</param>\n";
             content += "        /// <param name=\"cancelToken\">The <see cref=\"CancellationToken\" /> to observe.</param>\n";
 
             var responseRef = responseMethodInfo.Responses[200].Ref;
 
-            if (responseRef.Contains("/components/responses/"))
-            {
-                responseType = GetResponseRef(responseRef);
-            }
-            else
-            {
-                responseType = FormatStrings.ResolveRef(responseRef, true);
-            }
+            responseType = responseRef.Contains("/components/responses/") ? GetResponseRef(responseRef) : FormatStrings.ResolveRef(responseRef, true);
 
             var requiredParams = parameters.Where(x => x.Required == true);
             var optionalParams = parameters.Where(x => x.Required != true);
@@ -71,33 +64,45 @@ namespace BungieSharper.CodeGen.Generation
                 var paramTypeText = ParseParameterSchema(param.Schema, param.Required);
                 declareParams.Add(paramTypeText + " " + param.Name);
 
-                if (param.In == ParameterInEnum.Query)
+                switch (param.In)
                 {
-                    var name = param.Name;
-                    var escapedParamEntry = "";
-                    if (paramTypeText.StartsWith("string"))
+                    case ParameterInEnum.Query:
                     {
-                        escapedParamEntry = $"Uri.EscapeDataString({name})";
-                    }
-                    if (paramTypeText.StartsWith("IEnumerable<"))
-                    {
-                        escapedParamEntry = $"string.Join(\",\", {name}.Select(x => x.ToString()))";
-                    }
+                        var name = param.Name;
+                        var escapedParamEntry = "";
+                        if (paramTypeText.StartsWith("string"))
+                        {
+                            escapedParamEntry = $"Uri.EscapeDataString({name})";
+                        }
+                        if (paramTypeText.StartsWith("IEnumerable<"))
+                        {
+                            escapedParamEntry = $"string.Join(\",\", {name}.Select(x => x.ToString()))";
+                        }
 
-                    if (param.Required != true)
-                    {
-                        var textParam = $"{name} != null ? $\"{name}={{{escapedParamEntry}}}\" : null";
-                        queryParamTextList.Add(textParam);
+                        if (param.Required != true)
+                        {
+                            var textParam = $"{name} != null ? $\"{name}={{{escapedParamEntry}}}\" : null";
+                            queryParamTextList.Add(textParam);
+                        }
+                        else
+                        {
+                            var textParam = $"$\"{name}={{{escapedParamEntry}}}\"";
+                            queryParamTextList.Add(textParam);
+                        }
+
+                        break;
                     }
-                    else
-                    {
-                        var textParam = $"$\"{name}={{{escapedParamEntry}}}\"";
-                        queryParamTextList.Add(textParam);
-                    }
-                }
-                else if (param.In == ParameterInEnum.Path && paramTypeText.StartsWith("string"))
-                {
-                    path = path.Replace($"{{{param.Name}}}", $"{{Uri.EscapeDataString({param.Name})}}");
+                    case ParameterInEnum.Path when paramTypeText.StartsWith("string"):
+                        path = path.Replace($"{{{param.Name}}}", $"{{Uri.EscapeDataString({param.Name})}}");
+                        break;
+                    case ParameterInEnum.Path:
+                        break;
+                    case ParameterInEnum.Header:
+                        throw new NotSupportedException();
+                    case ParameterInEnum.None:
+                        throw new NotSupportedException();
+                    default:
+                        throw new NotSupportedException();
                 }
             }
             foreach (var param in optionalParams)
@@ -105,33 +110,31 @@ namespace BungieSharper.CodeGen.Generation
                 var paramTypeText = ParseParameterSchema(param.Schema, param.Required);
                 declareParams.Add(paramTypeText + " " + param.Name + " = null");
 
-                if (param.In == ParameterInEnum.Query)
+                if (param.In != ParameterInEnum.Query) continue;
+                var name = param.Name;
+                var escapedParamEntry = "";
+                if (paramTypeText.StartsWith("string"))
                 {
-                    var name = param.Name;
-                    var escapedParamEntry = "";
-                    if (paramTypeText.StartsWith("string"))
-                    {
-                        escapedParamEntry = $"Uri.EscapeDataString({name})";
-                    }
-                    else if (paramTypeText.StartsWith("IEnumerable<"))
-                    {
-                        escapedParamEntry = $"string.Join(\",\", {name}.Select(x => x.ToString()))";
-                    }
-                    else
-                    {
-                        escapedParamEntry = name;
-                    }
+                    escapedParamEntry = $"Uri.EscapeDataString({name})";
+                }
+                else if (paramTypeText.StartsWith("IEnumerable<"))
+                {
+                    escapedParamEntry = $"string.Join(\",\", {name}.Select(x => x.ToString()))";
+                }
+                else
+                {
+                    escapedParamEntry = name;
+                }
 
-                    if (param.Required != true)
-                    {
-                        var textParam = $"{name} != null ? $\"{name}={{{escapedParamEntry}}}\" : null";
-                        queryParamTextList.Add(textParam);
-                    }
-                    else
-                    {
-                        var textParam = $"$\"{name}={{{escapedParamEntry}}}\"";
-                        queryParamTextList.Add(textParam);
-                    }
+                if (param.Required != true)
+                {
+                    var textParam = $"{name} != null ? $\"{name}={{{escapedParamEntry}}}\" : null";
+                    queryParamTextList.Add(textParam);
+                }
+                else
+                {
+                    var textParam = $"$\"{name}={{{escapedParamEntry}}}\"";
+                    queryParamTextList.Add(textParam);
                 }
             }
             if (responseMethodInfo.RequestBody is not null)
@@ -141,7 +144,7 @@ namespace BungieSharper.CodeGen.Generation
                 declareParams.Add(paramTypeText + " requestBody" + (requestBodyInfo.Required == false ? " = null" : ""));
             }
 
-            var queryStringParamsNotEmpty = parameters.Where(x => x.In == ParameterInEnum.Query).Any();
+            var queryStringParamsNotEmpty = parameters.Any(x => x.In == ParameterInEnum.Query);
 
             var queryStringParamText = queryStringParamsNotEmpty ? string.Join(", ", queryParamTextList) : "";
 
@@ -155,12 +158,12 @@ namespace BungieSharper.CodeGen.Generation
             content += $"                new Uri($\"{path.TrimStart('/')}\"{queryStringParamFinal}, UriKind.Relative),\n";
 
             content += $"                {(responseMethodInfo.RequestBody != null ? "new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, \"application/json\")" : "null")}, HttpMethod.{httpMethod}, authToken, cancelToken\n";
-            content += $"                );\n        }}";
+            content += "                );\n        }";
 
             return content.Replace("System.DateTime", "DateTime");
         }
 
-        public static string ParseParameterSchema(ParameterSchemaClass paramSchema, bool? required)
+        private static string ParseParameterSchema(ParameterSchemaClass paramSchema, bool? required)
         {
             var paramType = "";
 
@@ -189,7 +192,7 @@ namespace BungieSharper.CodeGen.Generation
             return paramType;
         }
 
-        public static string ParseRequestBodySchema(Entities.Paths.ContentApplicationJsonSchemaClass paramSchema, bool? required)
+        private static string ParseRequestBodySchema(Entities.Paths.ContentApplicationJsonSchemaClass paramSchema, bool? required)
         {
             var paramType = "";
 
@@ -214,7 +217,7 @@ namespace BungieSharper.CodeGen.Generation
             return paramType;
         }
 
-        public static string GetResponseRef(string refString)
+        private static string GetResponseRef(string refString)
         {
             var openApi = Program.OpenApiDefinition;
 
@@ -248,7 +251,7 @@ namespace BungieSharper.CodeGen.Generation
             return respType;
         }
 
-        internal static string ResolvePropertyDictionary(PropertiesResponseXDictionaryKeyClass dictKey, PropertiesResponseAdditionalPropertiesClass additionalProps)
+        private static string ResolvePropertyDictionary(PropertiesResponseXDictionaryKeyClass dictKey, PropertiesResponseAdditionalPropertiesClass additionalProps)
         {
             var classType = "Dictionary<";
 

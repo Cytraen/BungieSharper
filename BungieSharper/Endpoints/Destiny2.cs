@@ -14,7 +14,7 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Returns the current version of the manifest as a json object.
         /// </summary>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.Destiny.Config.DestinyManifest> Destiny2_GetDestinyManifest(string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -29,7 +29,7 @@ namespace BungieSharper.Endpoints
         /// </summary>
         /// <param name="entityType">The type of entity for whom you would like results. These correspond to the entity's definition contract name. For instance, if you are looking for items, this property should be 'DestinyInventoryItemDefinition'. PREVIEW: This endpoint is still in beta, and may experience rough edges. The schema is tentatively in final form, but there may be bugs that prevent desirable operation.</param>
         /// <param name="hashIdentifier">The hash identifier for the specific Entity you want returned.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.Destiny.Definitions.DestinyDefinition> Destiny2_GetDestinyEntityDefinition(string entityType, uint hashIdentifier, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -44,7 +44,7 @@ namespace BungieSharper.Endpoints
         /// </summary>
         /// <param name="displayName">The full bungie global display name to look up, include the # and the code at the end. This is an exact match lookup.</param>
         /// <param name="membershipType">A valid non-BungieNet membership type, or All. Indicates which memberships to return. You probably want this set to All.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<IEnumerable<Entities.User.UserInfoCard>> Destiny2_SearchDestinyPlayer(string displayName, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -60,7 +60,7 @@ namespace BungieSharper.Endpoints
         /// <param name="getAllMemberships">(optional) if set to 'true', all memberships regardless of whether they're obscured by overrides will be returned. Normal privacy restrictions on account linking will still apply no matter what.</param>
         /// <param name="membershipId">The ID of the membership whose linked Destiny accounts you want returned. Make sure your membership ID matches its Membership Type: don't pass us a PSN membership ID and the XBox membership type, it's not going to work!</param>
         /// <param name="membershipType">The type for the membership whose linked Destiny accounts you want returned.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.Destiny.Responses.DestinyLinkedProfilesResponse> Destiny2_GetLinkedProfiles(long membershipId, Entities.BungieMembershipType membershipType, bool? getAllMemberships = null, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -76,7 +76,7 @@ namespace BungieSharper.Endpoints
         /// <param name="components">A comma separated list of components to return (as strings or numeric values). See the DestinyComponentType enum for valid components to request. You must request at least one component to receive results.</param>
         /// <param name="destinyMembershipId">Destiny membership ID.</param>
         /// <param name="membershipType">A valid non-BungieNet membership type.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.Destiny.Responses.DestinyProfileResponse> Destiny2_GetProfile(long destinyMembershipId, Entities.BungieMembershipType membershipType, IEnumerable<Entities.Destiny.DestinyComponentType>? components = null, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -93,7 +93,7 @@ namespace BungieSharper.Endpoints
         /// <param name="components">A comma separated list of components to return (as strings or numeric values). See the DestinyComponentType enum for valid components to request. You must request at least one component to receive results.</param>
         /// <param name="destinyMembershipId">Destiny membership ID.</param>
         /// <param name="membershipType">A valid non-BungieNet membership type.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.Destiny.Responses.DestinyCharacterResponse> Destiny2_GetCharacter(long characterId, long destinyMembershipId, Entities.BungieMembershipType membershipType, IEnumerable<Entities.Destiny.DestinyComponentType>? components = null, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -107,7 +107,7 @@ namespace BungieSharper.Endpoints
         /// Returns information on the weekly clan rewards and if the clan has earned them or not. Note that this will always report rewards as not redeemed.
         /// </summary>
         /// <param name="groupId">A valid group id of clan.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.Destiny.Milestones.DestinyMilestone> Destiny2_GetClanWeeklyRewardState(long groupId, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -120,7 +120,7 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Returns the dictionary of values for the Clan Banner
         /// </summary>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.Config.ClanBanner.ClanBannerSource> Destiny2_GetClanBannerSource(string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -137,7 +137,7 @@ namespace BungieSharper.Endpoints
         /// <param name="destinyMembershipId">The membership ID of the destiny profile.</param>
         /// <param name="itemInstanceId">The Instance ID of the destiny item.</param>
         /// <param name="membershipType">A valid non-BungieNet membership type.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.Destiny.Responses.DestinyItemResponse> Destiny2_GetItem(long destinyMembershipId, long itemInstanceId, Entities.BungieMembershipType membershipType, IEnumerable<Entities.Destiny.DestinyComponentType>? components = null, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -155,7 +155,7 @@ namespace BungieSharper.Endpoints
         /// <param name="destinyMembershipId">Destiny membership ID of another user. You may be denied.</param>
         /// <param name="filter">The filter of what vendors and items to return, if any.</param>
         /// <param name="membershipType">A valid non-BungieNet membership type.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.Destiny.Responses.DestinyVendorsResponse> Destiny2_GetVendors(long characterId, long destinyMembershipId, Entities.BungieMembershipType membershipType, IEnumerable<Entities.Destiny.DestinyComponentType>? components = null, Entities.Destiny.DestinyVendorFilter? filter = null, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -173,7 +173,7 @@ namespace BungieSharper.Endpoints
         /// <param name="destinyMembershipId">Destiny membership ID of another user. You may be denied.</param>
         /// <param name="membershipType">A valid non-BungieNet membership type.</param>
         /// <param name="vendorHash">The Hash identifier of the Vendor to be returned.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.Destiny.Responses.DestinyVendorResponse> Destiny2_GetVendor(long characterId, long destinyMembershipId, Entities.BungieMembershipType membershipType, uint vendorHash, IEnumerable<Entities.Destiny.DestinyComponentType>? components = null, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -187,7 +187,7 @@ namespace BungieSharper.Endpoints
         /// Get items available from vendors where the vendors have items for sale that are common for everyone. If any portion of the Vendor's available inventory is character or account specific, we will be unable to return their data from this endpoint due to the way that available inventory is computed. As I am often guilty of saying: 'It's a long story...'
         /// </summary>
         /// <param name="components">A comma separated list of components to return (as strings or numeric values). See the DestinyComponentType enum for valid components to request. You must request at least one component to receive results.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.Destiny.Responses.DestinyPublicVendorsResponse> Destiny2_GetPublicVendors(IEnumerable<Entities.Destiny.DestinyComponentType>? components = null, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -205,7 +205,7 @@ namespace BungieSharper.Endpoints
         /// <param name="components">A comma separated list of components to return (as strings or numeric values). See the DestinyComponentType enum for valid components to request. You must request at least one component to receive results.</param>
         /// <param name="destinyMembershipId">Destiny membership ID of another user. You may be denied.</param>
         /// <param name="membershipType">A valid non-BungieNet membership type.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.Destiny.Responses.DestinyCollectibleNodeDetailResponse> Destiny2_GetCollectibleNodeDetails(long characterId, uint collectiblePresentationNodeHash, long destinyMembershipId, Entities.BungieMembershipType membershipType, IEnumerable<Entities.Destiny.DestinyComponentType>? components = null, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -219,7 +219,7 @@ namespace BungieSharper.Endpoints
         /// Transfer an item to/from your vault. You must have a valid Destiny account. You must also pass BOTH a reference AND an instance ID if it's an instanced item. itshappening.gif
         /// Requires OAuth2 scope(s): MoveEquipDestinyItems
         /// </summary>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<int> Destiny2_TransferItem(Entities.Destiny.Requests.DestinyItemTransferRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -233,7 +233,7 @@ namespace BungieSharper.Endpoints
         /// Extract an item from the Postmaster, with whatever implications that may entail. You must have a valid Destiny account. You must also pass BOTH a reference AND an instance ID if it's an instanced item.
         /// Requires OAuth2 scope(s): MoveEquipDestinyItems
         /// </summary>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<int> Destiny2_PullFromPostmaster(Entities.Destiny.Requests.Actions.DestinyPostmasterTransferRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -247,7 +247,7 @@ namespace BungieSharper.Endpoints
         /// Equip an item. You must have a valid Destiny Account, and either be in a social space, in orbit, or offline.
         /// Requires OAuth2 scope(s): MoveEquipDestinyItems
         /// </summary>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<int> Destiny2_EquipItem(Entities.Destiny.Requests.Actions.DestinyItemActionRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -261,7 +261,7 @@ namespace BungieSharper.Endpoints
         /// Equip a list of items by itemInstanceIds. You must have a valid Destiny Account, and either be in a social space, in orbit, or offline. Any items not found on your character will be ignored.
         /// Requires OAuth2 scope(s): MoveEquipDestinyItems
         /// </summary>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.Destiny.DestinyEquipItemResults> Destiny2_EquipItems(Entities.Destiny.Requests.Actions.DestinyItemSetActionRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -275,7 +275,7 @@ namespace BungieSharper.Endpoints
         /// Set the Lock State for an instanced item. You must have a valid Destiny Account.
         /// Requires OAuth2 scope(s): MoveEquipDestinyItems
         /// </summary>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<int> Destiny2_SetItemLockState(Entities.Destiny.Requests.Actions.DestinyItemStateRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -289,7 +289,7 @@ namespace BungieSharper.Endpoints
         /// Set the Tracking State for an instanced item, if that item is a Quest or Bounty. You must have a valid Destiny Account. Yeah, it's an item.
         /// Requires OAuth2 scope(s): MoveEquipDestinyItems
         /// </summary>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<int> Destiny2_SetQuestTrackedState(Entities.Destiny.Requests.Actions.DestinyItemStateRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -303,7 +303,7 @@ namespace BungieSharper.Endpoints
         /// Insert a plug into a socketed item. I know how it sounds, but I assure you it's much more G-rated than you might be guessing. We haven't decided yet whether this will be able to insert plugs that have side effects, but if we do it will require special scope permission for an application attempting to do so. You must have a valid Destiny Account, and either be in a social space, in orbit, or offline. Request must include proof of permission for 'InsertPlugs' from the account owner.
         /// Requires OAuth2 scope(s): AdvancedWriteActions
         /// </summary>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.Destiny.Responses.DestinyItemChangeResponse> Destiny2_InsertSocketPlug(Entities.Destiny.Requests.Actions.DestinyInsertPlugsActionRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -317,7 +317,7 @@ namespace BungieSharper.Endpoints
         /// Gets the available post game carnage report for the activity ID.
         /// </summary>
         /// <param name="activityId">The ID of the activity whose PGCR is requested.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.Destiny.HistoricalStats.DestinyPostGameCarnageReportData> Destiny2_GetPostGameCarnageReport(long activityId, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -332,7 +332,7 @@ namespace BungieSharper.Endpoints
         /// Requires OAuth2 scope(s): BnetWrite
         /// </summary>
         /// <param name="activityId">The ID of the activity where you ran into the brigand that you're reporting.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<int> Destiny2_ReportOffensivePostGameCarnageReportPlayer(long activityId, Entities.Destiny.Reporting.Requests.DestinyReportOffensePgcrRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -345,7 +345,7 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Gets historical stats definitions.
         /// </summary>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Dictionary<string, Entities.Destiny.HistoricalStats.Definitions.DestinyHistoricalStatsDefinition>> Destiny2_GetHistoricalStatsDefinition(string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -362,7 +362,7 @@ namespace BungieSharper.Endpoints
         /// <param name="maxtop">Maximum number of top players to return. Use a large number to get entire leaderboard.</param>
         /// <param name="modes">List of game modes for which to get leaderboards. See the documentation for DestinyActivityModeType for valid values, and pass in string representation, comma delimited.</param>
         /// <param name="statid">ID of stat to return rather than returning all Leaderboard stats.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Dictionary<string, Dictionary<string, Entities.Destiny.HistoricalStats.DestinyLeaderboard>>> Destiny2_GetClanLeaderboards(long groupId, int? maxtop = null, string? modes = null, string? statid = null, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -377,7 +377,7 @@ namespace BungieSharper.Endpoints
         /// </summary>
         /// <param name="groupId">Group ID of the clan whose leaderboards you wish to fetch.</param>
         /// <param name="modes">List of game modes for which to get leaderboards. See the documentation for DestinyActivityModeType for valid values, and pass in string representation, comma delimited.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<IEnumerable<Entities.Destiny.HistoricalStats.DestinyClanAggregateStat>> Destiny2_GetClanAggregateStats(long groupId, string? modes = null, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -395,7 +395,7 @@ namespace BungieSharper.Endpoints
         /// <param name="membershipType">A valid non-BungieNet membership type.</param>
         /// <param name="modes">List of game modes for which to get leaderboards. See the documentation for DestinyActivityModeType for valid values, and pass in string representation, comma delimited.</param>
         /// <param name="statid">ID of stat to return rather than returning all Leaderboard stats.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Dictionary<string, Dictionary<string, Entities.Destiny.HistoricalStats.DestinyLeaderboard>>> Destiny2_GetLeaderboards(long destinyMembershipId, Entities.BungieMembershipType membershipType, int? maxtop = null, string? modes = null, string? statid = null, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -414,7 +414,7 @@ namespace BungieSharper.Endpoints
         /// <param name="membershipType">A valid non-BungieNet membership type.</param>
         /// <param name="modes">List of game modes for which to get leaderboards. See the documentation for DestinyActivityModeType for valid values, and pass in string representation, comma delimited.</param>
         /// <param name="statid">ID of stat to return rather than returning all Leaderboard stats.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Dictionary<string, Dictionary<string, Entities.Destiny.HistoricalStats.DestinyLeaderboard>>> Destiny2_GetLeaderboardsForCharacter(long characterId, long destinyMembershipId, Entities.BungieMembershipType membershipType, int? maxtop = null, string? modes = null, string? statid = null, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -430,7 +430,7 @@ namespace BungieSharper.Endpoints
         /// <param name="page">Page number to return, starting with 0.</param>
         /// <param name="searchTerm">The string to use when searching for Destiny entities.</param>
         /// <param name="type">The type of entity for whom you would like results. These correspond to the entity's definition contract name. For instance, if you are looking for items, this property should be 'DestinyInventoryItemDefinition'.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.Destiny.Definitions.DestinyEntitySearchResult> Destiny2_SearchDestinyEntities(string searchTerm, string type, int? page = null, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -451,7 +451,7 @@ namespace BungieSharper.Endpoints
         /// <param name="membershipType">A valid non-BungieNet membership type.</param>
         /// <param name="modes">Game modes to return. See the documentation for DestinyActivityModeType for valid values, and pass in string representation, comma delimited.</param>
         /// <param name="periodType">Indicates a specific period type to return. Optional. May be: Daily, AllTime, or Activity</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Dictionary<string, Entities.Destiny.HistoricalStats.DestinyHistoricalStatsByPeriod>> Destiny2_GetHistoricalStats(long characterId, long destinyMembershipId, Entities.BungieMembershipType membershipType, DateTime? dayend = null, DateTime? daystart = null, IEnumerable<Entities.Destiny.HistoricalStats.Definitions.DestinyStatsGroupType>? groups = null, IEnumerable<Entities.Destiny.HistoricalStats.Definitions.DestinyActivityModeType>? modes = null, Entities.Destiny.HistoricalStats.Definitions.PeriodType? periodType = null, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -467,7 +467,7 @@ namespace BungieSharper.Endpoints
         /// <param name="destinyMembershipId">The Destiny membershipId of the user to retrieve.</param>
         /// <param name="groups">Groups of stats to include, otherwise only general stats are returned. Comma separated list is allowed. Values: General, Weapons, Medals.</param>
         /// <param name="membershipType">A valid non-BungieNet membership type.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.Destiny.HistoricalStats.DestinyHistoricalStatsAccountResult> Destiny2_GetHistoricalStatsForAccount(long destinyMembershipId, Entities.BungieMembershipType membershipType, IEnumerable<Entities.Destiny.HistoricalStats.Definitions.DestinyStatsGroupType>? groups = null, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -486,7 +486,7 @@ namespace BungieSharper.Endpoints
         /// <param name="membershipType">A valid non-BungieNet membership type.</param>
         /// <param name="mode">A filter for the activity mode to be returned. None returns all activities. See the documentation for DestinyActivityModeType for valid values, and pass in string representation.</param>
         /// <param name="page">Page number to return, starting with 0.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.Destiny.HistoricalStats.DestinyActivityHistoryResults> Destiny2_GetActivityHistory(long characterId, long destinyMembershipId, Entities.BungieMembershipType membershipType, int? count = null, Entities.Destiny.HistoricalStats.Definitions.DestinyActivityModeType? mode = null, int? page = null, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -502,7 +502,7 @@ namespace BungieSharper.Endpoints
         /// <param name="characterId">The id of the character to retrieve.</param>
         /// <param name="destinyMembershipId">The Destiny membershipId of the user to retrieve.</param>
         /// <param name="membershipType">A valid non-BungieNet membership type.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.Destiny.HistoricalStats.DestinyHistoricalWeaponStatsData> Destiny2_GetUniqueWeaponHistory(long characterId, long destinyMembershipId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -518,7 +518,7 @@ namespace BungieSharper.Endpoints
         /// <param name="characterId">The specific character whose activities should be returned.</param>
         /// <param name="destinyMembershipId">The Destiny membershipId of the user to retrieve.</param>
         /// <param name="membershipType">A valid non-BungieNet membership type.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.Destiny.HistoricalStats.DestinyAggregateActivityResults> Destiny2_GetDestinyAggregateActivityStats(long characterId, long destinyMembershipId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -532,7 +532,7 @@ namespace BungieSharper.Endpoints
         /// Gets custom localized content for the milestone of the given hash, if it exists.
         /// </summary>
         /// <param name="milestoneHash">The identifier for the milestone to be returned.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.Destiny.Milestones.DestinyMilestoneContent> Destiny2_GetPublicMilestoneContent(uint milestoneHash, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -545,7 +545,7 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Gets public information about currently available Milestones.
         /// </summary>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Dictionary<uint, Entities.Destiny.Milestones.DestinyPublicMilestone>> Destiny2_GetPublicMilestones(string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -559,7 +559,7 @@ namespace BungieSharper.Endpoints
         /// Initialize a request to perform an advanced write action.
         /// Requires OAuth2 scope(s): AdvancedWriteActions
         /// </summary>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.Destiny.Advanced.AwaInitializeResponse> Destiny2_AwaInitializeRequest(Entities.Destiny.Advanced.AwaPermissionRequested requestBody, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -572,7 +572,7 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Provide the result of the user interaction. Called by the Bungie Destiny App to approve or reject a request.
         /// </summary>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<int> Destiny2_AwaProvideAuthorizationResult(Entities.Destiny.Advanced.AwaUserResponse requestBody, string? authToken = null, CancellationToken cancelToken = default)
         {
@@ -587,7 +587,7 @@ namespace BungieSharper.Endpoints
         /// Requires OAuth2 scope(s): AdvancedWriteActions
         /// </summary>
         /// <param name="correlationId">The identifier for the advanced write action request.</param>
-        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
         public Task<Entities.Destiny.Advanced.AwaAuthorizationResult> Destiny2_AwaGetActionToken(string correlationId, string? authToken = null, CancellationToken cancelToken = default)
         {

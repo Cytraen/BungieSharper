@@ -5,17 +5,17 @@ namespace BungieSharper.CodeGen.Entities.Components.Schema
 {
     public class AdditionalPropertiesClass
     {
-        [JsonPropertyName("type"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("$ref")]
+        public string? Ref { get; set; }
+
+        [JsonPropertyName("type")]
         [JsonConverter(typeof(JsonStringEnumMemberConverter))]
         public TypeEnum? Type { get; set; }
 
-        [JsonPropertyName("additionalProperties"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("additionalProperties")]
         public AdditionalPropertiesClass? AdditionalProperties { get; set; }
 
-        [JsonPropertyName("x-dictionary-key"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("x-dictionary-key")]
         public XDictionaryKeyClass? XDictionaryKey { get; set; }
-
-        [JsonPropertyName("$ref"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public string Ref { get; set; }
     }
 }

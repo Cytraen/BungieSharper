@@ -11,7 +11,7 @@ namespace BungieSharper.CodeGen.Entities.Common
         [JsonPropertyName("identifier")]
         public string Identifier { get; set; }
 
-        [JsonPropertyName("description"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("description")]
         public string? Description { get; set; }
     }
 }

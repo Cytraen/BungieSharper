@@ -74,27 +74,39 @@ def recursive_dict_copy(copy_from, copy_to):
         raise
 
     for dict_key in copy_from:
+        nullable_str = ""
         if dict_key not in copy_to:
-            copy_to[dict_key] = copy_from[dict_key]
+            nullable_str = "?"
+            if dict_key + "?" not in copy_to:
+                copy_to[dict_key + nullable_str] = copy_from[dict_key]
 
-        elif isinstance(copy_from[dict_key], dict):
-            copy_to[dict_key] = recursive_dict_copy(copy_from[dict_key], copy_to[dict_key])
+        if isinstance(copy_from[dict_key], dict):
+            copy_to[dict_key + nullable_str] = recursive_dict_copy(copy_from[dict_key], copy_to[dict_key + nullable_str])
 
         elif isinstance(copy_from[dict_key], list):
-            if len(copy_from[dict_key]) != 0 and len(copy_to[dict_key]) == 0:
-                copy_to[dict_key].append(copy_from[dict_key][0])
-            if len(copy_from[dict_key]) != 0 and len(copy_to[dict_key]) != 0 and isinstance(copy_from[dict_key][0], dict):
-                copy_to[dict_key][0] = recursive_dict_copy(copy_from[dict_key][0], copy_to[dict_key][0])
+            if len(copy_from[dict_key]) != 0 and len(copy_to[dict_key + nullable_str]) == 0:
+                copy_to[dict_key + nullable_str].append(copy_from[dict_key][0])
+            if len(copy_from[dict_key]) != 0 and len(copy_to[dict_key + nullable_str]) != 0 and isinstance(copy_from[dict_key][0], dict):
+                copy_to[dict_key + nullable_str][0] = recursive_dict_copy(copy_from[dict_key][0], copy_to[dict_key + nullable_str][0])
 
-        elif copy_to[dict_key] != copy_from[dict_key]:
-            collision_text = f"Collision on {dict_key}: {copy_to[dict_key]} vs. {copy_from[dict_key]}"
+        elif copy_to[dict_key + nullable_str] != copy_from[dict_key]:
+            collision_text = f"Collision on {dict_key}: {copy_to[dict_key + nullable_str]} vs. {copy_from[dict_key]}"
 
-            if copy_to[dict_key] == "float" or copy_from[dict_key] == "float":
-                if copy_to[dict_key] == "int" or copy_from[dict_key] == "int":
+            if copy_to[dict_key + nullable_str] == "float" or copy_from[dict_key] == "float":
+                if copy_to[dict_key + nullable_str] == "int" or copy_from[dict_key] == "int":
                     collision_text += ", assuming result is float"
-                    copy_to[dict_key] = "float"
+                    copy_to[dict_key + nullable_str] = "float"
 
             print(collision_text)
+
+    keys_to_make_null = []
+
+    for dict_key in copy_to:
+        if dict_key not in copy_from and dict_key[-1] != "?":
+            keys_to_make_null.append(dict_key)
+
+    for dict_key in keys_to_make_null:
+        copy_to[dict_key + "?"] = copy_to.pop(dict_key)
 
     return copy_to
 
@@ -153,25 +165,45 @@ if __name__ == "__main__":
     for key in entities:
         if "properties" in entities[key]:
             for property_item in entities[key]["properties"]:
+                property_template = {}
                 for property_attr in entities[key]["properties"][property_item]:
                     this_prop_attr_def = resolver(entities[key]["properties"][property_item][property_attr])
-                    replace_handler(property_attr, this_prop_attr_def, base_property_attributes)
+                    property_template[property_attr] = this_prop_attr_def
+                if len(base_property_attributes) == 0:
+                    base_property_attributes = property_template
+                else:
+                    base_property_attributes = recursive_dict_copy(property_template, base_property_attributes)
 
             entities[key].pop("properties")
 
+        attr_template = {}
         for attribute in entities[key]:
             this_attribute_definition = resolver(entities[key][attribute])
-            replace_handler(attribute, this_attribute_definition, base_entity_attributes)
+            attr_template[attribute] = this_attribute_definition
+        if len(base_entity_attributes) == 0:
+            base_entity_attributes = attr_template
+        else:
+            base_entity_attributes = recursive_dict_copy(attr_template, base_entity_attributes)
 
     for path in paths:
+        prop_template = {}
         for property_name in paths[path]:
             this_path_def = resolver(paths[path][property_name])
-            replace_handler(property_name, this_path_def, path_attributes)
+            prop_template[property_name] = this_path_def
+        if len(path_attributes) == 0:
+            path_attributes = prop_template
+        else:
+            path_attributes = recursive_dict_copy(prop_template, path_attributes)
 
     for key in responses:
+        attr_template = {}
         for attribute in responses[key]:
             this_response_definition = resolver(responses[key][attribute])
-            replace_handler(attribute, this_response_definition, response_attributes)
+            attr_template[attribute] = this_response_definition
+        if len(response_attributes) == 0:
+            response_attributes = attr_template
+        else:
+            response_attributes = recursive_dict_copy(attr_template, response_attributes)
 
     base_attrs_string = json.dumps(base_entity_attributes, indent=4)
     prop_attrs_string = json.dumps(base_property_attributes, indent=4)

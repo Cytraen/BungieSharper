@@ -4,10 +4,10 @@ namespace BungieSharper.CodeGen.Entities.Paths
 {
     public class RequestBodyClass
     {
-        [JsonPropertyName("content"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("content")]
         public RequestBodyContentClass Content { get; set; }
 
-        [JsonPropertyName("required"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public bool? Required { get; set; }
+        [JsonPropertyName("required")]
+        public bool Required { get; set; }
     }
 }

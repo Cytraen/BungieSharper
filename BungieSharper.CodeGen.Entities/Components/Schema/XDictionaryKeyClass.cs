@@ -5,7 +5,7 @@ namespace BungieSharper.CodeGen.Entities.Components.Schema
 {
     public class XDictionaryKeyClass
     {
-        [JsonPropertyName("type"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("type")]
         [JsonConverter(typeof(JsonStringEnumMemberConverter))]
         public TypeEnum? Type { get; set; }
     }

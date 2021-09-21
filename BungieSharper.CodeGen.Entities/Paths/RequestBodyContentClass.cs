@@ -4,7 +4,7 @@ namespace BungieSharper.CodeGen.Entities.Paths
 {
     public class RequestBodyContentClass
     {
-        [JsonPropertyName("application/json"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("application/json")]
         public RequestBodyContentApplicationJsonClass ApplicationJson { get; set; }
     }
 }

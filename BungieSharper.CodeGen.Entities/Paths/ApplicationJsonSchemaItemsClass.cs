@@ -5,11 +5,11 @@ namespace BungieSharper.CodeGen.Entities.Paths
 {
     public class ApplicationJsonSchemaItemsClass
     {
-        [JsonPropertyName("type"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("type")]
         [JsonConverter(typeof(JsonStringEnumMemberConverter))]
         public TypeEnum? Type { get; set; }
 
-        [JsonPropertyName("format"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("format")]
         [JsonConverter(typeof(JsonStringEnumMemberConverter))]
         public FormatEnum? Format { get; set; }
     }

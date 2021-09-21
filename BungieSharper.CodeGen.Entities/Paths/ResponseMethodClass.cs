@@ -6,34 +6,34 @@ namespace BungieSharper.CodeGen.Entities.Paths
 {
     public class ResponseMethodClass
     {
-        [JsonPropertyName("tags"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("tags")]
         public TagEnum[] Tags { get; set; }
 
-        [JsonPropertyName("description"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("description")]
         public string Description { get; set; }
 
-        [JsonPropertyName("operationId"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("operationId")]
         public string OperationId { get; set; }
 
-        [JsonPropertyName("parameters"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("parameters")]
         public PathResponseMethodParameterClass[] Parameters { get; set; }
 
-        [JsonPropertyName("requestBody"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public RequestBodyClass? RequestBody { get; set; }
-
-        [JsonPropertyName("responses"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("responses")]
         public Dictionary<short, ResponseClass> Responses { get; set; }
 
-        [JsonPropertyName("deprecated"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public bool? Deprecated { get; set; }
+        [JsonPropertyName("deprecated")]
+        public bool Deprecated { get; set; }
 
-        [JsonPropertyName("security"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public SecurityClass[] Security { get; set; }
+        [JsonPropertyName("security")]
+        public SecurityClass[]? Security { get; set; }
 
-        [JsonPropertyName("x-preview"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("requestBody")]
+        public RequestBodyClass? RequestBody { get; set; }
+
+        [JsonPropertyName("x-documentation-attributes")]
+        public XDocumentationAttributesClass? XDocumentationAttributes { get; set; }
+
+        [JsonPropertyName("x-preview")]
         public bool? XPreview { get; set; }
-
-        [JsonPropertyName("x-documentation-attributes"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public XDocumentationAttributesClass XDocumentationAttributes { get; set; }
     }
 }

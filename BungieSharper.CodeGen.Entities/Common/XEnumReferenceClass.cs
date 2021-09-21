@@ -4,7 +4,7 @@ namespace BungieSharper.CodeGen.Entities.Common
 {
     public class XEnumReferenceClass
     {
-        [JsonPropertyName("$ref"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("$ref")]
         public string Ref { get; set; }
     }
 }

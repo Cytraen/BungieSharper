@@ -45,7 +45,7 @@ namespace BungieSharper.CodeGen.Generation
 
             var requiredScopes = responseMethodInfo.Security != null ? responseMethodInfo.Security.Any() ? responseMethodInfo.Security[0].OAuth2 : null : null;
 
-            content += FormatStrings.FormatMethodSummaries(pathDef.Description, parameters, responseMethodInfo.XPreview ?? false, responseMethodInfo.Deprecated ?? false, requiredScopes);
+            content += FormatStrings.FormatMethodSummaries(pathDef.Description, parameters, responseMethodInfo.XPreview ?? false, responseMethodInfo.Deprecated, requiredScopes);
             content += "        /// <param name=\"authToken\">The OAuth access token to autheticate the request with.</param>\n";
             content += "        /// <param name=\"cancelToken\">The <see cref=\"CancellationToken\" /> to observe.</param>\n";
 
@@ -178,7 +178,7 @@ namespace BungieSharper.CodeGen.Generation
             }
             else
             {
-                paramType += Mapping.TypeToCSharp(paramSchema.Type!.Value);
+                paramType += Mapping.TypeToCSharp(paramSchema.Type);
             }
 
             if (required is not true)

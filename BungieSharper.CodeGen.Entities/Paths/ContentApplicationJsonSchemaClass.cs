@@ -5,14 +5,14 @@ namespace BungieSharper.CodeGen.Entities.Paths
 {
     public class ContentApplicationJsonSchemaClass
     {
-        [JsonPropertyName("type"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("$ref")]
+        public string? Ref { get; set; }
+
+        [JsonPropertyName("type")]
         [JsonConverter(typeof(JsonStringEnumMemberConverter))]
         public TypeEnum? Type { get; set; }
 
-        [JsonPropertyName("items"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public ItemClass Items { get; set; }
-
-        [JsonPropertyName("$ref"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public string Ref { get; set; }
+        [JsonPropertyName("items")]
+        public ItemClass? Items { get; set; }
     }
 }

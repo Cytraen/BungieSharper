@@ -4,7 +4,7 @@ namespace BungieSharper.CodeGen.Entities.Paths
 {
     public class XDocumentationAttributesClass
     {
-        [JsonPropertyName("ThrottleSecondsBetweenActionPerUser"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public string? ThrottleSecondsBetweenActionPerUser { get; set; }
+        [JsonPropertyName("ThrottleSecondsBetweenActionPerUser")]
+        public float ThrottleSecondsBetweenActionPerUser { get; set; }
     }
 }

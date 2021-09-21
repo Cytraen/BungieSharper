@@ -16,13 +16,13 @@ namespace BungieSharper.CodeGen.Generation
             {
                 propType += FormatStrings.ResolveRef(items.Ref, appendEntities);
             }
-            else if (items.Format is not null)
+            else if (items.Format.HasValue)
             {
                 propType += Mapping.FormatToCSharp(items.Format.Value);
             }
             else
             {
-                propType += Mapping.TypeToCSharp(items.Type!.Value);
+                propType += Mapping.TypeToCSharp(items.Type);
             }
 
             propType += ">";

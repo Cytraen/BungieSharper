@@ -1,5 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <Authors>ashakoor</Authors>
@@ -8,9 +7,10 @@
     <RepositoryUrl>https://github.com/ashakoor/BungieSharper</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
 
     <TargetFrameworks>net5.0;net6.0</TargetFrameworks>
-    <Version>0.8.5</Version>
+    <VersionPrefix>0.8.5</VersionPrefix>
   </PropertyGroup>
 
   <ItemGroup>
@@ -29,5 +29,4 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-
 </Project>

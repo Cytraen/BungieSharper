@@ -237,6 +237,8 @@ namespace BungieSharper.Endpoints
                     EndpointFolder,
                     Generation.Mapping.TagToDescription(tag) + ".cs",
                     aggregateFile);
+
+                Console.WriteLine($"Wrote {Generation.Mapping.TagToDescription(tag)}");
             }
 
             Console.WriteLine("Done. Press ENTER to exit.");

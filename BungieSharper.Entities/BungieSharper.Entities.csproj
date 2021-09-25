@@ -1,4 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
+  <Sdk Name="Microsoft.DotNet.PackageValidation" Version="1.0.0-preview.7.21379.12" />
 
   <PropertyGroup>
     <Authors>ashakoor</Authors>
@@ -7,9 +8,10 @@
     <RepositoryUrl>https://github.com/ashakoor/BungieSharper</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <Nullable>enable</Nullable>
+    <IsPackable>true</IsPackable>
 
     <TargetFrameworks>net5.0;net6.0</TargetFrameworks>
-    <Version>0.8.5</Version>
+    <VersionPrefix>0.8.5</VersionPrefix>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -31,12 +33,12 @@
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <Company>ashakoor</Company>
     <Product>BungieSharper.Entities</Product>
-    <Description>The object classes for BungieSharper.</Description>
+    <Description>The object classes for BungieSharper, for use with your own client.</Description>
     <PackageProjectUrl>https://github.com/ashakoor/BungieSharper</PackageProjectUrl>
     <PackageIcon>BungieSharper.png</PackageIcon>
     <PackageTags>bungie bungie-net destiny destiny2 destiny-api</PackageTags>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,5 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <Authors>ashakoor</Authors>
@@ -8,13 +7,13 @@
     <RepositoryUrl>https://github.com/ashakoor/BungieSharper</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
 
     <TargetFramework>net6.0</TargetFramework>
-    <Version>0.8.5</Version>
+    <VersionPrefix>0.8.5</VersionPrefix>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\BungieSharper.CodeGen.Entities\BungieSharper.CodeGen.Entities.csproj" />
   </ItemGroup>
-
 </Project>

@@ -1,0 +1,13 @@
+root = true
+
+[*]
+indent_style = space
+
+[*.{csproj,vbproj,vcxproj,vcxproj.filters,proj,projitems,shproj,nuspec}]
+indent_size = 2
+
+[*.{cs,csx,vb,vbx}]
+indent_size = 4
+
+[*.{yml,yaml}]
+indent_size = 2

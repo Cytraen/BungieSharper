@@ -38,7 +38,6 @@
     <PackageProjectUrl>https://github.com/ashakoor/BungieSharper</PackageProjectUrl>
     <PackageIcon>BungieSharper.png</PackageIcon>
     <PackageTags>bungie bungie-net destiny destiny2 destiny-api</PackageTags>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>

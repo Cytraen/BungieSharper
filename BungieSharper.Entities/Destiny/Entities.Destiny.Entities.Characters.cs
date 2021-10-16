@@ -153,6 +153,13 @@ namespace BungieSharper.Entities.Destiny.Entities.Characters
         public Dictionary<uint, IEnumerable<Destiny.Quests.DestinyObjectiveProgress>> UninstancedItemObjectives { get; set; }
 
         /// <summary>
+        /// Sometimes, you have items in your inventory that don't have instances, but still have perks (for example: Trials passage cards). This gives you the perk information for uninstanced items.
+        /// This dictionary is keyed by item hash, which you can use to look up the corresponding item definition. The value is the list of perks states for the item.
+        /// </summary>
+        [JsonPropertyName("uninstancedItemPerks")]
+        public Dictionary<uint, Destiny.Entities.Items.DestinyItemPerksComponent> UninstancedItemPerks { get; set; }
+
+        /// <summary>
         /// The set of checklists that can be examined for this specific character, keyed by the hash identifier of the Checklist (DestinyChecklistDefinition)
         /// For each checklist returned, its value is itself a Dictionary keyed by the checklist's hash identifier with the value being a boolean indicating if it's been discovered yet.
         /// </summary>

@@ -1,8 +1,8 @@
-name: Main pull request/push
+name: Main PR/push + stable push
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, stable ]
   pull_request:
     branches: [ main ]
 

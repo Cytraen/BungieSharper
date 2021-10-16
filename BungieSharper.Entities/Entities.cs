@@ -541,12 +541,29 @@ namespace BungieSharper.Entities
     {
         [JsonPropertyName("objectives")]
         public DictionaryComponentResponseOfuint32AndDestinyItemObjectivesComponent Objectives { get; set; }
+
+        [JsonPropertyName("perks")]
+        public DictionaryComponentResponseOfuint32AndDestinyItemPerksComponent Perks { get; set; }
     }
 
     public class DictionaryComponentResponseOfuint32AndDestinyItemObjectivesComponent
     {
         [JsonPropertyName("data")]
         public Dictionary<uint, Destiny.Entities.Items.DestinyItemObjectivesComponent> Data { get; set; }
+
+        [JsonPropertyName("privacy")]
+        public Components.ComponentPrivacySetting Privacy { get; set; }
+
+        /// <summary>If true, this component is disabled.</summary>
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public bool? Disabled { get; set; }
+    }
+
+    public class DictionaryComponentResponseOfuint32AndDestinyItemPerksComponent
+    {
+        [JsonPropertyName("data")]
+        public Dictionary<uint, Destiny.Entities.Items.DestinyItemPerksComponent> Data { get; set; }
 
         [JsonPropertyName("privacy")]
         public Components.ComponentPrivacySetting Privacy { get; set; }
@@ -617,6 +634,9 @@ namespace BungieSharper.Entities
     {
         [JsonPropertyName("objectives")]
         public DictionaryComponentResponseOfint64AndDestinyItemObjectivesComponent Objectives { get; set; }
+
+        [JsonPropertyName("perks")]
+        public DictionaryComponentResponseOfint64AndDestinyItemPerksComponent Perks { get; set; }
     }
 
     public class DictionaryComponentResponseOfint64AndDestinyItemObjectivesComponent
@@ -633,13 +653,24 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
+    public class DictionaryComponentResponseOfint64AndDestinyItemPerksComponent
+    {
+        [JsonPropertyName("data")]
+        public Dictionary<long, Destiny.Entities.Items.DestinyItemPerksComponent> Data { get; set; }
+
+        [JsonPropertyName("privacy")]
+        public Components.ComponentPrivacySetting Privacy { get; set; }
+
+        /// <summary>If true, this component is disabled.</summary>
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public bool? Disabled { get; set; }
+    }
+
     public class DestinyItemComponentSetOfint64
     {
         [JsonPropertyName("instances")]
         public DictionaryComponentResponseOfint64AndDestinyItemInstanceComponent Instances { get; set; }
-
-        [JsonPropertyName("perks")]
-        public DictionaryComponentResponseOfint64AndDestinyItemPerksComponent Perks { get; set; }
 
         [JsonPropertyName("renderData")]
         public DictionaryComponentResponseOfint64AndDestinyItemRenderComponent RenderData { get; set; }
@@ -664,26 +695,15 @@ namespace BungieSharper.Entities
 
         [JsonPropertyName("objectives")]
         public DictionaryComponentResponseOfint64AndDestinyItemObjectivesComponent Objectives { get; set; }
+
+        [JsonPropertyName("perks")]
+        public DictionaryComponentResponseOfint64AndDestinyItemPerksComponent Perks { get; set; }
     }
 
     public class DictionaryComponentResponseOfint64AndDestinyItemInstanceComponent
     {
         [JsonPropertyName("data")]
         public Dictionary<long, Destiny.Entities.Items.DestinyItemInstanceComponent> Data { get; set; }
-
-        [JsonPropertyName("privacy")]
-        public Components.ComponentPrivacySetting Privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public bool? Disabled { get; set; }
-    }
-
-    public class DictionaryComponentResponseOfint64AndDestinyItemPerksComponent
-    {
-        [JsonPropertyName("data")]
-        public Dictionary<long, Destiny.Entities.Items.DestinyItemPerksComponent> Data { get; set; }
 
         [JsonPropertyName("privacy")]
         public Components.ComponentPrivacySetting Privacy { get; set; }
@@ -1110,6 +1130,9 @@ namespace BungieSharper.Entities
     {
         [JsonPropertyName("objectives")]
         public DictionaryComponentResponseOfint32AndDestinyItemObjectivesComponent Objectives { get; set; }
+
+        [JsonPropertyName("perks")]
+        public DictionaryComponentResponseOfint32AndDestinyItemPerksComponent Perks { get; set; }
     }
 
     public class DictionaryComponentResponseOfint32AndDestinyItemObjectivesComponent
@@ -1126,13 +1149,24 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
+    public class DictionaryComponentResponseOfint32AndDestinyItemPerksComponent
+    {
+        [JsonPropertyName("data")]
+        public Dictionary<int, Destiny.Entities.Items.DestinyItemPerksComponent> Data { get; set; }
+
+        [JsonPropertyName("privacy")]
+        public Components.ComponentPrivacySetting Privacy { get; set; }
+
+        /// <summary>If true, this component is disabled.</summary>
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public bool? Disabled { get; set; }
+    }
+
     public class DestinyItemComponentSetOfint32
     {
         [JsonPropertyName("instances")]
         public DictionaryComponentResponseOfint32AndDestinyItemInstanceComponent Instances { get; set; }
-
-        [JsonPropertyName("perks")]
-        public DictionaryComponentResponseOfint32AndDestinyItemPerksComponent Perks { get; set; }
 
         [JsonPropertyName("renderData")]
         public DictionaryComponentResponseOfint32AndDestinyItemRenderComponent RenderData { get; set; }
@@ -1157,26 +1191,15 @@ namespace BungieSharper.Entities
 
         [JsonPropertyName("objectives")]
         public DictionaryComponentResponseOfint32AndDestinyItemObjectivesComponent Objectives { get; set; }
+
+        [JsonPropertyName("perks")]
+        public DictionaryComponentResponseOfint32AndDestinyItemPerksComponent Perks { get; set; }
     }
 
     public class DictionaryComponentResponseOfint32AndDestinyItemInstanceComponent
     {
         [JsonPropertyName("data")]
         public Dictionary<int, Destiny.Entities.Items.DestinyItemInstanceComponent> Data { get; set; }
-
-        [JsonPropertyName("privacy")]
-        public Components.ComponentPrivacySetting Privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public bool? Disabled { get; set; }
-    }
-
-    public class DictionaryComponentResponseOfint32AndDestinyItemPerksComponent
-    {
-        [JsonPropertyName("data")]
-        public Dictionary<int, Destiny.Entities.Items.DestinyItemPerksComponent> Data { get; set; }
 
         [JsonPropertyName("privacy")]
         public Components.ComponentPrivacySetting Privacy { get; set; }
@@ -1352,9 +1375,6 @@ namespace BungieSharper.Entities
         [JsonPropertyName("instances")]
         public DictionaryComponentResponseOfuint32AndDestinyItemInstanceComponent Instances { get; set; }
 
-        [JsonPropertyName("perks")]
-        public DictionaryComponentResponseOfuint32AndDestinyItemPerksComponent Perks { get; set; }
-
         [JsonPropertyName("renderData")]
         public DictionaryComponentResponseOfuint32AndDestinyItemRenderComponent RenderData { get; set; }
 
@@ -1378,26 +1398,15 @@ namespace BungieSharper.Entities
 
         [JsonPropertyName("objectives")]
         public DictionaryComponentResponseOfuint32AndDestinyItemObjectivesComponent Objectives { get; set; }
+
+        [JsonPropertyName("perks")]
+        public DictionaryComponentResponseOfuint32AndDestinyItemPerksComponent Perks { get; set; }
     }
 
     public class DictionaryComponentResponseOfuint32AndDestinyItemInstanceComponent
     {
         [JsonPropertyName("data")]
         public Dictionary<uint, Destiny.Entities.Items.DestinyItemInstanceComponent> Data { get; set; }
-
-        [JsonPropertyName("privacy")]
-        public Components.ComponentPrivacySetting Privacy { get; set; }
-
-        /// <summary>If true, this component is disabled.</summary>
-        [JsonPropertyName("disabled")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public bool? Disabled { get; set; }
-    }
-
-    public class DictionaryComponentResponseOfuint32AndDestinyItemPerksComponent
-    {
-        [JsonPropertyName("data")]
-        public Dictionary<uint, Destiny.Entities.Items.DestinyItemPerksComponent> Data { get; set; }
 
         [JsonPropertyName("privacy")]
         public Components.ComponentPrivacySetting Privacy { get; set; }

@@ -90,6 +90,18 @@ namespace BungieSharper.Entities.Destiny.Entities.Items
     }
 
     /// <summary>
+    /// Instanced items can have perks: benefits that the item bestows.
+    /// These are related to DestinySandboxPerkDefinition, and sometimes - but not always - have human readable info. When they do, they are the icons and text that you see in an item's tooltip.
+    /// Talent Grids, Sockets, and the item itself can apply Perks, which are then summarized here for your convenience.
+    /// </summary>
+    public class DestinyItemPerksComponent
+    {
+        /// <summary>The list of perks to display in an item tooltip - and whether or not they have been activated.</summary>
+        [JsonPropertyName("perks")]
+        public IEnumerable<Destiny.Perks.DestinyPerkReference> Perks { get; set; }
+    }
+
+    /// <summary>
     /// Items can have objectives and progression. When you request this block, you will obtain information about any Objectives and progression tied to this item.
     /// </summary>
     public class DestinyItemObjectivesComponent
@@ -198,18 +210,6 @@ namespace BungieSharper.Entities.Destiny.Entities.Items
         /// <summary>The amount of energy still available for inserting new plugs.</summary>
         [JsonPropertyName("energyUnused")]
         public int EnergyUnused { get; set; }
-    }
-
-    /// <summary>
-    /// Instanced items can have perks: benefits that the item bestows.
-    /// These are related to DestinySandboxPerkDefinition, and sometimes - but not always - have human readable info. When they do, they are the icons and text that you see in an item's tooltip.
-    /// Talent Grids, Sockets, and the item itself can apply Perks, which are then summarized here for your convenience.
-    /// </summary>
-    public class DestinyItemPerksComponent
-    {
-        /// <summary>The list of perks to display in an item tooltip - and whether or not they have been activated.</summary>
-        [JsonPropertyName("perks")]
-        public IEnumerable<Destiny.Perks.DestinyPerkReference> Perks { get; set; }
     }
 
     /// <summary>

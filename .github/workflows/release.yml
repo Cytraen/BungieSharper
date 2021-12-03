@@ -8,8 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     env:
-      dotnet_sdk_version: '5.0.x'
       DOTNET_CLI_TELEMETRY_OPTOUT: true
       DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
       TEST_BUNGIE_API_KEY: ${{ secrets.TEST_BUNGIE_API_KEY }}
@@ -22,19 +22,17 @@ jobs:
       id: get_version
       run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/v}
 
-    - name: Setup .NET
+    - name: Setup .NET 5
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: ${{ env.dotnet_sdk_version }}
-
-    - name: Build client
-      run: dotnet build ./BungieSharper -c Release -p:Version=${{ steps.get_version.outputs.VERSION }}
+        dotnet-version: 5.0.x
+        include-prerelease: false
 
     - name: Pack entities NuGet package
-      run: dotnet pack ./BungieSharper.Entities -c Release --no-build --output Packages -p:ContinuousIntegrationBuild=true -p:Version=${{ steps.get_version.outputs.VERSION }}
+      run: dotnet pack ./BungieSharper.Entities -c Release --output Packages -p:ContinuousIntegrationBuild=true -p:Version=${{ steps.get_version.outputs.VERSION }}
 
     - name: Pack client NuGet package
-      run: dotnet pack ./BungieSharper -c Release --no-build --output Packages -p:ContinuousIntegrationBuild=true -p:Version=${{ steps.get_version.outputs.VERSION }}
+      run: dotnet pack ./BungieSharper -c Release --output Packages -p:ContinuousIntegrationBuild=true -p:Version=${{ steps.get_version.outputs.VERSION }}
 
     - name: Create Release
       id: create_release
@@ -93,16 +91,16 @@ jobs:
     
     - name: Upload entities to NuGet
       run: |
-        dotnet nuget push ./Packages/BungieSharper.Entities.${{ steps.get_version.outputs.VERSION }}.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicate    
+        dotnet nuget push ./Packages/BungieSharper.Entities.${{ steps.get_version.outputs.VERSION }}.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
 
     - name: Upload client to NuGet
       run: |
-        dotnet nuget push ./Packages/BungieSharper.${{ steps.get_version.outputs.VERSION }}.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicate
+        dotnet nuget push ./Packages/BungieSharper.${{ steps.get_version.outputs.VERSION }}.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
     
     - name: Upload entities to GitHub Packages
       run: |
-        dotnet nuget push ./Packages/BungieSharper.Entities.${{ steps.get_version.outputs.VERSION }}.nupkg -k ${{ secrets.GITHUB_TOKEN }} -s https://nuget.pkg.github.com/ashakoor/index.json --skip-duplicate
+        dotnet nuget push ./Packages/BungieSharper.Entities.${{ steps.get_version.outputs.VERSION }}.nupkg -k ${{ secrets.GITHUB_TOKEN }} -s https://nuget.pkg.github.com/ashakoor/index.json
 
     - name: Upload client to GitHub Packages
       run: |
-        dotnet nuget push ./Packages/BungieSharper.${{ steps.get_version.outputs.VERSION }}.nupkg -k ${{ secrets.GITHUB_TOKEN }} -s https://nuget.pkg.github.com/ashakoor/index.json --skip-duplicate
+        dotnet nuget push ./Packages/BungieSharper.${{ steps.get_version.outputs.VERSION }}.nupkg -k ${{ secrets.GITHUB_TOKEN }} -s https://nuget.pkg.github.com/ashakoor/index.json

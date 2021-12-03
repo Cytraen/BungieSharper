@@ -1,4 +1,4 @@
-name: Main PR/push + stable push
+name: main PR+push / stable push
 
 on:
   push:
@@ -8,11 +8,9 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-    
+
     env:
-      dotnet_sdk_version: '5.0.x'
       DOTNET_CLI_TELEMETRY_OPTOUT: true
       DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
       TEST_BUNGIE_API_KEY: ${{ secrets.TEST_BUNGIE_API_KEY }}
@@ -21,34 +19,27 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Get short SHA
-      uses: benjlevesque/short-sha@v1.2
-      id: short-sha
-      with:
-        length: 8
+    - name: Get version suffix
+      id: get_suffix
+      run: echo ::set-output name=SUFFIX::${GITHUB_SHA:0:9}
 
-    - name: Setup .NET
+    - name: Setup .NET 5
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: ${{ env.dotnet_sdk_version }}
-
-    - name: Build client
-      run: dotnet build ./BungieSharper -c Release
+        dotnet-version: 5.0.x
+        include-prerelease: false
 
     - name: Pack entities NuGet package
-      run: dotnet pack ./BungieSharper.Entities -c Release --no-build --output OutputPackage --version-suffix "ci.$(date -u +%Y%m%dT%H%M%S)+sha.${GITHUB_SHA:0:9}" -p:ContinuousIntegrationBuild=true
+      run: dotnet pack ./BungieSharper.Entities -c Release --output OutputPackage -p:ContinuousIntegrationBuild=true -p:VersionSuffix=${{ steps.get_suffix.outputs.SUFFIX }}
 
     - name: Pack client NuGet package
-      run: dotnet pack ./BungieSharper -c Release --no-build --output OutputPackage --version-suffix "ci.$(date -u +%Y%m%dT%H%M%S)+sha.${GITHUB_SHA:0:9}" -p:ContinuousIntegrationBuild=true
+      run: dotnet pack ./BungieSharper -c Release --output OutputPackage -p:ContinuousIntegrationBuild=true -p:VersionSuffix=${{ steps.get_suffix.outputs.SUFFIX }}
 
     - name: Upload artifact (nupkg/snupkg)
       uses: actions/upload-artifact@v1
       with:
-        name: BungieSharper - ${{ env.SHA }}
+        name: BungieSharper_${{ steps.get_suffix.outputs.SUFFIX }}
         path: OutputPackage
 
-    - name: Build test
-      run: dotnet build ./BungieSharper.Tests -c Release
-
     - name: Run test
-      run: dotnet test ./BungieSharper.Tests -c Release --no-build --verbosity normal
+      run: dotnet test ./BungieSharper.Tests -c Release --verbosity normal

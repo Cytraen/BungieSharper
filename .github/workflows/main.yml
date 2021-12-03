@@ -1,8 +1,8 @@
-name: Main pull request/push
+name: main PR+push / stable push
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, stable ]
   pull_request:
     branches: [ main ]
 
@@ -33,7 +33,7 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 6.0.x
-        include-prerelease: true
+        include-prerelease: false
 
     - name: Pack entities NuGet package
       run: dotnet pack ./BungieSharper.Entities -c Release --output OutputPackage -p:ContinuousIntegrationBuild=true -p:VersionSuffix=${{ steps.get_suffix.outputs.SUFFIX }}

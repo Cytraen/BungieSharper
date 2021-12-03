@@ -32,6 +32,7 @@ namespace BungieSharper.Entities.Destiny.Requests.Actions
 
     public class DestinyItemActionRequest
     {
+        /// <summary>The instance ID of the item for this action request.</summary>
         [JsonPropertyName("itemId")]
         public long ItemId { get; set; }
 
@@ -56,6 +57,7 @@ namespace BungieSharper.Entities.Destiny.Requests.Actions
         [JsonPropertyName("stackSize")]
         public int StackSize { get; set; }
 
+        /// <summary>The instance ID of the item for this action request.</summary>
         [JsonPropertyName("itemId")]
         public long ItemId { get; set; }
 
@@ -95,6 +97,7 @@ namespace BungieSharper.Entities.Destiny.Requests.Actions
         [JsonPropertyName("state")]
         public bool State { get; set; }
 
+        /// <summary>The instance ID of the item for this action request.</summary>
         [JsonPropertyName("itemId")]
         public long ItemId { get; set; }
 
@@ -175,4 +178,27 @@ namespace BungieSharper.Entities.Destiny.Requests.Actions
         Default = 0,
         Intrinsic = 1
     }
+
+    public class DestinyInsertPlugsFreeActionRequest
+    {
+        /// <summary>The plugs being inserted.</summary>
+        [JsonPropertyName("plug")]
+        public Destiny.Requests.Actions.DestinyInsertPlugsRequestEntry Plug { get; set; }
+
+        /// <summary>The instance ID of the item for this action request.</summary>
+        [JsonPropertyName("itemId")]
+        public long ItemId { get; set; }
+
+        [JsonPropertyName("characterId")]
+        public long CharacterId { get; set; }
+
+        [JsonPropertyName("membershipType")]
+        public BungieMembershipType MembershipType { get; set; }
+    }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyInsertPlugsFreeActionRequest))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyInsertPlugsFreeActionRequestJsonContext : JsonSerializerContext { }
+#endif
 }

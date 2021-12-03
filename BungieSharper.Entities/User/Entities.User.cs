@@ -368,6 +368,33 @@ namespace BungieSharper.Entities.User
     internal partial class UserSearchResponseDetailJsonContext : JsonSerializerContext { }
 #endif
 
+    public class UserSearchPrefixRequest
+    {
+        [JsonPropertyName("displayNamePrefix")]
+        public string DisplayNamePrefix { get; set; }
+    }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(UserSearchPrefixRequest))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class UserSearchPrefixRequestJsonContext : JsonSerializerContext { }
+#endif
+
+    public class ExactSearchRequest
+    {
+        [JsonPropertyName("displayName")]
+        public string DisplayName { get; set; }
+
+        [JsonPropertyName("displayNameCode")]
+        public short DisplayNameCode { get; set; }
+    }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(ExactSearchRequest))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class ExactSearchRequestJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// The set of all email subscription/opt-in settings and definitions.
     /// </summary>

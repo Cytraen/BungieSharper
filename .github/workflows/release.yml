@@ -32,7 +32,7 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 6.0.x
-        include-prerelease: true
+        include-prerelease: false
 
     - name: Pack entities NuGet package
       run: dotnet pack ./BungieSharper.Entities -c Release --output Packages -p:ContinuousIntegrationBuild=true -p:Version=${{ steps.get_version.outputs.VERSION }}

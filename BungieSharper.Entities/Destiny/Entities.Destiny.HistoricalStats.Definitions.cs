@@ -86,7 +86,8 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats.Definitions
         Momentum = 81,
         Dungeon = 82,
         Sundial = 83,
-        TrialsOfOsiris = 84
+        TrialsOfOsiris = 84,
+        Dares = 85
     }
 
     public class DestinyHistoricalStatsDefinition

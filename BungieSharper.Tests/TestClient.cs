@@ -13,7 +13,7 @@ namespace BungieSharper.Tests
             {
                 ApiKey = Environment.GetEnvironmentVariable("TEST_BUNGIE_API_KEY") ?? throw new NullReferenceException(),
                 UserAgent = $"BungieSharper.Tests/{typeof(TestClientFixture).Assembly.GetName().Version!.ToString(3)} (+github.com/ashakoor/BungieSharper)",
-                RateLimit = 50
+                RateLimit = 10
             };
 
             TestClient = new BungieApiClient(config);

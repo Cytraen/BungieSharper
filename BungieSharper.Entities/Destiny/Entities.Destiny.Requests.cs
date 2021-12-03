@@ -13,6 +13,7 @@ namespace BungieSharper.Entities.Destiny.Requests
         [JsonPropertyName("transferToVault")]
         public bool TransferToVault { get; set; }
 
+        /// <summary>The instance ID of the item for this action request.</summary>
         [JsonPropertyName("itemId")]
         public long ItemId { get; set; }
 

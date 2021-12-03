@@ -140,6 +140,12 @@ namespace BungieSharper.Entities.Common.Models
         [JsonPropertyName("currentRankProgressionHashes")]
         public IEnumerable<uint> CurrentRankProgressionHashes { get; set; }
 
+        [JsonPropertyName("insertPlugFreeProtectedPlugItemHashes")]
+        public IEnumerable<uint> InsertPlugFreeProtectedPlugItemHashes { get; set; }
+
+        [JsonPropertyName("insertPlugFreeBlockedSocketTypeHashes")]
+        public IEnumerable<uint> InsertPlugFreeBlockedSocketTypeHashes { get; set; }
+
         [JsonPropertyName("undiscoveredCollectibleImage")]
         public string UndiscoveredCollectibleImage { get; set; }
 

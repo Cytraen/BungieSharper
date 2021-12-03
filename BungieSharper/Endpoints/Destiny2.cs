@@ -42,15 +42,14 @@ namespace BungieSharper.Endpoints
         /// <summary>
         /// Returns a list of Destiny memberships given a global Bungie Display Name. This method will hide overridden memberships due to cross save.
         /// </summary>
-        /// <param name="displayName">The full bungie global display name to look up, include the # and the code at the end. This is an exact match lookup.</param>
         /// <param name="membershipType">A valid non-BungieNet membership type, or All. Indicates which memberships to return. You probably want this set to All.</param>
         /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
         /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
-        public Task<IEnumerable<Entities.User.UserInfoCard>> Destiny2_SearchDestinyPlayer(string displayName, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
+        public Task<IEnumerable<Entities.User.UserInfoCard>> Destiny2_SearchDestinyPlayerByBungieName(Entities.BungieMembershipType membershipType, Entities.User.ExactSearchRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
         {
             return _apiAccessor.ApiRequestAsync<IEnumerable<Entities.User.UserInfoCard>>(
-                new Uri($"Destiny2/SearchDestinyPlayer/{membershipType}/{Uri.EscapeDataString(displayName)}/", UriKind.Relative),
-                null, HttpMethod.Get, authToken, cancelToken
+                new Uri($"Destiny2/SearchDestinyPlayerByBungieName/{membershipType}/", UriKind.Relative),
+                new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
                 );
         }
 
@@ -309,6 +308,20 @@ namespace BungieSharper.Endpoints
         {
             return _apiAccessor.ApiRequestAsync<Entities.Destiny.Responses.DestinyItemChangeResponse>(
                 new Uri($"Destiny2/Actions/Items/InsertSocketPlug/", UriKind.Relative),
+                new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
+                );
+        }
+
+        /// <summary>
+        /// Insert a 'free' plug into an item's socket. This does not require 'Advanced Write Action' authorization and is available to 3rd-party apps, but will only work on 'free and reversible' socket actions (Perks, Armor Mods, Shaders, Ornaments, etc.). You must have a valid Destiny Account, and the character must either be in a social space, in orbit, or offline.
+        /// Requires OAuth2 scope(s): MoveEquipDestinyItems
+        /// </summary>
+        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
+        public Task<Entities.Destiny.Responses.DestinyItemChangeResponse> Destiny2_InsertSocketPlugFree(Entities.Destiny.Requests.Actions.DestinyInsertPlugsFreeActionRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<Entities.Destiny.Responses.DestinyItemChangeResponse>(
+                new Uri($"Destiny2/Actions/Items/InsertSocketPlugFree/", UriKind.Relative),
                 new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
                 );
         }

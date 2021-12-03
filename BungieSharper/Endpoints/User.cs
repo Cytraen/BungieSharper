@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -95,7 +96,7 @@ namespace BungieSharper.Endpoints
         }
 
         /// <summary>
-        /// Given the prefix of a global display name, returns all users who share that name.
+        /// [OBSOLETE] Do not use this to search users, use SearchByGlobalNamePost instead.
         /// </summary>
         /// <param name="displayNamePrefix">The display name prefix you're looking for.</param>
         /// <param name="page">The zero-based page of results you desire.</param>
@@ -106,6 +107,20 @@ namespace BungieSharper.Endpoints
             return _apiAccessor.ApiRequestAsync<Entities.User.UserSearchResponse>(
                 new Uri($"User/Search/Prefix/{Uri.EscapeDataString(displayNamePrefix)}/{page}/", UriKind.Relative),
                 null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
+        /// <summary>
+        /// Given the prefix of a global display name, returns all users who share that name.
+        /// </summary>
+        /// <param name="page">The zero-based page of results you desire.</param>
+        /// <param name="authToken">The OAuth access token to autheticate the request with.</param>
+        /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
+        public Task<Entities.User.UserSearchResponse> User_SearchByGlobalNamePost(int page, Entities.User.UserSearchPrefixRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<Entities.User.UserSearchResponse>(
+                new Uri($"User/Search/GlobalName/{page}/", UriKind.Relative),
+                new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
                 );
         }
     }

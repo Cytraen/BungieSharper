@@ -241,7 +241,10 @@ namespace BungieSharper.Entities.Destiny
         Default = 0,
 
         /// <summary>Progression from ranks in ritual content. For example: Crucible (Shaxx), Gambit (Drifter), and Season 13 Battlegrounds (War Table).</summary>
-        Ritual = 1
+        Ritual = 1,
+
+        /// <summary>A vendor progression with no seasonal refresh. For example: Xur in the Eternity destination for the 30th Anniversary.</summary>
+        NoSeasonalRefresh = 2
     }
 
     /// <summary>
@@ -857,7 +860,9 @@ namespace BungieSharper.Entities.Destiny
         Forsaken = 8,
         YearTwoAnnualPass = 16,
         Shadowkeep = 32,
-        BeyondLight = 64
+        BeyondLight = 64,
+        Anniversary30th = 128,
+        TheWitchQueen = 256
     }
 
     /// <summary>
@@ -1433,7 +1438,10 @@ namespace BungieSharper.Entities.Destiny
         BestDeal = 32768,
 
         /// <summary>This indicates that the sale item is popular.</summary>
-        Popular = 65536
+        Popular = 65536,
+
+        /// <summary>This indicates that the sale item is free.</summary>
+        Free = 131072
     }
 
     /// <summary>

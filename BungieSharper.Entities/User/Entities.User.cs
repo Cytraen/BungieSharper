@@ -314,6 +314,21 @@ namespace BungieSharper.Entities.User
         public IEnumerable<User.UserInfoCard> DestinyMemberships { get; set; }
     }
 
+    public class UserSearchPrefixRequest
+    {
+        [JsonPropertyName("displayNamePrefix")]
+        public string DisplayNamePrefix { get; set; }
+    }
+
+    public class ExactSearchRequest
+    {
+        [JsonPropertyName("displayName")]
+        public string DisplayName { get; set; }
+
+        [JsonPropertyName("displayNameCode")]
+        public short DisplayNameCode { get; set; }
+    }
+
     /// <summary>
     /// The set of all email subscription/opt-in settings and definitions.
     /// </summary>

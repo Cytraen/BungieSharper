@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Runtime.InteropServices;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading;
@@ -64,13 +65,26 @@ namespace BungieSharper.Client
             _semaphore = new SemaphoreSlim(SimultaneousRequests, SimultaneousRequests);
             _serializerOptions = new JsonSerializerOptions { NumberHandling = JsonNumberHandling.AllowReadingFromString };
 
-            var cookieContainer = new CookieContainer();
-            var httpClientHandler = new HttpClientHandler
+            HttpClientHandler httpClientHandler;
+
+            if (RuntimeInformation.OSArchitecture != Architecture.Wasm)
             {
-                CookieContainer = cookieContainer,
-                UseCookies = true,
-                MaxConnectionsPerServer = SimultaneousRequests
-            };
+                var cookieContainer = new CookieContainer();
+                httpClientHandler = new HttpClientHandler
+                {
+                    CookieContainer = cookieContainer,
+                    UseCookies = true,
+                    MaxConnectionsPerServer = SimultaneousRequests
+                };
+            }
+            else
+            {
+                httpClientHandler = new HttpClientHandler
+                {
+                    UseCookies = true,
+                    MaxConnectionsPerServer = SimultaneousRequests
+                };
+            }
 
             _httpClient = new HttpClient(httpClientHandler)
             {

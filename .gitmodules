@@ -1,0 +1,4 @@
+[submodule "bnet-api-spec"]
+	path = bnet-api-spec
+	url = https://github.com/Bungie-net/api
+	branch = master

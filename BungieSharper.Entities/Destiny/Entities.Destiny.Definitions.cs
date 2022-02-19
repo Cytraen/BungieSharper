@@ -255,6 +255,10 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("action")]
         public Destiny.Definitions.DestinyItemActionBlockDefinition Action { get; set; }
 
+        /// <summary>Recipe items will have relevant crafting information available here.</summary>
+        [JsonPropertyName("crafting")]
+        public Destiny.Definitions.DestinyItemCraftingBlockDefinition Crafting { get; set; }
+
         /// <summary>If this item can exist in an inventory, this block will be non-null. In practice, every item that currently exists has one of these blocks. But note that it is not necessarily guaranteed.</summary>
         [JsonPropertyName("inventory")]
         public Destiny.Definitions.DestinyItemInventoryBlockDefinition Inventory { get; set; }
@@ -661,6 +665,117 @@ namespace BungieSharper.Entities.Destiny.Definitions
 #endif
 
     /// <summary>
+    /// If an item can have an action performed on it (like "Dismantle"), it will be defined here if you care.
+    /// </summary>
+    public class DestinyItemCraftingBlockDefinition
+    {
+        /// <summary>A reference to the item definition that is created when crafting with this 'recipe' item.</summary>
+        [JsonPropertyName("outputItemHash")]
+        public uint OutputItemHash { get; set; }
+
+        /// <summary>A list of socket type hashes that describes which sockets are required for crafting with this recipe.</summary>
+        [JsonPropertyName("requiredSocketTypeHashes")]
+        public IEnumerable<uint> RequiredSocketTypeHashes { get; set; }
+
+        [JsonPropertyName("failedRequirementStrings")]
+        public IEnumerable<string> FailedRequirementStrings { get; set; }
+
+        /// <summary>A reference to the base material requirements for crafting with this recipe.</summary>
+        [JsonPropertyName("baseMaterialRequirements")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public uint? BaseMaterialRequirements { get; set; }
+
+        /// <summary>A list of 'bonus' socket plugs that may be available if certain requirements are met.</summary>
+        [JsonPropertyName("bonusPlugs")]
+        public IEnumerable<Destiny.Definitions.DestinyItemCraftingBlockBonusPlugDefinition> BonusPlugs { get; set; }
+    }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyItemCraftingBlockDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyItemCraftingBlockDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
+    public class DestinyItemCraftingBlockBonusPlugDefinition
+    {
+        [JsonPropertyName("socketTypeHash")]
+        public uint SocketTypeHash { get; set; }
+
+        [JsonPropertyName("plugItemHash")]
+        public uint PlugItemHash { get; set; }
+    }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyItemCraftingBlockBonusPlugDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyItemCraftingBlockBonusPlugDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
+    /// <summary>
+    /// Represent a set of material requirements: Items that either need to be owned or need to be consumed in order to perform an action.
+    /// A variety of other entities refer to these as gatekeepers and payments for actions that can be performed in game.
+    /// </summary>
+    public class DestinyMaterialRequirementSetDefinition
+    {
+        /// <summary>The list of all materials that are required.</summary>
+        [JsonPropertyName("materials")]
+        public IEnumerable<Destiny.Definitions.DestinyMaterialRequirement> Materials { get; set; }
+
+        /// <summary>
+        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
+        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
+        /// </summary>
+        [JsonPropertyName("hash")]
+        public uint Hash { get; set; }
+
+        /// <summary>The index of the entity as it was found in the investment tables.</summary>
+        [JsonPropertyName("index")]
+        public int Index { get; set; }
+
+        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
+        [JsonPropertyName("redacted")]
+        public bool Redacted { get; set; }
+    }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyMaterialRequirementSetDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyMaterialRequirementSetDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
+    /// <summary>
+    /// Many actions relating to items require you to expend materials: - Activating a talent node - Inserting a plug into a socket The items will refer to material requirements by a materialRequirementsHash in these cases, and this is the definition for those requirements in terms of the item required, how much of it is required and other interesting info. This is one of the rare/strange times where a single contract class is used both in definitions *and* in live data response contracts. I'm not sure yet whether I regret that.
+    /// </summary>
+    public class DestinyMaterialRequirement
+    {
+        /// <summary>The hash identifier of the material required. Use it to look up the material's DestinyInventoryItemDefinition.</summary>
+        [JsonPropertyName("itemHash")]
+        public uint ItemHash { get; set; }
+
+        /// <summary>If True, the material will be removed from the character's inventory when the action is performed.</summary>
+        [JsonPropertyName("deleteOnAction")]
+        public bool DeleteOnAction { get; set; }
+
+        /// <summary>The amount of the material required.</summary>
+        [JsonPropertyName("count")]
+        public int Count { get; set; }
+
+        /// <summary>If true, the material requirement count value is constant. Since The Witch Queen expansion, some material requirement counts can be dynamic and will need to be returned with an API call.</summary>
+        [JsonPropertyName("countIsConstant")]
+        public bool CountIsConstant { get; set; }
+
+        /// <summary>If True, this requirement is "silent": don't bother showing it in a material requirements display. I mean, I'm not your mom: I'm not going to tell you you *can't* show it. But we won't show it in our UI.</summary>
+        [JsonPropertyName("omitFromRequirements")]
+        public bool OmitFromRequirements { get; set; }
+    }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyMaterialRequirement))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyMaterialRequirementJsonContext : JsonSerializerContext { }
+#endif
+
+    /// <summary>
     /// If the item can exist in an inventory - the overwhelming majority of them can and do - then this is the basic properties regarding the item's relationship with the inventory.
     /// </summary>
     public class DestinyItemInventoryBlockDefinition
@@ -711,6 +826,11 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
         [JsonPropertyName("suppressExpirationWhenObjectivesComplete")]
         public bool SuppressExpirationWhenObjectivesComplete { get; set; }
+
+        /// <summary>A reference to the associated crafting 'recipe' item definition, if this item can be crafted.</summary>
+        [JsonPropertyName("recipeItemHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public uint? RecipeItemHash { get; set; }
     }
 
 #if NET6_0_OR_GREATER
@@ -1264,37 +1384,83 @@ namespace BungieSharper.Entities.Destiny.Definitions
 #endif
 
     /// <summary>
-    /// Items like Sacks or Boxes can have items that it shows in-game when you view details that represent the items you can obtain if you use or acquire the item.
-    /// This defines those categories, and gives some insights into that data's source.
+    /// Defines a Character Class in Destiny 2. These are types of characters you can play, like Titan, Warlock, and Hunter.
     /// </summary>
-    public class DestinyItemPreviewBlockDefinition
+    public class DestinyClassDefinition
     {
-        /// <summary>A string that the game UI uses as a hint for which detail screen to show for the item. You, too, can leverage this for your own custom screen detail views. Note, however, that these are arbitrarily defined by designers: there's no guarantees of a fixed, known number of these - so fall back to something reasonable if you don't recognize it.</summary>
-        [JsonPropertyName("screenStyle")]
-        public string ScreenStyle { get; set; }
+        /// <summary>In Destiny 1, we added a convenience Enumeration for referring to classes. We've kept it, though mostly for posterity. This is the enum value for this definition's class.</summary>
+        [JsonPropertyName("classType")]
+        public Destiny.DestinyClass ClassType { get; set; }
 
-        /// <summary>If the preview data is derived from a fake "Preview" Vendor, this will be the hash identifier for the DestinyVendorDefinition of that fake vendor.</summary>
-        [JsonPropertyName("previewVendorHash")]
-        public uint PreviewVendorHash { get; set; }
+        [JsonPropertyName("displayProperties")]
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
-        /// <summary>If this item should show you Artifact information when you preview it, this is the hash identifier of the DestinyArtifactDefinition for the artifact whose data should be shown.</summary>
-        [JsonPropertyName("artifactHash")]
+        /// <summary>A localized string referring to the singular form of the Class's name when referred to in gendered form. Keyed by the DestinyGender.</summary>
+        [JsonPropertyName("genderedClassNames")]
+        public Dictionary<Destiny.DestinyGender, string> GenderedClassNames { get; set; }
+
+        [JsonPropertyName("genderedClassNamesByGenderHash")]
+        public Dictionary<uint, string> GenderedClassNamesByGenderHash { get; set; }
+
+        /// <summary>Mentors don't really mean anything anymore. Don't expect this to be populated.</summary>
+        [JsonPropertyName("mentorVendorHash")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public uint? ArtifactHash { get; set; }
+        public uint? MentorVendorHash { get; set; }
 
-        /// <summary>If the preview has an associated action (like "Open"), this will be the localized string for that action.</summary>
-        [JsonPropertyName("previewActionString")]
-        public string PreviewActionString { get; set; }
+        /// <summary>
+        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
+        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
+        /// </summary>
+        [JsonPropertyName("hash")]
+        public uint Hash { get; set; }
 
-        /// <summary>This is a list of the items being previewed, categorized in the same way as they are in the preview UI.</summary>
-        [JsonPropertyName("derivedItemCategories")]
-        public IEnumerable<Destiny.Definitions.Items.DestinyDerivedItemCategoryDefinition> DerivedItemCategories { get; set; }
+        /// <summary>The index of the entity as it was found in the investment tables.</summary>
+        [JsonPropertyName("index")]
+        public int Index { get; set; }
+
+        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
+        [JsonPropertyName("redacted")]
+        public bool Redacted { get; set; }
     }
 
 #if NET6_0_OR_GREATER
-    [JsonSerializable(typeof(DestinyItemPreviewBlockDefinition))]
+    [JsonSerializable(typeof(DestinyClassDefinition))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyItemPreviewBlockDefinitionJsonContext : JsonSerializerContext { }
+    internal partial class DestinyClassDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
+    /// <summary>
+    /// Gender is a social construct, and as such we have definitions for Genders. Right now there happens to only be two, but we'll see what the future holds.
+    /// </summary>
+    public class DestinyGenderDefinition
+    {
+        /// <summary>This is a quick reference enumeration for all of the currently defined Genders. We use the enumeration for quicker lookups in related data, like DestinyClassDefinition.genderedClassNames.</summary>
+        [JsonPropertyName("genderType")]
+        public Destiny.DestinyGender GenderType { get; set; }
+
+        [JsonPropertyName("displayProperties")]
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+
+        /// <summary>
+        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
+        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
+        /// </summary>
+        [JsonPropertyName("hash")]
+        public uint Hash { get; set; }
+
+        /// <summary>The index of the entity as it was found in the investment tables.</summary>
+        [JsonPropertyName("index")]
+        public int Index { get; set; }
+
+        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
+        [JsonPropertyName("redacted")]
+        public bool Redacted { get; set; }
+    }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyGenderDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyGenderDefinitionJsonContext : JsonSerializerContext { }
 #endif
 
     /// <summary>
@@ -2548,6 +2714,14 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("inProgressValueStyle")]
         public Destiny.DestinyUnlockValueUIStyle InProgressValueStyle { get; set; }
 
+        /// <summary>Objectives can have arbitrary UI-defined identifiers that define the style applied to objectives. For convenience, known UI labels will be defined in the uiStyle enum value.</summary>
+        [JsonPropertyName("uiLabel")]
+        public string UiLabel { get; set; }
+
+        /// <summary>If the objective has a known UI label value, this property will represent it.</summary>
+        [JsonPropertyName("uiStyle")]
+        public Destiny.DestinyObjectiveUiStyle UiStyle { get; set; }
+
         /// <summary>
         /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
         /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
@@ -2755,6 +2929,49 @@ namespace BungieSharper.Entities.Destiny.Definitions
         Void = 8,
         All = 15
     }
+
+    /// <summary>
+    /// All damage types that are possible in the game are defined here, along with localized info and icons as needed.
+    /// </summary>
+    public class DestinyDamageTypeDefinition
+    {
+        /// <summary>The description of the damage type, icon etc...</summary>
+        [JsonPropertyName("displayProperties")]
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+
+        /// <summary>A variant of the icon that is transparent and colorless.</summary>
+        [JsonPropertyName("transparentIconPath")]
+        public string TransparentIconPath { get; set; }
+
+        /// <summary>If TRUE, the game shows this damage type's icon. Otherwise, it doesn't. Whether you show it or not is up to you.</summary>
+        [JsonPropertyName("showIcon")]
+        public bool ShowIcon { get; set; }
+
+        /// <summary>We have an enumeration for damage types for quick reference. This is the current definition's damage type enum value.</summary>
+        [JsonPropertyName("enumValue")]
+        public Destiny.DamageType EnumValue { get; set; }
+
+        /// <summary>
+        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
+        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
+        /// </summary>
+        [JsonPropertyName("hash")]
+        public uint Hash { get; set; }
+
+        /// <summary>The index of the entity as it was found in the investment tables.</summary>
+        [JsonPropertyName("index")]
+        public int Index { get; set; }
+
+        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
+        [JsonPropertyName("redacted")]
+        public bool Redacted { get; set; }
+    }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyDamageTypeDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyDamageTypeDefinitionJsonContext : JsonSerializerContext { }
+#endif
 
     /// <summary>
     /// Defines the conditions under which stat modifications will be applied to a Character while participating in an objective.
@@ -3375,6 +3592,40 @@ namespace BungieSharper.Entities.Destiny.Definitions
 #endif
 
     /// <summary>
+    /// Items like Sacks or Boxes can have items that it shows in-game when you view details that represent the items you can obtain if you use or acquire the item.
+    /// This defines those categories, and gives some insights into that data's source.
+    /// </summary>
+    public class DestinyItemPreviewBlockDefinition
+    {
+        /// <summary>A string that the game UI uses as a hint for which detail screen to show for the item. You, too, can leverage this for your own custom screen detail views. Note, however, that these are arbitrarily defined by designers: there's no guarantees of a fixed, known number of these - so fall back to something reasonable if you don't recognize it.</summary>
+        [JsonPropertyName("screenStyle")]
+        public string ScreenStyle { get; set; }
+
+        /// <summary>If the preview data is derived from a fake "Preview" Vendor, this will be the hash identifier for the DestinyVendorDefinition of that fake vendor.</summary>
+        [JsonPropertyName("previewVendorHash")]
+        public uint PreviewVendorHash { get; set; }
+
+        /// <summary>If this item should show you Artifact information when you preview it, this is the hash identifier of the DestinyArtifactDefinition for the artifact whose data should be shown.</summary>
+        [JsonPropertyName("artifactHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public uint? ArtifactHash { get; set; }
+
+        /// <summary>If the preview has an associated action (like "Open"), this will be the localized string for that action.</summary>
+        [JsonPropertyName("previewActionString")]
+        public string PreviewActionString { get; set; }
+
+        /// <summary>This is a list of the items being previewed, categorized in the same way as they are in the preview UI.</summary>
+        [JsonPropertyName("derivedItemCategories")]
+        public IEnumerable<Destiny.Definitions.Items.DestinyDerivedItemCategoryDefinition> DerivedItemCategories { get; set; }
+    }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyItemPreviewBlockDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyItemPreviewBlockDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
+    /// <summary>
     /// An item's "Quality" determines its calculated stats. The Level at which the item spawns is combined with its "qualityLevel" along with some additional calculations to determine the value of those stats.
     /// In Destiny 2, most items don't have default item levels and quality, making this property less useful: these apparently are almost always determined by the complex mechanisms of the Reward system rather than statically. They are still provided here in case they are still useful for people. This also contains some information about Infusion.
     /// </summary>
@@ -3665,66 +3916,6 @@ namespace BungieSharper.Entities.Destiny.Definitions
 #endif
 
     /// <summary>
-    /// Represent a set of material requirements: Items that either need to be owned or need to be consumed in order to perform an action.
-    /// A variety of other entities refer to these as gatekeepers and payments for actions that can be performed in game.
-    /// </summary>
-    public class DestinyMaterialRequirementSetDefinition
-    {
-        /// <summary>The list of all materials that are required.</summary>
-        [JsonPropertyName("materials")]
-        public IEnumerable<Destiny.Definitions.DestinyMaterialRequirement> Materials { get; set; }
-
-        /// <summary>
-        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
-        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
-        /// </summary>
-        [JsonPropertyName("hash")]
-        public uint Hash { get; set; }
-
-        /// <summary>The index of the entity as it was found in the investment tables.</summary>
-        [JsonPropertyName("index")]
-        public int Index { get; set; }
-
-        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
-        [JsonPropertyName("redacted")]
-        public bool Redacted { get; set; }
-    }
-
-#if NET6_0_OR_GREATER
-    [JsonSerializable(typeof(DestinyMaterialRequirementSetDefinition))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyMaterialRequirementSetDefinitionJsonContext : JsonSerializerContext { }
-#endif
-
-    /// <summary>
-    /// Many actions relating to items require you to expend materials: - Activating a talent node - Inserting a plug into a socket The items will refer to material requirements by a materialRequirementsHash in these cases, and this is the definition for those requirements in terms of the item required, how much of it is required and other interesting info. This is one of the rare/strange times where a single contract class is used both in definitions *and* in live data response contracts. I'm not sure yet whether I regret that.
-    /// </summary>
-    public class DestinyMaterialRequirement
-    {
-        /// <summary>The hash identifier of the material required. Use it to look up the material's DestinyInventoryItemDefinition.</summary>
-        [JsonPropertyName("itemHash")]
-        public uint ItemHash { get; set; }
-
-        /// <summary>If True, the material will be removed from the character's inventory when the action is performed.</summary>
-        [JsonPropertyName("deleteOnAction")]
-        public bool DeleteOnAction { get; set; }
-
-        /// <summary>The amount of the material required.</summary>
-        [JsonPropertyName("count")]
-        public int Count { get; set; }
-
-        /// <summary>If True, this requirement is "silent": don't bother showing it in a material requirements display. I mean, I'm not your mom: I'm not going to tell you you *can't* show it. But we won't show it in our UI.</summary>
-        [JsonPropertyName("omitFromRequirements")]
-        public bool OmitFromRequirements { get; set; }
-    }
-
-#if NET6_0_OR_GREATER
-    [JsonSerializable(typeof(DestinyMaterialRequirement))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyMaterialRequirementJsonContext : JsonSerializerContext { }
-#endif
-
-    /// <summary>
     /// An Unlock Value is an internal integer value, stored on the server and used in a variety of ways, most frequently for the gating/requirement checks that the game performs across all of its main features. They can also be used as the storage data for mapped Progressions, Objectives, and other features that require storage of variable numeric values.
     /// </summary>
     public class DestinyUnlockValueDefinition
@@ -3749,40 +3940,6 @@ namespace BungieSharper.Entities.Destiny.Definitions
     [JsonSerializable(typeof(DestinyUnlockValueDefinition))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyUnlockValueDefinitionJsonContext : JsonSerializerContext { }
-#endif
-
-    /// <summary>
-    /// Gender is a social construct, and as such we have definitions for Genders. Right now there happens to only be two, but we'll see what the future holds.
-    /// </summary>
-    public class DestinyGenderDefinition
-    {
-        /// <summary>This is a quick reference enumeration for all of the currently defined Genders. We use the enumeration for quicker lookups in related data, like DestinyClassDefinition.genderedClassNames.</summary>
-        [JsonPropertyName("genderType")]
-        public Destiny.DestinyGender GenderType { get; set; }
-
-        [JsonPropertyName("displayProperties")]
-        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
-
-        /// <summary>
-        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
-        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
-        /// </summary>
-        [JsonPropertyName("hash")]
-        public uint Hash { get; set; }
-
-        /// <summary>The index of the entity as it was found in the investment tables.</summary>
-        [JsonPropertyName("index")]
-        public int Index { get; set; }
-
-        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
-        [JsonPropertyName("redacted")]
-        public bool Redacted { get; set; }
-    }
-
-#if NET6_0_OR_GREATER
-    [JsonSerializable(typeof(DestinyGenderDefinition))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyGenderDefinitionJsonContext : JsonSerializerContext { }
 #endif
 
     /// <summary>
@@ -3942,6 +4099,9 @@ namespace BungieSharper.Entities.Destiny.Definitions
 
     public class DestinyItemSocketEntryPlugItemRandomizedDefinition
     {
+        [JsonPropertyName("craftingRequirements")]
+        public Destiny.Definitions.DestinyPlugItemCraftingRequirements CraftingRequirements { get; set; }
+
         /// <summary>Indicates if the plug can be rolled on the current version of the item. For example, older versions of weapons may have plug rolls that are no longer possible on the current versions.</summary>
         [JsonPropertyName("currentlyCanRoll")]
         public bool CurrentlyCanRoll { get; set; }
@@ -3955,6 +4115,33 @@ namespace BungieSharper.Entities.Destiny.Definitions
     [JsonSerializable(typeof(DestinyItemSocketEntryPlugItemRandomizedDefinition))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyItemSocketEntryPlugItemRandomizedDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
+    public class DestinyPlugItemCraftingRequirements
+    {
+        [JsonPropertyName("unlockRequirements")]
+        public IEnumerable<Destiny.Definitions.DestinyPlugItemCraftingUnlockRequirement> UnlockRequirements { get; set; }
+
+        [JsonPropertyName("materialRequirementHashes")]
+        public IEnumerable<uint> MaterialRequirementHashes { get; set; }
+    }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyPlugItemCraftingRequirements))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyPlugItemCraftingRequirementsJsonContext : JsonSerializerContext { }
+#endif
+
+    public class DestinyPlugItemCraftingUnlockRequirement
+    {
+        [JsonPropertyName("failureDescription")]
+        public string FailureDescription { get; set; }
+    }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyPlugItemCraftingUnlockRequirement))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyPlugItemCraftingUnlockRequirementJsonContext : JsonSerializerContext { }
 #endif
 
     /// <summary>
@@ -4385,49 +4572,6 @@ namespace BungieSharper.Entities.Destiny.Definitions
 #endif
 
     /// <summary>
-    /// All damage types that are possible in the game are defined here, along with localized info and icons as needed.
-    /// </summary>
-    public class DestinyDamageTypeDefinition
-    {
-        /// <summary>The description of the damage type, icon etc...</summary>
-        [JsonPropertyName("displayProperties")]
-        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
-
-        /// <summary>A variant of the icon that is transparent and colorless.</summary>
-        [JsonPropertyName("transparentIconPath")]
-        public string TransparentIconPath { get; set; }
-
-        /// <summary>If TRUE, the game shows this damage type's icon. Otherwise, it doesn't. Whether you show it or not is up to you.</summary>
-        [JsonPropertyName("showIcon")]
-        public bool ShowIcon { get; set; }
-
-        /// <summary>We have an enumeration for damage types for quick reference. This is the current definition's damage type enum value.</summary>
-        [JsonPropertyName("enumValue")]
-        public Destiny.DamageType EnumValue { get; set; }
-
-        /// <summary>
-        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
-        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
-        /// </summary>
-        [JsonPropertyName("hash")]
-        public uint Hash { get; set; }
-
-        /// <summary>The index of the entity as it was found in the investment tables.</summary>
-        [JsonPropertyName("index")]
-        public int Index { get; set; }
-
-        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
-        [JsonPropertyName("redacted")]
-        public bool Redacted { get; set; }
-    }
-
-#if NET6_0_OR_GREATER
-    [JsonSerializable(typeof(DestinyDamageTypeDefinition))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyDamageTypeDefinitionJsonContext : JsonSerializerContext { }
-#endif
-
-    /// <summary>
     /// The list of indexes into the Talent Grid's "nodes" property for nodes in this exclusive set. (See DestinyTalentNodeDefinition.nodeIndex)
     /// </summary>
     public class DestinyTalentNodeExclusiveSetDefinition
@@ -4712,52 +4856,6 @@ namespace BungieSharper.Entities.Destiny.Definitions
 #endif
 
     /// <summary>
-    /// Defines a Character Class in Destiny 2. These are types of characters you can play, like Titan, Warlock, and Hunter.
-    /// </summary>
-    public class DestinyClassDefinition
-    {
-        /// <summary>In Destiny 1, we added a convenience Enumeration for referring to classes. We've kept it, though mostly for posterity. This is the enum value for this definition's class.</summary>
-        [JsonPropertyName("classType")]
-        public Destiny.DestinyClass ClassType { get; set; }
-
-        [JsonPropertyName("displayProperties")]
-        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
-
-        /// <summary>A localized string referring to the singular form of the Class's name when referred to in gendered form. Keyed by the DestinyGender.</summary>
-        [JsonPropertyName("genderedClassNames")]
-        public Dictionary<Destiny.DestinyGender, string> GenderedClassNames { get; set; }
-
-        [JsonPropertyName("genderedClassNamesByGenderHash")]
-        public Dictionary<uint, string> GenderedClassNamesByGenderHash { get; set; }
-
-        /// <summary>Mentors don't really mean anything anymore. Don't expect this to be populated.</summary>
-        [JsonPropertyName("mentorVendorHash")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public uint? MentorVendorHash { get; set; }
-
-        /// <summary>
-        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
-        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
-        /// </summary>
-        [JsonPropertyName("hash")]
-        public uint Hash { get; set; }
-
-        /// <summary>The index of the entity as it was found in the investment tables.</summary>
-        [JsonPropertyName("index")]
-        public int Index { get; set; }
-
-        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
-        [JsonPropertyName("redacted")]
-        public bool Redacted { get; set; }
-    }
-
-#if NET6_0_OR_GREATER
-    [JsonSerializable(typeof(DestinyClassDefinition))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyClassDefinitionJsonContext : JsonSerializerContext { }
-#endif
-
-    /// <summary>
     /// Unlock Flags are small bits (literally, a bit, as in a boolean value) that the game server uses for an extremely wide range of state checks, progress storage, and other interesting tidbits of information.
     /// </summary>
     public class DestinyUnlockDefinition
@@ -4786,6 +4884,42 @@ namespace BungieSharper.Entities.Destiny.Definitions
     [JsonSerializable(typeof(DestinyUnlockDefinition))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyUnlockDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
+    /// <summary>
+    /// An artificial construct of our own creation, to try and put some order on top of Medals and keep them from being one giant, unmanageable and unsorted blob of stats.
+    /// Unfortunately, we haven't had time to do this evaluation yet in Destiny 2, so we're short on Medal Tiers. This will hopefully be updated over time, if Medals continue to exist.
+    /// </summary>
+    public class DestinyMedalTierDefinition
+    {
+        /// <summary>The name of the tier.</summary>
+        [JsonPropertyName("tierName")]
+        public string TierName { get; set; }
+
+        /// <summary>If you're rendering medals by tier, render them in this order (ascending)</summary>
+        [JsonPropertyName("order")]
+        public int Order { get; set; }
+
+        /// <summary>
+        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
+        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
+        /// </summary>
+        [JsonPropertyName("hash")]
+        public uint Hash { get; set; }
+
+        /// <summary>The index of the entity as it was found in the investment tables.</summary>
+        [JsonPropertyName("index")]
+        public int Index { get; set; }
+
+        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
+        [JsonPropertyName("redacted")]
+        public bool Redacted { get; set; }
+    }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyMedalTierDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyMedalTierDefinitionJsonContext : JsonSerializerContext { }
 #endif
 
     /// <summary>

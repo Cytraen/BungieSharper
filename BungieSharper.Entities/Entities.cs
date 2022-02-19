@@ -840,6 +840,26 @@ namespace BungieSharper.Entities
     internal partial class DictionaryComponentResponseOfint64AndDestinyStringVariablesComponentJsonContext : JsonSerializerContext { }
 #endif
 
+    public class DictionaryComponentResponseOfint64AndDestinyCraftablesComponent
+    {
+        [JsonPropertyName("data")]
+        public Dictionary<long, Destiny.Components.Craftables.DestinyCraftablesComponent> Data { get; set; }
+
+        [JsonPropertyName("privacy")]
+        public Components.ComponentPrivacySetting Privacy { get; set; }
+
+        /// <summary>If true, this component is disabled.</summary>
+        [JsonPropertyName("disabled")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public bool? Disabled { get; set; }
+    }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DictionaryComponentResponseOfint64AndDestinyCraftablesComponent))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DictionaryComponentResponseOfint64AndDestinyCraftablesComponentJsonContext : JsonSerializerContext { }
+#endif
+
     public class DestinyBaseItemComponentSetOfint64
     {
         [JsonPropertyName("objectives")]

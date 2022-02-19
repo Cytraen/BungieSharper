@@ -194,6 +194,9 @@ namespace BungieSharper.Entities.Destiny.Definitions.Presentation
 
         [JsonPropertyName("metrics")]
         public IEnumerable<Destiny.Definitions.Presentation.DestinyPresentationNodeMetricChildEntry> Metrics { get; set; }
+
+        [JsonPropertyName("craftables")]
+        public IEnumerable<Destiny.Definitions.Presentation.DestinyPresentationNodeCraftableChildEntry> Craftables { get; set; }
     }
 
 #if NET6_0_OR_GREATER
@@ -202,10 +205,27 @@ namespace BungieSharper.Entities.Destiny.Definitions.Presentation
     internal partial class DestinyPresentationNodeChildrenBlockJsonContext : JsonSerializerContext { }
 #endif
 
+    public class DestinyPresentationNodeChildEntryBase
+    {
+        /// <summary>Use this value to sort the presentation node children in ascending order.</summary>
+        [JsonPropertyName("nodeDisplayPriority")]
+        public uint NodeDisplayPriority { get; set; }
+    }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyPresentationNodeChildEntryBase))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyPresentationNodeChildEntryBaseJsonContext : JsonSerializerContext { }
+#endif
+
     public class DestinyPresentationNodeChildEntry
     {
         [JsonPropertyName("presentationNodeHash")]
         public uint PresentationNodeHash { get; set; }
+
+        /// <summary>Use this value to sort the presentation node children in ascending order.</summary>
+        [JsonPropertyName("nodeDisplayPriority")]
+        public uint NodeDisplayPriority { get; set; }
     }
 
 #if NET6_0_OR_GREATER
@@ -218,6 +238,10 @@ namespace BungieSharper.Entities.Destiny.Definitions.Presentation
     {
         [JsonPropertyName("collectibleHash")]
         public uint CollectibleHash { get; set; }
+
+        /// <summary>Use this value to sort the presentation node children in ascending order.</summary>
+        [JsonPropertyName("nodeDisplayPriority")]
+        public uint NodeDisplayPriority { get; set; }
     }
 
 #if NET6_0_OR_GREATER
@@ -264,6 +288,10 @@ namespace BungieSharper.Entities.Destiny.Definitions.Presentation
     {
         [JsonPropertyName("recordHash")]
         public uint RecordHash { get; set; }
+
+        /// <summary>Use this value to sort the presentation node children in ascending order.</summary>
+        [JsonPropertyName("nodeDisplayPriority")]
+        public uint NodeDisplayPriority { get; set; }
     }
 
 #if NET6_0_OR_GREATER
@@ -276,11 +304,31 @@ namespace BungieSharper.Entities.Destiny.Definitions.Presentation
     {
         [JsonPropertyName("metricHash")]
         public uint MetricHash { get; set; }
+
+        /// <summary>Use this value to sort the presentation node children in ascending order.</summary>
+        [JsonPropertyName("nodeDisplayPriority")]
+        public uint NodeDisplayPriority { get; set; }
     }
 
 #if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyPresentationNodeMetricChildEntry))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyPresentationNodeMetricChildEntryJsonContext : JsonSerializerContext { }
+#endif
+
+    public class DestinyPresentationNodeCraftableChildEntry
+    {
+        [JsonPropertyName("craftableItemHash")]
+        public uint CraftableItemHash { get; set; }
+
+        /// <summary>Use this value to sort the presentation node children in ascending order.</summary>
+        [JsonPropertyName("nodeDisplayPriority")]
+        public uint NodeDisplayPriority { get; set; }
+    }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyPresentationNodeCraftableChildEntry))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyPresentationNodeCraftableChildEntryJsonContext : JsonSerializerContext { }
 #endif
 }

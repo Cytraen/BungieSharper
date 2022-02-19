@@ -1,14 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <Sdk Name="Microsoft.DotNet.PackageValidation" Version="1.0.0-preview.7.21379.12" />
-
   <PropertyGroup>
     <Authors>ashakoor</Authors>
-    <Copyright>Copyright © 2020-2021 ashakoor</Copyright>
+    <Copyright>Copyright © 2020-2022 ashakoor</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/ashakoor/BungieSharper</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <Nullable>enable</Nullable>
     <IsPackable>true</IsPackable>
+    <EnablePackageValidation>true</EnablePackageValidation>
 
     <TargetFrameworks>net5.0;net6.0</TargetFrameworks>
     <VersionPrefix>0.9.0</VersionPrefix>

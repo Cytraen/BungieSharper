@@ -10,10 +10,15 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
         [JsonPropertyName("period")]
         public DateTime Period { get; set; }
 
-        /// <summary>If this activity has "phases", this is the phase at which the activity was started.</summary>
+        /// <summary>OBSOLETE - If this activity has "phases", this is the phase at which the activity was started.</summary>
         [JsonPropertyName("startingPhaseIndex")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? StartingPhaseIndex { get; set; }
+
+        /// <summary>True if the activity was started from the beginning, if that information is available.</summary>
+        [JsonPropertyName("activityWasStartedFromBeginning")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public bool? ActivityWasStartedFromBeginning { get; set; }
 
         /// <summary>Details about the activity.</summary>
         [JsonPropertyName("activityDetails")]

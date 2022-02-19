@@ -155,6 +155,9 @@ namespace BungieSharper.Entities.Common.Models
         [JsonPropertyName("loreRootNodeHash")]
         public uint LoreRootNodeHash { get; set; }
 
+        [JsonPropertyName("craftingRootNodeHash")]
+        public uint CraftingRootNodeHash { get; set; }
+
         [JsonPropertyName("currentRankProgressionHashes")]
         public IEnumerable<uint> CurrentRankProgressionHashes { get; set; }
 

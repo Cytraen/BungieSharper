@@ -305,6 +305,10 @@ namespace BungieSharper.Entities.Destiny.Responses
         [JsonPropertyName("characterStringVariables")]
         public DictionaryComponentResponseOfint64AndDestinyStringVariablesComponent CharacterStringVariables { get; set; }
 
+        /// <summary>COMPONENT TYPE: Craftables</summary>
+        [JsonPropertyName("characterCraftables")]
+        public DictionaryComponentResponseOfint64AndDestinyCraftablesComponent CharacterCraftables { get; set; }
+
         /// <summary>
         /// Information about instanced items across all returned characters, keyed by the item's instance ID.
         /// COMPONENT TYPE: [See inside the DestinyItemComponentSet contract for component types.]

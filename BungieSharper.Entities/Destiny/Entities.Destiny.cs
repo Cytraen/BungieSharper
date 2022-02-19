@@ -168,6 +168,40 @@ namespace BungieSharper.Entities.Destiny
     internal partial class DestinyItemQuantityJsonContext : JsonSerializerContext { }
 #endif
 
+    /// <summary>
+    /// Indicates the type of actions that can be performed
+    /// </summary>
+    public enum SocketTypeActionType : int
+    {
+        InsertPlug = 0,
+        InfuseItem = 1,
+        ReinitializeSocket = 2
+    }
+
+    public enum DestinySocketVisibility : int
+    {
+        Visible = 0,
+        Hidden = 1,
+        HiddenWhenEmpty = 2,
+        HiddenIfNoPlugsAvailable = 3
+    }
+
+    /// <summary>
+    /// Represents the possible and known UI styles used by the game for rendering Socket Categories.
+    /// </summary>
+    public enum DestinySocketCategoryStyle : int
+    {
+        Unknown = 0,
+        Reusable = 1,
+        Consumable = 2,
+        Unlockable = 3,
+        Intrinsic = 4,
+        EnergyMeter = 5,
+        LargePerk = 6,
+        Abilities = 7,
+        Supers = 8
+    }
+
     public enum TierType : int
     {
         Unknown = 0,
@@ -255,6 +289,21 @@ namespace BungieSharper.Entities.Destiny
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DyeReferenceJsonContext : JsonSerializerContext { }
 #endif
+
+    public enum DestinyClass : int
+    {
+        Titan = 0,
+        Hunter = 1,
+        Warlock = 2,
+        Unknown = 3
+    }
+
+    public enum DestinyGender : int
+    {
+        Male = 0,
+        Female = 1,
+        Unknown = 2
+    }
 
     /// <summary>
     /// Describes the type of progression that a vendor has.
@@ -380,40 +429,6 @@ namespace BungieSharper.Entities.Destiny
     }
 
     /// <summary>
-    /// Indicates the type of actions that can be performed
-    /// </summary>
-    public enum SocketTypeActionType : int
-    {
-        InsertPlug = 0,
-        InfuseItem = 1,
-        ReinitializeSocket = 2
-    }
-
-    public enum DestinySocketVisibility : int
-    {
-        Visible = 0,
-        Hidden = 1,
-        HiddenWhenEmpty = 2,
-        HiddenIfNoPlugsAvailable = 3
-    }
-
-    /// <summary>
-    /// Represents the possible and known UI styles used by the game for rendering Socket Categories.
-    /// </summary>
-    public enum DestinySocketCategoryStyle : int
-    {
-        Unknown = 0,
-        Reusable = 1,
-        Consumable = 2,
-        Unlockable = 3,
-        Intrinsic = 4,
-        EnergyMeter = 5,
-        LargePerk = 6,
-        Abilities = 7,
-        Supers = 8
-    }
-
-    /// <summary>
     /// The various known UI styles in which an item can be highlighted. It'll be up to you to determine what you want to show based on this highlighting, BNet doesn't have any assets that correspond to these states. And yeah, RiseOfIron and Comet have their own special highlight states. Don't ask me, I can't imagine they're still used.
     /// </summary>
     public enum ActivityGraphNodeHighlightType : int
@@ -470,7 +485,10 @@ namespace BungieSharper.Entities.Destiny
         ExplicitPercentage = 12,
 
         /// <summary>Show the value as a floating-point number. For example: "4.52" NOTE: Passed along from Investment as whole number with last two digits as decimal values (452 -> 4.52)</summary>
-        RawFloat = 13
+        RawFloat = 13,
+
+        /// <summary>Show the value as a level and a reward.</summary>
+        LevelAndReward = 14
     }
 
     /// <summary>
@@ -492,6 +510,20 @@ namespace BungieSharper.Entities.Destiny
         Void = 4,
         Raid = 5,
         Stasis = 6
+    }
+
+    /// <summary>
+    /// If the objective has a known UI label, this enumeration will represent it.
+    /// </summary>
+    public enum DestinyObjectiveUiStyle : int
+    {
+        None = 0,
+        Highlighted = 1,
+        CraftingWeaponLevel = 2,
+        CraftingWeaponLevelProgress = 3,
+        CraftingWeaponTimestamp = 4,
+        CraftingMementos = 5,
+        CraftingMementoTitle = 6
     }
 
     public enum DestinyActivityNavPointType : int
@@ -577,7 +609,8 @@ namespace BungieSharper.Entities.Destiny
         LegArmor = 29,
         ClassArmor = 30,
         Bow = 31,
-        DummyRepeatableBounty = 32
+        DummyRepeatableBounty = 32,
+        Glaive = 33
     }
 
     /// <summary>
@@ -598,7 +631,8 @@ namespace BungieSharper.Entities.Destiny
         Category = 1,
         Collectibles = 2,
         Records = 3,
-        Metric = 4
+        Metric = 4,
+        Craftable = 5
     }
 
     /// <summary>
@@ -632,13 +666,6 @@ namespace BungieSharper.Entities.Destiny
         Decimal = 4
     }
 
-    public enum DestinyGender : int
-    {
-        Male = 0,
-        Female = 1,
-        Unknown = 2
-    }
-
     public enum DestinyRecordToastStyle : int
     {
         None = 0,
@@ -648,7 +675,8 @@ namespace BungieSharper.Entities.Destiny
         MetaRecord = 4,
         MedalComplete = 5,
         SeasonChallengeComplete = 6,
-        GildedTitleComplete = 7
+        GildedTitleComplete = 7,
+        CraftingRecipeUnlocked = 8
     }
 
     /// <summary>
@@ -798,14 +826,6 @@ namespace BungieSharper.Entities.Destiny
         Finisher = 29
     }
 
-    public enum DestinyClass : int
-    {
-        Titan = 0,
-        Hunter = 1,
-        Warlock = 2,
-        Unknown = 3
-    }
-
     /// <summary>
     /// A plug can optionally have a "Breaker Type": a special ability that can affect units in unique ways. Activating this plug can grant one of these types.
     /// </summary>
@@ -868,7 +888,13 @@ namespace BungieSharper.Entities.Destiny
         Tracked = 2,
 
         /// <summary>If this bit is set, the item has a Masterwork plug inserted. This usually coincides with having a special "glowing" effect applied to the item's icon.</summary>
-        Masterwork = 4
+        Masterwork = 4,
+
+        /// <summary>If this bit is set, the item has been 'crafted' by the player. You may want to represent this visually with a "crafted" icon overlay.</summary>
+        Crafted = 8,
+
+        /// <summary>If this bit is set, the item has a 'highlighted' objective. You may want to represent this with an orange-red icon border color.</summary>
+        HighlightedObjective = 16
     }
 
     /// <summary>
@@ -1005,7 +1031,10 @@ namespace BungieSharper.Entities.Destiny
         Metrics = 1100,
 
         /// <summary>Returns a mapping of localized string variable hashes to values, on a per-account or per-character basis.</summary>
-        StringVariables = 1200
+        StringVariables = 1200,
+
+        /// <summary>Returns summary status information about all "Craftables" aka crafting recipe items.</summary>
+        Craftables = 1300
     }
 
     /// <summary>

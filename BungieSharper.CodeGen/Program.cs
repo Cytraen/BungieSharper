@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -14,31 +13,23 @@ namespace BungieSharper.CodeGen
     internal static class Program
     {
         internal const string BaseEntityNamespace = "BungieSharper.Entities";
-        private static readonly string BungieSharperPath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\..\BungieSharper\"));
-        private static readonly string EntityFolder = BungieSharperPath.TrimEnd('\\') + ".Entities\\";
-        private static readonly string EndpointFolder = BungieSharperPath.TrimEnd('\\') + "\\Endpoints\\";
+        private static readonly string SolutionPath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\..\"));
+        private static readonly string EntityProjectFolder = Path.Combine(SolutionPath, "BungieSharper.Entities");
+        private static readonly string ClientEndpointFolder = Path.Combine(SolutionPath, "BungieSharper", "Endpoints");
 
         internal static OpenApiObject OpenApiDefinition;
 
         private static void Main(string[] args)
         {
-            const string openApiDefUrl = "https://raw.githubusercontent.com/Bungie-net/api/master/openapi.json";
-            string content;
+            var specJsonPath = Path.Combine(SolutionPath, "bnet-api-spec", "openapi.json");
 
-            if (args.Contains("--download-new-definitions") || !File.Exists("openApi.json"))
+            if (!File.Exists(specJsonPath))
             {
-                Console.Write($"Downloading new OpenAPI definitions from {openApiDefUrl}... ");
-                var httpClient = new HttpClient();
-                var response = httpClient.GetAsync(openApiDefUrl).GetAwaiter().GetResult();
-                content = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-                File.WriteAllText("openapi.json", content);
-                Console.WriteLine("done.");
+                Console.WriteLine("Please initialize submodules.");
+                return;
             }
-            else
-            {
-                Console.WriteLine("Using provided OpenAPI definitions.");
-                content = File.ReadAllText("openapi.json");
-            }
+
+            var content = File.ReadAllText(specJsonPath);
 
             var serializerOptions = new JsonSerializerOptions { NumberHandling = JsonNumberHandling.AllowReadingFromString };
 
@@ -48,12 +39,12 @@ namespace BungieSharper.CodeGen
 
             // entities
 
-            foreach (var subDir in Directory.GetDirectories(EntityFolder))
+            foreach (var subDir in Directory.GetDirectories(EntityProjectFolder))
             {
                 Directory.Delete(subDir, true);
             }
 
-            foreach (var file in Directory.GetFiles(EntityFolder))
+            foreach (var file in Directory.GetFiles(EntityProjectFolder))
             {
                 var fileName = file.Split('\\').Last();
 
@@ -139,17 +130,17 @@ namespace BungieSharper.CodeGen
                 }
 
                 WriteFileWithContent(
-                    EntityFolder + location.Replace(EntityFolder, "").Split('\\').First(),
-                    ("Entities." + location.Replace(BungieSharperPath, "").Replace('\\', '.') + ".cs").Replace("..", "."),
+                    Path.Combine(EntityProjectFolder, location.Split('\\').First()),
+                    ("Entities." + location.Replace(SolutionPath, "").Replace('\\', '.') + ".cs").Replace("..", "."),
                     combinedContent
                     );
 
-                Console.WriteLine($"Wrote Entities.{location.Replace(BungieSharperPath, "").Replace('\\', '.')}");
+                Console.WriteLine($"Wrote Entities.{location.Replace(SolutionPath, "").Replace('\\', '.')}");
             }
 
             // endpoints
 
-            foreach (var subDir in Directory.GetDirectories(BungieSharperPath))
+            foreach (var subDir in Directory.GetDirectories(SolutionPath))
             {
                 var folder = subDir.Split('\\').Last();
                 if (folder is "bin" or "obj")
@@ -158,7 +149,7 @@ namespace BungieSharper.CodeGen
                 }
             }
 
-            foreach (var file in Directory.GetFiles(EndpointFolder))
+            foreach (var file in Directory.GetFiles(ClientEndpointFolder))
             {
                 var fileName = file.Split('\\').Last();
 
@@ -234,7 +225,7 @@ namespace BungieSharper.Endpoints
                 }
 
                 WriteFileWithContent(
-                    EndpointFolder,
+                    ClientEndpointFolder,
                     Generation.Mapping.TagToDescription(tag) + ".cs",
                     aggregateFile);
 

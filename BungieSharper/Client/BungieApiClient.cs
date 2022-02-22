@@ -1,8 +1,9 @@
-﻿using BungieSharper.Entities.Exceptions;
+using BungieSharper.Entities.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -223,6 +224,18 @@ namespace BungieSharper.Client
             if (uri.IsAbsoluteUri) throw new ArgumentException("The URI must be relative.", nameof(uri));
 
             return _apiAccessor.GetString(uri, cancelToken);
+        }
+
+        /// <summary>
+        /// Returns the content at the URI (relative to bungie.net) as a generic type.
+        /// </summary>
+        /// <typeparam name="T">The type to return.</typeparam>
+        /// <param name="uri">The URI of the type to return, relative to https://bungie.net/Platform </param>
+        /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
+        /// <returns>The content at the URI, in generic form.</returns>
+        public Task<T> DownloadType<T>(string uri, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(new Uri(uri, UriKind.Relative), null, HttpMethod.Get, authToken, cancelToken);
         }
 
         /// <inheritdoc/>

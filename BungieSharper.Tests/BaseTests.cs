@@ -43,5 +43,23 @@ namespace BungieSharper.Tests
             Assert.Equal(expectedDisplayName, userCard.BungieGlobalDisplayName);
             Assert.Equal(expectedDisplayNameCode, userCard.BungieGlobalDisplayNameCode);
         }
+
+        [Fact]
+        public async Task GetDefinitionTest()
+        {
+            const uint expectedCollectibleHash = 1296095691;
+            const uint expectedBucketTypeHash = 1498876634;
+            const uint expectedInfusionCategoryHash = 2601628231;
+            const uint expectedDamageTypeHash = 3373582085;
+            const string expectedName = "Midnight Coup";
+
+            var actualDefinition = await ClientFixture.TestClient.Api.Destiny2_GetDestinyEntityDefinition<Entities.Destiny.Definitions.DestinyInventoryItemDefinition>("DestinyInventoryItemDefinition", 1128225405);
+
+            Assert.Equal(expectedCollectibleHash, actualDefinition.CollectibleHash);
+            Assert.Equal(expectedBucketTypeHash, actualDefinition.Inventory.BucketTypeHash);
+            Assert.Equal(expectedInfusionCategoryHash, actualDefinition.Quality.InfusionCategoryHash);
+            Assert.Equal(expectedDamageTypeHash, Assert.Single(actualDefinition.DamageTypeHashes));
+            Assert.Equal(expectedName, actualDefinition.DisplayProperties.Name);
+        }
     }
 }

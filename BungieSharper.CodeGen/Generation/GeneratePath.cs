@@ -67,36 +67,38 @@ namespace BungieSharper.CodeGen.Generation
                 switch (param.In)
                 {
                     case ParameterInEnum.Query:
-                    {
-                        var name = param.Name;
-                        var escapedParamEntry = "";
-                        if (paramTypeText.StartsWith("string"))
                         {
-                            escapedParamEntry = $"Uri.EscapeDataString({name})";
-                        }
-                        if (paramTypeText.StartsWith("IEnumerable<"))
-                        {
-                            escapedParamEntry = $"string.Join(\",\", {name}.Select(x => x.ToString()))";
-                        }
+                            var name = param.Name;
+                            var escapedParamEntry = "";
+                            if (paramTypeText.StartsWith("string"))
+                            {
+                                escapedParamEntry = $"Uri.EscapeDataString({name})";
+                            }
+                            if (paramTypeText.StartsWith("IEnumerable<"))
+                            {
+                                escapedParamEntry = $"string.Join(\",\", {name}.Select(x => x.ToString()))";
+                            }
 
-                        if (param.Required != true)
-                        {
-                            var textParam = $"{name} != null ? $\"{name}={{{escapedParamEntry}}}\" : null";
-                            queryParamTextList.Add(textParam);
-                        }
-                        else
-                        {
-                            var textParam = $"$\"{name}={{{escapedParamEntry}}}\"";
-                            queryParamTextList.Add(textParam);
-                        }
+                            if (param.Required != true)
+                            {
+                                var textParam = $"{name} != null ? $\"{name}={{{escapedParamEntry}}}\" : null";
+                                queryParamTextList.Add(textParam);
+                            }
+                            else
+                            {
+                                var textParam = $"$\"{name}={{{escapedParamEntry}}}\"";
+                                queryParamTextList.Add(textParam);
+                            }
 
-                        break;
-                    }
+                            break;
+                        }
                     case ParameterInEnum.Path when paramTypeText.StartsWith("string"):
                         path = path.Replace($"{{{param.Name}}}", $"{{Uri.EscapeDataString({param.Name})}}");
                         break;
+
                     case ParameterInEnum.Path:
                         break;
+
                     case ParameterInEnum.Header:
                         throw new NotSupportedException();
                     case ParameterInEnum.None:
@@ -155,6 +157,17 @@ namespace BungieSharper.CodeGen.Generation
 
             content += $"        public Task<{responseType}> {pathName}({string.Join(", ", declareParams)})\n        {{\n";
             content += $"            return _apiAccessor.ApiRequestAsync<{responseType}>(\n";
+            content += $"                new Uri($\"{path.TrimStart('/')}\"{queryStringParamFinal}, UriKind.Relative),\n";
+
+            content += $"                {(responseMethodInfo.RequestBody != null ? "new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, \"application/json\")" : "null")}, HttpMethod.{httpMethod}, authToken, cancelToken\n";
+            content += "                );\n        }";
+
+            content += "\n\n";
+
+            content += $"        /// <inheritdoc cref=\"{pathName}({string.Join(", ", declareParams.Select(x => x.Split(' ').First()))})\" />\n";
+            content += $"        /// <typeparam name=\"T\">The custom type to deserialize to.</typeparam>\n";
+            content += $"        public Task<T> {pathName}<T>({string.Join(", ", declareParams)})\n        {{\n";
+            content += $"            return _apiAccessor.ApiRequestAsync<T>(\n";
             content += $"                new Uri($\"{path.TrimStart('/')}\"{queryStringParamFinal}, UriKind.Relative),\n";
 
             content += $"                {(responseMethodInfo.RequestBody != null ? "new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, \"application/json\")" : "null")}, HttpMethod.{httpMethod}, authToken, cancelToken\n";

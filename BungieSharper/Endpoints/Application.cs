@@ -26,6 +26,16 @@ namespace BungieSharper.Endpoints
                 );
         }
 
+        /// <inheritdoc cref="App_GetApplicationApiUsage(int, DateTime?, DateTime?, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> App_GetApplicationApiUsage<T>(int applicationId, DateTime? end = null, DateTime? start = null, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
+                new Uri($"App/ApiUsage/{applicationId}/" + HttpRequestGenerator.MakeQuerystring(end != null ? $"end={end}" : null, start != null ? $"start={start}" : null), UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
         /// <summary>
         /// Get list of applications created by Bungie.
         /// </summary>
@@ -34,6 +44,16 @@ namespace BungieSharper.Endpoints
         public Task<IEnumerable<Entities.Applications.Application>> App_GetBungieApplications(string? authToken = null, CancellationToken cancelToken = default)
         {
             return _apiAccessor.ApiRequestAsync<IEnumerable<Entities.Applications.Application>>(
+                new Uri($"App/FirstParty/", UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
+        /// <inheritdoc cref="App_GetBungieApplications(string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> App_GetBungieApplications<T>(string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
                 new Uri($"App/FirstParty/", UriKind.Relative),
                 null, HttpMethod.Get, authToken, cancelToken
                 );

@@ -24,6 +24,16 @@ namespace BungieSharper.Endpoints
                 );
         }
 
+        /// <inheritdoc cref="Destiny2_GetDestinyManifest(string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Destiny2_GetDestinyManifest<T>(string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
+                new Uri($"Destiny2/Manifest/", UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
         /// <summary>
         /// Returns the static definition of an entity of the given Type and hash identifier. Examine the API Documentation for the Type Names of entities that have their own definitions. Note that the return type will always *inherit from* DestinyDefinition, but the specific type returned will be the requested entity type if it can be found. Please don't use this as a chatty alternative to the Manifest database if you require large sets of data, but for simple and one-off accesses this should be handy.
         /// </summary>
@@ -39,6 +49,16 @@ namespace BungieSharper.Endpoints
                 );
         }
 
+        /// <inheritdoc cref="Destiny2_GetDestinyEntityDefinition(string, uint, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Destiny2_GetDestinyEntityDefinition<T>(string entityType, uint hashIdentifier, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
+                new Uri($"Destiny2/Manifest/{Uri.EscapeDataString(entityType)}/{hashIdentifier}/", UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
         /// <summary>
         /// Returns a list of Destiny memberships given a global Bungie Display Name. This method will hide overridden memberships due to cross save.
         /// </summary>
@@ -48,6 +68,16 @@ namespace BungieSharper.Endpoints
         public Task<IEnumerable<Entities.User.UserInfoCard>> Destiny2_SearchDestinyPlayerByBungieName(Entities.BungieMembershipType membershipType, Entities.User.ExactSearchRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
         {
             return _apiAccessor.ApiRequestAsync<IEnumerable<Entities.User.UserInfoCard>>(
+                new Uri($"Destiny2/SearchDestinyPlayerByBungieName/{membershipType}/", UriKind.Relative),
+                new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
+                );
+        }
+
+        /// <inheritdoc cref="Destiny2_SearchDestinyPlayerByBungieName(Entities.BungieMembershipType, Entities.User.ExactSearchRequest, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Destiny2_SearchDestinyPlayerByBungieName<T>(Entities.BungieMembershipType membershipType, Entities.User.ExactSearchRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
                 new Uri($"Destiny2/SearchDestinyPlayerByBungieName/{membershipType}/", UriKind.Relative),
                 new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
                 );
@@ -69,6 +99,16 @@ namespace BungieSharper.Endpoints
                 );
         }
 
+        /// <inheritdoc cref="Destiny2_GetLinkedProfiles(long, Entities.BungieMembershipType, bool?, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Destiny2_GetLinkedProfiles<T>(long membershipId, Entities.BungieMembershipType membershipType, bool? getAllMemberships = null, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
+                new Uri($"Destiny2/{membershipType}/Profile/{membershipId}/LinkedProfiles/" + HttpRequestGenerator.MakeQuerystring(getAllMemberships != null ? $"getAllMemberships={getAllMemberships}" : null), UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
         /// <summary>
         /// Returns Destiny Profile information for the supplied membership.
         /// </summary>
@@ -80,6 +120,16 @@ namespace BungieSharper.Endpoints
         public Task<Entities.Destiny.Responses.DestinyProfileResponse> Destiny2_GetProfile(long destinyMembershipId, Entities.BungieMembershipType membershipType, IEnumerable<Entities.Destiny.DestinyComponentType>? components = null, string? authToken = null, CancellationToken cancelToken = default)
         {
             return _apiAccessor.ApiRequestAsync<Entities.Destiny.Responses.DestinyProfileResponse>(
+                new Uri($"Destiny2/{membershipType}/Profile/{destinyMembershipId}/" + HttpRequestGenerator.MakeQuerystring(components != null ? $"components={string.Join(",", components.Select(x => x.ToString()))}" : null), UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
+        /// <inheritdoc cref="Destiny2_GetProfile(long, Entities.BungieMembershipType, IEnumerable<Entities.Destiny.DestinyComponentType>?, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Destiny2_GetProfile<T>(long destinyMembershipId, Entities.BungieMembershipType membershipType, IEnumerable<Entities.Destiny.DestinyComponentType>? components = null, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
                 new Uri($"Destiny2/{membershipType}/Profile/{destinyMembershipId}/" + HttpRequestGenerator.MakeQuerystring(components != null ? $"components={string.Join(",", components.Select(x => x.ToString()))}" : null), UriKind.Relative),
                 null, HttpMethod.Get, authToken, cancelToken
                 );
@@ -102,6 +152,16 @@ namespace BungieSharper.Endpoints
                 );
         }
 
+        /// <inheritdoc cref="Destiny2_GetCharacter(long, long, Entities.BungieMembershipType, IEnumerable<Entities.Destiny.DestinyComponentType>?, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Destiny2_GetCharacter<T>(long characterId, long destinyMembershipId, Entities.BungieMembershipType membershipType, IEnumerable<Entities.Destiny.DestinyComponentType>? components = null, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
+                new Uri($"Destiny2/{membershipType}/Profile/{destinyMembershipId}/Character/{characterId}/" + HttpRequestGenerator.MakeQuerystring(components != null ? $"components={string.Join(",", components.Select(x => x.ToString()))}" : null), UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
         /// <summary>
         /// Returns information on the weekly clan rewards and if the clan has earned them or not. Note that this will always report rewards as not redeemed.
         /// </summary>
@@ -111,6 +171,16 @@ namespace BungieSharper.Endpoints
         public Task<Entities.Destiny.Milestones.DestinyMilestone> Destiny2_GetClanWeeklyRewardState(long groupId, string? authToken = null, CancellationToken cancelToken = default)
         {
             return _apiAccessor.ApiRequestAsync<Entities.Destiny.Milestones.DestinyMilestone>(
+                new Uri($"Destiny2/Clan/{groupId}/WeeklyRewardState/", UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
+        /// <inheritdoc cref="Destiny2_GetClanWeeklyRewardState(long, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Destiny2_GetClanWeeklyRewardState<T>(long groupId, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
                 new Uri($"Destiny2/Clan/{groupId}/WeeklyRewardState/", UriKind.Relative),
                 null, HttpMethod.Get, authToken, cancelToken
                 );
@@ -129,6 +199,16 @@ namespace BungieSharper.Endpoints
                 );
         }
 
+        /// <inheritdoc cref="Destiny2_GetClanBannerSource(string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Destiny2_GetClanBannerSource<T>(string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
+                new Uri($"Destiny2/Clan/ClanBannerDictionary/", UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
         /// <summary>
         /// Retrieve the details of an instanced Destiny Item. An instanced Destiny item is one with an ItemInstanceId. Non-instanced items, such as materials, have no useful instance-specific details and thus are not queryable here.
         /// </summary>
@@ -141,6 +221,16 @@ namespace BungieSharper.Endpoints
         public Task<Entities.Destiny.Responses.DestinyItemResponse> Destiny2_GetItem(long destinyMembershipId, long itemInstanceId, Entities.BungieMembershipType membershipType, IEnumerable<Entities.Destiny.DestinyComponentType>? components = null, string? authToken = null, CancellationToken cancelToken = default)
         {
             return _apiAccessor.ApiRequestAsync<Entities.Destiny.Responses.DestinyItemResponse>(
+                new Uri($"Destiny2/{membershipType}/Profile/{destinyMembershipId}/Item/{itemInstanceId}/" + HttpRequestGenerator.MakeQuerystring(components != null ? $"components={string.Join(",", components.Select(x => x.ToString()))}" : null), UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
+        /// <inheritdoc cref="Destiny2_GetItem(long, long, Entities.BungieMembershipType, IEnumerable<Entities.Destiny.DestinyComponentType>?, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Destiny2_GetItem<T>(long destinyMembershipId, long itemInstanceId, Entities.BungieMembershipType membershipType, IEnumerable<Entities.Destiny.DestinyComponentType>? components = null, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
                 new Uri($"Destiny2/{membershipType}/Profile/{destinyMembershipId}/Item/{itemInstanceId}/" + HttpRequestGenerator.MakeQuerystring(components != null ? $"components={string.Join(",", components.Select(x => x.ToString()))}" : null), UriKind.Relative),
                 null, HttpMethod.Get, authToken, cancelToken
                 );
@@ -164,6 +254,16 @@ namespace BungieSharper.Endpoints
                 );
         }
 
+        /// <inheritdoc cref="Destiny2_GetVendors(long, long, Entities.BungieMembershipType, IEnumerable<Entities.Destiny.DestinyComponentType>?, Entities.Destiny.DestinyVendorFilter?, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Destiny2_GetVendors<T>(long characterId, long destinyMembershipId, Entities.BungieMembershipType membershipType, IEnumerable<Entities.Destiny.DestinyComponentType>? components = null, Entities.Destiny.DestinyVendorFilter? filter = null, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
+                new Uri($"Destiny2/{membershipType}/Profile/{destinyMembershipId}/Character/{characterId}/Vendors/" + HttpRequestGenerator.MakeQuerystring(components != null ? $"components={string.Join(",", components.Select(x => x.ToString()))}" : null, filter != null ? $"filter={filter}" : null), UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
         /// <summary>
         /// Get the details of a specific Vendor.
         /// </summary>
@@ -182,6 +282,16 @@ namespace BungieSharper.Endpoints
                 );
         }
 
+        /// <inheritdoc cref="Destiny2_GetVendor(long, long, Entities.BungieMembershipType, uint, IEnumerable<Entities.Destiny.DestinyComponentType>?, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Destiny2_GetVendor<T>(long characterId, long destinyMembershipId, Entities.BungieMembershipType membershipType, uint vendorHash, IEnumerable<Entities.Destiny.DestinyComponentType>? components = null, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
+                new Uri($"Destiny2/{membershipType}/Profile/{destinyMembershipId}/Character/{characterId}/Vendors/{vendorHash}/" + HttpRequestGenerator.MakeQuerystring(components != null ? $"components={string.Join(",", components.Select(x => x.ToString()))}" : null), UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
         /// <summary>
         /// Get items available from vendors where the vendors have items for sale that are common for everyone. If any portion of the Vendor's available inventory is character or account specific, we will be unable to return their data from this endpoint due to the way that available inventory is computed. As I am often guilty of saying: 'It's a long story...'
         /// </summary>
@@ -191,6 +301,16 @@ namespace BungieSharper.Endpoints
         public Task<Entities.Destiny.Responses.DestinyPublicVendorsResponse> Destiny2_GetPublicVendors(IEnumerable<Entities.Destiny.DestinyComponentType>? components = null, string? authToken = null, CancellationToken cancelToken = default)
         {
             return _apiAccessor.ApiRequestAsync<Entities.Destiny.Responses.DestinyPublicVendorsResponse>(
+                new Uri($"Destiny2/Vendors/" + HttpRequestGenerator.MakeQuerystring(components != null ? $"components={string.Join(",", components.Select(x => x.ToString()))}" : null), UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
+        /// <inheritdoc cref="Destiny2_GetPublicVendors(IEnumerable<Entities.Destiny.DestinyComponentType>?, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Destiny2_GetPublicVendors<T>(IEnumerable<Entities.Destiny.DestinyComponentType>? components = null, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
                 new Uri($"Destiny2/Vendors/" + HttpRequestGenerator.MakeQuerystring(components != null ? $"components={string.Join(",", components.Select(x => x.ToString()))}" : null), UriKind.Relative),
                 null, HttpMethod.Get, authToken, cancelToken
                 );
@@ -214,6 +334,16 @@ namespace BungieSharper.Endpoints
                 );
         }
 
+        /// <inheritdoc cref="Destiny2_GetCollectibleNodeDetails(long, uint, long, Entities.BungieMembershipType, IEnumerable<Entities.Destiny.DestinyComponentType>?, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Destiny2_GetCollectibleNodeDetails<T>(long characterId, uint collectiblePresentationNodeHash, long destinyMembershipId, Entities.BungieMembershipType membershipType, IEnumerable<Entities.Destiny.DestinyComponentType>? components = null, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
+                new Uri($"Destiny2/{membershipType}/Profile/{destinyMembershipId}/Character/{characterId}/Collectibles/{collectiblePresentationNodeHash}/" + HttpRequestGenerator.MakeQuerystring(components != null ? $"components={string.Join(",", components.Select(x => x.ToString()))}" : null), UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
         /// <summary>
         /// Transfer an item to/from your vault. You must have a valid Destiny account. You must also pass BOTH a reference AND an instance ID if it's an instanced item. itshappening.gif
         /// Requires OAuth2 scope(s): MoveEquipDestinyItems
@@ -223,6 +353,16 @@ namespace BungieSharper.Endpoints
         public Task<int> Destiny2_TransferItem(Entities.Destiny.Requests.DestinyItemTransferRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
         {
             return _apiAccessor.ApiRequestAsync<int>(
+                new Uri($"Destiny2/Actions/Items/TransferItem/", UriKind.Relative),
+                new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
+                );
+        }
+
+        /// <inheritdoc cref="Destiny2_TransferItem(Entities.Destiny.Requests.DestinyItemTransferRequest, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Destiny2_TransferItem<T>(Entities.Destiny.Requests.DestinyItemTransferRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
                 new Uri($"Destiny2/Actions/Items/TransferItem/", UriKind.Relative),
                 new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
                 );
@@ -242,6 +382,16 @@ namespace BungieSharper.Endpoints
                 );
         }
 
+        /// <inheritdoc cref="Destiny2_PullFromPostmaster(Entities.Destiny.Requests.Actions.DestinyPostmasterTransferRequest, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Destiny2_PullFromPostmaster<T>(Entities.Destiny.Requests.Actions.DestinyPostmasterTransferRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
+                new Uri($"Destiny2/Actions/Items/PullFromPostmaster/", UriKind.Relative),
+                new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
+                );
+        }
+
         /// <summary>
         /// Equip an item. You must have a valid Destiny Account, and either be in a social space, in orbit, or offline.
         /// Requires OAuth2 scope(s): MoveEquipDestinyItems
@@ -251,6 +401,16 @@ namespace BungieSharper.Endpoints
         public Task<int> Destiny2_EquipItem(Entities.Destiny.Requests.Actions.DestinyItemActionRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
         {
             return _apiAccessor.ApiRequestAsync<int>(
+                new Uri($"Destiny2/Actions/Items/EquipItem/", UriKind.Relative),
+                new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
+                );
+        }
+
+        /// <inheritdoc cref="Destiny2_EquipItem(Entities.Destiny.Requests.Actions.DestinyItemActionRequest, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Destiny2_EquipItem<T>(Entities.Destiny.Requests.Actions.DestinyItemActionRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
                 new Uri($"Destiny2/Actions/Items/EquipItem/", UriKind.Relative),
                 new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
                 );
@@ -270,6 +430,16 @@ namespace BungieSharper.Endpoints
                 );
         }
 
+        /// <inheritdoc cref="Destiny2_EquipItems(Entities.Destiny.Requests.Actions.DestinyItemSetActionRequest, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Destiny2_EquipItems<T>(Entities.Destiny.Requests.Actions.DestinyItemSetActionRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
+                new Uri($"Destiny2/Actions/Items/EquipItems/", UriKind.Relative),
+                new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
+                );
+        }
+
         /// <summary>
         /// Set the Lock State for an instanced item. You must have a valid Destiny Account.
         /// Requires OAuth2 scope(s): MoveEquipDestinyItems
@@ -279,6 +449,16 @@ namespace BungieSharper.Endpoints
         public Task<int> Destiny2_SetItemLockState(Entities.Destiny.Requests.Actions.DestinyItemStateRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
         {
             return _apiAccessor.ApiRequestAsync<int>(
+                new Uri($"Destiny2/Actions/Items/SetLockState/", UriKind.Relative),
+                new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
+                );
+        }
+
+        /// <inheritdoc cref="Destiny2_SetItemLockState(Entities.Destiny.Requests.Actions.DestinyItemStateRequest, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Destiny2_SetItemLockState<T>(Entities.Destiny.Requests.Actions.DestinyItemStateRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
                 new Uri($"Destiny2/Actions/Items/SetLockState/", UriKind.Relative),
                 new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
                 );
@@ -298,6 +478,16 @@ namespace BungieSharper.Endpoints
                 );
         }
 
+        /// <inheritdoc cref="Destiny2_SetQuestTrackedState(Entities.Destiny.Requests.Actions.DestinyItemStateRequest, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Destiny2_SetQuestTrackedState<T>(Entities.Destiny.Requests.Actions.DestinyItemStateRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
+                new Uri($"Destiny2/Actions/Items/SetTrackedState/", UriKind.Relative),
+                new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
+                );
+        }
+
         /// <summary>
         /// Insert a plug into a socketed item. I know how it sounds, but I assure you it's much more G-rated than you might be guessing. We haven't decided yet whether this will be able to insert plugs that have side effects, but if we do it will require special scope permission for an application attempting to do so. You must have a valid Destiny Account, and either be in a social space, in orbit, or offline. Request must include proof of permission for 'InsertPlugs' from the account owner.
         /// Requires OAuth2 scope(s): AdvancedWriteActions
@@ -307,6 +497,16 @@ namespace BungieSharper.Endpoints
         public Task<Entities.Destiny.Responses.DestinyItemChangeResponse> Destiny2_InsertSocketPlug(Entities.Destiny.Requests.Actions.DestinyInsertPlugsActionRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
         {
             return _apiAccessor.ApiRequestAsync<Entities.Destiny.Responses.DestinyItemChangeResponse>(
+                new Uri($"Destiny2/Actions/Items/InsertSocketPlug/", UriKind.Relative),
+                new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
+                );
+        }
+
+        /// <inheritdoc cref="Destiny2_InsertSocketPlug(Entities.Destiny.Requests.Actions.DestinyInsertPlugsActionRequest, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Destiny2_InsertSocketPlug<T>(Entities.Destiny.Requests.Actions.DestinyInsertPlugsActionRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
                 new Uri($"Destiny2/Actions/Items/InsertSocketPlug/", UriKind.Relative),
                 new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
                 );
@@ -326,6 +526,16 @@ namespace BungieSharper.Endpoints
                 );
         }
 
+        /// <inheritdoc cref="Destiny2_InsertSocketPlugFree(Entities.Destiny.Requests.Actions.DestinyInsertPlugsFreeActionRequest, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Destiny2_InsertSocketPlugFree<T>(Entities.Destiny.Requests.Actions.DestinyInsertPlugsFreeActionRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
+                new Uri($"Destiny2/Actions/Items/InsertSocketPlugFree/", UriKind.Relative),
+                new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
+                );
+        }
+
         /// <summary>
         /// Gets the available post game carnage report for the activity ID.
         /// </summary>
@@ -335,6 +545,16 @@ namespace BungieSharper.Endpoints
         public Task<Entities.Destiny.HistoricalStats.DestinyPostGameCarnageReportData> Destiny2_GetPostGameCarnageReport(long activityId, string? authToken = null, CancellationToken cancelToken = default)
         {
             return _apiAccessor.ApiRequestAsync<Entities.Destiny.HistoricalStats.DestinyPostGameCarnageReportData>(
+                new Uri($"Destiny2/Stats/PostGameCarnageReport/{activityId}/", UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
+        /// <inheritdoc cref="Destiny2_GetPostGameCarnageReport(long, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Destiny2_GetPostGameCarnageReport<T>(long activityId, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
                 new Uri($"Destiny2/Stats/PostGameCarnageReport/{activityId}/", UriKind.Relative),
                 null, HttpMethod.Get, authToken, cancelToken
                 );
@@ -355,6 +575,16 @@ namespace BungieSharper.Endpoints
                 );
         }
 
+        /// <inheritdoc cref="Destiny2_ReportOffensivePostGameCarnageReportPlayer(long, Entities.Destiny.Reporting.Requests.DestinyReportOffensePgcrRequest, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Destiny2_ReportOffensivePostGameCarnageReportPlayer<T>(long activityId, Entities.Destiny.Reporting.Requests.DestinyReportOffensePgcrRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
+                new Uri($"Destiny2/Stats/PostGameCarnageReport/{activityId}/Report/", UriKind.Relative),
+                new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
+                );
+        }
+
         /// <summary>
         /// Gets historical stats definitions.
         /// </summary>
@@ -363,6 +593,16 @@ namespace BungieSharper.Endpoints
         public Task<Dictionary<string, Entities.Destiny.HistoricalStats.Definitions.DestinyHistoricalStatsDefinition>> Destiny2_GetHistoricalStatsDefinition(string? authToken = null, CancellationToken cancelToken = default)
         {
             return _apiAccessor.ApiRequestAsync<Dictionary<string, Entities.Destiny.HistoricalStats.Definitions.DestinyHistoricalStatsDefinition>>(
+                new Uri($"Destiny2/Stats/Definition/", UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
+        /// <inheritdoc cref="Destiny2_GetHistoricalStatsDefinition(string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Destiny2_GetHistoricalStatsDefinition<T>(string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
                 new Uri($"Destiny2/Stats/Definition/", UriKind.Relative),
                 null, HttpMethod.Get, authToken, cancelToken
                 );
@@ -385,6 +625,16 @@ namespace BungieSharper.Endpoints
                 );
         }
 
+        /// <inheritdoc cref="Destiny2_GetClanLeaderboards(long, int?, string?, string?, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Destiny2_GetClanLeaderboards<T>(long groupId, int? maxtop = null, string? modes = null, string? statid = null, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
+                new Uri($"Destiny2/Stats/Leaderboards/Clans/{groupId}/" + HttpRequestGenerator.MakeQuerystring(maxtop != null ? $"maxtop={maxtop}" : null, modes != null ? $"modes={Uri.EscapeDataString(modes)}" : null, statid != null ? $"statid={Uri.EscapeDataString(statid)}" : null), UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
         /// <summary>
         /// Gets aggregated stats for a clan using the same categories as the clan leaderboards. PREVIEW: This endpoint is still in beta, and may experience rough edges. The schema is in final form, but there may be bugs that prevent desirable operation.
         /// </summary>
@@ -395,6 +645,16 @@ namespace BungieSharper.Endpoints
         public Task<IEnumerable<Entities.Destiny.HistoricalStats.DestinyClanAggregateStat>> Destiny2_GetClanAggregateStats(long groupId, string? modes = null, string? authToken = null, CancellationToken cancelToken = default)
         {
             return _apiAccessor.ApiRequestAsync<IEnumerable<Entities.Destiny.HistoricalStats.DestinyClanAggregateStat>>(
+                new Uri($"Destiny2/Stats/AggregateClanStats/{groupId}/" + HttpRequestGenerator.MakeQuerystring(modes != null ? $"modes={Uri.EscapeDataString(modes)}" : null), UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
+        /// <inheritdoc cref="Destiny2_GetClanAggregateStats(long, string?, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Destiny2_GetClanAggregateStats<T>(long groupId, string? modes = null, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
                 new Uri($"Destiny2/Stats/AggregateClanStats/{groupId}/" + HttpRequestGenerator.MakeQuerystring(modes != null ? $"modes={Uri.EscapeDataString(modes)}" : null), UriKind.Relative),
                 null, HttpMethod.Get, authToken, cancelToken
                 );
@@ -413,6 +673,16 @@ namespace BungieSharper.Endpoints
         public Task<Dictionary<string, Dictionary<string, Entities.Destiny.HistoricalStats.DestinyLeaderboard>>> Destiny2_GetLeaderboards(long destinyMembershipId, Entities.BungieMembershipType membershipType, int? maxtop = null, string? modes = null, string? statid = null, string? authToken = null, CancellationToken cancelToken = default)
         {
             return _apiAccessor.ApiRequestAsync<Dictionary<string, Dictionary<string, Entities.Destiny.HistoricalStats.DestinyLeaderboard>>>(
+                new Uri($"Destiny2/{membershipType}/Account/{destinyMembershipId}/Stats/Leaderboards/" + HttpRequestGenerator.MakeQuerystring(maxtop != null ? $"maxtop={maxtop}" : null, modes != null ? $"modes={Uri.EscapeDataString(modes)}" : null, statid != null ? $"statid={Uri.EscapeDataString(statid)}" : null), UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
+        /// <inheritdoc cref="Destiny2_GetLeaderboards(long, Entities.BungieMembershipType, int?, string?, string?, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Destiny2_GetLeaderboards<T>(long destinyMembershipId, Entities.BungieMembershipType membershipType, int? maxtop = null, string? modes = null, string? statid = null, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
                 new Uri($"Destiny2/{membershipType}/Account/{destinyMembershipId}/Stats/Leaderboards/" + HttpRequestGenerator.MakeQuerystring(maxtop != null ? $"maxtop={maxtop}" : null, modes != null ? $"modes={Uri.EscapeDataString(modes)}" : null, statid != null ? $"statid={Uri.EscapeDataString(statid)}" : null), UriKind.Relative),
                 null, HttpMethod.Get, authToken, cancelToken
                 );
@@ -437,6 +707,16 @@ namespace BungieSharper.Endpoints
                 );
         }
 
+        /// <inheritdoc cref="Destiny2_GetLeaderboardsForCharacter(long, long, Entities.BungieMembershipType, int?, string?, string?, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Destiny2_GetLeaderboardsForCharacter<T>(long characterId, long destinyMembershipId, Entities.BungieMembershipType membershipType, int? maxtop = null, string? modes = null, string? statid = null, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
+                new Uri($"Destiny2/Stats/Leaderboards/{membershipType}/{destinyMembershipId}/{characterId}/" + HttpRequestGenerator.MakeQuerystring(maxtop != null ? $"maxtop={maxtop}" : null, modes != null ? $"modes={Uri.EscapeDataString(modes)}" : null, statid != null ? $"statid={Uri.EscapeDataString(statid)}" : null), UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
         /// <summary>
         /// Gets a page list of Destiny items.
         /// </summary>
@@ -448,6 +728,16 @@ namespace BungieSharper.Endpoints
         public Task<Entities.Destiny.Definitions.DestinyEntitySearchResult> Destiny2_SearchDestinyEntities(string searchTerm, string type, int? page = null, string? authToken = null, CancellationToken cancelToken = default)
         {
             return _apiAccessor.ApiRequestAsync<Entities.Destiny.Definitions.DestinyEntitySearchResult>(
+                new Uri($"Destiny2/Armory/Search/{Uri.EscapeDataString(type)}/{Uri.EscapeDataString(searchTerm)}/" + HttpRequestGenerator.MakeQuerystring(page != null ? $"page={page}" : null), UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
+        /// <inheritdoc cref="Destiny2_SearchDestinyEntities(string, string, int?, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Destiny2_SearchDestinyEntities<T>(string searchTerm, string type, int? page = null, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
                 new Uri($"Destiny2/Armory/Search/{Uri.EscapeDataString(type)}/{Uri.EscapeDataString(searchTerm)}/" + HttpRequestGenerator.MakeQuerystring(page != null ? $"page={page}" : null), UriKind.Relative),
                 null, HttpMethod.Get, authToken, cancelToken
                 );
@@ -474,6 +764,16 @@ namespace BungieSharper.Endpoints
                 );
         }
 
+        /// <inheritdoc cref="Destiny2_GetHistoricalStats(long, long, Entities.BungieMembershipType, DateTime?, DateTime?, IEnumerable<Entities.Destiny.HistoricalStats.Definitions.DestinyStatsGroupType>?, IEnumerable<Entities.Destiny.HistoricalStats.Definitions.DestinyActivityModeType>?, Entities.Destiny.HistoricalStats.Definitions.PeriodType?, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Destiny2_GetHistoricalStats<T>(long characterId, long destinyMembershipId, Entities.BungieMembershipType membershipType, DateTime? dayend = null, DateTime? daystart = null, IEnumerable<Entities.Destiny.HistoricalStats.Definitions.DestinyStatsGroupType>? groups = null, IEnumerable<Entities.Destiny.HistoricalStats.Definitions.DestinyActivityModeType>? modes = null, Entities.Destiny.HistoricalStats.Definitions.PeriodType? periodType = null, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
+                new Uri($"Destiny2/{membershipType}/Account/{destinyMembershipId}/Character/{characterId}/Stats/" + HttpRequestGenerator.MakeQuerystring(dayend != null ? $"dayend={dayend}" : null, daystart != null ? $"daystart={daystart}" : null, groups != null ? $"groups={string.Join(",", groups.Select(x => x.ToString()))}" : null, modes != null ? $"modes={string.Join(",", modes.Select(x => x.ToString()))}" : null, periodType != null ? $"periodType={periodType}" : null), UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
         /// <summary>
         /// Gets aggregate historical stats organized around each character for a given account.
         /// </summary>
@@ -485,6 +785,16 @@ namespace BungieSharper.Endpoints
         public Task<Entities.Destiny.HistoricalStats.DestinyHistoricalStatsAccountResult> Destiny2_GetHistoricalStatsForAccount(long destinyMembershipId, Entities.BungieMembershipType membershipType, IEnumerable<Entities.Destiny.HistoricalStats.Definitions.DestinyStatsGroupType>? groups = null, string? authToken = null, CancellationToken cancelToken = default)
         {
             return _apiAccessor.ApiRequestAsync<Entities.Destiny.HistoricalStats.DestinyHistoricalStatsAccountResult>(
+                new Uri($"Destiny2/{membershipType}/Account/{destinyMembershipId}/Stats/" + HttpRequestGenerator.MakeQuerystring(groups != null ? $"groups={string.Join(",", groups.Select(x => x.ToString()))}" : null), UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
+        /// <inheritdoc cref="Destiny2_GetHistoricalStatsForAccount(long, Entities.BungieMembershipType, IEnumerable<Entities.Destiny.HistoricalStats.Definitions.DestinyStatsGroupType>?, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Destiny2_GetHistoricalStatsForAccount<T>(long destinyMembershipId, Entities.BungieMembershipType membershipType, IEnumerable<Entities.Destiny.HistoricalStats.Definitions.DestinyStatsGroupType>? groups = null, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
                 new Uri($"Destiny2/{membershipType}/Account/{destinyMembershipId}/Stats/" + HttpRequestGenerator.MakeQuerystring(groups != null ? $"groups={string.Join(",", groups.Select(x => x.ToString()))}" : null), UriKind.Relative),
                 null, HttpMethod.Get, authToken, cancelToken
                 );
@@ -509,6 +819,16 @@ namespace BungieSharper.Endpoints
                 );
         }
 
+        /// <inheritdoc cref="Destiny2_GetActivityHistory(long, long, Entities.BungieMembershipType, int?, Entities.Destiny.HistoricalStats.Definitions.DestinyActivityModeType?, int?, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Destiny2_GetActivityHistory<T>(long characterId, long destinyMembershipId, Entities.BungieMembershipType membershipType, int? count = null, Entities.Destiny.HistoricalStats.Definitions.DestinyActivityModeType? mode = null, int? page = null, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
+                new Uri($"Destiny2/{membershipType}/Account/{destinyMembershipId}/Character/{characterId}/Stats/Activities/" + HttpRequestGenerator.MakeQuerystring(count != null ? $"count={count}" : null, mode != null ? $"mode={mode}" : null, page != null ? $"page={page}" : null), UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
         /// <summary>
         /// Gets details about unique weapon usage, including all exotic weapons.
         /// </summary>
@@ -520,6 +840,16 @@ namespace BungieSharper.Endpoints
         public Task<Entities.Destiny.HistoricalStats.DestinyHistoricalWeaponStatsData> Destiny2_GetUniqueWeaponHistory(long characterId, long destinyMembershipId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
         {
             return _apiAccessor.ApiRequestAsync<Entities.Destiny.HistoricalStats.DestinyHistoricalWeaponStatsData>(
+                new Uri($"Destiny2/{membershipType}/Account/{destinyMembershipId}/Character/{characterId}/Stats/UniqueWeapons/", UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
+        /// <inheritdoc cref="Destiny2_GetUniqueWeaponHistory(long, long, Entities.BungieMembershipType, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Destiny2_GetUniqueWeaponHistory<T>(long characterId, long destinyMembershipId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
                 new Uri($"Destiny2/{membershipType}/Account/{destinyMembershipId}/Character/{characterId}/Stats/UniqueWeapons/", UriKind.Relative),
                 null, HttpMethod.Get, authToken, cancelToken
                 );
@@ -541,6 +871,16 @@ namespace BungieSharper.Endpoints
                 );
         }
 
+        /// <inheritdoc cref="Destiny2_GetDestinyAggregateActivityStats(long, long, Entities.BungieMembershipType, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Destiny2_GetDestinyAggregateActivityStats<T>(long characterId, long destinyMembershipId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
+                new Uri($"Destiny2/{membershipType}/Account/{destinyMembershipId}/Character/{characterId}/Stats/AggregateActivityStats/", UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
         /// <summary>
         /// Gets custom localized content for the milestone of the given hash, if it exists.
         /// </summary>
@@ -555,6 +895,16 @@ namespace BungieSharper.Endpoints
                 );
         }
 
+        /// <inheritdoc cref="Destiny2_GetPublicMilestoneContent(uint, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Destiny2_GetPublicMilestoneContent<T>(uint milestoneHash, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
+                new Uri($"Destiny2/Milestones/{milestoneHash}/Content/", UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
         /// <summary>
         /// Gets public information about currently available Milestones.
         /// </summary>
@@ -563,6 +913,16 @@ namespace BungieSharper.Endpoints
         public Task<Dictionary<uint, Entities.Destiny.Milestones.DestinyPublicMilestone>> Destiny2_GetPublicMilestones(string? authToken = null, CancellationToken cancelToken = default)
         {
             return _apiAccessor.ApiRequestAsync<Dictionary<uint, Entities.Destiny.Milestones.DestinyPublicMilestone>>(
+                new Uri($"Destiny2/Milestones/", UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
+        /// <inheritdoc cref="Destiny2_GetPublicMilestones(string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Destiny2_GetPublicMilestones<T>(string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
                 new Uri($"Destiny2/Milestones/", UriKind.Relative),
                 null, HttpMethod.Get, authToken, cancelToken
                 );
@@ -582,6 +942,16 @@ namespace BungieSharper.Endpoints
                 );
         }
 
+        /// <inheritdoc cref="Destiny2_AwaInitializeRequest(Entities.Destiny.Advanced.AwaPermissionRequested, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Destiny2_AwaInitializeRequest<T>(Entities.Destiny.Advanced.AwaPermissionRequested requestBody, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
+                new Uri($"Destiny2/Awa/Initialize/", UriKind.Relative),
+                new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
+                );
+        }
+
         /// <summary>
         /// Provide the result of the user interaction. Called by the Bungie Destiny App to approve or reject a request.
         /// </summary>
@@ -590,6 +960,16 @@ namespace BungieSharper.Endpoints
         public Task<int> Destiny2_AwaProvideAuthorizationResult(Entities.Destiny.Advanced.AwaUserResponse requestBody, string? authToken = null, CancellationToken cancelToken = default)
         {
             return _apiAccessor.ApiRequestAsync<int>(
+                new Uri($"Destiny2/Awa/AwaProvideAuthorizationResult/", UriKind.Relative),
+                new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
+                );
+        }
+
+        /// <inheritdoc cref="Destiny2_AwaProvideAuthorizationResult(Entities.Destiny.Advanced.AwaUserResponse, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Destiny2_AwaProvideAuthorizationResult<T>(Entities.Destiny.Advanced.AwaUserResponse requestBody, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
                 new Uri($"Destiny2/Awa/AwaProvideAuthorizationResult/", UriKind.Relative),
                 new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
                 );
@@ -605,6 +985,16 @@ namespace BungieSharper.Endpoints
         public Task<Entities.Destiny.Advanced.AwaAuthorizationResult> Destiny2_AwaGetActionToken(string correlationId, string? authToken = null, CancellationToken cancelToken = default)
         {
             return _apiAccessor.ApiRequestAsync<Entities.Destiny.Advanced.AwaAuthorizationResult>(
+                new Uri($"Destiny2/Awa/GetActionToken/{Uri.EscapeDataString(correlationId)}/", UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
+        /// <inheritdoc cref="Destiny2_AwaGetActionToken(string, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Destiny2_AwaGetActionToken<T>(string correlationId, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
                 new Uri($"Destiny2/Awa/GetActionToken/{Uri.EscapeDataString(correlationId)}/", UriKind.Relative),
                 null, HttpMethod.Get, authToken, cancelToken
                 );

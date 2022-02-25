@@ -21,6 +21,16 @@ namespace BungieSharper.Endpoints
                 );
         }
 
+        /// <inheritdoc cref="Content_GetContentType(string, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Content_GetContentType<T>(string type, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
+                new Uri($"Content/GetContentType/{Uri.EscapeDataString(type)}/", UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
         /// <summary>
         /// Returns a content item referenced by id
         /// </summary>
@@ -35,6 +45,16 @@ namespace BungieSharper.Endpoints
                 );
         }
 
+        /// <inheritdoc cref="Content_GetContentById(long, string, bool?, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Content_GetContentById<T>(long id, string locale, bool? head = null, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
+                new Uri($"Content/GetContentById/{id}/{Uri.EscapeDataString(locale)}/" + HttpRequestGenerator.MakeQuerystring(head != null ? $"head={head}" : null), UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
         /// <summary>
         /// Returns the newest item that matches a given tag and Content Type.
         /// </summary>
@@ -44,6 +64,16 @@ namespace BungieSharper.Endpoints
         public Task<Entities.Content.ContentItemPublicContract> Content_GetContentByTagAndType(string locale, string tag, string type, bool? head = null, string? authToken = null, CancellationToken cancelToken = default)
         {
             return _apiAccessor.ApiRequestAsync<Entities.Content.ContentItemPublicContract>(
+                new Uri($"Content/GetContentByTagAndType/{Uri.EscapeDataString(tag)}/{Uri.EscapeDataString(type)}/{Uri.EscapeDataString(locale)}/" + HttpRequestGenerator.MakeQuerystring(head != null ? $"head={head}" : null), UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
+        /// <inheritdoc cref="Content_GetContentByTagAndType(string, string, string, bool?, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Content_GetContentByTagAndType<T>(string locale, string tag, string type, bool? head = null, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
                 new Uri($"Content/GetContentByTagAndType/{Uri.EscapeDataString(tag)}/{Uri.EscapeDataString(type)}/{Uri.EscapeDataString(locale)}/" + HttpRequestGenerator.MakeQuerystring(head != null ? $"head={head}" : null), UriKind.Relative),
                 null, HttpMethod.Get, authToken, cancelToken
                 );
@@ -68,6 +98,16 @@ namespace BungieSharper.Endpoints
                 );
         }
 
+        /// <inheritdoc cref="Content_SearchContentWithText(string, string?, int?, bool?, string?, string?, string?, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Content_SearchContentWithText<T>(string locale, string? ctype = null, int? currentpage = null, bool? head = null, string? searchtext = null, string? source = null, string? tag = null, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
+                new Uri($"Content/Search/{Uri.EscapeDataString(locale)}/" + HttpRequestGenerator.MakeQuerystring(ctype != null ? $"ctype={Uri.EscapeDataString(ctype)}" : null, currentpage != null ? $"currentpage={currentpage}" : null, head != null ? $"head={head}" : null, searchtext != null ? $"searchtext={Uri.EscapeDataString(searchtext)}" : null, source != null ? $"source={Uri.EscapeDataString(source)}" : null, tag != null ? $"tag={Uri.EscapeDataString(tag)}" : null), UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
         /// <summary>
         /// Searches for Content Items that match the given Tag and Content Type.
         /// </summary>
@@ -84,6 +124,16 @@ namespace BungieSharper.Endpoints
                 );
         }
 
+        /// <inheritdoc cref="Content_SearchContentByTagAndType(string, string, string, int?, bool?, int?, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Content_SearchContentByTagAndType<T>(string locale, string tag, string type, int? currentpage = null, bool? head = null, int? itemsperpage = null, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
+                new Uri($"Content/SearchContentByTagAndType/{Uri.EscapeDataString(tag)}/{Uri.EscapeDataString(type)}/{Uri.EscapeDataString(locale)}/" + HttpRequestGenerator.MakeQuerystring(currentpage != null ? $"currentpage={currentpage}" : null, head != null ? $"head={head}" : null, itemsperpage != null ? $"itemsperpage={itemsperpage}" : null), UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
         /// <summary>
         /// Search for Help Articles.
         /// </summary>
@@ -92,6 +142,16 @@ namespace BungieSharper.Endpoints
         public Task<object> Content_SearchHelpArticles(string searchtext, string size, string? authToken = null, CancellationToken cancelToken = default)
         {
             return _apiAccessor.ApiRequestAsync<object>(
+                new Uri($"Content/SearchHelpArticles/{Uri.EscapeDataString(searchtext)}/{Uri.EscapeDataString(size)}/", UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
+        /// <inheritdoc cref="Content_SearchHelpArticles(string, string, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Content_SearchHelpArticles<T>(string searchtext, string size, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
                 new Uri($"Content/SearchHelpArticles/{Uri.EscapeDataString(searchtext)}/{Uri.EscapeDataString(size)}/", UriKind.Relative),
                 null, HttpMethod.Get, authToken, cancelToken
                 );

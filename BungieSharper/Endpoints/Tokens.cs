@@ -24,6 +24,16 @@ namespace BungieSharper.Endpoints
                 );
         }
 
+        /// <inheritdoc cref="Tokens_ClaimPartnerOffer(Entities.Tokens.PartnerOfferClaimRequest, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Tokens_ClaimPartnerOffer<T>(Entities.Tokens.PartnerOfferClaimRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
+                new Uri($"Tokens/Partner/ClaimOffer/", UriKind.Relative),
+                new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
+                );
+        }
+
         /// <summary>
         /// Apply a partner offer to the targeted user. This endpoint does not claim a new offer, but any already claimed offers will be applied to the game if not already.
         /// Requires OAuth2 scope(s): PartnerOfferGrant
@@ -40,6 +50,16 @@ namespace BungieSharper.Endpoints
                 );
         }
 
+        /// <inheritdoc cref="Tokens_ApplyMissingPartnerOffersWithoutClaim(int, long, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Tokens_ApplyMissingPartnerOffersWithoutClaim<T>(int partnerApplicationId, long targetBnetMembershipId, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
+                new Uri($"Tokens/Partner/ApplyMissingOffers/{partnerApplicationId}/{targetBnetMembershipId}/", UriKind.Relative),
+                null, HttpMethod.Post, authToken, cancelToken
+                );
+        }
+
         /// <summary>
         /// Returns the partner sku and offer history of the targeted user. Elevated permissions are required to see users that are not yourself.
         /// Requires OAuth2 scope(s): PartnerOfferGrant
@@ -51,6 +71,16 @@ namespace BungieSharper.Endpoints
         public Task<IEnumerable<Entities.Tokens.PartnerOfferSkuHistoryResponse>> Tokens_GetPartnerOfferSkuHistory(int partnerApplicationId, long targetBnetMembershipId, string? authToken = null, CancellationToken cancelToken = default)
         {
             return _apiAccessor.ApiRequestAsync<IEnumerable<Entities.Tokens.PartnerOfferSkuHistoryResponse>>(
+                new Uri($"Tokens/Partner/History/{partnerApplicationId}/{targetBnetMembershipId}/", UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
+        /// <inheritdoc cref="Tokens_GetPartnerOfferSkuHistory(int, long, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Tokens_GetPartnerOfferSkuHistory<T>(int partnerApplicationId, long targetBnetMembershipId, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
                 new Uri($"Tokens/Partner/History/{partnerApplicationId}/{targetBnetMembershipId}/", UriKind.Relative),
                 null, HttpMethod.Get, authToken, cancelToken
                 );

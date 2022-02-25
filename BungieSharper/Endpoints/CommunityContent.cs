@@ -23,5 +23,15 @@ namespace BungieSharper.Endpoints
                 null, HttpMethod.Get, authToken, cancelToken
                 );
         }
+
+        /// <inheritdoc cref="CommunityContent_GetCommunityContent(Entities.Forum.ForumTopicsCategoryFiltersEnum, int, Entities.Forum.CommunityContentSortMode, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> CommunityContent_GetCommunityContent<T>(Entities.Forum.ForumTopicsCategoryFiltersEnum mediaFilter, int page, Entities.Forum.CommunityContentSortMode sort, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
+                new Uri($"CommunityContent/Get/{sort}/{mediaFilter}/{page}/", UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
     }
 }

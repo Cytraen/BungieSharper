@@ -24,6 +24,16 @@ namespace BungieSharper.Endpoints
                 );
         }
 
+        /// <inheritdoc cref="User_GetBungieNetUserById(long, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> User_GetBungieNetUserById<T>(long id, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
+                new Uri($"User/GetBungieNetUserById/{id}/", UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
         /// <summary>
         /// Returns a list of credential types attached to the requested account
         /// </summary>
@@ -38,6 +48,16 @@ namespace BungieSharper.Endpoints
                 );
         }
 
+        /// <inheritdoc cref="User_GetCredentialTypesForTargetAccount(long, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> User_GetCredentialTypesForTargetAccount<T>(long membershipId, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
+                new Uri($"User/GetCredentialTypesForTargetAccount/{membershipId}/", UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
         /// <summary>
         /// Returns a list of all available user themes.
         /// </summary>
@@ -46,6 +66,16 @@ namespace BungieSharper.Endpoints
         public Task<IEnumerable<Entities.Config.UserTheme>> User_GetAvailableThemes(string? authToken = null, CancellationToken cancelToken = default)
         {
             return _apiAccessor.ApiRequestAsync<IEnumerable<Entities.Config.UserTheme>>(
+                new Uri($"User/GetAvailableThemes/", UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
+        /// <inheritdoc cref="User_GetAvailableThemes(string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> User_GetAvailableThemes<T>(string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
                 new Uri($"User/GetAvailableThemes/", UriKind.Relative),
                 null, HttpMethod.Get, authToken, cancelToken
                 );
@@ -66,6 +96,16 @@ namespace BungieSharper.Endpoints
                 );
         }
 
+        /// <inheritdoc cref="User_GetMembershipDataById(long, Entities.BungieMembershipType, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> User_GetMembershipDataById<T>(long membershipId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
+                new Uri($"User/GetMembershipsById/{membershipId}/{membershipType}/", UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
         /// <summary>
         /// Returns a list of accounts associated with signed in user. This is useful for OAuth implementations that do not give you access to the token response.
         /// Requires OAuth2 scope(s): ReadBasicUserProfile
@@ -75,6 +115,16 @@ namespace BungieSharper.Endpoints
         public Task<Entities.User.UserMembershipData> User_GetMembershipDataForCurrentUser(string? authToken = null, CancellationToken cancelToken = default)
         {
             return _apiAccessor.ApiRequestAsync<Entities.User.UserMembershipData>(
+                new Uri($"User/GetMembershipsForCurrentUser/", UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
+        /// <inheritdoc cref="User_GetMembershipDataForCurrentUser(string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> User_GetMembershipDataForCurrentUser<T>(string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
                 new Uri($"User/GetMembershipsForCurrentUser/", UriKind.Relative),
                 null, HttpMethod.Get, authToken, cancelToken
                 );
@@ -95,6 +145,16 @@ namespace BungieSharper.Endpoints
                 );
         }
 
+        /// <inheritdoc cref="User_GetMembershipFromHardLinkedCredential(string, Entities.BungieCredentialType, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> User_GetMembershipFromHardLinkedCredential<T>(string credential, Entities.BungieCredentialType crType, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
+                new Uri($"User/GetMembershipFromHardLinkedCredential/{crType}/{Uri.EscapeDataString(credential)}/", UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
         /// <summary>
         /// [OBSOLETE] Do not use this to search users, use SearchByGlobalNamePost instead.
         /// </summary>
@@ -110,6 +170,16 @@ namespace BungieSharper.Endpoints
                 );
         }
 
+        /// <inheritdoc cref="User_SearchByGlobalNamePrefix(string, int, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> User_SearchByGlobalNamePrefix<T>(string displayNamePrefix, int page, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
+                new Uri($"User/Search/Prefix/{Uri.EscapeDataString(displayNamePrefix)}/{page}/", UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
         /// <summary>
         /// Given the prefix of a global display name, returns all users who share that name.
         /// </summary>
@@ -119,6 +189,16 @@ namespace BungieSharper.Endpoints
         public Task<Entities.User.UserSearchResponse> User_SearchByGlobalNamePost(int page, Entities.User.UserSearchPrefixRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
         {
             return _apiAccessor.ApiRequestAsync<Entities.User.UserSearchResponse>(
+                new Uri($"User/Search/GlobalName/{page}/", UriKind.Relative),
+                new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
+                );
+        }
+
+        /// <inheritdoc cref="User_SearchByGlobalNamePost(int, Entities.User.UserSearchPrefixRequest, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> User_SearchByGlobalNamePost<T>(int page, Entities.User.UserSearchPrefixRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
                 new Uri($"User/Search/GlobalName/{page}/", UriKind.Relative),
                 new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
                 );

@@ -22,6 +22,16 @@ namespace BungieSharper.Endpoints
                 );
         }
 
+        /// <inheritdoc cref="GetAvailableLocales(string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> GetAvailableLocales<T>(string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
+                new Uri($"GetAvailableLocales/", UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
         /// <summary>
         /// Get the common settings used by the Bungie.Net environment.
         /// </summary>
@@ -30,6 +40,16 @@ namespace BungieSharper.Endpoints
         public Task<Entities.Common.Models.CoreSettingsConfiguration> GetCommonSettings(string? authToken = null, CancellationToken cancelToken = default)
         {
             return _apiAccessor.ApiRequestAsync<Entities.Common.Models.CoreSettingsConfiguration>(
+                new Uri($"Settings/", UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
+        /// <inheritdoc cref="GetCommonSettings(string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> GetCommonSettings<T>(string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
                 new Uri($"Settings/", UriKind.Relative),
                 null, HttpMethod.Get, authToken, cancelToken
                 );
@@ -48,6 +68,16 @@ namespace BungieSharper.Endpoints
                 );
         }
 
+        /// <inheritdoc cref="GetUserSystemOverrides(string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> GetUserSystemOverrides<T>(string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
+                new Uri($"UserSystemOverrides/", UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
         /// <summary>
         /// Gets any active global alert for display in the forum banners, help pages, etc. Usually used for DOC alerts.
         /// </summary>
@@ -57,6 +87,16 @@ namespace BungieSharper.Endpoints
         public Task<IEnumerable<Entities.GlobalAlert>> GetGlobalAlerts(bool? includestreaming = null, string? authToken = null, CancellationToken cancelToken = default)
         {
             return _apiAccessor.ApiRequestAsync<IEnumerable<Entities.GlobalAlert>>(
+                new Uri($"GlobalAlerts/" + HttpRequestGenerator.MakeQuerystring(includestreaming != null ? $"includestreaming={includestreaming}" : null), UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
+        /// <inheritdoc cref="GetGlobalAlerts(bool?, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> GetGlobalAlerts<T>(bool? includestreaming = null, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
                 new Uri($"GlobalAlerts/" + HttpRequestGenerator.MakeQuerystring(includestreaming != null ? $"includestreaming={includestreaming}" : null), UriKind.Relative),
                 null, HttpMethod.Get, authToken, cancelToken
                 );

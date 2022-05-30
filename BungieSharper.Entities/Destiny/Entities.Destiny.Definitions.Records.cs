@@ -28,6 +28,10 @@ namespace BungieSharper.Entities.Destiny.Definitions.Records
         [JsonPropertyName("forTitleGilding")]
         public bool ForTitleGilding { get; set; }
 
+        /// <summary>A hint to show a large icon for a reward</summary>
+        [JsonPropertyName("shouldShowLargeIcons")]
+        public bool ShouldShowLargeIcons { get; set; }
+
         [JsonPropertyName("titleInfo")]
         public Destiny.Definitions.Records.DestinyRecordTitleBlock TitleInfo { get; set; }
 

@@ -14,6 +14,10 @@ namespace BungieSharper.Entities.Destiny.Definitions.Traits
         [JsonPropertyName("traitCategoryHash")]
         public uint TraitCategoryHash { get; set; }
 
+        /// <summary>An identifier for how this trait can be displayed. For example: a 'keyword' hint to show an explanation for certain related terms.</summary>
+        [JsonPropertyName("displayHint")]
+        public string DisplayHint { get; set; }
+
         /// <summary>
         /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
         /// When entities refer to each other in Destiny content, it is this hash that they are referring to.

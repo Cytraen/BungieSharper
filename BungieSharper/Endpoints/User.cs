@@ -35,6 +35,30 @@ namespace BungieSharper.Endpoints
         }
 
         /// <summary>
+        /// Gets a list of all display names linked to this membership id but sanitized (profanity filtered). Obeys all visibility rules of calling user and is heavily cached.
+        /// </summary>
+        /// <param name="membershipId">The requested membership id to load.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
+        /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
+        public Task<Dictionary<byte, string>> User_GetSanitizedPlatformDisplayNames(long membershipId, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<Dictionary<byte, string>>(
+                new Uri($"User/GetSanitizedPlatformDisplayNames/{membershipId}/", UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
+        /// <inheritdoc cref="User_GetSanitizedPlatformDisplayNames(long, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> User_GetSanitizedPlatformDisplayNames<T>(long membershipId, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
+                new Uri($"User/GetSanitizedPlatformDisplayNames/{membershipId}/", UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
+        /// <summary>
         /// Returns a list of credential types attached to the requested account
         /// </summary>
         /// <param name="membershipId">The user's membership id</param>

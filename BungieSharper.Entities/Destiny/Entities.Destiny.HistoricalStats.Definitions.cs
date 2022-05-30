@@ -88,7 +88,11 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats.Definitions
         Sundial = 83,
         TrialsOfOsiris = 84,
         Dares = 85,
-        Offensive = 86
+        Offensive = 86,
+        LostSector = 87,
+        Rift = 88,
+        ZoneControl = 89,
+        IronBannerRift = 90
     }
 
     public class DestinyHistoricalStatsDefinition

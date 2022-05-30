@@ -2678,7 +2678,10 @@ namespace BungieSharper.Entities.Destiny.Definitions
         [JsonPropertyName("isCountingDownward")]
         public bool IsCountingDownward { get; set; }
 
-        /// <summary>The UI style applied to the objective. It's an enum, take a look at DestinyUnlockValueUIStyle for details of the possible styles. Use this info as you wish to customize your UI.</summary>
+        /// <summary>
+        /// The UI style applied to the objective. It's an enum, take a look at DestinyUnlockValueUIStyle for details of the possible styles. Use this info as you wish to customize your UI.
+        /// DEPRECATED: This is no longer populated by Destiny 2 game content. Please use inProgressValueStyle and completedValueStyle instead.
+        /// </summary>
         [JsonPropertyName("valueStyle")]
         public Destiny.DestinyUnlockValueUIStyle ValueStyle { get; set; }
 
@@ -3591,6 +3594,73 @@ namespace BungieSharper.Entities.Destiny.Definitions
     internal partial class DestinyFactionVendorDefinitionJsonContext : JsonSerializerContext { }
 #endif
 
+    public class DestinySandboxPatternDefinition
+    {
+        [JsonPropertyName("patternHash")]
+        public uint PatternHash { get; set; }
+
+        [JsonPropertyName("patternGlobalTagIdHash")]
+        public uint PatternGlobalTagIdHash { get; set; }
+
+        [JsonPropertyName("weaponContentGroupHash")]
+        public uint WeaponContentGroupHash { get; set; }
+
+        [JsonPropertyName("weaponTranslationGroupHash")]
+        public uint WeaponTranslationGroupHash { get; set; }
+
+        [JsonPropertyName("weaponTypeHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public uint? WeaponTypeHash { get; set; }
+
+        [JsonPropertyName("weaponType")]
+        public Destiny.DestinyItemSubType WeaponType { get; set; }
+
+        [JsonPropertyName("filters")]
+        public IEnumerable<Destiny.Definitions.DestinyArrangementRegionFilterDefinition> Filters { get; set; }
+
+        /// <summary>
+        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
+        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
+        /// </summary>
+        [JsonPropertyName("hash")]
+        public uint Hash { get; set; }
+
+        /// <summary>The index of the entity as it was found in the investment tables.</summary>
+        [JsonPropertyName("index")]
+        public int Index { get; set; }
+
+        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
+        [JsonPropertyName("redacted")]
+        public bool Redacted { get; set; }
+    }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinySandboxPatternDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinySandboxPatternDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
+    public class DestinyArrangementRegionFilterDefinition
+    {
+        [JsonPropertyName("artArrangementRegionHash")]
+        public uint ArtArrangementRegionHash { get; set; }
+
+        [JsonPropertyName("artArrangementRegionIndex")]
+        public int ArtArrangementRegionIndex { get; set; }
+
+        [JsonPropertyName("statHash")]
+        public uint StatHash { get; set; }
+
+        [JsonPropertyName("arrangementIndexByStatValue")]
+        public Dictionary<int, int> ArrangementIndexByStatValue { get; set; }
+    }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(DestinyArrangementRegionFilterDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyArrangementRegionFilterDefinitionJsonContext : JsonSerializerContext { }
+#endif
+
     /// <summary>
     /// Items like Sacks or Boxes can have items that it shows in-game when you view details that represent the items you can obtain if you use or acquire the item.
     /// This defines those categories, and gives some insights into that data's source.
@@ -4121,6 +4191,11 @@ namespace BungieSharper.Entities.Destiny.Definitions
     {
         [JsonPropertyName("unlockRequirements")]
         public IEnumerable<Destiny.Definitions.DestinyPlugItemCraftingUnlockRequirement> UnlockRequirements { get; set; }
+
+        /// <summary>If the plug has a known level requirement, it'll be available here.</summary>
+        [JsonPropertyName("requiredLevel")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public int? RequiredLevel { get; set; }
 
         [JsonPropertyName("materialRequirementHashes")]
         public IEnumerable<uint> MaterialRequirementHashes { get; set; }

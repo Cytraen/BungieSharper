@@ -823,7 +823,8 @@ namespace BungieSharper.Entities.Destiny
         Bounty = 26,
         Wrapper = 27,
         SeasonalArtifact = 28,
-        Finisher = 29
+        Finisher = 29,
+        Pattern = 30
     }
 
     /// <summary>
@@ -1524,7 +1525,10 @@ namespace BungieSharper.Entities.Destiny
         Popular = 65536,
 
         /// <summary>This indicates that the sale item is free.</summary>
-        Free = 131072
+        Free = 131072,
+
+        /// <summary>This indicates that the sale item is locked.</summary>
+        Locked = 262144
     }
 
     /// <summary>

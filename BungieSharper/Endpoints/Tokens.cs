@@ -85,5 +85,53 @@ namespace BungieSharper.Endpoints
                 null, HttpMethod.Get, authToken, cancelToken
                 );
         }
+
+        /// <summary>
+        /// Returns the bungie rewards for the targeted user.
+        /// Requires OAuth2 scope(s): ReadAndApplyTokens
+        /// </summary>
+        /// <param name="membershipId">bungie.net user membershipId for requested user rewards. If not self, elevated permissions are required.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
+        /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
+        public Task<Dictionary<string, Entities.Tokens.BungieRewardDisplay>> Tokens_GetBungieRewardsForUser(long membershipId, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<Dictionary<string, Entities.Tokens.BungieRewardDisplay>>(
+                new Uri($"Tokens/Rewards/GetRewardsForUser/{membershipId}/", UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
+        /// <inheritdoc cref="Tokens_GetBungieRewardsForUser(long, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Tokens_GetBungieRewardsForUser<T>(long membershipId, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
+                new Uri($"Tokens/Rewards/GetRewardsForUser/{membershipId}/", UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
+        /// <summary>
+        /// Returns a list of the current bungie rewards
+        /// </summary>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
+        /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
+        public Task<Dictionary<string, Entities.Tokens.BungieRewardDisplay>> Tokens_GetBungieRewardsList(string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<Dictionary<string, Entities.Tokens.BungieRewardDisplay>>(
+                new Uri($"Tokens/Rewards/BungieRewards/", UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
+        /// <inheritdoc cref="Tokens_GetBungieRewardsList(string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Tokens_GetBungieRewardsList<T>(string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
+                new Uri($"Tokens/Rewards/BungieRewards/", UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
     }
 }

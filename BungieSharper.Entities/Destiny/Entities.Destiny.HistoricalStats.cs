@@ -10,12 +10,12 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
         [JsonPropertyName("period")]
         public DateTime Period { get; set; }
 
-        /// <summary>OBSOLETE - If this activity has "phases", this is the phase at which the activity was started.</summary>
+        /// <summary>If this activity has "phases", this is the phase at which the activity was started. This value is only valid for activities before the Beyond Light expansion shipped. Subsequent activities will not have a valid value here.</summary>
         [JsonPropertyName("startingPhaseIndex")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? StartingPhaseIndex { get; set; }
 
-        /// <summary>True if the activity was started from the beginning, if that information is available.</summary>
+        /// <summary>True if the activity was started from the beginning, if that information is available and the activity was played post Witch Queen release.</summary>
         [JsonPropertyName("activityWasStartedFromBeginning")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? ActivityWasStartedFromBeginning { get; set; }

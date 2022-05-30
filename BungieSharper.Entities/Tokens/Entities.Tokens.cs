@@ -87,4 +87,116 @@ namespace BungieSharper.Entities.Tokens
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class PartnerOfferHistoryResponseJsonContext : JsonSerializerContext { }
 #endif
+
+    public class BungieRewardDisplay
+    {
+        [JsonPropertyName("UserRewardAvailabilityModel")]
+        public Tokens.UserRewardAvailabilityModel UserRewardAvailabilityModel { get; set; }
+
+        [JsonPropertyName("ObjectiveDisplayProperties")]
+        public Tokens.RewardDisplayProperties ObjectiveDisplayProperties { get; set; }
+
+        [JsonPropertyName("RewardDisplayProperties")]
+        public Tokens.RewardDisplayProperties RewardDisplayProperties { get; set; }
+    }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(BungieRewardDisplay))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class BungieRewardDisplayJsonContext : JsonSerializerContext { }
+#endif
+
+    public class UserRewardAvailabilityModel
+    {
+        [JsonPropertyName("AvailabilityModel")]
+        public Tokens.RewardAvailabilityModel AvailabilityModel { get; set; }
+
+        [JsonPropertyName("IsAvailableForUser")]
+        public bool IsAvailableForUser { get; set; }
+
+        [JsonPropertyName("IsUnlockedForUser")]
+        public bool IsUnlockedForUser { get; set; }
+    }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(UserRewardAvailabilityModel))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class UserRewardAvailabilityModelJsonContext : JsonSerializerContext { }
+#endif
+
+    public class RewardAvailabilityModel
+    {
+        [JsonPropertyName("HasExistingCode")]
+        public bool HasExistingCode { get; set; }
+
+        [JsonPropertyName("RecordDefinitions")]
+        public IEnumerable<Destiny.Definitions.Records.DestinyRecordDefinition> RecordDefinitions { get; set; }
+
+        [JsonPropertyName("CollectibleDefinitions")]
+        public IEnumerable<Tokens.CollectibleDefinitions> CollectibleDefinitions { get; set; }
+
+        [JsonPropertyName("IsOffer")]
+        public bool IsOffer { get; set; }
+
+        [JsonPropertyName("HasOffer")]
+        public bool HasOffer { get; set; }
+
+        [JsonPropertyName("OfferApplied")]
+        public bool OfferApplied { get; set; }
+
+        [JsonPropertyName("DecryptedToken")]
+        public string DecryptedToken { get; set; }
+
+        [JsonPropertyName("IsLoyaltyReward")]
+        public bool IsLoyaltyReward { get; set; }
+
+        [JsonPropertyName("ShopifyEndDate")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public DateTime? ShopifyEndDate { get; set; }
+
+        [JsonPropertyName("GameEarnByDate")]
+        public DateTime GameEarnByDate { get; set; }
+
+        [JsonPropertyName("RedemptionEndDate")]
+        public DateTime RedemptionEndDate { get; set; }
+    }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(RewardAvailabilityModel))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class RewardAvailabilityModelJsonContext : JsonSerializerContext { }
+#endif
+
+    public class CollectibleDefinitions
+    {
+        [JsonPropertyName("CollectibleDefinition")]
+        public Destiny.Definitions.Collectibles.DestinyCollectibleDefinition CollectibleDefinition { get; set; }
+
+        [JsonPropertyName("DestinyInventoryItemDefinition")]
+        public Destiny.Definitions.DestinyInventoryItemDefinition DestinyInventoryItemDefinition { get; set; }
+    }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(CollectibleDefinitions))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class CollectibleDefinitionsJsonContext : JsonSerializerContext { }
+#endif
+
+    public class RewardDisplayProperties
+    {
+        [JsonPropertyName("Name")]
+        public string Name { get; set; }
+
+        [JsonPropertyName("Description")]
+        public string Description { get; set; }
+
+        [JsonPropertyName("ImagePath")]
+        public string ImagePath { get; set; }
+    }
+
+#if NET6_0_OR_GREATER
+    [JsonSerializable(typeof(RewardDisplayProperties))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class RewardDisplayPropertiesJsonContext : JsonSerializerContext { }
+#endif
 }

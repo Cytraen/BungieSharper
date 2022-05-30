@@ -10,6 +10,12 @@ namespace BungieSharper.Entities.Destiny.Definitions.ActivityModifiers
         [JsonPropertyName("displayProperties")]
         public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
 
+        [JsonPropertyName("displayInNavMode")]
+        public bool DisplayInNavMode { get; set; }
+
+        [JsonPropertyName("displayInActivitySelection")]
+        public bool DisplayInActivitySelection { get; set; }
+
         /// <summary>
         /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
         /// When entities refer to each other in Destiny content, it is this hash that they are referring to.

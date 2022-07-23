@@ -1,8 +1,8 @@
-name: main PR+push / stable push
+name: main PR+push
 
 on:
   push:
-    branches: [ main, stable ]
+    branches: [ main ]
   pull_request:
     branches: [ main ]
 
@@ -24,12 +24,6 @@ jobs:
     - name: Get version suffix
       id: get_suffix
       run: echo ::set-output name=SUFFIX::${GITHUB_SHA:0:9}
-
-    - name: Setup .NET 5
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 5.0.x
-        include-prerelease: false
 
     - name: Setup .NET 6
       uses: actions/setup-dotnet@v1

@@ -16,11 +16,9 @@ namespace BungieSharper.Entities.Tokens
         public string TransactionId { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(PartnerOfferClaimRequest))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class PartnerOfferClaimRequestJsonContext : JsonSerializerContext { }
-#endif
 
     public class PartnerOfferSkuHistoryResponse
     {
@@ -46,11 +44,9 @@ namespace BungieSharper.Entities.Tokens
         public IEnumerable<Tokens.PartnerOfferHistoryResponse> SkuOffers { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(PartnerOfferSkuHistoryResponse))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class PartnerOfferSkuHistoryResponseJsonContext : JsonSerializerContext { }
-#endif
 
     public class PartnerOfferHistoryResponse
     {
@@ -82,11 +78,9 @@ namespace BungieSharper.Entities.Tokens
         public DateTime? ApplyDate { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(PartnerOfferHistoryResponse))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class PartnerOfferHistoryResponseJsonContext : JsonSerializerContext { }
-#endif
 
     public class BungieRewardDisplay
     {
@@ -100,11 +94,9 @@ namespace BungieSharper.Entities.Tokens
         public Tokens.RewardDisplayProperties RewardDisplayProperties { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(BungieRewardDisplay))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class BungieRewardDisplayJsonContext : JsonSerializerContext { }
-#endif
 
     public class UserRewardAvailabilityModel
     {
@@ -118,11 +110,9 @@ namespace BungieSharper.Entities.Tokens
         public bool IsUnlockedForUser { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(UserRewardAvailabilityModel))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class UserRewardAvailabilityModelJsonContext : JsonSerializerContext { }
-#endif
 
     public class RewardAvailabilityModel
     {
@@ -161,11 +151,9 @@ namespace BungieSharper.Entities.Tokens
         public DateTime RedemptionEndDate { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(RewardAvailabilityModel))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class RewardAvailabilityModelJsonContext : JsonSerializerContext { }
-#endif
 
     public class CollectibleDefinitions
     {
@@ -176,11 +164,9 @@ namespace BungieSharper.Entities.Tokens
         public Destiny.Definitions.DestinyInventoryItemDefinition DestinyInventoryItemDefinition { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(CollectibleDefinitions))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class CollectibleDefinitionsJsonContext : JsonSerializerContext { }
-#endif
 
     public class RewardDisplayProperties
     {
@@ -194,9 +180,7 @@ namespace BungieSharper.Entities.Tokens
         public string ImagePath { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(RewardDisplayProperties))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class RewardDisplayPropertiesJsonContext : JsonSerializerContext { }
-#endif
 }

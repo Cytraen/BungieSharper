@@ -33,11 +33,9 @@ namespace BungieSharper.Entities.Destiny.Definitions.Common
         public bool HasIcon { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyDisplayPropertiesDefinition))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyDisplayPropertiesDefinitionJsonContext : JsonSerializerContext { }
-#endif
 
     public class DestinyIconSequenceDefinition
     {
@@ -45,11 +43,9 @@ namespace BungieSharper.Entities.Destiny.Definitions.Common
         public IEnumerable<string> Frames { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyIconSequenceDefinition))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyIconSequenceDefinitionJsonContext : JsonSerializerContext { }
-#endif
 
     public class DestinyPositionDefinition
     {
@@ -63,9 +59,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Common
         public int Z { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyPositionDefinition))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyPositionDefinitionJsonContext : JsonSerializerContext { }
-#endif
 }

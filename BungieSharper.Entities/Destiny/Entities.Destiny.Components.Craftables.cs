@@ -14,11 +14,9 @@ namespace BungieSharper.Entities.Destiny.Components.Craftables
         public uint CraftingRootNodeHash { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyCraftablesComponent))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyCraftablesComponentJsonContext : JsonSerializerContext { }
-#endif
 
     public class DestinyCraftableComponent
     {
@@ -34,11 +32,9 @@ namespace BungieSharper.Entities.Destiny.Components.Craftables
         public IEnumerable<Destiny.Components.Craftables.DestinyCraftableSocketComponent> Sockets { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyCraftableComponent))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyCraftableComponentJsonContext : JsonSerializerContext { }
-#endif
 
     public class DestinyCraftableSocketComponent
     {
@@ -50,11 +46,9 @@ namespace BungieSharper.Entities.Destiny.Components.Craftables
         public IEnumerable<Destiny.Components.Craftables.DestinyCraftableSocketPlugComponent> Plugs { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyCraftableSocketComponent))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyCraftableSocketComponentJsonContext : JsonSerializerContext { }
-#endif
 
     public class DestinyCraftableSocketPlugComponent
     {
@@ -66,9 +60,7 @@ namespace BungieSharper.Entities.Destiny.Components.Craftables
         public IEnumerable<int> FailedRequirementIndexes { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyCraftableSocketPlugComponent))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyCraftableSocketPlugComponentJsonContext : JsonSerializerContext { }
-#endif
 }

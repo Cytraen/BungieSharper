@@ -34,11 +34,9 @@ namespace BungieSharper.Entities.Destiny.Definitions.Traits
         public bool Redacted { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyTraitDefinition))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyTraitDefinitionJsonContext : JsonSerializerContext { }
-#endif
 
     public class DestinyTraitCategoryDefinition
     {
@@ -67,9 +65,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Traits
         public bool Redacted { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyTraitCategoryDefinition))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyTraitCategoryDefinitionJsonContext : JsonSerializerContext { }
-#endif
 }

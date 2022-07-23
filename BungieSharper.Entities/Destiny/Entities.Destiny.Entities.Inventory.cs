@@ -14,9 +14,7 @@ namespace BungieSharper.Entities.Destiny.Entities.Inventory
         public IEnumerable<Destiny.Entities.Items.DestinyItemComponent> Items { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyInventoryComponent))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyInventoryComponentJsonContext : JsonSerializerContext { }
-#endif
 }

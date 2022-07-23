@@ -25,11 +25,9 @@ namespace BungieSharper.Entities.Destiny.Artifacts
         public int PowerBonus { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyArtifactProfileScoped))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyArtifactProfileScopedJsonContext : JsonSerializerContext { }
-#endif
 
     public class DestinyArtifactCharacterScoped
     {
@@ -46,11 +44,9 @@ namespace BungieSharper.Entities.Destiny.Artifacts
         public IEnumerable<Destiny.Artifacts.DestinyArtifactTier> Tiers { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyArtifactCharacterScoped))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyArtifactCharacterScopedJsonContext : JsonSerializerContext { }
-#endif
 
     public class DestinyArtifactTier
     {
@@ -67,11 +63,9 @@ namespace BungieSharper.Entities.Destiny.Artifacts
         public IEnumerable<Destiny.Artifacts.DestinyArtifactTierItem> Items { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyArtifactTier))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyArtifactTierJsonContext : JsonSerializerContext { }
-#endif
 
     public class DestinyArtifactTierItem
     {
@@ -82,9 +76,7 @@ namespace BungieSharper.Entities.Destiny.Artifacts
         public bool IsActive { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyArtifactTierItem))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyArtifactTierItemJsonContext : JsonSerializerContext { }
-#endif
 }

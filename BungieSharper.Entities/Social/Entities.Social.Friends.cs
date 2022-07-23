@@ -9,11 +9,9 @@ namespace BungieSharper.Entities.Social.Friends
         public IEnumerable<Social.Friends.BungieFriend> Friends { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(BungieFriendListResponse))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class BungieFriendListResponseJsonContext : JsonSerializerContext { }
-#endif
 
     public class BungieFriend
     {
@@ -43,11 +41,9 @@ namespace BungieSharper.Entities.Social.Friends
         public User.GeneralUser BungieNetUser { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(BungieFriend))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class BungieFriendJsonContext : JsonSerializerContext { }
-#endif
 
     public enum PresenceStatus : int
     {
@@ -80,11 +76,9 @@ namespace BungieSharper.Entities.Social.Friends
         public IEnumerable<Social.Friends.BungieFriend> OutgoingRequests { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(BungieFriendRequestListResponse))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class BungieFriendRequestListResponseJsonContext : JsonSerializerContext { }
-#endif
 
     public enum PlatformFriendType : int
     {
@@ -109,11 +103,9 @@ namespace BungieSharper.Entities.Social.Friends
         public IEnumerable<Social.Friends.PlatformFriend> PlatformFriends { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(PlatformFriendResponse))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class PlatformFriendResponseJsonContext : JsonSerializerContext { }
-#endif
 
     public class PlatformFriend
     {
@@ -143,9 +135,7 @@ namespace BungieSharper.Entities.Social.Friends
         public short? BungieGlobalDisplayNameCode { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(PlatformFriend))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class PlatformFriendJsonContext : JsonSerializerContext { }
-#endif
 }

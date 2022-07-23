@@ -41,9 +41,7 @@ namespace BungieSharper.Entities.Destiny.Vendors
         public System.DateTime ExpiresOn { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyVendorReceipt))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyVendorReceiptJsonContext : JsonSerializerContext { }
-#endif
 }

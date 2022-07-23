@@ -15,11 +15,9 @@ namespace BungieSharper.Entities.Destiny.Components.Kiosks
         public Dictionary<uint, IEnumerable<Destiny.Components.Kiosks.DestinyKioskItem>> KioskItems { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyKiosksComponent))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyKiosksComponentJsonContext : JsonSerializerContext { }
-#endif
 
     public class DestinyKioskItem
     {
@@ -40,9 +38,7 @@ namespace BungieSharper.Entities.Destiny.Components.Kiosks
         public Destiny.Quests.DestinyObjectiveProgress FlavorObjective { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyKioskItem))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyKioskItemJsonContext : JsonSerializerContext { }
-#endif
 }

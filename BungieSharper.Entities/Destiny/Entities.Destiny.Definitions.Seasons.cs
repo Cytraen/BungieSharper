@@ -66,11 +66,9 @@ namespace BungieSharper.Entities.Destiny.Definitions.Seasons
         public bool Redacted { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinySeasonDefinition))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinySeasonDefinitionJsonContext : JsonSerializerContext { }
-#endif
 
     /// <summary>
     /// Defines the promotional text, images, and links to preview this season.
@@ -94,11 +92,9 @@ namespace BungieSharper.Entities.Destiny.Definitions.Seasons
         public IEnumerable<Destiny.Definitions.Seasons.DestinySeasonPreviewImageDefinition> Images { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinySeasonPreviewDefinition))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinySeasonPreviewDefinitionJsonContext : JsonSerializerContext { }
-#endif
 
     /// <summary>
     /// Defines the thumbnail icon, high-res image, and video link for promotional images
@@ -114,11 +110,9 @@ namespace BungieSharper.Entities.Destiny.Definitions.Seasons
         public string HighResImage { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinySeasonPreviewImageDefinition))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinySeasonPreviewImageDefinitionJsonContext : JsonSerializerContext { }
-#endif
 
     public class DestinySeasonPassDefinition
     {
@@ -152,9 +146,90 @@ namespace BungieSharper.Entities.Destiny.Definitions.Seasons
         public bool Redacted { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinySeasonPassDefinition))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinySeasonPassDefinitionJsonContext : JsonSerializerContext { }
-#endif
+
+    /// <summary>
+    /// Defines the properties of an 'Event Card' in Destiny 2, to coincide with a seasonal event for additional challenges, premium rewards, a new seal, and a special title. For example: Solstice of Heroes 2022.
+    /// </summary>
+    public class DestinyEventCardDefinition
+    {
+        [JsonPropertyName("displayProperties")]
+        public Destiny.Definitions.Common.DestinyDisplayPropertiesDefinition DisplayProperties { get; set; }
+
+        [JsonPropertyName("linkRedirectPath")]
+        public string LinkRedirectPath { get; set; }
+
+        [JsonPropertyName("color")]
+        public Destiny.Misc.DestinyColor Color { get; set; }
+
+        [JsonPropertyName("images")]
+        public Destiny.Definitions.Seasons.DestinyEventCardImages Images { get; set; }
+
+        [JsonPropertyName("triumphsPresentationNodeHash")]
+        public uint TriumphsPresentationNodeHash { get; set; }
+
+        [JsonPropertyName("sealPresentationNodeHash")]
+        public uint SealPresentationNodeHash { get; set; }
+
+        [JsonPropertyName("ticketCurrencyItemHash")]
+        public uint TicketCurrencyItemHash { get; set; }
+
+        [JsonPropertyName("ticketVendorHash")]
+        public uint TicketVendorHash { get; set; }
+
+        [JsonPropertyName("ticketVendorCategoryHash")]
+        public uint TicketVendorCategoryHash { get; set; }
+
+        [JsonPropertyName("endTime")]
+        public long EndTime { get; set; }
+
+        /// <summary>
+        /// The unique identifier for this entity. Guaranteed to be unique for the type of entity, but not globally.
+        /// When entities refer to each other in Destiny content, it is this hash that they are referring to.
+        /// </summary>
+        [JsonPropertyName("hash")]
+        public uint Hash { get; set; }
+
+        /// <summary>The index of the entity as it was found in the investment tables.</summary>
+        [JsonPropertyName("index")]
+        public int Index { get; set; }
+
+        /// <summary>If this is true, then there is an entity with this identifier/type combination, but BNet is not yet allowed to show it. Sorry!</summary>
+        [JsonPropertyName("redacted")]
+        public bool Redacted { get; set; }
+    }
+
+    [JsonSerializable(typeof(DestinyEventCardDefinition))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyEventCardDefinitionJsonContext : JsonSerializerContext { }
+
+    public class DestinyEventCardImages
+    {
+        [JsonPropertyName("unownedCardSleeveImagePath")]
+        public string UnownedCardSleeveImagePath { get; set; }
+
+        [JsonPropertyName("unownedCardSleeveWrapImagePath")]
+        public string UnownedCardSleeveWrapImagePath { get; set; }
+
+        [JsonPropertyName("cardIncompleteImagePath")]
+        public string CardIncompleteImagePath { get; set; }
+
+        [JsonPropertyName("cardCompleteImagePath")]
+        public string CardCompleteImagePath { get; set; }
+
+        [JsonPropertyName("cardCompleteWrapImagePath")]
+        public string CardCompleteWrapImagePath { get; set; }
+
+        [JsonPropertyName("progressIconImagePath")]
+        public string ProgressIconImagePath { get; set; }
+
+        [JsonPropertyName("themeBackgroundImagePath")]
+        public string ThemeBackgroundImagePath { get; set; }
+    }
+
+    [JsonSerializable(typeof(DestinyEventCardImages))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class DestinyEventCardImagesJsonContext : JsonSerializerContext { }
 }

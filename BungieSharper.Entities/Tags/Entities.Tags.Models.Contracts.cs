@@ -11,9 +11,7 @@ namespace BungieSharper.Entities.Tags.Models.Contracts
         public Ignores.IgnoreResponse IgnoreStatus { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(TagResponse))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class TagResponseJsonContext : JsonSerializerContext { }
-#endif
 }

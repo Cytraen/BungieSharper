@@ -69,11 +69,9 @@ namespace BungieSharper.Entities.Common.Models
         public IEnumerable<Common.Models.CoreSetting> FireteamActivities { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(CoreSettingsConfiguration))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class CoreSettingsConfigurationJsonContext : JsonSerializerContext { }
-#endif
 
     public class CoreSystem
     {
@@ -84,11 +82,9 @@ namespace BungieSharper.Entities.Common.Models
         public Dictionary<string, string> Parameters { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(CoreSystem))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class CoreSystemJsonContext : JsonSerializerContext { }
-#endif
 
     public class CoreSetting
     {
@@ -111,11 +107,9 @@ namespace BungieSharper.Entities.Common.Models
         public IEnumerable<Common.Models.CoreSetting> ChildSettings { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(CoreSetting))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class CoreSettingJsonContext : JsonSerializerContext { }
-#endif
 
     public class Destiny2CoreSettings
     {
@@ -197,9 +191,7 @@ namespace BungieSharper.Entities.Common.Models
         public IEnumerable<uint> PastSeasonHashes { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(Destiny2CoreSettings))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class Destiny2CoreSettingsJsonContext : JsonSerializerContext { }
-#endif
 }

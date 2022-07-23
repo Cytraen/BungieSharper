@@ -39,9 +39,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Progression
         public bool Redacted { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyProgressionLevelRequirementDefinition))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyProgressionLevelRequirementDefinitionJsonContext : JsonSerializerContext { }
-#endif
 }

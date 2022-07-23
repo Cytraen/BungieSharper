@@ -26,11 +26,9 @@ namespace BungieSharper.Entities.Queries
         public bool UseTotalResults { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(SearchResult))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class SearchResultJsonContext : JsonSerializerContext { }
-#endif
 
     public class PagedQuery
     {
@@ -44,9 +42,7 @@ namespace BungieSharper.Entities.Queries
         public string RequestContinuationToken { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(PagedQuery))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class PagedQueryJsonContext : JsonSerializerContext { }
-#endif
 }

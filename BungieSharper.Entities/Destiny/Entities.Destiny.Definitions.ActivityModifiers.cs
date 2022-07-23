@@ -32,9 +32,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.ActivityModifiers
         public bool Redacted { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyActivityModifierDefinition))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyActivityModifierDefinitionJsonContext : JsonSerializerContext { }
-#endif
 }

@@ -37,11 +37,9 @@ namespace BungieSharper.Entities.Destiny.Definitions.Artifacts
         public bool Redacted { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyArtifactDefinition))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyArtifactDefinitionJsonContext : JsonSerializerContext { }
-#endif
 
     public class DestinyArtifactTierDefinition
     {
@@ -66,11 +64,9 @@ namespace BungieSharper.Entities.Destiny.Definitions.Artifacts
         public int MinimumUnlockPointsUsedRequirement { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyArtifactTierDefinition))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyArtifactTierDefinitionJsonContext : JsonSerializerContext { }
-#endif
 
     public class DestinyArtifactTierItemDefinition
     {
@@ -79,9 +75,7 @@ namespace BungieSharper.Entities.Destiny.Definitions.Artifacts
         public uint ItemHash { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyArtifactTierItemDefinition))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyArtifactTierItemDefinitionJsonContext : JsonSerializerContext { }
-#endif
 }

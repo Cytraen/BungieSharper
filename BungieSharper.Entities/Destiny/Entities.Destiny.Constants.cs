@@ -28,9 +28,7 @@ namespace BungieSharper.Entities.Destiny.Constants
         public uint? ActivityHash { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyEnvironmentLocationMapping))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyEnvironmentLocationMappingJsonContext : JsonSerializerContext { }
-#endif
 }

@@ -32,11 +32,9 @@ namespace BungieSharper.Entities.Destiny.Sockets
         public IEnumerable<int> EnableFailIndexes { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyItemPlugBase))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyItemPlugBaseJsonContext : JsonSerializerContext { }
-#endif
 
     public class DestinyItemPlug
     {
@@ -71,9 +69,7 @@ namespace BungieSharper.Entities.Destiny.Sockets
         public IEnumerable<int> EnableFailIndexes { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyItemPlug))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyItemPlugJsonContext : JsonSerializerContext { }
-#endif
 }

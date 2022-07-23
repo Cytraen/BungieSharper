@@ -10,11 +10,9 @@ namespace BungieSharper.Entities.Destiny.Components.Inventory
         public Dictionary<BungieMembershipType, Destiny.Entities.Items.DestinyItemComponent> PlatformSilver { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyPlatformSilverComponent))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyPlatformSilverComponentJsonContext : JsonSerializerContext { }
-#endif
 
     /// <summary>
     /// This component provides a quick lookup of every item the requested character has and how much of that item they have.
@@ -31,9 +29,7 @@ namespace BungieSharper.Entities.Destiny.Components.Inventory
         public Dictionary<uint, int> ItemQuantities { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyCurrenciesComponent))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyCurrenciesComponentJsonContext : JsonSerializerContext { }
-#endif
 }

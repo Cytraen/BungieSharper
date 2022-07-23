@@ -13,11 +13,9 @@ namespace BungieSharper.Entities.Destiny.Entities.Profiles
         public IEnumerable<Destiny.Vendors.DestinyVendorReceipt> Receipts { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyVendorReceiptsComponent))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyVendorReceiptsComponentJsonContext : JsonSerializerContext { }
-#endif
 
     /// <summary>
     /// The most essential summary information about a Profile (in Destiny 1, we called these "Accounts").
@@ -51,6 +49,10 @@ namespace BungieSharper.Entities.Destiny.Entities.Profiles
         [JsonPropertyName("seasonHashes")]
         public IEnumerable<uint> SeasonHashes { get; set; }
 
+        /// <summary>A list of hashes for event cards that a profile owns. Unlike most values in versionsOwned, these stay with the profile across all platforms.</summary>
+        [JsonPropertyName("eventCardHashesOwned")]
+        public IEnumerable<uint> EventCardHashesOwned { get; set; }
+
         /// <summary>If populated, this is a reference to the season that is currently active.</summary>
         [JsonPropertyName("currentSeasonHash")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
@@ -60,11 +62,14 @@ namespace BungieSharper.Entities.Destiny.Entities.Profiles
         [JsonPropertyName("currentSeasonRewardPowerCap")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? CurrentSeasonRewardPowerCap { get; set; }
+
+        /// <summary>If populated, this is a reference to the event card that is currently active.</summary>
+        [JsonPropertyName("activeEventCardHash")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public uint? ActiveEventCardHash { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyProfileComponent))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyProfileComponentJsonContext : JsonSerializerContext { }
-#endif
 }

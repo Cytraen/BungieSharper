@@ -31,11 +31,9 @@ namespace BungieSharper.Entities.User
         public short? BungieGlobalDisplayNameCode { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(UserMembership))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class UserMembershipJsonContext : JsonSerializerContext { }
-#endif
 
     /// <summary>
     /// Very basic info about a user as returned by the Account server, but including CrossSave information. Do NOT use as a request contract.
@@ -79,11 +77,9 @@ namespace BungieSharper.Entities.User
         public short? BungieGlobalDisplayNameCode { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(CrossSaveUserMembership))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class CrossSaveUserMembershipJsonContext : JsonSerializerContext { }
-#endif
 
     /// <summary>
     /// This contract supplies basic information commonly used to display a minimal amount of information about a user. Take care to not add more properties here unless the property applies in all (or at least the majority) of the situations where UserInfoCard is used. Avoid adding game specific or platform specific details here. In cases where UserInfoCard is a subset of the data needed in a contract, use UserInfoCard as a property of other contracts.
@@ -135,11 +131,9 @@ namespace BungieSharper.Entities.User
         public short? BungieGlobalDisplayNameCode { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(UserInfoCard))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class UserInfoCardJsonContext : JsonSerializerContext { }
-#endif
 
     public class GeneralUser
     {
@@ -256,11 +250,9 @@ namespace BungieSharper.Entities.User
         public short? CachedBungieGlobalDisplayNameCode { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(GeneralUser))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class GeneralUserJsonContext : JsonSerializerContext { }
-#endif
 
     public class UserToUserContext
     {
@@ -275,11 +267,9 @@ namespace BungieSharper.Entities.User
         public DateTime? GlobalIgnoreEndDate { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(UserToUserContext))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class UserToUserContextJsonContext : JsonSerializerContext { }
-#endif
 
     public class UserMembershipData
     {
@@ -299,11 +289,9 @@ namespace BungieSharper.Entities.User
         public User.GeneralUser BungieNetUser { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(UserMembershipData))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class UserMembershipDataJsonContext : JsonSerializerContext { }
-#endif
 
     public class HardLinkedUserMembership
     {
@@ -321,11 +309,9 @@ namespace BungieSharper.Entities.User
         public long? CrossSaveOverriddenMembershipId { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(HardLinkedUserMembership))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class HardLinkedUserMembershipJsonContext : JsonSerializerContext { }
-#endif
 
     public class UserSearchResponse
     {
@@ -339,11 +325,9 @@ namespace BungieSharper.Entities.User
         public bool HasMore { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(UserSearchResponse))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class UserSearchResponseJsonContext : JsonSerializerContext { }
-#endif
 
     public class UserSearchResponseDetail
     {
@@ -362,11 +346,9 @@ namespace BungieSharper.Entities.User
         public IEnumerable<User.UserInfoCard> DestinyMemberships { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(UserSearchResponseDetail))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class UserSearchResponseDetailJsonContext : JsonSerializerContext { }
-#endif
 
     public class UserSearchPrefixRequest
     {
@@ -374,11 +356,9 @@ namespace BungieSharper.Entities.User
         public string DisplayNamePrefix { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(UserSearchPrefixRequest))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class UserSearchPrefixRequestJsonContext : JsonSerializerContext { }
-#endif
 
     public class ExactSearchRequest
     {
@@ -389,11 +369,9 @@ namespace BungieSharper.Entities.User
         public short DisplayNameCode { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(ExactSearchRequest))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class ExactSearchRequestJsonContext : JsonSerializerContext { }
-#endif
 
     /// <summary>
     /// The set of all email subscription/opt-in settings and definitions.
@@ -413,11 +391,9 @@ namespace BungieSharper.Entities.User
         public Dictionary<string, User.EmailViewDefinition> Views { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(EmailSettings))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class EmailSettingsJsonContext : JsonSerializerContext { }
-#endif
 
     /// <summary>
     /// Defines a single opt-in category: a wide-scoped permission to send emails for the subject related to the opt-in.
@@ -441,11 +417,9 @@ namespace BungieSharper.Entities.User
         public IEnumerable<User.EmailSubscriptionDefinition> DependentSubscriptions { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(EmailOptInDefinition))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class EmailOptInDefinitionJsonContext : JsonSerializerContext { }
-#endif
 
     [Flags]
     public enum OptInFlags : long
@@ -480,11 +454,9 @@ namespace BungieSharper.Entities.User
         public long Value { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(EmailSubscriptionDefinition))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class EmailSubscriptionDefinitionJsonContext : JsonSerializerContext { }
-#endif
 
     /// <summary>
     /// Localized text relevant to a given EMail setting in a given localization.
@@ -498,11 +470,9 @@ namespace BungieSharper.Entities.User
         public string Description { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(EMailSettingLocalization))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class EMailSettingLocalizationJsonContext : JsonSerializerContext { }
-#endif
 
     /// <summary>
     /// Localized text relevant to a given EMail setting in a given localization. Extra settings specifically for subscriptions.
@@ -531,11 +501,9 @@ namespace BungieSharper.Entities.User
         public string Description { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(EMailSettingSubscriptionLocalization))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class EMailSettingSubscriptionLocalizationJsonContext : JsonSerializerContext { }
-#endif
 
     /// <summary>
     /// Represents a data-driven view for Email settings. Web/Mobile UI can use this data to show new EMail settings consistently without further manual work.
@@ -551,11 +519,9 @@ namespace BungieSharper.Entities.User
         public IEnumerable<User.EmailViewDefinitionSetting> ViewSettings { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(EmailViewDefinition))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class EmailViewDefinitionJsonContext : JsonSerializerContext { }
-#endif
 
     public class EmailViewDefinitionSetting
     {
@@ -580,9 +546,7 @@ namespace BungieSharper.Entities.User
         public IEnumerable<User.EmailSubscriptionDefinition> Subscriptions { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(EmailViewDefinitionSetting))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class EmailViewDefinitionSettingJsonContext : JsonSerializerContext { }
-#endif
 }

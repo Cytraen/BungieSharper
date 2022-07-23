@@ -84,11 +84,9 @@ namespace BungieSharper.Entities.Forum
         public string Locale { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(PostResponse))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class PostResponseJsonContext : JsonSerializerContext { }
-#endif
 
     public enum ForumMediaType : int
     {
@@ -157,11 +155,9 @@ namespace BungieSharper.Entities.Forum
         public bool UseTotalResults { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(PostSearchResponse))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class PostSearchResponseJsonContext : JsonSerializerContext { }
-#endif
 
     public class PollResponse
     {
@@ -175,11 +171,9 @@ namespace BungieSharper.Entities.Forum
         public int TotalVotes { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(PollResponse))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class PollResponseJsonContext : JsonSerializerContext { }
-#endif
 
     public class PollResult
     {
@@ -199,11 +193,9 @@ namespace BungieSharper.Entities.Forum
         public bool RequestingUserVoted { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(PollResult))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class PollResultJsonContext : JsonSerializerContext { }
-#endif
 
     public class ForumRecruitmentDetail
     {
@@ -239,11 +231,9 @@ namespace BungieSharper.Entities.Forum
         public IEnumerable<long> KickedPlayerIds { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(ForumRecruitmentDetail))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class ForumRecruitmentDetailJsonContext : JsonSerializerContext { }
-#endif
 
     public enum ForumRecruitmentIntensityLabel : byte
     {

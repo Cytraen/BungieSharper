@@ -12,9 +12,7 @@ namespace BungieSharper.Entities.Dates
         public DateTime End { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DateRange))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DateRangeJsonContext : JsonSerializerContext { }
-#endif
 }

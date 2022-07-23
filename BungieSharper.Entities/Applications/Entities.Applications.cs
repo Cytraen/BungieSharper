@@ -64,11 +64,9 @@ namespace BungieSharper.Entities.Applications
         public IEnumerable<Applications.Series> ThrottledRequests { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(ApiUsage))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class ApiUsageJsonContext : JsonSerializerContext { }
-#endif
 
     public class Series
     {
@@ -81,11 +79,9 @@ namespace BungieSharper.Entities.Applications
         public string Target { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(Series))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class SeriesJsonContext : JsonSerializerContext { }
-#endif
 
     public class Datapoint
     {
@@ -99,11 +95,9 @@ namespace BungieSharper.Entities.Applications
         public double? Count { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(Datapoint))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DatapointJsonContext : JsonSerializerContext { }
-#endif
 
     public class Application
     {
@@ -156,11 +150,9 @@ namespace BungieSharper.Entities.Applications
         public string OverrideAuthorizeViewName { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(Application))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class ApplicationJsonContext : JsonSerializerContext { }
-#endif
 
     public enum ApplicationStatus : int
     {
@@ -192,11 +184,9 @@ namespace BungieSharper.Entities.Applications
         public User.UserInfoCard User { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(ApplicationDeveloper))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class ApplicationDeveloperJsonContext : JsonSerializerContext { }
-#endif
 
     public enum DeveloperRole : int
     {

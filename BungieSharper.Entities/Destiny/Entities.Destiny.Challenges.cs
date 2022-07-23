@@ -13,9 +13,7 @@ namespace BungieSharper.Entities.Destiny.Challenges
         public Destiny.Quests.DestinyObjectiveProgress Objective { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyChallengeStatus))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyChallengeStatusJsonContext : JsonSerializerContext { }
-#endif
 }

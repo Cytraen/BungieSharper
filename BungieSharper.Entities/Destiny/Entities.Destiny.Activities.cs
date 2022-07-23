@@ -25,9 +25,7 @@ namespace BungieSharper.Entities.Destiny.Activities
         public IEnumerable<Destiny.DestinyItemQuantity> RewardTooltipItems { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyPublicActivityStatus))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyPublicActivityStatusJsonContext : JsonSerializerContext { }
-#endif
 }

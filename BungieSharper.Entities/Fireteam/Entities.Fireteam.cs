@@ -100,11 +100,9 @@ namespace BungieSharper.Entities.Fireteam
         public string TitleBeforeModeration { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(FireteamSummary))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class FireteamSummaryJsonContext : JsonSerializerContext { }
-#endif
 
     public class FireteamResponse
     {
@@ -118,11 +116,9 @@ namespace BungieSharper.Entities.Fireteam
         public IEnumerable<Fireteam.FireteamMember> Alternates { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(FireteamResponse))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class FireteamResponseJsonContext : JsonSerializerContext { }
-#endif
 
     public class FireteamMember
     {
@@ -148,11 +144,9 @@ namespace BungieSharper.Entities.Fireteam
         public Fireteam.FireteamPlatformInviteResult LastPlatformInviteAttemptResult { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(FireteamMember))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class FireteamMemberJsonContext : JsonSerializerContext { }
-#endif
 
     public class FireteamUserInfoCard
     {
@@ -207,11 +201,9 @@ namespace BungieSharper.Entities.Fireteam
         public short? BungieGlobalDisplayNameCode { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(FireteamUserInfoCard))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class FireteamUserInfoCardJsonContext : JsonSerializerContext { }
-#endif
 
     public enum FireteamPlatformInviteResult : byte
     {

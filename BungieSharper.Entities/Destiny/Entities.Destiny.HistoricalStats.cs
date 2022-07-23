@@ -33,11 +33,9 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
         public IEnumerable<Destiny.HistoricalStats.DestinyPostGameCarnageReportTeamEntry> Teams { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyPostGameCarnageReportData))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyPostGameCarnageReportDataJsonContext : JsonSerializerContext { }
-#endif
 
     /// <summary>
     /// Summary information about the activity that was played.
@@ -76,11 +74,9 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
         public BungieMembershipType MembershipType { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyHistoricalStatsActivity))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyHistoricalStatsActivityJsonContext : JsonSerializerContext { }
-#endif
 
     public class DestinyPostGameCarnageReportEntry
     {
@@ -109,11 +105,9 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
         public Destiny.HistoricalStats.DestinyPostGameCarnageReportExtendedData Extended { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyPostGameCarnageReportEntry))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyPostGameCarnageReportEntryJsonContext : JsonSerializerContext { }
-#endif
 
     public class DestinyHistoricalStatsValue
     {
@@ -139,11 +133,9 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
         public long? ActivityId { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyHistoricalStatsValue))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyHistoricalStatsValueJsonContext : JsonSerializerContext { }
-#endif
 
     public class DestinyHistoricalStatsValuePair
     {
@@ -156,11 +148,9 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
         public string DisplayValue { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyHistoricalStatsValuePair))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyHistoricalStatsValuePairJsonContext : JsonSerializerContext { }
-#endif
 
     public class DestinyPlayer
     {
@@ -206,11 +196,9 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
         public uint EmblemHash { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyPlayer))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyPlayerJsonContext : JsonSerializerContext { }
-#endif
 
     public class DestinyPostGameCarnageReportExtendedData
     {
@@ -223,11 +211,9 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
         public Dictionary<string, Destiny.HistoricalStats.DestinyHistoricalStatsValue> Values { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyPostGameCarnageReportExtendedData))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyPostGameCarnageReportExtendedDataJsonContext : JsonSerializerContext { }
-#endif
 
     public class DestinyHistoricalWeaponStats
     {
@@ -240,11 +226,9 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
         public Dictionary<string, Destiny.HistoricalStats.DestinyHistoricalStatsValue> Values { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyHistoricalWeaponStats))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyHistoricalWeaponStatsJsonContext : JsonSerializerContext { }
-#endif
 
     public class DestinyPostGameCarnageReportTeamEntry
     {
@@ -265,11 +249,9 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
         public string TeamName { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyPostGameCarnageReportTeamEntry))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyPostGameCarnageReportTeamEntryJsonContext : JsonSerializerContext { }
-#endif
 
     public class DestinyLeaderboard
     {
@@ -280,11 +262,9 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
         public IEnumerable<Destiny.HistoricalStats.DestinyLeaderboardEntry> Entries { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyLeaderboard))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyLeaderboardJsonContext : JsonSerializerContext { }
-#endif
 
     public class DestinyLeaderboardEntry
     {
@@ -305,11 +285,9 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
         public Destiny.HistoricalStats.DestinyHistoricalStatsValue Value { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyLeaderboardEntry))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyLeaderboardEntryJsonContext : JsonSerializerContext { }
-#endif
 
     public class DestinyLeaderboardResults
     {
@@ -324,11 +302,9 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
         public long? FocusCharacterId { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyLeaderboardResults))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyLeaderboardResultsJsonContext : JsonSerializerContext { }
-#endif
 
     public class DestinyClanAggregateStat
     {
@@ -345,11 +321,9 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
         public Destiny.HistoricalStats.DestinyHistoricalStatsValue Value { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyClanAggregateStat))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyClanAggregateStatJsonContext : JsonSerializerContext { }
-#endif
 
     public class DestinyHistoricalStatsByPeriod
     {
@@ -372,11 +346,9 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
         public IEnumerable<Destiny.HistoricalStats.DestinyHistoricalStatsPeriodGroup> Monthly { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyHistoricalStatsByPeriod))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyHistoricalStatsByPeriodJsonContext : JsonSerializerContext { }
-#endif
 
     public class DestinyHistoricalStatsPeriodGroup
     {
@@ -393,19 +365,15 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
         public Dictionary<string, Destiny.HistoricalStats.DestinyHistoricalStatsValue> Values { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyHistoricalStatsPeriodGroup))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyHistoricalStatsPeriodGroupJsonContext : JsonSerializerContext { }
-#endif
 
     public class DestinyHistoricalStatsResults { }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyHistoricalStatsResults))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyHistoricalStatsResultsJsonContext : JsonSerializerContext { }
-#endif
 
     public class DestinyHistoricalStatsAccountResult
     {
@@ -419,11 +387,9 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
         public IEnumerable<Destiny.HistoricalStats.DestinyHistoricalStatsPerCharacter> Characters { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyHistoricalStatsAccountResult))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyHistoricalStatsAccountResultJsonContext : JsonSerializerContext { }
-#endif
 
     public class DestinyHistoricalStatsWithMerged
     {
@@ -434,11 +400,9 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
         public Destiny.HistoricalStats.DestinyHistoricalStatsByPeriod Merged { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyHistoricalStatsWithMerged))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyHistoricalStatsWithMergedJsonContext : JsonSerializerContext { }
-#endif
 
     public class DestinyHistoricalStatsPerCharacter
     {
@@ -455,11 +419,9 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
         public Destiny.HistoricalStats.DestinyHistoricalStatsByPeriod Merged { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyHistoricalStatsPerCharacter))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyHistoricalStatsPerCharacterJsonContext : JsonSerializerContext { }
-#endif
 
     public class DestinyActivityHistoryResults
     {
@@ -468,11 +430,9 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
         public IEnumerable<Destiny.HistoricalStats.DestinyHistoricalStatsPeriodGroup> Activities { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyActivityHistoryResults))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyActivityHistoryResultsJsonContext : JsonSerializerContext { }
-#endif
 
     public class DestinyHistoricalWeaponStatsData
     {
@@ -481,11 +441,9 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
         public IEnumerable<Destiny.HistoricalStats.DestinyHistoricalWeaponStats> Weapons { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyHistoricalWeaponStatsData))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyHistoricalWeaponStatsDataJsonContext : JsonSerializerContext { }
-#endif
 
     public class DestinyAggregateActivityResults
     {
@@ -494,11 +452,9 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
         public IEnumerable<Destiny.HistoricalStats.DestinyAggregateActivityStats> Activities { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyAggregateActivityResults))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyAggregateActivityResultsJsonContext : JsonSerializerContext { }
-#endif
 
     public class DestinyAggregateActivityStats
     {
@@ -511,9 +467,7 @@ namespace BungieSharper.Entities.Destiny.HistoricalStats
         public Dictionary<string, Destiny.HistoricalStats.DestinyHistoricalStatsValue> Values { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyAggregateActivityStats))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyAggregateActivityStatsJsonContext : JsonSerializerContext { }
-#endif
 }

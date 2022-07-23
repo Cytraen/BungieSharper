@@ -83,11 +83,9 @@ namespace BungieSharper.CodeGen.Generation
             fileContent += string.Join("\n\n", propertyList);
             fileContent += "\n    }\n\n";
 
-            fileContent += "#if NET6_0_OR_GREATER\n";
             fileContent += $"    [JsonSerializable(typeof({className}))]\n";
             fileContent += "    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]\n";
             fileContent += $"    internal partial class {className}JsonContext : JsonSerializerContext {{ }}\n";
-            fileContent += "#endif\n";
 
             fileContent += "}";
 

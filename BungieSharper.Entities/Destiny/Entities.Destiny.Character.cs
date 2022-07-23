@@ -46,11 +46,9 @@ namespace BungieSharper.Entities.Destiny.Character
         public int DecalIndex { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyCharacterCustomization))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyCharacterCustomizationJsonContext : JsonSerializerContext { }
-#endif
 
     /// <summary>
     /// A minimal view of a character's equipped items, for the purpose of rendering a summary screen or showing the character in 3D.
@@ -61,11 +59,9 @@ namespace BungieSharper.Entities.Destiny.Character
         public IEnumerable<Destiny.Character.DestinyItemPeerView> Equipment { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyCharacterPeerView))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyCharacterPeerViewJsonContext : JsonSerializerContext { }
-#endif
 
     /// <summary>
     /// Bare minimum summary information for an item, for the sake of 3D rendering the item.
@@ -81,9 +77,7 @@ namespace BungieSharper.Entities.Destiny.Character
         public IEnumerable<Destiny.DyeReference> Dyes { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyItemPeerView))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyItemPeerViewJsonContext : JsonSerializerContext { }
-#endif
 }

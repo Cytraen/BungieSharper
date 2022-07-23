@@ -112,6 +112,32 @@ namespace BungieSharper.Endpoints
         }
 
         /// <summary>
+        /// Returns the bungie rewards for the targeted user when a platform membership Id and Type are used.
+        /// Requires OAuth2 scope(s): ReadAndApplyTokens
+        /// </summary>
+        /// <param name="membershipId">users platform membershipId for requested user rewards. If not self, elevated permissions are required.</param>
+        /// <param name="membershipType">The target Destiny 2 membership type.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
+        /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
+        public Task<Dictionary<string, Entities.Tokens.BungieRewardDisplay>> Tokens_GetBungieRewardsForPlatformUser(long membershipId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<Dictionary<string, Entities.Tokens.BungieRewardDisplay>>(
+                new Uri($"Tokens/Rewards/GetRewardsForPlatformUser/{membershipId}/{membershipType}/", UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
+        /// <inheritdoc cref="Tokens_GetBungieRewardsForPlatformUser(long, Entities.BungieMembershipType, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Tokens_GetBungieRewardsForPlatformUser<T>(long membershipId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
+                new Uri($"Tokens/Rewards/GetRewardsForPlatformUser/{membershipId}/{membershipType}/", UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
+        /// <summary>
         /// Returns a list of the current bungie rewards
         /// </summary>
         /// <param name="authToken">The OAuth access token to authenticate the request with.</param>

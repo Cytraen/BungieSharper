@@ -57,11 +57,9 @@ namespace BungieSharper.Entities.Content
         public Content.CommentSummary CommentSummary { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(ContentItemPublicContract))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class ContentItemPublicContractJsonContext : JsonSerializerContext { }
-#endif
 
     public class ContentRepresentation
     {
@@ -75,11 +73,9 @@ namespace BungieSharper.Entities.Content
         public string ValidationString { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(ContentRepresentation))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class ContentRepresentationJsonContext : JsonSerializerContext { }
-#endif
 
     public class CommentSummary
     {
@@ -90,9 +86,49 @@ namespace BungieSharper.Entities.Content
         public int CommentCount { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(CommentSummary))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class CommentSummaryJsonContext : JsonSerializerContext { }
-#endif
+
+    public class NewsArticleRssResponse
+    {
+        [JsonPropertyName("NewsArticles")]
+        public IEnumerable<Content.NewsArticleRssItem> NewsArticles { get; set; }
+
+        [JsonPropertyName("CurrentPaginationToken")]
+        public int CurrentPaginationToken { get; set; }
+
+        [JsonPropertyName("NextPaginationToken")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public int? NextPaginationToken { get; set; }
+
+        [JsonPropertyName("ResultCountThisPage")]
+        public int ResultCountThisPage { get; set; }
+    }
+
+    [JsonSerializable(typeof(NewsArticleRssResponse))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class NewsArticleRssResponseJsonContext : JsonSerializerContext { }
+
+    public class NewsArticleRssItem
+    {
+        [JsonPropertyName("Title")]
+        public string Title { get; set; }
+
+        [JsonPropertyName("Link")]
+        public string Link { get; set; }
+
+        [JsonPropertyName("PubDate")]
+        public DateTime PubDate { get; set; }
+
+        [JsonPropertyName("UniqueIdentifier")]
+        public string UniqueIdentifier { get; set; }
+
+        [JsonPropertyName("Description")]
+        public string Description { get; set; }
+    }
+
+    [JsonSerializable(typeof(NewsArticleRssItem))]
+    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+    internal partial class NewsArticleRssItemJsonContext : JsonSerializerContext { }
 }

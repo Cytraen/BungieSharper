@@ -89,11 +89,9 @@ namespace BungieSharper.Entities.Destiny.Entities.Items
         public IEnumerable<bool> ItemValueVisibility { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyItemComponent))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyItemComponentJsonContext : JsonSerializerContext { }
-#endif
 
     /// <summary>
     /// Instanced items can have perks: benefits that the item bestows.
@@ -107,11 +105,9 @@ namespace BungieSharper.Entities.Destiny.Entities.Items
         public IEnumerable<Destiny.Perks.DestinyPerkReference> Perks { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyItemPerksComponent))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyItemPerksComponentJsonContext : JsonSerializerContext { }
-#endif
 
     /// <summary>
     /// Items can have objectives and progression. When you request this block, you will obtain information about any Objectives and progression tied to this item.
@@ -135,11 +131,9 @@ namespace BungieSharper.Entities.Destiny.Entities.Items
         public DateTime? DateCompleted { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyItemObjectivesComponent))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyItemObjectivesComponentJsonContext : JsonSerializerContext { }
-#endif
 
     /// <summary>
     /// If an item is "instanced", this will contain information about the item's instance that doesn't fit easily into other components. One might say this is the "essential" instance data for the item.
@@ -207,11 +201,9 @@ namespace BungieSharper.Entities.Destiny.Entities.Items
         public Destiny.Entities.Items.DestinyItemInstanceEnergy Energy { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyItemInstanceComponent))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyItemInstanceComponentJsonContext : JsonSerializerContext { }
-#endif
 
     public class DestinyItemInstanceEnergy
     {
@@ -236,11 +228,9 @@ namespace BungieSharper.Entities.Destiny.Entities.Items
         public int EnergyUnused { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyItemInstanceEnergy))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyItemInstanceEnergyJsonContext : JsonSerializerContext { }
-#endif
 
     /// <summary>
     /// Many items can be rendered in 3D. When you request this block, you will obtain the custom data needed to render this specific instance of the item.
@@ -260,11 +250,9 @@ namespace BungieSharper.Entities.Destiny.Entities.Items
         public Dictionary<int, int> ArtRegions { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyItemRenderComponent))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyItemRenderComponentJsonContext : JsonSerializerContext { }
-#endif
 
     /// <summary>
     /// If you want the stats on an item's instanced data, get this component.
@@ -278,11 +266,9 @@ namespace BungieSharper.Entities.Destiny.Entities.Items
         public Dictionary<uint, Destiny.DestinyStat> Stats { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyItemStatsComponent))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyItemStatsComponentJsonContext : JsonSerializerContext { }
-#endif
 
     /// <summary>
     /// Instanced items can have sockets, which are slots on the item where plugs can be inserted.
@@ -295,11 +281,9 @@ namespace BungieSharper.Entities.Destiny.Entities.Items
         public IEnumerable<Destiny.Entities.Items.DestinyItemSocketState> Sockets { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyItemSocketsComponent))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyItemSocketsComponentJsonContext : JsonSerializerContext { }
-#endif
 
     /// <summary>
     /// The status of a given item's socket. (which plug is inserted, if any: whether it is enabled, what "reusable" plugs can be inserted, etc...)
@@ -334,11 +318,9 @@ namespace BungieSharper.Entities.Destiny.Entities.Items
         public IEnumerable<int> EnableFailIndexes { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyItemSocketState))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyItemSocketStateJsonContext : JsonSerializerContext { }
-#endif
 
     /// <summary>
     /// Well, we're here in Destiny 2, and Talent Grids are unfortunately still around.
@@ -377,9 +359,7 @@ namespace BungieSharper.Entities.Destiny.Entities.Items
         public Destiny.DestinyProgression GridProgression { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyItemTalentGridComponent))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyItemTalentGridComponentJsonContext : JsonSerializerContext { }
-#endif
 }

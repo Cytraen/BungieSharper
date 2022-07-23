@@ -24,9 +24,7 @@ namespace BungieSharper.Entities.Destiny.Requests
         public BungieMembershipType MembershipType { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyItemTransferRequest))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyItemTransferRequestJsonContext : JsonSerializerContext { }
-#endif
 }

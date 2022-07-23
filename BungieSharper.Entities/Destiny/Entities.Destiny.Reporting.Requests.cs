@@ -23,9 +23,7 @@ namespace BungieSharper.Entities.Destiny.Reporting.Requests
         public long OffendingCharacterId { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyReportOffensePgcrRequest))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyReportOffensePgcrRequestJsonContext : JsonSerializerContext { }
-#endif
 }

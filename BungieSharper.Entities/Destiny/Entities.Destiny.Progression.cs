@@ -74,9 +74,7 @@ namespace BungieSharper.Entities.Destiny.Progression
         public IEnumerable<Destiny.DestinyProgressionRewardItemState> RewardItemStates { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyFactionProgression))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyFactionProgressionJsonContext : JsonSerializerContext { }
-#endif
 }

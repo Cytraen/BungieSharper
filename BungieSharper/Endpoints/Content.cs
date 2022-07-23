@@ -156,5 +156,29 @@ namespace BungieSharper.Endpoints
                 null, HttpMethod.Get, authToken, cancelToken
                 );
         }
+
+        /// <summary>
+        /// Returns a JSON string response that is the RSS feed for news articles.
+        /// </summary>
+        /// <param name="pageToken">Zero-based pagination token for paging through result sets.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
+        /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
+        public Task<Entities.Content.NewsArticleRssResponse> Content_RssNewsArticles(string pageToken, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<Entities.Content.NewsArticleRssResponse>(
+                new Uri($"Content/Rss/NewsArticles/{Uri.EscapeDataString(pageToken)}/", UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
+        /// <inheritdoc cref="Content_RssNewsArticles(string, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Content_RssNewsArticles<T>(string pageToken, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
+                new Uri($"Content/Rss/NewsArticles/{Uri.EscapeDataString(pageToken)}/", UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
     }
 }

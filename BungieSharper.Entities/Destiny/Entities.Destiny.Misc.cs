@@ -20,9 +20,7 @@ namespace BungieSharper.Entities.Destiny.Misc
         public byte Alpha { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyColor))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyColorJsonContext : JsonSerializerContext { }
-#endif
 }

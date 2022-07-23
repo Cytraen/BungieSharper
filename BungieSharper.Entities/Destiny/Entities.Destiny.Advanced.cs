@@ -14,11 +14,9 @@ namespace BungieSharper.Entities.Destiny.Advanced
         public bool SentToSelf { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(AwaInitializeResponse))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class AwaInitializeResponseJsonContext : JsonSerializerContext { }
-#endif
 
     public class AwaPermissionRequested
     {
@@ -41,11 +39,9 @@ namespace BungieSharper.Entities.Destiny.Advanced
         public long? CharacterId { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(AwaPermissionRequested))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class AwaPermissionRequestedJsonContext : JsonSerializerContext { }
-#endif
 
     public enum AwaType : int
     {
@@ -70,11 +66,9 @@ namespace BungieSharper.Entities.Destiny.Advanced
         public IEnumerable<byte> Nonce { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(AwaUserResponse))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class AwaUserResponseJsonContext : JsonSerializerContext { }
-#endif
 
     public enum AwaUserSelection : int
     {
@@ -118,11 +112,9 @@ namespace BungieSharper.Entities.Destiny.Advanced
         public BungieMembershipType MembershipType { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(AwaAuthorizationResult))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class AwaAuthorizationResultJsonContext : JsonSerializerContext { }
-#endif
 
     public enum AwaResponseReason : int
     {

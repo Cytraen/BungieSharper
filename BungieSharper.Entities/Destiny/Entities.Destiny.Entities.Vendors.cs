@@ -46,11 +46,9 @@ namespace BungieSharper.Entities.Destiny.Entities.Vendors
         public bool Enabled { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyVendorComponent))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyVendorComponentJsonContext : JsonSerializerContext { }
-#endif
 
     /// <summary>
     /// A vendor can have many categories of items that they sell. This component will return the category information for available items, as well as the index into those items in the user's sale item list.
@@ -66,11 +64,9 @@ namespace BungieSharper.Entities.Destiny.Entities.Vendors
         public IEnumerable<Destiny.Entities.Vendors.DestinyVendorCategory> Categories { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyVendorCategoriesComponent))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyVendorCategoriesComponentJsonContext : JsonSerializerContext { }
-#endif
 
     /// <summary>
     /// Information about the category and items currently sold in that category.
@@ -86,11 +82,9 @@ namespace BungieSharper.Entities.Destiny.Entities.Vendors
         public IEnumerable<int> ItemIndexes { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyVendorCategory))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyVendorCategoryJsonContext : JsonSerializerContext { }
-#endif
 
     /// <summary>
     /// Request this component if you want the details about an item being sold in relation to the character making the request: whether the character can buy it, whether they can afford it, and other data related to purchasing the item.
@@ -175,9 +169,7 @@ namespace BungieSharper.Entities.Destiny.Entities.Vendors
         public bool? ApiPurchasable { get; set; }
     }
 
-#if NET6_0_OR_GREATER
     [JsonSerializable(typeof(DestinyVendorSaleItemComponent))]
     [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
     internal partial class DestinyVendorSaleItemComponentJsonContext : JsonSerializerContext { }
-#endif
 }

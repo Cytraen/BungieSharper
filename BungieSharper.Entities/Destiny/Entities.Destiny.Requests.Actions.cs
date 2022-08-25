@@ -9,10 +9,6 @@ namespace BungieSharper.Entities.Destiny.Requests.Actions
         public BungieMembershipType MembershipType { get; set; }
     }
 
-    [JsonSerializable(typeof(DestinyActionRequest))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyActionRequestJsonContext : JsonSerializerContext { }
-
     public class DestinyCharacterActionRequest
     {
         [JsonPropertyName("characterId")]
@@ -21,10 +17,6 @@ namespace BungieSharper.Entities.Destiny.Requests.Actions
         [JsonPropertyName("membershipType")]
         public BungieMembershipType MembershipType { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinyCharacterActionRequest))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyCharacterActionRequestJsonContext : JsonSerializerContext { }
 
     public class DestinyItemActionRequest
     {
@@ -38,10 +30,6 @@ namespace BungieSharper.Entities.Destiny.Requests.Actions
         [JsonPropertyName("membershipType")]
         public BungieMembershipType MembershipType { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinyItemActionRequest))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyItemActionRequestJsonContext : JsonSerializerContext { }
 
     public class DestinyPostmasterTransferRequest
     {
@@ -62,10 +50,6 @@ namespace BungieSharper.Entities.Destiny.Requests.Actions
         public BungieMembershipType MembershipType { get; set; }
     }
 
-    [JsonSerializable(typeof(DestinyPostmasterTransferRequest))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyPostmasterTransferRequestJsonContext : JsonSerializerContext { }
-
     public class DestinyItemSetActionRequest
     {
         [JsonPropertyName("itemIds")]
@@ -77,10 +61,6 @@ namespace BungieSharper.Entities.Destiny.Requests.Actions
         [JsonPropertyName("membershipType")]
         public BungieMembershipType MembershipType { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinyItemSetActionRequest))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyItemSetActionRequestJsonContext : JsonSerializerContext { }
 
     public class DestinyItemStateRequest
     {
@@ -97,10 +77,6 @@ namespace BungieSharper.Entities.Destiny.Requests.Actions
         [JsonPropertyName("membershipType")]
         public BungieMembershipType MembershipType { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinyItemStateRequest))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyItemStateRequestJsonContext : JsonSerializerContext { }
 
     public class DestinyInsertPlugsActionRequest
     {
@@ -123,10 +99,6 @@ namespace BungieSharper.Entities.Destiny.Requests.Actions
         public BungieMembershipType MembershipType { get; set; }
     }
 
-    [JsonSerializable(typeof(DestinyInsertPlugsActionRequest))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyInsertPlugsActionRequestJsonContext : JsonSerializerContext { }
-
     /// <summary>
     /// Represents all of the data related to a single plug to be inserted.
     /// Note that, while you *can* point to a socket that represents infusion, you will receive an error if you attempt to do so. Come on guys, let's play nice.
@@ -148,10 +120,6 @@ namespace BungieSharper.Entities.Destiny.Requests.Actions
         [JsonPropertyName("plugItemHash")]
         public uint PlugItemHash { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinyInsertPlugsRequestEntry))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyInsertPlugsRequestEntryJsonContext : JsonSerializerContext { }
 
     /// <summary>
     /// If you look in the DestinyInventoryItemDefinition's "sockets" property, you'll see that there are two types of sockets: intrinsic, and "socketEntry."
@@ -179,8 +147,4 @@ namespace BungieSharper.Entities.Destiny.Requests.Actions
         [JsonPropertyName("membershipType")]
         public BungieMembershipType MembershipType { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinyInsertPlugsFreeActionRequest))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyInsertPlugsFreeActionRequestJsonContext : JsonSerializerContext { }
 }

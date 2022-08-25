@@ -59,10 +59,6 @@ namespace BungieSharper.Entities.GroupsV2
         public short? BungieGlobalDisplayNameCode { get; set; }
     }
 
-    [JsonSerializable(typeof(GroupUserInfoCard))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class GroupUserInfoCardJsonContext : JsonSerializerContext { }
-
     public class GroupResponse
     {
         [JsonPropertyName("detail")]
@@ -95,10 +91,6 @@ namespace BungieSharper.Entities.GroupsV2
         [JsonPropertyName("currentUserPotentialMemberMap")]
         public Dictionary<BungieMembershipType, GroupsV2.GroupPotentialMember> CurrentUserPotentialMemberMap { get; set; }
     }
-
-    [JsonSerializable(typeof(GroupResponse))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class GroupResponseJsonContext : JsonSerializerContext { }
 
     public class GroupV2
     {
@@ -187,10 +179,6 @@ namespace BungieSharper.Entities.GroupsV2
         [JsonPropertyName("clanInfo")]
         public GroupsV2.GroupV2ClanInfoAndInvestment ClanInfo { get; set; }
     }
-
-    [JsonSerializable(typeof(GroupV2))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class GroupV2JsonContext : JsonSerializerContext { }
 
     public enum GroupType : int
     {
@@ -284,10 +272,6 @@ namespace BungieSharper.Entities.GroupsV2
         public GroupsV2.RuntimeGroupMemberType JoinLevel { get; set; }
     }
 
-    [JsonSerializable(typeof(GroupFeatures))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class GroupFeaturesJsonContext : JsonSerializerContext { }
-
     [Flags]
     public enum Capabilities : int
     {
@@ -336,10 +320,6 @@ namespace BungieSharper.Entities.GroupsV2
         public GroupsV2.ClanBanner ClanBannerData { get; set; }
     }
 
-    [JsonSerializable(typeof(GroupV2ClanInfo))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class GroupV2ClanInfoJsonContext : JsonSerializerContext { }
-
     public class ClanBanner
     {
         [JsonPropertyName("decalId")]
@@ -364,10 +344,6 @@ namespace BungieSharper.Entities.GroupsV2
         public uint GonfalonDetailColorId { get; set; }
     }
 
-    [JsonSerializable(typeof(ClanBanner))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class ClanBannerJsonContext : JsonSerializerContext { }
-
     /// <summary>
     /// The same as GroupV2ClanInfo, but includes any investment data.
     /// </summary>
@@ -383,10 +359,6 @@ namespace BungieSharper.Entities.GroupsV2
         public GroupsV2.ClanBanner ClanBannerData { get; set; }
     }
 
-    [JsonSerializable(typeof(GroupV2ClanInfoAndInvestment))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class GroupV2ClanInfoAndInvestmentJsonContext : JsonSerializerContext { }
-
     public class GroupUserBase
     {
         [JsonPropertyName("groupId")]
@@ -401,10 +373,6 @@ namespace BungieSharper.Entities.GroupsV2
         [JsonPropertyName("joinDate")]
         public DateTime JoinDate { get; set; }
     }
-
-    [JsonSerializable(typeof(GroupUserBase))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class GroupUserBaseJsonContext : JsonSerializerContext { }
 
     public class GroupMember
     {
@@ -430,10 +398,6 @@ namespace BungieSharper.Entities.GroupsV2
         public DateTime JoinDate { get; set; }
     }
 
-    [JsonSerializable(typeof(GroupMember))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class GroupMemberJsonContext : JsonSerializerContext { }
-
     public enum GroupAllianceStatus : int
     {
         Unallied = 0,
@@ -458,10 +422,6 @@ namespace BungieSharper.Entities.GroupsV2
         [JsonPropertyName("joinDate")]
         public DateTime JoinDate { get; set; }
     }
-
-    [JsonSerializable(typeof(GroupPotentialMember))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class GroupPotentialMemberJsonContext : JsonSerializerContext { }
 
     public enum GroupPotentialMemberStatus : int
     {
@@ -524,10 +484,6 @@ namespace BungieSharper.Entities.GroupsV2
         public string Theme { get; set; }
     }
 
-    [JsonSerializable(typeof(GroupV2Card))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class GroupV2CardJsonContext : JsonSerializerContext { }
-
     public class GroupSearchResponse
     {
         [JsonPropertyName("results")]
@@ -554,10 +510,6 @@ namespace BungieSharper.Entities.GroupsV2
         [JsonPropertyName("useTotalResults")]
         public bool UseTotalResults { get; set; }
     }
-
-    [JsonSerializable(typeof(GroupSearchResponse))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class GroupSearchResponseJsonContext : JsonSerializerContext { }
 
     /// <summary>
     /// NOTE: GroupQuery, as of Destiny 2, has essentially two totally different and incompatible "modes".
@@ -600,10 +552,6 @@ namespace BungieSharper.Entities.GroupsV2
         public string RequestContinuationToken { get; set; }
     }
 
-    [JsonSerializable(typeof(GroupQuery))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class GroupQueryJsonContext : JsonSerializerContext { }
-
     public enum GroupSortBy : int
     {
         Name = 0,
@@ -629,10 +577,6 @@ namespace BungieSharper.Entities.GroupsV2
         public GroupsV2.GroupType GroupType { get; set; }
     }
 
-    [JsonSerializable(typeof(GroupNameSearchRequest))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class GroupNameSearchRequestJsonContext : JsonSerializerContext { }
-
     public class GroupOptionalConversation
     {
         [JsonPropertyName("groupId")]
@@ -650,10 +594,6 @@ namespace BungieSharper.Entities.GroupsV2
         [JsonPropertyName("chatSecurity")]
         public GroupsV2.ChatSecuritySetting ChatSecurity { get; set; }
     }
-
-    [JsonSerializable(typeof(GroupOptionalConversation))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class GroupOptionalConversationJsonContext : JsonSerializerContext { }
 
     public class GroupEditAction
     {
@@ -715,10 +655,6 @@ namespace BungieSharper.Entities.GroupsV2
         public int? DefaultPublicity { get; set; }
     }
 
-    [JsonSerializable(typeof(GroupEditAction))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class GroupEditActionJsonContext : JsonSerializerContext { }
-
     public class GroupOptionsEditAction
     {
         /// <summary>
@@ -770,10 +706,6 @@ namespace BungieSharper.Entities.GroupsV2
         public int? JoinLevel { get; set; }
     }
 
-    [JsonSerializable(typeof(GroupOptionsEditAction))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class GroupOptionsEditActionJsonContext : JsonSerializerContext { }
-
     public class GroupOptionalConversationAddRequest
     {
         [JsonPropertyName("chatName")]
@@ -782,10 +714,6 @@ namespace BungieSharper.Entities.GroupsV2
         [JsonPropertyName("chatSecurity")]
         public GroupsV2.ChatSecuritySetting ChatSecurity { get; set; }
     }
-
-    [JsonSerializable(typeof(GroupOptionalConversationAddRequest))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class GroupOptionalConversationAddRequestJsonContext : JsonSerializerContext { }
 
     public class GroupOptionalConversationEditRequest
     {
@@ -801,10 +729,6 @@ namespace BungieSharper.Entities.GroupsV2
         public int? ChatSecurity { get; set; }
     }
 
-    [JsonSerializable(typeof(GroupOptionalConversationEditRequest))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class GroupOptionalConversationEditRequestJsonContext : JsonSerializerContext { }
-
     public class GroupMemberLeaveResult
     {
         [JsonPropertyName("group")]
@@ -814,10 +738,6 @@ namespace BungieSharper.Entities.GroupsV2
         public bool GroupDeleted { get; set; }
     }
 
-    [JsonSerializable(typeof(GroupMemberLeaveResult))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class GroupMemberLeaveResultJsonContext : JsonSerializerContext { }
-
     public class GroupBanRequest
     {
         [JsonPropertyName("comment")]
@@ -826,10 +746,6 @@ namespace BungieSharper.Entities.GroupsV2
         [JsonPropertyName("length")]
         public Ignores.IgnoreLength Length { get; set; }
     }
-
-    [JsonSerializable(typeof(GroupBanRequest))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class GroupBanRequestJsonContext : JsonSerializerContext { }
 
     public class GroupBan
     {
@@ -857,10 +773,6 @@ namespace BungieSharper.Entities.GroupsV2
         [JsonPropertyName("destinyUserInfo")]
         public GroupsV2.GroupUserInfoCard DestinyUserInfo { get; set; }
     }
-
-    [JsonSerializable(typeof(GroupBan))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class GroupBanJsonContext : JsonSerializerContext { }
 
     public class GroupMemberApplication
     {
@@ -894,10 +806,6 @@ namespace BungieSharper.Entities.GroupsV2
         public User.UserInfoCard BungieNetUserInfo { get; set; }
     }
 
-    [JsonSerializable(typeof(GroupMemberApplication))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class GroupMemberApplicationJsonContext : JsonSerializerContext { }
-
     public enum GroupApplicationResolveState : int
     {
         Unresolved = 0,
@@ -912,10 +820,6 @@ namespace BungieSharper.Entities.GroupsV2
         public string Message { get; set; }
     }
 
-    [JsonSerializable(typeof(GroupApplicationRequest))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class GroupApplicationRequestJsonContext : JsonSerializerContext { }
-
     public class GroupApplicationListRequest
     {
         [JsonPropertyName("memberships")]
@@ -924,10 +828,6 @@ namespace BungieSharper.Entities.GroupsV2
         [JsonPropertyName("message")]
         public string Message { get; set; }
     }
-
-    [JsonSerializable(typeof(GroupApplicationListRequest))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class GroupApplicationListRequestJsonContext : JsonSerializerContext { }
 
     public enum GroupsForMemberFilter : int
     {
@@ -942,10 +842,6 @@ namespace BungieSharper.Entities.GroupsV2
         public GroupsV2.GroupV2 Group { get; set; }
     }
 
-    [JsonSerializable(typeof(GroupMembershipBase))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class GroupMembershipBaseJsonContext : JsonSerializerContext { }
-
     public class GroupMembership
     {
         [JsonPropertyName("member")]
@@ -954,10 +850,6 @@ namespace BungieSharper.Entities.GroupsV2
         [JsonPropertyName("group")]
         public GroupsV2.GroupV2 Group { get; set; }
     }
-
-    [JsonSerializable(typeof(GroupMembership))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class GroupMembershipJsonContext : JsonSerializerContext { }
 
     public class GroupMembershipSearchResponse
     {
@@ -985,10 +877,6 @@ namespace BungieSharper.Entities.GroupsV2
         [JsonPropertyName("useTotalResults")]
         public bool UseTotalResults { get; set; }
     }
-
-    [JsonSerializable(typeof(GroupMembershipSearchResponse))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class GroupMembershipSearchResponseJsonContext : JsonSerializerContext { }
 
     public class GetGroupsForMemberResponse
     {
@@ -1024,10 +912,6 @@ namespace BungieSharper.Entities.GroupsV2
         public bool UseTotalResults { get; set; }
     }
 
-    [JsonSerializable(typeof(GetGroupsForMemberResponse))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class GetGroupsForMemberResponseJsonContext : JsonSerializerContext { }
-
     public class GroupPotentialMembership
     {
         [JsonPropertyName("member")]
@@ -1036,10 +920,6 @@ namespace BungieSharper.Entities.GroupsV2
         [JsonPropertyName("group")]
         public GroupsV2.GroupV2 Group { get; set; }
     }
-
-    [JsonSerializable(typeof(GroupPotentialMembership))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class GroupPotentialMembershipJsonContext : JsonSerializerContext { }
 
     public class GroupPotentialMembershipSearchResponse
     {
@@ -1068,17 +948,9 @@ namespace BungieSharper.Entities.GroupsV2
         public bool UseTotalResults { get; set; }
     }
 
-    [JsonSerializable(typeof(GroupPotentialMembershipSearchResponse))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class GroupPotentialMembershipSearchResponseJsonContext : JsonSerializerContext { }
-
     public class GroupApplicationResponse
     {
         [JsonPropertyName("resolution")]
         public GroupsV2.GroupApplicationResolveState Resolution { get; set; }
     }
-
-    [JsonSerializable(typeof(GroupApplicationResponse))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class GroupApplicationResponseJsonContext : JsonSerializerContext { }
 }

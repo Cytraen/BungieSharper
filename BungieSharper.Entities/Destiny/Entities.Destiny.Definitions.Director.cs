@@ -52,10 +52,6 @@ namespace BungieSharper.Entities.Destiny.Definitions.Director
         public bool Redacted { get; set; }
     }
 
-    [JsonSerializable(typeof(DestinyActivityGraphDefinition))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyActivityGraphDefinitionJsonContext : JsonSerializerContext { }
-
     /// <summary>
     /// This is the position and other data related to nodes in the activity graph that you can click to launch activities. An Activity Graph node will only have one active Activity at a time, which will determine the activity to be launched (and, unless overrideDisplay information is provided, will also determine the tooltip and other UI related to the node)
     /// </summary>
@@ -86,10 +82,6 @@ namespace BungieSharper.Entities.Destiny.Definitions.Director
         public IEnumerable<Destiny.Definitions.Director.DestinyActivityGraphNodeStateEntry> States { get; set; }
     }
 
-    [JsonSerializable(typeof(DestinyActivityGraphNodeDefinition))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyActivityGraphNodeDefinitionJsonContext : JsonSerializerContext { }
-
     /// <summary>
     /// Nodes can have different visual states. This object represents a single visual state ("highlight type") that a node can be in, and the unlock expression condition to determine whether it should be set.
     /// </summary>
@@ -99,10 +91,6 @@ namespace BungieSharper.Entities.Destiny.Definitions.Director
         [JsonPropertyName("highlightType")]
         public Destiny.ActivityGraphNodeHighlightType HighlightType { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinyActivityGraphNodeFeaturingStateDefinition))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyActivityGraphNodeFeaturingStateDefinitionJsonContext : JsonSerializerContext { }
 
     /// <summary>
     /// The actual activity to be redirected to when you click on the node. Note that a node can have many Activities attached to it: but only one will be active at any given time. The list of Node Activities will be traversed, and the first one found to be active will be displayed. This way, a node can layer multiple variants of an activity on top of each other. For instance, one node can control the weekly Crucible Playlist. There are multiple possible playlists, but only one is active for the week.
@@ -118,10 +106,6 @@ namespace BungieSharper.Entities.Destiny.Definitions.Director
         public uint ActivityHash { get; set; }
     }
 
-    [JsonSerializable(typeof(DestinyActivityGraphNodeActivityDefinition))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyActivityGraphNodeActivityDefinitionJsonContext : JsonSerializerContext { }
-
     /// <summary>
     /// Represents a single state that a graph node might end up in. Depending on what's going on in the game, graph nodes could be shown in different ways or even excluded from view entirely.
     /// </summary>
@@ -130,10 +114,6 @@ namespace BungieSharper.Entities.Destiny.Definitions.Director
         [JsonPropertyName("state")]
         public Destiny.DestinyGraphNodeState State { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinyActivityGraphNodeStateEntry))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyActivityGraphNodeStateEntryJsonContext : JsonSerializerContext { }
 
     /// <summary>
     /// These Art Elements are meant to represent one-off visual effects overlaid on the map. Currently, we do not have a pipeline to import the assets for these overlays, so this info exists as a placeholder for when such a pipeline exists (if it ever will)
@@ -144,10 +124,6 @@ namespace BungieSharper.Entities.Destiny.Definitions.Director
         [JsonPropertyName("position")]
         public Destiny.Definitions.Common.DestinyPositionDefinition Position { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinyActivityGraphArtElementDefinition))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyActivityGraphArtElementDefinitionJsonContext : JsonSerializerContext { }
 
     /// <summary>
     /// Nodes on a graph can be visually connected: this appears to be the information about which nodes to link. It appears to lack more detailed information, such as the path for that linking.
@@ -160,10 +136,6 @@ namespace BungieSharper.Entities.Destiny.Definitions.Director
         [JsonPropertyName("destNodeHash")]
         public uint DestNodeHash { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinyActivityGraphConnectionDefinition))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyActivityGraphConnectionDefinitionJsonContext : JsonSerializerContext { }
 
     /// <summary>
     /// When a Graph needs to show active Objectives, this defines those objectives as well as an identifier.
@@ -179,10 +151,6 @@ namespace BungieSharper.Entities.Destiny.Definitions.Director
         public uint ObjectiveHash { get; set; }
     }
 
-    [JsonSerializable(typeof(DestinyActivityGraphDisplayObjectiveDefinition))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyActivityGraphDisplayObjectiveDefinitionJsonContext : JsonSerializerContext { }
-
     /// <summary>
     /// When a Graph needs to show active Progressions, this defines those objectives as well as an identifier.
     /// </summary>
@@ -194,10 +162,6 @@ namespace BungieSharper.Entities.Destiny.Definitions.Director
         [JsonPropertyName("progressionHash")]
         public uint ProgressionHash { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinyActivityGraphDisplayProgressionDefinition))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyActivityGraphDisplayProgressionDefinitionJsonContext : JsonSerializerContext { }
 
     /// <summary>
     /// This describes links between the current graph and others, as well as when that link is relevant.
@@ -223,17 +187,9 @@ namespace BungieSharper.Entities.Destiny.Definitions.Director
         public string Overview { get; set; }
     }
 
-    [JsonSerializable(typeof(DestinyLinkedGraphDefinition))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyLinkedGraphDefinitionJsonContext : JsonSerializerContext { }
-
     public class DestinyLinkedGraphEntryDefinition
     {
         [JsonPropertyName("activityGraphHash")]
         public uint ActivityGraphHash { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinyLinkedGraphEntryDefinition))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyLinkedGraphEntryDefinitionJsonContext : JsonSerializerContext { }
 }

@@ -13,8 +13,4 @@ namespace BungieSharper.Entities.Destiny.Components.PlugSets
         [JsonPropertyName("plugs")]
         public Dictionary<uint, IEnumerable<Destiny.Sockets.DestinyItemPlug>> Plugs { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinyPlugSetsComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyPlugSetsComponentJsonContext : JsonSerializerContext { }
 }

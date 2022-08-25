@@ -17,10 +17,6 @@ namespace BungieSharper.Entities.Destiny.Components.Records
         public uint RecordSealsRootNodeHash { get; set; }
     }
 
-    [JsonSerializable(typeof(DestinyRecordsComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyRecordsComponentJsonContext : JsonSerializerContext { }
-
     public class DestinyRecordComponent
     {
         [JsonPropertyName("state")]
@@ -44,10 +40,6 @@ namespace BungieSharper.Entities.Destiny.Components.Records
         [JsonPropertyName("rewardVisibilty")]
         public IEnumerable<bool> RewardVisibilty { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinyRecordComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyRecordComponentJsonContext : JsonSerializerContext { }
 
     public class DestinyProfileRecordsComponent
     {
@@ -84,10 +76,6 @@ namespace BungieSharper.Entities.Destiny.Components.Records
         public uint RecordSealsRootNodeHash { get; set; }
     }
 
-    [JsonSerializable(typeof(DestinyProfileRecordsComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyProfileRecordsComponentJsonContext : JsonSerializerContext { }
-
     public class DestinyCharacterRecordsComponent
     {
         [JsonPropertyName("featuredRecordHashes")]
@@ -104,8 +92,4 @@ namespace BungieSharper.Entities.Destiny.Components.Records
         [JsonPropertyName("recordSealsRootNodeHash")]
         public uint RecordSealsRootNodeHash { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinyCharacterRecordsComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyCharacterRecordsComponentJsonContext : JsonSerializerContext { }
 }

@@ -67,10 +67,6 @@ namespace BungieSharper.Entities.Destiny.Definitions.Sockets
         public bool Redacted { get; set; }
     }
 
-    [JsonSerializable(typeof(DestinySocketTypeDefinition))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinySocketTypeDefinitionJsonContext : JsonSerializerContext { }
-
     /// <summary>
     /// Data related to what happens while a plug is being inserted, mostly for UI purposes.
     /// </summary>
@@ -84,10 +80,6 @@ namespace BungieSharper.Entities.Destiny.Definitions.Sockets
         [JsonPropertyName("actionType")]
         public Destiny.SocketTypeActionType ActionType { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinyInsertPlugActionDefinition))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyInsertPlugActionDefinitionJsonContext : JsonSerializerContext { }
 
     /// <summary>
     /// Defines a plug "Category" that is allowed to be plugged into a socket of this type.
@@ -117,10 +109,6 @@ namespace BungieSharper.Entities.Destiny.Definitions.Sockets
         public IEnumerable<uint> ReinitializationPossiblePlugHashes { get; set; }
     }
 
-    [JsonSerializable(typeof(DestinyPlugWhitelistEntryDefinition))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyPlugWhitelistEntryDefinitionJsonContext : JsonSerializerContext { }
-
     public class DestinySocketTypeScalarMaterialRequirementEntry
     {
         [JsonPropertyName("currencyItemHash")]
@@ -129,10 +117,6 @@ namespace BungieSharper.Entities.Destiny.Definitions.Sockets
         [JsonPropertyName("scalarValue")]
         public int ScalarValue { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinySocketTypeScalarMaterialRequirementEntry))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinySocketTypeScalarMaterialRequirementEntryJsonContext : JsonSerializerContext { }
 
     /// <summary>
     /// Sockets on an item are organized into Categories visually.
@@ -172,10 +156,6 @@ namespace BungieSharper.Entities.Destiny.Definitions.Sockets
         [JsonPropertyName("redacted")]
         public bool Redacted { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinySocketCategoryDefinition))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinySocketCategoryDefinitionJsonContext : JsonSerializerContext { }
 
     /// <summary>
     /// Sometimes, we have large sets of reusable plugs that are defined identically and thus can (and in some cases, are so large that they *must*) be shared across the places where they are used. These are the definitions for those reusable sets of plugs.
@@ -218,8 +198,4 @@ namespace BungieSharper.Entities.Destiny.Definitions.Sockets
         [JsonPropertyName("redacted")]
         public bool Redacted { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinyPlugSetDefinition))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyPlugSetDefinitionJsonContext : JsonSerializerContext { }
 }

@@ -37,10 +37,6 @@ namespace BungieSharper.Entities.Destiny.Definitions.Artifacts
         public bool Redacted { get; set; }
     }
 
-    [JsonSerializable(typeof(DestinyArtifactDefinition))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyArtifactDefinitionJsonContext : JsonSerializerContext { }
-
     public class DestinyArtifactTierDefinition
     {
         /// <summary>An identifier, unique within the Artifact, for this specific tier.</summary>
@@ -64,18 +60,10 @@ namespace BungieSharper.Entities.Destiny.Definitions.Artifacts
         public int MinimumUnlockPointsUsedRequirement { get; set; }
     }
 
-    [JsonSerializable(typeof(DestinyArtifactTierDefinition))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyArtifactTierDefinitionJsonContext : JsonSerializerContext { }
-
     public class DestinyArtifactTierItemDefinition
     {
         /// <summary>The identifier of the Plug Item unlocked by activating this item in the Artifact.</summary>
         [JsonPropertyName("itemHash")]
         public uint ItemHash { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinyArtifactTierItemDefinition))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyArtifactTierItemDefinitionJsonContext : JsonSerializerContext { }
 }

@@ -84,10 +84,6 @@ namespace BungieSharper.Entities.Forum
         public string Locale { get; set; }
     }
 
-    [JsonSerializable(typeof(PostResponse))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class PostResponseJsonContext : JsonSerializerContext { }
-
     public enum ForumMediaType : int
     {
         None = 0,
@@ -155,10 +151,6 @@ namespace BungieSharper.Entities.Forum
         public bool UseTotalResults { get; set; }
     }
 
-    [JsonSerializable(typeof(PostSearchResponse))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class PostSearchResponseJsonContext : JsonSerializerContext { }
-
     public class PollResponse
     {
         [JsonPropertyName("topicId")]
@@ -170,10 +162,6 @@ namespace BungieSharper.Entities.Forum
         [JsonPropertyName("totalVotes")]
         public int TotalVotes { get; set; }
     }
-
-    [JsonSerializable(typeof(PollResponse))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class PollResponseJsonContext : JsonSerializerContext { }
 
     public class PollResult
     {
@@ -192,10 +180,6 @@ namespace BungieSharper.Entities.Forum
         [JsonPropertyName("requestingUserVoted")]
         public bool RequestingUserVoted { get; set; }
     }
-
-    [JsonSerializable(typeof(PollResult))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class PollResultJsonContext : JsonSerializerContext { }
 
     public class ForumRecruitmentDetail
     {
@@ -230,10 +214,6 @@ namespace BungieSharper.Entities.Forum
         [JsonPropertyName("kickedPlayerIds")]
         public IEnumerable<long> KickedPlayerIds { get; set; }
     }
-
-    [JsonSerializable(typeof(ForumRecruitmentDetail))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class ForumRecruitmentDetailJsonContext : JsonSerializerContext { }
 
     public enum ForumRecruitmentIntensityLabel : byte
     {

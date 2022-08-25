@@ -34,10 +34,6 @@ namespace BungieSharper.Entities.Destiny.Definitions.Traits
         public bool Redacted { get; set; }
     }
 
-    [JsonSerializable(typeof(DestinyTraitDefinition))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyTraitDefinitionJsonContext : JsonSerializerContext { }
-
     public class DestinyTraitCategoryDefinition
     {
         [JsonPropertyName("traitCategoryId")]
@@ -64,8 +60,4 @@ namespace BungieSharper.Entities.Destiny.Definitions.Traits
         [JsonPropertyName("redacted")]
         public bool Redacted { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinyTraitCategoryDefinition))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyTraitCategoryDefinitionJsonContext : JsonSerializerContext { }
 }

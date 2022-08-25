@@ -10,8 +10,4 @@ namespace BungieSharper.Entities.Links
         [JsonPropertyName("url")]
         public string Url { get; set; }
     }
-
-    [JsonSerializable(typeof(HyperlinkReference))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class HyperlinkReferenceJsonContext : JsonSerializerContext { }
 }

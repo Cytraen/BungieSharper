@@ -22,10 +22,6 @@ namespace BungieSharper.Entities.Destiny.Components.Profiles
         public Destiny.Artifacts.DestinyArtifactProfileScoped SeasonalArtifact { get; set; }
     }
 
-    [JsonSerializable(typeof(DestinyProfileProgressionComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyProfileProgressionComponentJsonContext : JsonSerializerContext { }
-
     /// <summary>
     /// This is an experimental set of data that Bungie considers to be "transitory" - information that may be useful for API users, but that is coming from a non-authoritative data source about information that could potentially change at a more frequent pace than Bungie.net will receive updates about it.
     /// This information is provided exclusively for convenience should any of it be useful to users: we provide no guarantees to the accuracy or timeliness of data that comes from this source. Know that this data can potentially be out-of-date or even wrong entirely if the user disconnected from the game or suddenly changed their status before we can receive refreshed data.
@@ -54,10 +50,6 @@ namespace BungieSharper.Entities.Destiny.Components.Profiles
         public uint? LastOrbitedDestinationHash { get; set; }
     }
 
-    [JsonSerializable(typeof(DestinyProfileTransitoryComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyProfileTransitoryComponentJsonContext : JsonSerializerContext { }
-
     /// <summary>
     /// This is some bare minimum information about a party member in a Fireteam. Unfortunately, without great computational expense on our side we can only get at the data contained here. I'd like to give you a character ID for example, but we don't have it. But we do have these three pieces of information. May they help you on your quest to show meaningful data about current Fireteams.
     /// Notably, we don't and can't feasibly return info on characters. If you can, try to use just the data below for your UI and purposes. Only hit us with further queries if you absolutely must know the character ID of the currently playing character. Pretty please with sugar on top.
@@ -80,10 +72,6 @@ namespace BungieSharper.Entities.Destiny.Components.Profiles
         [JsonPropertyName("status")]
         public Destiny.DestinyPartyMemberStates Status { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinyProfileTransitoryPartyMember))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyProfileTransitoryPartyMemberJsonContext : JsonSerializerContext { }
 
     /// <summary>
     /// If you are playing in an activity, this is some information about it.
@@ -118,10 +106,6 @@ namespace BungieSharper.Entities.Destiny.Components.Profiles
         public int NumberOfPlayers { get; set; }
     }
 
-    [JsonSerializable(typeof(DestinyProfileTransitoryCurrentActivity))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyProfileTransitoryCurrentActivityJsonContext : JsonSerializerContext { }
-
     /// <summary>
     /// Some basic information about whether you can be joined, how many slots are left etc. Note that this can change quickly, so it may not actually be useful. But perhaps it will be in some use cases?
     /// </summary>
@@ -139,10 +123,6 @@ namespace BungieSharper.Entities.Destiny.Components.Profiles
         [JsonPropertyName("closedReasons")]
         public Destiny.DestinyJoinClosedReasons ClosedReasons { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinyProfileTransitoryJoinability))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyProfileTransitoryJoinabilityJsonContext : JsonSerializerContext { }
 
     /// <summary>
     /// This represents a single "thing" being tracked by the player.
@@ -184,8 +164,4 @@ namespace BungieSharper.Entities.Destiny.Components.Profiles
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public DateTime? TrackedDate { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinyProfileTransitoryTrackingEntry))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyProfileTransitoryTrackingEntryJsonContext : JsonSerializerContext { }
 }

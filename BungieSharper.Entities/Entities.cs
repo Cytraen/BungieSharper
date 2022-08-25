@@ -68,10 +68,6 @@ namespace BungieSharper.Entities
         public bool UseTotalResults { get; set; }
     }
 
-    [JsonSerializable(typeof(SearchResultOfContentItemPublicContract))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SearchResultOfContentItemPublicContractJsonContext : JsonSerializerContext { }
-
     public class SearchResultOfPostResponse
     {
         [JsonPropertyName("results")]
@@ -98,10 +94,6 @@ namespace BungieSharper.Entities
         [JsonPropertyName("useTotalResults")]
         public bool UseTotalResults { get; set; }
     }
-
-    [JsonSerializable(typeof(SearchResultOfPostResponse))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SearchResultOfPostResponseJsonContext : JsonSerializerContext { }
 
     public class SearchResultOfGroupV2Card
     {
@@ -130,10 +122,6 @@ namespace BungieSharper.Entities
         public bool UseTotalResults { get; set; }
     }
 
-    [JsonSerializable(typeof(SearchResultOfGroupV2Card))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SearchResultOfGroupV2CardJsonContext : JsonSerializerContext { }
-
     public class SearchResultOfGroupMember
     {
         [JsonPropertyName("results")]
@@ -160,10 +148,6 @@ namespace BungieSharper.Entities
         [JsonPropertyName("useTotalResults")]
         public bool UseTotalResults { get; set; }
     }
-
-    [JsonSerializable(typeof(SearchResultOfGroupMember))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SearchResultOfGroupMemberJsonContext : JsonSerializerContext { }
 
     public class SearchResultOfGroupBan
     {
@@ -192,10 +176,6 @@ namespace BungieSharper.Entities
         public bool UseTotalResults { get; set; }
     }
 
-    [JsonSerializable(typeof(SearchResultOfGroupBan))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SearchResultOfGroupBanJsonContext : JsonSerializerContext { }
-
     public class SearchResultOfGroupMemberApplication
     {
         [JsonPropertyName("results")]
@@ -222,10 +202,6 @@ namespace BungieSharper.Entities
         [JsonPropertyName("useTotalResults")]
         public bool UseTotalResults { get; set; }
     }
-
-    [JsonSerializable(typeof(SearchResultOfGroupMemberApplication))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SearchResultOfGroupMemberApplicationJsonContext : JsonSerializerContext { }
 
     public class SearchResultOfGroupMembership
     {
@@ -254,10 +230,6 @@ namespace BungieSharper.Entities
         public bool UseTotalResults { get; set; }
     }
 
-    [JsonSerializable(typeof(SearchResultOfGroupMembership))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SearchResultOfGroupMembershipJsonContext : JsonSerializerContext { }
-
     public class SearchResultOfGroupPotentialMembership
     {
         [JsonPropertyName("results")]
@@ -285,10 +257,6 @@ namespace BungieSharper.Entities
         public bool UseTotalResults { get; set; }
     }
 
-    [JsonSerializable(typeof(SearchResultOfGroupPotentialMembership))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SearchResultOfGroupPotentialMembershipJsonContext : JsonSerializerContext { }
-
     public class SingleComponentResponseOfDestinyVendorReceiptsComponent
     {
         [JsonPropertyName("data")]
@@ -302,10 +270,6 @@ namespace BungieSharper.Entities
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
-
-    [JsonSerializable(typeof(SingleComponentResponseOfDestinyVendorReceiptsComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SingleComponentResponseOfDestinyVendorReceiptsComponentJsonContext : JsonSerializerContext { }
 
     public class SingleComponentResponseOfDestinyInventoryComponent
     {
@@ -321,10 +285,6 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
-    [JsonSerializable(typeof(SingleComponentResponseOfDestinyInventoryComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SingleComponentResponseOfDestinyInventoryComponentJsonContext : JsonSerializerContext { }
-
     public class SingleComponentResponseOfDestinyProfileComponent
     {
         [JsonPropertyName("data")]
@@ -338,10 +298,6 @@ namespace BungieSharper.Entities
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
-
-    [JsonSerializable(typeof(SingleComponentResponseOfDestinyProfileComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SingleComponentResponseOfDestinyProfileComponentJsonContext : JsonSerializerContext { }
 
     public class SingleComponentResponseOfDestinyPlatformSilverComponent
     {
@@ -357,10 +313,6 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
-    [JsonSerializable(typeof(SingleComponentResponseOfDestinyPlatformSilverComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SingleComponentResponseOfDestinyPlatformSilverComponentJsonContext : JsonSerializerContext { }
-
     public class SingleComponentResponseOfDestinyKiosksComponent
     {
         [JsonPropertyName("data")]
@@ -374,10 +326,6 @@ namespace BungieSharper.Entities
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
-
-    [JsonSerializable(typeof(SingleComponentResponseOfDestinyKiosksComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SingleComponentResponseOfDestinyKiosksComponentJsonContext : JsonSerializerContext { }
 
     public class SingleComponentResponseOfDestinyPlugSetsComponent
     {
@@ -393,10 +341,6 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
-    [JsonSerializable(typeof(SingleComponentResponseOfDestinyPlugSetsComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SingleComponentResponseOfDestinyPlugSetsComponentJsonContext : JsonSerializerContext { }
-
     public class SingleComponentResponseOfDestinyProfileProgressionComponent
     {
         [JsonPropertyName("data")]
@@ -410,10 +354,6 @@ namespace BungieSharper.Entities
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
-
-    [JsonSerializable(typeof(SingleComponentResponseOfDestinyProfileProgressionComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SingleComponentResponseOfDestinyProfileProgressionComponentJsonContext : JsonSerializerContext { }
 
     public class SingleComponentResponseOfDestinyPresentationNodesComponent
     {
@@ -429,10 +369,6 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
-    [JsonSerializable(typeof(SingleComponentResponseOfDestinyPresentationNodesComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SingleComponentResponseOfDestinyPresentationNodesComponentJsonContext : JsonSerializerContext { }
-
     public class SingleComponentResponseOfDestinyProfileRecordsComponent
     {
         [JsonPropertyName("data")]
@@ -446,10 +382,6 @@ namespace BungieSharper.Entities
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
-
-    [JsonSerializable(typeof(SingleComponentResponseOfDestinyProfileRecordsComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SingleComponentResponseOfDestinyProfileRecordsComponentJsonContext : JsonSerializerContext { }
 
     public class SingleComponentResponseOfDestinyProfileCollectiblesComponent
     {
@@ -465,10 +397,6 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
-    [JsonSerializable(typeof(SingleComponentResponseOfDestinyProfileCollectiblesComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SingleComponentResponseOfDestinyProfileCollectiblesComponentJsonContext : JsonSerializerContext { }
-
     public class SingleComponentResponseOfDestinyProfileTransitoryComponent
     {
         [JsonPropertyName("data")]
@@ -482,10 +410,6 @@ namespace BungieSharper.Entities
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
-
-    [JsonSerializable(typeof(SingleComponentResponseOfDestinyProfileTransitoryComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SingleComponentResponseOfDestinyProfileTransitoryComponentJsonContext : JsonSerializerContext { }
 
     public class SingleComponentResponseOfDestinyMetricsComponent
     {
@@ -501,10 +425,6 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
-    [JsonSerializable(typeof(SingleComponentResponseOfDestinyMetricsComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SingleComponentResponseOfDestinyMetricsComponentJsonContext : JsonSerializerContext { }
-
     public class SingleComponentResponseOfDestinyStringVariablesComponent
     {
         [JsonPropertyName("data")]
@@ -518,10 +438,6 @@ namespace BungieSharper.Entities
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
-
-    [JsonSerializable(typeof(SingleComponentResponseOfDestinyStringVariablesComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SingleComponentResponseOfDestinyStringVariablesComponentJsonContext : JsonSerializerContext { }
 
     public class DictionaryComponentResponseOfint64AndDestinyCharacterComponent
     {
@@ -537,10 +453,6 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
-    [JsonSerializable(typeof(DictionaryComponentResponseOfint64AndDestinyCharacterComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfint64AndDestinyCharacterComponentJsonContext : JsonSerializerContext { }
-
     public class DictionaryComponentResponseOfint64AndDestinyInventoryComponent
     {
         [JsonPropertyName("data")]
@@ -554,10 +466,6 @@ namespace BungieSharper.Entities
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
-
-    [JsonSerializable(typeof(DictionaryComponentResponseOfint64AndDestinyInventoryComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfint64AndDestinyInventoryComponentJsonContext : JsonSerializerContext { }
 
     public class DictionaryComponentResponseOfint64AndDestinyCharacterProgressionComponent
     {
@@ -573,10 +481,6 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
-    [JsonSerializable(typeof(DictionaryComponentResponseOfint64AndDestinyCharacterProgressionComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfint64AndDestinyCharacterProgressionComponentJsonContext : JsonSerializerContext { }
-
     public class DictionaryComponentResponseOfint64AndDestinyCharacterRenderComponent
     {
         [JsonPropertyName("data")]
@@ -590,10 +494,6 @@ namespace BungieSharper.Entities
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
-
-    [JsonSerializable(typeof(DictionaryComponentResponseOfint64AndDestinyCharacterRenderComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfint64AndDestinyCharacterRenderComponentJsonContext : JsonSerializerContext { }
 
     public class DictionaryComponentResponseOfint64AndDestinyCharacterActivitiesComponent
     {
@@ -609,10 +509,6 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
-    [JsonSerializable(typeof(DictionaryComponentResponseOfint64AndDestinyCharacterActivitiesComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfint64AndDestinyCharacterActivitiesComponentJsonContext : JsonSerializerContext { }
-
     public class DictionaryComponentResponseOfint64AndDestinyKiosksComponent
     {
         [JsonPropertyName("data")]
@@ -626,10 +522,6 @@ namespace BungieSharper.Entities
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
-
-    [JsonSerializable(typeof(DictionaryComponentResponseOfint64AndDestinyKiosksComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfint64AndDestinyKiosksComponentJsonContext : JsonSerializerContext { }
 
     public class DictionaryComponentResponseOfint64AndDestinyPlugSetsComponent
     {
@@ -645,10 +537,6 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
-    [JsonSerializable(typeof(DictionaryComponentResponseOfint64AndDestinyPlugSetsComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfint64AndDestinyPlugSetsComponentJsonContext : JsonSerializerContext { }
-
     public class DestinyBaseItemComponentSetOfuint32
     {
         [JsonPropertyName("objectives")]
@@ -657,10 +545,6 @@ namespace BungieSharper.Entities
         [JsonPropertyName("perks")]
         public DictionaryComponentResponseOfuint32AndDestinyItemPerksComponent Perks { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinyBaseItemComponentSetOfuint32))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyBaseItemComponentSetOfuint32JsonContext : JsonSerializerContext { }
 
     public class DictionaryComponentResponseOfuint32AndDestinyItemObjectivesComponent
     {
@@ -676,10 +560,6 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
-    [JsonSerializable(typeof(DictionaryComponentResponseOfuint32AndDestinyItemObjectivesComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfuint32AndDestinyItemObjectivesComponentJsonContext : JsonSerializerContext { }
-
     public class DictionaryComponentResponseOfuint32AndDestinyItemPerksComponent
     {
         [JsonPropertyName("data")]
@@ -693,10 +573,6 @@ namespace BungieSharper.Entities
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
-
-    [JsonSerializable(typeof(DictionaryComponentResponseOfuint32AndDestinyItemPerksComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfuint32AndDestinyItemPerksComponentJsonContext : JsonSerializerContext { }
 
     public class DictionaryComponentResponseOfint64AndDestinyPresentationNodesComponent
     {
@@ -712,10 +588,6 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
-    [JsonSerializable(typeof(DictionaryComponentResponseOfint64AndDestinyPresentationNodesComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfint64AndDestinyPresentationNodesComponentJsonContext : JsonSerializerContext { }
-
     public class DictionaryComponentResponseOfint64AndDestinyCharacterRecordsComponent
     {
         [JsonPropertyName("data")]
@@ -729,10 +601,6 @@ namespace BungieSharper.Entities
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
-
-    [JsonSerializable(typeof(DictionaryComponentResponseOfint64AndDestinyCharacterRecordsComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfint64AndDestinyCharacterRecordsComponentJsonContext : JsonSerializerContext { }
 
     public class DictionaryComponentResponseOfint64AndDestinyCollectiblesComponent
     {
@@ -748,10 +616,6 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
-    [JsonSerializable(typeof(DictionaryComponentResponseOfint64AndDestinyCollectiblesComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfint64AndDestinyCollectiblesComponentJsonContext : JsonSerializerContext { }
-
     public class DictionaryComponentResponseOfint64AndDestinyStringVariablesComponent
     {
         [JsonPropertyName("data")]
@@ -765,10 +629,6 @@ namespace BungieSharper.Entities
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
-
-    [JsonSerializable(typeof(DictionaryComponentResponseOfint64AndDestinyStringVariablesComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfint64AndDestinyStringVariablesComponentJsonContext : JsonSerializerContext { }
 
     public class DictionaryComponentResponseOfint64AndDestinyCraftablesComponent
     {
@@ -784,10 +644,6 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
-    [JsonSerializable(typeof(DictionaryComponentResponseOfint64AndDestinyCraftablesComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfint64AndDestinyCraftablesComponentJsonContext : JsonSerializerContext { }
-
     public class DestinyBaseItemComponentSetOfint64
     {
         [JsonPropertyName("objectives")]
@@ -796,10 +652,6 @@ namespace BungieSharper.Entities
         [JsonPropertyName("perks")]
         public DictionaryComponentResponseOfint64AndDestinyItemPerksComponent Perks { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinyBaseItemComponentSetOfint64))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyBaseItemComponentSetOfint64JsonContext : JsonSerializerContext { }
 
     public class DictionaryComponentResponseOfint64AndDestinyItemObjectivesComponent
     {
@@ -815,10 +667,6 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
-    [JsonSerializable(typeof(DictionaryComponentResponseOfint64AndDestinyItemObjectivesComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfint64AndDestinyItemObjectivesComponentJsonContext : JsonSerializerContext { }
-
     public class DictionaryComponentResponseOfint64AndDestinyItemPerksComponent
     {
         [JsonPropertyName("data")]
@@ -832,10 +680,6 @@ namespace BungieSharper.Entities
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
-
-    [JsonSerializable(typeof(DictionaryComponentResponseOfint64AndDestinyItemPerksComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfint64AndDestinyItemPerksComponentJsonContext : JsonSerializerContext { }
 
     public class DestinyItemComponentSetOfint64
     {
@@ -870,10 +714,6 @@ namespace BungieSharper.Entities
         public DictionaryComponentResponseOfint64AndDestinyItemPerksComponent Perks { get; set; }
     }
 
-    [JsonSerializable(typeof(DestinyItemComponentSetOfint64))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyItemComponentSetOfint64JsonContext : JsonSerializerContext { }
-
     public class DictionaryComponentResponseOfint64AndDestinyItemInstanceComponent
     {
         [JsonPropertyName("data")]
@@ -887,10 +727,6 @@ namespace BungieSharper.Entities
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
-
-    [JsonSerializable(typeof(DictionaryComponentResponseOfint64AndDestinyItemInstanceComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfint64AndDestinyItemInstanceComponentJsonContext : JsonSerializerContext { }
 
     public class DictionaryComponentResponseOfint64AndDestinyItemRenderComponent
     {
@@ -906,10 +742,6 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
-    [JsonSerializable(typeof(DictionaryComponentResponseOfint64AndDestinyItemRenderComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfint64AndDestinyItemRenderComponentJsonContext : JsonSerializerContext { }
-
     public class DictionaryComponentResponseOfint64AndDestinyItemStatsComponent
     {
         [JsonPropertyName("data")]
@@ -923,10 +755,6 @@ namespace BungieSharper.Entities
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
-
-    [JsonSerializable(typeof(DictionaryComponentResponseOfint64AndDestinyItemStatsComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfint64AndDestinyItemStatsComponentJsonContext : JsonSerializerContext { }
 
     public class DictionaryComponentResponseOfint64AndDestinyItemSocketsComponent
     {
@@ -942,10 +770,6 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
-    [JsonSerializable(typeof(DictionaryComponentResponseOfint64AndDestinyItemSocketsComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfint64AndDestinyItemSocketsComponentJsonContext : JsonSerializerContext { }
-
     public class DictionaryComponentResponseOfint64AndDestinyItemReusablePlugsComponent
     {
         [JsonPropertyName("data")]
@@ -959,10 +783,6 @@ namespace BungieSharper.Entities
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
-
-    [JsonSerializable(typeof(DictionaryComponentResponseOfint64AndDestinyItemReusablePlugsComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfint64AndDestinyItemReusablePlugsComponentJsonContext : JsonSerializerContext { }
 
     public class DictionaryComponentResponseOfint64AndDestinyItemPlugObjectivesComponent
     {
@@ -978,10 +798,6 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
-    [JsonSerializable(typeof(DictionaryComponentResponseOfint64AndDestinyItemPlugObjectivesComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfint64AndDestinyItemPlugObjectivesComponentJsonContext : JsonSerializerContext { }
-
     public class DictionaryComponentResponseOfint64AndDestinyItemTalentGridComponent
     {
         [JsonPropertyName("data")]
@@ -995,10 +811,6 @@ namespace BungieSharper.Entities
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
-
-    [JsonSerializable(typeof(DictionaryComponentResponseOfint64AndDestinyItemTalentGridComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfint64AndDestinyItemTalentGridComponentJsonContext : JsonSerializerContext { }
 
     public class DictionaryComponentResponseOfuint32AndDestinyItemPlugComponent
     {
@@ -1014,10 +826,6 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
-    [JsonSerializable(typeof(DictionaryComponentResponseOfuint32AndDestinyItemPlugComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfuint32AndDestinyItemPlugComponentJsonContext : JsonSerializerContext { }
-
     public class DictionaryComponentResponseOfint64AndDestinyCurrenciesComponent
     {
         [JsonPropertyName("data")]
@@ -1031,10 +839,6 @@ namespace BungieSharper.Entities
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
-
-    [JsonSerializable(typeof(DictionaryComponentResponseOfint64AndDestinyCurrenciesComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfint64AndDestinyCurrenciesComponentJsonContext : JsonSerializerContext { }
 
     public class SingleComponentResponseOfDestinyCharacterComponent
     {
@@ -1050,10 +854,6 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
-    [JsonSerializable(typeof(SingleComponentResponseOfDestinyCharacterComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SingleComponentResponseOfDestinyCharacterComponentJsonContext : JsonSerializerContext { }
-
     public class SingleComponentResponseOfDestinyCharacterProgressionComponent
     {
         [JsonPropertyName("data")]
@@ -1067,10 +867,6 @@ namespace BungieSharper.Entities
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
-
-    [JsonSerializable(typeof(SingleComponentResponseOfDestinyCharacterProgressionComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SingleComponentResponseOfDestinyCharacterProgressionComponentJsonContext : JsonSerializerContext { }
 
     public class SingleComponentResponseOfDestinyCharacterRenderComponent
     {
@@ -1086,10 +882,6 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
-    [JsonSerializable(typeof(SingleComponentResponseOfDestinyCharacterRenderComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SingleComponentResponseOfDestinyCharacterRenderComponentJsonContext : JsonSerializerContext { }
-
     public class SingleComponentResponseOfDestinyCharacterActivitiesComponent
     {
         [JsonPropertyName("data")]
@@ -1103,10 +895,6 @@ namespace BungieSharper.Entities
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
-
-    [JsonSerializable(typeof(SingleComponentResponseOfDestinyCharacterActivitiesComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SingleComponentResponseOfDestinyCharacterActivitiesComponentJsonContext : JsonSerializerContext { }
 
     public class SingleComponentResponseOfDestinyCharacterRecordsComponent
     {
@@ -1122,10 +910,6 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
-    [JsonSerializable(typeof(SingleComponentResponseOfDestinyCharacterRecordsComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SingleComponentResponseOfDestinyCharacterRecordsComponentJsonContext : JsonSerializerContext { }
-
     public class SingleComponentResponseOfDestinyCollectiblesComponent
     {
         [JsonPropertyName("data")]
@@ -1139,10 +923,6 @@ namespace BungieSharper.Entities
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
-
-    [JsonSerializable(typeof(SingleComponentResponseOfDestinyCollectiblesComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SingleComponentResponseOfDestinyCollectiblesComponentJsonContext : JsonSerializerContext { }
 
     public class SingleComponentResponseOfDestinyCurrenciesComponent
     {
@@ -1158,10 +938,6 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
-    [JsonSerializable(typeof(SingleComponentResponseOfDestinyCurrenciesComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SingleComponentResponseOfDestinyCurrenciesComponentJsonContext : JsonSerializerContext { }
-
     public class SingleComponentResponseOfDestinyItemComponent
     {
         [JsonPropertyName("data")]
@@ -1175,10 +951,6 @@ namespace BungieSharper.Entities
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
-
-    [JsonSerializable(typeof(SingleComponentResponseOfDestinyItemComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SingleComponentResponseOfDestinyItemComponentJsonContext : JsonSerializerContext { }
 
     public class SingleComponentResponseOfDestinyItemInstanceComponent
     {
@@ -1194,10 +966,6 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
-    [JsonSerializable(typeof(SingleComponentResponseOfDestinyItemInstanceComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SingleComponentResponseOfDestinyItemInstanceComponentJsonContext : JsonSerializerContext { }
-
     public class SingleComponentResponseOfDestinyItemObjectivesComponent
     {
         [JsonPropertyName("data")]
@@ -1211,10 +979,6 @@ namespace BungieSharper.Entities
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
-
-    [JsonSerializable(typeof(SingleComponentResponseOfDestinyItemObjectivesComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SingleComponentResponseOfDestinyItemObjectivesComponentJsonContext : JsonSerializerContext { }
 
     public class SingleComponentResponseOfDestinyItemPerksComponent
     {
@@ -1230,10 +994,6 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
-    [JsonSerializable(typeof(SingleComponentResponseOfDestinyItemPerksComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SingleComponentResponseOfDestinyItemPerksComponentJsonContext : JsonSerializerContext { }
-
     public class SingleComponentResponseOfDestinyItemRenderComponent
     {
         [JsonPropertyName("data")]
@@ -1247,10 +1007,6 @@ namespace BungieSharper.Entities
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
-
-    [JsonSerializable(typeof(SingleComponentResponseOfDestinyItemRenderComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SingleComponentResponseOfDestinyItemRenderComponentJsonContext : JsonSerializerContext { }
 
     public class SingleComponentResponseOfDestinyItemStatsComponent
     {
@@ -1266,10 +1022,6 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
-    [JsonSerializable(typeof(SingleComponentResponseOfDestinyItemStatsComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SingleComponentResponseOfDestinyItemStatsComponentJsonContext : JsonSerializerContext { }
-
     public class SingleComponentResponseOfDestinyItemTalentGridComponent
     {
         [JsonPropertyName("data")]
@@ -1283,10 +1035,6 @@ namespace BungieSharper.Entities
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
-
-    [JsonSerializable(typeof(SingleComponentResponseOfDestinyItemTalentGridComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SingleComponentResponseOfDestinyItemTalentGridComponentJsonContext : JsonSerializerContext { }
 
     public class SingleComponentResponseOfDestinyItemSocketsComponent
     {
@@ -1302,10 +1050,6 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
-    [JsonSerializable(typeof(SingleComponentResponseOfDestinyItemSocketsComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SingleComponentResponseOfDestinyItemSocketsComponentJsonContext : JsonSerializerContext { }
-
     public class SingleComponentResponseOfDestinyItemReusablePlugsComponent
     {
         [JsonPropertyName("data")]
@@ -1319,10 +1063,6 @@ namespace BungieSharper.Entities
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
-
-    [JsonSerializable(typeof(SingleComponentResponseOfDestinyItemReusablePlugsComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SingleComponentResponseOfDestinyItemReusablePlugsComponentJsonContext : JsonSerializerContext { }
 
     public class SingleComponentResponseOfDestinyItemPlugObjectivesComponent
     {
@@ -1338,10 +1078,6 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
-    [JsonSerializable(typeof(SingleComponentResponseOfDestinyItemPlugObjectivesComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SingleComponentResponseOfDestinyItemPlugObjectivesComponentJsonContext : JsonSerializerContext { }
-
     public class SingleComponentResponseOfDestinyVendorGroupComponent
     {
         [JsonPropertyName("data")]
@@ -1355,10 +1091,6 @@ namespace BungieSharper.Entities
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
-
-    [JsonSerializable(typeof(SingleComponentResponseOfDestinyVendorGroupComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SingleComponentResponseOfDestinyVendorGroupComponentJsonContext : JsonSerializerContext { }
 
     public class DictionaryComponentResponseOfuint32AndDestinyVendorComponent
     {
@@ -1374,10 +1106,6 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
-    [JsonSerializable(typeof(DictionaryComponentResponseOfuint32AndDestinyVendorComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfuint32AndDestinyVendorComponentJsonContext : JsonSerializerContext { }
-
     public class DictionaryComponentResponseOfuint32AndDestinyVendorCategoriesComponent
     {
         [JsonPropertyName("data")]
@@ -1392,19 +1120,11 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
-    [JsonSerializable(typeof(DictionaryComponentResponseOfuint32AndDestinyVendorCategoriesComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfuint32AndDestinyVendorCategoriesComponentJsonContext : JsonSerializerContext { }
-
     public class DestinyVendorSaleItemSetComponentOfDestinyVendorSaleItemComponent
     {
         [JsonPropertyName("saleItems")]
         public Dictionary<int, Destiny.Entities.Vendors.DestinyVendorSaleItemComponent> SaleItems { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinyVendorSaleItemSetComponentOfDestinyVendorSaleItemComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyVendorSaleItemSetComponentOfDestinyVendorSaleItemComponentJsonContext : JsonSerializerContext { }
 
     public class DictionaryComponentResponseOfuint32AndPersonalDestinyVendorSaleItemSetComponent
     {
@@ -1420,10 +1140,6 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
-    [JsonSerializable(typeof(DictionaryComponentResponseOfuint32AndPersonalDestinyVendorSaleItemSetComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfuint32AndPersonalDestinyVendorSaleItemSetComponentJsonContext : JsonSerializerContext { }
-
     public class DestinyBaseItemComponentSetOfint32
     {
         [JsonPropertyName("objectives")]
@@ -1432,10 +1148,6 @@ namespace BungieSharper.Entities
         [JsonPropertyName("perks")]
         public DictionaryComponentResponseOfint32AndDestinyItemPerksComponent Perks { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinyBaseItemComponentSetOfint32))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyBaseItemComponentSetOfint32JsonContext : JsonSerializerContext { }
 
     public class DictionaryComponentResponseOfint32AndDestinyItemObjectivesComponent
     {
@@ -1451,10 +1163,6 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
-    [JsonSerializable(typeof(DictionaryComponentResponseOfint32AndDestinyItemObjectivesComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfint32AndDestinyItemObjectivesComponentJsonContext : JsonSerializerContext { }
-
     public class DictionaryComponentResponseOfint32AndDestinyItemPerksComponent
     {
         [JsonPropertyName("data")]
@@ -1468,10 +1176,6 @@ namespace BungieSharper.Entities
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
-
-    [JsonSerializable(typeof(DictionaryComponentResponseOfint32AndDestinyItemPerksComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfint32AndDestinyItemPerksComponentJsonContext : JsonSerializerContext { }
 
     public class DestinyItemComponentSetOfint32
     {
@@ -1506,10 +1210,6 @@ namespace BungieSharper.Entities
         public DictionaryComponentResponseOfint32AndDestinyItemPerksComponent Perks { get; set; }
     }
 
-    [JsonSerializable(typeof(DestinyItemComponentSetOfint32))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyItemComponentSetOfint32JsonContext : JsonSerializerContext { }
-
     public class DictionaryComponentResponseOfint32AndDestinyItemInstanceComponent
     {
         [JsonPropertyName("data")]
@@ -1523,10 +1223,6 @@ namespace BungieSharper.Entities
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
-
-    [JsonSerializable(typeof(DictionaryComponentResponseOfint32AndDestinyItemInstanceComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfint32AndDestinyItemInstanceComponentJsonContext : JsonSerializerContext { }
 
     public class DictionaryComponentResponseOfint32AndDestinyItemRenderComponent
     {
@@ -1542,10 +1238,6 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
-    [JsonSerializable(typeof(DictionaryComponentResponseOfint32AndDestinyItemRenderComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfint32AndDestinyItemRenderComponentJsonContext : JsonSerializerContext { }
-
     public class DictionaryComponentResponseOfint32AndDestinyItemStatsComponent
     {
         [JsonPropertyName("data")]
@@ -1559,10 +1251,6 @@ namespace BungieSharper.Entities
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
-
-    [JsonSerializable(typeof(DictionaryComponentResponseOfint32AndDestinyItemStatsComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfint32AndDestinyItemStatsComponentJsonContext : JsonSerializerContext { }
 
     public class DictionaryComponentResponseOfint32AndDestinyItemSocketsComponent
     {
@@ -1578,10 +1266,6 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
-    [JsonSerializable(typeof(DictionaryComponentResponseOfint32AndDestinyItemSocketsComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfint32AndDestinyItemSocketsComponentJsonContext : JsonSerializerContext { }
-
     public class DictionaryComponentResponseOfint32AndDestinyItemReusablePlugsComponent
     {
         [JsonPropertyName("data")]
@@ -1595,10 +1279,6 @@ namespace BungieSharper.Entities
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
-
-    [JsonSerializable(typeof(DictionaryComponentResponseOfint32AndDestinyItemReusablePlugsComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfint32AndDestinyItemReusablePlugsComponentJsonContext : JsonSerializerContext { }
 
     public class DictionaryComponentResponseOfint32AndDestinyItemPlugObjectivesComponent
     {
@@ -1614,10 +1294,6 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
-    [JsonSerializable(typeof(DictionaryComponentResponseOfint32AndDestinyItemPlugObjectivesComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfint32AndDestinyItemPlugObjectivesComponentJsonContext : JsonSerializerContext { }
-
     public class DictionaryComponentResponseOfint32AndDestinyItemTalentGridComponent
     {
         [JsonPropertyName("data")]
@@ -1631,10 +1307,6 @@ namespace BungieSharper.Entities
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
-
-    [JsonSerializable(typeof(DictionaryComponentResponseOfint32AndDestinyItemTalentGridComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfint32AndDestinyItemTalentGridComponentJsonContext : JsonSerializerContext { }
 
     public class SingleComponentResponseOfDestinyVendorComponent
     {
@@ -1650,10 +1322,6 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
-    [JsonSerializable(typeof(SingleComponentResponseOfDestinyVendorComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SingleComponentResponseOfDestinyVendorComponentJsonContext : JsonSerializerContext { }
-
     public class SingleComponentResponseOfDestinyVendorCategoriesComponent
     {
         [JsonPropertyName("data")]
@@ -1667,10 +1335,6 @@ namespace BungieSharper.Entities
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
-
-    [JsonSerializable(typeof(SingleComponentResponseOfDestinyVendorCategoriesComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SingleComponentResponseOfDestinyVendorCategoriesComponentJsonContext : JsonSerializerContext { }
 
     public class DictionaryComponentResponseOfint32AndDestinyVendorSaleItemComponent
     {
@@ -1686,10 +1350,6 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
-    [JsonSerializable(typeof(DictionaryComponentResponseOfint32AndDestinyVendorSaleItemComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfint32AndDestinyVendorSaleItemComponentJsonContext : JsonSerializerContext { }
-
     public class DictionaryComponentResponseOfuint32AndDestinyPublicVendorComponent
     {
         [JsonPropertyName("data")]
@@ -1704,19 +1364,11 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
-    [JsonSerializable(typeof(DictionaryComponentResponseOfuint32AndDestinyPublicVendorComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfuint32AndDestinyPublicVendorComponentJsonContext : JsonSerializerContext { }
-
     public class DestinyVendorSaleItemSetComponentOfDestinyPublicVendorSaleItemComponent
     {
         [JsonPropertyName("saleItems")]
         public Dictionary<int, Destiny.Components.Vendors.DestinyPublicVendorSaleItemComponent> SaleItems { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinyVendorSaleItemSetComponentOfDestinyPublicVendorSaleItemComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyVendorSaleItemSetComponentOfDestinyPublicVendorSaleItemComponentJsonContext : JsonSerializerContext { }
 
     public class DictionaryComponentResponseOfuint32AndPublicDestinyVendorSaleItemSetComponent
     {
@@ -1731,10 +1383,6 @@ namespace BungieSharper.Entities
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
-
-    [JsonSerializable(typeof(DictionaryComponentResponseOfuint32AndPublicDestinyVendorSaleItemSetComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfuint32AndPublicDestinyVendorSaleItemSetComponentJsonContext : JsonSerializerContext { }
 
     public class DestinyItemComponentSetOfuint32
     {
@@ -1769,10 +1417,6 @@ namespace BungieSharper.Entities
         public DictionaryComponentResponseOfuint32AndDestinyItemPerksComponent Perks { get; set; }
     }
 
-    [JsonSerializable(typeof(DestinyItemComponentSetOfuint32))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyItemComponentSetOfuint32JsonContext : JsonSerializerContext { }
-
     public class DictionaryComponentResponseOfuint32AndDestinyItemInstanceComponent
     {
         [JsonPropertyName("data")]
@@ -1786,10 +1430,6 @@ namespace BungieSharper.Entities
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
-
-    [JsonSerializable(typeof(DictionaryComponentResponseOfuint32AndDestinyItemInstanceComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfuint32AndDestinyItemInstanceComponentJsonContext : JsonSerializerContext { }
 
     public class DictionaryComponentResponseOfuint32AndDestinyItemRenderComponent
     {
@@ -1805,10 +1445,6 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
-    [JsonSerializable(typeof(DictionaryComponentResponseOfuint32AndDestinyItemRenderComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfuint32AndDestinyItemRenderComponentJsonContext : JsonSerializerContext { }
-
     public class DictionaryComponentResponseOfuint32AndDestinyItemStatsComponent
     {
         [JsonPropertyName("data")]
@@ -1822,10 +1458,6 @@ namespace BungieSharper.Entities
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
-
-    [JsonSerializable(typeof(DictionaryComponentResponseOfuint32AndDestinyItemStatsComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfuint32AndDestinyItemStatsComponentJsonContext : JsonSerializerContext { }
 
     public class DictionaryComponentResponseOfuint32AndDestinyItemSocketsComponent
     {
@@ -1841,10 +1473,6 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
-    [JsonSerializable(typeof(DictionaryComponentResponseOfuint32AndDestinyItemSocketsComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfuint32AndDestinyItemSocketsComponentJsonContext : JsonSerializerContext { }
-
     public class DictionaryComponentResponseOfuint32AndDestinyItemReusablePlugsComponent
     {
         [JsonPropertyName("data")]
@@ -1858,10 +1486,6 @@ namespace BungieSharper.Entities
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
-
-    [JsonSerializable(typeof(DictionaryComponentResponseOfuint32AndDestinyItemReusablePlugsComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfuint32AndDestinyItemReusablePlugsComponentJsonContext : JsonSerializerContext { }
 
     public class DictionaryComponentResponseOfuint32AndDestinyItemPlugObjectivesComponent
     {
@@ -1877,10 +1501,6 @@ namespace BungieSharper.Entities
         public bool? Disabled { get; set; }
     }
 
-    [JsonSerializable(typeof(DictionaryComponentResponseOfuint32AndDestinyItemPlugObjectivesComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfuint32AndDestinyItemPlugObjectivesComponentJsonContext : JsonSerializerContext { }
-
     public class DictionaryComponentResponseOfuint32AndDestinyItemTalentGridComponent
     {
         [JsonPropertyName("data")]
@@ -1894,10 +1514,6 @@ namespace BungieSharper.Entities
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? Disabled { get; set; }
     }
-
-    [JsonSerializable(typeof(DictionaryComponentResponseOfuint32AndDestinyItemTalentGridComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DictionaryComponentResponseOfuint32AndDestinyItemTalentGridComponentJsonContext : JsonSerializerContext { }
 
     public class SearchResultOfDestinyEntitySearchResultItem
     {
@@ -1926,10 +1542,6 @@ namespace BungieSharper.Entities
         public bool UseTotalResults { get; set; }
     }
 
-    [JsonSerializable(typeof(SearchResultOfDestinyEntitySearchResultItem))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SearchResultOfDestinyEntitySearchResultItemJsonContext : JsonSerializerContext { }
-
     public class SearchResultOfTrendingEntry
     {
         [JsonPropertyName("results")]
@@ -1956,10 +1568,6 @@ namespace BungieSharper.Entities
         [JsonPropertyName("useTotalResults")]
         public bool UseTotalResults { get; set; }
     }
-
-    [JsonSerializable(typeof(SearchResultOfTrendingEntry))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SearchResultOfTrendingEntryJsonContext : JsonSerializerContext { }
 
     public class SearchResultOfFireteamSummary
     {
@@ -1988,10 +1596,6 @@ namespace BungieSharper.Entities
         public bool UseTotalResults { get; set; }
     }
 
-    [JsonSerializable(typeof(SearchResultOfFireteamSummary))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SearchResultOfFireteamSummaryJsonContext : JsonSerializerContext { }
-
     public class SearchResultOfFireteamResponse
     {
         [JsonPropertyName("results")]
@@ -2019,10 +1623,6 @@ namespace BungieSharper.Entities
         public bool UseTotalResults { get; set; }
     }
 
-    [JsonSerializable(typeof(SearchResultOfFireteamResponse))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SearchResultOfFireteamResponseJsonContext : JsonSerializerContext { }
-
     public class GlobalAlert
     {
         [JsonPropertyName("AlertKey")]
@@ -2047,10 +1647,6 @@ namespace BungieSharper.Entities
         public StreamInfo StreamInfo { get; set; }
     }
 
-    [JsonSerializable(typeof(GlobalAlert))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class GlobalAlertJsonContext : JsonSerializerContext { }
-
     public enum GlobalAlertLevel : int
     {
         Unknown = 0,
@@ -2070,8 +1666,4 @@ namespace BungieSharper.Entities
         [JsonPropertyName("ChannelName")]
         public string ChannelName { get; set; }
     }
-
-    [JsonSerializable(typeof(StreamInfo))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class StreamInfoJsonContext : JsonSerializerContext { }
 }

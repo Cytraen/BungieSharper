@@ -14,10 +14,6 @@ namespace BungieSharper.Entities.Destiny.Components.Craftables
         public uint CraftingRootNodeHash { get; set; }
     }
 
-    [JsonSerializable(typeof(DestinyCraftablesComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyCraftablesComponentJsonContext : JsonSerializerContext { }
-
     public class DestinyCraftableComponent
     {
         [JsonPropertyName("visible")]
@@ -32,10 +28,6 @@ namespace BungieSharper.Entities.Destiny.Components.Craftables
         public IEnumerable<Destiny.Components.Craftables.DestinyCraftableSocketComponent> Sockets { get; set; }
     }
 
-    [JsonSerializable(typeof(DestinyCraftableComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyCraftableComponentJsonContext : JsonSerializerContext { }
-
     public class DestinyCraftableSocketComponent
     {
         [JsonPropertyName("plugSetHash")]
@@ -46,10 +38,6 @@ namespace BungieSharper.Entities.Destiny.Components.Craftables
         public IEnumerable<Destiny.Components.Craftables.DestinyCraftableSocketPlugComponent> Plugs { get; set; }
     }
 
-    [JsonSerializable(typeof(DestinyCraftableSocketComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyCraftableSocketComponentJsonContext : JsonSerializerContext { }
-
     public class DestinyCraftableSocketPlugComponent
     {
         [JsonPropertyName("plugItemHash")]
@@ -59,8 +47,4 @@ namespace BungieSharper.Entities.Destiny.Components.Craftables
         [JsonPropertyName("failedRequirementIndexes")]
         public IEnumerable<int> FailedRequirementIndexes { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinyCraftableSocketPlugComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyCraftableSocketPlugComponentJsonContext : JsonSerializerContext { }
 }

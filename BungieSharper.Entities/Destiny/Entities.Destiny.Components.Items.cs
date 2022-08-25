@@ -16,10 +16,6 @@ namespace BungieSharper.Entities.Destiny.Components.Items
         public Dictionary<int, IEnumerable<Destiny.Sockets.DestinyItemPlugBase>> Plugs { get; set; }
     }
 
-    [JsonSerializable(typeof(DestinyItemReusablePlugsComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyItemReusablePlugsComponentJsonContext : JsonSerializerContext { }
-
     public class DestinyItemPlugObjectivesComponent
     {
         /// <summary>
@@ -31,10 +27,6 @@ namespace BungieSharper.Entities.Destiny.Components.Items
         [JsonPropertyName("objectivesPerPlug")]
         public Dictionary<uint, IEnumerable<Destiny.Quests.DestinyObjectiveProgress>> ObjectivesPerPlug { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinyItemPlugObjectivesComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyItemPlugObjectivesComponentJsonContext : JsonSerializerContext { }
 
     /// <summary>
     /// Plugs are non-instanced items that can provide Stat and Perk benefits when socketed into an instanced item. Items have Sockets, and Plugs are inserted into Sockets.
@@ -72,8 +64,4 @@ namespace BungieSharper.Entities.Destiny.Components.Items
         [JsonPropertyName("enableFailIndexes")]
         public IEnumerable<int> EnableFailIndexes { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinyItemPlugComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyItemPlugComponentJsonContext : JsonSerializerContext { }
 }

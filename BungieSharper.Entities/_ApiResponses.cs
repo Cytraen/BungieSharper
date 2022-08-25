@@ -24,11 +24,6 @@ namespace BungieSharper.Entities
         public T? Response { get; set; }
     }
 
-#if NET6_0_OR_GREATER
-    [JsonSerializable(typeof(ApiResponse))]
-    internal partial class ApiResponseJsonContext : JsonSerializerContext { }
-#endif
-
     public class TokenResponse
     {
         /// <summary>
@@ -79,9 +74,4 @@ namespace BungieSharper.Entities
         [JsonPropertyName("error_description")]
         public string? ErrorDescription { get; set; }
     }
-
-#if NET6_0_OR_GREATER
-    [JsonSerializable(typeof(TokenResponse))]
-    internal partial class TokenResponseJsonContext : JsonSerializerContext { }
-#endif
 }

@@ -13,8 +13,4 @@ namespace BungieSharper.Entities.Destiny.Definitions.Animations
         [JsonPropertyName("path")]
         public string Path { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinyAnimationReference))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyAnimationReferenceJsonContext : JsonSerializerContext { }
 }

@@ -14,10 +14,6 @@ namespace BungieSharper.Entities.Config
         public string UserThemeDescription { get; set; }
     }
 
-    [JsonSerializable(typeof(UserTheme))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class UserThemeJsonContext : JsonSerializerContext { }
-
     public class GroupTheme
     {
         [JsonPropertyName("name")]
@@ -29,8 +25,4 @@ namespace BungieSharper.Entities.Config
         [JsonPropertyName("description")]
         public string Description { get; set; }
     }
-
-    [JsonSerializable(typeof(GroupTheme))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class GroupThemeJsonContext : JsonSerializerContext { }
 }

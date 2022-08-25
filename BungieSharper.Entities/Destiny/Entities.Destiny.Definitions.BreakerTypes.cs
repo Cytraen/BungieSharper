@@ -26,8 +26,4 @@ namespace BungieSharper.Entities.Destiny.Definitions.BreakerTypes
         [JsonPropertyName("redacted")]
         public bool Redacted { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinyBreakerTypeDefinition))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyBreakerTypeDefinitionJsonContext : JsonSerializerContext { }
 }

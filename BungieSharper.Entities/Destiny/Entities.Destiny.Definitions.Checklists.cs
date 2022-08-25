@@ -42,10 +42,6 @@ namespace BungieSharper.Entities.Destiny.Definitions.Checklists
         public bool Redacted { get; set; }
     }
 
-    [JsonSerializable(typeof(DestinyChecklistDefinition))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyChecklistDefinitionJsonContext : JsonSerializerContext { }
-
     /// <summary>
     /// The properties of an individual checklist item. Note that almost everything is optional: it is *highly* variable what kind of data we'll actually be able to return: at times we may have no other relationships to entities at all.
     /// Whatever UI you build, do it with the knowledge that any given entry might not actually be able to be associated with some other Destiny entity.
@@ -96,8 +92,4 @@ namespace BungieSharper.Entities.Destiny.Definitions.Checklists
         [JsonPropertyName("scope")]
         public Destiny.DestinyScope Scope { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinyChecklistEntryDefinition))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyChecklistEntryDefinitionJsonContext : JsonSerializerContext { }
 }

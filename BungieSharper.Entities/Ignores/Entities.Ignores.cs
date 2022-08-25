@@ -11,10 +11,6 @@ namespace BungieSharper.Entities.Ignores
         public Ignores.IgnoreStatus IgnoreFlags { get; set; }
     }
 
-    [JsonSerializable(typeof(IgnoreResponse))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class IgnoreResponseJsonContext : JsonSerializerContext { }
-
     [System.Flags]
     public enum IgnoreStatus : int
     {

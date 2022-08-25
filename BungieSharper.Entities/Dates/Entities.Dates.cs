@@ -11,8 +11,4 @@ namespace BungieSharper.Entities.Dates
         [JsonPropertyName("end")]
         public DateTime End { get; set; }
     }
-
-    [JsonSerializable(typeof(DateRange))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DateRangeJsonContext : JsonSerializerContext { }
 }

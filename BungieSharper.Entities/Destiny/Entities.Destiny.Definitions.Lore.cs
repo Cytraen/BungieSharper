@@ -29,8 +29,4 @@ namespace BungieSharper.Entities.Destiny.Definitions.Lore
         [JsonPropertyName("redacted")]
         public bool Redacted { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinyLoreDefinition))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyLoreDefinitionJsonContext : JsonSerializerContext { }
 }

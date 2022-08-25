@@ -10,8 +10,4 @@ namespace BungieSharper.Entities.Entities
         [JsonPropertyName("result")]
         public Exceptions.PlatformErrorCodes Result { get; set; }
     }
-
-    [JsonSerializable(typeof(EntityActionResult))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class EntityActionResultJsonContext : JsonSerializerContext { }
 }

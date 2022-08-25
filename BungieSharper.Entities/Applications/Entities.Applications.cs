@@ -64,10 +64,6 @@ namespace BungieSharper.Entities.Applications
         public IEnumerable<Applications.Series> ThrottledRequests { get; set; }
     }
 
-    [JsonSerializable(typeof(ApiUsage))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class ApiUsageJsonContext : JsonSerializerContext { }
-
     public class Series
     {
         /// <summary>Collection of samples with time and value.</summary>
@@ -78,10 +74,6 @@ namespace BungieSharper.Entities.Applications
         [JsonPropertyName("target")]
         public string Target { get; set; }
     }
-
-    [JsonSerializable(typeof(Series))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class SeriesJsonContext : JsonSerializerContext { }
 
     public class Datapoint
     {
@@ -94,10 +86,6 @@ namespace BungieSharper.Entities.Applications
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public double? Count { get; set; }
     }
-
-    [JsonSerializable(typeof(Datapoint))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DatapointJsonContext : JsonSerializerContext { }
 
     public class Application
     {
@@ -150,10 +138,6 @@ namespace BungieSharper.Entities.Applications
         public string OverrideAuthorizeViewName { get; set; }
     }
 
-    [JsonSerializable(typeof(Application))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class ApplicationJsonContext : JsonSerializerContext { }
-
     public enum ApplicationStatus : int
     {
         /// <summary>No value assigned</summary>
@@ -183,10 +167,6 @@ namespace BungieSharper.Entities.Applications
         [JsonPropertyName("user")]
         public User.UserInfoCard User { get; set; }
     }
-
-    [JsonSerializable(typeof(ApplicationDeveloper))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class ApplicationDeveloperJsonContext : JsonSerializerContext { }
 
     public enum DeveloperRole : int
     {

@@ -19,8 +19,4 @@ namespace BungieSharper.Entities.Destiny.Misc
         [JsonPropertyName("alpha")]
         public byte Alpha { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinyColor))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyColorJsonContext : JsonSerializerContext { }
 }

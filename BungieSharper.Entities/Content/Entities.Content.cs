@@ -57,10 +57,6 @@ namespace BungieSharper.Entities.Content
         public Content.CommentSummary CommentSummary { get; set; }
     }
 
-    [JsonSerializable(typeof(ContentItemPublicContract))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class ContentItemPublicContractJsonContext : JsonSerializerContext { }
-
     public class ContentRepresentation
     {
         [JsonPropertyName("name")]
@@ -73,10 +69,6 @@ namespace BungieSharper.Entities.Content
         public string ValidationString { get; set; }
     }
 
-    [JsonSerializable(typeof(ContentRepresentation))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class ContentRepresentationJsonContext : JsonSerializerContext { }
-
     public class CommentSummary
     {
         [JsonPropertyName("topicId")]
@@ -85,10 +77,6 @@ namespace BungieSharper.Entities.Content
         [JsonPropertyName("commentCount")]
         public int CommentCount { get; set; }
     }
-
-    [JsonSerializable(typeof(CommentSummary))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class CommentSummaryJsonContext : JsonSerializerContext { }
 
     public class NewsArticleRssResponse
     {
@@ -105,10 +93,6 @@ namespace BungieSharper.Entities.Content
         [JsonPropertyName("ResultCountThisPage")]
         public int ResultCountThisPage { get; set; }
     }
-
-    [JsonSerializable(typeof(NewsArticleRssResponse))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class NewsArticleRssResponseJsonContext : JsonSerializerContext { }
 
     public class NewsArticleRssItem
     {
@@ -127,8 +111,4 @@ namespace BungieSharper.Entities.Content
         [JsonPropertyName("Description")]
         public string Description { get; set; }
     }
-
-    [JsonSerializable(typeof(NewsArticleRssItem))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class NewsArticleRssItemJsonContext : JsonSerializerContext { }
 }

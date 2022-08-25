@@ -8,8 +8,4 @@ namespace BungieSharper.Entities.Destiny.Components.StringVariables
         [JsonPropertyName("integerValuesByHash")]
         public Dictionary<uint, int> IntegerValuesByHash { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinyStringVariablesComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyStringVariablesComponentJsonContext : JsonSerializerContext { }
 }

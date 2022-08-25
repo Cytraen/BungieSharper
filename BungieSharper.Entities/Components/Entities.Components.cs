@@ -16,10 +16,6 @@ namespace BungieSharper.Entities.Components
         public bool? Disabled { get; set; }
     }
 
-    [JsonSerializable(typeof(ComponentResponse))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class ComponentResponseJsonContext : JsonSerializerContext { }
-
     /// <summary>
     /// A set of flags for reason(s) why the component populated in the way that it did. Inspect the individual flags for the reasons.
     /// </summary>

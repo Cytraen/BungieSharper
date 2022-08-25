@@ -47,8 +47,4 @@ namespace BungieSharper.Entities.Destiny.Definitions.EnergyTypes
         [JsonPropertyName("redacted")]
         public bool Redacted { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinyEnergyTypeDefinition))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyEnergyTypeDefinitionJsonContext : JsonSerializerContext { }
 }

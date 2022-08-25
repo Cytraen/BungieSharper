@@ -16,8 +16,4 @@ namespace BungieSharper.Entities.User.Models
         [JsonPropertyName("credentialAsString")]
         public string CredentialAsString { get; set; }
     }
-
-    [JsonSerializable(typeof(GetCredentialTypesForAccountResponse))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class GetCredentialTypesForAccountResponseJsonContext : JsonSerializerContext { }
 }

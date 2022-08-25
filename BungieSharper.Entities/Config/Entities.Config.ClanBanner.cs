@@ -4,10 +4,6 @@ namespace BungieSharper.Entities.Config.ClanBanner
 {
     public class ClanBannerSource { }
 
-    [JsonSerializable(typeof(ClanBannerSource))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class ClanBannerSourceJsonContext : JsonSerializerContext { }
-
     public class ClanBannerDecal
     {
         [JsonPropertyName("identifier")]
@@ -19,8 +15,4 @@ namespace BungieSharper.Entities.Config.ClanBanner
         [JsonPropertyName("backgroundPath")]
         public string BackgroundPath { get; set; }
     }
-
-    [JsonSerializable(typeof(ClanBannerDecal))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class ClanBannerDecalJsonContext : JsonSerializerContext { }
 }

@@ -26,8 +26,4 @@ namespace BungieSharper.Entities.Destiny.Definitions.PowerCaps
         [JsonPropertyName("redacted")]
         public bool Redacted { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinyPowerCapDefinition))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyPowerCapDefinitionJsonContext : JsonSerializerContext { }
 }

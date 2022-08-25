@@ -10,10 +10,6 @@ namespace BungieSharper.Entities.Trending
         public IEnumerable<Trending.TrendingCategory> Categories { get; set; }
     }
 
-    [JsonSerializable(typeof(TrendingCategories))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class TrendingCategoriesJsonContext : JsonSerializerContext { }
-
     public class TrendingCategory
     {
         [JsonPropertyName("categoryName")]
@@ -25,10 +21,6 @@ namespace BungieSharper.Entities.Trending
         [JsonPropertyName("categoryId")]
         public string CategoryId { get; set; }
     }
-
-    [JsonSerializable(typeof(TrendingCategory))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class TrendingCategoryJsonContext : JsonSerializerContext { }
 
     /// <summary>
     /// The list entry view for trending items. Returns just enough to show the item on the trending page.
@@ -94,10 +86,6 @@ namespace BungieSharper.Entities.Trending
         public DateTime? CreationDate { get; set; }
     }
 
-    [JsonSerializable(typeof(TrendingEntry))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class TrendingEntryJsonContext : JsonSerializerContext { }
-
     /// <summary>
     /// The known entity types that you can have returned from Trending.
     /// </summary>
@@ -144,19 +132,11 @@ namespace BungieSharper.Entities.Trending
         public Trending.TrendingEntryCommunityCreation Creation { get; set; }
     }
 
-    [JsonSerializable(typeof(TrendingDetail))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class TrendingDetailJsonContext : JsonSerializerContext { }
-
     public class TrendingEntryNews
     {
         [JsonPropertyName("article")]
         public Content.ContentItemPublicContract Article { get; set; }
     }
-
-    [JsonSerializable(typeof(TrendingEntryNews))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class TrendingEntryNewsJsonContext : JsonSerializerContext { }
 
     public class TrendingEntrySupportArticle
     {
@@ -164,19 +144,11 @@ namespace BungieSharper.Entities.Trending
         public Content.ContentItemPublicContract Article { get; set; }
     }
 
-    [JsonSerializable(typeof(TrendingEntrySupportArticle))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class TrendingEntrySupportArticleJsonContext : JsonSerializerContext { }
-
     public class TrendingEntryDestinyItem
     {
         [JsonPropertyName("itemHash")]
         public uint ItemHash { get; set; }
     }
-
-    [JsonSerializable(typeof(TrendingEntryDestinyItem))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class TrendingEntryDestinyItemJsonContext : JsonSerializerContext { }
 
     public class TrendingEntryDestinyActivity
     {
@@ -186,10 +158,6 @@ namespace BungieSharper.Entities.Trending
         [JsonPropertyName("status")]
         public Destiny.Activities.DestinyPublicActivityStatus Status { get; set; }
     }
-
-    [JsonSerializable(typeof(TrendingEntryDestinyActivity))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class TrendingEntryDestinyActivityJsonContext : JsonSerializerContext { }
 
     public class TrendingEntryDestinyRitual
     {
@@ -222,10 +190,6 @@ namespace BungieSharper.Entities.Trending
         public Destiny.Milestones.DestinyMilestoneContent EventContent { get; set; }
     }
 
-    [JsonSerializable(typeof(TrendingEntryDestinyRitual))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class TrendingEntryDestinyRitualJsonContext : JsonSerializerContext { }
-
     public class TrendingEntryCommunityCreation
     {
         [JsonPropertyName("media")]
@@ -249,8 +213,4 @@ namespace BungieSharper.Entities.Trending
         [JsonPropertyName("upvotes")]
         public int Upvotes { get; set; }
     }
-
-    [JsonSerializable(typeof(TrendingEntryCommunityCreation))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class TrendingEntryCommunityCreationJsonContext : JsonSerializerContext { }
 }

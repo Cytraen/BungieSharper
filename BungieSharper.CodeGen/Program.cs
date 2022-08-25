@@ -84,7 +84,7 @@ namespace BungieSharper.CodeGen
                 combinedContent = combinedContent.Replace($"namespace {matches[0].Groups[1]}", "");
                 combinedContent = $"namespace {matches[0].Groups[1]}\n{{" + combinedContent + "\n}";
 
-                if (combinedContent.Contains("JsonSerializable") && combinedContent.Contains("JsonSourceGenerationOptions") && combinedContent.Contains("JsonSerializerContext"))
+                if (combinedContent.Contains("[JsonPropertyName") || (combinedContent.Contains("JsonSerializable") && combinedContent.Contains("JsonSourceGenerationOptions") && combinedContent.Contains("JsonSerializerContext")))
                 {
                     combinedContent = "using System.Text.Json.Serialization;\n" + combinedContent;
                 }

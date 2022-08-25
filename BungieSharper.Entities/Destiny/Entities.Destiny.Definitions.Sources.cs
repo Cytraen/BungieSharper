@@ -37,8 +37,4 @@ namespace BungieSharper.Entities.Destiny.Definitions.Sources
         [JsonPropertyName("sourceHashes")]
         public IEnumerable<uint> SourceHashes { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinyItemSourceDefinition))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyItemSourceDefinitionJsonContext : JsonSerializerContext { }
 }

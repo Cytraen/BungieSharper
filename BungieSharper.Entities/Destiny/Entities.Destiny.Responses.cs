@@ -25,10 +25,6 @@ namespace BungieSharper.Entities.Destiny.Responses
         public IEnumerable<Destiny.Responses.DestinyErrorProfile> ProfilesWithErrors { get; set; }
     }
 
-    [JsonSerializable(typeof(DestinyLinkedProfilesResponse))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyLinkedProfilesResponseJsonContext : JsonSerializerContext { }
-
     public class DestinyProfileUserInfoCard
     {
         [JsonPropertyName("dateLastPlayed")]
@@ -103,10 +99,6 @@ namespace BungieSharper.Entities.Destiny.Responses
         public short? BungieGlobalDisplayNameCode { get; set; }
     }
 
-    [JsonSerializable(typeof(DestinyProfileUserInfoCard))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyProfileUserInfoCardJsonContext : JsonSerializerContext { }
-
     /// <summary>
     /// If a Destiny Profile can't be returned, but we're pretty certain it's a valid Destiny account, this will contain as much info as we can get about the profile for your use.
     /// Assume that the most you'll get is the Error Code, the Membership Type and the Membership ID.
@@ -121,10 +113,6 @@ namespace BungieSharper.Entities.Destiny.Responses
         [JsonPropertyName("infoCard")]
         public User.UserInfoCard InfoCard { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinyErrorProfile))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyErrorProfileJsonContext : JsonSerializerContext { }
 
     /// <summary>
     /// The response for GetDestinyProfile, with components for character and item-level data.
@@ -318,10 +306,6 @@ namespace BungieSharper.Entities.Destiny.Responses
         public DictionaryComponentResponseOfint64AndDestinyCurrenciesComponent CharacterCurrencyLookups { get; set; }
     }
 
-    [JsonSerializable(typeof(DestinyProfileResponse))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyProfileResponseJsonContext : JsonSerializerContext { }
-
     /// <summary>
     /// The response contract for GetDestinyCharacter, with components that can be returned for character and item-level data.
     /// </summary>
@@ -418,10 +402,6 @@ namespace BungieSharper.Entities.Destiny.Responses
         public SingleComponentResponseOfDestinyCurrenciesComponent CurrencyLookups { get; set; }
     }
 
-    [JsonSerializable(typeof(DestinyCharacterResponse))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyCharacterResponseJsonContext : JsonSerializerContext { }
-
     /// <summary>
     /// The response object for retrieving an individual instanced item. None of these components are relevant for an item that doesn't have an "itemInstanceId": for those, get your information from the DestinyInventoryDefinition.
     /// </summary>
@@ -504,10 +484,6 @@ namespace BungieSharper.Entities.Destiny.Responses
         public SingleComponentResponseOfDestinyItemPlugObjectivesComponent PlugObjectives { get; set; }
     }
 
-    [JsonSerializable(typeof(DestinyItemResponse))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyItemResponseJsonContext : JsonSerializerContext { }
-
     /// <summary>
     /// A response containing all of the components for all requested vendors.
     /// </summary>
@@ -564,19 +540,11 @@ namespace BungieSharper.Entities.Destiny.Responses
         public SingleComponentResponseOfDestinyStringVariablesComponent StringVariables { get; set; }
     }
 
-    [JsonSerializable(typeof(DestinyVendorsResponse))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyVendorsResponseJsonContext : JsonSerializerContext { }
-
     public class PersonalDestinyVendorSaleItemSetComponent
     {
         [JsonPropertyName("saleItems")]
         public Dictionary<int, Destiny.Entities.Vendors.DestinyVendorSaleItemComponent> SaleItems { get; set; }
     }
-
-    [JsonSerializable(typeof(PersonalDestinyVendorSaleItemSetComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class PersonalDestinyVendorSaleItemSetComponentJsonContext : JsonSerializerContext { }
 
     /// <summary>
     /// A response containing all of the components for a vendor.
@@ -626,10 +594,6 @@ namespace BungieSharper.Entities.Destiny.Responses
         public SingleComponentResponseOfDestinyStringVariablesComponent StringVariables { get; set; }
     }
 
-    [JsonSerializable(typeof(DestinyVendorResponse))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyVendorResponseJsonContext : JsonSerializerContext { }
-
     /// <summary>
     /// A response containing all valid components for the public Vendors endpoint.
     /// It is a decisively smaller subset of data compared to what we can get when we know the specific user making the request.
@@ -674,19 +638,11 @@ namespace BungieSharper.Entities.Destiny.Responses
         public SingleComponentResponseOfDestinyStringVariablesComponent StringVariables { get; set; }
     }
 
-    [JsonSerializable(typeof(DestinyPublicVendorsResponse))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyPublicVendorsResponseJsonContext : JsonSerializerContext { }
-
     public class PublicDestinyVendorSaleItemSetComponent
     {
         [JsonPropertyName("saleItems")]
         public Dictionary<int, Destiny.Components.Vendors.DestinyPublicVendorSaleItemComponent> SaleItems { get; set; }
     }
-
-    [JsonSerializable(typeof(PublicDestinyVendorSaleItemSetComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class PublicDestinyVendorSaleItemSetComponentJsonContext : JsonSerializerContext { }
 
     /// <summary>
     /// Returns the detailed information about a Collectible Presentation Node and any Collectibles that are direct descendants.
@@ -707,10 +663,6 @@ namespace BungieSharper.Entities.Destiny.Responses
         public DestinyItemComponentSetOfuint32 CollectibleItemComponents { get; set; }
     }
 
-    [JsonSerializable(typeof(DestinyCollectibleNodeDetailResponse))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyCollectibleNodeDetailResponseJsonContext : JsonSerializerContext { }
-
     /// <summary>
     /// A response containing all of the components for all requested vendors.
     /// </summary>
@@ -725,10 +677,6 @@ namespace BungieSharper.Entities.Destiny.Responses
         public IEnumerable<Destiny.Entities.Items.DestinyItemComponent> RemovedInventoryItems { get; set; }
     }
 
-    [JsonSerializable(typeof(InventoryChangedResponse))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class InventoryChangedResponseJsonContext : JsonSerializerContext { }
-
     public class DestinyItemChangeResponse
     {
         [JsonPropertyName("item")]
@@ -742,8 +690,4 @@ namespace BungieSharper.Entities.Destiny.Responses
         [JsonPropertyName("removedInventoryItems")]
         public IEnumerable<Destiny.Entities.Items.DestinyItemComponent> RemovedInventoryItems { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinyItemChangeResponse))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyItemChangeResponseJsonContext : JsonSerializerContext { }
 }

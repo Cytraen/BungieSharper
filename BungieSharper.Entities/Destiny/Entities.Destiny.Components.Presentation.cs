@@ -9,10 +9,6 @@ namespace BungieSharper.Entities.Destiny.Components.Presentation
         public Dictionary<uint, Destiny.Components.Presentation.DestinyPresentationNodeComponent> Nodes { get; set; }
     }
 
-    [JsonSerializable(typeof(DestinyPresentationNodesComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyPresentationNodesComponentJsonContext : JsonSerializerContext { }
-
     public class DestinyPresentationNodeComponent
     {
         [JsonPropertyName("state")]
@@ -35,8 +31,4 @@ namespace BungieSharper.Entities.Destiny.Components.Presentation
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public int? RecordCategoryScore { get; set; }
     }
-
-    [JsonSerializable(typeof(DestinyPresentationNodeComponent))]
-    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
-    internal partial class DestinyPresentationNodeComponentJsonContext : JsonSerializerContext { }
 }

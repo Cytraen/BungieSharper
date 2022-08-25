@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace BungieSharper.Entities.Destiny.Components.StringVariables
+namespace BungieSharper.Entities.Destiny.Components.StringVariables;
+
+public class DestinyStringVariablesComponent
 {
-    public class DestinyStringVariablesComponent
-    {
-        [JsonPropertyName("integerValuesByHash")]
-        public Dictionary<uint, int> IntegerValuesByHash { get; set; }
-    }
+    [JsonPropertyName("integerValuesByHash")]
+    public Dictionary<uint, int> IntegerValuesByHash { get; set; }
 }

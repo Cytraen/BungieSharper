@@ -1,18 +1,17 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace BungieSharper.Entities.Config.ClanBanner
+namespace BungieSharper.Entities.Config.ClanBanner;
+
+public class ClanBannerSource { }
+
+public class ClanBannerDecal
 {
-    public class ClanBannerSource { }
+    [JsonPropertyName("identifier")]
+    public string Identifier { get; set; }
 
-    public class ClanBannerDecal
-    {
-        [JsonPropertyName("identifier")]
-        public string Identifier { get; set; }
+    [JsonPropertyName("foregroundPath")]
+    public string ForegroundPath { get; set; }
 
-        [JsonPropertyName("foregroundPath")]
-        public string ForegroundPath { get; set; }
-
-        [JsonPropertyName("backgroundPath")]
-        public string BackgroundPath { get; set; }
-    }
+    [JsonPropertyName("backgroundPath")]
+    public string BackgroundPath { get; set; }
 }

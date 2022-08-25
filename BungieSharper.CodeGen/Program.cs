@@ -8,190 +8,190 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 
-namespace BungieSharper.CodeGen
+namespace BungieSharper.CodeGen;
+
+internal static class Program
 {
-    internal static class Program
+    internal const string BaseEntityNamespace = "BungieSharper.Entities";
+    private static readonly string SolutionPath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\..\"));
+    private static readonly string EntityProjectFolder = Path.Combine(SolutionPath, "BungieSharper.Entities");
+    private static readonly string ClientEndpointFolder = Path.Combine(SolutionPath, "BungieSharper", "Endpoints");
+
+    internal static OpenApiObject OpenApiDefinition;
+
+    private static void Main(string[] args)
     {
-        internal const string BaseEntityNamespace = "BungieSharper.Entities";
-        private static readonly string SolutionPath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\..\"));
-        private static readonly string EntityProjectFolder = Path.Combine(SolutionPath, "BungieSharper.Entities");
-        private static readonly string ClientEndpointFolder = Path.Combine(SolutionPath, "BungieSharper", "Endpoints");
+        var specJsonPath = Path.Combine(SolutionPath, "bnet-api-spec", "openapi.json");
 
-        internal static OpenApiObject OpenApiDefinition;
-
-        private static void Main(string[] args)
+        if (!File.Exists(specJsonPath))
         {
-            var specJsonPath = Path.Combine(SolutionPath, "bnet-api-spec", "openapi.json");
+            Console.WriteLine("Please initialize submodules.");
+            return;
+        }
 
-            if (!File.Exists(specJsonPath))
+        var content = File.ReadAllText(specJsonPath);
+
+        var serializerOptions = new JsonSerializerOptions { NumberHandling = JsonNumberHandling.AllowReadingFromString };
+
+        OpenApiDefinition = JsonSerializer.Deserialize<OpenApiObject>(content, serializerOptions)!;
+        var schemas = OpenApiDefinition.Components.Schemas;
+        var paths = OpenApiDefinition.Paths;
+
+        // entities
+
+        foreach (var subDir in Directory.GetDirectories(EntityProjectFolder))
+        {
+            Directory.Delete(subDir, true);
+        }
+
+        foreach (var file in Directory.GetFiles(EntityProjectFolder))
+        {
+            var fileName = file.Split('\\').Last();
+
+            if (fileName.EndsWith(".cs") && !fileName.StartsWith('_'))
             {
-                Console.WriteLine("Please initialize submodules.");
-                return;
+                File.Delete(file);
+            }
+        }
+
+        var schemaFileDict = new Dictionary<string, List<string>>();
+
+        foreach (var (schemaName, schemaDef) in schemas)
+        {
+            if (schemaDef.Type == Entities.Common.TypeEnum.Array) continue;
+
+            var fileFolder = string.Join('\\', schemaName.Split('.')[..^1]);
+
+            if (!schemaFileDict.ContainsKey(fileFolder))
+            {
+                schemaFileDict.Add(fileFolder, new List<string>());
             }
 
-            var content = File.ReadAllText(specJsonPath);
+            schemaFileDict[fileFolder].Add(Generation.GenerateSchema.GetSchemaFileContent(schemaName, schemaDef));
+        }
 
-            var serializerOptions = new JsonSerializerOptions { NumberHandling = JsonNumberHandling.AllowReadingFromString };
+        foreach (var (location, classContents) in schemaFileDict)
+        {
+            var combinedContent = string.Join("\n", classContents);
 
-            OpenApiDefinition = JsonSerializer.Deserialize<OpenApiObject>(content, serializerOptions)!;
-            var schemas = OpenApiDefinition.Components.Schemas;
-            var paths = OpenApiDefinition.Paths;
+            var regex = new Regex(@"^namespace (.*)\n[{]", RegexOptions.Multiline);
+            var matches = regex.Matches(combinedContent);
 
-            // entities
+            combinedContent = combinedContent.Replace("\n{", "");
+            combinedContent = combinedContent.Replace("\n}", "");
+            combinedContent = combinedContent.Replace("\n\n\n", "");
 
-            foreach (var subDir in Directory.GetDirectories(EntityProjectFolder))
+            combinedContent = combinedContent.Replace($"namespace {matches[0].Groups[1]}", "");
+            combinedContent = $"namespace {matches[0].Groups[1]}\n{{" + combinedContent + "\n}";
+
+            if (combinedContent.Contains("[JsonPropertyName") || (combinedContent.Contains("JsonSerializable") && combinedContent.Contains("JsonSourceGenerationOptions") && combinedContent.Contains("JsonSerializerContext")))
+            {
+                combinedContent = "using System.Text.Json.Serialization;\n" + combinedContent;
+            }
+
+            if (combinedContent.Contains("IEnumerable<") || combinedContent.Contains("Dictionary<"))
+            {
+                combinedContent = "using System.Collections.Generic;\n" + combinedContent;
+            }
+
+            if (combinedContent.Contains("using System.Collections.Generic;"))
+            {
+                combinedContent = combinedContent.Replace("using System.Collections.Generic;\n", "");
+                combinedContent = "using System.Collections.Generic;\n" + combinedContent;
+            }
+
+            if (combinedContent.Length - combinedContent.Replace("[System.Flags]", "[Flags]").Replace("System.DateTime", "DateTime").Length >= 14)
+            {
+                combinedContent = "using System;\n" + combinedContent;
+            }
+
+            if (combinedContent.Contains("using System;"))
+            {
+                combinedContent = combinedContent.Replace("using System;\n", "");
+                combinedContent = "using System;\n" + combinedContent;
+            }
+
+            combinedContent = combinedContent.Replace(";\nnamespace ", ";\n\nnamespace ");
+            combinedContent = combinedContent.Replace("    }\n    public", "    }\n\n    public");
+            combinedContent = combinedContent.Replace("{\n\n    public", "{\n    public");
+            combinedContent = combinedContent.Replace("    }\n    [System.Flags", "    }\n\n    [System.Flags");
+            combinedContent = combinedContent.Replace("    }\n    [Flags", "    }\n\n    [Flags");
+            combinedContent = combinedContent.Replace("    }\n    /// <summary>", "    }\n\n    /// <summary>");
+            combinedContent = combinedContent.Replace("\n{\n\n    /// <summary>", "\n{\n    /// <summary>");
+            combinedContent = combinedContent.Replace("\n\n\n\n", "\n\n");
+            combinedContent = combinedContent.Replace("\n\n\n", "\n\n");
+
+            combinedContent = combinedContent.Replace("\n    {\n\n    }\n", " { }\n");
+
+            if (combinedContent.Contains("using System;"))
+            {
+                combinedContent = combinedContent.Replace("[System.Flags]", "[Flags]");
+                combinedContent = combinedContent.Replace("System.DateTime", "DateTime");
+            }
+
+            WriteFileWithContent(
+                Path.Combine(EntityProjectFolder, location.Split('\\').First()),
+                ("Entities." + location.Replace(SolutionPath, "").Replace('\\', '.') + ".cs").Replace("..", "."),
+                combinedContent
+                );
+
+            Console.WriteLine($"Wrote Entities.{location.Replace(SolutionPath, "").Replace('\\', '.')}");
+        }
+
+        // endpoints
+
+        foreach (var subDir in Directory.GetDirectories(SolutionPath))
+        {
+            var folder = subDir.Split('\\').Last();
+            if (folder is "bin" or "obj")
             {
                 Directory.Delete(subDir, true);
             }
+        }
 
-            foreach (var file in Directory.GetFiles(EntityProjectFolder))
+        foreach (var file in Directory.GetFiles(ClientEndpointFolder))
+        {
+            var fileName = file.Split('\\').Last();
+
+            if (fileName.EndsWith(".cs") && !fileName.StartsWith('_'))
             {
-                var fileName = file.Split('\\').Last();
+                File.Delete(file);
+            }
+        }
 
-                if (fileName.EndsWith(".cs") && !fileName.StartsWith('_'))
-                {
-                    File.Delete(file);
-                }
+        var pathContentDict = new Dictionary<Entities.Common.TagEnum, List<string>>();
+
+        foreach (var (pathUri, pathDef) in paths)
+        {
+            var tag = Entities.Common.TagEnum.None;
+
+            if (pathDef.Get != null)
+            {
+                var tagList = pathDef.Get.Tags.ToList();
+                tagList.Remove(Entities.Common.TagEnum.Preview);
+                tag = tagList[0];
+            }
+            if (pathDef.Post != null)
+            {
+                var tagList = pathDef.Post.Tags.ToList();
+                tagList.Remove(Entities.Common.TagEnum.Preview);
+                tag = tagList[0];
             }
 
-            var schemaFileDict = new Dictionary<string, List<string>>();
-
-            foreach (var (schemaName, schemaDef) in schemas)
+            if (!pathContentDict.ContainsKey(tag))
             {
-                if (schemaDef.Type == Entities.Common.TypeEnum.Array) continue;
-
-                var fileFolder = string.Join('\\', schemaName.Split('.')[..^1]);
-
-                if (!schemaFileDict.ContainsKey(fileFolder))
-                {
-                    schemaFileDict.Add(fileFolder, new List<string>());
-                }
-
-                schemaFileDict[fileFolder].Add(Generation.GenerateSchema.GetSchemaFileContent(schemaName, schemaDef));
+                pathContentDict[tag] = new List<string>();
             }
 
-            foreach (var (location, classContents) in schemaFileDict)
-            {
-                var combinedContent = string.Join("\n", classContents);
+            var pathContent = Generation.GeneratePath.GeneratePathContent(pathUri, pathDef);
+            pathContentDict[tag].Add(pathContent);
+        }
 
-                var regex = new Regex(@"^namespace (.*)\n[{]", RegexOptions.Multiline);
-                var matches = regex.Matches(combinedContent);
+        foreach (var (tag, methods) in pathContentDict)
+        {
+            var aggregateFile = "";
 
-                combinedContent = combinedContent.Replace("\n{", "");
-                combinedContent = combinedContent.Replace("\n}", "");
-                combinedContent = combinedContent.Replace("\n\n\n", "");
-
-                combinedContent = combinedContent.Replace($"namespace {matches[0].Groups[1]}", "");
-                combinedContent = $"namespace {matches[0].Groups[1]}\n{{" + combinedContent + "\n}";
-
-                if (combinedContent.Contains("[JsonPropertyName") || (combinedContent.Contains("JsonSerializable") && combinedContent.Contains("JsonSourceGenerationOptions") && combinedContent.Contains("JsonSerializerContext")))
-                {
-                    combinedContent = "using System.Text.Json.Serialization;\n" + combinedContent;
-                }
-
-                if (combinedContent.Contains("IEnumerable<") || combinedContent.Contains("Dictionary<"))
-                {
-                    combinedContent = "using System.Collections.Generic;\n" + combinedContent;
-                }
-
-                if (combinedContent.Contains("using System.Collections.Generic;"))
-                {
-                    combinedContent = combinedContent.Replace("using System.Collections.Generic;\n", "");
-                    combinedContent = "using System.Collections.Generic;\n" + combinedContent;
-                }
-
-                if (combinedContent.Length - combinedContent.Replace("[System.Flags]", "[Flags]").Replace("System.DateTime", "DateTime").Length >= 14)
-                {
-                    combinedContent = "using System;\n" + combinedContent;
-                }
-
-                if (combinedContent.Contains("using System;"))
-                {
-                    combinedContent = combinedContent.Replace("using System;\n", "");
-                    combinedContent = "using System;\n" + combinedContent;
-                }
-
-                combinedContent = combinedContent.Replace(";\nnamespace ", ";\n\nnamespace ");
-                combinedContent = combinedContent.Replace("    }\n    public", "    }\n\n    public");
-                combinedContent = combinedContent.Replace("{\n\n    public", "{\n    public");
-                combinedContent = combinedContent.Replace("    }\n    [System.Flags", "    }\n\n    [System.Flags");
-                combinedContent = combinedContent.Replace("    }\n    [Flags", "    }\n\n    [Flags");
-                combinedContent = combinedContent.Replace("    }\n    /// <summary>", "    }\n\n    /// <summary>");
-                combinedContent = combinedContent.Replace("\n{\n\n    /// <summary>", "\n{\n    /// <summary>");
-                combinedContent = combinedContent.Replace("\n\n\n\n", "\n\n");
-                combinedContent = combinedContent.Replace("\n\n\n", "\n\n");
-
-                combinedContent = combinedContent.Replace("\n    {\n\n    }\n", " { }\n");
-
-                if (combinedContent.Contains("using System;"))
-                {
-                    combinedContent = combinedContent.Replace("[System.Flags]", "[Flags]");
-                    combinedContent = combinedContent.Replace("System.DateTime", "DateTime");
-                }
-
-                WriteFileWithContent(
-                    Path.Combine(EntityProjectFolder, location.Split('\\').First()),
-                    ("Entities." + location.Replace(SolutionPath, "").Replace('\\', '.') + ".cs").Replace("..", "."),
-                    combinedContent
-                    );
-
-                Console.WriteLine($"Wrote Entities.{location.Replace(SolutionPath, "").Replace('\\', '.')}");
-            }
-
-            // endpoints
-
-            foreach (var subDir in Directory.GetDirectories(SolutionPath))
-            {
-                var folder = subDir.Split('\\').Last();
-                if (folder is "bin" or "obj")
-                {
-                    Directory.Delete(subDir, true);
-                }
-            }
-
-            foreach (var file in Directory.GetFiles(ClientEndpointFolder))
-            {
-                var fileName = file.Split('\\').Last();
-
-                if (fileName.EndsWith(".cs") && !fileName.StartsWith('_'))
-                {
-                    File.Delete(file);
-                }
-            }
-
-            var pathContentDict = new Dictionary<Entities.Common.TagEnum, List<string>>();
-
-            foreach (var (pathUri, pathDef) in paths)
-            {
-                var tag = Entities.Common.TagEnum.None;
-
-                if (pathDef.Get != null)
-                {
-                    var tagList = pathDef.Get.Tags.ToList();
-                    tagList.Remove(Entities.Common.TagEnum.Preview);
-                    tag = tagList[0];
-                }
-                if (pathDef.Post != null)
-                {
-                    var tagList = pathDef.Post.Tags.ToList();
-                    tagList.Remove(Entities.Common.TagEnum.Preview);
-                    tag = tagList[0];
-                }
-
-                if (!pathContentDict.ContainsKey(tag))
-                {
-                    pathContentDict[tag] = new List<string>();
-                }
-
-                var pathContent = Generation.GeneratePath.GeneratePathContent(pathUri, pathDef);
-                pathContentDict[tag].Add(pathContent);
-            }
-
-            foreach (var (tag, methods) in pathContentDict)
-            {
-                var aggregateFile = "";
-
-                aggregateFile +=
+            aggregateFile +=
 @"using BungieSharper.Client;
 using System;
 using System.Collections.Generic;
@@ -207,40 +207,52 @@ namespace BungieSharper.Endpoints
     {
 ";
 
-                aggregateFile += string.Join("\n\n", methods);
-                aggregateFile += "\n    }\n}";
-                aggregateFile = aggregateFile.Replace("\r\n", "\n");
+            aggregateFile += string.Join("\n\n", methods);
+            aggregateFile += "\n    }\n}";
+            aggregateFile = aggregateFile.Replace("\r\n", "\n");
 
-                if (!aggregateFile.Contains("JsonSerializer.Serialize("))
-                {
-                    aggregateFile = aggregateFile.Replace("using System.Text.Json;\n", "");
-                }
-                if (!aggregateFile.Contains("IEnumerable<") && !aggregateFile.Contains("Dictionary<"))
-                {
-                    aggregateFile = aggregateFile.Replace("using System.Collections.Generic;\n", "");
-                }
-                if (!aggregateFile.Contains(".Select(x => x.") && !aggregateFile.Contains(".Where(x => x."))
-                {
-                    aggregateFile = aggregateFile.Replace("using System.Linq;\n", "");
-                }
-
-                WriteFileWithContent(
-                    ClientEndpointFolder,
-                    Generation.Mapping.TagToDescription(tag) + ".cs",
-                    aggregateFile);
-
-                Console.WriteLine($"Wrote {Generation.Mapping.TagToDescription(tag)}");
+            if (!aggregateFile.Contains("JsonSerializer.Serialize("))
+            {
+                aggregateFile = aggregateFile.Replace("using System.Text.Json;\n", "");
+            }
+            if (!aggregateFile.Contains("IEnumerable<") && !aggregateFile.Contains("Dictionary<"))
+            {
+                aggregateFile = aggregateFile.Replace("using System.Collections.Generic;\n", "");
+            }
+            if (!aggregateFile.Contains(".Select(x => x.") && !aggregateFile.Contains(".Where(x => x."))
+            {
+                aggregateFile = aggregateFile.Replace("using System.Linq;\n", "");
             }
 
-            Console.WriteLine("Done. Press ENTER to exit.");
-            Console.ReadLine();
+            WriteFileWithContent(
+                ClientEndpointFolder,
+                Generation.Mapping.TagToDescription(tag) + ".cs",
+                aggregateFile);
+
+            Console.WriteLine($"Wrote {Generation.Mapping.TagToDescription(tag)}");
         }
 
-        private static void WriteFileWithContent(string fileFolder, string fileName, string fileContent)
-        {
-            Directory.CreateDirectory(fileFolder);
+        Console.WriteLine("Done. Press ENTER to exit.");
+        Console.ReadLine();
+    }
 
-            File.WriteAllText(fileFolder + "\\" + fileName, fileContent.Replace("\r\n", "\n").Replace("\n", "\r\n"), Encoding.UTF8);
-        }
+    private static void WriteFileWithContent(string fileFolder, string fileName, string fileContent)
+    {
+        Directory.CreateDirectory(fileFolder);
+
+        var regex = new Regex(@"^namespace ([\w.]*)\n{", RegexOptions.Multiline | RegexOptions.IgnoreCase);
+        var matches = regex.Matches(fileContent);
+
+        fileContent = fileContent
+            .Replace($"namespace {matches[0].Groups[1]}\n{{", $"namespace {matches[0].Groups[1]};\n")[..^2]
+            .Replace("\n    ", "\n");
+
+        var cleanContent = fileContent
+            .Replace("\r\n", "\n")
+            .Replace("\n\r", "\n")
+            .Replace("\n", "\r\n")
+            .Trim();
+
+        File.WriteAllText(fileFolder + "\\" + fileName, cleanContent, Encoding.UTF8);
     }
 }

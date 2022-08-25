@@ -1,9 +1,8 @@
-﻿namespace BungieSharper.Entities.Streaming
+﻿namespace BungieSharper.Entities.Streaming;
+
+public enum DropStateEnum : byte
 {
-    public enum DropStateEnum : byte
-    {
-        Claimed = 0,
-        Applied = 1,
-        Fulfilled = 2
-    }
+    Claimed = 0,
+    Applied = 1,
+    Fulfilled = 2
 }

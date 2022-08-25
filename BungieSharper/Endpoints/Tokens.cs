@@ -11,6 +11,30 @@ namespace BungieSharper.Endpoints
     public partial class Endpoints
     {
         /// <summary>
+        /// Twitch Drops self-repair function - scans twitch for drops not marked as fulfilled and resyncs them.
+        /// Requires OAuth2 scope(s): PartnerOfferGrant
+        /// </summary>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
+        /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
+        public Task<bool> Tokens_ForceDropsRepair(string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<bool>(
+                new Uri($"Tokens/Partner/ForceDropsRepair/", UriKind.Relative),
+                null, HttpMethod.Post, authToken, cancelToken
+                );
+        }
+
+        /// <inheritdoc cref="Tokens_ForceDropsRepair(string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Tokens_ForceDropsRepair<T>(string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
+                new Uri($"Tokens/Partner/ForceDropsRepair/", UriKind.Relative),
+                null, HttpMethod.Post, authToken, cancelToken
+                );
+        }
+
+        /// <summary>
         /// Claim a partner offer as the authenticated user.
         /// Requires OAuth2 scope(s): PartnerOfferGrant
         /// </summary>
@@ -82,6 +106,32 @@ namespace BungieSharper.Endpoints
         {
             return _apiAccessor.ApiRequestAsync<T>(
                 new Uri($"Tokens/Partner/History/{partnerApplicationId}/{targetBnetMembershipId}/", UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
+        /// <summary>
+        /// Returns the partner rewards history of the targeted user, both partner offers and Twitch drops.
+        /// Requires OAuth2 scope(s): PartnerOfferGrant
+        /// </summary>
+        /// <param name="partnerApplicationId">The partner application identifier.</param>
+        /// <param name="targetBnetMembershipId">The bungie.net user to return reward history for.</param>
+        /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
+        /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
+        public Task<Entities.Tokens.PartnerRewardHistoryResponse> Tokens_GetPartnerRewardHistory(int partnerApplicationId, long targetBnetMembershipId, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<Entities.Tokens.PartnerRewardHistoryResponse>(
+                new Uri($"Tokens/Partner/History/{targetBnetMembershipId}/Application/{partnerApplicationId}/", UriKind.Relative),
+                null, HttpMethod.Get, authToken, cancelToken
+                );
+        }
+
+        /// <inheritdoc cref="Tokens_GetPartnerRewardHistory(int, long, string?, CancellationToken)" />
+        /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+        public Task<T> Tokens_GetPartnerRewardHistory<T>(int partnerApplicationId, long targetBnetMembershipId, string? authToken = null, CancellationToken cancelToken = default)
+        {
+            return _apiAccessor.ApiRequestAsync<T>(
+                new Uri($"Tokens/Partner/History/{targetBnetMembershipId}/Application/{partnerApplicationId}/", UriKind.Relative),
                 null, HttpMethod.Get, authToken, cancelToken
                 );
         }

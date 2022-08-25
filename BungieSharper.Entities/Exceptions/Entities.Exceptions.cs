@@ -299,6 +299,7 @@
         ForumUserBannedFromThisTopic = 593,
         ForumRecruitmentFireteamMembersOnly = 594,
         ForumRequiresDestiny2Progress = 595,
+        ForumRequiresDestiny2EntitlementPurchase = 596,
         GroupMembershipApplicationAlreadyResolved = 601,
         GroupMembershipAlreadyApplied = 602,
         GroupMembershipInsufficientPrivileges = 603,
@@ -707,6 +708,8 @@
         TwitchCouldNotUnregisterUser = 2504,
         TwitchRequiresRelinking = 2505,
         TwitchNoPlatformChosen = 2506,
+        TwitchDropHistoryPermissionFailure = 2507,
+        TwitchDropsRepairPartialFailure = 2508,
         TrendingCategoryNotFound = 2600,
         TrendingEntryTypeNotSupported = 2601,
         ReportOffenderNotInPgcr = 2700,
@@ -829,6 +832,16 @@
         ErrorBungieFriendsSelf = 3907,
         ErrorBungieBlockSelf = 3908,
         ErrorBungieFriendsListFull = 3910,
-        ErrorBungieBlockListFull = 3911
+        ErrorBungieBlockListFull = 3911,
+        ErrorEgsUnknown = 4000,
+        ErrorEgsBadRequest = 4001,
+        ErrorEgsNotAuthorized = 4002,
+        ErrorEgsForbidden = 4003,
+        ErrorEgsAccountNotFound = 4004,
+        ErrorEgsWebException = 4005,
+        ErrorEgsUnavailable = 4006,
+        ErrorEgsJwksMissing = 4007,
+        ErrorEgsJwtMalformedHeader = 4008,
+        ErrorEgsJwtMalformedPayload = 4009
     }
 }

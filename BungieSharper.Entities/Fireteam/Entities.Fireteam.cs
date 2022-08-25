@@ -20,7 +20,8 @@ namespace BungieSharper.Entities.Fireteam
         XboxOne = 2,
         Blizzard = 3,
         Steam = 4,
-        Stadia = 5
+        Stadia = 5,
+        Egs = 6
     }
 
     public enum FireteamPublicSearchOption : byte

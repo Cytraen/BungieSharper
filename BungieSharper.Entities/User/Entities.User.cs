@@ -236,6 +236,9 @@ namespace BungieSharper.Entities.User
         [JsonPropertyName("cachedBungieGlobalDisplayNameCode")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public short? CachedBungieGlobalDisplayNameCode { get; set; }
+
+        [JsonPropertyName("egsDisplayName")]
+        public string EgsDisplayName { get; set; }
     }
 
     public class UserToUserContext

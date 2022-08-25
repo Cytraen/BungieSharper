@@ -43,7 +43,7 @@ namespace BungieSharper.Entities.Applications
         /// <summary>Can perform actions that will result in a prompt to the user via the Destiny app.</summary>
         AdvancedWriteActions = 2048,
 
-        /// <summary>Can user the partner offer api to claim rewards defined for a partner</summary>
+        /// <summary>Can use the partner offer api to claim rewards defined for a partner</summary>
         PartnerOfferGrant = 4096,
 
         /// <summary>Allows an app to query sensitive information like unlock flags and values not available through normal methods.</summary>

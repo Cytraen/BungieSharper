@@ -14,6 +14,7 @@ namespace BungieSharper.Entities
         TigerSteam = 3,
         TigerBlizzard = 4,
         TigerStadia = 5,
+        TigerEgs = 6,
         TigerDemon = 10,
         BungieNext = 254,
 
@@ -38,7 +39,8 @@ namespace BungieSharper.Entities
         SteamId = 12,
         BattleNetId = 14,
         StadiaId = 16,
-        TwitchId = 18
+        TwitchId = 18,
+        EgsId = 20
     }
 
     public class SearchResultOfContentItemPublicContract

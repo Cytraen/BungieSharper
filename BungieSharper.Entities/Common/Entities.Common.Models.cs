@@ -20,6 +20,9 @@ namespace BungieSharper.Entities.Common.Models
         [JsonPropertyName("groupAvatars")]
         public IEnumerable<Common.Models.CoreSetting> GroupAvatars { get; set; }
 
+        [JsonPropertyName("defaultGroupTheme")]
+        public Common.Models.CoreSetting DefaultGroupTheme { get; set; }
+
         [JsonPropertyName("destinyMembershipTypes")]
         public IEnumerable<Common.Models.CoreSetting> DestinyMembershipTypes { get; set; }
 

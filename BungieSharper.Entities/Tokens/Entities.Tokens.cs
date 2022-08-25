@@ -70,6 +70,32 @@ namespace BungieSharper.Entities.Tokens
         public DateTime? ApplyDate { get; set; }
     }
 
+    public class PartnerRewardHistoryResponse
+    {
+        [JsonPropertyName("PartnerOffers")]
+        public IEnumerable<Tokens.PartnerOfferSkuHistoryResponse> PartnerOffers { get; set; }
+
+        [JsonPropertyName("TwitchDrops")]
+        public IEnumerable<Tokens.TwitchDropHistoryResponse> TwitchDrops { get; set; }
+    }
+
+    public class TwitchDropHistoryResponse
+    {
+        [JsonPropertyName("Title")]
+        public string Title { get; set; }
+
+        [JsonPropertyName("Description")]
+        public string Description { get; set; }
+
+        [JsonPropertyName("CreatedAt")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public DateTime? CreatedAt { get; set; }
+
+        [JsonPropertyName("ClaimState")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public byte? ClaimState { get; set; }
+    }
+
     public class BungieRewardDisplay
     {
         [JsonPropertyName("UserRewardAvailabilityModel")]

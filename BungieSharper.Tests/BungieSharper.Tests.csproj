@@ -9,7 +9,7 @@
     <IsPackable>false</IsPackable>
 
     <TargetFrameworks>net6.0</TargetFrameworks>
-    <VersionPrefix>0.9.2</VersionPrefix>
+    <VersionPrefix>0.9.3</VersionPrefix>
   </PropertyGroup>
 
   <ItemGroup>

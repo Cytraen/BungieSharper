@@ -99,6 +99,15 @@ public class FireteamSummary
 
     [JsonPropertyName("titleBeforeModeration")]
     public string TitleBeforeModeration { get; set; }
+
+    [JsonPropertyName("ownerCurrentGuardianRankSnapshot")]
+    public int OwnerCurrentGuardianRankSnapshot { get; set; }
+
+    [JsonPropertyName("ownerHighestLifetimeGuardianRankSnapshot")]
+    public int OwnerHighestLifetimeGuardianRankSnapshot { get; set; }
+
+    [JsonPropertyName("ownerTotalCommendationScoreSnapshot")]
+    public int OwnerTotalCommendationScoreSnapshot { get; set; }
 }
 
 public class FireteamResponse

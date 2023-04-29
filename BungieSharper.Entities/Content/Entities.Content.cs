@@ -92,6 +92,9 @@ public class NewsArticleRssResponse
 
     [JsonPropertyName("ResultCountThisPage")]
     public int ResultCountThisPage { get; set; }
+
+    [JsonPropertyName("CategoryFilter")]
+    public string CategoryFilter { get; set; }
 }
 
 public class NewsArticleRssItem
@@ -110,4 +113,13 @@ public class NewsArticleRssItem
 
     [JsonPropertyName("Description")]
     public string Description { get; set; }
+
+    [JsonPropertyName("HtmlContent")]
+    public string HtmlContent { get; set; }
+
+    [JsonPropertyName("ImagePath")]
+    public string ImagePath { get; set; }
+
+    [JsonPropertyName("OptionalMobileImagePath")]
+    public string OptionalMobileImagePath { get; set; }
 }

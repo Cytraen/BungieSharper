@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace BungieSharper.Entities.Destiny.Responses;
@@ -28,7 +29,7 @@ public class DestinyLinkedProfilesResponse
 public class DestinyProfileUserInfoCard
 {
     [JsonPropertyName("dateLastPlayed")]
-    public System.DateTime DateLastPlayed { get; set; }
+    public DateTime DateLastPlayed { get; set; }
 
     /// <summary>If this profile is being overridden/obscured by Cross Save, this will be set to true. We will still return the profile for display purposes where users need to know the info: it is up to any given area of the app/site to determine if this profile should still be shown.</summary>
     [JsonPropertyName("isOverridden")]
@@ -119,6 +120,18 @@ public class DestinyErrorProfile
 /// </summary>
 public class DestinyProfileResponse
 {
+    /// <summary>Records the timestamp of when most components were last generated from the world server source. Unless the component type is specified in the documentation for secondaryComponentsMintedTimestamp, this value is sufficient to do data freshness.</summary>
+    [JsonPropertyName("responseMintedTimestamp")]
+    public DateTime ResponseMintedTimestamp { get; set; }
+
+    /// <summary>
+    /// Some secondary components are not tracked in the primary response timestamp and have their timestamp tracked here. If your component is any of the following, this field is where you will find your timestamp value:
+    /// PresentationNodes, Records, Collectibles, Metrics, StringVariables, Craftables, Transitory
+    /// All other component types may use the primary timestamp property.
+    /// </summary>
+    [JsonPropertyName("secondaryComponentsMintedTimestamp")]
+    public DateTime SecondaryComponentsMintedTimestamp { get; set; }
+
     /// <summary>
     /// Recent, refundable purchases you have made from vendors. When will you use it? Couldn't say...
     /// COMPONENT TYPE: VendorReceipts
@@ -201,6 +214,10 @@ public class DestinyProfileResponse
     [JsonPropertyName("profileStringVariables")]
     public SingleComponentResponseOfDestinyStringVariablesComponent ProfileStringVariables { get; set; }
 
+    /// <summary>COMPONENT TYPE: SocialCommendations</summary>
+    [JsonPropertyName("profileCommendations")]
+    public SingleComponentResponseOfDestinySocialCommendationsComponent ProfileCommendations { get; set; }
+
     /// <summary>
     /// Basic information about each character, keyed by the CharacterId.
     /// COMPONENT TYPE: Characters
@@ -214,6 +231,13 @@ public class DestinyProfileResponse
     /// </summary>
     [JsonPropertyName("characterInventories")]
     public DictionaryComponentResponseOfint64AndDestinyInventoryComponent CharacterInventories { get; set; }
+
+    /// <summary>
+    /// The character loadouts, keyed by the Character's Id.
+    /// COMPONENT TYPE: CharacterLoadouts
+    /// </summary>
+    [JsonPropertyName("characterLoadouts")]
+    public DictionaryComponentResponseOfint64AndDestinyLoadoutsComponent CharacterLoadouts { get; set; }
 
     /// <summary>
     /// Character-level progression data, keyed by the Character's Id.
@@ -352,6 +376,13 @@ public class DestinyCharacterResponse
     /// </summary>
     [JsonPropertyName("equipment")]
     public SingleComponentResponseOfDestinyInventoryComponent Equipment { get; set; }
+
+    /// <summary>
+    /// The loadouts available to the character.
+    /// COMPONENT TYPE: CharacterLoadouts
+    /// </summary>
+    [JsonPropertyName("loadouts")]
+    public SingleComponentResponseOfDestinyLoadoutsComponent Loadouts { get; set; }
 
     /// <summary>
     /// Items available from Kiosks that are available to this specific character.

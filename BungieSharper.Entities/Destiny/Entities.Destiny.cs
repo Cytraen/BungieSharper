@@ -485,7 +485,8 @@ public enum DamageType : int
     Thermal = 3,
     Void = 4,
     Raid = 5,
-    Stasis = 6
+    Stasis = 6,
+    Strand = 7
 }
 
 /// <summary>
@@ -630,7 +631,9 @@ public enum DestinyPresentationDisplayStyle : int
     Badge = 1,
     Medals = 2,
     Collectible = 3,
-    Record = 4
+    Record = 4,
+    SeasonalTriumph = 5,
+    GuardianRank = 6
 }
 
 public enum DestinyRecordValueStyle : int
@@ -652,7 +655,8 @@ public enum DestinyRecordToastStyle : int
     MedalComplete = 5,
     SeasonChallengeComplete = 6,
     GildedTitleComplete = 7,
-    CraftingRecipeUnlocked = 8
+    CraftingRecipeUnlocked = 8,
+    ToastGuardianRankDetails = 9
 }
 
 /// <summary>
@@ -889,7 +893,8 @@ public enum DestinyGameVersions : int
     Shadowkeep = 32,
     BeyondLight = 64,
     Anniversary30th = 128,
-    TheWitchQueen = 256
+    TheWitchQueen = 256,
+    Lightfall = 512
 }
 
 /// <summary>
@@ -938,6 +943,9 @@ public enum DestinyComponentType : int
 
     /// <summary>This will return info about the equipped items on the character(s). Everyone can see this.</summary>
     CharacterEquipment = 205,
+
+    /// <summary>This will return info about the loadouts of the character(s).</summary>
+    CharacterLoadouts = 206,
 
     /// <summary>This will return basic info about instanced items - whether they can be equipped, their tracked status, and some info commonly needed in many places (current damage type, primary stat value, etc)</summary>
     ItemInstances = 300,
@@ -1011,7 +1019,10 @@ public enum DestinyComponentType : int
     StringVariables = 1200,
 
     /// <summary>Returns summary status information about all "Craftables" aka crafting recipe items.</summary>
-    Craftables = 1300
+    Craftables = 1300,
+
+    /// <summary>Returns score values for all commendations and commendation nodes.</summary>
+    SocialCommendations = 1400
 }
 
 /// <summary>
@@ -1284,8 +1295,17 @@ public enum EquipFailureReason : int
     /// <summary>This item requires you to have reached a specific character level in order to equip it, and you haven't reached that level yet.</summary>
     ItemFailedLevelCheck = 8,
 
-    /// <summary>This item can't be equipped on the character requested, because it must be in that character's inventory first. Transfer the item to the character you want to equip it before you attempt to equip it.</summary>
-    ItemNotOnCharacter = 16
+    /// <summary>This item is 'wrapped' and must be unwrapped before being equipped. NOTE: This value used to be called ItemNotOnCharacter but that is no longer accurate.</summary>
+    ItemWrapped = 16,
+
+    /// <summary>This item is not yet loaded and cannot be equipped yet.</summary>
+    ItemNotLoaded = 32,
+
+    /// <summary>This item is block-listed and cannot be equipped.</summary>
+    ItemEquipBlocklisted = 64,
+
+    /// <summary>This item does not meet the loadout requirements for the current activity</summary>
+    ItemLoadoutRequirementNotMet = 128
 }
 
 /// <summary>
@@ -1474,7 +1494,11 @@ public enum DestinyVendorItemState : int
     Free = 131072,
 
     /// <summary>This indicates that the sale item is locked.</summary>
-    Locked = 262144
+    Locked = 262144,
+
+    /// <summary>This indicates that the sale item is paracausal.</summary>
+    Paracausal = 524288,
+    Cryptarch = 1048576
 }
 
 /// <summary>

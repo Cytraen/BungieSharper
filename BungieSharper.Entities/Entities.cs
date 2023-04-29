@@ -441,6 +441,20 @@ public class SingleComponentResponseOfDestinyStringVariablesComponent
     public bool? Disabled { get; set; }
 }
 
+public class SingleComponentResponseOfDestinySocialCommendationsComponent
+{
+    [JsonPropertyName("data")]
+    public Destiny.Components.Social.DestinySocialCommendationsComponent Data { get; set; }
+
+    [JsonPropertyName("privacy")]
+    public Components.ComponentPrivacySetting Privacy { get; set; }
+
+    /// <summary>If true, this component is disabled.</summary>
+    [JsonPropertyName("disabled")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public bool? Disabled { get; set; }
+}
+
 public class DictionaryComponentResponseOfint64AndDestinyCharacterComponent
 {
     [JsonPropertyName("data")]
@@ -459,6 +473,20 @@ public class DictionaryComponentResponseOfint64AndDestinyInventoryComponent
 {
     [JsonPropertyName("data")]
     public Dictionary<long, Destiny.Entities.Inventory.DestinyInventoryComponent> Data { get; set; }
+
+    [JsonPropertyName("privacy")]
+    public Components.ComponentPrivacySetting Privacy { get; set; }
+
+    /// <summary>If true, this component is disabled.</summary>
+    [JsonPropertyName("disabled")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public bool? Disabled { get; set; }
+}
+
+public class DictionaryComponentResponseOfint64AndDestinyLoadoutsComponent
+{
+    [JsonPropertyName("data")]
+    public Dictionary<long, Destiny.Components.Loadouts.DestinyLoadoutsComponent> Data { get; set; }
 
     [JsonPropertyName("privacy")]
     public Components.ComponentPrivacySetting Privacy { get; set; }
@@ -888,6 +916,20 @@ public class SingleComponentResponseOfDestinyCharacterActivitiesComponent
 {
     [JsonPropertyName("data")]
     public Destiny.Entities.Characters.DestinyCharacterActivitiesComponent Data { get; set; }
+
+    [JsonPropertyName("privacy")]
+    public Components.ComponentPrivacySetting Privacy { get; set; }
+
+    /// <summary>If true, this component is disabled.</summary>
+    [JsonPropertyName("disabled")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public bool? Disabled { get; set; }
+}
+
+public class SingleComponentResponseOfDestinyLoadoutsComponent
+{
+    [JsonPropertyName("data")]
+    public Destiny.Components.Loadouts.DestinyLoadoutsComponent Data { get; set; }
 
     [JsonPropertyName("privacy")]
     public Components.ComponentPrivacySetting Privacy { get; set; }

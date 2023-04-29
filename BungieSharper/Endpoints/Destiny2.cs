@@ -441,6 +441,102 @@ public partial class Endpoints
     }
 
     /// <summary>
+    /// Equip a loadout. You must have a valid Destiny Account, and either be in a social space, in orbit, or offline.
+    /// Requires OAuth2 scope(s): MoveEquipDestinyItems
+    /// </summary>
+    /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
+    /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
+    public Task<int> Destiny2_EquipLoadout(Entities.Destiny.Requests.Actions.DestinyLoadoutActionRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
+    {
+        return _apiAccessor.ApiRequestAsync<int>(
+            new Uri($"Destiny2/Actions/Loadouts/EquipLoadout/", UriKind.Relative),
+            new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
+            );
+    }
+
+    /// <inheritdoc cref="Destiny2_EquipLoadout(Entities.Destiny.Requests.Actions.DestinyLoadoutActionRequest, string?, CancellationToken)" />
+    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+    public Task<T> Destiny2_EquipLoadout<T>(Entities.Destiny.Requests.Actions.DestinyLoadoutActionRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
+    {
+        return _apiAccessor.ApiRequestAsync<T>(
+            new Uri($"Destiny2/Actions/Loadouts/EquipLoadout/", UriKind.Relative),
+            new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
+            );
+    }
+
+    /// <summary>
+    /// Snapshot a loadout with the currently equipped items.
+    /// Requires OAuth2 scope(s): MoveEquipDestinyItems
+    /// </summary>
+    /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
+    /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
+    public Task<int> Destiny2_SnapshotLoadout(Entities.Destiny.Requests.Actions.DestinyLoadoutUpdateActionRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
+    {
+        return _apiAccessor.ApiRequestAsync<int>(
+            new Uri($"Destiny2/Actions/Loadouts/SnapshotLoadout/", UriKind.Relative),
+            new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
+            );
+    }
+
+    /// <inheritdoc cref="Destiny2_SnapshotLoadout(Entities.Destiny.Requests.Actions.DestinyLoadoutUpdateActionRequest, string?, CancellationToken)" />
+    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+    public Task<T> Destiny2_SnapshotLoadout<T>(Entities.Destiny.Requests.Actions.DestinyLoadoutUpdateActionRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
+    {
+        return _apiAccessor.ApiRequestAsync<T>(
+            new Uri($"Destiny2/Actions/Loadouts/SnapshotLoadout/", UriKind.Relative),
+            new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
+            );
+    }
+
+    /// <summary>
+    /// Update the color, icon, and name of a loadout.
+    /// Requires OAuth2 scope(s): MoveEquipDestinyItems
+    /// </summary>
+    /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
+    /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
+    public Task<int> Destiny2_UpdateLoadoutIdentifiers(Entities.Destiny.Requests.Actions.DestinyLoadoutUpdateActionRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
+    {
+        return _apiAccessor.ApiRequestAsync<int>(
+            new Uri($"Destiny2/Actions/Loadouts/UpdateLoadoutIdentifiers/", UriKind.Relative),
+            new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
+            );
+    }
+
+    /// <inheritdoc cref="Destiny2_UpdateLoadoutIdentifiers(Entities.Destiny.Requests.Actions.DestinyLoadoutUpdateActionRequest, string?, CancellationToken)" />
+    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+    public Task<T> Destiny2_UpdateLoadoutIdentifiers<T>(Entities.Destiny.Requests.Actions.DestinyLoadoutUpdateActionRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
+    {
+        return _apiAccessor.ApiRequestAsync<T>(
+            new Uri($"Destiny2/Actions/Loadouts/UpdateLoadoutIdentifiers/", UriKind.Relative),
+            new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
+            );
+    }
+
+    /// <summary>
+    /// Clear the identifiers and items of a loadout.
+    /// Requires OAuth2 scope(s): MoveEquipDestinyItems
+    /// </summary>
+    /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
+    /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
+    public Task<int> Destiny2_ClearLoadout(Entities.Destiny.Requests.Actions.DestinyLoadoutActionRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
+    {
+        return _apiAccessor.ApiRequestAsync<int>(
+            new Uri($"Destiny2/Actions/Loadouts/ClearLoadout/", UriKind.Relative),
+            new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
+            );
+    }
+
+    /// <inheritdoc cref="Destiny2_ClearLoadout(Entities.Destiny.Requests.Actions.DestinyLoadoutActionRequest, string?, CancellationToken)" />
+    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
+    public Task<T> Destiny2_ClearLoadout<T>(Entities.Destiny.Requests.Actions.DestinyLoadoutActionRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
+    {
+        return _apiAccessor.ApiRequestAsync<T>(
+            new Uri($"Destiny2/Actions/Loadouts/ClearLoadout/", UriKind.Relative),
+            new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
+            );
+    }
+
+    /// <summary>
     /// Set the Lock State for an instanced item. You must have a valid Destiny Account.
     /// Requires OAuth2 scope(s): MoveEquipDestinyItems
     /// </summary>

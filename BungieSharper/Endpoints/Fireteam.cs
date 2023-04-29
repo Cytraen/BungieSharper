@@ -39,6 +39,7 @@ public partial class Endpoints
     /// </summary>
     /// <param name="activityType">The activity type to filter by.</param>
     /// <param name="dateRange">The date range to grab available fireteams.</param>
+    /// <param name="excludeImmediate">If you wish the result to exclude immediate fireteams, set this to true. Immediate-only can be forced using the dateRange enum.</param>
     /// <param name="groupId">The group id of the clan.</param>
     /// <param name="langFilter">An optional language filter.</param>
     /// <param name="page">Zero based page</param>
@@ -47,20 +48,20 @@ public partial class Endpoints
     /// <param name="slotFilter">Filters based on available slots</param>
     /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
-    public Task<Entities.SearchResultOfFireteamSummary> Fireteam_GetAvailableClanFireteams(int activityType, Entities.Fireteam.FireteamDateRange dateRange, long groupId, int page, Entities.Fireteam.FireteamPlatform platform, Entities.Fireteam.FireteamPublicSearchOption publicOnly, Entities.Fireteam.FireteamSlotSearch slotFilter, string? langFilter = null, string? authToken = null, CancellationToken cancelToken = default)
+    public Task<Entities.SearchResultOfFireteamSummary> Fireteam_GetAvailableClanFireteams(int activityType, Entities.Fireteam.FireteamDateRange dateRange, long groupId, int page, Entities.Fireteam.FireteamPlatform platform, Entities.Fireteam.FireteamPublicSearchOption publicOnly, Entities.Fireteam.FireteamSlotSearch slotFilter, bool? excludeImmediate = null, string? langFilter = null, string? authToken = null, CancellationToken cancelToken = default)
     {
         return _apiAccessor.ApiRequestAsync<Entities.SearchResultOfFireteamSummary>(
-            new Uri($"Fireteam/Clan/{groupId}/Available/{platform}/{activityType}/{dateRange}/{slotFilter}/{publicOnly}/{page}/" + HttpRequestGenerator.MakeQuerystring(langFilter != null ? $"langFilter={Uri.EscapeDataString(langFilter)}" : null), UriKind.Relative),
+            new Uri($"Fireteam/Clan/{groupId}/Available/{platform}/{activityType}/{dateRange}/{slotFilter}/{publicOnly}/{page}/" + HttpRequestGenerator.MakeQuerystring(excludeImmediate != null ? $"excludeImmediate={excludeImmediate}" : null, langFilter != null ? $"langFilter={Uri.EscapeDataString(langFilter)}" : null), UriKind.Relative),
             null, HttpMethod.Get, authToken, cancelToken
             );
     }
 
-    /// <inheritdoc cref="Fireteam_GetAvailableClanFireteams(int, Entities.Fireteam.FireteamDateRange, long, int, Entities.Fireteam.FireteamPlatform, Entities.Fireteam.FireteamPublicSearchOption, Entities.Fireteam.FireteamSlotSearch, string?, string?, CancellationToken)" />
+    /// <inheritdoc cref="Fireteam_GetAvailableClanFireteams(int, Entities.Fireteam.FireteamDateRange, long, int, Entities.Fireteam.FireteamPlatform, Entities.Fireteam.FireteamPublicSearchOption, Entities.Fireteam.FireteamSlotSearch, bool?, string?, string?, CancellationToken)" />
     /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> Fireteam_GetAvailableClanFireteams<T>(int activityType, Entities.Fireteam.FireteamDateRange dateRange, long groupId, int page, Entities.Fireteam.FireteamPlatform platform, Entities.Fireteam.FireteamPublicSearchOption publicOnly, Entities.Fireteam.FireteamSlotSearch slotFilter, string? langFilter = null, string? authToken = null, CancellationToken cancelToken = default)
+    public Task<T> Fireteam_GetAvailableClanFireteams<T>(int activityType, Entities.Fireteam.FireteamDateRange dateRange, long groupId, int page, Entities.Fireteam.FireteamPlatform platform, Entities.Fireteam.FireteamPublicSearchOption publicOnly, Entities.Fireteam.FireteamSlotSearch slotFilter, bool? excludeImmediate = null, string? langFilter = null, string? authToken = null, CancellationToken cancelToken = default)
     {
         return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"Fireteam/Clan/{groupId}/Available/{platform}/{activityType}/{dateRange}/{slotFilter}/{publicOnly}/{page}/" + HttpRequestGenerator.MakeQuerystring(langFilter != null ? $"langFilter={Uri.EscapeDataString(langFilter)}" : null), UriKind.Relative),
+            new Uri($"Fireteam/Clan/{groupId}/Available/{platform}/{activityType}/{dateRange}/{slotFilter}/{publicOnly}/{page}/" + HttpRequestGenerator.MakeQuerystring(excludeImmediate != null ? $"excludeImmediate={excludeImmediate}" : null, langFilter != null ? $"langFilter={Uri.EscapeDataString(langFilter)}" : null), UriKind.Relative),
             null, HttpMethod.Get, authToken, cancelToken
             );
     }
@@ -71,26 +72,27 @@ public partial class Endpoints
     /// </summary>
     /// <param name="activityType">The activity type to filter by.</param>
     /// <param name="dateRange">The date range to grab available fireteams.</param>
+    /// <param name="excludeImmediate">If you wish the result to exclude immediate fireteams, set this to true. Immediate-only can be forced using the dateRange enum.</param>
     /// <param name="langFilter">An optional language filter.</param>
     /// <param name="page">Zero based page</param>
     /// <param name="platform">The platform filter.</param>
     /// <param name="slotFilter">Filters based on available slots</param>
     /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
-    public Task<Entities.SearchResultOfFireteamSummary> Fireteam_SearchPublicAvailableClanFireteams(int activityType, Entities.Fireteam.FireteamDateRange dateRange, int page, Entities.Fireteam.FireteamPlatform platform, Entities.Fireteam.FireteamSlotSearch slotFilter, string? langFilter = null, string? authToken = null, CancellationToken cancelToken = default)
+    public Task<Entities.SearchResultOfFireteamSummary> Fireteam_SearchPublicAvailableClanFireteams(int activityType, Entities.Fireteam.FireteamDateRange dateRange, int page, Entities.Fireteam.FireteamPlatform platform, Entities.Fireteam.FireteamSlotSearch slotFilter, bool? excludeImmediate = null, string? langFilter = null, string? authToken = null, CancellationToken cancelToken = default)
     {
         return _apiAccessor.ApiRequestAsync<Entities.SearchResultOfFireteamSummary>(
-            new Uri($"Fireteam/Search/Available/{platform}/{activityType}/{dateRange}/{slotFilter}/{page}/" + HttpRequestGenerator.MakeQuerystring(langFilter != null ? $"langFilter={Uri.EscapeDataString(langFilter)}" : null), UriKind.Relative),
+            new Uri($"Fireteam/Search/Available/{platform}/{activityType}/{dateRange}/{slotFilter}/{page}/" + HttpRequestGenerator.MakeQuerystring(excludeImmediate != null ? $"excludeImmediate={excludeImmediate}" : null, langFilter != null ? $"langFilter={Uri.EscapeDataString(langFilter)}" : null), UriKind.Relative),
             null, HttpMethod.Get, authToken, cancelToken
             );
     }
 
-    /// <inheritdoc cref="Fireteam_SearchPublicAvailableClanFireteams(int, Entities.Fireteam.FireteamDateRange, int, Entities.Fireteam.FireteamPlatform, Entities.Fireteam.FireteamSlotSearch, string?, string?, CancellationToken)" />
+    /// <inheritdoc cref="Fireteam_SearchPublicAvailableClanFireteams(int, Entities.Fireteam.FireteamDateRange, int, Entities.Fireteam.FireteamPlatform, Entities.Fireteam.FireteamSlotSearch, bool?, string?, string?, CancellationToken)" />
     /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> Fireteam_SearchPublicAvailableClanFireteams<T>(int activityType, Entities.Fireteam.FireteamDateRange dateRange, int page, Entities.Fireteam.FireteamPlatform platform, Entities.Fireteam.FireteamSlotSearch slotFilter, string? langFilter = null, string? authToken = null, CancellationToken cancelToken = default)
+    public Task<T> Fireteam_SearchPublicAvailableClanFireteams<T>(int activityType, Entities.Fireteam.FireteamDateRange dateRange, int page, Entities.Fireteam.FireteamPlatform platform, Entities.Fireteam.FireteamSlotSearch slotFilter, bool? excludeImmediate = null, string? langFilter = null, string? authToken = null, CancellationToken cancelToken = default)
     {
         return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"Fireteam/Search/Available/{platform}/{activityType}/{dateRange}/{slotFilter}/{page}/" + HttpRequestGenerator.MakeQuerystring(langFilter != null ? $"langFilter={Uri.EscapeDataString(langFilter)}" : null), UriKind.Relative),
+            new Uri($"Fireteam/Search/Available/{platform}/{activityType}/{dateRange}/{slotFilter}/{page}/" + HttpRequestGenerator.MakeQuerystring(excludeImmediate != null ? $"excludeImmediate={excludeImmediate}" : null, langFilter != null ? $"langFilter={Uri.EscapeDataString(langFilter)}" : null), UriKind.Relative),
             null, HttpMethod.Get, authToken, cancelToken
             );
     }

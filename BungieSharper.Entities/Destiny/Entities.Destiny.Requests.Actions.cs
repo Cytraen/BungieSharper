@@ -62,6 +62,44 @@ public class DestinyItemSetActionRequest
     public BungieMembershipType MembershipType { get; set; }
 }
 
+public class DestinyLoadoutActionRequest
+{
+    /// <summary>The index of the loadout for this action request.</summary>
+    [JsonPropertyName("loadoutIndex")]
+    public int LoadoutIndex { get; set; }
+
+    [JsonPropertyName("characterId")]
+    public long CharacterId { get; set; }
+
+    [JsonPropertyName("membershipType")]
+    public BungieMembershipType MembershipType { get; set; }
+}
+
+public class DestinyLoadoutUpdateActionRequest
+{
+    [JsonPropertyName("colorHash")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public uint? ColorHash { get; set; }
+
+    [JsonPropertyName("iconHash")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public uint? IconHash { get; set; }
+
+    [JsonPropertyName("nameHash")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public uint? NameHash { get; set; }
+
+    /// <summary>The index of the loadout for this action request.</summary>
+    [JsonPropertyName("loadoutIndex")]
+    public int LoadoutIndex { get; set; }
+
+    [JsonPropertyName("characterId")]
+    public long CharacterId { get; set; }
+
+    [JsonPropertyName("membershipType")]
+    public BungieMembershipType MembershipType { get; set; }
+}
+
 public class DestinyItemStateRequest
 {
     [JsonPropertyName("state")]

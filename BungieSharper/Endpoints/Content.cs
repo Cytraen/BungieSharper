@@ -160,23 +160,25 @@ public partial class Endpoints
     /// <summary>
     /// Returns a JSON string response that is the RSS feed for news articles.
     /// </summary>
+    /// <param name="categoryfilter">Optionally filter response to only include news items in a certain category.</param>
+    /// <param name="includebody">Optionally include full content body for each news item.</param>
     /// <param name="pageToken">Zero-based pagination token for paging through result sets.</param>
     /// <param name="authToken">The OAuth access token to authenticate the request with.</param>
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
-    public Task<Entities.Content.NewsArticleRssResponse> Content_RssNewsArticles(string pageToken, string? authToken = null, CancellationToken cancelToken = default)
+    public Task<Entities.Content.NewsArticleRssResponse> Content_RssNewsArticles(string pageToken, string? categoryfilter = null, bool? includebody = null, string? authToken = null, CancellationToken cancelToken = default)
     {
         return _apiAccessor.ApiRequestAsync<Entities.Content.NewsArticleRssResponse>(
-            new Uri($"Content/Rss/NewsArticles/{Uri.EscapeDataString(pageToken)}/", UriKind.Relative),
+            new Uri($"Content/Rss/NewsArticles/{Uri.EscapeDataString(pageToken)}/" + HttpRequestGenerator.MakeQuerystring(categoryfilter != null ? $"categoryfilter={Uri.EscapeDataString(categoryfilter)}" : null, includebody != null ? $"includebody={includebody}" : null), UriKind.Relative),
             null, HttpMethod.Get, authToken, cancelToken
             );
     }
 
-    /// <inheritdoc cref="Content_RssNewsArticles(string, string?, CancellationToken)" />
+    /// <inheritdoc cref="Content_RssNewsArticles(string, string?, bool?, string?, CancellationToken)" />
     /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> Content_RssNewsArticles<T>(string pageToken, string? authToken = null, CancellationToken cancelToken = default)
+    public Task<T> Content_RssNewsArticles<T>(string pageToken, string? categoryfilter = null, bool? includebody = null, string? authToken = null, CancellationToken cancelToken = default)
     {
         return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"Content/Rss/NewsArticles/{Uri.EscapeDataString(pageToken)}/", UriKind.Relative),
+            new Uri($"Content/Rss/NewsArticles/{Uri.EscapeDataString(pageToken)}/" + HttpRequestGenerator.MakeQuerystring(categoryfilter != null ? $"categoryfilter={Uri.EscapeDataString(categoryfilter)}" : null, includebody != null ? $"includebody={includebody}" : null), UriKind.Relative),
             null, HttpMethod.Get, authToken, cancelToken
             );
     }

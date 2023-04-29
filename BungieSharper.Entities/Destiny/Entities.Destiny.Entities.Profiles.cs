@@ -63,4 +63,12 @@ public class DestinyProfileComponent
     [JsonPropertyName("activeEventCardHash")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public uint? ActiveEventCardHash { get; set; }
+
+    /// <summary>The 'current' Guardian Rank value, which starts at rank 1.</summary>
+    [JsonPropertyName("currentGuardianRank")]
+    public int CurrentGuardianRank { get; set; }
+
+    /// <summary>The 'lifetime highest' Guardian Rank value, which starts at rank 1.</summary>
+    [JsonPropertyName("lifetimeHighestGuardianRank")]
+    public int LifetimeHighestGuardianRank { get; set; }
 }

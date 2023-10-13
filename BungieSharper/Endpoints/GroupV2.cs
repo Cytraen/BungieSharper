@@ -17,18 +17,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<Dictionary<int, string>> GroupV2_GetAvailableAvatars(string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<Dictionary<int, string>>(
-            new Uri($"GroupV2/GetAvailableAvatars/", UriKind.Relative),
-            null, HttpMethod.Get, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="GroupV2_GetAvailableAvatars(string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> GroupV2_GetAvailableAvatars<T>(string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"GroupV2/GetAvailableAvatars/", UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri("GroupV2/GetAvailableAvatars/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseDictionaryInt32String,
             null, HttpMethod.Get, authToken, cancelToken
             );
     }
@@ -40,18 +30,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<IEnumerable<Entities.Config.GroupTheme>> GroupV2_GetAvailableThemes(string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<IEnumerable<Entities.Config.GroupTheme>>(
-            new Uri($"GroupV2/GetAvailableThemes/", UriKind.Relative),
-            null, HttpMethod.Get, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="GroupV2_GetAvailableThemes(string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> GroupV2_GetAvailableThemes<T>(string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"GroupV2/GetAvailableThemes/", UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri("GroupV2/GetAvailableThemes/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseIEnumerableGroupTheme,
             null, HttpMethod.Get, authToken, cancelToken
             );
     }
@@ -65,18 +45,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<bool> GroupV2_GetUserClanInviteSetting(Entities.BungieMembershipType mType, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<bool>(
-            new Uri($"GroupV2/GetUserClanInviteSetting/{mType}/", UriKind.Relative),
-            null, HttpMethod.Get, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="GroupV2_GetUserClanInviteSetting(Entities.BungieMembershipType, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> GroupV2_GetUserClanInviteSetting<T>(Entities.BungieMembershipType mType, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"GroupV2/GetUserClanInviteSetting/{mType}/", UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"GroupV2/GetUserClanInviteSetting/{mType}/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseBoolean,
             null, HttpMethod.Get, authToken, cancelToken
             );
     }
@@ -91,18 +61,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<IEnumerable<Entities.GroupsV2.GroupV2Card>> GroupV2_GetRecommendedGroups(Entities.GroupsV2.GroupDateRange createDateRange, Entities.GroupsV2.GroupType groupType, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<IEnumerable<Entities.GroupsV2.GroupV2Card>>(
-            new Uri($"GroupV2/Recommended/{groupType}/{createDateRange}/", UriKind.Relative),
-            null, HttpMethod.Post, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="GroupV2_GetRecommendedGroups(Entities.GroupsV2.GroupDateRange, Entities.GroupsV2.GroupType, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> GroupV2_GetRecommendedGroups<T>(Entities.GroupsV2.GroupDateRange createDateRange, Entities.GroupsV2.GroupType groupType, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"GroupV2/Recommended/{groupType}/{createDateRange}/", UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"GroupV2/Recommended/{groupType}/{createDateRange}/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseIEnumerableGroupV2Card,
             null, HttpMethod.Post, authToken, cancelToken
             );
     }
@@ -114,19 +74,9 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<Entities.GroupsV2.GroupSearchResponse> GroupV2_GroupSearch(Entities.GroupsV2.GroupQuery requestBody, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<Entities.GroupsV2.GroupSearchResponse>(
-            new Uri($"GroupV2/Search/", UriKind.Relative),
-            new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="GroupV2_GroupSearch(Entities.GroupsV2.GroupQuery, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> GroupV2_GroupSearch<T>(Entities.GroupsV2.GroupQuery requestBody, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"GroupV2/Search/", UriKind.Relative),
-            new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
+        return _apiAccessor.ApiRequestAsync(
+            new Uri("GroupV2/Search/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseGroupSearchResponse,
+            new StringContent(JsonSerializer.Serialize(requestBody, _apiAccessor.JsonContext.GroupQuery), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
             );
     }
 
@@ -138,18 +88,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<Entities.GroupsV2.GroupResponse> GroupV2_GetGroup(long groupId, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<Entities.GroupsV2.GroupResponse>(
-            new Uri($"GroupV2/{groupId}/", UriKind.Relative),
-            null, HttpMethod.Get, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="GroupV2_GetGroup(long, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> GroupV2_GetGroup<T>(long groupId, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"GroupV2/{groupId}/", UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"GroupV2/{groupId}/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseGroupResponse,
             null, HttpMethod.Get, authToken, cancelToken
             );
     }
@@ -163,18 +103,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<Entities.GroupsV2.GroupResponse> GroupV2_GetGroupByName(string groupName, Entities.GroupsV2.GroupType groupType, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<Entities.GroupsV2.GroupResponse>(
-            new Uri($"GroupV2/Name/{Uri.EscapeDataString(groupName)}/{groupType}/", UriKind.Relative),
-            null, HttpMethod.Get, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="GroupV2_GetGroupByName(string, Entities.GroupsV2.GroupType, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> GroupV2_GetGroupByName<T>(string groupName, Entities.GroupsV2.GroupType groupType, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"GroupV2/Name/{Uri.EscapeDataString(groupName)}/{groupType}/", UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"GroupV2/Name/{Uri.EscapeDataString(groupName)}/{groupType}/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseGroupResponse,
             null, HttpMethod.Get, authToken, cancelToken
             );
     }
@@ -186,19 +116,9 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<Entities.GroupsV2.GroupResponse> GroupV2_GetGroupByNameV2(Entities.GroupsV2.GroupNameSearchRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<Entities.GroupsV2.GroupResponse>(
-            new Uri($"GroupV2/NameV2/", UriKind.Relative),
-            new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="GroupV2_GetGroupByNameV2(Entities.GroupsV2.GroupNameSearchRequest, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> GroupV2_GetGroupByNameV2<T>(Entities.GroupsV2.GroupNameSearchRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"GroupV2/NameV2/", UriKind.Relative),
-            new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
+        return _apiAccessor.ApiRequestAsync(
+            new Uri("GroupV2/NameV2/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseGroupResponse,
+            new StringContent(JsonSerializer.Serialize(requestBody, _apiAccessor.JsonContext.GroupNameSearchRequest), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
             );
     }
 
@@ -210,18 +130,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<IEnumerable<Entities.GroupsV2.GroupOptionalConversation>> GroupV2_GetGroupOptionalConversations(long groupId, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<IEnumerable<Entities.GroupsV2.GroupOptionalConversation>>(
-            new Uri($"GroupV2/{groupId}/OptionalConversations/", UriKind.Relative),
-            null, HttpMethod.Get, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="GroupV2_GetGroupOptionalConversations(long, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> GroupV2_GetGroupOptionalConversations<T>(long groupId, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"GroupV2/{groupId}/OptionalConversations/", UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"GroupV2/{groupId}/OptionalConversations/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseIEnumerableGroupOptionalConversation,
             null, HttpMethod.Get, authToken, cancelToken
             );
     }
@@ -235,19 +145,9 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<int> GroupV2_EditGroup(long groupId, Entities.GroupsV2.GroupEditAction requestBody, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<int>(
-            new Uri($"GroupV2/{groupId}/Edit/", UriKind.Relative),
-            new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="GroupV2_EditGroup(long, Entities.GroupsV2.GroupEditAction, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> GroupV2_EditGroup<T>(long groupId, Entities.GroupsV2.GroupEditAction requestBody, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"GroupV2/{groupId}/Edit/", UriKind.Relative),
-            new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"GroupV2/{groupId}/Edit/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseInt32,
+            new StringContent(JsonSerializer.Serialize(requestBody, _apiAccessor.JsonContext.GroupEditAction), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
             );
     }
 
@@ -260,19 +160,9 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<int> GroupV2_EditClanBanner(long groupId, Entities.GroupsV2.ClanBanner requestBody, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<int>(
-            new Uri($"GroupV2/{groupId}/EditClanBanner/", UriKind.Relative),
-            new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="GroupV2_EditClanBanner(long, Entities.GroupsV2.ClanBanner, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> GroupV2_EditClanBanner<T>(long groupId, Entities.GroupsV2.ClanBanner requestBody, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"GroupV2/{groupId}/EditClanBanner/", UriKind.Relative),
-            new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"GroupV2/{groupId}/EditClanBanner/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseInt32,
+            new StringContent(JsonSerializer.Serialize(requestBody, _apiAccessor.JsonContext.ClanBanner), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
             );
     }
 
@@ -285,19 +175,9 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<int> GroupV2_EditFounderOptions(long groupId, Entities.GroupsV2.GroupOptionsEditAction requestBody, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<int>(
-            new Uri($"GroupV2/{groupId}/EditFounderOptions/", UriKind.Relative),
-            new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="GroupV2_EditFounderOptions(long, Entities.GroupsV2.GroupOptionsEditAction, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> GroupV2_EditFounderOptions<T>(long groupId, Entities.GroupsV2.GroupOptionsEditAction requestBody, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"GroupV2/{groupId}/EditFounderOptions/", UriKind.Relative),
-            new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"GroupV2/{groupId}/EditFounderOptions/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseInt32,
+            new StringContent(JsonSerializer.Serialize(requestBody, _apiAccessor.JsonContext.GroupOptionsEditAction), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
             );
     }
 
@@ -310,19 +190,9 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<long> GroupV2_AddOptionalConversation(long groupId, Entities.GroupsV2.GroupOptionalConversationAddRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<long>(
-            new Uri($"GroupV2/{groupId}/OptionalConversations/Add/", UriKind.Relative),
-            new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="GroupV2_AddOptionalConversation(long, Entities.GroupsV2.GroupOptionalConversationAddRequest, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> GroupV2_AddOptionalConversation<T>(long groupId, Entities.GroupsV2.GroupOptionalConversationAddRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"GroupV2/{groupId}/OptionalConversations/Add/", UriKind.Relative),
-            new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"GroupV2/{groupId}/OptionalConversations/Add/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseInt64,
+            new StringContent(JsonSerializer.Serialize(requestBody, _apiAccessor.JsonContext.GroupOptionalConversationAddRequest), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
             );
     }
 
@@ -336,19 +206,9 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<long> GroupV2_EditOptionalConversation(long conversationId, long groupId, Entities.GroupsV2.GroupOptionalConversationEditRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<long>(
-            new Uri($"GroupV2/{groupId}/OptionalConversations/Edit/{conversationId}/", UriKind.Relative),
-            new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="GroupV2_EditOptionalConversation(long, long, Entities.GroupsV2.GroupOptionalConversationEditRequest, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> GroupV2_EditOptionalConversation<T>(long conversationId, long groupId, Entities.GroupsV2.GroupOptionalConversationEditRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"GroupV2/{groupId}/OptionalConversations/Edit/{conversationId}/", UriKind.Relative),
-            new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"GroupV2/{groupId}/OptionalConversations/Edit/{conversationId}/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseInt64,
+            new StringContent(JsonSerializer.Serialize(requestBody, _apiAccessor.JsonContext.GroupOptionalConversationEditRequest), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
             );
     }
 
@@ -363,18 +223,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<Entities.SearchResultOfGroupMember> GroupV2_GetMembersOfGroup(int currentpage, long groupId, Entities.GroupsV2.RuntimeGroupMemberType? memberType = null, string? nameSearch = null, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<Entities.SearchResultOfGroupMember>(
-            new Uri($"GroupV2/{groupId}/Members/" + HttpRequestGenerator.MakeQuerystring(memberType != null ? $"memberType={memberType}" : null, nameSearch != null ? $"nameSearch={Uri.EscapeDataString(nameSearch)}" : null), UriKind.Relative),
-            null, HttpMethod.Get, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="GroupV2_GetMembersOfGroup(int, long, Entities.GroupsV2.RuntimeGroupMemberType?, string?, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> GroupV2_GetMembersOfGroup<T>(int currentpage, long groupId, Entities.GroupsV2.RuntimeGroupMemberType? memberType = null, string? nameSearch = null, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"GroupV2/{groupId}/Members/" + HttpRequestGenerator.MakeQuerystring(memberType != null ? $"memberType={memberType}" : null, nameSearch != null ? $"nameSearch={Uri.EscapeDataString(nameSearch)}" : null), UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"GroupV2/{groupId}/Members/" + HttpRequestGenerator.MakeQuerystring(memberType != null ? $"memberType={memberType}" : null, nameSearch != null ? $"nameSearch={Uri.EscapeDataString(nameSearch)}" : null), UriKind.Relative), _apiAccessor.JsonContext.ApiResponseSearchResultOfGroupMember,
             null, HttpMethod.Get, authToken, cancelToken
             );
     }
@@ -388,18 +238,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<Entities.SearchResultOfGroupMember> GroupV2_GetAdminsAndFounderOfGroup(int currentpage, long groupId, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<Entities.SearchResultOfGroupMember>(
-            new Uri($"GroupV2/{groupId}/AdminsAndFounder/", UriKind.Relative),
-            null, HttpMethod.Get, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="GroupV2_GetAdminsAndFounderOfGroup(int, long, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> GroupV2_GetAdminsAndFounderOfGroup<T>(int currentpage, long groupId, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"GroupV2/{groupId}/AdminsAndFounder/", UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"GroupV2/{groupId}/AdminsAndFounder/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseSearchResultOfGroupMember,
             null, HttpMethod.Get, authToken, cancelToken
             );
     }
@@ -416,18 +256,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<int> GroupV2_EditGroupMembership(long groupId, long membershipId, Entities.BungieMembershipType membershipType, Entities.GroupsV2.RuntimeGroupMemberType memberType, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<int>(
-            new Uri($"GroupV2/{groupId}/Members/{membershipType}/{membershipId}/SetMembershipType/{memberType}/", UriKind.Relative),
-            null, HttpMethod.Post, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="GroupV2_EditGroupMembership(long, long, Entities.BungieMembershipType, Entities.GroupsV2.RuntimeGroupMemberType, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> GroupV2_EditGroupMembership<T>(long groupId, long membershipId, Entities.BungieMembershipType membershipType, Entities.GroupsV2.RuntimeGroupMemberType memberType, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"GroupV2/{groupId}/Members/{membershipType}/{membershipId}/SetMembershipType/{memberType}/", UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"GroupV2/{groupId}/Members/{membershipType}/{membershipId}/SetMembershipType/{memberType}/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseInt32,
             null, HttpMethod.Post, authToken, cancelToken
             );
     }
@@ -443,18 +273,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<Entities.GroupsV2.GroupMemberLeaveResult> GroupV2_KickMember(long groupId, long membershipId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<Entities.GroupsV2.GroupMemberLeaveResult>(
-            new Uri($"GroupV2/{groupId}/Members/{membershipType}/{membershipId}/Kick/", UriKind.Relative),
-            null, HttpMethod.Post, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="GroupV2_KickMember(long, long, Entities.BungieMembershipType, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> GroupV2_KickMember<T>(long groupId, long membershipId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"GroupV2/{groupId}/Members/{membershipType}/{membershipId}/Kick/", UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"GroupV2/{groupId}/Members/{membershipType}/{membershipId}/Kick/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseGroupMemberLeaveResult,
             null, HttpMethod.Post, authToken, cancelToken
             );
     }
@@ -470,19 +290,9 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<int> GroupV2_BanMember(long groupId, long membershipId, Entities.BungieMembershipType membershipType, Entities.GroupsV2.GroupBanRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<int>(
-            new Uri($"GroupV2/{groupId}/Members/{membershipType}/{membershipId}/Ban/", UriKind.Relative),
-            new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="GroupV2_BanMember(long, long, Entities.BungieMembershipType, Entities.GroupsV2.GroupBanRequest, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> GroupV2_BanMember<T>(long groupId, long membershipId, Entities.BungieMembershipType membershipType, Entities.GroupsV2.GroupBanRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"GroupV2/{groupId}/Members/{membershipType}/{membershipId}/Ban/", UriKind.Relative),
-            new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"GroupV2/{groupId}/Members/{membershipType}/{membershipId}/Ban/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseInt32,
+            new StringContent(JsonSerializer.Serialize(requestBody, _apiAccessor.JsonContext.GroupBanRequest), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
             );
     }
 
@@ -496,18 +306,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<int> GroupV2_UnbanMember(long groupId, long membershipId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<int>(
-            new Uri($"GroupV2/{groupId}/Members/{membershipType}/{membershipId}/Unban/", UriKind.Relative),
-            null, HttpMethod.Post, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="GroupV2_UnbanMember(long, long, Entities.BungieMembershipType, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> GroupV2_UnbanMember<T>(long groupId, long membershipId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"GroupV2/{groupId}/Members/{membershipType}/{membershipId}/Unban/", UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"GroupV2/{groupId}/Members/{membershipType}/{membershipId}/Unban/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseInt32,
             null, HttpMethod.Post, authToken, cancelToken
             );
     }
@@ -522,18 +322,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<Entities.SearchResultOfGroupBan> GroupV2_GetBannedMembersOfGroup(int currentpage, long groupId, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<Entities.SearchResultOfGroupBan>(
-            new Uri($"GroupV2/{groupId}/Banned/", UriKind.Relative),
-            null, HttpMethod.Get, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="GroupV2_GetBannedMembersOfGroup(int, long, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> GroupV2_GetBannedMembersOfGroup<T>(int currentpage, long groupId, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"GroupV2/{groupId}/Banned/", UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"GroupV2/{groupId}/Banned/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseSearchResultOfGroupBan,
             null, HttpMethod.Get, authToken, cancelToken
             );
     }
@@ -548,18 +338,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<bool> GroupV2_AbdicateFoundership(long founderIdNew, long groupId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<bool>(
-            new Uri($"GroupV2/{groupId}/Admin/AbdicateFoundership/{membershipType}/{founderIdNew}/", UriKind.Relative),
-            null, HttpMethod.Post, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="GroupV2_AbdicateFoundership(long, long, Entities.BungieMembershipType, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> GroupV2_AbdicateFoundership<T>(long founderIdNew, long groupId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"GroupV2/{groupId}/Admin/AbdicateFoundership/{membershipType}/{founderIdNew}/", UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"GroupV2/{groupId}/Admin/AbdicateFoundership/{membershipType}/{founderIdNew}/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseBoolean,
             null, HttpMethod.Post, authToken, cancelToken
             );
     }
@@ -574,18 +354,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<Entities.SearchResultOfGroupMemberApplication> GroupV2_GetPendingMemberships(int currentpage, long groupId, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<Entities.SearchResultOfGroupMemberApplication>(
-            new Uri($"GroupV2/{groupId}/Members/Pending/", UriKind.Relative),
-            null, HttpMethod.Get, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="GroupV2_GetPendingMemberships(int, long, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> GroupV2_GetPendingMemberships<T>(int currentpage, long groupId, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"GroupV2/{groupId}/Members/Pending/", UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"GroupV2/{groupId}/Members/Pending/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseSearchResultOfGroupMemberApplication,
             null, HttpMethod.Get, authToken, cancelToken
             );
     }
@@ -600,18 +370,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<Entities.SearchResultOfGroupMemberApplication> GroupV2_GetInvitedIndividuals(int currentpage, long groupId, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<Entities.SearchResultOfGroupMemberApplication>(
-            new Uri($"GroupV2/{groupId}/Members/InvitedIndividuals/", UriKind.Relative),
-            null, HttpMethod.Get, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="GroupV2_GetInvitedIndividuals(int, long, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> GroupV2_GetInvitedIndividuals<T>(int currentpage, long groupId, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"GroupV2/{groupId}/Members/InvitedIndividuals/", UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"GroupV2/{groupId}/Members/InvitedIndividuals/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseSearchResultOfGroupMemberApplication,
             null, HttpMethod.Get, authToken, cancelToken
             );
     }
@@ -625,19 +385,9 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<IEnumerable<Entities.Entities.EntityActionResult>> GroupV2_ApproveAllPending(long groupId, Entities.GroupsV2.GroupApplicationRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<IEnumerable<Entities.Entities.EntityActionResult>>(
-            new Uri($"GroupV2/{groupId}/Members/ApproveAll/", UriKind.Relative),
-            new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="GroupV2_ApproveAllPending(long, Entities.GroupsV2.GroupApplicationRequest, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> GroupV2_ApproveAllPending<T>(long groupId, Entities.GroupsV2.GroupApplicationRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"GroupV2/{groupId}/Members/ApproveAll/", UriKind.Relative),
-            new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"GroupV2/{groupId}/Members/ApproveAll/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseIEnumerableEntityActionResult,
+            new StringContent(JsonSerializer.Serialize(requestBody, _apiAccessor.JsonContext.GroupApplicationRequest), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
             );
     }
 
@@ -650,19 +400,9 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<IEnumerable<Entities.Entities.EntityActionResult>> GroupV2_DenyAllPending(long groupId, Entities.GroupsV2.GroupApplicationRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<IEnumerable<Entities.Entities.EntityActionResult>>(
-            new Uri($"GroupV2/{groupId}/Members/DenyAll/", UriKind.Relative),
-            new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="GroupV2_DenyAllPending(long, Entities.GroupsV2.GroupApplicationRequest, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> GroupV2_DenyAllPending<T>(long groupId, Entities.GroupsV2.GroupApplicationRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"GroupV2/{groupId}/Members/DenyAll/", UriKind.Relative),
-            new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"GroupV2/{groupId}/Members/DenyAll/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseIEnumerableEntityActionResult,
+            new StringContent(JsonSerializer.Serialize(requestBody, _apiAccessor.JsonContext.GroupApplicationRequest), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
             );
     }
 
@@ -675,19 +415,9 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<IEnumerable<Entities.Entities.EntityActionResult>> GroupV2_ApprovePendingForList(long groupId, Entities.GroupsV2.GroupApplicationListRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<IEnumerable<Entities.Entities.EntityActionResult>>(
-            new Uri($"GroupV2/{groupId}/Members/ApproveList/", UriKind.Relative),
-            new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="GroupV2_ApprovePendingForList(long, Entities.GroupsV2.GroupApplicationListRequest, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> GroupV2_ApprovePendingForList<T>(long groupId, Entities.GroupsV2.GroupApplicationListRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"GroupV2/{groupId}/Members/ApproveList/", UriKind.Relative),
-            new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"GroupV2/{groupId}/Members/ApproveList/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseIEnumerableEntityActionResult,
+            new StringContent(JsonSerializer.Serialize(requestBody, _apiAccessor.JsonContext.GroupApplicationListRequest), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
             );
     }
 
@@ -702,19 +432,9 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<bool> GroupV2_ApprovePending(long groupId, long membershipId, Entities.BungieMembershipType membershipType, Entities.GroupsV2.GroupApplicationRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<bool>(
-            new Uri($"GroupV2/{groupId}/Members/Approve/{membershipType}/{membershipId}/", UriKind.Relative),
-            new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="GroupV2_ApprovePending(long, long, Entities.BungieMembershipType, Entities.GroupsV2.GroupApplicationRequest, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> GroupV2_ApprovePending<T>(long groupId, long membershipId, Entities.BungieMembershipType membershipType, Entities.GroupsV2.GroupApplicationRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"GroupV2/{groupId}/Members/Approve/{membershipType}/{membershipId}/", UriKind.Relative),
-            new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"GroupV2/{groupId}/Members/Approve/{membershipType}/{membershipId}/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseBoolean,
+            new StringContent(JsonSerializer.Serialize(requestBody, _apiAccessor.JsonContext.GroupApplicationRequest), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
             );
     }
 
@@ -727,19 +447,9 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<IEnumerable<Entities.Entities.EntityActionResult>> GroupV2_DenyPendingForList(long groupId, Entities.GroupsV2.GroupApplicationListRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<IEnumerable<Entities.Entities.EntityActionResult>>(
-            new Uri($"GroupV2/{groupId}/Members/DenyList/", UriKind.Relative),
-            new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="GroupV2_DenyPendingForList(long, Entities.GroupsV2.GroupApplicationListRequest, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> GroupV2_DenyPendingForList<T>(long groupId, Entities.GroupsV2.GroupApplicationListRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"GroupV2/{groupId}/Members/DenyList/", UriKind.Relative),
-            new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"GroupV2/{groupId}/Members/DenyList/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseIEnumerableEntityActionResult,
+            new StringContent(JsonSerializer.Serialize(requestBody, _apiAccessor.JsonContext.GroupApplicationListRequest), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
             );
     }
 
@@ -754,18 +464,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<Entities.GroupsV2.GetGroupsForMemberResponse> GroupV2_GetGroupsForMember(Entities.GroupsV2.GroupsForMemberFilter filter, Entities.GroupsV2.GroupType groupType, long membershipId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<Entities.GroupsV2.GetGroupsForMemberResponse>(
-            new Uri($"GroupV2/User/{membershipType}/{membershipId}/{filter}/{groupType}/", UriKind.Relative),
-            null, HttpMethod.Get, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="GroupV2_GetGroupsForMember(Entities.GroupsV2.GroupsForMemberFilter, Entities.GroupsV2.GroupType, long, Entities.BungieMembershipType, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> GroupV2_GetGroupsForMember<T>(Entities.GroupsV2.GroupsForMemberFilter filter, Entities.GroupsV2.GroupType groupType, long membershipId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"GroupV2/User/{membershipType}/{membershipId}/{filter}/{groupType}/", UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"GroupV2/User/{membershipType}/{membershipId}/{filter}/{groupType}/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseGetGroupsForMemberResponse,
             null, HttpMethod.Get, authToken, cancelToken
             );
     }
@@ -780,18 +480,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<Entities.GroupsV2.GroupMembershipSearchResponse> GroupV2_RecoverGroupForFounder(Entities.GroupsV2.GroupType groupType, long membershipId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<Entities.GroupsV2.GroupMembershipSearchResponse>(
-            new Uri($"GroupV2/Recover/{membershipType}/{membershipId}/{groupType}/", UriKind.Relative),
-            null, HttpMethod.Get, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="GroupV2_RecoverGroupForFounder(Entities.GroupsV2.GroupType, long, Entities.BungieMembershipType, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> GroupV2_RecoverGroupForFounder<T>(Entities.GroupsV2.GroupType groupType, long membershipId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"GroupV2/Recover/{membershipType}/{membershipId}/{groupType}/", UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"GroupV2/Recover/{membershipType}/{membershipId}/{groupType}/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseGroupMembershipSearchResponse,
             null, HttpMethod.Get, authToken, cancelToken
             );
     }
@@ -807,18 +497,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<Entities.GroupsV2.GroupPotentialMembershipSearchResponse> GroupV2_GetPotentialGroupsForMember(Entities.GroupsV2.GroupPotentialMemberStatus filter, Entities.GroupsV2.GroupType groupType, long membershipId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<Entities.GroupsV2.GroupPotentialMembershipSearchResponse>(
-            new Uri($"GroupV2/User/Potential/{membershipType}/{membershipId}/{filter}/{groupType}/", UriKind.Relative),
-            null, HttpMethod.Get, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="GroupV2_GetPotentialGroupsForMember(Entities.GroupsV2.GroupPotentialMemberStatus, Entities.GroupsV2.GroupType, long, Entities.BungieMembershipType, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> GroupV2_GetPotentialGroupsForMember<T>(Entities.GroupsV2.GroupPotentialMemberStatus filter, Entities.GroupsV2.GroupType groupType, long membershipId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"GroupV2/User/Potential/{membershipType}/{membershipId}/{filter}/{groupType}/", UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"GroupV2/User/Potential/{membershipType}/{membershipId}/{filter}/{groupType}/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseGroupPotentialMembershipSearchResponse,
             null, HttpMethod.Get, authToken, cancelToken
             );
     }
@@ -834,19 +514,9 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<Entities.GroupsV2.GroupApplicationResponse> GroupV2_IndividualGroupInvite(long groupId, long membershipId, Entities.BungieMembershipType membershipType, Entities.GroupsV2.GroupApplicationRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<Entities.GroupsV2.GroupApplicationResponse>(
-            new Uri($"GroupV2/{groupId}/Members/IndividualInvite/{membershipType}/{membershipId}/", UriKind.Relative),
-            new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="GroupV2_IndividualGroupInvite(long, long, Entities.BungieMembershipType, Entities.GroupsV2.GroupApplicationRequest, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> GroupV2_IndividualGroupInvite<T>(long groupId, long membershipId, Entities.BungieMembershipType membershipType, Entities.GroupsV2.GroupApplicationRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"GroupV2/{groupId}/Members/IndividualInvite/{membershipType}/{membershipId}/", UriKind.Relative),
-            new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"GroupV2/{groupId}/Members/IndividualInvite/{membershipType}/{membershipId}/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseGroupApplicationResponse,
+            new StringContent(JsonSerializer.Serialize(requestBody, _apiAccessor.JsonContext.GroupApplicationRequest), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
             );
     }
 
@@ -861,18 +531,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<Entities.GroupsV2.GroupApplicationResponse> GroupV2_IndividualGroupInviteCancel(long groupId, long membershipId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<Entities.GroupsV2.GroupApplicationResponse>(
-            new Uri($"GroupV2/{groupId}/Members/IndividualInviteCancel/{membershipType}/{membershipId}/", UriKind.Relative),
-            null, HttpMethod.Post, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="GroupV2_IndividualGroupInviteCancel(long, long, Entities.BungieMembershipType, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> GroupV2_IndividualGroupInviteCancel<T>(long groupId, long membershipId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"GroupV2/{groupId}/Members/IndividualInviteCancel/{membershipType}/{membershipId}/", UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"GroupV2/{groupId}/Members/IndividualInviteCancel/{membershipType}/{membershipId}/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseGroupApplicationResponse,
             null, HttpMethod.Post, authToken, cancelToken
             );
     }

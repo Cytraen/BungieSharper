@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace BungieSharper.Entities.Destiny.Definitions.GuardianRanks;
 
@@ -45,6 +46,9 @@ public class DestinyGuardianRankConstantsDefinition
 
     [JsonPropertyName("rankCount")]
     public int RankCount { get; set; }
+
+    [JsonPropertyName("guardianRankHashes")]
+    public IEnumerable<uint> GuardianRankHashes { get; set; }
 
     [JsonPropertyName("rootNodeHash")]
     public uint RootNodeHash { get; set; }

@@ -15,18 +15,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<Entities.Trending.TrendingCategories> Trending_GetTrendingCategories(string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<Entities.Trending.TrendingCategories>(
-            new Uri($"Trending/Categories/", UriKind.Relative),
-            null, HttpMethod.Get, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="Trending_GetTrendingCategories(string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> Trending_GetTrendingCategories<T>(string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"Trending/Categories/", UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri("Trending/Categories/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseTrendingCategories,
             null, HttpMethod.Get, authToken, cancelToken
             );
     }
@@ -40,18 +30,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<Entities.SearchResultOfTrendingEntry> Trending_GetTrendingCategory(string categoryId, int pageNumber, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<Entities.SearchResultOfTrendingEntry>(
-            new Uri($"Trending/Categories/{Uri.EscapeDataString(categoryId)}/{pageNumber}/", UriKind.Relative),
-            null, HttpMethod.Get, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="Trending_GetTrendingCategory(string, int, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> Trending_GetTrendingCategory<T>(string categoryId, int pageNumber, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"Trending/Categories/{Uri.EscapeDataString(categoryId)}/{pageNumber}/", UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"Trending/Categories/{Uri.EscapeDataString(categoryId)}/{pageNumber}/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseSearchResultOfTrendingEntry,
             null, HttpMethod.Get, authToken, cancelToken
             );
     }
@@ -65,18 +45,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<Entities.Trending.TrendingDetail> Trending_GetTrendingEntryDetail(string identifier, Entities.Trending.TrendingEntryType trendingEntryType, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<Entities.Trending.TrendingDetail>(
-            new Uri($"Trending/Details/{trendingEntryType}/{Uri.EscapeDataString(identifier)}/", UriKind.Relative),
-            null, HttpMethod.Get, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="Trending_GetTrendingEntryDetail(string, Entities.Trending.TrendingEntryType, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> Trending_GetTrendingEntryDetail<T>(string identifier, Entities.Trending.TrendingEntryType trendingEntryType, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"Trending/Details/{trendingEntryType}/{Uri.EscapeDataString(identifier)}/", UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"Trending/Details/{trendingEntryType}/{Uri.EscapeDataString(identifier)}/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseTrendingDetail,
             null, HttpMethod.Get, authToken, cancelToken
             );
     }

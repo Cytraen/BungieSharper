@@ -58,6 +58,10 @@ public class DestinyRecordDefinition
     [JsonPropertyName("rewardItems")]
     public IEnumerable<Destiny.DestinyItemQuantity> RewardItems { get; set; }
 
+    /// <summary>A display name for the type of record this is (Triumphs, Lore, Medals, Seasonal Challenge, etc.).</summary>
+    [JsonPropertyName("recordTypeName")]
+    public string RecordTypeName { get; set; }
+
     [JsonPropertyName("presentationNodeType")]
     public Destiny.DestinyPresentationNodeType PresentationNodeType { get; set; }
 
@@ -125,8 +129,13 @@ public class SchemaRecordStateBlock
     [JsonPropertyName("featuredPriority")]
     public int FeaturedPriority { get; set; }
 
-    [JsonPropertyName("obscuredString")]
-    public string ObscuredString { get; set; }
+    /// <summary>A display name override to show when this record is 'obscured' instead of the default obscured display name.</summary>
+    [JsonPropertyName("obscuredName")]
+    public string ObscuredName { get; set; }
+
+    /// <summary>A display description override to show when this record is 'obscured' instead of the default obscured display description.</summary>
+    [JsonPropertyName("obscuredDescription")]
+    public string ObscuredDescription { get; set; }
 }
 
 /// <summary>

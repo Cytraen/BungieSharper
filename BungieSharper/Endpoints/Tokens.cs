@@ -18,18 +18,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<bool> Tokens_ForceDropsRepair(string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<bool>(
-            new Uri($"Tokens/Partner/ForceDropsRepair/", UriKind.Relative),
-            null, HttpMethod.Post, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="Tokens_ForceDropsRepair(string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> Tokens_ForceDropsRepair<T>(string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"Tokens/Partner/ForceDropsRepair/", UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri("Tokens/Partner/ForceDropsRepair/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseBoolean,
             null, HttpMethod.Post, authToken, cancelToken
             );
     }
@@ -42,19 +32,9 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<bool> Tokens_ClaimPartnerOffer(Entities.Tokens.PartnerOfferClaimRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<bool>(
-            new Uri($"Tokens/Partner/ClaimOffer/", UriKind.Relative),
-            new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="Tokens_ClaimPartnerOffer(Entities.Tokens.PartnerOfferClaimRequest, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> Tokens_ClaimPartnerOffer<T>(Entities.Tokens.PartnerOfferClaimRequest requestBody, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"Tokens/Partner/ClaimOffer/", UriKind.Relative),
-            new StringContent(JsonSerializer.Serialize(requestBody), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
+        return _apiAccessor.ApiRequestAsync(
+            new Uri("Tokens/Partner/ClaimOffer/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseBoolean,
+            new StringContent(JsonSerializer.Serialize(requestBody, _apiAccessor.JsonContext.PartnerOfferClaimRequest), System.Text.Encoding.UTF8, "application/json"), HttpMethod.Post, authToken, cancelToken
             );
     }
 
@@ -68,18 +48,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<bool> Tokens_ApplyMissingPartnerOffersWithoutClaim(int partnerApplicationId, long targetBnetMembershipId, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<bool>(
-            new Uri($"Tokens/Partner/ApplyMissingOffers/{partnerApplicationId}/{targetBnetMembershipId}/", UriKind.Relative),
-            null, HttpMethod.Post, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="Tokens_ApplyMissingPartnerOffersWithoutClaim(int, long, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> Tokens_ApplyMissingPartnerOffersWithoutClaim<T>(int partnerApplicationId, long targetBnetMembershipId, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"Tokens/Partner/ApplyMissingOffers/{partnerApplicationId}/{targetBnetMembershipId}/", UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"Tokens/Partner/ApplyMissingOffers/{partnerApplicationId}/{targetBnetMembershipId}/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseBoolean,
             null, HttpMethod.Post, authToken, cancelToken
             );
     }
@@ -94,18 +64,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<IEnumerable<Entities.Tokens.PartnerOfferSkuHistoryResponse>> Tokens_GetPartnerOfferSkuHistory(int partnerApplicationId, long targetBnetMembershipId, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<IEnumerable<Entities.Tokens.PartnerOfferSkuHistoryResponse>>(
-            new Uri($"Tokens/Partner/History/{partnerApplicationId}/{targetBnetMembershipId}/", UriKind.Relative),
-            null, HttpMethod.Get, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="Tokens_GetPartnerOfferSkuHistory(int, long, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> Tokens_GetPartnerOfferSkuHistory<T>(int partnerApplicationId, long targetBnetMembershipId, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"Tokens/Partner/History/{partnerApplicationId}/{targetBnetMembershipId}/", UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"Tokens/Partner/History/{partnerApplicationId}/{targetBnetMembershipId}/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseIEnumerablePartnerOfferSkuHistoryResponse,
             null, HttpMethod.Get, authToken, cancelToken
             );
     }
@@ -120,18 +80,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<Entities.Tokens.PartnerRewardHistoryResponse> Tokens_GetPartnerRewardHistory(int partnerApplicationId, long targetBnetMembershipId, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<Entities.Tokens.PartnerRewardHistoryResponse>(
-            new Uri($"Tokens/Partner/History/{targetBnetMembershipId}/Application/{partnerApplicationId}/", UriKind.Relative),
-            null, HttpMethod.Get, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="Tokens_GetPartnerRewardHistory(int, long, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> Tokens_GetPartnerRewardHistory<T>(int partnerApplicationId, long targetBnetMembershipId, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"Tokens/Partner/History/{targetBnetMembershipId}/Application/{partnerApplicationId}/", UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"Tokens/Partner/History/{targetBnetMembershipId}/Application/{partnerApplicationId}/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponsePartnerRewardHistoryResponse,
             null, HttpMethod.Get, authToken, cancelToken
             );
     }
@@ -145,18 +95,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<Dictionary<string, Entities.Tokens.BungieRewardDisplay>> Tokens_GetBungieRewardsForUser(long membershipId, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<Dictionary<string, Entities.Tokens.BungieRewardDisplay>>(
-            new Uri($"Tokens/Rewards/GetRewardsForUser/{membershipId}/", UriKind.Relative),
-            null, HttpMethod.Get, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="Tokens_GetBungieRewardsForUser(long, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> Tokens_GetBungieRewardsForUser<T>(long membershipId, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"Tokens/Rewards/GetRewardsForUser/{membershipId}/", UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"Tokens/Rewards/GetRewardsForUser/{membershipId}/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseDictionaryStringBungieRewardDisplay,
             null, HttpMethod.Get, authToken, cancelToken
             );
     }
@@ -171,18 +111,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<Dictionary<string, Entities.Tokens.BungieRewardDisplay>> Tokens_GetBungieRewardsForPlatformUser(long membershipId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<Dictionary<string, Entities.Tokens.BungieRewardDisplay>>(
-            new Uri($"Tokens/Rewards/GetRewardsForPlatformUser/{membershipId}/{membershipType}/", UriKind.Relative),
-            null, HttpMethod.Get, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="Tokens_GetBungieRewardsForPlatformUser(long, Entities.BungieMembershipType, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> Tokens_GetBungieRewardsForPlatformUser<T>(long membershipId, Entities.BungieMembershipType membershipType, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"Tokens/Rewards/GetRewardsForPlatformUser/{membershipId}/{membershipType}/", UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"Tokens/Rewards/GetRewardsForPlatformUser/{membershipId}/{membershipType}/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseDictionaryStringBungieRewardDisplay,
             null, HttpMethod.Get, authToken, cancelToken
             );
     }
@@ -194,18 +124,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<Dictionary<string, Entities.Tokens.BungieRewardDisplay>> Tokens_GetBungieRewardsList(string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<Dictionary<string, Entities.Tokens.BungieRewardDisplay>>(
-            new Uri($"Tokens/Rewards/BungieRewards/", UriKind.Relative),
-            null, HttpMethod.Get, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="Tokens_GetBungieRewardsList(string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> Tokens_GetBungieRewardsList<T>(string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"Tokens/Rewards/BungieRewards/", UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri("Tokens/Rewards/BungieRewards/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseDictionaryStringBungieRewardDisplay,
             null, HttpMethod.Get, authToken, cancelToken
             );
     }

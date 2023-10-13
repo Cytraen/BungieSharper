@@ -17,18 +17,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<int> Fireteam_GetActivePrivateClanFireteamCount(long groupId, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<int>(
-            new Uri($"Fireteam/Clan/{groupId}/ActiveCount/", UriKind.Relative),
-            null, HttpMethod.Get, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="Fireteam_GetActivePrivateClanFireteamCount(long, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> Fireteam_GetActivePrivateClanFireteamCount<T>(long groupId, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"Fireteam/Clan/{groupId}/ActiveCount/", UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"Fireteam/Clan/{groupId}/ActiveCount/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseInt32,
             null, HttpMethod.Get, authToken, cancelToken
             );
     }
@@ -50,18 +40,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<Entities.SearchResultOfFireteamSummary> Fireteam_GetAvailableClanFireteams(int activityType, Entities.Fireteam.FireteamDateRange dateRange, long groupId, int page, Entities.Fireteam.FireteamPlatform platform, Entities.Fireteam.FireteamPublicSearchOption publicOnly, Entities.Fireteam.FireteamSlotSearch slotFilter, bool? excludeImmediate = null, string? langFilter = null, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<Entities.SearchResultOfFireteamSummary>(
-            new Uri($"Fireteam/Clan/{groupId}/Available/{platform}/{activityType}/{dateRange}/{slotFilter}/{publicOnly}/{page}/" + HttpRequestGenerator.MakeQuerystring(excludeImmediate != null ? $"excludeImmediate={excludeImmediate}" : null, langFilter != null ? $"langFilter={Uri.EscapeDataString(langFilter)}" : null), UriKind.Relative),
-            null, HttpMethod.Get, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="Fireteam_GetAvailableClanFireteams(int, Entities.Fireteam.FireteamDateRange, long, int, Entities.Fireteam.FireteamPlatform, Entities.Fireteam.FireteamPublicSearchOption, Entities.Fireteam.FireteamSlotSearch, bool?, string?, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> Fireteam_GetAvailableClanFireteams<T>(int activityType, Entities.Fireteam.FireteamDateRange dateRange, long groupId, int page, Entities.Fireteam.FireteamPlatform platform, Entities.Fireteam.FireteamPublicSearchOption publicOnly, Entities.Fireteam.FireteamSlotSearch slotFilter, bool? excludeImmediate = null, string? langFilter = null, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"Fireteam/Clan/{groupId}/Available/{platform}/{activityType}/{dateRange}/{slotFilter}/{publicOnly}/{page}/" + HttpRequestGenerator.MakeQuerystring(excludeImmediate != null ? $"excludeImmediate={excludeImmediate}" : null, langFilter != null ? $"langFilter={Uri.EscapeDataString(langFilter)}" : null), UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"Fireteam/Clan/{groupId}/Available/{platform}/{activityType}/{dateRange}/{slotFilter}/{publicOnly}/{page}/" + HttpRequestGenerator.MakeQuerystring(excludeImmediate != null ? $"excludeImmediate={excludeImmediate}" : null, langFilter != null ? $"langFilter={Uri.EscapeDataString(langFilter)}" : null), UriKind.Relative), _apiAccessor.JsonContext.ApiResponseSearchResultOfFireteamSummary,
             null, HttpMethod.Get, authToken, cancelToken
             );
     }
@@ -81,18 +61,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<Entities.SearchResultOfFireteamSummary> Fireteam_SearchPublicAvailableClanFireteams(int activityType, Entities.Fireteam.FireteamDateRange dateRange, int page, Entities.Fireteam.FireteamPlatform platform, Entities.Fireteam.FireteamSlotSearch slotFilter, bool? excludeImmediate = null, string? langFilter = null, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<Entities.SearchResultOfFireteamSummary>(
-            new Uri($"Fireteam/Search/Available/{platform}/{activityType}/{dateRange}/{slotFilter}/{page}/" + HttpRequestGenerator.MakeQuerystring(excludeImmediate != null ? $"excludeImmediate={excludeImmediate}" : null, langFilter != null ? $"langFilter={Uri.EscapeDataString(langFilter)}" : null), UriKind.Relative),
-            null, HttpMethod.Get, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="Fireteam_SearchPublicAvailableClanFireteams(int, Entities.Fireteam.FireteamDateRange, int, Entities.Fireteam.FireteamPlatform, Entities.Fireteam.FireteamSlotSearch, bool?, string?, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> Fireteam_SearchPublicAvailableClanFireteams<T>(int activityType, Entities.Fireteam.FireteamDateRange dateRange, int page, Entities.Fireteam.FireteamPlatform platform, Entities.Fireteam.FireteamSlotSearch slotFilter, bool? excludeImmediate = null, string? langFilter = null, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"Fireteam/Search/Available/{platform}/{activityType}/{dateRange}/{slotFilter}/{page}/" + HttpRequestGenerator.MakeQuerystring(excludeImmediate != null ? $"excludeImmediate={excludeImmediate}" : null, langFilter != null ? $"langFilter={Uri.EscapeDataString(langFilter)}" : null), UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"Fireteam/Search/Available/{platform}/{activityType}/{dateRange}/{slotFilter}/{page}/" + HttpRequestGenerator.MakeQuerystring(excludeImmediate != null ? $"excludeImmediate={excludeImmediate}" : null, langFilter != null ? $"langFilter={Uri.EscapeDataString(langFilter)}" : null), UriKind.Relative), _apiAccessor.JsonContext.ApiResponseSearchResultOfFireteamSummary,
             null, HttpMethod.Get, authToken, cancelToken
             );
     }
@@ -111,18 +81,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<Entities.SearchResultOfFireteamResponse> Fireteam_GetMyClanFireteams(long groupId, bool includeClosed, int page, Entities.Fireteam.FireteamPlatform platform, bool? groupFilter = null, string? langFilter = null, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<Entities.SearchResultOfFireteamResponse>(
-            new Uri($"Fireteam/Clan/{groupId}/My/{platform}/{includeClosed}/{page}/" + HttpRequestGenerator.MakeQuerystring(groupFilter != null ? $"groupFilter={groupFilter}" : null, langFilter != null ? $"langFilter={Uri.EscapeDataString(langFilter)}" : null), UriKind.Relative),
-            null, HttpMethod.Get, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="Fireteam_GetMyClanFireteams(long, bool, int, Entities.Fireteam.FireteamPlatform, bool?, string?, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> Fireteam_GetMyClanFireteams<T>(long groupId, bool includeClosed, int page, Entities.Fireteam.FireteamPlatform platform, bool? groupFilter = null, string? langFilter = null, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"Fireteam/Clan/{groupId}/My/{platform}/{includeClosed}/{page}/" + HttpRequestGenerator.MakeQuerystring(groupFilter != null ? $"groupFilter={groupFilter}" : null, langFilter != null ? $"langFilter={Uri.EscapeDataString(langFilter)}" : null), UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"Fireteam/Clan/{groupId}/My/{platform}/{includeClosed}/{page}/" + HttpRequestGenerator.MakeQuerystring(groupFilter != null ? $"groupFilter={groupFilter}" : null, langFilter != null ? $"langFilter={Uri.EscapeDataString(langFilter)}" : null), UriKind.Relative), _apiAccessor.JsonContext.ApiResponseSearchResultOfFireteamResponse,
             null, HttpMethod.Get, authToken, cancelToken
             );
     }
@@ -137,18 +97,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<Entities.Fireteam.FireteamResponse> Fireteam_GetClanFireteam(long fireteamId, long groupId, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<Entities.Fireteam.FireteamResponse>(
-            new Uri($"Fireteam/Clan/{groupId}/Summary/{fireteamId}/", UriKind.Relative),
-            null, HttpMethod.Get, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="Fireteam_GetClanFireteam(long, long, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> Fireteam_GetClanFireteam<T>(long fireteamId, long groupId, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"Fireteam/Clan/{groupId}/Summary/{fireteamId}/", UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"Fireteam/Clan/{groupId}/Summary/{fireteamId}/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseFireteamResponse,
             null, HttpMethod.Get, authToken, cancelToken
             );
     }

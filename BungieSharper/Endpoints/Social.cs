@@ -16,18 +16,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<Entities.Social.Friends.BungieFriendListResponse> Social_GetFriendList(string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<Entities.Social.Friends.BungieFriendListResponse>(
-            new Uri($"Social/Friends/", UriKind.Relative),
-            null, HttpMethod.Get, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="Social_GetFriendList(string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> Social_GetFriendList<T>(string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"Social/Friends/", UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri("Social/Friends/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseBungieFriendListResponse,
             null, HttpMethod.Get, authToken, cancelToken
             );
     }
@@ -40,18 +30,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<Entities.Social.Friends.BungieFriendRequestListResponse> Social_GetFriendRequestList(string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<Entities.Social.Friends.BungieFriendRequestListResponse>(
-            new Uri($"Social/Friends/Requests/", UriKind.Relative),
-            null, HttpMethod.Get, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="Social_GetFriendRequestList(string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> Social_GetFriendRequestList<T>(string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"Social/Friends/Requests/", UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri("Social/Friends/Requests/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseBungieFriendRequestListResponse,
             null, HttpMethod.Get, authToken, cancelToken
             );
     }
@@ -65,18 +45,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<bool> Social_IssueFriendRequest(string membershipId, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<bool>(
-            new Uri($"Social/Friends/Add/{Uri.EscapeDataString(membershipId)}/", UriKind.Relative),
-            null, HttpMethod.Post, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="Social_IssueFriendRequest(string, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> Social_IssueFriendRequest<T>(string membershipId, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"Social/Friends/Add/{Uri.EscapeDataString(membershipId)}/", UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"Social/Friends/Add/{Uri.EscapeDataString(membershipId)}/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseBoolean,
             null, HttpMethod.Post, authToken, cancelToken
             );
     }
@@ -90,18 +60,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<bool> Social_AcceptFriendRequest(string membershipId, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<bool>(
-            new Uri($"Social/Friends/Requests/Accept/{Uri.EscapeDataString(membershipId)}/", UriKind.Relative),
-            null, HttpMethod.Post, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="Social_AcceptFriendRequest(string, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> Social_AcceptFriendRequest<T>(string membershipId, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"Social/Friends/Requests/Accept/{Uri.EscapeDataString(membershipId)}/", UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"Social/Friends/Requests/Accept/{Uri.EscapeDataString(membershipId)}/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseBoolean,
             null, HttpMethod.Post, authToken, cancelToken
             );
     }
@@ -115,18 +75,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<bool> Social_DeclineFriendRequest(string membershipId, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<bool>(
-            new Uri($"Social/Friends/Requests/Decline/{Uri.EscapeDataString(membershipId)}/", UriKind.Relative),
-            null, HttpMethod.Post, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="Social_DeclineFriendRequest(string, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> Social_DeclineFriendRequest<T>(string membershipId, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"Social/Friends/Requests/Decline/{Uri.EscapeDataString(membershipId)}/", UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"Social/Friends/Requests/Decline/{Uri.EscapeDataString(membershipId)}/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseBoolean,
             null, HttpMethod.Post, authToken, cancelToken
             );
     }
@@ -140,18 +90,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<bool> Social_RemoveFriend(string membershipId, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<bool>(
-            new Uri($"Social/Friends/Remove/{Uri.EscapeDataString(membershipId)}/", UriKind.Relative),
-            null, HttpMethod.Post, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="Social_RemoveFriend(string, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> Social_RemoveFriend<T>(string membershipId, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"Social/Friends/Remove/{Uri.EscapeDataString(membershipId)}/", UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"Social/Friends/Remove/{Uri.EscapeDataString(membershipId)}/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseBoolean,
             null, HttpMethod.Post, authToken, cancelToken
             );
     }
@@ -165,18 +105,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<bool> Social_RemoveFriendRequest(string membershipId, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<bool>(
-            new Uri($"Social/Friends/Requests/Remove/{Uri.EscapeDataString(membershipId)}/", UriKind.Relative),
-            null, HttpMethod.Post, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="Social_RemoveFriendRequest(string, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> Social_RemoveFriendRequest<T>(string membershipId, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"Social/Friends/Requests/Remove/{Uri.EscapeDataString(membershipId)}/", UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"Social/Friends/Requests/Remove/{Uri.EscapeDataString(membershipId)}/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponseBoolean,
             null, HttpMethod.Post, authToken, cancelToken
             );
     }
@@ -190,18 +120,8 @@ public partial class Endpoints
     /// <param name="cancelToken">The <see cref="CancellationToken" /> to observe.</param>
     public Task<Entities.Social.Friends.PlatformFriendResponse> Social_GetPlatformFriendList(Entities.Social.Friends.PlatformFriendType friendPlatform, string page, string? authToken = null, CancellationToken cancelToken = default)
     {
-        return _apiAccessor.ApiRequestAsync<Entities.Social.Friends.PlatformFriendResponse>(
-            new Uri($"Social/PlatformFriends/{friendPlatform}/{Uri.EscapeDataString(page)}/", UriKind.Relative),
-            null, HttpMethod.Get, authToken, cancelToken
-            );
-    }
-
-    /// <inheritdoc cref="Social_GetPlatformFriendList(Entities.Social.Friends.PlatformFriendType, string, string?, CancellationToken)" />
-    /// <typeparam name="T">The custom type to deserialize to.</typeparam>
-    public Task<T> Social_GetPlatformFriendList<T>(Entities.Social.Friends.PlatformFriendType friendPlatform, string page, string? authToken = null, CancellationToken cancelToken = default)
-    {
-        return _apiAccessor.ApiRequestAsync<T>(
-            new Uri($"Social/PlatformFriends/{friendPlatform}/{Uri.EscapeDataString(page)}/", UriKind.Relative),
+        return _apiAccessor.ApiRequestAsync(
+            new Uri($"Social/PlatformFriends/{friendPlatform}/{Uri.EscapeDataString(page)}/", UriKind.Relative), _apiAccessor.JsonContext.ApiResponsePlatformFriendResponse,
             null, HttpMethod.Get, authToken, cancelToken
             );
     }

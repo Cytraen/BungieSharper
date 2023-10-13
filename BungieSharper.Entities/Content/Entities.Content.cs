@@ -80,9 +80,6 @@ public class CommentSummary
 
 public class NewsArticleRssResponse
 {
-    [JsonPropertyName("NewsArticles")]
-    public IEnumerable<Content.NewsArticleRssItem> NewsArticles { get; set; }
-
     [JsonPropertyName("CurrentPaginationToken")]
     public int CurrentPaginationToken { get; set; }
 
@@ -93,8 +90,14 @@ public class NewsArticleRssResponse
     [JsonPropertyName("ResultCountThisPage")]
     public int ResultCountThisPage { get; set; }
 
+    [JsonPropertyName("NewsArticles")]
+    public IEnumerable<Content.NewsArticleRssItem> NewsArticles { get; set; }
+
     [JsonPropertyName("CategoryFilter")]
     public string CategoryFilter { get; set; }
+
+    [JsonPropertyName("PagerAction")]
+    public string PagerAction { get; set; }
 }
 
 public class NewsArticleRssItem

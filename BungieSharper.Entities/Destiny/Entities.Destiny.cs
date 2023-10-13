@@ -1058,7 +1058,7 @@ public enum DestinyRecordState : int
     /// <summary>If this is set, the objective for this Record has not yet been completed.</summary>
     ObjectiveNotCompleted = 4,
 
-    /// <summary>If this is set, the game recommends that you replace the display text of this Record with DestinyRecordDefinition.stateInfo.obscuredString.</summary>
+    /// <summary>If this is set, the game recommends that you replace the display text of this Record with DestinyRecordDefinition.stateInfo.obscuredDescription.</summary>
     Obscured = 8,
 
     /// <summary>If this is set, the game recommends that you not show this record. Do what you will with this recommendation.</summary>

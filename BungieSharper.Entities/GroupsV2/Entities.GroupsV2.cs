@@ -176,6 +176,10 @@ public class GroupV2
     [JsonPropertyName("features")]
     public GroupsV2.GroupFeatures Features { get; set; }
 
+    [JsonPropertyName("remoteGroupId")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public long? RemoteGroupId { get; set; }
+
     [JsonPropertyName("clanInfo")]
     public GroupsV2.GroupV2ClanInfoAndInvestment ClanInfo { get; set; }
 }
@@ -473,6 +477,10 @@ public class GroupV2Card
 
     [JsonPropertyName("capabilities")]
     public GroupsV2.Capabilities Capabilities { get; set; }
+
+    [JsonPropertyName("remoteGroupId")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public long? RemoteGroupId { get; set; }
 
     [JsonPropertyName("clanInfo")]
     public GroupsV2.GroupV2ClanInfo ClanInfo { get; set; }

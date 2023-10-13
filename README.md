@@ -3,17 +3,12 @@
 [![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/BungieSharper?label=Prerelease&style=flat-square)](https://www.nuget.org/packages/BungieSharper/absoluteLatest)
 [![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2FCytraen%2FBungieSharper%2Fbadge%3Fref%3Dmain&style=flat-square)](https://github.com/Cytraen/BungieSharper/actions)
 
-## About
-**BungieSharper** is a .NET client library for the Bungie.net API.  
-**BungieSharper.Entities** Is also available standalone, if you would like to use your own client.  
-**BungieSharper.CodeGen** consumes [Bungie's OpenAPI spec,](https://github.com/Bungie-net/api) and turns it into code usable by BungieSharper.  
+## Packages
+[**BungieSharper**](https://www.nuget.org/packages/BungieSharper/latest) is the client library.  
+[**BungieSharper.Entities**](https://www.nuget.org/packages/BungieSharper.Entities/latest) contains all of the types is also available standalone, if you would like to use them with your own client.  
 
-### What currently works
-To my knowledge, everything **should.** Will it? Most likely.
-
-## License
-### BungieSharper License
-**BungieSharper** is licensed under the MIT License, the terms of which can be found in [`LICENSE.md`](LICENSE.md) or [here.](https://opensource.org/licenses/MIT)
+## Usage
+Please see the [wiki.](https://github.com/Cytraen/BungieSharper/wiki)
 
 ### Bungie SDK License Agreement (BSD 3-Clause)
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"

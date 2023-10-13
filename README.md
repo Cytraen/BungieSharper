@@ -5,7 +5,7 @@
 
 ## Packages
 [**BungieSharper**](https://www.nuget.org/packages/BungieSharper/latest) is the client library.  
-[**BungieSharper.Entities**](https://www.nuget.org/packages/BungieSharper.Entities/latest) contains all of the types is also available standalone, if you would like to use them with your own client.  
+[**BungieSharper.Entities**](https://www.nuget.org/packages/BungieSharper.Entities/latest) contains all of the types and is available standalone, if you would like to use them with your own client.  
 
 ## Usage
 Please see the [wiki.](https://github.com/Cytraen/BungieSharper/wiki)

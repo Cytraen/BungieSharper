@@ -130,7 +130,7 @@ public class BungieApiClient : IDisposable
     {
         _apiAccessor.UserAgent = userAgent + " BungieSharper/" +
                                  typeof(BungieApiClient).Assembly.GetName().Version!.ToString(3) +
-                                 " (+github.com/ashakoor/BungieSharper)";
+                                 " (+github.com/Cytraen/BungieSharper)";
     }
 
     private void SetOAuthClientId(uint? clientId)

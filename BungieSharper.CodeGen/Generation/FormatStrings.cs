@@ -42,7 +42,8 @@ internal static class FormatStrings
         return formatted;
     }
 
-    public static string FormatMethodSummaries(string summary, IEnumerable<PathResponseMethodParameterClass> parameters, bool preview, bool deprecated, IEnumerable<OAuthScopeEnum>? oauthScopes)
+    public static string FormatMethodSummaries(string summary, IEnumerable<PathResponseMethodParameterClass> parameters,
+        bool preview, bool deprecated, IEnumerable<OAuthScopeEnum>? oauthScopes)
     {
         var formatted = "";
         var spacing = "".PadLeft(8, ' ');
@@ -61,9 +62,7 @@ internal static class FormatStrings
 
         var oAuthScopes = oauthScopes?.ToList() ?? new List<OAuthScopeEnum>();
         if (oAuthScopes.Any())
-        {
             formatted += $"{spacing}/// Requires OAuth2 scope(s): {string.Join(", ", oAuthScopes)}\n";
-        }
 
         formatted += $"{spacing}/// </summary>\n";
 
@@ -72,14 +71,14 @@ internal static class FormatStrings
         var pathResponseMethodParameterClasses = paramsWithDescriptions.ToList();
         if (pathResponseMethodParameterClasses.Any())
         {
-            formatted += string.Join("\n", pathResponseMethodParameterClasses.Select(x => spacing + "/// <param name=\"" + x.Name + "\">" + x.Description.Trim() + "</param>"));
+            formatted += string.Join("\n",
+                pathResponseMethodParameterClasses.Select(x =>
+                    spacing + "/// <param name=\"" + x.Name + "\">" + x.Description.Trim() + "</param>"));
             formatted += "\n";
         }
 
         if (deprecated)
-        {
             formatted += $"{spacing}[System.Obsolete(\"Bungie have marked this endpoint as deprecated.\", true)]\n";
-        }
 
         return formatted;
     }
@@ -97,10 +96,7 @@ internal static class FormatStrings
     {
         var className = reference.Split('/')[^1];
 
-        if (appendEntities)
-        {
-            return "Entities." + className;
-        }
+        if (appendEntities) return "Entities." + className;
 
         return className;
     }

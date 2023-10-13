@@ -27,8 +27,7 @@ jobs:
     - name: Setup .NET 6
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 6.0.x
-        include-prerelease: false
+        dotnet-version: 8
 
     - name: Pack entities NuGet package
       run: dotnet pack ./BungieSharper.Entities -c Release --output Packages -p:ContinuousIntegrationBuild=true -p:Version=${{ steps.get_version.outputs.VERSION }}
@@ -101,8 +100,8 @@ jobs:
     
     - name: Upload entities to GitHub Packages
       run: |
-        dotnet nuget push ./Packages/BungieSharper.Entities.${{ steps.get_version.outputs.VERSION }}.nupkg -k ${{ secrets.GITHUB_TOKEN }} -s https://nuget.pkg.github.com/ashakoor/index.json
+        dotnet nuget push ./Packages/BungieSharper.Entities.${{ steps.get_version.outputs.VERSION }}.nupkg -k ${{ secrets.GITHUB_TOKEN }} -s https://nuget.pkg.github.com/Cytraen/index.json
 
     - name: Upload client to GitHub Packages
       run: |
-        dotnet nuget push ./Packages/BungieSharper.${{ steps.get_version.outputs.VERSION }}.nupkg -k ${{ secrets.GITHUB_TOKEN }} -s https://nuget.pkg.github.com/ashakoor/index.json
+        dotnet nuget push ./Packages/BungieSharper.${{ steps.get_version.outputs.VERSION }}.nupkg -k ${{ secrets.GITHUB_TOKEN }} -s https://nuget.pkg.github.com/Cytraen/index.json

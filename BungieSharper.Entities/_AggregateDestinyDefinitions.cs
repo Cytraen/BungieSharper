@@ -214,8 +214,8 @@ public class AggregateDestinyDefinitions
     [JsonPropertyName("DestinyTraitDefinition")]
     public Dictionary<uint, DestinyTraitDefinition>? Traits { get; set; }
 
-    [JsonPropertyName("DestinyTraitCategoryDefinition")]
-    public Dictionary<uint, DestinyTraitCategoryDefinition>? TraitCategories { get; set; }
+    // [JsonPropertyName("DestinyTraitCategoryDefinition")]
+    // public Dictionary<uint, DestinyTraitCategoryDefinition>? TraitCategories { get; set; }
 
     // [JsonPropertyName("DestinyUnlockCountMappingDefinition")]
     // public Dictionary<uint, DestinyUnlockCountMappingDefinition>? UnlockCountMappings { get; set; }

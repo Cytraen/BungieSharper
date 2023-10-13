@@ -15,7 +15,7 @@ namespace BungieSharper.CodeGen.Entities.Components.Response
     public class ResponseContentClass
     {
         [JsonPropertyName("application/json")]
-        public ResponseContentApplicationJsonClass ApplicaionJson { get; set; }
+        public ResponseContentApplicationJsonClass ApplicationJson { get; set; }
     }
 
     public class ResponseContentApplicationJsonClass

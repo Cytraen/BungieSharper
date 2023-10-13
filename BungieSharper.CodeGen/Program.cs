@@ -1,4 +1,6 @@
 using BungieSharper.CodeGen.Entities;
+using BungieSharper.CodeGen.Entities.Common;
+using BungieSharper.CodeGen.Generation;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,9 +15,13 @@ namespace BungieSharper.CodeGen;
 internal static class Program
 {
     internal const string BaseEntityNamespace = "BungieSharper.Entities";
-    private static readonly string SolutionPath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\..\"));
+
+    private static readonly string SolutionPath =
+        Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\..\"));
+
     private static readonly string EntityProjectFolder = Path.Combine(SolutionPath, "BungieSharper.Entities");
     private static readonly string ClientEndpointFolder = Path.Combine(SolutionPath, "BungieSharper", "Endpoints");
+    internal static HashSet<string> PostBodyRequestTypes = new();
 
     internal static OpenApiObject OpenApiDefinition;
 
@@ -31,7 +37,8 @@ internal static class Program
 
         var content = File.ReadAllText(specJsonPath);
 
-        var serializerOptions = new JsonSerializerOptions { NumberHandling = JsonNumberHandling.AllowReadingFromString };
+        var serializerOptions = new JsonSerializerOptions
+        { NumberHandling = JsonNumberHandling.AllowReadingFromString };
 
         OpenApiDefinition = JsonSerializer.Deserialize<OpenApiObject>(content, serializerOptions)!;
         var schemas = OpenApiDefinition.Components.Schemas;
@@ -39,35 +46,26 @@ internal static class Program
 
         // entities
 
-        foreach (var subDir in Directory.GetDirectories(EntityProjectFolder))
-        {
-            Directory.Delete(subDir, true);
-        }
+        foreach (var subDir in Directory.GetDirectories(EntityProjectFolder)) Directory.Delete(subDir, true);
 
         foreach (var file in Directory.GetFiles(EntityProjectFolder))
         {
             var fileName = file.Split('\\').Last();
 
-            if (fileName.EndsWith(".cs") && !fileName.StartsWith('_'))
-            {
-                File.Delete(file);
-            }
+            if (fileName.EndsWith(".cs") && !fileName.StartsWith('_')) File.Delete(file);
         }
 
         var schemaFileDict = new Dictionary<string, List<string>>();
 
         foreach (var (schemaName, schemaDef) in schemas)
         {
-            if (schemaDef.Type == Entities.Common.TypeEnum.Array) continue;
+            if (schemaDef.Type == TypeEnum.Array) continue;
 
             var fileFolder = string.Join('\\', schemaName.Split('.')[..^1]);
 
-            if (!schemaFileDict.ContainsKey(fileFolder))
-            {
-                schemaFileDict.Add(fileFolder, new List<string>());
-            }
+            if (!schemaFileDict.ContainsKey(fileFolder)) schemaFileDict.Add(fileFolder, new List<string>());
 
-            schemaFileDict[fileFolder].Add(Generation.GenerateSchema.GetSchemaFileContent(schemaName, schemaDef));
+            schemaFileDict[fileFolder].Add(GenerateSchema.GetSchemaFileContent(schemaName, schemaDef));
         }
 
         foreach (var (location, classContents) in schemaFileDict)
@@ -84,15 +82,14 @@ internal static class Program
             combinedContent = combinedContent.Replace($"namespace {matches[0].Groups[1]}", "");
             combinedContent = $"namespace {matches[0].Groups[1]}\n{{" + combinedContent + "\n}";
 
-            if (combinedContent.Contains("[JsonPropertyName") || (combinedContent.Contains("JsonSerializable") && combinedContent.Contains("JsonSourceGenerationOptions") && combinedContent.Contains("JsonSerializerContext")))
-            {
+            if (combinedContent.Contains("[JsonPropertyName") || (combinedContent.Contains("JsonSerializable") &&
+                                                                  combinedContent.Contains(
+                                                                      "JsonSourceGenerationOptions") &&
+                                                                  combinedContent.Contains("JsonSerializerContext")))
                 combinedContent = "using System.Text.Json.Serialization;\n" + combinedContent;
-            }
 
             if (combinedContent.Contains("IEnumerable<") || combinedContent.Contains("Dictionary<"))
-            {
                 combinedContent = "using System.Collections.Generic;\n" + combinedContent;
-            }
 
             if (combinedContent.Contains("using System.Collections.Generic;"))
             {
@@ -100,10 +97,9 @@ internal static class Program
                 combinedContent = "using System.Collections.Generic;\n" + combinedContent;
             }
 
-            if (combinedContent.Length - combinedContent.Replace("[System.Flags]", "[Flags]").Replace("System.DateTime", "DateTime").Length >= 14)
-            {
-                combinedContent = "using System;\n" + combinedContent;
-            }
+            if (combinedContent.Length - combinedContent.Replace("[System.Flags]", "[Flags]")
+                    .Replace("System.DateTime", "DateTime").Length >=
+                14) combinedContent = "using System;\n" + combinedContent;
 
             if (combinedContent.Contains("using System;"))
             {
@@ -133,7 +129,7 @@ internal static class Program
                 Path.Combine(EntityProjectFolder, location.Split('\\').First()),
                 ("Entities." + location.Replace(SolutionPath, "").Replace('\\', '.') + ".cs").Replace("..", "."),
                 combinedContent
-                );
+            );
 
             Console.WriteLine($"Wrote Entities.{location.Replace(SolutionPath, "").Replace('\\', '.')}");
         }
@@ -143,48 +139,42 @@ internal static class Program
         foreach (var subDir in Directory.GetDirectories(SolutionPath))
         {
             var folder = subDir.Split('\\').Last();
-            if (folder is "bin" or "obj")
-            {
-                Directory.Delete(subDir, true);
-            }
+            if (folder is "bin" or "obj") Directory.Delete(subDir, true);
         }
 
         foreach (var file in Directory.GetFiles(ClientEndpointFolder))
         {
             var fileName = file.Split('\\').Last();
 
-            if (fileName.EndsWith(".cs") && !fileName.StartsWith('_'))
-            {
-                File.Delete(file);
-            }
+            if (fileName.EndsWith(".cs") && !fileName.StartsWith('_')) File.Delete(file);
         }
 
-        var pathContentDict = new Dictionary<Entities.Common.TagEnum, List<string>>();
+        var pathContentDict = new Dictionary<TagEnum, List<string>>();
+        var returnResponseTypes = new HashSet<string>();
 
         foreach (var (pathUri, pathDef) in paths)
         {
-            var tag = Entities.Common.TagEnum.None;
+            var tag = TagEnum.None;
 
             if (pathDef.Get != null)
             {
                 var tagList = pathDef.Get.Tags.ToList();
-                tagList.Remove(Entities.Common.TagEnum.Preview);
+                tagList.Remove(TagEnum.Preview);
                 tag = tagList[0];
             }
+
             if (pathDef.Post != null)
             {
                 var tagList = pathDef.Post.Tags.ToList();
-                tagList.Remove(Entities.Common.TagEnum.Preview);
+                tagList.Remove(TagEnum.Preview);
                 tag = tagList[0];
             }
 
-            if (!pathContentDict.ContainsKey(tag))
-            {
-                pathContentDict[tag] = new List<string>();
-            }
+            if (!pathContentDict.ContainsKey(tag)) pathContentDict[tag] = new List<string>();
 
-            var pathContent = Generation.GeneratePath.GeneratePathContent(pathUri, pathDef);
+            var pathContent = GeneratePath.GeneratePathContent(pathUri, pathDef, out var returnResponseType);
             pathContentDict[tag].Add(pathContent);
+            returnResponseTypes.Add(returnResponseType);
         }
 
         foreach (var (tag, methods) in pathContentDict)
@@ -192,7 +182,7 @@ internal static class Program
             var aggregateFile = "";
 
             aggregateFile +=
-@"using BungieSharper.Client;
+                @"using BungieSharper.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -212,25 +202,29 @@ namespace BungieSharper.Endpoints
             aggregateFile = aggregateFile.Replace("\r\n", "\n");
 
             if (!aggregateFile.Contains("JsonSerializer.Serialize("))
-            {
                 aggregateFile = aggregateFile.Replace("using System.Text.Json;\n", "");
-            }
             if (!aggregateFile.Contains("IEnumerable<") && !aggregateFile.Contains("Dictionary<"))
-            {
                 aggregateFile = aggregateFile.Replace("using System.Collections.Generic;\n", "");
-            }
             if (!aggregateFile.Contains(".Select(x => x.") && !aggregateFile.Contains(".Where(x => x."))
-            {
                 aggregateFile = aggregateFile.Replace("using System.Linq;\n", "");
-            }
 
             WriteFileWithContent(
                 ClientEndpointFolder,
-                Generation.Mapping.TagToDescription(tag) + ".cs",
+                Mapping.TagToDescription(tag) + ".cs",
                 aggregateFile);
 
-            Console.WriteLine($"Wrote {Generation.Mapping.TagToDescription(tag)}");
+            Console.WriteLine($"Wrote {Mapping.TagToDescription(tag)}");
         }
+
+        // response types
+
+        var compiledContextTypes = returnResponseTypes.ToDictionary(x => x, x => true).Concat(PostBodyRequestTypes.ToDictionary(x => x, x => false)).ToDictionary(x => x.Key, x => x.Value);
+
+        File.WriteAllText(Path.Combine(ClientEndpointFolder, "..", "Client", "JsonContext.cs"),
+            "using BungieSharper.Entities;\nusing System.Collections.Generic;\nusing System.Text.Json.Serialization;\n\n" +
+            "namespace BungieSharper.Endpoints;\n\n"
+            + string.Join("\n", compiledContextTypes.Select(kvp => GenerateResponses.CreateResponseClass(kvp.Key, kvp.Value))) +
+            "\n[JsonSerializable(typeof(ApiResponse))]\n[JsonSerializable(typeof(TokenResponse))]\ninternal partial class BungieSharperDeserializeJsonContext : JsonSerializerContext { }");
 
         Console.WriteLine("Done. Press ENTER to exit.");
         Console.ReadLine();

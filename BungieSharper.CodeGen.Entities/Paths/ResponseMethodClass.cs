@@ -16,7 +16,7 @@ namespace BungieSharper.CodeGen.Entities.Paths
         public string OperationId { get; set; }
 
         [JsonPropertyName("parameters")]
-        public PathResponseMethodParameterClass[] Parameters { get; set; }
+        public PathResponseMethodParameterClass[]? Parameters { get; set; }
 
         [JsonPropertyName("responses")]
         public Dictionary<short, ResponseClass> Responses { get; set; }

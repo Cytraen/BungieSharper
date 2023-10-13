@@ -1,16 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Authors>ashakoor</Authors>
-    <Copyright>Copyright © 2020-2022 ashakoor</Copyright>
+    <Authors>Cytraen</Authors>
+    <Copyright>Copyright © 2020-2023 Cytraen</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <RepositoryUrl>https://github.com/ashakoor/BungieSharper</RepositoryUrl>
+    <RepositoryUrl>https://github.com/Cytraen/BungieSharper</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <Nullable>enable</Nullable>
     <IsPackable>true</IsPackable>
     <EnablePackageValidation>true</EnablePackageValidation>
 
-    <TargetFrameworks>net6.0</TargetFrameworks>
-    <VersionPrefix>0.9.4</VersionPrefix>
+    <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
+    <VersionPrefix>0.10.0</VersionPrefix>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -34,13 +34,13 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <Product>BungieSharper.Entities</Product>
     <Description>The object classes for BungieSharper, for use with your own client.</Description>
-    <PackageProjectUrl>https://github.com/ashakoor/BungieSharper</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/Cytraen/BungieSharper</PackageProjectUrl>
     <PackageIcon>BungieSharper.png</PackageIcon>
     <PackageTags>bungie bungie-net destiny destiny2 destiny-api</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup>

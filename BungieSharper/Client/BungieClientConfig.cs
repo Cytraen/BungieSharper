@@ -21,7 +21,7 @@ public class BungieClientConfig
     /// <remarks> If you don't have one, you can get one at https://www.bungie.net/en/Application/ </remarks>
     public string ApiKey
     {
-        internal get { return _apiKey; }
+        internal get => _apiKey;
 
         set
         {
@@ -37,9 +37,9 @@ public class BungieClientConfig
     /// <remarks>Format should be {ProductName}/{ProductVersion} (+{contact info}) e.g.: YourAppName/v1.2.3 (+your@email.here)</remarks>
     public string? UserAgent
     {
-        internal get { return _userAgent; }
+        internal get => _userAgent;
 
-        set { _userAgent = string.IsNullOrWhiteSpace(value) ? null : value; }
+        set => _userAgent = string.IsNullOrWhiteSpace(value) ? null : value;
     }
 
     /// <summary>
@@ -62,7 +62,7 @@ public class BungieClientConfig
     /// </remarks>
     public byte RateLimit
     {
-        internal get { return _requestsPerSecond; }
+        internal get => _requestsPerSecond;
 
         set
         {

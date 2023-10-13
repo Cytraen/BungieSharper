@@ -35,22 +35,26 @@ public class BungieResponseContentNotJsonException : BungieBaseHttpResponseExcep
 {
     internal BungieResponseContentNotJsonException(HttpResponseMessage httpResponse, string message) : base(
         httpResponse, message)
-    { }
+    {
+    }
 
     internal BungieResponseContentNotJsonException(HttpResponseMessage httpResponse) : this(httpResponse,
         $"The Bungie API returned content that was of type {httpResponse.Content.Headers.ContentType?.MediaType} instead of \"application/json\"")
-    { }
+    {
+    }
 }
 
 public class BungieResponseContentEmptyJsonException : BungieBaseHttpResponseException
 {
     internal BungieResponseContentEmptyJsonException(HttpResponseMessage httpResponse, string message) : base(
         httpResponse, message)
-    { }
+    {
+    }
 
     internal BungieResponseContentEmptyJsonException(HttpResponseMessage httpResponse) : this(httpResponse,
         "The Bungie API response contained empty or null JSON.")
-    { }
+    {
+    }
 }
 
 public class BungieApiNoRetryException : BungieBaseApiResponseException
@@ -61,7 +65,8 @@ public class BungieApiNoRetryException : BungieBaseApiResponseException
 
     internal BungieApiNoRetryException(ApiResponse apiResponse) : this(apiResponse,
         $"The Bungie API returned an error code ({(int)apiResponse.ErrorCode}: {apiResponse.ErrorCode}) that will not be retried on.")
-    { }
+    {
+    }
 }
 
 public class BungieApiNullResponseException : BungieBaseApiResponseException
@@ -72,5 +77,6 @@ public class BungieApiNullResponseException : BungieBaseApiResponseException
 
     internal BungieApiNullResponseException(ApiResponse apiResponse) : this(apiResponse,
         "The \"Response\" property of the API response was null or empty.")
-    { }
+    {
+    }
 }

@@ -4,6 +4,8 @@ using BungieSharper.CodeGen.Entities.Components.Schema;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using AdditionalPropertiesClass = BungieSharper.CodeGen.Entities.Components.Properties.AdditionalPropertiesClass;
+using XDictionaryKeyClass = BungieSharper.CodeGen.Entities.Components.Properties.XDictionaryKeyClass;
 
 namespace BungieSharper.CodeGen.Generation;
 
@@ -36,15 +38,16 @@ internal static class GenerateSchema
         fileContent += $"namespace {nameSpace}\n{{\n";
 
         if (!string.IsNullOrWhiteSpace(def.Description))
-        {
             fileContent += FormatStrings.FormatClassSummaries(def.Description);
-        }
-        if (def.XEnumIsBitmask == true)
-        {
-            fileContent += enumFlagsString;
-        }
+        if (def.XEnumIsBitmask == true) fileContent += enumFlagsString;
 
-        var enumList = (from enumVal in def.XEnumValues! let doc = string.IsNullOrWhiteSpace(enumVal.Description) ? "" : FormatStrings.FormatPropertySummaries(enumVal.Description) let enumDef = $"        {enumVal.Identifier} = {enumVal.NumericValue}" select doc + enumDef).ToList();
+        var enumList = (from enumVal in def.XEnumValues!
+                        let doc =
+                            string.IsNullOrWhiteSpace(enumVal.Description)
+                                ? ""
+                                : FormatStrings.FormatPropertySummaries(enumVal.Description)
+                        let enumDef = $"        {enumVal.Identifier} = {enumVal.NumericValue}"
+                        select doc + enumDef).ToList();
 
         fileContent += $"    public enum {className} : {Mapping.FormatToCSharp(def.Format!.Value)}\n    {{\n";
         fileContent += string.Join(",\n", enumList);
@@ -65,19 +68,13 @@ internal static class GenerateSchema
         fileContent += $"namespace {nameSpace}\n{{\n";
 
         if (!string.IsNullOrWhiteSpace(def.Description))
-        {
             fileContent += FormatStrings.FormatClassSummaries(def.Description);
-        }
 
         var propertyList = new List<string>();
 
         if (properties is not null)
-        {
             foreach (var (propName, propDef) in properties)
-            {
                 propertyList.Add(ResolveProperty(propName, propDef));
-            }
-        }
 
         fileContent += $"    public class {className}\n    {{\n";
         fileContent += string.Join("\n\n", propertyList);
@@ -85,9 +82,7 @@ internal static class GenerateSchema
 
         //fileContent += $"\n\n    [JsonSerializable(typeof({className}))]\n";
         //fileContent += "    [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]\n";
-        //fileContent += $"    internal partial class {className}JsonContext : JsonSerializerContext {{ }}\n";
-
-        //fileContent += "}";
+        //fileContent += $"    internal partial class {className}JsonContext : JsonSerializerContext {{ }}\n}}";
 
         return fileContent;
     }
@@ -98,38 +93,21 @@ internal static class GenerateSchema
         var propType = "";
 
         if (def.AllOf is not null)
-        {
             propType += FormatStrings.ResolveRef(def.AllOf[0].Ref, false);
-        }
         else if (def.Items is not null)
-        {
             propType += GenerateCommon.ResolveItems(def.Items, false);
-        }
         else if (def.AdditionalProperties is not null)
-        {
             propType += ResolvePropertyDictionary(def.XDictionaryKey!, def.AdditionalProperties);
-        }
         else if (def.Ref is not null)
-        {
             propType += FormatStrings.ResolveRef(def.Ref, false);
-        }
         else if (def.XEnumReference is not null)
-        {
             propType += FormatStrings.ResolveRef(def.XEnumReference.Ref, false);
-        }
         else if (def.Format is not null)
-        {
             propType += Mapping.FormatToCSharp(def.Format.Value);
-        }
         else
-        {
             propType += Mapping.TypeToCSharp(def.Type!.Value);
-        }
 
-        if (def.Description is not null)
-        {
-            propListing += FormatStrings.FormatPropertySummaries(def.Description);
-        }
+        if (def.Description is not null) propListing += FormatStrings.FormatPropertySummaries(def.Description);
 
         if (def.Nullable == true)
         {
@@ -147,32 +125,25 @@ internal static class GenerateSchema
         return propListing;
     }
 
-    private static string ResolvePropertyDictionary(Entities.Components.Properties.XDictionaryKeyClass dictKey, Entities.Components.Properties.AdditionalPropertiesClass additionalProps)
+    private static string ResolvePropertyDictionary(XDictionaryKeyClass dictKey,
+        AdditionalPropertiesClass additionalProps)
     {
         var classType = "Dictionary<";
 
         if (dictKey.XEnumReference is not null)
-        {
             classType += FormatStrings.ResolveRef(dictKey.XEnumReference.Ref, false);
-        }
         else if (dictKey.Format is not null)
-        {
             classType += Mapping.FormatToCSharp(dictKey.Format.Value);
-        }
         else
-        {
             classType += Mapping.TypeToCSharp(dictKey.Type!.Value);
-        }
 
         classType += ", ";
 
         if (additionalProps.AdditionalProperties is not null)
         {
-            if (additionalProps.XDictionaryKey is null)
-            {
-                throw new NullReferenceException();
-            }
-            classType += ResolvePropertyDictionary(additionalProps.XDictionaryKey, additionalProps.AdditionalProperties);
+            if (additionalProps.XDictionaryKey is null) throw new NullReferenceException();
+            classType +=
+                ResolvePropertyDictionary(additionalProps.XDictionaryKey, additionalProps.AdditionalProperties);
         }
         else if (additionalProps.Items is not null)
         {

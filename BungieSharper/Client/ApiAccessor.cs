@@ -1,3 +1,4 @@
+using BungieSharper.Endpoints;
 using BungieSharper.Entities;
 using BungieSharper.Entities.Exceptions;
 using System;
@@ -8,6 +9,7 @@ using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Text.Json.Serialization.Metadata;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -17,17 +19,20 @@ internal class ApiAccessor : IDisposable
 {
     private const string BaseUrl = "https://stats.bungie.net/Platform/";
     private const byte SimultaneousRequests = 2;
-
     private readonly HttpClient _httpClient;
     private readonly SemaphoreSlim _semaphore;
-    private readonly JsonSerializerOptions _serializerOptions;
+
+    internal readonly BungieSharperDeserializeJsonContext JsonContext;
     private TimeSpan _msPerRequest;
     private HashSet<PlatformErrorCodes> _retryErrorCodes;
 
     internal ApiAccessor()
     {
+        JsonContext = new BungieSharperDeserializeJsonContext(new JsonSerializerOptions
+        {
+            NumberHandling = JsonNumberHandling.AllowReadingFromString
+        });
         _semaphore = new SemaphoreSlim(SimultaneousRequests, SimultaneousRequests);
-        _serializerOptions = new JsonSerializerOptions { NumberHandling = JsonNumberHandling.AllowReadingFromString };
 
         HttpClientHandler httpClientHandler;
 
@@ -107,7 +112,8 @@ internal class ApiAccessor : IDisposable
         _semaphore.Dispose();
     }
 
-    internal async Task<T> ApiRequestAsync<T>(Uri uri, HttpContent? httpContent, HttpMethod httpMethod,
+    internal async Task<T> ApiRequestAsync<T>(Uri uri, JsonTypeInfo<ApiResponse<T>> jsonTypeInfo,
+        HttpContent? httpContent, HttpMethod httpMethod,
         string? authToken, CancellationToken cancelToken)
     {
         var semaphoreTask = _semaphore.WaitAsync(cancelToken).ConfigureAwait(false);
@@ -131,9 +137,9 @@ internal class ApiAccessor : IDisposable
                 throw new BungieResponseContentNotJsonException(httpResponseMessage);
             }
 
-            var apiResponse = JsonSerializer.Deserialize<ApiResponse<T>>(
-                await httpResponseMessage.Content.ReadAsStringAsync(cancelToken).ConfigureAwait(false),
-                _serializerOptions);
+            var apiResponse = JsonSerializer.Deserialize(
+                await httpResponseMessage.Content.ReadAsStringAsync(cancelToken).ConfigureAwait(false), jsonTypeInfo
+            );
 
             if (apiResponse is null)
             {
@@ -168,7 +174,8 @@ internal class ApiAccessor : IDisposable
         }
     }
 
-    internal async Task<TokenResponse> ApiTokenRequestResponseAsync(Uri uri, HttpContent httpContent,
+    internal async Task<TokenResponse> ApiTokenRequestResponseAsync(Uri uri, JsonTypeInfo<TokenResponse> jsonTypeInfo,
+        HttpContent httpContent,
         HttpMethod httpMethod, CancellationToken cancelToken)
     {
         var semaphoreTask = _semaphore.WaitAsync(cancelToken).ConfigureAwait(false);
@@ -192,9 +199,9 @@ internal class ApiAccessor : IDisposable
                 throw new BungieResponseContentNotJsonException(httpResponseMessage);
             }
 
-            var apiResponse = JsonSerializer.Deserialize<TokenResponse>(
-                await httpResponseMessage.Content.ReadAsStringAsync(cancelToken).ConfigureAwait(false),
-                _serializerOptions);
+            var apiResponse = JsonSerializer.Deserialize(
+                await httpResponseMessage.Content.ReadAsStringAsync(cancelToken).ConfigureAwait(false), jsonTypeInfo
+            );
 
             if (apiResponse is null)
             {

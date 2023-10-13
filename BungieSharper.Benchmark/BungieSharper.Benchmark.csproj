@@ -1,20 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <Authors>ashakoor</Authors>
-    <Copyright>Copyright © 2020-2022 ashakoor</Copyright>
+    <Authors>Cytraen</Authors>
+    <Copyright>Copyright © 2020-2023 Cytraen</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <RepositoryUrl>https://github.com/ashakoor/BungieSharper</RepositoryUrl>
+    <RepositoryUrl>https://github.com/Cytraen/BungieSharper</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
 
-    <TargetFrameworks>net5.0;net6.0</TargetFrameworks>
-    <VersionPrefix>0.9.4</VersionPrefix>
+    <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
+    <VersionPrefix>0.10.0</VersionPrefix>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BenchmarkDotNet" Version="0.13.1" />
+    <PackageReference Include="BenchmarkDotNet" Version="0.13.9" />
     <PackageReference Include="BungieSharper" Version="0.9.0-beta.1" />
   </ItemGroup>
 

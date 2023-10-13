@@ -9,21 +9,13 @@ internal static class GenerateCommon
         var propType = "IEnumerable<";
 
         if (items.XEnumReference?.Ref is not null)
-        {
             propType += FormatStrings.ResolveRef(items.XEnumReference.Ref, appendEntities);
-        }
         else if (items.Ref is not null)
-        {
             propType += FormatStrings.ResolveRef(items.Ref, appendEntities);
-        }
         else if (items.Format.HasValue)
-        {
             propType += Mapping.FormatToCSharp(items.Format.Value);
-        }
         else
-        {
             propType += Mapping.TypeToCSharp(items.Type);
-        }
 
         propType += ">";
 

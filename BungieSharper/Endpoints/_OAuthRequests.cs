@@ -47,7 +47,8 @@ public class OAuthRequests
 
         var encodedContent = new FormUrlEncodedContent(encodedContentPairs);
 
-        return _apiAccessor.ApiTokenRequestResponseAsync(new Uri(OAuthTokenUrl, UriKind.Absolute), encodedContent,
+        return _apiAccessor.ApiTokenRequestResponseAsync(new Uri(OAuthTokenUrl, UriKind.Absolute),
+            _apiAccessor.JsonContext.TokenResponse, encodedContent,
             HttpMethod.Post, cancelToken);
     }
 
@@ -71,7 +72,8 @@ public class OAuthRequests
 
         var encodedContent = new FormUrlEncodedContent(encodedContentPairs);
 
-        return _apiAccessor.ApiTokenRequestResponseAsync(new Uri(OAuthTokenUrl, UriKind.Absolute), encodedContent,
+        return _apiAccessor.ApiTokenRequestResponseAsync(new Uri(OAuthTokenUrl, UriKind.Absolute),
+            _apiAccessor.JsonContext.TokenResponse, encodedContent,
             HttpMethod.Post, cancelToken);
     }
 

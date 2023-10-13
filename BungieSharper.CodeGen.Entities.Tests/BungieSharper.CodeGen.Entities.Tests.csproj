@@ -1,15 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Authors>ashakoor</Authors>
-    <Copyright>Copyright © 2020-2022 ashakoor</Copyright>
+    <Authors>Cytraen</Authors>
+    <Copyright>Copyright © 2020-2023 Cytraen</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <RepositoryUrl>https://github.com/ashakoor/BungieSharper</RepositoryUrl>
+    <RepositoryUrl>https://github.com/Cytraen/BungieSharper</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
 
     <TargetFramework>net6.0</TargetFramework>
-    <VersionPrefix>0.9.4</VersionPrefix>
+    <VersionPrefix>0.10.0</VersionPrefix>
   </PropertyGroup>
 
   <ItemGroup>

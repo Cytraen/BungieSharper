@@ -25,11 +25,10 @@ jobs:
       id: get_suffix
       run: echo ::set-output name=SUFFIX::${GITHUB_SHA:0:9}
 
-    - name: Setup .NET 6
-      uses: actions/setup-dotnet@v1
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 6.0.x
-        include-prerelease: false
+        dotnet-version: 8
 
     - name: Pack entities NuGet package
       run: dotnet pack ./BungieSharper.Entities -c Release --output OutputPackage -p:ContinuousIntegrationBuild=true -p:VersionSuffix=${{ steps.get_suffix.outputs.SUFFIX }}

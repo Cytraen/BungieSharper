@@ -8,6 +8,7 @@
     <Nullable>enable</Nullable>
     <IsPackable>true</IsPackable>
     <EnablePackageValidation>true</EnablePackageValidation>
+    <NoWarn>$(NoWarn);CS1573;CS1591;CS8618</NoWarn>
 
     <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
     <VersionPrefix>0.10.0</VersionPrefix>
